@@ -1,0 +1,59 @@
+@charset "utf-8 ";
+@import url(fonts/weblogma_yekan.css);
+@charset "UTF-8 ";
+
+html {
+-ms-text-size-adjust:100%;
+-webkit-text-size-adjust:100%
+}
+
+body {
+    font-family:weblogmayekan,Arial;
+    margin:0;
+    padding: 50px 100px;
+    background: #EEE;
+    direction: rtl;
+    
+}
+h1,h2{
+    font-weight: normal;
+}
+h3{
+    font-weight: bold;
+}
+p{
+    text-align: justify;
+}
+.p1{
+    font-size: 14px;
+}
+.p2{
+    font-size: 16px;
+}
+.p3{
+    font-size:18px;
+}
+.p4{
+    font-size:20px;
+}
+.p5{
+    font-size:28px;
+}
+
+footer{
+    display: block;
+    text-align: center;
+    font-size: 24px;
+    position: fixed;
+    width: 100%;
+    height: 70px;
+    bottom: 0;
+    right: 0;
+    background: #333;
+    color: #FFF;
+}
+footer a{
+    text-decoration: none;
+    color:#FFF;
+    border-bottom: 1px solid #FFF;
+}

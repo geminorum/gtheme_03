@@ -1,0 +1,11 @@
+html { -ms-text-size-adjust:100%; -webkit-text-size-adjust:100% }
+html, body { height:100%; }
+body{ direction:rtl; position:relative; }
+
+html.html-admin-bar body { padding-top:32px; }
+@media screen and (max-width: 782px) { html.html-admin-bar body { padding-top: 46px; } }
+
+a {}
+a:hover { text-decoration:none; }
+
+.main-logo { margin:0; padding:0; }
