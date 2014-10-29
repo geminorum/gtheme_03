@@ -102,7 +102,7 @@ final class gThemeCore
 	}
 	
 	// http://codex.wordpress.org/Class_Reference/WP_Theme
-	public static function version( $theme = 'gtheme_03' )
+	public static function version( $theme = null )
 	{
 		$theme = wp_get_theme( $theme );
 		if ( ! $theme->exists() )
