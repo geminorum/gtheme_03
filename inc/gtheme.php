@@ -14,44 +14,35 @@ final class gThemeCore
 		return self::$instance;
 	}
 
-	// a dummy constructor to prevent loading more than once.
 	private function __construct() { }
 
 	private function setup_globals() 
 	{
 		$modules = array(
-			'constants' => '',
+			'constants'  => '',
 			'modulecore' => '',
-			'cache' => '',
+			'cache'      => '',
 			
-			'utilities' => 'gThemeUtilities',
-			'template' => 'gThemeTemplate',
-			'options' => 'gThemeOptions',
-			'theme' => 'gThemeTheme',
-			'wrap' => 'gThemeWrap',
-			'filters' => 'gThemeFilters',
-			'content' => 'gThemeContent',
-			'feed' => 'gThemeFeed',
-			'image' => 'gThemeImage',
-			'social' => 'gThemeSocial',
-			'menu' => 'gThemeMenu',
-			
-			
-			
-			//'postformats' => 'gThemePostFormats',
+			'utilities'  => 'gThemeUtilities',
+			'template'   => 'gThemeTemplate',
+			'options'    => 'gThemeOptions',
+			'theme'      => 'gThemeTheme',
+			'wrap'       => 'gThemeWrap',
+			'filters'    => 'gThemeFilters',
+			'content'    => 'gThemeContent',
+			'feed'       => 'gThemeFeed',
+			'image'      => 'gThemeImage',
+			'social'     => 'gThemeSocial',
+			'menu'       => 'gThemeMenu',
 			
 		);
 		
 		if ( is_admin() )
 			$modules['admin'] = 'gThemeAdmin';
-		
-		if ( is_multisite() )
-			$modules['network'] = 'gThemeNetwork';
 
 		$this->modules = apply_filters( 'gtheme_modules', $modules );
 	}
 
-	// setup the default hooks and actions
 	private function setup_actions() 
 	{
 		$this->load_modules( $this->modules );
@@ -75,7 +66,6 @@ final class gThemeCore
 				require_once( $stylesheet.'/gtheme/'.$module_slug.'.php' );
 			else if ( file_exists( $root.'/inc/'.$module_slug.'.php' ) ) 
 				require_once( $root.'/inc/'.$module_slug.'.php' );
-				
 		}
 	}
 	
@@ -101,7 +91,6 @@ final class gThemeCore
 		$this->load_modules( array( 'fallbacks' ) );
 	}
 	
-	// http://codex.wordpress.org/Class_Reference/WP_Theme
 	public static function version( $theme = null )
 	{
 		$theme = wp_get_theme( $theme );
@@ -111,6 +100,5 @@ final class gThemeCore
 		return $theme->get( 'Version' );
 	}
 }
-
 
 function gTheme() { return gThemeCore::instance(); }

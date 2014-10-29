@@ -73,12 +73,11 @@ class gThemeFilters extends gThemeModuleCore {
 			else
 				echo "\t".'<link rel="stylesheet" href="'.GTHEME_URL.'/print.css?ver='.GTHEME_VERSION.'" type="text/css" media="all" />'."\n";
 		} else {
-			if ( gThemeUtilities::is_dev() && file_exists( GTHEME_CHILD_DIR.'/css/style-dev.php' ) )
-				echo "\t".'<link rel="stylesheet" href="'.GTHEME_CHILD_URL.'/css/style-dev.php?ver='.GTHEME_VERSION.'" type="text/css" media="all" />'."\n";
-			else if ( file_exists( GTHEME_CHILD_DIR.'/css/style.php' ) )
-				echo "\t".'<link rel="stylesheet" href="'.GTHEME_CHILD_URL.'/css/style.php?ver='.GTHEME_VERSION.'" type="text/css" media="all" />'."\n";
+			if ( file_exists( GTHEME_CHILD_DIR.'/css/css.php' ) )
+				echo '<link rel="stylesheet" href="'.GTHEME_CHILD_URL.'/css?ver='.GTHEME_VERSION.( gThemeUtilities::is_dev() ? '&debug=debug' : '' ).'" type="text/css" media="all" />'."\n";
 			else
-				echo "\t".'<link rel="stylesheet" href="'.GTHEME_CHILD_URL.'/style.css?ver='.GTHEME_VERSION.'" type="text/css" media="all" />'."\n";
+				echo '<link rel="stylesheet" href="'.GTHEME_CHILD_URL.'/style.css?ver='.GTHEME_VERSION.'" type="text/css" media="all" />'."\n";
+				
 		}
 		
 		if ( is_singular() ) 
