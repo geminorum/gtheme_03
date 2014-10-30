@@ -86,7 +86,7 @@ class gThemeFilters extends gThemeModuleCore {
 	
 	function body_class( $classes, $class )
 	{
-		global $pagenow;
+		global $post, $pagenow;
 		$gtheme_info = gtheme_get_info();
 		
 		if ( ! is_array( $classes ) )

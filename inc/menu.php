@@ -2,7 +2,7 @@
 
 class gThemeMenu extends gThemeModuleCore {
 
-	function setup_actions( $args = array() )
+	public function setup_actions( $args = array() )
 	{
 		extract( shortcode_atts( array(
 			'register_nav' => true,
@@ -17,21 +17,47 @@ class gThemeMenu extends gThemeModuleCore {
 	}
 
 
-	function init() 
+	public function init() 
 	{
 		$menus = gtheme_get_info( 'register_nav_menus', array() );
 		if ( count( $menus ) )
 			register_nav_menus( $menus );
 	}
+	
+	public static function nav( $args = array() ) 
+	{
+		return wp_nav_menu( self::args( $args ) );
+	}
+	
+	public static function args( $atts = array() )
+	{
+		$args = array( 
+			'fallback_cb' => '__return_null',
+			'echo' => isset( $atts['echo'] ) ? $atts['echo'] : true,
+			'depth' => isset( $atts['depth'] ) ? $atts['depth'] : 1,
+			'container' => isset( $atts['container'] ) ? $atts['container'] : 'nav',
+			'theme_location' => isset( $atts['location'] ) ? $atts['location'] : 'primary',
+		);
+		
+		$args['menu'] = $args['theme_location'];
+		$args['menu_class'] = $args['theme_location'].' '.( isset( $atts['class'] ) ? $atts['class'] : 'clearfix' );
+		
+		//$args = array( // 'items_wrap' => '%3$s', // Remove LI Elements From Output of wp_nav_menu // http://css-tricks.com/snippets/wordpress/remove-li-elements-from-output-of-wp_nav_menu/
+		
+		if ( isset( $atts['walker'] ) )
+			$args['walker'] = new $atts['walker'];
+	
+		return $args;
+	}	
+	
 
-	function wp_nav_menu_container_allowedtags( $tags ) 
+	public function wp_nav_menu_container_allowedtags( $tags ) 
 	{
 		$new_tags = (array) gtheme_get_info( 'nav_menu_allowedtags', array( 'p' ) );
 		if ( count( $new_tags ) )
 			$tags = array_merge( $tags, $new_tags );
 		return $tags;
 	}
-
 	
 	public static function separated( $location, $sep = '' )
 	{

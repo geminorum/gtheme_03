@@ -9,8 +9,9 @@ class gThemeWrap extends gThemeModuleCore
 		), $args ) );
 		
 		if ( $images_404 )
-			add_filter( 'template_include', array( $this, 'template_include_404_images' ), -1 );
+			add_filter( 'template_include', array( & $this, 'template_include_404_images' ), -1 );
 		
+		add_action( 'wp_head', array( & $this, 'wp_head' ) );
 		add_filter( 'template_include', array( 'gThemeWrap', 'wrap' ), 99 );
 	}
 
@@ -41,11 +42,8 @@ class gThemeWrap extends gThemeModuleCore
 	// http://scribu.net/wordpress/theme-wrappers.html
 	// https://gist.github.com/1209013
 
-	// Stores the full path to the main template file
-	static $main_template;
-
-	// Stores the base name of the template file; e.g. 'page' for 'page.php' etc.
-	static $base;
+	static $main_template; // stores the full path to the main template file
+	static $base; // stores the base name of the template file; e.g. 'page' for 'page.php' etc.
 
 	static function wrap( $template ) 
 	{
@@ -67,13 +65,24 @@ class gThemeWrap extends gThemeModuleCore
 	//////////////////////////////////////////////////////////////////////
 	//////////////////////////////////////////////////////////////////////
 	//////////////////////////////////////////////////////////////////////
-
-	// used in: head.php
+	// SEE : https://make.wordpress.org/core/2014/10/29/title-tags-in-4-1/
+	// SEE : https://core.trac.wordpress.org/ticket/18548
+	// DEPRECATED use in: head.php
 	public static function html_title( $sep = ' &raquo; ', $display = true, $seplocation = '' ) 
 	{
+		echo "\t".'<title>';
 		wp_title( trim( gtheme_get_info( 'title_sep', $sep ) ), true, ( gThemeUtilities::is_rtl() ? 'right' : $seplocation ) );
+		echo '</title>'."\n";
 	}
 	
+	public function wp_head()
+	{
+		self::html_title();
+	}
+
+	//////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////
 	// used in: head.php
 	// http://www.paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/
 	public static function html_open()
@@ -103,9 +112,7 @@ class gThemeWrap extends gThemeModuleCore
 <!--[if gt IE 9]> <html<?php echo $html_attributes; ?> class="<?php echo $html_classes; ?>"> <![endif]-->
 <!--[if !IE]><!--> <html<?php echo $html_attributes; ?> class="<?php echo $html_classes; ?>"> <!--<![endif]--><?php
 	}
-		
-		
-	} 
+} 
 
 
 function gtheme_template_path() {
