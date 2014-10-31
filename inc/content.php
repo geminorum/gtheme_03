@@ -20,15 +20,13 @@ class gThemeContent extends gThemeModuleCore
 			return new WP_Query( $args );
 	
 		$key = 'gtq_'.md5( serialize( $args ) );
+
+		if ( constant( 'GTHEME_FLUSH' ) )
+			delete_transient( $key );
 		
 		if ( false === ( $query = get_transient( $key ) ) ) {
 			 $query = new WP_Query( $args );
 			 set_transient( $key, $query, $expiration );
-		}
-		
-		if ( constant( 'GTHEME_FLUSH' ) ) {
-			delete_transient( $key );
-			return new WP_Query( $args );
 		}
 		
 		return $query;
