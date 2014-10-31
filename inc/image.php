@@ -264,6 +264,16 @@ class gThemeImage extends gThemeModuleCore {
 		return $post;
 	}
 	
+	// wrapper for WP_Image class
+	// SEE : https://github.com/markoheijnen/WP_Image
+	// Last Updated : 21141101 
+	public static function image( $attachment_id )
+	{
+		if ( ! class_exists( 'WP_Image' ) )
+			include_once( GTHEME_DIR.'/libs/wp-image/wp-image.php' );
+			
+		return new WP_Image( $attachment_id );
+	}
 }
 
 

@@ -10,6 +10,7 @@ Theme Framework for WordPress
 * support system tags from gtheme_02
 * new method for cached WP_Query
 * fixed module arguments not loading
+* inculing [WP_Image](https://github.com/markoheijnen/WP_Image)
 
 
 ### 0.1.0
