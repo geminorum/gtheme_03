@@ -185,9 +185,12 @@ class gThemeOptions extends gThemeModuleCore {
 			'default_avatar_src' => GTHEME_URL.'/images/default_avatar.png',
 			
 			
-			//'support_system_tags' => true, // dep
 			'system_tags_cpt' => array( 'post' ),
-			//'support_p2p_for_posts' => true, // dep
+			'system_tags_defaults' => array( 
+				'dashboard' => _x( 'Dashboard', 'System Tags Defaults', GTHEME_TEXTDOMAIN ),
+				'latest' => _x( 'Latest', 'System Tags Defaults', GTHEME_TEXTDOMAIN ),
+				'no-front' => _x( 'No FrontPage', 'System Tags Defaults', GTHEME_TEXTDOMAIN ),
+			),
 			
 			'teeny_mce_buttons' => array(),
 			'mce_buttons' => array( 'sup', 'sub', 'hr' ),

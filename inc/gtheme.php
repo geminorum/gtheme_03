@@ -34,6 +34,7 @@ final class gThemeCore
 			'image'      => 'gThemeImage',
 			'social'     => 'gThemeSocial',
 			'menu'       => 'gThemeMenu',
+			'terms'      => 'gThemeTerms',
 			
 		);
 		
@@ -73,7 +74,7 @@ final class gThemeCore
 	{
 		foreach ( $modules as $module_slug => $module_class ) {
 			if ( $module_class && class_exists( $module_class ) ) {
-				$module_args = isset( $args[$module_class] ) ? $args[$module_class] : array();
+				$module_args = isset( $args[$module_slug] ) ? $args[$module_slug] : array();
 				$this->{$module_slug} = new $module_class( $module_args );
 			}
 		}

@@ -2,9 +2,11 @@
 
 class gThemeModuleCore 
 {
-	function __construct( $args = array(), $ajax_disable = true ) 
+	var $_ajax = false;
+	
+	function __construct( $args = array() ) 
 	{  
-        if ( ( $ajax_disable && defined( 'DOING_AJAX' ) && constant( 'DOING_AJAX' ) )
+        if ( ( ! $this->_ajax && defined( 'DOING_AJAX' ) && constant( 'DOING_AJAX' ) )
             || ( defined( 'WP_INSTALLING' ) && constant( 'WP_INSTALLING' ) ) )
             return;
 			
