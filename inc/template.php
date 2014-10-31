@@ -8,12 +8,7 @@ class gThemeTemplate extends gThemeModuleCore {
 			'cleanup' => true,
 		), $args ) );
 		
-		if ( $cleanup ) {
-		}
-		
-		
-		
-		
+		if ( $cleanup ) {}
 	}
 	
 	public static function logo( $context = 'header' )
@@ -25,6 +20,4 @@ class gThemeTemplate extends gThemeModuleCore {
 				esc_attr__( 'Home', GTHEME_TEXTDOMAIN )
 		);
 	}
-	
-
 }

@@ -42,7 +42,7 @@ class gThemeMenu extends gThemeModuleCore {
 		$args['menu'] = $args['theme_location'];
 		$args['menu_class'] = $args['theme_location'].' '.( isset( $atts['class'] ) ? $atts['class'] : 'clearfix' );
 		
-		//$args = array( // 'items_wrap' => '%3$s', // Remove LI Elements From Output of wp_nav_menu // http://css-tricks.com/snippets/wordpress/remove-li-elements-from-output-of-wp_nav_menu/
+		//'items_wrap' => '%3$s', // Remove LI Elements From Output of wp_nav_menu // http://css-tricks.com/snippets/wordpress/remove-li-elements-from-output-of-wp_nav_menu/
 		
 		if ( isset( $atts['walker'] ) )
 			$args['walker'] = new $atts['walker'];

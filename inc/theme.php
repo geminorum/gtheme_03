@@ -48,7 +48,6 @@ class gThemeTheme extends gThemeModuleCore {
 				'search-form',
 				'comment-form',
 			) ) );
-			
 		
 		if ( $hooks ) // http://justintadlock.com/archives/2011/09/01/a-better-way-for-plugins-to-hook-into-theme-templates
 			add_theme_support( 'template-hooks', gtheme_get_info( 'support_template_hooks', array( 
@@ -63,7 +62,6 @@ class gThemeTheme extends gThemeModuleCore {
 				'gtheme_do_before_footer',
 				'gtheme_do_footer',
 			) ) ); 
-			
 	}
 	
 	public function cleanup()
@@ -94,7 +92,6 @@ class gThemeTheme extends gThemeModuleCore {
 		remove_filter( 'comment_text', 'capital_P_dangit', 31 );
 		foreach ( array( 'the_content', 'the_title' ) as $filter )
 			remove_filter( $filter, 'capital_P_dangit', 11 );
-	
 	}
 	
 	public function template_redirect_remove_styles()
@@ -112,5 +109,4 @@ class gThemeTheme extends gThemeModuleCore {
 			add_filter( 'wpcf7_load_js', '__return_false', 12 );
 
 	}
-	
 }
