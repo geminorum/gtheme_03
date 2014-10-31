@@ -13,6 +13,27 @@ class gThemeContent extends gThemeModuleCore
 		}
 	}
 	
+	// http://www.billerickson.net/code/wp_query-arguments/
+	public static function query( $args = array(), $expiration = GTHEME_CACHETTL ) 
+	{
+		if ( gThemeUtilities::is_dev() )
+			return new WP_Query( $args );
+	
+		$key = 'gtq_'.md5( serialize( $args ) );
+		
+		if ( false === ( $query = get_transient( $key ) ) ) {
+			 $query = new WP_Query( $args );
+			 set_transient( $key, $query, $expiration );
+		}
+		
+		if ( constant( 'GTHEME_FLUSH' ) ) {
+			delete_transient( $key );
+			return new WP_Query( $args );
+		}
+		
+		return $query;
+	}
+	
 	public static function continue_reading( $edit = '', $scope = '', $permalink = false, $title_att = false ) 
 	{ 
 		if ( ! empty( $edit ) ) 
