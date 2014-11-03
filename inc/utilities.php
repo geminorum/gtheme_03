@@ -151,7 +151,5 @@ class gThemeUtilities extends gThemeModuleCore
 			do_action( 'edited_term_taxonomy', $term, $taxonomy );
 		}
 	}
-	
-	
 }
 

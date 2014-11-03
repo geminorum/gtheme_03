@@ -35,6 +35,7 @@ final class gThemeCore
 			'social'     => 'gThemeSocial',
 			'menu'       => 'gThemeMenu',
 			'terms'      => 'gThemeTerms',
+			'navigation' => 'gThemeNavigation',
 			
 		);
 		

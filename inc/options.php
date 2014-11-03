@@ -2,16 +2,6 @@
 
 class gThemeOptions extends gThemeModuleCore {
 
-	function setup_actions( $args = array() )
-	{
-		extract( shortcode_atts( array(
-			'cleanup' => true,
-		), $args ) );
-		
-		if ( $cleanup ) {
-		}
-	}
-		
 	public static function defaults( $option = false, $default = false ){
 		$defaults = array(
 			'name' => 'gtheme',
@@ -120,8 +110,8 @@ class gThemeOptions extends gThemeModuleCore {
 			),
 			
 			'default_sep' => ' ',
-			'title_sep' => ' &laquo; ',
-			'nav_sep' => ' &raquo; ',
+			'title_sep' => is_rtl()? ' &laquo; ' : ' &raquo; ',
+			'nav_sep' => is_rtl() ? ' &raquo; ' : ' &laquo; ',
 			'byline_sep' => ' | ',
 			'term_sep' => ', ',
 			'comment_action_sep' => ' | ',
