@@ -55,17 +55,22 @@ class gThemeOptions extends gThemeModuleCore {
 			'def_primary_cats' => array(),
 			
 			'images' => array(	// n-name, w-width, h-height, c-crop, d-description, p-for posts, t-media tag, i-insert
-				'raw' => array( 'n' => __( 'Raw', GTHEME_TEXTDOMAIN ), 'w' => 9999, 'h' => 9999, 'c' => 0, 'd' => '', 'p' => array( 'post' ), 't' => true, 'i' => true, ),
-				'dashboard' => array( 'n' => __( 'Dashboard', GTHEME_TEXTDOMAIN ), 'w' => 292, 'h' => 472, 'c' => 0, 'd' => '', 'p' => array( 'post' ), 't' => true, 'i' => true, ),
-				'single' => array( 'n' => __( 'Single', GTHEME_TEXTDOMAIN ), 'w' => 604, 'h' => 977, 'c' => 0, 'd' => '', 'p' => array( 'post' ), 't' => true, 'i' => true, ),
-				'late' => array( 'n' => __( 'Late', GTHEME_TEXTDOMAIN ), 'w' => 214, 'h' => 346, 'c' => 0, 'd' => '', 'p' => array( 'post' ), 't' => true, 'i' => true, ),
-				'entry' => array( 'n' => __( 'Entry', GTHEME_TEXTDOMAIN ), 'w' => 58, 'h' => 94, 'c' => 1, 'd' => '', 'p' => array( 'post' ), 't' => true, 'i' => true, ),
-				'content' => array( 'n' => __( 'Content', GTHEME_TEXTDOMAIN ), 'w' => 448, 'h' => 725, 'c' => 0, 'd' => '', 'p' => array( 'post' ), 't' => false, 'i' => true, ),
-				'content-half' => array( 'n' => __( 'Content Half', GTHEME_TEXTDOMAIN ), 'w' => 214, 'h' => 346, 'c' => 0, 'd' => '', 'p' => array( 'post' ), 't' => false, 'i' => true, ),
+				'raw' => gThemeOptions::register_image( 
+					__( 'Raw', GTHEME_TEXTDOMAIN ),
+					9999, 9999, 0,
+					true, true
+				),
+				//'raw' => array( 'n' => , 'w' => 9999, 'h' => 9999, 'c' => 0, 'd' => '', 'p' => array( 'post' ), 't' => true, 'i' => true, ),
+				//'dashboard' => array( 'n' => __( 'Dashboard', GTHEME_TEXTDOMAIN ), 'w' => 292, 'h' => 472, 'c' => 0, 'd' => '', 'p' => array( 'post' ), 't' => true, 'i' => true, ),
+				//'single' => array( 'n' => __( 'Single', GTHEME_TEXTDOMAIN ), 'w' => 604, 'h' => 977, 'c' => 0, 'd' => '', 'p' => array( 'post' ), 't' => true, 'i' => true, ),
+				//'late' => array( 'n' => __( 'Late', GTHEME_TEXTDOMAIN ), 'w' => 214, 'h' => 346, 'c' => 0, 'd' => '', 'p' => array( 'post' ), 't' => true, 'i' => true, ),
+				//'entry' => array( 'n' => __( 'Entry', GTHEME_TEXTDOMAIN ), 'w' => 58, 'h' => 94, 'c' => 1, 'd' => '', 'p' => array( 'post' ), 't' => true, 'i' => true, ),
+				//'content' => array( 'n' => __( 'Content', GTHEME_TEXTDOMAIN ), 'w' => 448, 'h' => 725, 'c' => 0, 'd' => '', 'p' => array( 'post' ), 't' => false, 'i' => true, ),
+				//'content-half' => array( 'n' => __( 'Content Half', GTHEME_TEXTDOMAIN ), 'w' => 214, 'h' => 346, 'c' => 0, 'd' => '', 'p' => array( 'post' ), 't' => false, 'i' => true, ),
 				
-				'issue-top' => array( 'n' => __( 'Issue Horizontal', GTHEME_TEXTDOMAIN ), 'w' => 448, 'h' => 725, 'c' => 0, 'd' => '', 'p' => array( 'issue' ), 't' => true, 'i' => true, ),
-				'issue-side' => array( 'n' => __( 'Issue Cover', GTHEME_TEXTDOMAIN ), 'w' => 448, 'h' => 725, 'c' => 0, 'd' => '', 'p' => array( 'issue' ), 't' => true, 'i' => true, ),
-				'issue-full' => array( 'n' => __( 'Issue Full', GTHEME_TEXTDOMAIN ), 'w' => 448, 'h' => 725, 'c' => 0, 'd' => '', 'p' => array( 'issue' ), 't' => true, 'i' => true, ),
+				//'issue-top' => array( 'n' => __( 'Issue Horizontal', GTHEME_TEXTDOMAIN ), 'w' => 448, 'h' => 725, 'c' => 0, 'd' => '', 'p' => array( 'issue' ), 't' => true, 'i' => true, ),
+				//'issue-side' => array( 'n' => __( 'Issue Cover', GTHEME_TEXTDOMAIN ), 'w' => 448, 'h' => 725, 'c' => 0, 'd' => '', 'p' => array( 'issue' ), 't' => true, 'i' => true, ),
+				//'issue-full' => array( 'n' => __( 'Issue Full', GTHEME_TEXTDOMAIN ), 'w' => 448, 'h' => 725, 'c' => 0, 'd' => '', 'p' => array( 'issue' ), 't' => true, 'i' => true, ),
 				
 				// add_image_size( 'sidebar-thumb', 120, 120, true ); // Hard Crop Mode
 				// add_image_size( 'homepage-thumb', 220, 180 ); // Soft Crop Mode
