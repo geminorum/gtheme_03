@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: gTheme 3 v0.3.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2014-11-04 03:49+0330\n"
+"PO-Revision-Date: 2014-11-04 20:25+0330\n"
 "Last-Translator: geminorum <contact@geminorum.ir>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -29,7 +29,7 @@ msgstr ""
 # @ gtheme
 #: inc/content.php:40
 msgid "Jump to edit page"
-msgstr ""
+msgstr "این متن را ویرایش کنید"
 
 # @ gtheme
 #: inc/content.php:42
@@ -48,13 +48,13 @@ msgstr ""
 # @ gtheme
 #: inc/content.php:57
 msgid "Read more&nbsp;<span class=\"excerpt-link-arr\">&rarr;</span>"
-msgstr ""
+msgstr "ادامه &hellip;"
 
 # @ gtheme
 #: inc/content.php:71
 #, php-format
 msgid "Permanent link to &mdash;%s&mdash;"
-msgstr ""
+msgstr "پیوند پایدار به &mdash;%s&mdash;"
 
 # @ gtheme
 #: inc/content.php:73
@@ -81,19 +81,19 @@ msgstr "پیوند کوتاه"
 #: inc/content.php:249
 #, php-format
 msgid "<a href=\"%3$s\" class=\"%1$s\">Your Comment</a>"
-msgstr ""
+msgstr "<a href=\"%3$s\" class=\"%1$s\">دیدگاه شما</a>"
 
 # @ gtheme
 #: inc/content.php:250
 #, php-format
 msgid "<a href=\"%3$s\" class=\"%1$s\">One Comment</a>"
-msgstr ""
+msgstr "<a href=\"%3$s\" class=\"%1$s\">یک دیدگاه</a>"
 
 # @ gtheme
 #: inc/content.php:251
 #, php-format
 msgid "<a href=\"%3$s\" class=\"%1$s\">%2$s Comments</a>"
-msgstr ""
+msgstr "<a href=\"%3$s\" class=\"%1$s\">%2$s دیدگاه</a>"
 
 # @ gtheme
 #: inc/content.php:258
@@ -106,7 +106,7 @@ msgstr ""
 # @ gtheme
 #: inc/content.php:260
 msgid "Feed for this post's comments"
-msgstr ""
+msgstr "خوراک برای دیدگاه‌های این نوشته"
 
 # @ gtheme
 #: inc/content.php:270
@@ -116,27 +116,27 @@ msgstr "ویرایش"
 # @ gtheme
 #: inc/content.php:299
 msgid "Increase font size"
-msgstr ""
+msgstr "خط درشت‌تر"
 
 # @ gtheme
 #: inc/content.php:309
 msgid "Decrease font size"
-msgstr ""
+msgstr "خط کوچک‌تر"
 
 # @ gtheme
 #: inc/content.php:321
 msgid "Justify paragraphs"
-msgstr ""
+msgstr "هم‌چین کردن متن"
 
 # @ gtheme
 #: inc/content.php:331
 msgid "Un-justify paragraphs"
-msgstr ""
+msgstr "غیر هم‌چین کردن متن"
 
 # @ gtheme
 #: inc/content.php:405
 msgid "Share This with your friends."
-msgstr ""
+msgstr "این متن را با دوستان خود هم‌خوان کنید."
 
 # @ gtheme
 #: inc/content.php:466
@@ -172,7 +172,7 @@ msgstr ""
 # @ gtheme
 #: inc/image.php:163
 msgid "Media Tags"
-msgstr ""
+msgstr "برچسب‌ها"
 
 # @ gtheme
 #: inc/image.php:224
