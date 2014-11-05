@@ -36,9 +36,10 @@ class gThemeOptions extends gThemeModuleCore {
 				'p'
 			),
 			
-			'sidebar_args_func' => 'gtheme_sidebar_args',
-			'sidebars' => apply_filters( 'gtheme_sidebars', array(
-				'side-index' => 'Index - Side',
+			//'sidebar_args_func' => array( 'gThemeSideBar', 'args' ),
+			
+			'sidebars' => array(
+				'side-index' => _x( 'Index: Side', 'Sidebar Titles', GTHEME_TEXTDOMAIN ),
 				//'side-front' => 'Front - Side',
 				//'side-single' => 'Single - Side',
 				//'side-page' => 'Page - Side',
@@ -50,7 +51,7 @@ class gThemeOptions extends gThemeModuleCore {
 				//'content-front-after' => 'After - Front - Content',
 				//'content-single-before' => 'Before - Index - Single',
 				//'content-single-after' => 'After - Index - Single',
-			) ),
+			),
 		
 			'def_primary_cats' => array(),
 			

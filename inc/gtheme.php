@@ -36,6 +36,7 @@ final class gThemeCore
 			'menu'       => 'gThemeMenu',
 			'terms'      => 'gThemeTerms',
 			'navigation' => 'gThemeNavigation',
+			'sidebar'    => 'gThemeSideBar',
 			
 		);
 		
