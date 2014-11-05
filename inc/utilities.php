@@ -2,6 +2,12 @@
 
 class gThemeUtilities extends gThemeModuleCore 
 {
+	public static function dump( $var, $htmlSafe = true ) 
+	{
+		$result = var_export( $var, true ); 
+		echo '<pre dir="ltr" style="text-align:left;direction:ltr;">'.( $htmlSafe ? htmlspecialchars( $result ) : $result).'</pre>'; 
+	}
+
 	// http://davidwalsh.name/word-wrap-mootools-php
 	public static function word_wrap( $text, $min = 2 ) 
 	{
@@ -151,5 +157,60 @@ class gThemeUtilities extends gThemeModuleCore
 			do_action( 'edited_term_taxonomy', $term, $taxonomy );
 		}
 	}
+	
+	private static function _tag_open( $tag, $atts, $content = true )
+	{
+		$html = '<'.$tag;
+        foreach( $atts as $key => $att ) {
+			
+			if ( is_array( $att ) && count( $att ) )
+				$att = implode( ' ', array_unique( $att ) );
+			
+			if ( 'selected' == $key )	
+				$att = ( $att ? 'selected' : false );
+				
+			if ( 'checked' == $key )	
+				$att = ( $att ? 'checked' : false );
+				
+			if ( 'readonly' == $key )	
+				$att = ( $att ? 'readonly' : false );
+				
+			if ( 'disabled' == $key )	
+				$att = ( $att ? 'disabled' : false );
+			
+			if ( false === $att )
+				continue;
+			
+			if ( 'class' == $key )
+				//$att = sanitize_html_class( $att, false );
+				$att = $att;
+			else if ( 'href' == $key || 'src' == $key )
+				$att = esc_url( $att );
+			//else if ( 'input' == $tag && 'value' == $key )
+				//$att = $att;
+			else 
+				$att = esc_attr( $att );
+			
+			$html .= ' '.$key.'="'.$att.'"';
+		}
+		
+		if ( false === $content )
+            return $html.' />';
+			
+		return $html.'>';
+	}
+
+    public static function html( $tag, $atts = array(), $content = false, $sep = '' ) 
+	{
+		$html = self::_tag_open( $tag, $atts, $content );
+		
+		if ( false === $content )
+			return $html.$sep;
+			
+        if ( is_null( $content ) )
+            return $html.'</'.$tag.'>'.$sep;
+			
+        return $html.$content.'</'.$tag.'>'.$sep;
+	}		
 }
 
