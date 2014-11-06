@@ -211,6 +211,12 @@ class gThemeUtilities extends gThemeModuleCore
             return $html.'</'.$tag.'>'.$sep;
 			
         return $html.$content.'</'.$tag.'>'.$sep;
-	}		
+	}
+	
+	public static function link_stylesheet( $url, $attr = 'media="all"' )
+	{
+		echo "\t".'<link rel="stylesheet" href="'.esc_url( $url ).'" type="text/css" '.$attr.' />'."\n"; 
+	}
+	
 }
 

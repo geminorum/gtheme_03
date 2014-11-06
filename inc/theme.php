@@ -11,6 +11,7 @@ class gThemeTheme extends gThemeModuleCore {
 			'feed_links' => true,
 			'post_formats' => false,
 			'html5' => true,
+			'js' => true,
 			'hooks' => true,
 			'buddypress' => true,
 		), $args ) );
@@ -24,7 +25,7 @@ class gThemeTheme extends gThemeModuleCore {
 		}
 		
 		if ( $wpcf7 && function_exists( 'wpcf7_enqueue_scripts' ) )
-			add_action( 'wp_enqueue_scripts', array( & $this, 'wp_enqueue_scripts' ), 5 );
+			add_action( 'wp_enqueue_scripts', array( & $this, 'wp_enqueue_scripts_wpcf7' ), 5 );
 		
 		if ( $feed_links )
 			add_theme_support( 'automatic-feed-links' );
@@ -48,6 +49,9 @@ class gThemeTheme extends gThemeModuleCore {
 				'search-form',
 				'comment-form',
 			) ) );
+		
+		if ( $js )
+			add_action( 'wp_enqueue_scripts', array( & $this, 'wp_enqueue_scripts' ) );
 		
 		if ( $hooks ) // http://justintadlock.com/archives/2011/09/01/a-better-way-for-plugins-to-hook-into-theme-templates
 			add_theme_support( 'template-hooks', gtheme_get_info( 'support_template_hooks', array( 
@@ -99,7 +103,7 @@ class gThemeTheme extends gThemeModuleCore {
 		remove_action( 'wp_head', 'wp_admin_bar_header' ); // print style will added by theme
 	}
 	
-	public function wp_enqueue_scripts()
+	public function wp_enqueue_scripts_wpcf7()
 	{
 		add_filter( 'wpcf7_load_css', '__return_false', 12 ); // styles will be added by the theme
 		
@@ -107,6 +111,15 @@ class gThemeTheme extends gThemeModuleCore {
 			add_filter( 'wpcf7_load_js', '__return_true', 12 );
 		else
 			add_filter( 'wpcf7_load_js', '__return_false', 12 );
-
+	}
+	
+	public function wp_enqueue_scripts()
+	{
+		$suffix = ( ( ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) || gThemeUtilities::is_dev() ) ? '' : '.min' );
+		
+		wp_enqueue_script( 'gtheme-all', GTHEME_URL."/js/script.all$suffix.js", array( 'jquery' ), GTHEME_VERSION, true );
+		
+		if ( is_singular() )
+			wp_enqueue_script( 'gtheme-singular', GTHEME_URL."/js/script.singular$suffix.js", array( 'jquery' ), GTHEME_VERSION, true );
 	}
 }
