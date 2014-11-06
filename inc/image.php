@@ -332,6 +332,7 @@ class gThemeImage extends gThemeModuleCore
 			'link' => 'parent',
 			'empty' => '',
 			
+			'url' => false,
 			'caption' => false,
 			'default_caption' => '',
 		), $atts );	
@@ -346,69 +347,78 @@ class gThemeImage extends gThemeModuleCore
 		
 		if ( $args['post_thumbnail_id'] ) {
 		
-			do_action( 'begin_fetch_post_thumbnail_html', $args['post_id'], $args['post_thumbnail_id'], $args['size'] );
+			if ( $args['url'] ) {
 			
-			if ( in_the_loop() )
-				self::update_cache( $args['size'] );
+				$url = wp_get_attachment_url( $args['post_thumbnail_id'] );
+				if ( false === $url )
+					return $args['empty'];
+				return $url;
 				
-			$html = wp_get_attachment_image( $args['post_thumbnail_id'], $args['size'], false, $args['attr'] );
-			do_action( 'end_fetch_post_thumbnail_html', $args['post_id'], $args['post_thumbnail_id'], $args['size'] );
-			
-			if ( false !== $args['link'] ) {
-				if ( is_array( $args['link'] ) ) {
-					foreach ( $args['link'] as $link_size ) {
-						$link_size_thumbnail_id = self::id( $link_size, $args['post_id'] );
-						if ( $link_size_thumbnail_id ) {
-							$attachment_post = get_post( $link_size_thumbnail_id );
-							if ( ! is_null( $attachment_post ) ) {
-								$args['link'] = get_attachment_link( $attachment_post );
-								break;
+			} else {
+		
+				do_action( 'begin_fetch_post_thumbnail_html', $args['post_id'], $args['post_thumbnail_id'], $args['size'] );
+				
+				if ( in_the_loop() )
+					self::update_cache( $args['size'] );
+					
+				$html = wp_get_attachment_image( $args['post_thumbnail_id'], $args['size'], false, $args['attr'] );
+				do_action( 'end_fetch_post_thumbnail_html', $args['post_id'], $args['post_thumbnail_id'], $args['size'] );
+				
+				if ( false !== $args['link'] ) {
+					if ( is_array( $args['link'] ) ) {
+						foreach ( $args['link'] as $link_size ) {
+							$link_size_thumbnail_id = self::id( $link_size, $args['post_id'] );
+							if ( $link_size_thumbnail_id ) {
+								$attachment_post = get_post( $link_size_thumbnail_id );
+								if ( ! is_null( $attachment_post ) ) {
+									$args['link'] = get_attachment_link( $attachment_post );
+									break;
+								}
 							}
 						}
-					}
-					if ( is_array( $args['link'] ) ) {// if not found
+						if ( is_array( $args['link'] ) ) {// if not found
+							$attachment_post = get_post( $args['post_thumbnail_id'] );
+							$args['link'] = is_null( $attachment_post ) ? false : get_attachment_link( $attachment_post );
+						}
+					} elseif ( 'parent' == $args['link'] ) {
+						$args['link'] = get_permalink( $args['post_id'] );
+					} elseif ( 'attachment' == $args['link'] ) {
 						$attachment_post = get_post( $args['post_thumbnail_id'] );
 						$args['link'] = is_null( $attachment_post ) ? false : get_attachment_link( $attachment_post );
+					} elseif ( 'url' == $args['link'] ) {
+						$args['link'] = is_null( get_post( $args['post_thumbnail_id'] ) ) ? false : wp_get_attachment_url( $args['post_thumbnail_id'] );
 					}
-				} elseif ( 'parent' == $args['link'] ) {
-					$args['link'] = get_permalink( $args['post_id'] );
-				} elseif ( 'attachment' == $args['link'] ) {
-					$attachment_post = get_post( $args['post_thumbnail_id'] );
-					$args['link'] = is_null( $attachment_post ) ? false : get_attachment_link( $attachment_post );
-				} elseif ( 'url' == $args['link'] ) {
-					$args['link'] = is_null( get_post( $args['post_thumbnail_id'] ) ) ? false : wp_get_attachment_url( $args['post_thumbnail_id'] );
-				}
-				
-				// last check
-				if ( $args['link'] ) // TODO : add template
-					$html = '<a href="'.esc_url( $args['link'] ).'">'.$html.'</a>';
-			}
-			
-			if ( $args['caption'] ) {
-				$caption = false;
-				if ( true === $args['caption'] ) {
-					if ( ! isset( $attachment_post ) )
-						$attachment_post = get_post( $args['post_thumbnail_id'] );
 					
-					if ( ! is_null( $attachment_post  ) ) {
-						$caption = trim( $attachment_post->post_excerpt );
-					} else {
-						$caption = $args['default_caption'];
-					}
-				} else {
-					$caption = $args['caption'];
+					// last check
+					if ( $args['link'] ) // TODO : add template
+						$html = '<a href="'.esc_url( $args['link'] ).'">'.$html.'</a>';
 				}
 				
-				if ( $caption && $html )
-					$html = sprintf( gtheme_get_info( 'template_image_caption', 
-						'<div class="%3$s">%1$s<p class="%4$s">%2$s</p></div>' ),
-							$html,
-							gtheme_l10n( $caption ),
-							'the-caption',
-							'the-caption-text'
-						);
+				if ( $args['caption'] ) {
+					$caption = false;
+					if ( true === $args['caption'] ) {
+						if ( ! isset( $attachment_post ) )
+							$attachment_post = get_post( $args['post_thumbnail_id'] );
+						
+						if ( ! is_null( $attachment_post  ) ) {
+							$caption = trim( $attachment_post->post_excerpt );
+						} else {
+							$caption = $args['default_caption'];
+						}
+					} else {
+						$caption = $args['caption'];
+					}
+					
+					if ( $caption && $html )
+						$html = sprintf( gtheme_get_info( 'template_image_caption', 
+							'<div class="%3$s">%1$s<p class="%4$s">%2$s</p></div>' ),
+								$html,
+								gtheme_l10n( $caption ),
+								'the-caption',
+								'the-caption-text'
+							);
+				}
 			}
-			
 		} else {
 			$html = $args['empty'];
 		}
@@ -425,6 +435,7 @@ class gThemeImage extends gThemeModuleCore
 			'link' => 'parent',
 			'attr' => '',
 			'empty' => '',
+			'url' => false,
 			'caption' => false,
 			'default_caption' => '',
 			

@@ -2,30 +2,27 @@
 
 class gThemeSocial extends gThemeModuleCore {
 
-	function setup_actions( $args = array() )
+	public function setup_actions( $args = array() )
 	{
-		if ( gThemeUtilities::is_dev() ) 
-			return;
-
-		add_action( 'wp_head', array( $this, 'wp_head' ) );
+		add_action( 'wp_head', array( & $this, 'wp_head' ) );
 	}
 	
-	function wp_head()
+	public function wp_head()
 	{
 		echo "\t".'<meta name="twitter:card" content="summary" />'."\n";
 		echo "\t".'<meta property="og:locale" content="'.esc_attr( gtheme_get_info( 'locale', get_locale() ) ).'" />'."\n";
 		echo "\t".'<meta property="og:site_name" content="'.esc_attr( get_bloginfo( 'name' ) ).'"/>'."\n";
 		 
-		$this->meta( 'type', array( 
+		self::meta( 'type', array( 
 			"\t".'<meta property="og:type" content="',
 		), '" />'."\n" , 'esc_attr' );
 
-		$this->meta( 'url', array( 
+		self::meta( 'url', array( 
 			"\t".'<meta property="og:url" content="',
 			"\t".'<meta name="twitter:url" content="',
 		), '" />'."\n" , 'esc_url' );
 
-		$this->meta( 'image', array( 
+		self::meta( 'image', array( 
 			"\t".'<meta itemprop="image" content="',
 			"\t".'<meta property="og:image" content="',
 			"\t".'<meta name="twitter:image" content="',
@@ -33,12 +30,12 @@ class gThemeSocial extends gThemeModuleCore {
 			"\t".'<link rel="image_src" href="',
 		), '" />'."\n" , 'esc_url' );
 
-		$this->meta( 'title', array( 
+		self::meta( 'title', array( 
 			"\t".'<meta itemprop="name" content="',
 			"\t".'<meta property="og:title" content="',
 		), '" />'."\n" , 'esc_attr' );
 		
-		$this->meta( 'description', array( 
+		self::meta( 'description', array( 
 			"\t".'<meta itemprop="description" content="', 
 			"\t".'<meta property="og:description" content="',
 			"\t".'<meta name="description" content="',
@@ -53,11 +50,11 @@ class gThemeSocial extends gThemeModuleCore {
 		if ( $twitter_site )
 			echo "\t".'<meta name="twitter:site" content="@'.$twitter_site.'" />'."\n";
 		
-		$this->author();
+		self::author();
 		
 	} 
 
-	function meta( $scope, $b = '', $a ='', $f = false ) 
+	public static function meta( $scope, $b = '', $a ='', $f = false ) 
 	{
 		global $post;
 		$output = false;
@@ -78,11 +75,13 @@ class gThemeSocial extends gThemeModuleCore {
 				}
 			} break;
 			case 'image' : {
-				if ( is_home() || is_front_page() ) {
-					$output = gtheme_get_info( 'default_image_src', false );
-				} elseif ( is_single() ){
-					$output = gtheme_get_image( gtheme_get_info( 'meta_image_size', 'single' ) );
-				}
+				$output = gtheme_get_info( 'default_image_src', false );
+				if ( is_single() )
+					$output = gThemeImage::image( array( 
+						'size' => gtheme_get_info( 'meta_image_size', 'single' ),
+						'url' => true,
+						'empty' => false,
+					) );
 			} break;
 			case 'title' : {
 				if ( is_home() || is_front_page() ) {
@@ -117,7 +116,7 @@ class gThemeSocial extends gThemeModuleCore {
 		}
 	}
 	
-	function author() 
+	public static function author() 
 	{
 		if( is_single() ) {
 			$the_post = get_queried_object();
