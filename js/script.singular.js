@@ -5,7 +5,7 @@
 
 jQuery(document).ready(function($){
 	$('textarea').autosize();   
-	$('.entry-content p').fontsize();
+	if ($('.entry-content p').length){$('.entry-content p').fontsize();};
 	$('#text-justify, #text-unjustify').removeAttr('href').css('cursor', 'pointer');
 	$('#text-justify').click(function(e){e.preventDefault();
         $('.entry-content p').each(function(){$(this).css('text-align', 'justify');});
