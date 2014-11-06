@@ -93,6 +93,8 @@ class gThemeSocial extends gThemeModuleCore {
 			case 'description' : {
 				if ( is_home() || is_front_page() ) {
 					$output = gtheme_get_info( 'frontpage_desc', false );
+					if ( empty( $output ) )
+						$output = false;
 				} elseif ( is_single() ) {
 					// gmeta lead
 					//$output = get_gmeta( 'le', array( 'id' => false, 'def' => false ) );
