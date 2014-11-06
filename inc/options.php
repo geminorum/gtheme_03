@@ -139,8 +139,9 @@ class gThemeOptions extends gThemeModuleCore {
 			),
 			//'comment_form_reply' => __( 'Reply', GTHEME_TEXTDOMAIN ),
 			//'comments_closed' => __( 'Comments are closed.' , GTHEME_TEXTDOMAIN ), // set empty to hide the text
+			
 			'comment_avatar_size' => 50, // wp core is 32
-			'default_avatar_src' => GTHEME_URL.'/images/default_avatar.png',
+			'default_avatar_src' => GTHEME_URL.'/images/avatar.png',
 			
 			// SYSTEM TAGS
 			'system_tags_cpt' => array( 'post' ),

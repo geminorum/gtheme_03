@@ -71,5 +71,17 @@ class gThemeTemplate extends gThemeModuleCore {
 		
 		foreach( $terms as $term )
 			return self::term_parents( $term, gThemeUtilities::sanitize_sep( $sep, 'nav_sep', ' &raquo; ' ), $taxonomy );
-	}	
+	}
+	
+	public static function avatar( $id_or_email, $size = null ) 
+	{
+		if ( 0 === $size || false === $size )
+			return;
+			
+		if ( is_null( $size ) )
+			$size = (int) gtheme_get_info( 'comment_avatar_size', 64 );
+			
+		echo get_avatar( $id_or_email, $size, gtheme_get_info( 'default_avatar_src', false )  );
+	}
+
 }
