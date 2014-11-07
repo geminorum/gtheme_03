@@ -100,7 +100,7 @@ class gThemeTheme extends gThemeModuleCore {
 	
 	public function template_redirect_remove_styles()
 	{
-		remove_action( 'wp_head', 'wp_admin_bar_header' ); // print style will added by theme
+		remove_action( 'wp_head', 'wp_admin_bar_header' ); // styles will added by theme
 	}
 	
 	public function wp_enqueue_scripts_wpcf7()
