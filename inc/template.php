@@ -1,7 +1,8 @@
 <?php defined( 'ABSPATH' ) or die( 'Restricted access' );
 
-class gThemeTemplate extends gThemeModuleCore {
-
+class gThemeTemplate extends gThemeModuleCore 
+{
+	
 	public static function logo( $context = 'header' )
 	{
 		printf( gtheme_get_info( 'template_logo', 
@@ -47,18 +48,18 @@ class gThemeTemplate extends gThemeModuleCore {
 		$parent = get_term( $id, $taxonomy );
 		if ( is_wp_error( $parent ) )
 			return $parent;
-
+		
 		if ( $parent->parent && ( $parent->parent != $parent->term_id ) && !in_array( $parent->parent, $visited ) ) {
 			$visited[] = $parent->parent;
 			$html .= self::term_parents( $parent->parent, $sep, $taxonomy, $visited );
 		}
-
+		
 		//$html .= '<a href="' . esc_url( get_category_link( $parent->term_id ) ) . '">'.$parent->name.'</a>' . $sep;
 		$html .= self::term_link( $parent, $taxonomy ).$sep;
 		
 		return $html;
 	}
-
+	
 	// ANCESTOR : gtheme_get_the_categories()
 	public static function the_terms( $sep = 'def', $taxonomy = 'category', $mode = 'both' ) 
 	{
@@ -83,5 +84,4 @@ class gThemeTemplate extends gThemeModuleCore {
 			
 		echo get_avatar( $id_or_email, $size, gtheme_get_info( 'default_avatar_src', false )  );
 	}
-
 }

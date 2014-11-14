@@ -1,18 +1,7 @@
 <?php defined( 'ABSPATH' ) or die( 'Restricted access' );
 
-
 class gThemeContent extends gThemeModuleCore 
 {
-	function setup_actions( $args = array() )
-	{
-		extract( shortcode_atts( array(
-			'cleanup' => true,
-		), $args ) );
-		
-		if ( $cleanup ) {
-		}
-	}
-	
 	// http://www.billerickson.net/code/wp_query-arguments/
 	public static function query( $args = array(), $expiration = GTHEME_CACHETTL ) 
 	{
@@ -30,6 +19,22 @@ class gThemeContent extends gThemeModuleCore
 		}
 		
 		return $query;
+	}
+
+	public static function content( $b = '<div class="entry-content">', $a = '</div>' )
+	{
+		echo $b;
+		
+		the_content( self::continue_reading( get_edit_post_link() ) );
+		
+		/**
+		wp_link_pages( array( 
+			'before' => '<div class="page-link"><span>'
+				.__( 'Pages:', GTHEME_TEXTDOMAIN ).'</span>',
+			'after' => '</div>',
+		) );
+		**/
+		echo $a;
 	}
 	
 	public static function continue_reading( $edit = '', $scope = '', $permalink = false, $title_att = false ) 
@@ -129,7 +134,7 @@ class gThemeContent extends gThemeModuleCore
 		echo $output;
 	}
 	
-	public static function excerpt( $atts = '', $b = '', $a = '', $only = false, $excerpt_length = false ) 
+	public static function excerpt( $atts = 'itemprop="description" ', $b = '<div class="entry-summary">', $a = '</div>', $only = false, $excerpt_length = false ) 
 	{
 		if ( post_password_required() ) 
 			return;
@@ -419,10 +424,13 @@ a2a_config.locale = "fa";
 <script type="text/javascript" src="//static.addtoany.com/menu/page.js"></script><?php
     }	
 	
+	// ANCESTOR : gtheme_post_header()
 	public static function header( $context = 'single', $prefix = 'entry', $tag = 'h2', $shortlink = false )
 	{
 		$title = get_the_title();
-		if ( strlen( $title ) == 0 ) return;
+		
+		if ( strlen( $title ) == 0 ) 
+			return;
 
 		if ( false === $shortlink ) 
 			$link = get_permalink();
@@ -440,7 +448,8 @@ a2a_config.locale = "fa";
 			gmeta( 'over-title', '<h4 itemprop="alternativeHeadline" class="overtitle '.$prefix.'-overtitle">', '</h4>' ); 
 		
 		echo '<'.$tag.' itemprop="headline" class="title '.$prefix.'-title">';
-		echo '<a itemprop="url" rel="bookmark" href="'.$link.'" title="'; self::title_attr();
+		echo '<a itemprop="url" rel="bookmark" href="'.$link.'" title="'; 
+			self::title_attr( true, $title );
 		echo '">'.$title.'</a></'.$tag.'>';
 		
 		if ( $meta ) 
