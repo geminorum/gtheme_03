@@ -441,8 +441,8 @@ class gThemeImage extends gThemeModuleCore
 			
 			'echo' => true,
 			'class' => 'gtheme-image',
-			'before' => '',
-			'after' => '',
+			'before' => '<div class="entry-image'.( isset( $atts['tag'] ) ? ' image-'.$atts['tag'] : '' ).'">',
+			'after' => '</div>',
 			'context' => null,
 		), $atts );
 	
