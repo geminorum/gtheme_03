@@ -2,6 +2,16 @@
 
 class gThemeNavigation extends gThemeModuleCore {
 	
+	// wrapper wit conditional tags
+	public static function breadcrumb( $atts = array() )
+	{
+		if ( is_singular() )
+			self::breadcrumb_single( $atts );
+		else
+			self::breadcrumb_archive( $atts );
+	
+	}
+	
 	// Home > Cat > Label
 	// bootstrap 3 compatible markup
 	public static function breadcrumb_single( $atts = array() )
@@ -31,7 +41,7 @@ class gThemeNavigation extends gThemeModuleCore {
 		if ( false !== $args['term'] ) 
 			$crumbs[] = gThemeTemplate::the_terms( false, $args['tax'], $args['term'] );
 		
-		if ( false !== $args['label'] ) {
+		if ( false !== $args['label'] && function_exists( 'gmeta_label' ) ) {
 			$label_html = gmeta_label( '', '', false, array( 'echo' => false ) );
 			if ( ! empty( $label_html ) )
 				$crumbs[] = $label_html;
@@ -50,7 +60,7 @@ class gThemeNavigation extends gThemeModuleCore {
 			if ( ! empty( $single_html ) )
 				$crumbs[] = $single_html;
 		}
-	
+		
 		if ( $args['post_title'] && get_the_title() )
 			$crumbs[] = '<a href="'.esc_url( apply_filters( 'the_permalink', get_permalink() ) )
 				  .'" title="'.gtheme_the_title_attribute( false ).'" rel="bookmark">'
@@ -92,7 +102,7 @@ class gThemeNavigation extends gThemeModuleCore {
 		if ( is_front_page() ) {
 		
 		} else if ( is_home() ) {
-
+		
 		} else if ( is_category() ) {
 			$crumbs[] = sprintf( ( isset( $args['strings']['category'] ) ? $args['strings']['category'] : __( 'Category Archives for <strong>%s</strong>', GTHEME_TEXTDOMAIN ) ), single_term_title( '', false ) );
 		} elseif ( is_tag() ) {
