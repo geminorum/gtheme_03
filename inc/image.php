@@ -8,23 +8,23 @@ class gThemeImage extends gThemeModuleCore
 	{
 		add_action( 'init', array( $this, 'init' ) );
 		add_filter( 'intermediate_image_sizes_advanced', array( $this, 'intermediate_image_sizes_advanced' ) );
-
+		
 		add_filter( 'get_image_tag_class', array( $this, 'get_image_tag_class' ), 10, 4 );
 		add_filter( 'wp_get_attachment_image_attributes', array( $this, 'wp_get_attachment_image_attributes' ), 10, 2 );
 		
 		add_filter( 'post_thumbnail_html', array( $this, 'strip_width_height' ), 10 );
 		add_filter( 'image_send_to_editor', array( $this, 'strip_width_height' ), 10 );
 		add_filter( 'image_send_to_editor', array( $this, 'image_send_to_editor' ), 12, 8 );
-
+		
 		add_filter( 'pre_option_image_default_link_type', array( $this, 'pre_option_image_default_link_type' ), 10 );
 		add_filter( 'pre_option_image_default_align', array( $this, 'pre_option_image_default_align' ), 10 );
 		add_filter( 'pre_option_image_default_size', array( $this, 'pre_option_image_default_size' ), 10 );
 		add_filter( 'jpeg_quality', array( $this, 'jpeg_quality' ), 10, 2 );
-
+		
 		add_filter( 'image_size_names_choose', array( $this, 'image_size_names_choose' ) );
 		add_filter( 'attachment_fields_to_edit', array( $this, 'tags_attachment_fields_to_edit' ), 10, 2 );
 		add_filter( 'attachment_fields_to_save', array( $this, 'tags_attachment_fields_to_save' ), 10, 2 );
-	
+		
 		// image for terms on admin media editor
 		add_filter( 'attachment_fields_to_edit', array( $this, 'terms_attachment_fields_to_edit' ), 9, 2 );
 		add_filter( 'attachment_fields_to_save', array( $this, 'terms_attachment_fields_to_save' ), 9, 2 );
@@ -54,7 +54,7 @@ class gThemeImage extends gThemeModuleCore
 		$attr['class'] = $attr['class'].' '.gtheme_get_info( 'image-class', 'the-img img-responsive' );
 		return $attr;
 	}
-
+	
 	public function get_image_tag_class( $class, $id, $align, $size )
 	{
 		return $class.' '.gtheme_get_info( 'image-class', 'the-img img-responsive' );
@@ -109,10 +109,10 @@ class gThemeImage extends gThemeModuleCore
 	public function image_size_names_choose( $size_names ) 
 	{
 		if ( $post_id = absint( @ $_REQUEST['post_id'] ) ) {
-			$post = get_post( $post_id );	
+			$post = get_post( $post_id );
 			$post_type = $post->post_type;
 		} else if ( $post_id = absint( @ $_REQUEST['post'] ) ) {
-			$post = get_post( $post_id );	
+			$post = get_post( $post_id );
 			$post_type = $post->post_type;
 		} else if ( isset( $_REQUEST['post_type'] ) ) {
 			$post_type = $_REQUEST['post_type'];
@@ -129,7 +129,7 @@ class gThemeImage extends gThemeModuleCore
 		
 		return apply_filters( 'gtheme_images_sizenames', ( $new_size_names + $size_names ), $new_size_names );
 	} 
-
+	
 	public function tags_attachment_fields_to_edit( $fields, $post )
 	{
 		if ( ! $post_id = @ absint( $_REQUEST['post_id'] ) )
@@ -140,7 +140,7 @@ class gThemeImage extends gThemeModuleCore
 		if ( ! is_array( $images ) ) 
 			$images = array();
 		
-		$html = $checked = ''; 		
+		$html = $checked = '';
 		$gtheme_images = (array) gtheme_get_info( 'images', array() );
 		
 		foreach( $gtheme_images as $name => $size ) {
@@ -165,7 +165,7 @@ class gThemeImage extends gThemeModuleCore
 		}
 		return $fields;
 	} 	
-
+	
 	public function tags_attachment_fields_to_save( $post, $attachment ) 
 	{
 		if ( ! isset( $_REQUEST['gtheme-image-sizes'] ) 
@@ -198,7 +198,7 @@ class gThemeImage extends gThemeModuleCore
 			
 		return $post;
 	} 
-
+	
 	public function terms_attachment_fields_to_edit( $form_fields, $post ) 
 	{
 		if ( ! $parent_id = @ absint( $_REQUEST['post_id'] ) ) {
@@ -211,7 +211,7 @@ class gThemeImage extends gThemeModuleCore
 		$post_type = get_post_type( $parent_id );
 		if ( ! in_array( $post_type, gtheme_get_info( 'support_images_terms', array() ) ) )
 			return $form_fields;
-
+		
 		$saved_terms = get_post_meta( $parent_id, GTHEME_IMAGES_TERMS_META, true );
 		if ( ! is_array( $saved_terms ) )
 			$saved_terms = array();
@@ -227,12 +227,12 @@ class gThemeImage extends gThemeModuleCore
 			'hierarchical' => 1,
 			'echo' => 0,
 		) );
-
+		
 		$form_fields['gtheme_images_terms']['tr'] = '<tr><th class="label" valign="top" scope="row"><label for="attachments-'.$post->ID.'-gtheme_images_terms"><span>'
 			.__( 'Assign for', GTHEME_TEXTDOMAIN ).'</span></label></th><td class="field">'
 			.$dropdown.'</td></tr>';
 			
-		return $form_fields;			
+		return $form_fields;
 	}
 	
 	public function terms_attachment_fields_to_save( $post, $attachment ) 
@@ -241,7 +241,7 @@ class gThemeImage extends gThemeModuleCore
 			if ( empty ( $post['post_parent'] ) )
 				return $post;
 			else
-				$parent_id = $post['post_parent'];	
+				$parent_id = $post['post_parent'];
 		}
 		
 		$post_type = get_post_type( $parent_id );
@@ -251,7 +251,7 @@ class gThemeImage extends gThemeModuleCore
 		if( isset( $attachment['gtheme_images_terms'] ) ) {
 			$saved_terms = get_post_meta( $parent_id, GTHEME_IMAGES_TERMS_META, true );
 			if ( ! is_array( $saved_terms ) )
-				$saved_terms = array();	
+				$saved_terms = array();
 			$selected = array_search( $post['ID'], $saved_terms );
 			unset( $saved_terms[$selected] );
 			if ( '-1' != $attachment['gtheme_images_terms'] )
@@ -283,7 +283,7 @@ class gThemeImage extends gThemeModuleCore
 	{
 		if ( is_null( $post_id ) )
 			$post_id = get_the_ID();
-
+		
 		$images = get_post_meta( $post_id, GTHEME_IMAGES_META, true );
 		
 		if ( isset( $images[$tag] ) )
@@ -304,20 +304,20 @@ class gThemeImage extends gThemeModuleCore
 	{
 		if ( ! $wp_query )
 			$wp_query = $GLOBALS['wp_query'];
-
+		
 		if ( $wp_query->thumbnails_cached )
 			return;
-
+		
 		$thumb_ids = array();
 		foreach ( $wp_query->posts as $post ) {
 			if ( $id = self::id( $size, $post->ID ) )
 				$thumb_ids[] = $id;
 		}
-
+		
 		if ( ! empty ( $thumb_ids ) ) {
 			_prime_post_caches( $thumb_ids, false, true );
 		}
-
+		
 		$wp_query->thumbnails_cached = true;
 	}
 	
@@ -325,7 +325,7 @@ class gThemeImage extends gThemeModuleCore
 	public static function get_image( $atts = array() )
 	{
 		$args = shortcode_atts( array(
-			'size' => 'raw',
+			'tag' => 'raw',
 			'post_id' => null,
 			'post_thumbnail_id' => false,
 			'attr' => '',
@@ -336,14 +336,14 @@ class gThemeImage extends gThemeModuleCore
 			'caption' => false,
 			'default_caption' => '',
 		), $atts );	
-	
+		
 		if ( is_null( $args['post_id'] ) )
 			$args['post_id'] = get_the_ID();
-	
+		
 		if ( ! $args['post_thumbnail_id'] )
-			$args['post_thumbnail_id'] = self::id( $args['size'], $args['post_id'] );
+			$args['post_thumbnail_id'] = self::id( $args['tag'], $args['post_id'] );
 			
-		$args['size'] = apply_filters( 'post_thumbnail_size', $args['size'] );
+		$args['tag'] = apply_filters( 'post_thumbnail_size', $args['tag'] );
 		
 		if ( $args['post_thumbnail_id'] ) {
 		
@@ -356,13 +356,13 @@ class gThemeImage extends gThemeModuleCore
 				
 			} else {
 		
-				do_action( 'begin_fetch_post_thumbnail_html', $args['post_id'], $args['post_thumbnail_id'], $args['size'] );
+				do_action( 'begin_fetch_post_thumbnail_html', $args['post_id'], $args['post_thumbnail_id'], $args['tag'] );
 				
 				if ( in_the_loop() )
-					self::update_cache( $args['size'] );
+					self::update_cache( $args['tag'] );
 					
-				$html = wp_get_attachment_image( $args['post_thumbnail_id'], $args['size'], false, $args['attr'] );
-				do_action( 'end_fetch_post_thumbnail_html', $args['post_id'], $args['post_thumbnail_id'], $args['size'] );
+				$html = wp_get_attachment_image( $args['post_thumbnail_id'], $args['tag'], false, $args['attr'] );
+				do_action( 'end_fetch_post_thumbnail_html', $args['post_id'], $args['post_thumbnail_id'], $args['tag'] );
 				
 				if ( false !== $args['link'] ) {
 					if ( is_array( $args['link'] ) ) {
@@ -423,7 +423,7 @@ class gThemeImage extends gThemeModuleCore
 			$html = $args['empty'];
 		}
 		
-		return apply_filters( 'post_thumbnail_html', $html, $args['post_id'], $args['post_thumbnail_id'], $args['size'], $args['attr'] );
+		return apply_filters( 'post_thumbnail_html', $html, $args['post_id'], $args['post_thumbnail_id'], $args['tag'], $args['attr'] );
 	}
 	
 	// ANCESTOR : gtheme_image(), gtheme_image_caption()
