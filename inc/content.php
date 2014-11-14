@@ -37,6 +37,15 @@ class gThemeContent extends gThemeModuleCore
 		echo $a;
 	}
 	
+	public static function date( $b = '<div class="entry-date">', $a = '</div>' )
+	{
+		echo $b;
+		
+		the_date( 'Y/j/m' );
+		
+		echo $a;
+	}
+	
 	public static function continue_reading( $edit = '', $scope = '', $permalink = false, $title_att = false ) 
 	{ 
 		if ( ! empty( $edit ) ) 
