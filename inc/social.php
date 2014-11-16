@@ -77,8 +77,8 @@ class gThemeSocial extends gThemeModuleCore {
 			case 'image' : {
 				$output = gtheme_get_info( 'default_image_src', false );
 				if ( is_single() )
-					$output = gThemeImage::image( array( 
-						'size' => gtheme_get_info( 'meta_image_size', 'single' ),
+					$output = gThemeImage::get_image( array( 
+						'tag' => gtheme_get_info( 'meta_image_size', 'single' ),
 						'url' => true,
 						'empty' => false,
 					) );
