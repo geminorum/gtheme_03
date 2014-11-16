@@ -7,7 +7,7 @@ class gThemeUtilities extends gThemeModuleCore
 		$result = var_export( $var, true ); 
 		echo '<pre dir="ltr" style="text-align:left;direction:ltr;">'.( $htmlSafe ? htmlspecialchars( $result ) : $result).'</pre>'; 
 	}
-
+	
 	// http://davidwalsh.name/word-wrap-mootools-php
 	public static function word_wrap( $text, $min = 2 ) 
 	{
@@ -21,25 +21,25 @@ class gThemeUtilities extends gThemeModuleCore
 		}
 		
 		return $return;
-	} 	
-
+	} 
+	
 	// http://bavotasan.com/2012/trim-characters-using-php/
 	public static function trim_characters( $text, $length = 45, $append = '&hellip;' ) 
 	{
-
+	
 		$length = (int) $length;
 		$text = trim( strip_tags( $text ) );
-
+		
 		if ( strlen( $text ) > $length ) {
 			$text = substr( $text, 0, $length + 1 );
 			$words = preg_split( "/[\s]|&nbsp;/", $text, -1, PREG_SPLIT_NO_EMPTY );
 			preg_match( "/[\s]|&nbsp;/", $text, $lastchar, 0, $length );
 			if ( empty( $lastchar ) )
 				array_pop( $words );
-
+			
 			$text = implode( ' ', $words ) . $append;
 		}
-
+		
 		return $text;
 	}
 	
@@ -59,7 +59,7 @@ class gThemeUtilities extends gThemeModuleCore
 		
 		return false;
 	}
-
+	
 	// debug on developmnet env
 	public static function is_dev()
 	{
@@ -73,17 +73,17 @@ class gThemeUtilities extends gThemeModuleCore
 		
 		return false;
 	}
-
+	
 	public static function is_print()
 	{
 		return ( isset( $_GET['print'] ) && $_GET['print'] == 'print' ) ? true : false;
 	}
-
+	
 	public static function is_rtl() 
 	{ 
 		return gtheme_get_info( 'rtl', is_rtl() ); 
 	}
-
+	
 	public static function home() 
 	{ 
 		return gtheme_get_info( 'home_url_override', esc_url( home_url( '/' ) ) ); 
@@ -146,7 +146,7 @@ class gThemeUtilities extends gThemeModuleCore
 		 
 		return $r;
 	}
-
+	
 	public static function update_count_callback( $terms, $taxonomy )
 	{
 		global $wpdb;
@@ -161,7 +161,7 @@ class gThemeUtilities extends gThemeModuleCore
 	private static function _tag_open( $tag, $atts, $content = true )
 	{
 		$html = '<'.$tag;
-        foreach( $atts as $key => $att ) {
+		foreach( $atts as $key => $att ) {
 			
 			if ( is_array( $att ) && count( $att ) )
 				$att = implode( ' ', array_unique( $att ) );
@@ -191,26 +191,26 @@ class gThemeUtilities extends gThemeModuleCore
 			else 
 				$att = esc_attr( $att );
 			
-			$html .= ' '.$key.'="'.$att.'"';
+			$html .= ' '.$key.'="'.trim( $att ).'"';
 		}
 		
 		if ( false === $content )
-            return $html.' />';
+			return $html.' />';
 			
 		return $html.'>';
 	}
-
-    public static function html( $tag, $atts = array(), $content = false, $sep = '' ) 
+	
+	public static function html( $tag, $atts = array(), $content = false, $sep = '' ) 
 	{
 		$html = self::_tag_open( $tag, $atts, $content );
 		
 		if ( false === $content )
 			return $html.$sep;
 			
-        if ( is_null( $content ) )
-            return $html.'</'.$tag.'>'.$sep;
+		if ( is_null( $content ) )
+			return $html.'</'.$tag.'>'.$sep;
 			
-        return $html.$content.'</'.$tag.'>'.$sep;
+		return $html.$content.'</'.$tag.'>'.$sep;
 	}
 	
 	public static function link_stylesheet( $url, $attr = 'media="all"' )
@@ -218,5 +218,14 @@ class gThemeUtilities extends gThemeModuleCore
 		echo "\t".'<link rel="stylesheet" href="'.esc_url( $url ).'" type="text/css" '.$attr.' />'."\n"; 
 	}
 	
+	// http://stackoverflow.com/a/9241873
+	public static function json_merge( $first, $second )
+	{
+		return json_encode( 
+			array_merge_recursive( 
+				json_decode( $first, true ),
+				json_decode( $second, true )
+			) 
+		);
+	}
 }
-

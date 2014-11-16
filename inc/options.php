@@ -152,20 +152,28 @@ class gThemeOptions extends gThemeModuleCore {
 			),
 			
 			// EDITOR
-			'teeny_mce_buttons' => array(),
+			'default_content' => _x( '[content not available yet]', 'Editor Default Content', GTHEME_TEXTDOMAIN ),
 			'mce_buttons' => array( 'sup', 'sub', 'hr' ),
 			'mce_buttons_2' => array( 'styleselect' ),
-			'mce_advanced_styles' => array( 
-				__( 'Warning', GTHEME_TEXTDOMAIN ) => 'warning',
-				__( 'Notice', GTHEME_TEXTDOMAIN ) => 'notice',
-				__( 'Download', GTHEME_TEXTDOMAIN ) => 'download',
-				__( 'Testimonial', GTHEME_TEXTDOMAIN ) => 'testimonial box',
+			'mce_style_formats' => array(
+				array(
+					'title' => _x( 'Source', 'Editor Custom Class', GTHEME_TEXTDOMAIN ),
+					'block' => 'p',
+					'classes' => 'entry-source',
+				),
+				array(
+					'title' => _x( 'Blockquote', 'Editor Custom Class', GTHEME_TEXTDOMAIN ),
+					'block' => 'p',
+					'classes' => 'entry-quote',
+				),
+				array(
+					'title' => _x( 'Deleted', 'Editor Custom Class', GTHEME_TEXTDOMAIN ),
+					'inline' => 'del',
+				),
 			),
-			//'mce_style_formats' => array();
+			
 			
 			'settings_legend' => false, // html content to appear after settings
-			
-			
 			'search_page' => gtheme_get_option( 'search_page', 0 ),
 			
 			// 'home_url_override' => '', // full escaped url to overrided home page / comment to disable
