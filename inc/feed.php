@@ -104,8 +104,8 @@ class gThemeFeed extends gThemeModuleCore
 		$size = gtheme_get_info( 'enclosure_image_size', 'single' );
 		if ( ! $size )
 			return;
-		
-		$id = gtheme_get_image_id( $size );
+	
+		$id = gThemeImage::id( $size );
 		if ( ! $id ) 
 			return;
 		

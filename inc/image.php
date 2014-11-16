@@ -278,7 +278,7 @@ class gThemeImage extends gThemeModuleCore
 	///////////////////////////////////////////////////////////
 	///STATIC/METHODS//////////////////////////////////////////
 	
-	// ANCESTOR : gtheme_get_the_image()
+	// ANCESTOR : gtheme_get_image_id()
 	public static function id( $tag = 'raw', $post_id = null )
 	{
 		if ( is_null( $post_id ) )
