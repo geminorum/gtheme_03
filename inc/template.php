@@ -81,7 +81,17 @@ class gThemeTemplate extends gThemeModuleCore
 			
 		if ( is_null( $size ) )
 			$size = (int) gtheme_get_info( 'comment_avatar_size', 64 );
-			
-		echo get_avatar( $id_or_email, $size, gtheme_get_info( 'default_avatar_src', false )  );
+		
+		$default = gtheme_get_info( 'default_avatar_src', false );
+		
+		if ( gThemeUtilities::is_dev() && $default )
+			echo gThemeUtilities::html( 'img', array(
+				'src' => $default,
+				'alt' => 'avatar',
+				'class' => 'avatar avatar-'.$size.' photo avatar-default',
+				'style' => 'max-width:'.$size.'px;max-height:'.$size.'px;',
+			) );
+		else
+			echo get_avatar( $id_or_email, $size, $default );
 	}
 }
