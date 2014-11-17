@@ -38,6 +38,7 @@ final class gThemeCore
 			'navigation' => 'gThemeNavigation',
 			'sidebar'    => 'gThemeSideBar',
 			'editor'     => 'gThemeEditor',
+			'comments'   => 'gThemeComments',
 			
 		);
 		

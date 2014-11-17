@@ -1,6 +1,7 @@
 <?php defined( 'ABSPATH' ) or die( 'Restricted access' );
 
-class gThemeOptions extends gThemeModuleCore {
+class gThemeOptions extends gThemeModuleCore 
+{
 
 	public static function defaults( $option = false, $default = false ){
 		$defaults = array(
@@ -129,18 +130,17 @@ class gThemeOptions extends gThemeModuleCore {
 			'copyright' => gtheme_get_option( 'copyright', __( '&copy; All right reserved.', GTHEME_TEXTDOMAIN ) ),
 			
 			// COMMENTS
+			'comments_disable_types' => array( 'attachment' ),
 			'comment_callback' => array( 'gThemeComments', 'comment_callback' ), // null to use wp core
 			'comment_form' => array( 'gThemeComments', 'comment_form' ), // comment_form to use wp core
-			'comment_form_defaults' => array(
-				'title_reply' => __( 'Leave a Reply' ),
-				'title_reply_to' => __( 'Leave a Reply to %s' ),
-				'cancel_reply_link' => __( 'Cancel reply' ),
-				'label_submit' => __( 'Post Comment' ),
-			),
-			//'comment_form_reply' => __( 'Reply', GTHEME_TEXTDOMAIN ),
-			//'comments_closed' => __( 'Comments are closed.' , GTHEME_TEXTDOMAIN ), // set empty to hide the text
+			//'comment_form_strings' => array(),
+			//'comment_nav_strings' => array(),
+			//'comment_action_strings' => array(),
+			'comments_closed' => __( 'Comments are closed.', GTHEME_TEXTDOMAIN ), // set false to hide the text
+			'comment_awaiting' => __( 'Your comment is awaiting moderation.', GTHEME_TEXTDOMAIN ), // set false to hide the text
 			
-			'comment_avatar_size' => 50, // wp core is 32
+			// AVATARS
+			'comment_avatar_size' => 75, // wp core is 32
 			'default_avatar_src' => GTHEME_URL.'/images/avatar.png',
 			
 			// SYSTEM TAGS
