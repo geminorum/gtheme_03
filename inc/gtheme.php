@@ -39,6 +39,7 @@ final class gThemeCore
 			'sidebar'    => 'gThemeSideBar',
 			'editor'     => 'gThemeEditor',
 			'comments'   => 'gThemeComments',
+			'search'     => 'gThemeSearch',
 			
 		);
 		

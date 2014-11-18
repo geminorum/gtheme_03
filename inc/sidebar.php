@@ -4,7 +4,7 @@ class gThemeSideBar extends gThemeModuleCore
 {
 	var $_ajax = true;
 
-	function setup_actions( $args = array() )
+	public function setup_actions( $args = array() )
 	{
 		extract( shortcode_atts( array(
 			'disable_sidebars' => false,
@@ -32,6 +32,7 @@ class gThemeSideBar extends gThemeModuleCore
 	public static function widgets()
 	{
 		return apply_filters( 'gtheme_widgets', array(
+			'gThemeWidgetSearch',
 			'gThemeWidgetRecentPosts',
 		) );
 	}
@@ -41,7 +42,7 @@ class gThemeSideBar extends gThemeModuleCore
 		foreach ( self::widgets() as $widget ) {
 			register_widget( $widget );	
 			if ( ! gThemeUtilities::is_dev() ) {
-				if ( 'gtheme_widgets_search_widget' == $widget )
+				if ( 'gThemeWidgetSearch' == $widget )
 					unregister_widget( 'WP_Widget_Search' );
 				if ( 'gThemeWidgetRecentPosts' == $widget )
 					unregister_widget( 'WP_Widget_Recent_Posts' );
@@ -241,9 +242,10 @@ class gThemeSideBar extends gThemeModuleCore
 }
 
 
-class gThemeWidgetRecentPosts extends WP_Widget {
+class gThemeWidgetRecentPosts extends WP_Widget 
+{
 
-	function __construct() 
+	public function __construct() 
 	{
 		parent::__construct( 'gtheme_recent_posts', __( 'gTheme: Recent Posts', GTHEME_TEXTDOMAIN ), array( 
 			'description' => __( 'Customized most recent posts.', GTHEME_TEXTDOMAIN ),
@@ -257,11 +259,8 @@ class gThemeWidgetRecentPosts extends WP_Widget {
 		add_action( 'switch_theme', array( $this, 'flush_widget_cache' ) );
 	}
 
-	function widget( $args, $instance ) 
+	public function widget( $args, $instance ) 
 	{
-		//gThemeUtilities::dump( $args ); 
-		//gThemeUtilities::dump( $instance );
-	
 		$cache = wp_cache_get( $this->alt_option_name, 'widget' );
 
 		if ( ! is_array( $cache ) )
@@ -322,7 +321,7 @@ class gThemeWidgetRecentPosts extends WP_Widget {
 		wp_cache_set( $this->alt_option_name, $cache, 'widget' );
 	}
 
-	function update( $new_instance, $old_instance ) 
+	public function update( $new_instance, $old_instance ) 
 	{
 		$instance = $old_instance;
 		$instance['title'] = strip_tags( $new_instance['title'] );
@@ -337,12 +336,12 @@ class gThemeWidgetRecentPosts extends WP_Widget {
 		return $instance;
 	}
 
-	function flush_widget_cache() 
+	public function flush_widget_cache() 
 	{
 		wp_cache_delete( $this->alt_option_name, 'widget' );
 	}
 
-	function form( $instance ) 
+	public function form( $instance ) 
 	{
 		$html = gThemeUtilities::html( 'input', array( 
 			'type' => 'text',
@@ -379,5 +378,61 @@ class gThemeWidgetRecentPosts extends WP_Widget {
 		echo '<p>'. gThemeUtilities::html( 'label', array( 
 			'for' => $this->get_field_id( 'number' ),
 		), __( 'Number of posts to show:', GTHEME_TEXTDOMAIN ).' '.$html ).'</p>';
+	}
+}
+
+
+class gThemeWidgetSearch extends WP_Widget 
+{
+
+	public function __construct() 
+	{
+		parent::__construct( 'gtheme_search', __( 'gTheme: Search', GTHEME_TEXTDOMAIN ), array( 
+			'description' => __( 'Selectable search form', GTHEME_TEXTDOMAIN ),
+			'classname' => 'widget-gtheme-search',
+			) );
+	}
+
+	public function widget( $args, $instance ) 
+	{
+		$context = empty( $instance['context'] ) ? '' : $instance['context'];
+		$title = apply_filters( 'widget_title', 
+			empty( $instance['title'] ) ? '' : $instance['title'],
+			$instance,
+			$this->id_base
+		);	
+
+		echo $args['before_widget'];
+		if ( $title ) 
+			echo $args['before_title'].$title.$args['after_title'];
+			get_template_part( 'searchform', $context );
+		echo $args['after_widget'];
+	}
+
+	public function form( $instance ) 
+	{
+		$html = gThemeUtilities::html( 'input', array( 
+			'type' => 'text',
+			'class' => 'widefat',
+			'name' => $this->get_field_name( 'title' ),
+			'id' => $this->get_field_id( 'title' ),
+			'value' => isset( $instance['title'] ) ? $instance['title'] : '',
+		) );
+		
+		echo '<p>'. gThemeUtilities::html( 'label', array( 
+			'for' => $this->get_field_id( 'title' ),
+		), __( 'Title:', GTHEME_TEXTDOMAIN ).$html ).'</p>';
+		
+		$html = gThemeUtilities::html( 'input', array( 
+			'type' => 'text',
+			'class' => 'widefat',
+			'name' => $this->get_field_name( 'context' ),
+			'id' => $this->get_field_id( 'context' ),
+			'value' => isset( $instance['context'] ) ? $instance['context'] : '',
+		) );
+		
+		echo '<p>'. gThemeUtilities::html( 'label', array( 
+			'for' => $this->get_field_id( 'context' ),
+		), __( 'Context:', GTHEME_TEXTDOMAIN ).$html ).'</p>';
 	}
 }
