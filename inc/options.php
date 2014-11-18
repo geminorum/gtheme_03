@@ -8,6 +8,8 @@ class gThemeOptions extends gThemeModuleCore
 			'name' => 'gtheme',
 			'title' => _x( 'gTheme', 'Theme Title', GTHEME_TEXTDOMAIN ),
 			'sub_title' => false, //'gTheme Child',
+			
+			// SETTINGS PAGE
 			'menu_title' => _x( 'Theme Settings', 'Admin Menu Title', GTHEME_TEXTDOMAIN ),
 			'settings_title' => _x( 'gTheme Settings', 'Admin Settings Page Title', GTHEME_TEXTDOMAIN ),
 			'settings_page' => 'gtheme-theme',

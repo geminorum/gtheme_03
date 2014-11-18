@@ -19,3 +19,5 @@ if ( ! defined( 'GTHEME_FLUSH' ) && ( isset( $_GET['flush'] ) && 'flush' == $_GE
 	define( 'GTHEME_FLUSH', true ); 
 else 
 	define( 'GTHEME_FLUSH', false );
+
+defined( 'DS' ) or define( 'DS', DIRECTORY_SEPARATOR );

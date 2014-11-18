@@ -228,4 +228,31 @@ class gThemeUtilities extends gThemeModuleCore
 			) 
 		);
 	}
+	
+	public static function notice( $notice, $class = 'updated fade', $echo = true ) 
+	{
+		$html = sprintf( '<div id="message" class="%s"><p>%s</p></div>', $class, $notice );
+		if ( ! $echo )
+			return $html;
+		echo $html;
+	}	
+	
+	public static function headerNav( $settings_uri = '', $active = '', $sub_pages = array(), $class_prefix = 'nav-tab-', $tag = 'h3' )
+	{
+		if ( ! count( $sub_pages ) )
+			return;
+		
+		$html = '';
+		
+		foreach ( $sub_pages as $page_slug => $sub_page )
+			$html .= self::html( 'a', array(
+				'class' => 'nav-tab '.$class_prefix.$page_slug.( $page_slug == $active ? ' nav-tab-active' : '' ),
+				'href' => add_query_arg( 'sub', $page_slug, $settings_uri ),
+			), esc_html( $sub_page ) );
+		
+		echo self::html( $tag, array(
+			'class' => 'nav-tab-wrapper',
+		), $html );
+	}
+	
 }

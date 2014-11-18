@@ -3,7 +3,7 @@
 final class gThemeCore 
 {
 	private static $instance;
-
+	
 	public static function instance() 
 	{
 		if ( ! isset( self::$instance ) ) {
@@ -13,9 +13,9 @@ final class gThemeCore
 		}
 		return self::$instance;
 	}
-
+	
 	private function __construct() { }
-
+	
 	private function setup_globals() 
 	{
 		$modules = array(
@@ -42,12 +42,14 @@ final class gThemeCore
 			
 		);
 		
-		if ( is_admin() )
+		if ( is_admin() ) {
 			$modules['admin'] = 'gThemeAdmin';
-
+			$modules['settings'] = 'gThemeSettings';
+		}
+		
 		$this->modules = apply_filters( 'gtheme_modules', $modules );
 	}
-
+	
 	private function setup_actions() 
 	{
 		$this->load_modules( $this->modules );
@@ -86,11 +88,11 @@ final class gThemeCore
 	
 	public function after_setup_theme()
 	{
-		$this->init_modules( $this->modules, gtheme_get_info( 'module_args', array() ) );
-		
 		load_theme_textdomain( GTHEME_TEXTDOMAIN, GTHEME_DIR.'/languages' );
+		
+		$this->init_modules( $this->modules, gtheme_get_info( 'module_args', array() ) );
 	}
-
+	
 	public function init_late()
 	{
 		$this->load_modules( array( 'fallbacks' ) );
