@@ -33,16 +33,16 @@ class gThemeSearch extends gThemeModuleCore
 	{
 		$html = '<form role="search" method="get" class="form search-form search-form-'.$context
 			   .'" action="'.esc_url( self::getAction() ).'">'
-			   .'<div class="input-group"><span class="screen-reader-text sr-only"><label>'
+			   .'<span class="screen-reader-text sr-only"><label>'
 			   ._x( 'Search for:', 'label', GTHEME_TEXTDOMAIN ).'</label></span>'
-			   .'<input type="search" class="form-control search-field" placeholder="'
+			   .'<div class="input-group"><input type="search" class="form-control search-field" placeholder="'
 			   .esc_attr_x( 'Search &hellip;', 'placeholder', GTHEME_TEXTDOMAIN )
 			   .'" value="'.self::query()
 			   .'" name="'.self::getKey()
 			   .'" title="'.esc_attr_x( 'Search for:', 'label', GTHEME_TEXTDOMAIN ).'" />'
 			   .'<span class="input-group-btn"><button type="submit" class="btn btn-default search-submit" />'
 			   ._x( 'Search', 'submit button', GTHEME_TEXTDOMAIN )
-			   .'</button><span></div></form>';
+			   .'</button></span></div></form>';
 		echo $html;
 	}
 	
