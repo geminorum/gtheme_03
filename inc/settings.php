@@ -2,6 +2,7 @@
 
 class gThemeSettings extends gThemeModuleCore 
 {
+	var $_option_key = 'settings';
 	
 	public function setup_actions( $args = array() )
 	{
@@ -23,6 +24,10 @@ class gThemeSettings extends gThemeModuleCore
 		// maybe better : move to admin module
 		// disable avatar select on admin settings
 		add_filter( 'default_avatar_select', array( & $this, 'default_avatar_select' ) );
+		
+		add_action( 'gtheme_settings_sub_general', array( & $this, 'sub_general' ), 10, 2 );
+		add_action( 'gtheme_settings_load', array( & $this, 'load' ) );
+		//add_filter( 'gtheme_settings_sub_
 	}
 	
 	public function default_avatar_select( $avatar_list ) 
@@ -56,7 +61,10 @@ class gThemeSettings extends gThemeModuleCore
 			'general' => __( 'General', GTHEME_TEXTDOMAIN ),
 		) );
 		
-		$messages = apply_filters( 'gtheme_settings_messages', array() );
+		$messages = apply_filters( 'gtheme_settings_messages', array(
+			'error' => gThemeUtilities::notice( __( 'Settings not updated.', GTHEME_TEXTDOMAIN ), 'error', false ),
+			'updated' => gThemeUtilities::notice( __( 'Settings updated.', GTHEME_TEXTDOMAIN ), 'updated fade', false ),
+		) );
 		
 		echo '<div class="wrap"><h2>'.$info['settings_title'].'</h2>';
 
@@ -87,5 +95,75 @@ class gThemeSettings extends gThemeModuleCore
 		do_action( 'gtheme_settings_load', $sub );
 	}
 	
+	public function sub_general( $settings_uri, $sub )
+	{
+		$defaults = self::defaults();
+		$options = gThemeOptions::get_options();
 	
+		echo '<form method="post" action="">';
+			echo '<h3>'.__( 'General Settings', GTHEME_TEXTDOMAIN ).'</h3>';
+			echo '<table class="form-table">';
+			
+			$this->do_settings_field( array(
+				'title' => __( 'Site User', GTHEME_TEXTDOMAIN ),
+				'type' => 'select',
+				'field' => 'default_user',
+				'values' => self::getUsers(),
+				'default' => ( isset( $options['default_user'] ) ? $options['default_user'] : $defaults['default_user'] ),
+				'desc' => __( 'Site default user. using to hide editors!', GTHEME_TEXTDOMAIN ),
+			), true );
+			
+			$this->do_settings_field( array(
+				'title' => __( 'FrontPage Title', GTHEME_TEXTDOMAIN ),
+				'type' => 'text',
+				'field' => 'frontpage_title',
+				'default' => ( isset( $options['frontpage_title'] ) ? $options['frontpage_title'] : $defaults['frontpage_title'] ),
+				'desc' => __( 'The title used on frontpage. Blank to use the build-in text.', GTHEME_TEXTDOMAIN ),
+			), true );
+			
+			$this->do_settings_field( array(
+				'title' => __( 'FrontPage Description', GTHEME_TEXTDOMAIN ),
+				'type' => 'text',
+				'field' => 'frontpage_desc',
+				'default' => ( isset( $options['frontpage_desc'] ) ? $options['frontpage_desc'] : $defaults['frontpage_desc'] ),
+				'desc' => __( 'The description meta tag used on frontpage. Blank to use the build-in text.', GTHEME_TEXTDOMAIN ),
+			), true );
+			
+			echo '</table>';
+			
+			submit_button();
+			
+			wp_nonce_field( 'gtheme-settings', '_gtheme_settings' );
+		echo '</form>';		
+	}
+	
+	public function load( $sub )
+	{
+		if ( 'general' == $sub ) { 
+			if ( ! empty( $_POST ) 
+				&& wp_verify_nonce( $_POST['_gtheme_settings'], 'gtheme-settings' ) ) {
+				
+				$options = gThemeOptions::get_options();
+				foreach ( self::defaults() as $option => $default )
+					if ( isset( $_POST['gtheme_settings'][$option] )
+						&& trim( $_POST['gtheme_settings'][$option] ) )
+							$options[$option] = $_POST['gtheme_settings'][$option];
+					else
+						unset( $options[$option] );
+			
+				$result = gThemeOptions::update_options( $options );
+				wp_redirect( add_query_arg( array( 'message' => ( $result ? 'updated' : 'error' ) ), wp_get_referer() ) );
+				exit();
+			}
+		}
+	}
+	
+	public static function defaults()
+	{
+		return array(
+			'default_user' => 0,
+			'frontpage_title' => '',
+			'frontpage_desc' => '',
+		);
+	}
 }

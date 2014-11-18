@@ -238,64 +238,82 @@ class gThemeOptions extends gThemeModuleCore
 			'd' => $d, // description
 		);
 	}
-	
-	
-}
 
-function gtheme_get_info( $info = false, $default = false ){
-	global $gtheme_info;
-	if ( empty( $gtheme_info ) )
-		$gtheme_info = apply_filters( 'gtheme_get_info', gThemeOptions::defaults() );
+	public static function get_options()
+	{
+		return get_option( constant( 'GTHEME' ) );
+	}
 	
-	if ( false === $info )
-		return $gtheme_info;
-	if( isset( $gtheme_info[$info] ) )
-		return $gtheme_info[$info];
-	return $default;	
-}
+	public static function update_options( $options )
+	{
+		return update_option( constant( 'GTHEME' ), $options );
+	}
 
-
-function gtheme_get_option( $name, $default = false ) {
-	global $gtheme_options;
-	if ( empty(	$gtheme_options ) )
-		$gtheme_options = get_option( constant( 'GTHEME' ) );
+	public static function get_option( $name, $default = false ) 
+	{
+		global $gtheme_options;
+		if ( empty(	$gtheme_options ) )
+			$gtheme_options = self::get_options();
+			
+		if ( $gtheme_options === false ) 
+			$gtheme_options = array();
+			
+		if ( !isset( $gtheme_options[$name] ) ) 
+			//$gtheme_options[$name] = $default;
+			return $default;
 		
-	if ( $gtheme_options === false ) 
-		$gtheme_options = array();
+		return $gtheme_options[$name];
+	}
+
+	public static function update_option( $name, $value ) 
+	{
+		global $gtheme_options;
+		if ( empty(	$gtheme_options ) )
+			$gtheme_options = self::get_options();
+
+		if ( $gtheme_options === false ) 
+			$gtheme_options = array();
 		
-	if ( !isset( $gtheme_options[$name] ) ) 
-		//$gtheme_options[$name] = $default;
-		return $default;
-	
-	return $gtheme_options[$name];
+		$gtheme_options[$name] = $value;
+		
+		return self::update_options( $gtheme_options );
+	}
+
+	public static function delete_option( $name ) 
+	{
+		global $gtheme_options;
+		if ( empty(	$gtheme_options ) )
+			$gtheme_options = self::get_options();
+
+		if ( $gtheme_options === false ) 
+			$gtheme_options = array();
+		
+		unset( $gtheme_options[$name] );
+		
+		return self::update_options( $gtheme_options );
+	}	
+
+	public static function info( $info = false, $default = false )
+	{
+		global $gtheme_info;
+		
+		if ( empty( $gtheme_info ) )
+			$gtheme_info = apply_filters( 'gtheme_get_info', self::defaults() );
+		
+		if ( false === $info )
+			return $gtheme_info;
+			
+		if( isset( $gtheme_info[$info] ) )
+			return $gtheme_info[$info];
+			
+		return $default;	
+	}
 }
 
-function gtheme_update_option( $name, $value ) {
-	global $gtheme_options;
-	if ( empty(	$gtheme_options ) )
-		$gtheme_options = get_option( constant( 'GTHEME' ) );
-
-	if ( $gtheme_options === false ) 
-		$gtheme_options = array();
-	
-	//unset ( $gtheme_options[$name] );
-	$gtheme_options[$name] = $value;
-	
-	return update_option( constant( 'GTHEME' ), $gtheme_options );
-}
-
-function gtheme_delete_option( $name ) {
-	global $gtheme_options;
-	if ( empty(	$gtheme_options ) )
-		$gtheme_options = get_option( constant( 'GTHEME' ) );
-
-	if ( $gtheme_options === false ) 
-		$gtheme_options = array();
-	
-	unset( $gtheme_options[$name] );
-	
-	return update_option( constant( 'GTHEME' ), $gtheme_options );
-}
+function gtheme_get_info( $info = false, $default = false ) { return gThemeOptions::info( $info, $default ); }
+function gtheme_get_option( $name, $default = false ) { return gThemeOptions::get_option( $name, $default ); }
+function gtheme_update_option( $name, $value ) { return gThemeOptions::update_option( $name, $value ); }
+function gtheme_delete_option( $name ) { return gThemeOptions::delete_option( $name ); }
 
 function gtheme_get_count( $name, $def = 0 ){
 	$option_counts = gtheme_get_option( 'counts', array() );
