@@ -249,7 +249,7 @@ class gThemeComments extends gThemeModuleCore
 		$edit = get_edit_comment_link( $comment->comment_ID );
 		if ( $edit )
 			$actions['edit-link'] = gThemeUtilities::html( 'a', array(
-				'href' => get_edit_comment_link( $comment->comment_ID ),
+				'href' => $edit,
 				'class' => 'comment-edit-link',
 			), $strings['edit'] );
 		
