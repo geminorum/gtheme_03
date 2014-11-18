@@ -308,38 +308,43 @@ class gThemeOptions extends gThemeModuleCore
 			
 		return $default;	
 	}
+	
+	public static function count( $name, $def = 0 )
+	{
+		$option_counts = self::get_option( 'counts', array() );
+		if ( count( $option_counts ) && isset( $option_counts[$name] ) )
+			return $option_counts[$name];
+		
+		$info_counts = self::info( 'counts', array() );
+		if ( count( $info_counts ) && isset( $info_counts[$name] )  )
+			return $info_counts[$name]['def'];
+			
+		return $def;
+	}
+
+	public static function supports( $plugins, $if_not_set = false ) 
+	{
+		$supports = self::info( 'supports', array() );
+		
+		if ( is_array( $plugins ) )
+			foreach ( $plugins as $plugin )
+				if ( isset( $supports[$plugin] ) )
+					return $supports[$plugin];
+		
+		if ( isset( $supports[$plugins] ) )
+			return $supports[$plugins];
+			
+		return $if_not_set;
+	}
 }
 
 function gtheme_get_info( $info = false, $default = false ) { return gThemeOptions::info( $info, $default ); }
 function gtheme_get_option( $name, $default = false ) { return gThemeOptions::get_option( $name, $default ); }
 function gtheme_update_option( $name, $value ) { return gThemeOptions::update_option( $name, $value ); }
 function gtheme_delete_option( $name ) { return gThemeOptions::delete_option( $name ); }
+function gtheme_get_count( $name, $def = 0 ){ return gThemeOptions::count( $name, $def ); }
+function gtheme_supports( $plugins, $if_not_set = false ) { return gThemeOptions::supports( $plugins, $if_not_set ); }
 
-function gtheme_get_count( $name, $def = 0 ){
-	$option_counts = gtheme_get_option( 'counts', array() );
-	if ( count( $option_counts ) && isset( $option_counts[$name] ) )
-		return $option_counts[$name];
-	
-	$info_counts = gtheme_get_info( 'counts', array() );
-	if ( count( $info_counts ) && isset( $info_counts[$name] )  )
-		return $info_counts[$name]['def'];
-		
-	return $def;
-}
-
-function gtheme_supports( $plugins, $if_not_set = false ) {
-	$supports = gtheme_get_info( 'supports', array() );
-	
-	if ( is_array( $plugins ) )
-		foreach ( $plugins as $plugin )
-			if ( isset( $supports[$plugin] ) )
-				return $supports[$plugin];
-	
-	if ( isset( $supports[$plugins] ) )
-		return $supports[$plugins];
-		
-	return $if_not_set;
-}
 
 function gtheme_get_banner( $group, $order = 0 ) {
 	$banners = gtheme_get_option( 'banners', array() );

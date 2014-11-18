@@ -448,7 +448,7 @@ a2a_config.locale = "fa";
 		else
 			$link = $shortlink;
 		
-		$meta = gtheme_supports( 'geditorial-meta' );
+		$meta = gThemeOptions::supports( 'geditorial-meta', true );
 		
 		echo '<header class="header-class header-'.$context.' '.$prefix.'-header">';
 		echo '<div class="titles-class '.$prefix.'-titles">';

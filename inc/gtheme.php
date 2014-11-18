@@ -55,7 +55,7 @@ final class gThemeCore
 		$this->load_modules( $this->modules );
 		
 		add_action( 'after_setup_theme', array( $this, 'after_setup_theme' ) );
-		add_action( 'init', array( $this, 'init_late' ), 9999 );
+		add_action( 'init', array( $this, 'init_late' ), 99 );
 		
 		do_action_ref_array( 'gtheme_after_setup_actions', array( &$this ) );
 	}
@@ -95,7 +95,7 @@ final class gThemeCore
 	
 	public function init_late()
 	{
-		$this->load_modules( array( 'fallbacks' ) );
+		$this->load_modules( array( 'fallbacks' => null ) );
 	}
 	
 	public static function version( $theme = null )
