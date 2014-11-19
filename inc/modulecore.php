@@ -23,7 +23,24 @@ class gThemeModuleCore
 	{
 		return ( defined( 'DOING_AJAX' ) && constant( 'DOING_AJAX' ) ) ? true : false;
 	}
-
+	
+	// helper
+	// ANCESTOR : shortcode_atts()
+	public static function atts( $pairs, $atts ) 
+	{
+		$atts = (array) $atts;
+		$out = array();
+		
+		foreach( $pairs as $name => $default ) {
+			if ( array_key_exists( $name, $atts ) )
+				$out[$name] = $atts[$name];
+			else
+				$out[$name] = $default;
+		}
+		
+		return $out;
+	}
+	
 	// helper
 	public static function getUsers()
 	{
