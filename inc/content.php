@@ -73,6 +73,7 @@ class gThemeContent extends gThemeModuleCore
 		);
 	}
 	
+	// ANCESTOR: gtheme_the_title_attribute()
 	public static function title_attr( $echo = true, $title = null, $template = null, $empty = '' )
 	{
 		if ( is_null( $title ) )
@@ -96,6 +97,7 @@ class gThemeContent extends gThemeModuleCore
 		echo $title_attr; 
 	}
 	
+	// ANCESTOR: gtheme_the_content_restricted()
 	public static function restricted( $stripteser = false, $restricted_message = '', $b = '<div class="restricted-content">', $a = '</div>' ) 
 	{
 		global $more;
@@ -143,12 +145,16 @@ class gThemeContent extends gThemeModuleCore
 		echo $output;
 	}
 	
+	// ANCESTOR: gtheme_the_excerpt()
 	public static function excerpt( $atts = 'itemprop="description" ', $b = '<div class="entry-summary">', $a = '</div>', $only = false, $excerpt_length = false ) 
 	{
 		if ( post_password_required() ) 
 			return;
 			
 		$post = get_post();	
+		
+		if ( ! $post )
+			return;
 		
 		if ( $only && empty( $post->post_excerpt ) )
 			return;
@@ -174,10 +180,17 @@ class gThemeContent extends gThemeModuleCore
 		return get_post( $post )->post_name; 
 	}
 	
-	public static function actions( $before = '<span class="post-action %s">', $after = '</span>', $action_list = false, $icons = 'def' ) 
+	public static function actions( $before = '<span class="post-action %s">', $after = '</span>', $action_list = true, $icons = 'def' ) 
 	{
-		$actions = ( false === $action_list ? gtheme_get_info( 'post_actions', array() ) : $action_list );
-		$icons = ( 'def' === $icons ? gtheme_get_info( 'post_actions_icons', false ) : false );
+		if ( true === $action_list )
+			$actions = gtheme_get_info( 'post_actions', array() );
+		else if ( is_array( $action_list ) )
+			$actions = $action_list;
+		else
+			$actions = array();
+			
+		if ( 'def' === $icons )
+			$icons = gtheme_get_info( 'post_actions_icons', false );
 		
 		do_action( 'gtheme_action_links_before', $before, $after, $actions, $icons );
 		
@@ -232,7 +245,7 @@ class gThemeContent extends gThemeModuleCore
 					sprintf( $before, 'post-short-link' ),
 					$after 
 				);
-			break;           
+			break;		   
 			
 			case 'comments_link' : 
 			case 'comments_link_feed' : 
@@ -243,8 +256,8 @@ class gThemeContent extends gThemeModuleCore
 					/**
 						comments_popup_link( 
 							__( 'Leave a comment', 'mytheme' ),
-							__( '1 Comment',       'mytheme' ),
-							__( '% Comments',      'mytheme' )
+							__( '1 Comment', 'mytheme' ),
+							__( '% Comments', 'mytheme' )
 						); 
 					*/
 					
@@ -326,21 +339,17 @@ class gThemeContent extends gThemeModuleCore
 		
 		echo $a;
 	}
-
-
-	function justify_buttons( $b = '', $a = '', $sep = 'def', $justify = 'def', $unjustify = 'def' ) 
+	
+	public static function justify_buttons( $b = '', $a = '', $sep = 'def', $justify = 'def', $unjustify = 'def' ) 
 	{
 		echo $b;
 		
-		echo '<a id="text-justify" class="text-justify-button" href="#" title="'.__( 'Justify paragraphs', GTHEME_TEXTDOMAIN ).'">';
+		echo '<a id="text-justify" class="text-justify-button hidden" href="#" title="'.__( 'Justify paragraphs', GTHEME_TEXTDOMAIN ).'">';
 			echo ( 'def' == $justify ? gtheme_get_info( 'text_justify', 'Ju' ) : $justify ); 
 		echo '</a>';
 		
-		if ( false !== $sep ) {
-			//echo '<a id="fontsize-default" class="fontsize-button" href="#">';
+		if ( false !== $sep )
 			echo gThemeUtilities::sanitize_sep( $sep, 'text_justify_sep' );
-			//echo '</a>';
-		}
 		
 		echo '<a id="text-unjustify" class="text-justify-button" href="#" title="'.__( 'Un-justify paragraphs', GTHEME_TEXTDOMAIN ).'">';
 			echo ( 'def' == $unjustify ? gtheme_get_info( 'text_unjustify', 'uJ' ) : $unjustify ); 
@@ -384,22 +393,22 @@ class gThemeContent extends gThemeModuleCore
 	}
 	
 	// prints the PrintFriendly JavaScript, in the footer, and loads it asynchronously.
-    public static function printfriendly_footer() 
+	public static function printfriendly_footer() 
 	{
 		?><script type="text/javascript">
 		  (function() {
-            var e = document.createElement('script'); e.type="text/javascript";
-		    if('https:' == document.location.protocol) {
+			var e = document.createElement('script'); e.type="text/javascript";
+			if('https:' == document.location.protocol) {
 			  js='https://pf-cdn.printfriendly.com/ssl/main.js';
-		    }
-		    else{
+			}
+			else{
 			  js='http://cdn.printfriendly.com/printfriendly.js';
-		    }
-            e.src = js;
-            document.getElementsByTagName('head')[0].appendChild(e);
+			}
+			e.src = js;
+			document.getElementsByTagName('head')[0].appendChild(e);
 	  	  })();
-      </script><?php
-    }	
+	  </script><?php
+	}	
 	
 	// http://www.addtoany.com/buttons/for/website
 	public static function addtoany( $b = '', $a = '', $text = null, $footer = true )
@@ -421,7 +430,7 @@ class gThemeContent extends gThemeModuleCore
 		echo $a;
 	}
 	
-    public static function addtoany_footer() 
+	public static function addtoany_footer() 
 	{
 		?><script type="text/javascript">
 var a2a_config = a2a_config || {};
@@ -431,40 +440,72 @@ a2a_config.onclick = 1;
 a2a_config.locale = "fa";
 </script>
 <script type="text/javascript" src="//static.addtoany.com/menu/page.js"></script><?php
-    }	
+	}	
 	
 	// ANCESTOR : gtheme_post_header()
-	public static function header( $context = 'single', $prefix = 'entry', $tag = 'h2', $shortlink = false )
+	public static function header( $atts = array() )
 	{
-		$title = get_the_title();
+		$args = self::atts( array(
+			'context' => 'single',
+			'prefix' => 'entry',
+			'actions' => false,
+			'shortlink' => false,
+			'title_tag' => 'h2',
+			'meta_tag' => 'h4',
+			
+			'title' => null,
+			'meta' => true,
+			'link' => true, // disable linking compeletly
+		), $atts );
+	
+		if ( is_null( $args['title'] ) )
+			$args['title'] = get_the_title();
 		
-		if ( strlen( $title ) == 0 ) 
+		if ( strlen( $args['title'] ) == 0 ) 
 			return;
-
-		if ( false === $shortlink ) 
-			$link = get_permalink();
-		else if ( true === $shortlink )
-			$link = wp_get_shortlink( 0, 'query' );
-		else
-			$link = $shortlink;
 		
-		$meta = gThemeOptions::supports( 'geditorial-meta', true );
+		if ( $args['link'] ) {
+			if ( false === $args['shortlink'] ) 
+				$link = get_permalink();
+			else if ( true === $args['shortlink'] )
+				$link = wp_get_shortlink( 0, 'query' );
+			else
+				$link = $args['shortlink'];
+		}
 		
-		echo '<header class="header-class header-'.$context.' '.$prefix.'-header">';
-		echo '<div class="titles-class '.$prefix.'-titles">';
+		if ( $args['meta'] )
+			$args['meta'] = gThemeOptions::supports( 'geditorial-meta', true );
 		
-		if ( $meta ) 
-			gmeta( 'over-title', '<h4 itemprop="alternativeHeadline" class="overtitle '.$prefix.'-overtitle">', '</h4>' ); 
+		echo '<header class="header-class header-'.$args['context'].' '.$args['prefix'].'-header">';
+		echo '<div class="titles-class '.$args['prefix'].'-titles">';
 		
-		echo '<'.$tag.' itemprop="headline" class="title '.$prefix.'-title">';
-		echo '<a itemprop="url" rel="bookmark" href="'.$link.'" title="'; 
-			self::title_attr( true, $title );
-		echo '">'.$title.'</a></'.$tag.'>';
+		if ( $args['meta'] )
+			gmeta( 'over-title', '<'.$args['meta_tag'].' itemprop="alternativeHeadline" class="overtitle '.$args['prefix'].'-overtitle">', '</'.$args['meta_tag'].'>' ); 
 		
-		if ( $meta ) 
-			gmeta( 'sub-title', '<h4 itemprop="alternativeHeadline" class="subtitle '.$prefix.'-subtitle">', '</h4>' ); 
+		echo '<'.$args['title_tag'].' itemprop="headline" class="title '.$args['prefix'].'-title">';
 		
-		echo '</div></header>';
+		if ( $args['link'] ) {
+			echo '<a itemprop="url" rel="bookmark" href="'.$link.'" title="'; 
+				self::title_attr( true, $args['title'] );
+			echo '">'.$args['title'].'</a>';
+		} else {
+			echo $args['title'];
+		}
+		
+		echo '</'.$args['title_tag'].'>';
+		
+		if ( $args['meta'] )
+			gmeta( 'sub-title', '<'.$args['meta_tag'].' itemprop="alternativeHeadline" class="subtitle '.$args['prefix'].'-subtitle">', '</'.$args['meta_tag'].'>' ); 
+			
+		echo '</div>';
+		
+		if ( $args['actions'] ) {
+			echo '<ul class="list-inline actions-class actions-'.$args['context'].' '.$args['prefix'].'-actions">';
+				self::actions( '<li class="post-action %s">', '</li>', $args['actions'] );
+			echo '</ul>';
+		}
+		
+		echo '</header>';
 	}
 	
 	//////////////////////////////////////////////////////////////////
@@ -527,21 +568,5 @@ a2a_config.locale = "fa";
 		
 		return $post_id;
 	}
-	// add_action( 'save_post', 'rkv_store_read_time' );	
-	
-	
+	// add_action( 'save_post', 'rkv_store_read_time' );
 }
-
-
-
-/**
-BACK COMP REF :
-
-	gtheme_the_title_attribute() -> gThemeContent::title_attr()
-	gtheme_the_content_restricted() -> gThemeContent::restricted()
-	gtheme_the_excerpt() -> gThemeContent::excerpt()
-	gtheme_post_header() -> gThemeContent::header()
-
-
-
-**/
