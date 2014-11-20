@@ -255,4 +255,21 @@ class gThemeUtilities extends gThemeModuleCore
 		), $html );
 	}
 	
+	// NOT PROPERLY WORKING ON ADMIN
+	// http://kovshenin.com/2012/current-url-in-wordpress/
+	// http://www.stephenharris.info/2012/how-to-get-the-current-url-in-wordpress/
+	function getCurrentURL( $trailingslashit = false ) 
+	{
+		global $wp;
+		
+		if ( is_admin() )
+			$current_url = add_query_arg( $wp->query_string, '', home_url( $wp->request ) );
+		else
+			$current_url = home_url( add_query_arg( array(), ( empty( $wp->request ) ? false : $wp->request ) ) );
+		
+		if ( $trailingslashit )
+			return trailingslashit( $current_url );
+		
+		return $current_url;
+	}
 }

@@ -40,12 +40,12 @@ final class gThemeCore
 			'editor'     => 'gThemeEditor',
 			'comments'   => 'gThemeComments',
 			'search'     => 'gThemeSearch',
+			'settings'   => 'gThemeSettings',
 			
 		);
 		
 		if ( is_admin() ) {
 			$modules['admin'] = 'gThemeAdmin';
-			$modules['settings'] = 'gThemeSettings';
 		}
 		
 		$this->modules = apply_filters( 'gtheme_modules', $modules );
