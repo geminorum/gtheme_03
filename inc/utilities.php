@@ -258,7 +258,7 @@ class gThemeUtilities extends gThemeModuleCore
 	// NOT PROPERLY WORKING ON ADMIN
 	// http://kovshenin.com/2012/current-url-in-wordpress/
 	// http://www.stephenharris.info/2012/how-to-get-the-current-url-in-wordpress/
-	function getCurrentURL( $trailingslashit = false ) 
+	public static function getCurrentURL( $trailingslashit = false ) 
 	{
 		global $wp;
 		
