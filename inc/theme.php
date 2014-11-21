@@ -8,6 +8,7 @@ class gThemeTheme extends gThemeModuleCore {
 			'cleanup' => true,
 			'adminbar' => true,
 			'wpcf7' => true,
+			'page_excerpt' => true,
 			'feed_links' => true,
 			'post_formats' => false,
 			'html5' => true,
@@ -27,6 +28,9 @@ class gThemeTheme extends gThemeModuleCore {
 		if ( $wpcf7 && function_exists( 'wpcf7_enqueue_scripts' ) )
 			add_action( 'wp_enqueue_scripts', array( & $this, 'wp_enqueue_scripts_wpcf7' ), 5 );
 		
+		if ( $page_excerpt )
+			add_post_type_support( 'page', 'excerpt' ); 
+			
 		if ( $feed_links )
 			add_theme_support( 'automatic-feed-links' );
 			
