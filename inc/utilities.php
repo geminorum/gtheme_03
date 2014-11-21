@@ -272,4 +272,18 @@ class gThemeUtilities extends gThemeModuleCore
 		
 		return $current_url;
 	}
+	
+	public static function getPostTypes()
+	{
+		$list = array();
+		$post_types = get_post_types( array(
+			'public' => true,
+			'_builtin' => true,
+		), 'objects' ); 
+
+		foreach ( $post_types as $post_type => $post_type_obj )
+			$list[$post_type] = $post_type_obj->labels->name;
+		
+		return $list;
+	}	
 }

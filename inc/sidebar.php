@@ -35,6 +35,8 @@ class gThemeSideBar extends gThemeModuleCore
 			'gThemeWidgetSearch',
 			'gThemeWidgetRecentPosts',
 			'gThemeWidgetTemplatePart',
+			'gThemeWidgetChildren',
+			'gThemeWidgetSiblings',
 		) );
 	}
 		
@@ -490,5 +492,137 @@ class gThemeWidgetTemplatePart extends WP_Widget
 		echo '<p>'. gThemeUtilities::html( 'label', array( 
 			'for' => $this->get_field_id( 'context' ),
 		), __( 'Context:', GTHEME_TEXTDOMAIN ).$html ).'</p>';
+	}
+}
+
+class gThemeWidgetChildren extends WP_Widget 
+{
+
+	public function __construct() 
+	{
+		parent::__construct( 'gtheme_children', __( 'gTheme: Children', GTHEME_TEXTDOMAIN ), array( 
+			'description' => __( 'List of current post children', GTHEME_TEXTDOMAIN ),
+			'classname' => 'widget-gtheme-children',
+			) );
+	}
+
+	public function widget( $args, $instance ) 
+	{
+		$post_type = empty( $instance['post_type'] ) ? 'page' : $instance['post_type'];
+		$title = apply_filters( 'widget_title', 
+			empty( $instance['title'] ) ? '' : $instance['title'],
+			$instance,
+			$this->id_base
+		);	
+
+		$html = gTheme()->shortcodes->shortcode_children( array( 'type' => $post_type ) );
+		
+		if ( $html ) {
+			echo $args['before_widget'];
+				if ( $title ) 
+					echo $args['before_title'].$title.$args['after_title'];
+				echo $html;
+			echo $args['after_widget'];
+		}
+	}
+
+	public function form( $instance ) 
+	{
+		$html = gThemeUtilities::html( 'input', array( 
+			'type' => 'text',
+			'class' => 'widefat',
+			'name' => $this->get_field_name( 'title' ),
+			'id' => $this->get_field_id( 'title' ),
+			'value' => isset( $instance['title'] ) ? $instance['title'] : '',
+		) );
+		
+		echo '<p>'. gThemeUtilities::html( 'label', array( 
+			'for' => $this->get_field_id( 'title' ),
+		), __( 'Title:', GTHEME_TEXTDOMAIN ).$html ).'</p>';
+
+		$html = '';
+		$value = isset( $instance['post_type'] ) ? $instance['post_type'] : 'page';
+		
+		foreach( gThemeUtilities::getPostTypes() as $post_type_name => $post_type_title )
+			$html .= gThemeUtilities::html( 'option', array(
+				'value' => $post_type_name,
+				'selected' => $post_type_name == $value,
+			), esc_html( $post_type_title ) );
+		
+		$html = gThemeUtilities::html( 'select', array(
+			'class' => 'widefat',
+			'name' => $this->get_field_name( 'post_type' ),
+			'id' => $this->get_field_id( 'post_type' ),
+		), $html );
+		
+		echo '<p>'. gThemeUtilities::html( 'label', array( 
+			'for' => $this->get_field_id( 'post_type' ),
+		), __( 'Post Type:', GTHEME_TEXTDOMAIN ).$html ).'</p>';
+	}
+}
+
+class gThemeWidgetSiblings extends WP_Widget 
+{
+
+	public function __construct() 
+	{
+		parent::__construct( 'gtheme_siblings', __( 'gTheme: Siblings', GTHEME_TEXTDOMAIN ), array( 
+			'description' => __( 'List of current post siblings', GTHEME_TEXTDOMAIN ),
+			'classname' => 'widget-gtheme-siblings',
+			) );
+	}
+
+	public function widget( $args, $instance ) 
+	{
+		$post_type = empty( $instance['post_type'] ) ? 'page' : $instance['post_type'];
+		$title = apply_filters( 'widget_title', 
+			empty( $instance['title'] ) ? '' : $instance['title'],
+			$instance,
+			$this->id_base
+		);	
+
+		$html = gTheme()->shortcodes->shortcode_siblings( array( 'type' => $post_type ) );
+		
+		if ( $html ) {
+			echo $args['before_widget'];
+				if ( $title ) 
+					echo $args['before_title'].$title.$args['after_title'];
+				echo $html;
+			echo $args['after_widget'];
+		}
+	}
+
+	public function form( $instance ) 
+	{
+		$html = gThemeUtilities::html( 'input', array( 
+			'type' => 'text',
+			'class' => 'widefat',
+			'name' => $this->get_field_name( 'title' ),
+			'id' => $this->get_field_id( 'title' ),
+			'value' => isset( $instance['title'] ) ? $instance['title'] : '',
+		) );
+		
+		echo '<p>'. gThemeUtilities::html( 'label', array( 
+			'for' => $this->get_field_id( 'title' ),
+		), __( 'Title:', GTHEME_TEXTDOMAIN ).$html ).'</p>';
+
+		$html = '';
+		$value = isset( $instance['post_type'] ) ? $instance['post_type'] : 'page';
+		
+		foreach( gThemeUtilities::getPostTypes() as $post_type_name => $post_type_title )
+			$html .= gThemeUtilities::html( 'option', array(
+				'value' => $post_type_name,
+				'selected' => $post_type_name == $value,
+			), esc_html( $post_type_title ) );
+		
+		$html = gThemeUtilities::html( 'select', array(
+			'class' => 'widefat',
+			'name' => $this->get_field_name( 'post_type' ),
+			'id' => $this->get_field_id( 'post_type' ),
+		), $html );
+		
+		echo '<p>'. gThemeUtilities::html( 'label', array( 
+			'for' => $this->get_field_id( 'post_type' ),
+		), __( 'Post Type:', GTHEME_TEXTDOMAIN ).$html ).'</p>';
 	}
 }
