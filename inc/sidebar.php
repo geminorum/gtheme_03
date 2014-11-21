@@ -34,6 +34,7 @@ class gThemeSideBar extends gThemeModuleCore
 		return apply_filters( 'gtheme_widgets', array(
 			'gThemeWidgetSearch',
 			'gThemeWidgetRecentPosts',
+			'gThemeWidgetTemplatePart',
 		) );
 	}
 		
@@ -406,6 +407,61 @@ class gThemeWidgetSearch extends WP_Widget
 		if ( $title ) 
 			echo $args['before_title'].$title.$args['after_title'];
 			get_template_part( 'searchform', $context );
+		echo $args['after_widget'];
+	}
+
+	public function form( $instance ) 
+	{
+		$html = gThemeUtilities::html( 'input', array( 
+			'type' => 'text',
+			'class' => 'widefat',
+			'name' => $this->get_field_name( 'title' ),
+			'id' => $this->get_field_id( 'title' ),
+			'value' => isset( $instance['title'] ) ? $instance['title'] : '',
+		) );
+		
+		echo '<p>'. gThemeUtilities::html( 'label', array( 
+			'for' => $this->get_field_id( 'title' ),
+		), __( 'Title:', GTHEME_TEXTDOMAIN ).$html ).'</p>';
+		
+		$html = gThemeUtilities::html( 'input', array( 
+			'type' => 'text',
+			'class' => 'widefat',
+			'name' => $this->get_field_name( 'context' ),
+			'id' => $this->get_field_id( 'context' ),
+			'value' => isset( $instance['context'] ) ? $instance['context'] : '',
+		) );
+		
+		echo '<p>'. gThemeUtilities::html( 'label', array( 
+			'for' => $this->get_field_id( 'context' ),
+		), __( 'Context:', GTHEME_TEXTDOMAIN ).$html ).'</p>';
+	}
+}
+
+class gThemeWidgetTemplatePart extends WP_Widget 
+{
+
+	public function __construct() 
+	{
+		parent::__construct( 'gtheme_template_part', __( 'gTheme: Themplate Part', GTHEME_TEXTDOMAIN ), array( 
+			'description' => __( 'Include selected template part into sidebars', GTHEME_TEXTDOMAIN ),
+			'classname' => 'widget-gtheme-template-part',
+			) );
+	}
+
+	public function widget( $args, $instance ) 
+	{
+		$context = empty( $instance['context'] ) ? '' : $instance['context'];
+		$title = apply_filters( 'widget_title', 
+			empty( $instance['title'] ) ? '' : $instance['title'],
+			$instance,
+			$this->id_base
+		);	
+
+		echo $args['before_widget'];
+		if ( $title ) 
+			echo $args['before_title'].$title.$args['after_title'];
+			get_template_part( 'widget', $context );
 		echo $args['after_widget'];
 	}
 
