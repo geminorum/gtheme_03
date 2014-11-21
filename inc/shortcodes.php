@@ -11,8 +11,7 @@ class gThemeShortCodes extends gThemeModuleCore
 	public function init()
 	{
 		$shortcodes = array(
-			//'accordion' => 'shortcode_accordion',
-			//'accordion-panel' => 'shortcode_accordion_panel',
+			'theme-image' => 'shortcode_theme_image',
 			'panel-group' => 'shortcode_panel_group',
 			'panel' => 'shortcode_panel',
 		);
@@ -76,12 +75,44 @@ class gThemeShortCodes extends gThemeModuleCore
 
 		$html  = '<div class="panel panel-'.$args['context'].'">';
 		$html .= '<div class="panel-heading" role="tab" id="'.$args['id'].'-wrap">';
-		$html .= '<'.$args['title_tag'].' class="panel-title"><a data-toggle="collapse" data-parent="'.$args['parent'].'" href="#'.$args['id'].'" aria-expanded="'.( $args['expanded'] ? 'true' : 'false').'" aria-controls="'.$args['id'].'">';
+		$html .= '<'.$args['title_tag'].' class="panel-title"><a data-toggle="collapse" data-parent="#'.$args['parent'].'" href="#'.$args['id'].'" aria-expanded="'.( $args['expanded'] ? 'true' : 'false').'" aria-controls="'.$args['id'].'">';
 		$html .= $args['title'].'</a></'.$args['title_tag'].'></div>';
 		$html .= '<div id="'.$args['id'].'" class="panel-collapse collapse'.( $args['expanded'] ? ' in' : '' ).'" role="tabpanel" aria-labelledby="'.$args['id'].'-wrap">';
 		$html .= '<div class="panel-body">'.$content.'</div></div></div>';
 	
 		$this->_panel_count++;
+		return $html;
+	}
+	
+	function shortcode_theme_image( $atts, $content = null, $tag = '' ) 
+	{
+		$args = shortcode_atts( array(
+			'src' => false,
+			'alt' => false,
+			'title' => false,
+			'width' => false,
+			'height' => false,
+			'url' => false,
+			'dir' => 'images',
+		), $atts, $tag );
+	
+		if ( ! $args['src'] )
+			return $content;
+	
+		$html = gThemeUtilities::html( 'img', array( 
+			'src' => GTHEME_CHILD_URL.'/'.$args['dir'].'/'.$args['src'],
+			'alt' => $args['alt'],
+			'title' => ( $args['url'] ? false : $args['title'] ),
+			'width' => $args['width'],
+			'height' => $args['height'],
+		) );
+		
+		if ( $args['url'] )	
+			return gThemeUtilities::html( 'a', array( 
+				'href' => $args['url'],
+				'title' => $args['title'],
+			), $html );
+		
 		return $html;
 	}
 }
