@@ -4,6 +4,7 @@ defined( 'GTHEME' ) or define( 'GTHEME', 'gtheme' );
 defined( 'GTHEME_VERSION' ) or define( 'GTHEME_VERSION', gThemeCore::version( 'gtheme_03' ) );
 defined( 'GTHEME_CHILD_VERSION' ) or define( 'GTHEME_CHILD_VERSION', gThemeCore::version() );
 defined( 'GTHEME_TEXTDOMAIN' ) or define( 'GTHEME_TEXTDOMAIN', 'gtheme' );
+defined( 'GTHEME_LOCALE' ) or define( 'GTHEME_LOCALE', get_locale() );
 defined( 'GTHEME_DIR' ) or define( 'GTHEME_DIR', get_template_directory() );
 defined( 'GTHEME_URL' ) or define( 'GTHEME_URL', get_template_directory_uri() );
 defined( 'GTHEME_CHILD_DIR' ) or define( 'GTHEME_CHILD_DIR',  get_stylesheet_directory() );

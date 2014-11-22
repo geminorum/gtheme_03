@@ -41,7 +41,8 @@ final class gThemeCore
 			'comments'   => 'gThemeComments',
 			'search'     => 'gThemeSearch',
 			'settings'   => 'gThemeSettings',
-			'shortcodes'   => 'gThemeShortCodes',
+			'shortcodes' => 'gThemeShortCodes',
+			'l10n'       => 'gThemeL10N',
 			
 		);
 		
