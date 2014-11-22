@@ -5,7 +5,20 @@ class gThemeShortCodes extends gThemeModuleCore
 
 	function setup_actions( $args = array() )
 	{
-		add_action( 'init', array( & $this, 'init' ), 14 );
+		extract( shortcode_atts( array(
+			'defaults' => true,
+			'caption_override' => true,
+			'gallery_override' => true,
+		), $args ) );
+		
+		if ( $defaults )
+			add_action( 'init', array( & $this, 'init' ), 14 );
+			
+		if ( $caption_override )
+			add_filter( 'img_caption_shortcode', array( & $this, 'img_caption_shortcode' ), 10, 3 );
+		
+		if ( $gallery_override )
+			add_filter( 'post_gallery', array( & $this, 'post_gallery' ), 10, 2 );
 	}
 	
 	public function init()
@@ -23,6 +36,147 @@ class gThemeShortCodes extends gThemeModuleCore
 			add_shortcode( $shortcode, array( & $this, $method) ); 
 		}
 	}
+	
+	public function img_caption_shortcode( $empty, $attr, $content ) 
+	{
+		$args = shortcode_atts( array(
+			'id'      => false,
+			'align'   => 'alignnone',
+			'width'   => '',
+			'caption' => false,
+			'class'   => '',
+		), $attr, 'caption' );
+		
+		$args['width'] = (int) $args['width'];
+		if ( $args['width'] < 1 || empty( $args['caption'] ) )
+			return $content;
+		
+		if ( ! empty( $args['id'] ) )
+			$args['id'] = 'id="'.esc_attr( $args['id'] ).'" ';
+			
+		$class = trim( 'the-img-caption '.$args['align'].' '.$args['class'] );
+			
+		return '<figure '.$args['id']
+			   //.' style="width: '.(int) $args['width'].'px;"'
+			   .' class="'.esc_attr( $class ).'">'
+			   .do_shortcode( $content )
+			   .'<figcaption class="the-img-caption-text">'
+			   .gThemeL10N::str( $args['caption'] )
+			   .'</figcaption></figure>';
+	} 
+	
+	var $_gallery_count = 0;
+	
+	public function post_gallery( $empty, $attr )
+	{
+		if ( is_feed() )
+			return $empty;
+	
+		$post = get_post();
+		
+		$args = shortcode_atts( array(
+			'order'      => 'ASC',
+			'orderby'    => 'menu_order ID',
+			'id'         => $post ? $post->ID : 0,
+			//'itemtag'    => 'figure',
+			//'icontag'    => 'div',
+			//'captiontag' => 'figcaption',
+			'columns'    => 3,
+			'size'       => 'thumbnail',
+			'include'    => '',
+			'exclude'    => '',
+			'link'       => '', // 'file', 'none', empty
+			
+			'file_size'  => gThemeOptions::info( 'gallery_file_size', 'big' ),
+			'nocaption'  => '<span class="genericon genericon-search"></span>',
+		), $attr, 'gallery' );
+	
+		$id = intval( $args['id'] );
+		$posts_args = array(
+			'post_status' => 'inherit',
+			'post_type' => 'attachment',
+			'post_mime_type' => 'image',
+			'order' => $args['order'],
+			'orderby' => $args['orderby'],
+		);
+		
+		if ( ! empty( $args['include'] ) ) {
+			$attachments = array();
+			$posts_args['include'] = $args['include'];
+			foreach ( get_posts( $posts_args ) as $key => $val )
+				$attachments[$val->ID] = $val;
+		} elseif ( ! empty( $args['exclude'] ) ) {
+			$posts_args['post_parent'] = $id;
+			$posts_args['exclude'] = $args['exclude'];
+			$attachments = get_children( $posts_args );
+		} else {
+			$posts_args['post_parent'] = $id;
+			$attachments = get_children( $posts_args );
+		}
+
+		if ( empty( $attachments ) )
+			return $empty;
+		
+		if ( 'none' == $args['link'] ) {
+			$default = '<figure class="gallery-img">%1$s<figcaption><div class="gallery-description"><p>%3$s</p></div></figcaption></figure>';
+		} else {
+			$default = '<div class="gallery-wrap"><figure class="gallery-img">%1$s<figcaption><a href="%2$s" title="%4$s" id="%5$s"><div class="gallery-description"><p>%3$s</p></div></a></figcaption></figure></div>';
+			if ( gThemeOptions::supports( 'zoom', true ) ) {
+				$args['link'] = 'file';
+	
+				// CAUTION: css must added manually
+				wp_enqueue_script( 'gtheme-zoom', GTHEME_URL.'/libs/zoom.min.js', array( 'jquery' ), '20141123', true );
+			}
+		}
+		
+		// CAUTION: css must added manually
+		wp_register_script( 'gtheme-imagesloaded', GTHEME_URL.'/js/jquery.imagesloaded.min.js', array( 'jquery' ), '3.0.4', true );
+		wp_enqueue_script( 'gtheme-gallery', GTHEME_URL.'/js/script.gallery.js', array( 'jquery', 'gtheme-imagesloaded' ), GTHEME_VERSION, true );
+		
+		$html = '';
+		$template = gThemeOptions::info( 'gallery_template', $default );
+		$this->_gallery_count++;
+		$selector = 'gallery-'.$this->_gallery_count;
+		
+		foreach ( $attachments as $id => $attachment ) {
+
+			if ( 'file' == $args['link'] ) {
+				//$url = wp_get_attachment_url( $id ); 
+				// geting the 'big' file, not 'raw' or full url
+				list( $url, $width, $height ) = wp_get_attachment_image_src( $id, $args['file_size'] );
+			} else if ( 'none' == $args['link'] ) {
+				$url = '';
+			} else {
+				$url = get_attachment_link( $id );
+			}
+		
+			if ( trim( $attachment->post_excerpt ) ) {
+				$attr = array( 'aria-describedby' => "$selector-$id" );
+				$title = esc_attr( $attachment->post_excerpt );
+				$caption = wptexturize( $attachment->post_excerpt );
+			} else {
+				$attr = $title = '';
+				$caption = $args['nocaption'];
+			}
+
+			$html .= sprintf( $template, 
+				wp_get_attachment_image( $id, $args['size'], false, $attr ), 
+				$url,
+				$caption, 				
+				$title, 
+				$selector.'-'.$id
+			);
+		}	
+		
+		return '<div class="gallery-spinner"></div>'.gThemeUtilities::html( 'div', array( 
+			'id' => $selector,
+			'class' => array(
+				'gallery',
+				'gallery-columns-'.$args['columns'],
+				'gallery-size-'.sanitize_html_class( $args['size'] ),
+			),
+		), $html );
+	}	
 	
 	/** SYNTAX:
 	
@@ -45,8 +199,8 @@ class gThemeShortCodes extends gThemeModuleCore
 	
 		$args = shortcode_atts( array(
 			'class' => '',
-			'id' => 'panel-group-'.$this->_panel_group_count,
-			'role' => 'tablist',
+			'id'    => 'panel-group-'.$this->_panel_group_count,
+			'role'  => 'tablist',
 		), $atts, $tag );
 		
 		$this->_panel_parent = $args['id'];
@@ -67,12 +221,12 @@ class gThemeShortCodes extends gThemeModuleCore
 			return $content;
 	
 		$args = shortcode_atts( array(
-			'parent' => ( $this->_panel_parent ? $this->_panel_parent : 'panel-group-'.$this->_panel_group_count ),
-			'id' => 'panel-'.$this->_panel_count,
-			'title' => _x( 'Untitled', 'Panel Shortcode', GTHEME_TEXTDOMAIN ),
+			'parent'    => ( $this->_panel_parent ? $this->_panel_parent : 'panel-group-'.$this->_panel_group_count ),
+			'id'        => 'panel-'.$this->_panel_count,
+			'title'     => _x( 'Untitled', 'Panel Shortcode', GTHEME_TEXTDOMAIN ),
 			'title_tag' => 'h4',
-			'context' => 'default',
-			'expanded' => false,
+			'context'   => 'default',
+			'expanded'  => false,
 		), $atts, $tag );
 
 		$html  = '<div class="panel panel-'.$args['context'].'">';

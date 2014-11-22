@@ -24,6 +24,8 @@ class gThemeOptions extends gThemeModuleCore
 				'gpersiandate' => true,
 				'gbook' => false,
 				'query-multiple-taxonomies' => false,
+				
+				'zoom' => true,
 			),
 			
 			'module_args' => array(
@@ -51,6 +53,11 @@ class gThemeOptions extends gThemeModuleCore
 				'raw' => gThemeOptions::register_image( 
 					_x( 'Raw', 'Media Tag Titles', GTHEME_TEXTDOMAIN ),
 					9999, 9999, 0,
+					true, true
+				),
+				'big' => gThemeOptions::register_image( 
+					_x( 'Big', 'Media Tag Titles', GTHEME_TEXTDOMAIN ),
+					1280, 720, 0,
 					true, true
 				),
 				'single' => gThemeOptions::register_image( 
