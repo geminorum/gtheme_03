@@ -9,6 +9,7 @@ class gThemeComments extends gThemeModuleCore
 			'strip_trackbacks' => true,
 			'reverse_comments' => false,
 			'disable_types' => false,
+			'closing_time' => false,
 		), $args ) );
 		
 		add_filter( 'comment_class', array( & $this, 'comment_class' ), 10 ,4 );
@@ -25,6 +26,9 @@ class gThemeComments extends gThemeModuleCore
 		
 		if ( $disable_types )
 			add_filter( 'comments_open', array( & $this, 'comments_open' ), 10 , 2 );
+			
+		if ( $closing_time )
+			add_action( 'comment_form_top', array( & $this, 'comment_form_top' ) );
 		
 	}
 	
@@ -119,6 +123,21 @@ class gThemeComments extends gThemeModuleCore
 		}
 		
 		return $open;
+	}
+	
+	// inform user about automatic comment closing time
+	// http://wpengineer.com/2692/inform-user-about-automatic-comment-closing-time/
+	// TODO : bootstrap styling / notice
+	public function comment_form_top()
+	{
+		global $post;
+		if ( 'open' == $post->comment_status ) {
+			$expires = strtotime( "{$post->post_date_gmt} GMT" ) 
+					 + get_option( 'close_comments_days_old' ) 
+					 * DAY_IN_SECONDS;
+					 
+			printf( __( '(This topic will automatically close in %s. )', GTHEME_TEXTDOMAIN ),  human_time_diff( $expires ) );
+		}	
 	}
 	
 	public static function navigation( $id = 'comment-nav-above' )
