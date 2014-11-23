@@ -5,7 +5,7 @@ Theme Framework for WordPress
 ### Included Packages
 * [Bootstrap](http://getbootstrap.com/) v3.2.0 by Twitter, Inc.
 * [Bootstrap 3 RTL Theme](https://github.com/morteza/bootstrap-rtl/) v3.2.0-rc7 by [Morteza Ansarinia](https://github.com/morteza)
-* [FlexSlider 2](http://www.woothemes.com/flexslider/) ([RTL](https://github.com/layalk/FlexSlider/tree/rtl)) v2.2.0 by [WooThemes](http://www.woothemes.com/) / [Layal](https://github.com/layalk) at [RTL This](http://rtl-this.com/tutorial/jquery-plugin-flexslider-now-rtl-support)
+* [FlexSlider 2](http://www.woothemes.com/flexslider/) ([RTL](https://github.com/layalk/FlexSlider/tree/rtl)) v2.2.0 by [WooThemes](http://www.woothemes.com/) / [Layal K](https://github.com/layalk) at [RTL This](http://rtl-this.com/tutorial/jquery-plugin-flexslider-now-rtl-support)
 * [Font Awesome](http://fontawesome.io) v4.2.0 by [Dave Gandy](http://twitter.com/davegandy)
 * [Genericons](http://genericons.com/) v3.3 by [Automattic](https://github.com/Automattic)
 * [jQuery Superfish Menu Plugin](https://github.com/joeldbirch/superfish/) v1.7.5 by [Joel Birch](https://github.com/joeldbirch)
