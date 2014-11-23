@@ -144,9 +144,8 @@ class gThemeModuleCore
 			
 			case 'checkbox' :
 				if ( count( $args['values'] ) ) {
-					$html = '';
 					foreach( $args['values'] as $value_name => $value_title ) {
-						$html .= gThemeUtilities::html( 'input', array(
+						$html = gThemeUtilities::html( 'input', array(
 							'type' => 'checkbox',
 							'class' => $args['class'],
 							'name' => $name.'['.$value_name.']',
