@@ -24,10 +24,6 @@ class gThemeSettings extends gThemeModuleCore
 		
 			add_action( 'admin_menu', array( & $this, 'admin_menu' ) );
 			
-			// maybe : move to admin module
-			// disable avatar select on admin settings
-			add_filter( 'default_avatar_select', array( & $this, 'default_avatar_select' ) );
-			
 			add_action( 'gtheme_settings_sub_general', array( & $this, 'sub_general' ), 10, 2 );
 			add_action( 'gtheme_settings_load', array( & $this, 'load' ) );
 		
@@ -42,11 +38,6 @@ class gThemeSettings extends gThemeModuleCore
 	{
 		$this->_settings_parent = current_user_can( 'edit_theme_options' ) ? 'themes.php' : 'index.php';
 		$this->_settings_uri = $this->_settings_parent.'?page='.gThemeOptions::info( 'settings_page', 'gtheme-theme' );
-	}
-	
-	public function default_avatar_select( $avatar_list ) 
-	{
-		return '<p>'.__( '<strong>The default avatar is overrided by the active theme.</strong>', GTHEME_TEXTDOMAIN ).'</p>';
 	}
 	
 	public function admin_menu()
