@@ -48,7 +48,7 @@ class gThemeFragmentCache {
 		}
 	}
 	 
-	public function store() 
+	public function store( $notice = 'manage_network' ) 
     {
         if ( gThemeUtilities::is_dev() )
             return;
@@ -74,6 +74,9 @@ class gThemeFragmentCache {
 			else
 				wp_cache_add( $this->key, $output, GTHEME_FRAGMENTCACHE, $this->ttl );
 		}
+		
+		if ( $notice && current_user_can( $notice ) && ! gThemeUtilities::is_dev() )
+			gThemeUtilities::notice( __( 'Refreshed!', GTHEME_TEXTDOMAIN ) );
 	}
     
 	public function discard() 
