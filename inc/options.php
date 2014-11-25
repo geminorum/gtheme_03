@@ -13,7 +13,10 @@ class gThemeOptions extends gThemeModuleCore
 			'menu_title' => _x( 'Theme Settings', 'Admin Menu Title', GTHEME_TEXTDOMAIN ),
 			'settings_title' => _x( 'gTheme Settings', 'Admin Settings Page Title', GTHEME_TEXTDOMAIN ),
 			'settings_page' => 'gtheme-theme',
+			
+			// ACCESSES
 			'settings_access' => 'edit_theme_options',
+			'editor_access' => 'edit_others_posts',
 			
 			// INTEGRATION WITH OTHER PLUGINS
 			'supports' => array( // 3th party plugin supports
@@ -342,6 +345,16 @@ class gThemeOptions extends gThemeModuleCore
 			return $supports[$plugins];
 			
 		return $if_not_set;
+	}
+	
+	public static function user_can( $role = 'editor' )
+	{
+		return current_user_can( self::info( $role.'_access', 'edit_others_posts' ) );
+	}
+	
+	public static function editor_can( $then = true, $not = false )
+	{
+		return self::user_can( 'editor' ) ? $then : $not;
 	}
 }
 
