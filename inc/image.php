@@ -451,8 +451,11 @@ class gThemeImage extends gThemeModuleCore
 		if ( ! $args['echo'] )
 			return $args['before'].$html.$args['after'];
 			
-		if ( ! empty( $args['empty'] ) || ! empty( $html ) )
+		if ( ! empty( $html ) ) {
 			echo $args['before'].$html.$args['after'];
+		} else if ( ! empty( $args['empty'] ) ) {
+			echo $args['before'].$args['empty'].$args['after'];
+		}
 	}
 }
 
