@@ -12,7 +12,7 @@ class gThemeSideBar extends gThemeModuleCore
 		), $args ) );
 		
 		if ( ! $disable_sidebars )
-			add_action( 'widgets_init', array( & $this, 'widgets_init' ) );
+			add_action( 'widgets_init', array( & $this, 'widgets_init' ), 18 );
 		
 		if ( $primary_cats_sidebar )
 			add_action( 'widgets_init', array( & $this, 'widgets_init_categories' ) );
@@ -42,20 +42,17 @@ class gThemeSideBar extends gThemeModuleCore
 		
 	public function widgets_init()
 	{
+		global $wp_widget_factory;
+		
 		foreach ( self::widgets() as $widget ) {
-			register_widget( $widget );	
-			if ( ! gThemeUtilities::is_dev() ) {
-				if ( 'gThemeWidgetSearch' == $widget )
-					unregister_widget( 'WP_Widget_Search' );
-				if ( 'gThemeWidgetRecentPosts' == $widget )
-					unregister_widget( 'WP_Widget_Recent_Posts' );
-				if ( 'gtheme_widgets_recent_comments' == $widget )
-					unregister_widget( 'WP_Widget_Recent_Comments' );
+			if ( 'gThemeWidgetSearch' == $widget ) {
+				$wp_widget_factory->widgets['WP_Widget_Search'] = new gThemeWidgetSearch();
+			} else if ( 'gThemeWidgetRecentPosts' == $widget ) {
+				$wp_widget_factory->widgets['WP_Widget_Recent_Posts'] = new gThemeWidgetRecentPosts();
+			} else {
+				$wp_widget_factory->widgets[$widget] = new $widget();
 			}
 		}
-		
-		//if ( gThemeUtilities::is_dev() )
-			//register_widget( 'gtheme_widgets_tempname' );	
 		
 		$sidebars = apply_filters( 'gtheme_sidebars', gtheme_get_info( 'sidebars', array() ) );
 		if ( ! count( $sidebars ) )
