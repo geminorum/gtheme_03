@@ -46,7 +46,7 @@ class gThemeEditor extends gThemeModuleCore
 		if ( ! empty( $url ) )
 			$url .= ',';
 		
-		return $url.self::style_url();;
+		return $url.self::style_url();
 	}
 	
 	public function mce_buttons( $buttons ) 
