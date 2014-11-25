@@ -229,9 +229,17 @@ class gThemeUtilities extends gThemeModuleCore
 		);
 	}
 	
-	public static function notice( $notice, $class = 'updated fade', $echo = true ) 
+	public static function notice( $notice, $class = 'success updated fade', $echo = true ) 
 	{
-		$html = sprintf( '<div id="message" class="%s"><p>%s</p></div>', $class, $notice );
+		if ( is_admin() )
+			$template = '<div id="message" class="%1$s"><p>%2$s</p></div>';
+		else
+			$template = '<div class="alert alert-%1$s alert-dismissible" role="alert">'
+					   .'<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">'
+					   ._x( 'Close', 'Alert button (screen reader only)', GTHEME_TEXTDOMAIN )
+					   .'</span></button>%2$s</div>'; // bootstrap dismissible alert
+	
+		$html = sprintf( $template, $class, $notice );
 		if ( ! $echo )
 			return $html;
 		echo $html;
