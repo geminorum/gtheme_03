@@ -1,6 +1,7 @@
 <?php defined( 'ABSPATH' ) or die( 'Restricted access' );
 
-class gThemeMenu extends gThemeModuleCore {
+class gThemeMenu extends gThemeModuleCore 
+{
 
 	public function setup_actions( $args = array() )
 	{
@@ -8,14 +9,13 @@ class gThemeMenu extends gThemeModuleCore {
 			'register_nav' => true,
 			'allowedtags' => false,
 		), $args ) );
-
+		
 		if ( $register_nav )
 			add_action( 'init', array( $this, 'init' ) );
 		
 		if ( $allowedtags )
 			add_filter( 'wp_nav_menu_container_allowedtags', array( $this, 'wp_nav_menu_container_allowedtags' ) );
 	}
-
 
 	public function init() 
 	{
@@ -50,7 +50,7 @@ class gThemeMenu extends gThemeModuleCore {
 		return $args;
 	}	
 	
-
+	
 	public function wp_nav_menu_container_allowedtags( $tags ) 
 	{
 		$new_tags = (array) gtheme_get_info( 'nav_menu_allowedtags', array( 'p' ) );
@@ -62,7 +62,7 @@ class gThemeMenu extends gThemeModuleCore {
 	public static function separated( $location, $sep = '' )
 	{
 		$cache = new gThemeFragmentCache( 'gtheme_separated_'.$location );
-		if ( ! $cache->output() ) { 	
+		if ( ! $cache->output() ) {
 		
 			$menu = wp_get_nav_menu_object( $location );
 			
@@ -92,7 +92,7 @@ class gThemeMenu extends gThemeModuleCore {
 					$secondary .= self::menu_el( $menu );
 				else if ( $parent == $menu->menu_item_parent )
 					$secondary .= self::menu_el( $menu );
-
+				
 			}
 			
 			if ( $primary ) {
@@ -105,20 +105,21 @@ class gThemeMenu extends gThemeModuleCore {
 			$cache->store();
 		}
 		
-	}		
+	}
 	
 	public static function menu_el( $item ) 
 	{
-		$output = $class_names = $value = '';
+		$html = gThemeUtilities::html( 'a', array(
+			'title' => ( empty( $item->attr_title ) ? false : $item->attr_title ),
+			'target' => ( empty( $item->target ) ? false : $item->target ),
+			'rel' => ( empty( $item->xfn ) ? false : $item->xfn ),
+			'href' => ( empty( $item->url ) ? false : $item->url ),
+		), $item->title );
+		
 		$classes = empty( $item->classes ) ? array() : (array) $item->classes;
-		$class_names = join( ' ', apply_filters( 'nav_menu_css_class', array_filter( $classes ), $item, array() ) );
-		$class_names = ' class="'.esc_attr( $class_names ).'"';
-		$output .= '<li id="menu-item-'.$item->ID.'"'.$value.$class_names.'>';
-		$attributes  = ! empty( $item->attr_title ) ? ' title="'  . esc_attr( $item->attr_title ) .'"' : '';
-		$attributes .= ! empty( $item->target )     ? ' target="' . esc_attr( $item->target     ) .'"' : '';
-		$attributes .= ! empty( $item->xfn )        ? ' rel="'    . esc_attr( $item->xfn        ) .'"' : '';
-		$attributes .= ! empty( $item->url )        ? ' href="'   . esc_attr( $item->url        ) .'"' : '';
-		return $output.'<a'. $attributes .'>'.$item->title.'</a></li>'."\n";
+		return gThemeUtilities::html( 'li', array(
+			'id' => 'menu-item-'.$item->ID,
+			'class' => apply_filters( 'nav_menu_css_class', array_filter( $classes ), $item, array() ),
+		), $html );
 	}
-	
 }
