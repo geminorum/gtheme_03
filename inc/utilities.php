@@ -164,7 +164,7 @@ class gThemeUtilities extends gThemeModuleCore
 		foreach( $atts as $key => $att ) {
 			
 			if ( is_array( $att ) && count( $att ) )
-				$att = implode( ' ', array_unique( $att ) );
+				$att = implode( ' ', array_unique( array_filter( $att ) ) );
 			
 			if ( 'selected' == $key )	
 				$att = ( $att ? 'selected' : false );
