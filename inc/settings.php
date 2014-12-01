@@ -82,10 +82,10 @@ class gThemeSettings extends gThemeModuleCore
 				$_SERVER['REQUEST_URI'] = remove_query_arg( array( 'message' ), $_SERVER['REQUEST_URI'] ); 
 			}  
 		
-			if ( file_exists( GTHEME_DIR.'admin'.DS.$sub.'.php' ) ) 
-				require_once( GTHEME_DIR.'admin'.DS.$sub.'.php' );
-			else if ( file_exists( GTHEME_CHILD_DIR.'admin'.DS.$sub.'.php' ) ) 
-				require_once( GTHEME_CHILD_DIR.'admin'.DS.$sub.'.php' );
+			if ( file_exists( GTHEME_DIR.DS.'admin'.DS.$sub.'.php' ) ) 
+				require_once( GTHEME_DIR.DS.'admin'.DS.$sub.'.php' );
+			else if ( file_exists( GTHEME_CHILD_DIR.DS.'admin'.DS.$sub.'.php' ) ) 
+				require_once( GTHEME_CHILD_DIR.DS.'admin'.DS.$sub.'.php' );
 			else 
 				do_action( 'gtheme_settings_sub_'.$sub, $settings_uri, $sub );
 		
