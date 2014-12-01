@@ -3,7 +3,8 @@
 class gThemeOptions extends gThemeModuleCore 
 {
 
-	public static function defaults( $option = false, $default = false ){
+	public static function defaults( $option = false, $default = false )
+	{
 		$defaults = array(
 			'name' => 'gtheme',
 			'title' => _x( 'gTheme', 'Theme Title', GTHEME_TEXTDOMAIN ),
@@ -220,18 +221,21 @@ class gThemeOptions extends gThemeModuleCore
 			
 			'child_group_class' => false, // body class for goruping the child theme on a network!
 			
-			
+			// BANNERS
+			'banners_legend' => false, // html before admin banners page
 			'banner_groups' => array(
 				'first' => _x( 'First', 'Banner Groups', GTHEME_TEXTDOMAIN ),
 				'second' => _x( 'Second', 'Banner Groups', GTHEME_TEXTDOMAIN ),
 			),
 			
-			
 		);
+		
 		if ( false === $option )
 			return $defaults;
+			
 		if( isset( $defaults[$option] ) )
 			return $defaults[$option];
+			
 		return $default;	
 	}	
 	
@@ -358,51 +362,10 @@ class gThemeOptions extends gThemeModuleCore
 	}
 }
 
+// DEPRECATED / BACK COMP
 function gtheme_get_info( $info = false, $default = false ) { return gThemeOptions::info( $info, $default ); }
 function gtheme_get_option( $name, $default = false ) { return gThemeOptions::get_option( $name, $default ); }
 function gtheme_update_option( $name, $value ) { return gThemeOptions::update_option( $name, $value ); }
 function gtheme_delete_option( $name ) { return gThemeOptions::delete_option( $name ); }
 function gtheme_get_count( $name, $def = 0 ){ return gThemeOptions::count( $name, $def ); }
 function gtheme_supports( $plugins, $if_not_set = false ) { return gThemeOptions::supports( $plugins, $if_not_set ); }
-
-
-function gtheme_get_banner( $group, $order = 0 ) {
-	$banners = gtheme_get_option( 'banners', array() );
-	foreach ( $banners as $banner ) {
-		if ( isset( $banner['group'] ) && $group == $banner['group'] ) {
-			if ( isset( $banner['order'] ) && $order == $banner['order'] ) {
-				return $banner;
-			}
-		}
-	}
-	return false;
-}
-
-function gtheme_banner( $banner, $atts = array() ){
-	//if ( false === $banner ) return;
-
-	$args = shortcode_atts( array(
-		'w' => 'auto',
-		'h' => 'auto',
-		'c' => '#fff',
-		'img_class' => 'img-responsive',
-		'a_class' => 'gtheme-banner',
-		'img_style' => '',
-		'a_style' => '',
-		'placeholder' => true,
-	), $atts );
-		
-	$html = '';
-	$title = isset( $banner['title'] ) && $banner['title'] ? $banner['title'] : '' ;
-	
-	if ( isset( $banner['image'] ) && $banner['image'] && 'http://' != $banner['image'] )
-		$html .= '<img src="'.$banner['image'].'" alt="'.$title.'" class="'.$args['img_class'].'" style="'.$args['img_style'].'" />';
-	else if ( $args['placeholder'] )
-		$html .= '<div style="display:block;width:'.$args['w'].';height:'.$args['h'].';background-color:'.$args['c'].';" ></div>';
-		
-	if ( isset( $banner['url'] ) && $banner['url'] && 'http://' != $banner['url'] )
-		$html = '<a href="'.$banner['url'].'" title="'.$title.'" class="'.$args['a_class'].'" style="'.$args['a_style'].'">'.$html.'</a>';
-
-	if ( ! empty ( $html ) )
-		echo $html;
-}
