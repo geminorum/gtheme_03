@@ -25,6 +25,39 @@ class gThemeBanners extends gThemeModuleCore
 		self::html( $banner, $atts );
 	}
 	
+	public static function group( $group, $atts = array() ) 
+	{
+		$banners = gThemeOptions::get_option( 'banners', array() );
+		$saved = array();
+		
+		foreach ( $banners as $banner ) {
+			if ( isset( $banner['group'] ) && $group == $banner['group'] ) {
+				$saved[] = $banner;
+			}
+		}
+		
+		if ( count( $saved ) ) {
+		
+			$args = self::atts( array(
+				'before' => '',
+				'after' => '',
+				'tag' => 'li',
+			), $atts );
+			
+			echo $args['before'];
+			
+			foreach ( $saved as $banner ) {
+				if ( $args['tag'] )
+					echo '<'.$args['tag'].'>';
+				self::html( $banner, $atts );
+				if ( $args['tag'] )
+					echo '</'.$args['tag'].'>';
+			}
+			
+			echo $args['after'];
+		}
+	}
+	
 	// ANCESTOR: gtheme_get_banner()
 	public static function get( $group, $order = 0 ) 
 	{
