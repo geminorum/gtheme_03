@@ -2,6 +2,17 @@
 
 class gThemeContent extends gThemeModuleCore 
 {
+
+	public static function post( $part = 'content', $context = null )
+	{
+		if ( is_null( $context ) )
+			$context = gtheme_template_base();
+	
+		do_action( 'before_post', $context, $part );
+		get_template_part( $part, $context ); 
+		do_action( 'after_post', $context, $part );
+	}
+
 	// http://www.billerickson.net/code/wp_query-arguments/
 	public static function query( $args = array(), $expiration = GTHEME_CACHETTL ) 
 	{
