@@ -3,7 +3,7 @@
 class gThemeContent extends gThemeModuleCore 
 {
 
-	public static function post( $part = 'content', $context = null )
+	public static function post( $context = null, $part = 'content' )
 	{
 		if ( is_null( $context ) )
 			$context = gtheme_template_base();
