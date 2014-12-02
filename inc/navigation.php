@@ -1,6 +1,57 @@
 <?php defined( 'ABSPATH' ) or die( 'Restricted access' );
 
-class gThemeNavigation extends gThemeModuleCore {
+class gThemeNavigation extends gThemeModuleCore 
+{
+
+	public static function content( $id = false )
+	{
+		global $wp_query;
+		
+		$classes = array( 'navigation' );
+		
+		if ( is_single() ) {
+			$previous = get_adjacent_post_link( '%link', _x( '<span aria-hidden="true">&larr;</span> Older', 'Post Navigation', GTHEME_TEXTDOMAIN ), false, '', true,  'category' );
+			$next     = get_adjacent_post_link( '%link', _x( 'Newer <span aria-hidden="true">&rarr;</span>', 'Post Navigation', GTHEME_TEXTDOMAIN ), false, '', false, 'category' );
+			$classes[] = 'post-navigation';
+		} elseif ( $wp_query->max_num_pages > 1 && ( is_home() || is_archive() || is_search() ) ) { 
+			$previous = get_previous_posts_link( _x( '<span aria-hidden="true">&larr;</span> Older', 'Index Navigation', GTHEME_TEXTDOMAIN ) );
+			$next     = get_next_posts_link( _x( 'Newer <span aria-hidden="true">&rarr;</span>', 'Index Navigation', GTHEME_TEXTDOMAIN ) );
+			$classes[] = 'paging-navigation';
+		} else {
+			return;
+		}
+	 
+		if ( ! $previous && ! $next )
+			return;
+	 
+		$html = sprintf( '<h2 class="sr-only screen-reader-text">%1$s</h2>', 
+			_x( 'Posts Navigation', 'Navigation Title (Screen Reader Only)', GTHEME_TEXTDOMAIN ) );
+	 
+		$html .= '<ul class="pager">';
+	 
+		if ( $previous )
+			$html .= sprintf( '<li class="previous">%1$s</li>', $previous );
+			
+		if ( $next )
+			$html .= sprintf( '<li class="next">%1$s</li>', $next );
+	 
+		$html .= '</ul>';
+	 
+		echo gThemeUtilities::html( 'nav', array(
+			'role' => 'navigation',
+			'id' => $id,
+			'class' => $classes,
+		), $html );
+	}
+	
+	// ANCESTOR: gtheme_content_nav()
+	public static function part( $context = null ) 
+	{
+		global $wp_query;
+		
+		if ( $wp_query->max_num_pages > 1 ) 
+			get_template_part( 'nav', $context );
+	}
 	
 	// wrapper wit conditional tags
 	public static function breadcrumb( $atts = array() )
@@ -85,7 +136,7 @@ class gThemeNavigation extends gThemeModuleCore {
 		
 		$args = shortcode_atts( array(
 			'home' => false,
-			'strings' => gtheme_get_info( 'strings_breadcrumb_archive', array() ),
+			'strings' => gThemeOptions::info( 'strings_breadcrumb_archive', array() ),
 		
 			'class' => 'gtheme-breadcrumb',
 			'before' => '',
