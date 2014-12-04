@@ -1,4 +1,5 @@
 # gTheme 3
+[![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/geminorum/gtheme_03?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 Theme Framework for WordPress
 
