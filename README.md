@@ -2,6 +2,13 @@
 
 Theme Framework for WordPress
 
+[![it's a geminorum project](http://img.shields.io/badge/it's_a-geminorum_project-lightgrey.svg?style=flat)](http://geminorum.ir/)
+[![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/geminorum/gtheme_03?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+[![GitHub release](https://img.shields.io/github/release/geminorum/gtheme_03.svg?style=flat)](https://github.com/geminorum/gtheme_03/releases)
+[![GitHub release](https://img.shields.io/github/license/geminorum/gtheme_03.svg?style=flat)](LICENSE.md)
+[![GitHub Issues](https://img.shields.io/github/issues/geminorum/gtheme_03.svg?style=flat)](https://github.com/geminorum/gtheme_03/issues)
+[![Gratipay](http://img.shields.io/gratipay/geminorum.svg?style=flat)](https://gratipay.com/geminorum/)
+
 ### Included Packages
 * [Bootstrap](http://getbootstrap.com/) v3.2.0 by Twitter, Inc.
 * [Bootstrap 3 RTL Theme](https://github.com/morteza/bootstrap-rtl/) v3.2.0-rc7 by [Morteza Ansarinia](https://github.com/morteza)
