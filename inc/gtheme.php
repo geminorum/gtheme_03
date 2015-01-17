@@ -44,6 +44,7 @@ final class gThemeCore
 			'banners'    => 'gThemeBanners',
 			'shortcodes' => 'gThemeShortCodes',
 			'l10n'       => 'gThemeL10N',
+			'frontpage'  => 'gThemeFrontPage',
 			
 		);
 		
