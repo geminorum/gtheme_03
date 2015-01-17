@@ -11,10 +11,14 @@ class gThemeMenu extends gThemeModuleCore
 		), $args ) );
 		
 		if ( $register_nav )
-			add_action( 'init', array( $this, 'init' ) );
+			add_action( 'init', array( & $this, 'init' ) );
 		
 		if ( $allowedtags )
-			add_filter( 'wp_nav_menu_container_allowedtags', array( $this, 'wp_nav_menu_container_allowedtags' ) );
+			add_filter( 'wp_nav_menu_container_allowedtags', array( & $this, 'wp_nav_menu_container_allowedtags' ) );
+
+		if ( ! is_admin() ) {
+			//add_filter( 'wp_nav_menu_args', array( & $this, 'wp_nav_menu_args' ) );
+		}
 	}
 
 	public function init() 
@@ -24,8 +28,17 @@ class gThemeMenu extends gThemeModuleCore
 			register_nav_menus( $menus );
 	}
 	
-	public static function nav( $args = array() ) 
+	public function wp_nav_menu_args( $args )
 	{
+		if ( 'menu' == $args['menu_class'] )
+			$args['menu_class'] = 'list-unstyled menu';
+			
+		return $args;
+	}
+	
+	public static function nav( $location = 'primary', $args = array() ) 
+	{
+		$args['location'] = $location;
 		return wp_nav_menu( self::args( $args ) );
 	}
 	
