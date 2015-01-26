@@ -457,6 +457,11 @@ class gThemeImage extends gThemeModuleCore
 			echo $args['before'].$args['empty'].$args['after'];
 		}
 	}
+	
+	public static function holderJS( $width = 100, $height = 100, $atts = array() )
+	{
+		return '<img class="'.gtheme_get_info( 'image-class', 'the-img img-responsive' ).'" data-src="holder.js/'.$width.'x'.$height.'">';
+	}
 }
 
 
