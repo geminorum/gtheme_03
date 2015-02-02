@@ -94,7 +94,7 @@ class gThemeSettings extends gThemeModuleCore
 	
 	public function admin_settings_load()
 	{
-		$sub = isset( $_REQUEST['sub'] ) ? $_REQUEST['sub'] : null;
+		$sub = isset( $_REQUEST['sub'] ) ? $_REQUEST['sub'] : 'general';
 		do_action( 'gtheme_settings_load', $sub );
 	}
 	
