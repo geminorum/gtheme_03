@@ -94,4 +94,19 @@ class gThemeTemplate extends gThemeModuleCore
 		else
 			echo get_avatar( $id_or_email, $size, $default );
 	}
+	
+	// ANCESTOR : gtheme_copyright()
+	public static function copyright( $b = '<p class="copyright text-muted credit">', $a = '</p>', $p = false )
+	{
+		$copyright = gtheme_get_info( 'copyright', false );
+		
+		if ( false === $copyright )
+			return;
+		
+		if ( $p )
+			$copyright = wpautop( $copyright, false );
+		
+		echo $b.$copyright.$a;
+	}
+	
 }
