@@ -79,9 +79,15 @@ class gThemeUtilities extends gThemeModuleCore
 		return ( isset( $_GET['print'] ) && $_GET['print'] == 'print' ) ? true : false;
 	}
 	
+	// DEPRECATED
 	public static function is_rtl() 
 	{ 
 		return gtheme_get_info( 'rtl', is_rtl() ); 
+	}
+	
+	public static function isRTL( $true = TRUE, $false = FALSE ) 
+	{ 
+		return gtheme_get_info( 'rtl', is_rtl() ) ? $true : $false;
 	}
 	
 	public static function home() 
