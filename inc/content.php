@@ -218,7 +218,7 @@ class gThemeContent extends gThemeModuleCore
 			case 'textsize_buttons' :
 			case 'textsize_buttons_nosep' :
 				self::text_size_buttons( 
-					sprintf( $before, 'textsize-buttons' ), $after, 
+					sprintf( $before, 'textsize-buttons hidden-print' ), $after, 
 					( 'textsize_buttons_nosep' == $action ? false : 'def' ),
 					( $icons ? '<div class="genericon genericon-zoom"></div>' : 'def' ),
 					( $icons ? '<div class="genericon genericon-unzoom"></div>' : 'def' )
@@ -228,7 +228,7 @@ class gThemeContent extends gThemeModuleCore
 			case 'textjustify_buttons' :
 			case 'textjustify_buttons_nosep' :
 				self::justify_buttons( 
-					sprintf( $before, 'textjustify-buttons' ), $after, 
+					sprintf( $before, 'textjustify-buttons hidden-print' ), $after, 
 					( 'textjustify_buttons_nosep' == $action ? false : 'def' ),
 					( $icons ? '<div class="genericon genericon-minimize"></div>' : 'def' ),
 					( $icons ? '<div class="genericon genericon-previous"></div>' : 'def' )
@@ -237,7 +237,7 @@ class gThemeContent extends gThemeModuleCore
 			
 			case 'printfriendly' :
 				self::printfriendly(
-					sprintf( $before, 'printfriendly post-print-link' ), $after,
+					sprintf( $before, 'printfriendly post-print-link hidden-print' ), $after,
 					( $icons ? '<div class="genericon genericon-print"></div>' : __( 'Print Version', GTHEME_TEXTDOMAIN ) )
 				);
 			break;
@@ -379,14 +379,15 @@ class gThemeContent extends gThemeModuleCore
 			'url' => urlencode( get_permalink() ),
 			//'headerImageUrl' => '',
 			//'headerTagline' => '',
-			//'pfCustomCSS' => '',
-			'imageDisplayStyle' => 'block',
+			'pfCustomCSS' => urlencode( GTHEME_URL.'/css/printfriendly_01.css' ),
+			'imageDisplayStyle' => gThemeUtilities::isRTL( 'left', 'right' ), //'block',
 			//'disableClickToDel' => '',
 			//'disablePDF' => '',
 			//'disablePrint' => '',
 			//'disableEmail' => '',
 			//'hideImages' => '',
 		);
+		
 			
 		$onclick = 'onclick="window.print(); return false;"';
 		$title_var = "NULL";
