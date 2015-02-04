@@ -3,9 +3,9 @@
 class gThemeShortCodes extends gThemeModuleCore 
 {
 
-	function setup_actions( $args = array() )
+	public function setup_actions( $args = array() )
 	{
-		extract( shortcode_atts( array(
+		extract( self::atts( array(
 			'defaults' => true,
 			'caption_override' => true,
 			'gallery_override' => true,
@@ -25,8 +25,10 @@ class gThemeShortCodes extends gThemeModuleCore
 	{
 		$shortcodes = array(
 			'theme-image' => 'shortcode_theme_image',
-			'panel-group' => 'shortcode_panel_group',
+			'panels' => 'shortcode_panels',
 			'panel' => 'shortcode_panel',
+			'tabs' => 'shortcode_tabs',
+			'tab' => 'shortcode_tab',
 			'children' => 'shortcode_children',
 			'siblings' => 'shortcode_siblings',
 		);
@@ -180,11 +182,11 @@ class gThemeShortCodes extends gThemeModuleCore
 	
 	/** SYNTAX:
 	
-	[panel-group id="" class="" role=""]
+	[panels id="" class="" role=""]
 		[panel parent="" id="" title="" title_tag="" context="" expanded=""]...[/panel]
 		[panel parent="" id="" title="" title_tag="" context="" expanded=""]...[/panel]
 		[panel parent="" id="" title="" title_tag="" context="" expanded=""]...[/panel]
-	[/panel-group]
+	[/panels]
 	
 	**/
 	
@@ -192,7 +194,7 @@ class gThemeShortCodes extends gThemeModuleCore
 	var $_panel_count = 0;
 	var $_panel_parent = false;
 	
-	function shortcode_panel_group( $atts, $content = null, $tag = '' ) 
+	public function shortcode_panels( $atts, $content = null, $tag = '' ) 
 	{
 		if ( is_null( $content ) )
 			return $content;
@@ -215,7 +217,7 @@ class gThemeShortCodes extends gThemeModuleCore
 		return $html;
 	}
 	
-	function shortcode_panel( $atts, $content = null, $tag = '' ) 
+	public function shortcode_panel( $atts, $content = null, $tag = '' ) 
 	{
 		if ( is_null( $content ) )
 			return $content;
@@ -223,7 +225,7 @@ class gThemeShortCodes extends gThemeModuleCore
 		$args = shortcode_atts( array(
 			'parent'    => ( $this->_panel_parent ? $this->_panel_parent : 'panel-group-'.$this->_panel_group_count ),
 			'id'        => 'panel-'.$this->_panel_count,
-			'title'     => _x( 'Untitled', 'Panel Shortcode', GTHEME_TEXTDOMAIN ),
+			'title'     => _x( 'Untitled', 'Panel Shortcode Title', GTHEME_TEXTDOMAIN ),
 			'title_tag' => 'h4',
 			'context'   => 'default',
 			'expanded'  => false,
@@ -240,7 +242,82 @@ class gThemeShortCodes extends gThemeModuleCore
 		return $html;
 	}
 	
-	function shortcode_theme_image( $atts, $content = null, $tag = '' ) 
+	/** SYNTAX:
+	
+	[tabs id="" class="" role=""]
+		[tab id="" title="" active=""]...[/tab]
+		[tab id="" title=""]...[/tab]
+		[tab id="" title=""]...[/tab]
+	[/tabs]
+	
+	**/
+	
+	var $_tabs_active = '';
+	var $_tabs_nav = array();
+	var $_tabs_count = 0;
+	
+	public function shortcode_tabs( $atts, $content = null, $tag = '' ) 
+	{
+		if ( is_null( $content ) )
+			return $content;
+		
+		$args = shortcode_atts( array(
+			'class' => '',
+			'id'    => 'tabs-'.$this->_tabs_count,
+			'role'  => 'tabpanel',
+		), $atts, $tag );
+		
+		$tabs = do_shortcode( trim( $content, '<br />'."\n" ) );
+		
+		if ( ! count( $this->_tabs_nav ) )
+			return $content;
+		
+		$html  = '<div class="'.$args['class'].'" id="'.$args['id'];
+		$html .= '" role="'.$args['role'].'">';
+		$html .= '<ul class="nav nav-tabs" role="tablist">';
+		
+		foreach ( $this->_tabs_nav as $id => $title ) {
+			$html .= '<li role="presentation"';
+			$html .= ( $id == $this->_tabs_active ? ' class="active"' : '' ).'>';
+			$html .= '<a href="#'.$id.'" aria-controls="'.$id;
+			$html .= '" role="tab" data-toggle="tab">'.$title.'</a></li>';
+		}
+		
+		$html .= '</ul><div class="tab-content">';
+		$html .= $tabs;
+		$html .= '</div></div>';
+		
+		$this->_tabs_nav = array();
+		$this->_tabs_count++;
+		
+		return $html;
+	}
+	
+	public function shortcode_tab( $atts, $content = null, $tag = '' ) 
+	{
+		if ( is_null( $content ) )
+			return $content;
+		
+		$args = shortcode_atts( array(
+			'id'        => 'tab-'.$this->_tabs_count.'-'.count( $this->_tabs_nav ),
+			'title'     => _x( 'Untitled', 'Tab Shortcode Title', GTHEME_TEXTDOMAIN ),
+			'context'   => 'default',
+			'active'  => false,
+		), $atts, $tag );
+		
+		if ( $args['active'] )
+			$this->_tabs_active = $args['id'];
+		
+		$this->_tabs_nav[$args['id']] = $args['title'];
+		
+		$html  = '<div role="tabpanel" class="tab-pane tab-'.$args['context'];
+		$html .= ( $args['active'] ? ' active' : '' ).'" id="'.$args['id'].'">';
+		$html .= $content.'</div>';
+		
+		return $html;
+	}
+	
+	public function shortcode_theme_image( $atts, $content = null, $tag = '' ) 
 	{
 		$args = shortcode_atts( array(
 			'src' => false,
@@ -272,7 +349,7 @@ class gThemeShortCodes extends gThemeModuleCore
 		return $html;
 	}
 	
-	function shortcode_children( $atts, $content = null, $tag = '' ) 
+	public function shortcode_children( $atts, $content = null, $tag = '' ) 
 	{
 		$args = shortcode_atts( array(
 			'id' => get_queried_object_id(),
@@ -303,7 +380,7 @@ class gThemeShortCodes extends gThemeModuleCore
 		return '<div class="list-group children">'.$children.'</div>';
 	}
 	
-	function shortcode_siblings( $atts, $content = null, $tag = '' ) 
+	public function shortcode_siblings( $atts, $content = null, $tag = '' ) 
 	{
 		$args = shortcode_atts( array(
 			'parent' => null,
