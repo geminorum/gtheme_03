@@ -18,6 +18,7 @@ Theme Framework for WordPress
 * [jQuery Superfish Menu Plugin](https://github.com/joeldbirch/superfish/) v1.7.5 by [Joel Birch](https://github.com/joeldbirch)
 * [WP_Image](https://github.com/markoheijnen/WP_Image) class by [Marko Heijnen](http://markoheijnen.com/)
 * [ZOOM](https://github.com/gurde/ZOOM) by [Robert Călin](http://gurde.com/)
+* [FontDetect](https://github.com/JenniferSimonds/FontDetect) v3.0.1 by [Jennifer Simonds](http://www.atomicjetpacks.com/)
 
 ### Credits
 
@@ -42,13 +43,14 @@ not completed yet!
 	
 ## ChangeLog
 
-### 0.1.1
+### 0.3.1
 * wp_title is now on wp_head action, [see](https://make.wordpress.org/core/2014/10/29/title-tags-in-4-1/).
 * new nav menu argument handling
 * support system tags from gtheme_02
 * new method for cached WP_Query
 * fixed module arguments not loading
 * inculing [WP_Image](https://github.com/markoheijnen/WP_Image)
+* loaded fonts as body class via [FontDetect](https://github.com/JenniferSimonds/FontDetect)
 
-### 0.1.0
+### 0.3.0
 * init

@@ -220,6 +220,10 @@ class gThemeOptions extends gThemeModuleCore
 			'default_editor' => 'html', // set default editor of post edit screen to html for each user // needs module arg // Either 'tinymce', or 'html', or 'test'
 			
 			'child_group_class' => false, // body class for goruping the child theme on a network!
+			'css_font_stack' => array( // list of font-faces to check after page load via FontDetect
+				'Arial',
+				'Tahoma',
+			),
 			
 			// BANNERS
 			'banners_legend' => false, // html before admin banners page

@@ -97,6 +97,7 @@ class gThemeWrap extends gThemeModuleCore
 			$attributes[] = "lang=\"$lang\"";
 
 		$html_attributes = ' '.apply_filters( 'language_attributes', implode( ' ', $attributes ) );
+		$html_attributes .= ' data-font-stack=\''.json_encode( gThemeOptions::info( 'css_font_stack', array( 'Arial', 'Tahoma' ) ) ).'\'';
 		
 		$classes = array( 'no-js' );
 
