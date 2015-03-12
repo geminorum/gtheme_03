@@ -1,0 +1,13 @@
+
+// http://www.stefanwienert.de/blog/2012/05/18/easy-css-vendor-prefix-mixin-for-sass/
+// Easy css vendor prefix mixin for SASS
+// May 18, 2012
+//p { @include vendor-prefix(hyphens, auto)}
+
+@mixin vendor-prefix($name, $argument) {
+  -webkit-#{$name}: #{$argument};
+  -ms-#{$name}: #{$argument};
+  -moz-#{$name}: #{$argument};
+  -o-#{$name}: #{$argument};
+  #{$name}: #{$argument};
+}
