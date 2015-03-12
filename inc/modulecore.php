@@ -234,4 +234,17 @@ class gThemeModuleCore
 		if ( $wrap )
 			echo '</td></tr>';
 	}
+	
+	var $counter = 0;
+	
+	public function selector( $prefix = 'theme-selector-%d' )
+	{
+		if ( false === strpos( $prefix, '%d' ) )
+			$selector = $prefix.$this->_counter;
+		else
+			$selector = sprintf( $prefix, $this->_counter );
+
+		$this->_counter++;
+		return $selector;
+	}
 }
