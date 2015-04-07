@@ -77,6 +77,9 @@ class gThemeFilters extends gThemeModuleCore {
 				gThemeUtilities::linkStyleSheet( GTHEME_CHILD_URL.'/css/'.( gThemeUtilities::is_dev() ? '?debug=debug' : '' ), GTHEME_CHILD_VERSION, 'all' );
 			else
 				gThemeUtilities::linkStyleSheet( GTHEME_CHILD_URL.'/style.css', GTHEME_CHILD_VERSION, 'all' );
+				
+			if ( gThemeUtilities::is_dev() )
+				gThemeUtilities::linkStyleSheet( GTHEME_URL.'/css/dev.css', GTHEME_VERSION, 'all' );
 		}
 		
 		if ( is_singular() ) 
