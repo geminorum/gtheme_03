@@ -82,24 +82,24 @@ class gThemeUtilities extends gThemeModuleCore
 	// DEPRECATED
 	public static function is_rtl() 
 	{ 
-		return gtheme_get_info( 'rtl', is_rtl() ); 
+		return gThemeOptions::info( 'rtl', is_rtl() ); 
 	}
 	
 	public static function isRTL( $true = TRUE, $false = FALSE ) 
 	{ 
-		return gtheme_get_info( 'rtl', is_rtl() ) ? $true : $false;
+		return gThemeOptions::info( 'rtl', is_rtl() ) ? $true : $false;
 	}
 	
 	public static function home() 
 	{ 
-		return gtheme_get_info( 'home_url_override', esc_url( home_url( '/' ) ) ); 
+		return gThemeOptions::info( 'home_url_override', esc_url( home_url( '/' ) ) ); 
 	}
 	
 		
 	public static function sanitize_sep( $sep = 'def', $context = 'default_sep', $def = ' ' )
 	{
 		if ( 'def' == $sep )
-			return gtheme_get_info( $context, $def );
+			return gThemeOptions::info( $context, $def );
 			
 		if ( false === $sep )
 			return ' ';
