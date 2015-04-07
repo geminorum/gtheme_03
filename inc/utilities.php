@@ -219,9 +219,20 @@ class gThemeUtilities extends gThemeModuleCore
 		return $html.$content.'</'.$tag.'>'.$sep;
 	}
 	
+	// DEPRECATED: use gThemeUtilities::linkStyleSheet()
 	public static function link_stylesheet( $url, $attr = 'media="all"' )
 	{
 		echo "\t".'<link rel="stylesheet" href="'.esc_url( $url ).'" type="text/css" '.$attr.' />'."\n"; 
+	}
+	
+	public static function linkStyleSheet( $url, $version = GTHEME_VERSION, $media = false )
+	{
+		echo "\t".self::html( 'link', array(
+			'rel' => 'stylesheet',
+			'href' => add_query_arg( 'ver', $version, $url ),
+			'type' => 'text/css',
+			'media' => $media,
+		) )."\n";
 	}
 	
 	// http://stackoverflow.com/a/9241873

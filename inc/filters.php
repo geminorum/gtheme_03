@@ -69,14 +69,14 @@ class gThemeFilters extends gThemeModuleCore {
 		
 		if ( is_single() && gThemeUtilities::is_print() ) {
 			if ( file_exists( GTHEME_CHILD_DIR.'/print.css' ) )
-				gThemeUtilities::link_stylesheet( GTHEME_CHILD_URL.'/print.css?ver='.GTHEME_CHILD_VERSION );
+				gThemeUtilities::linkStyleSheet( GTHEME_CHILD_URL.'/print.css', GTHEME_CHILD_VERSION, 'all' );
 			else
-				gThemeUtilities::link_stylesheet( GTHEME_URL.'/print.css?ver='.GTHEME_VERSION );
+				gThemeUtilities::linkStyleSheet( GTHEME_URL.'/print.css', GTHEME_VERSION, 'all' );
 		} else {
 			if ( file_exists( GTHEME_CHILD_DIR.'/css/css.php' ) )
-				gThemeUtilities::link_stylesheet( GTHEME_CHILD_URL.'/css/?ver='.GTHEME_CHILD_VERSION.( gThemeUtilities::is_dev() ? '&debug=debug' : '' ) );
+				gThemeUtilities::linkStyleSheet( GTHEME_CHILD_URL.'/css/'.( gThemeUtilities::is_dev() ? '?debug=debug' : '' ), GTHEME_CHILD_VERSION, 'all' );
 			else
-				gThemeUtilities::link_stylesheet( GTHEME_CHILD_URL.'/style.css?ver='.GTHEME_CHILD_VERSION );
+				gThemeUtilities::linkStyleSheet( GTHEME_CHILD_URL.'/style.css', GTHEME_CHILD_VERSION, 'all' );
 		}
 		
 		if ( is_singular() ) 
