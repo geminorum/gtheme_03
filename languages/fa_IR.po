@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: gTheme 3 v0.3.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-03-16 18:54+0330\n"
-"PO-Revision-Date: 2015-03-17 21:10+0330\n"
+"PO-Revision-Date: 2015-04-23 05:09+0330\n"
 "Last-Translator: geminorum <contact@geminorum.ir>\n"
 "Language-Team: \n"
 "Language: fa_IR\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2;plural=n!=1;\n"
-"X-Generator: Poedit 1.7.5\n"
+"X-Generator: Poedit 1.7.6\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;"
 "_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2\n"
@@ -123,7 +123,6 @@ msgstr ""
 
 # @ gtheme
 #: inc/comments.php:146
-#, fuzzy
 msgid "Comment navigation"
 msgstr "راهبری نوشته‌ها"
 
@@ -534,10 +533,9 @@ msgstr "تنظیمات پوسته"
 
 # @ gtheme
 #: inc/options.php:15
-#, fuzzy
 msgctxt "Admin Settings Page Title"
 msgid "gTheme Settings"
-msgstr "تنظیمات به‌روز نشد."
+msgstr ""
 
 # @ gtheme
 #: inc/options.php:41
@@ -586,7 +584,6 @@ msgstr "نوشته"
 
 # @ gtheme
 #: inc/options.php:77
-#, fuzzy
 msgid "Dashboard"
 msgstr "پیشخوان"
 
@@ -756,14 +753,12 @@ msgstr ""
 
 # @ gtheme
 #: inc/shortcodes.php:296
-#, fuzzy
 msgctxt "Panel Shortcode Title"
 msgid "Untitled"
 msgstr "بدون عنوان"
 
 # @ gtheme
 #: inc/shortcodes.php:371
-#, fuzzy
 msgctxt "Tab Shortcode Title"
 msgid "Untitled"
 msgstr "بدون عنوان"
@@ -832,9 +827,8 @@ msgstr ""
 
 # @ gtheme
 #: inc/sidebar.php:557 inc/sidebar.php:623
-#, fuzzy
 msgid "Post Type:"
-msgstr "نوع فیلد"
+msgstr ""
 
 # @ gtheme
 #: inc/sidebar.php:566
@@ -884,10 +878,9 @@ msgstr ""
 
 # @ gtheme
 #: inc/terms.php:37
-#, fuzzy
 msgctxt "system tags labels"
 msgid "Edit System Tag"
-msgstr "ویرایش کنید"
+msgstr ""
 
 # @ gtheme
 #: inc/terms.php:38
