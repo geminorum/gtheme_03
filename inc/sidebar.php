@@ -34,6 +34,7 @@ class gThemeSideBar extends gThemeModuleCore
 		return apply_filters( 'gtheme_widgets', array(
 			'gThemeWidgetSearch',
 			'gThemeWidgetRecentPosts',
+			'gThemeWidgetRecentComments',
 			'gThemeWidgetTemplatePart',
 			'gThemeWidgetChildren',
 			'gThemeWidgetSiblings',
@@ -49,6 +50,8 @@ class gThemeSideBar extends gThemeModuleCore
 				$wp_widget_factory->widgets['WP_Widget_Search'] = new gThemeWidgetSearch();
 			} else if ( 'gThemeWidgetRecentPosts' == $widget ) {
 				$wp_widget_factory->widgets['WP_Widget_Recent_Posts'] = new gThemeWidgetRecentPosts();
+			} else if ( 'gThemeWidgetRecentComments' == $widget ) {
+				$wp_widget_factory->widgets['WP_Widget_Recent_Comments'] = new gThemeWidgetRecentComments();
 			} else {
 				$wp_widget_factory->widgets[$widget] = new $widget();
 			}
@@ -261,15 +264,12 @@ class gThemeWidgetRecentPosts extends WP_Widget
 
 	public function widget( $args, $instance ) 
 	{
-		$cache = wp_cache_get( $this->alt_option_name, 'widget' );
-
-		if ( ! is_array( $cache ) )
-			$cache = array();
+		$cache = $this->is_preview() ? array() : wp_cache_get( $this->alt_option_name, 'widget' );
 
 		if ( ! isset( $args['widget_id'] ) )
 			$args['widget_id'] = $this->id;
 
-		if ( isset( $cache[ $args['widget_id'] ] ) ) {
+		if ( is_array( $cache ) && isset( $cache[ $args['widget_id'] ] ) ) {
 			echo $cache[ $args['widget_id'] ];
 			return;
 		}
@@ -317,8 +317,12 @@ class gThemeWidgetRecentPosts extends WP_Widget
 			echo '</ul>'.$args['after_widget'];
 		} 
 		
-		$cache[$args['widget_id']] = ob_get_flush();
-		wp_cache_set( $this->alt_option_name, $cache, 'widget' );
+		if ( $this->is_preview() ) {
+			ob_end_flush();
+		} else {
+			$cache[$args['widget_id']] = ob_get_flush();
+			wp_cache_set( $this->alt_option_name, $cache, 'widget' );
+		}
 	}
 
 	public function update( $new_instance, $old_instance ) 
@@ -381,6 +385,156 @@ class gThemeWidgetRecentPosts extends WP_Widget
 	}
 }
 
+class gThemeWidgetRecentComments extends WP_Widget 
+{
+
+	public function __construct() 
+	{
+		parent::__construct( 'gtheme_recent_comments', __( 'gTheme: Recent Comments', GTHEME_TEXTDOMAIN ), array( 
+			'description' => __( 'Customized most recent commments.', GTHEME_TEXTDOMAIN ),
+			'classname' => 'widget-gtheme-recent-commments',
+		) );
+		
+		$this->alt_option_name = 'widget_gtheme_recent_commments';
+
+		add_action( 'comment_post', array( $this, 'flush_widget_cache' ) );
+		add_action( 'edit_comment', array( $this, 'flush_widget_cache' ) );
+		add_action( 'transition_comment_status', array( $this, 'flush_widget_cache' ) );
+	}
+
+	public function widget( $args, $instance ) 
+	{
+		$cache = $this->is_preview() ? array() : wp_cache_get( $this->alt_option_name, 'widget' );
+		
+		if ( ! isset( $args['widget_id'] ) )
+			$args['widget_id'] = $this->id;
+
+		if ( is_array( $cache ) && isset( $cache[ $args['widget_id'] ] ) ) {
+			echo $cache[ $args['widget_id'] ];
+			return;
+		}
+
+		if ( empty( $instance['number'] ) 
+			|| ! $number = absint( $instance['number'] ) )
+				$number = 10;
+		
+		$comments = get_comments( apply_filters( 'widget_comments_args', array(
+			'number'      => $number,
+			'status'      => 'approve',
+			'post_status' => 'publish'
+		) ) );
+
+		if ( $comments ) {
+
+			$callback = gThemeOptions::info( 'recent_comment_callback', array( $this, 'comment_callback' ) );
+			$avatar_size = empty( $instance['avatar_size'] ) ? 32 : absint( $instance['avatar_size'] );
+
+			$title = apply_filters( 'widget_title', 
+				empty( $instance['title'] ) ? '' : $instance['title'],
+				$instance,
+				$this->id_base
+			);
+			
+			ob_start();
+			
+			// Prime cache for associated posts. (Prime post term cache if we need it for permalinks.)
+			$post_ids = array_unique( wp_list_pluck( $comments, 'comment_post_ID' ) );
+			_prime_post_caches( $post_ids, strpos( get_option( 'permalink_structure' ), '%category%' ), false );
+
+			echo $args['before_widget'];
+			if ( $title )
+				echo $args['before_title'].$title.$args['after_title'];
+			echo '<ul class="recent-comments list-unstyled row-ul list-rows">';
+
+			foreach ( (array) $comments as $comment ) {
+				echo '<li class="list-row recentcomments">'; 
+					echo call_user_func_array( $callback, array( $comment, $avatar_size ) );
+				echo '</li>'; 
+			}
+			
+			echo '</ul>'.$args['after_widget'];
+			
+			if ( $this->is_preview() ) {
+				ob_end_flush();
+			} else {
+				$cache[$args['widget_id']] = ob_get_flush();
+				wp_cache_set( $this->alt_option_name, $cache, 'widget' );
+			}			
+		}
+	}
+	
+	public function comment_callback( $comment, $avatar_size )
+	{
+		$content = gThemeL10N::str( wp_strip_all_tags( $comment->comment_content, true ) );
+		return sprintf( '<span class="comment-author-link">%1$s</span>: <a class="comment-post-link" href="%2$s" data-toggle="tooltip" data-placement="bottom" title="%3$s on %4$s">%5$s</a>',
+			//get_comment_author_link(),
+			gThemeL10N::str( get_comment_author( $comment->comment_ID ) ),
+			esc_url( get_comment_link( $comment->comment_ID ) ),
+			esc_attr( $content ),
+			esc_attr( get_the_title( $comment->comment_post_ID ) ),
+			wp_trim_words( $content, 10, '&nbsp;&hellip;' )
+		);
+	}
+
+	public function update( $new_instance, $old_instance ) 
+	{
+		$instance = $old_instance;
+		$instance['title'] = strip_tags( $new_instance['title'] );
+		$instance['number'] = (int) $new_instance['number'];
+		$instance['avatar_size'] = (int) $new_instance['avatar_size'];
+		$this->flush_widget_cache();
+
+		$alloptions = wp_cache_get( 'alloptions', 'options' );
+		if ( isset( $alloptions[$this->alt_option_name] ) )
+			delete_option( $this->alt_option_name );
+
+		return $instance;
+	}
+
+	public function flush_widget_cache() 
+	{
+		wp_cache_delete( $this->alt_option_name, 'widget' );
+	}
+
+	public function form( $instance ) 
+	{
+		$html = gThemeUtilities::html( 'input', array( 
+			'type' => 'text',
+			'class' => 'widefat',
+			'name' => $this->get_field_name( 'title' ),
+			'id' => $this->get_field_id( 'title' ),
+			'value' => isset( $instance['title'] ) ? $instance['title'] : '',
+		) );
+		
+		echo '<p>'. gThemeUtilities::html( 'label', array( 
+			'for' => $this->get_field_id( 'title' ),
+		), __( 'Title:', GTHEME_TEXTDOMAIN ).$html ).'</p>';
+		
+		$html = gThemeUtilities::html( 'input', array( 
+			'type' => 'text',
+			'size' => 3,
+			'name' => $this->get_field_name( 'avatar_size' ),
+			'id' => $this->get_field_id( 'avatar_size' ),
+			'value' => isset( $instance['avatar_size'] ) ? $instance['avatar_size'] : 32,
+		) );
+
+		echo '<p>'. gThemeUtilities::html( 'label', array( 
+			'for' => $this->get_field_id( 'avatar_size' ),
+		), __( 'Avatar Size:', GTHEME_TEXTDOMAIN ).$html ).'</p>';
+		
+		$html = gThemeUtilities::html( 'input', array( 
+			'type' => 'text',
+			'size' => 3,
+			'name' => $this->get_field_name( 'number' ),
+			'id' => $this->get_field_id( 'number' ),
+			'value' => isset( $instance['number'] ) ? $instance['number'] : 5,
+		) );
+		
+		echo '<p>'. gThemeUtilities::html( 'label', array( 
+			'for' => $this->get_field_id( 'number' ),
+		), __( 'Number of posts to show:', GTHEME_TEXTDOMAIN ).' '.$html ).'</p>';
+	}
+}
 
 class gThemeWidgetSearch extends WP_Widget 
 {
