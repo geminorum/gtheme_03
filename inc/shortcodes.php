@@ -31,6 +31,7 @@ class gThemeShortCodes extends gThemeModuleCore
 			'tab' => 'shortcode_tab',
 			'children' => 'shortcode_children',
 			'siblings' => 'shortcode_siblings',
+			//'slider' => 'shortcode_gallery_slider',
 		);
 	
 		foreach ( $shortcodes as $shortcode => $method ) {
@@ -67,13 +68,25 @@ class gThemeShortCodes extends gThemeModuleCore
 			   .'</figcaption></figure>';
 	} 
 	
-	var $_gallery_count = 0;
-	
 	public function post_gallery( $empty, $attr )
 	{
 		if ( is_feed() )
 			return $empty;
+		
+		$type = isset( $attr['type'] ) ? $attr['type'] : gThemeOptions::info( 'gallery_default_type', 'default' );
+		
+		switch( $type ) {
+			case 'columns' : return $this->shortcode_gallery_column( $attr );
+			case 'slider'  : return $this->shortcode_gallery_slider( $attr );
+			default        : return $empty; // TODO : write better default than WP's
+			
+		}
+		
+		return $empty;
+	}
 	
+	public function shortcode_gallery_column( $atts, $content = null, $tag = 'gallery' )
+	{
 		$post = get_post();
 		
 		$args = shortcode_atts( array(
@@ -91,7 +104,7 @@ class gThemeShortCodes extends gThemeModuleCore
 			
 			'file_size'  => gThemeOptions::info( 'gallery_file_size', 'big' ),
 			'nocaption'  => '<span class="genericon genericon-search"></span>',
-		), $attr, 'gallery' );
+		), $atts, $tag );
 	
 		$id = intval( $args['id'] );
 		$posts_args = array(
@@ -137,8 +150,7 @@ class gThemeShortCodes extends gThemeModuleCore
 		
 		$html = '';
 		$template = gThemeOptions::info( 'gallery_template', $default );
-		$this->_gallery_count++;
-		$selector = 'gallery-'.$this->_gallery_count;
+		$selector = $this->selector( 'gallery-column-' );
 		
 		foreach ( $attachments as $id => $attachment ) {
 
@@ -178,7 +190,63 @@ class gThemeShortCodes extends gThemeModuleCore
 				'gallery-size-'.sanitize_html_class( $args['size'] ),
 			),
 		), $html );
-	}	
+	}
+
+	public function shortcode_gallery_slider( $atts, $content = null, $tag = '' )
+	{
+		$args = shortcode_atts( array(
+			'order'      => 'ASC',
+			'orderby'    => 'menu_order ID',
+			'id'         => get_the_ID(),
+			
+			//'columns'    => 3,
+			'size'       => 'thumbnail',
+			'include'    => '',
+			'exclude'    => '',
+			'link'       => '', // 'file', 'none', empty
+			
+			//'file_size'  => gThemeOptions::info( 'gallery_file_size', 'big' ),
+			//'nocaption'  => '<span class="genericon genericon-search"></span>',
+		), $atts, $tag );
+		
+		$id = intval( $args['id'] );
+		$posts_args = array(
+			'post_status' => 'inherit',
+			'post_type' => 'attachment',
+			'post_mime_type' => 'image',
+			'order' => $args['order'],
+			'orderby' => $args['orderby'],
+		);	
+
+			$posts_args['post_parent'] = $id;
+			$attachments = get_children( $posts_args );
+		
+		
+		$attr = '';
+		$selector = $this->selector( 'slider-gallery-' );
+		$html = '';
+		
+		
+		$html .= '<div class="flexslider" id="'.$selector.'"><ul class="slides">';
+		foreach ( $attachments as $id => $attachment )
+              $html .= '<li>'.wp_get_attachment_image( $id, $args['size'], false, $attr ).'</li>'; 
+              
+		$html .= '</ul></div>';
+		$html .= '<script type="text/javascript">
+/* <![CDATA[ */
+			jQuery(document).ready(function($){
+				$("#'.$selector.'").flexslider({
+					animation: "slide",
+					rtl: true
+				});
+			});
+/* ]]> */
+		</script>';
+		
+		wp_enqueue_script( 'despair-flexslider', GTHEME_URL.'/libs/flexslider-rtl/jquery.flexslider-min.js', array( 'jquery' ), '2.2.0', true );		
+		
+		return $html;
+	}
 	
 	/** SYNTAX:
 	
