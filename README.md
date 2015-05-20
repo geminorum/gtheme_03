@@ -21,36 +21,10 @@ Theme Framework for WordPress
 * [FontDetect](https://github.com/JenniferSimonds/FontDetect) v3.0.1 by [Jennifer Simonds](http://www.atomicjetpacks.com/)
 
 ### Credits
-
 * (some) Icons made by [Roy and Co](http://royand.co/) from [Flaticon](http://www.flaticon.com) is licensed by [Creative Commons BY 3.0](http://creativecommons.org/licenses/by/3.0/)
 
-## References
 
-not completed yet!
+## Changelog
+See [CHANGES.md](CHANGES.md).
 
-### Actions
-* `before_post`
-* `after_post`
-* `template_body_top`
-* `gtheme_do_header`
-* `gtheme_do_after_header`
-* `gtheme_do_before_footer`
-* `gtheme_do_footer`
-* `gtheme_content_404`
-
-### Filters
-	
-	
-## ChangeLog
-
-### 0.3.1
-* wp_title is now on wp_head action, [see](https://make.wordpress.org/core/2014/10/29/title-tags-in-4-1/).
-* new nav menu argument handling
-* support system tags from gtheme_02
-* new method for cached WP_Query
-* fixed module arguments not loading
-* inculing [WP_Image](https://github.com/markoheijnen/WP_Image)
-* loaded fonts as body class via [FontDetect](https://github.com/JenniferSimonds/FontDetect)
-
-### 0.3.0
-* init
+Please log issues at [here](https://github.com/geminorum/gtheme_03/issues)
