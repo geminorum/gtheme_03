@@ -1,0 +1,93 @@
+
+// http://www.wpbeginner.com/wp-themes/default-wordpress-generated-css-cheat-sheet-for-beginners/
+// http://digwp.com/2010/05/default-wordpress-css-styles-hooks/
+
+
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+
+.list-rows {
+    li {
+
+    }
+}
+
+
+.content-single {
+    padding-top:20px;
+}
+
+.entry-wrap {
+
+
+
+    .entry-content {
+
+        img {
+            max-width:100%;
+        }
+    }
+}
+
+.comments-area {
+    padding-top:20px;
+}
+
+
+
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+//--- MENU ---------------------------------------------------------------------
+ul.menu { padding:0; }
+ul.sub-menu { padding-left:15px; }
+.rtl ul.sub-menu { padding-left:0; padding-right:15px; }
+li.menu-item { list-style:none; margin-bottom:4px; }
+li.menu-item-has-children {}
+////////////////////////////////////////////////////////////////////////////////
+//--- ENTRY HEADER -------------------------------------------------------------
+.header-class { margin:20px 0; }
+.titles-class {}
+.titles-class .overtitle { margin:0 0 10px 0; }
+.titles-class .title { margin:0 0 15px 0; }
+.titles-class .subtitle { margin:-5px 0 10px 0;}
+.actions-class { margin:0; font-size:0.79em; }
+////////////////////////////////////////////////////////////////////////////////
+//--- ENTRY --------------------------------------------------------------------
+.entry-wrap { margin-bottom:20px; }
+.entry-wrap.error404 { width:65%; margin:40px auto; }
+.entry-header {}
+.entry-date { }
+.entry-lead { font-weight:bold; margin-bottom:20px; }
+.entry-content { margin-bottom:20px; }
+.entry-summary { margin-bottom:20px; }
+.entry-source {}
+.entry-quote {}
+
+.entry-date .entry-day {}
+.entry-date .entry-month {}
+
+////////////////////////////////////////////////////////////////////////////////
+//--- COMMENTS -----------------------------------------------------------------
+.comments-area { margin-bottom:15px; }
+.comments-title {}
+.comments-feed { float:left; }
+.comment-form-author, .comment-form-email, .comment-form-url { width: 50%; }
+.comment-actions { font-size:0.79em; }
+
+////////////////////////////////////////////////////////////////////////////////
+//--- WIDGETS ------------------------------------------------------------------
+.widget { margin-bottom:20px; }
+.widget-title { margin:0 0 10px 0; }
+
+////////////////////////////////////////////////////////////////////////////////
+//--- IMAGES -------------------------------------------------------------------
+.the-img {}
+.the-img-caption {}
+.the-img-caption-text {}
+
+.gallery {}
+.gallery-spinner{}
+.gallery-wrap {}
+.gallery-img {}
+.gallery-description {}

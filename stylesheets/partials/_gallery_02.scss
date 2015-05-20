@@ -1,7 +1,4 @@
 
-@import "modules/all";
-@import "partials/base";
-
 //body {background: #30303A;direction:rtl;}
 
 @keyframes rotation {
@@ -10,11 +7,11 @@
 }
 
 .gallery {
-    
+
     //-webkit-column-gap: 0;
     //-moz-column-gap: 0;
     //column-gap: 0;
-    
+
     @include vendor-prefix(column-gap, 0);
 
     opacity: 0; // Set opacity to 0 until the gallery images are loaded
@@ -34,11 +31,11 @@
             width: 100%;
             height: 100%;
 
-            .gallery-description { 
+            .gallery-description {
                 position: relative;
                 width: 100%;
                 height: 100%;
-                
+
                 p {
                     //font-family: helvetica, arial, sans-serif;
                     color: white;
@@ -47,7 +44,7 @@
                     width: 100%;
                     bottom:0;
                     padding:0 0 0 15px;
-                }                
+                }
             }
         }
     }
@@ -79,23 +76,23 @@
             transition: 0.3s ease-out;
         }
     }
-    .gallery-img.left.animated { 
+    .gallery-img.left.animated {
         figcaption {
             left: 0;
         }
     }
-    .gallery-img.right.animated { 
-        figcaption { 
+    .gallery-img.right.animated {
+        figcaption {
             right: 0;
         }
     }
-    .gallery-img.top.animated { 
+    .gallery-img.top.animated {
         figcaption {
             top: 0;
         }
     }
-    .gallery-img.bottom.animated { 
-        figcaption { 
+    .gallery-img.bottom.animated {
+        figcaption {
             bottom: 0;
         }
     }
