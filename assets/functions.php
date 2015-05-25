@@ -1,5 +1,13 @@
 <?php
 
+function include_css( $array = array(), $debug = false ){
+	foreach( $array as $css )
+		if ( file_exists( $css ) )
+			include( $css );
+		else if ( $debug )
+			echo '/** cannot find css at '.$css.' **/';
+}
+
 /** 
 SEE : 
 	http://www.catswhocode.com/blog/3-ways-to-compress-css-files-using-php
