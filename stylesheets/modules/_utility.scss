@@ -1,29 +1,72 @@
 
+%dir_rtl {
+	direction:rtl !important;
+}
 
-// http://www.sitepoint.com/sass-basics-function-directive/
+@mixin clearfix() {
+	&:after {
+		content: "";
+		display: table;
+		clear: both;
+	}
+}
 
-// @include linx(white, blue, green, red);
-@mixin linx ($link, $visit, $hover, $active) {
-  a {
-    color: $link;
-    &:visited {
-      color: $visit;
-    }
-    &:hover {
-      color: $hover;   
-    }
-    &:active {
-      color: $active;
-    }
+// DEPRICATED: use @include clearfix()
+%clearfix {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
   }
 }
 
+@mixin mainwrap() {
+	-webkit-box-sizing:border-box;
+	-moz-box-sizing:border-box;
+	box-sizing:border-box;
+    & *,
+    &:after,
+    & *:after,
+    &:before,
+    & *:before {
+		-webkit-box-sizing:border-box;
+		-moz-box-sizing:border-box;
+		box-sizing:border-box;
+    }
+	padding:0;
+	margin:0;
+	border:0;
+}
+
+@mixin box-reset() {
+    -webkit-box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    box-sizing:border-box;
+}
+
+// DEPRICATED: use @include box-reset()
 %box-reset {
     -webkit-box-sizing:border-box;
     -moz-box-sizing:border-box;
     box-sizing:border-box;
 }
 
+// DEPRICATED: use @include mainwrap()
+%main_wrap {
+	@extend %box-reset;
+    & *,
+    &:after,
+    & *:after,
+    &:before,
+    & *:before {
+        @extend %box-reset;
+    }
+	padding:0;
+	margin:0;
+	border:0;
+}
+
+// MUST DEPRICATED: use @include mainwrap()
 @mixin main-wrap() {
 	@extend %box-reset;
     & *,
@@ -38,13 +81,19 @@
 	border:0;
 }
 
+
+
 @mixin body-rtl() {
 	body.rtl & {
 		@content;
 	}
 }
 
-// p { @include vendor-prefix(hyphens, auto)}
+// http://www.stefanwienert.de/blog/2012/05/18/easy-css-vendor-prefix-mixin-for-sass/
+// Easy css vendor prefix mixin for SASS
+// May 18, 2012
+//p { @include vendor-prefix(hyphens, auto)}
+
 @mixin vendor-prefix($name, $argument) {
   -webkit-#{$name}: #{$argument};
   -ms-#{$name}: #{$argument};

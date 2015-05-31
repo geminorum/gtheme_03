@@ -1,0 +1,56 @@
+
+
+// [Compass Color Helpers | Compass Documentation](http://compass-style.org/reference/compass/helpers/colors/)
+//
+// SEE: [Color Schemes w/ Sass](http://codepen.io/danrootdesign/pen/tkGsi)
+// SEE: [Color swatches with a Sass Map](http://codepen.io/FStop/pen/ojrAq)
+// [How to use Compass Helper functions – clubmate.fi](http://clubmate.fi/how-to-use-the-compass-helper-functions/)
+// [A Visual Guide to Sass & Compass Color Functions - Jackie Balzer](http://jackiebalzer.com/color)
+// [Experiments with Sass Color Functions](http://codepen.io/KatieK2/pen/hbqsB)
+//
+
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+
+// EXAMPLE: @include link-colors(white, blue, green, red);
+@mixin link-colors($link, $visit, $hover, $active) {
+  a {
+    color: $link;
+    &:visited {
+      color: $visit;
+    }
+    &:hover {
+      color: $hover;
+    }
+    &:active {
+      color: $active;
+    }
+  }
+}
+
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+
+// [color and box-shadow in a loop](http://creative-punch.net/2014/01/using-sass-generate-color-box-shadow-loop/)
+// http://codepen.io/CreativePunch/pen/piErg
+// EXAMPLE: @include loop-shadow(10, 30px);
+@mixin loop-shadow($elements, $height) {
+
+    @for $i from 0 to $elements {
+
+        $red: $i * 10 + 150;
+        $green: ($i * 10 + 150) / 2;
+        $blue: ($i * 10 + 150) / 2;
+
+        & div:nth-child(#{$i}) {
+            background: rgb($red, $green, $blue);
+            width: 100%;
+            height: $height;
+            box-shadow: 0 -1px #{($elements - $i) * 2}px rgba(0, 0, 0, 0.7);
+        }
+    }
+}

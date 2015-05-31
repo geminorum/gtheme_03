@@ -1,0 +1,36 @@
+{
+  "name": "gtheme_03",
+  "private": true,
+  "dependencies": {},
+  "devDependencies": {
+    "bootstrap-sass": "*",
+    "bootstrap-rtl": "*",
+    "Genericons": "Automattic/Genericons#release/3.3",
+    "anything-slider": "CSS-Tricks/AnythingSlider",
+    "jcarousel": "~0.3.3",
+    "jquery.lazyload": "~1.9.5",
+    "normalize-scss": "~3.0.3",
+    "sass-css3-mixins": "*",
+    "css-spinners": "~2.0.2"
+  },
+  "install": {
+    "path": "packages",
+    "sources": {
+      "bootstrap-sass": "components/bootstrap-sass/assets/**",
+      "anything-slider": [
+        "components/anything-slider/css/anythingslider.css",
+        "components/anything-slider/js/jquery.anythingslider.js",
+        "components/anything-slider/js/jquery.anythingslider.min.js",
+        "components/anything-slider/js/jquery.anythingslider.fx.js",
+        "components/anything-slider/js/jquery.anythingslider.video.js"
+      ],
+      "Genericons": [
+        "components/Genericons/genericons/Genericons.eot",
+        "components/Genericons/genericons/Genericons.svg",
+        "components/Genericons/genericons/Genericons.ttf",
+        "components/Genericons/genericons/Genericons.woff",
+        "components/Genericons/genericons/genericons.css"
+      ]
+    }
+  }
+}
