@@ -1,6 +1,8 @@
 .sass-cache
 .temp
 
+/components
+/packages/jquery
 /vendor
 /bin
 /node_modules
