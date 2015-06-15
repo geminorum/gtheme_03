@@ -115,7 +115,7 @@ class WP_Image {
 			$this->metadata = wp_get_attachment_metadata( $this->attachment_id );
 		}
 
-		return $this->metadata; 
+		return $this->metadata;
 	}
 
 	/**
@@ -298,14 +298,14 @@ class WP_Image {
 			foreach ( $meta['sizes'] as $size => $sizeinfo ) {
 				$intermediate_file = str_replace( basename( $file ), $sizeinfo['file'], $file );
 
-				if ( ! in_array( $intermediate_file, $intermediate_sizes ) ) {		
+				if ( ! in_array( $intermediate_file, $intermediate_sizes ) ) {
 					$intermediate_file = apply_filters( 'wp_delete_file', $intermediate_file );
 					@ unlink( path_join( $uploadpath['basedir'], $intermediate_file ) );
 				}
 			}
 		}
-	} 
+	}
 
 }
 
-//WP_Image::_load_hooks();
+// WP_Image::_load_hooks();
