@@ -16,9 +16,5 @@ defined( 'GTHEME_CACHETTL' ) or define( 'GTHEME_CACHETTL', 3600 );
 defined( 'GTHEME_IMAGES_META' ) or define( 'GTHEME_IMAGES_META', '_gtheme_images' );
 defined( 'GTHEME_IMAGES_TERMS_META' ) or define( 'GTHEME_IMAGES_TERMS_META', '_gtheme_images_terms' );
 
-if ( ! defined( 'GTHEME_FLUSH' ) && ( isset( $_GET['flush'] ) && 'flush' == $_GET['flush'] ) ) 
-	define( 'GTHEME_FLUSH', true ); 
-else 
-	define( 'GTHEME_FLUSH', false );
-
+defined( 'GTHEME_FLUSH' ) or define( 'GTHEME_FLUSH', isset( $_GET['flush'] ) );
 defined( 'DS' ) or define( 'DS', DIRECTORY_SEPARATOR );

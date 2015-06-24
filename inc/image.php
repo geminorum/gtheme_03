@@ -123,10 +123,10 @@ class gThemeImage extends gThemeModuleCore
 	// filters the sizes on admin insert media page
 	public function image_size_names_choose( $size_names )
 	{
-		if ( $post_id = absint( @ $_REQUEST['post_id'] ) ) {
+		if ( isset( $_REQUEST['post_id'] ) && $post_id = absint( $_REQUEST['post_id'] ) ) {
 			$post = get_post( $post_id );
 			$post_type = $post->post_type;
-		} else if ( $post_id = absint( @ $_REQUEST['post'] ) ) {
+		} else if ( isset( $_REQUEST['post'] ) &&  $post_id = absint( $_REQUEST['post'] ) ) {
 			$post = get_post( $post_id );
 			$post_type = $post->post_type;
 		} else if ( isset( $_REQUEST['post_type'] ) ) {
@@ -458,6 +458,15 @@ class gThemeImage extends gThemeModuleCore
 			'after'           => '</div>',
 			'context'         => NULL,
 		), $atts );
+
+		if ( $args['class'] ) {
+			if ( $args['attr'] ) {
+				$args['attr'] = wp_parse_args( $attr, array() ); // FIXME: MAYBE WE HAVE PROBLEM!
+				$args['attr']['class'] = $args['class'];
+			} else {
+				$args['attr'] = array( 'class' => $args['class'] );
+			}
+		}
 
 		$html = self::get_image( $args );
 

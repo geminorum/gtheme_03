@@ -1,34 +1,34 @@
 <?php defined( 'ABSPATH' ) or die( 'Restricted access' );
 
-class gThemeSearch extends gThemeModuleCore 
+class gThemeSearch extends gThemeModuleCore
 {
 
 	public static function getAction()
 	{
 		if ( defined( 'GNETWORK_SEARCH_REDIRECT' ) && GNETWORK_SEARCH_REDIRECT )
 			return GNETWORK_SEARCH_URL;
-		
+
 		return home_url( '/' );
 	}
-	
+
 	public static function getKey()
 	{
 		if ( defined( 'GNETWORK_SEARCH_REDIRECT' ) && GNETWORK_SEARCH_REDIRECT )
 			return GNETWORK_SEARCH_QUERYID;
-			
+
 		return 's';
 	}
-	
+
 	// ANCESTOR: get_search_query()
-	public static function query( $query_var = null ) 
+	public static function query( $query_var = null )
 	{
 		if ( is_null( $query_var ) )
 			$query_var = self::getKey();
-			
+
 		$query = apply_filters( 'get_search_query', get_query_var( $query_var ) );
 		return esc_attr( $query );
 	}
-	
+
 	public static function form( $context = 'index' )
 	{
 		$html = '<form role="search" method="get" class="form search-form search-form-'.$context
@@ -45,7 +45,7 @@ class gThemeSearch extends gThemeModuleCore
 			   .'</button></span></div></form>';
 		echo $html;
 	}
-	
+
 	public static function form_buddypress()
 	{
 		$html = '<form action="'.bp_search_form_action().'" method="post" id="search-form"'
@@ -62,9 +62,8 @@ class gThemeSearch extends gThemeModuleCore
 			   .'</button></span></div>'
 			   .wp_nonce_field( 'bp_search_form', '_wpnonce', true, false )
 			   .'</form>';
-		
+
 		echo $html;
-		do_action( 'bp_search_login_bar' ); 
+		do_action( 'bp_search_login_bar' );
 	}
-	
 }

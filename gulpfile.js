@@ -27,9 +27,9 @@ gulp.task('watch', function() {
 
 gulp.task('compass', function() {
 	gulp.src('./stylesheets/*.scss')
-		
+
 		.pipe(plumber(plumberErrorHandler))
-		
+
 		.pipe(compass({
 			project: __dirname, //path.join(__dirname, 'assets'),
 			css: 'css',
@@ -43,9 +43,9 @@ gulp.task('compass', function() {
 				'sass-css-importer'
 			]
 		}))
-		
+
 		.pipe(minifyCSS())
-		
+
 		.pipe(gulp.dest('./css'));
 });
 

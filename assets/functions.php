@@ -8,11 +8,11 @@ function include_css( $array = array(), $debug = false ){
 			echo '/** cannot find css at '.$css.' **/';
 }
 
-/** 
-SEE : 
+/*
+SEE :
 	http://www.catswhocode.com/blog/3-ways-to-compress-css-files-using-php
 	https://github.com/GaryJones/Simple-PHP-CSS-Minification/
-**/
+*/
 
 function minify_css( $buffer ) {
 

@@ -221,7 +221,8 @@ class gThemeFilters extends gThemeModuleCore
 
 	public function the_excerpt( $text )
 	{
-		return $text.' '.gThemeContent::continue_reading( get_edit_post_link() );
+		// return $text.' '.gThemeContent::continue_reading( get_edit_post_link() );
+		return $text.' '.gThemeContent::continue_reading();
 	}
 
 	public function excerpt_length( $length )
@@ -341,7 +342,7 @@ class gThemeFilters extends gThemeModuleCore
 		$word_array      = str_word_count( $content, 2 );
 		$word_count      = 0;
 		$next_page_count = 0;
-		
+
 		while ( count( $word_array ) > $min ) {
 
 			$word_array = array_slice( $word_array, $each + $word_count, null, TRUE );
