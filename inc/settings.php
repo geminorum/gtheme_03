@@ -227,7 +227,7 @@ class gThemeSettings extends gThemeModuleCore
 			),
 		) );
 
-		if ( gThemeUtilities::is_dev() )
+		if ( gThemeUtilities::isDev() )
 			$wp_admin_bar->add_node( array(
 				'id'     => 'gtheme-template-base',
 				'title'  => esc_html( gtheme_template_base() ),

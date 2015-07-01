@@ -16,7 +16,7 @@ class gThemeContent extends gThemeModuleCore
 	// http://www.billerickson.net/code/wp_query-arguments/
 	public static function query( $args = array(), $expiration = GTHEME_CACHETTL )
 	{
-		if ( gThemeUtilities::is_dev() )
+		if ( gThemeUtilities::isDev() )
 			return new WP_Query( $args );
 
 		$key = 'gtq_'.md5( serialize( $args ) );
