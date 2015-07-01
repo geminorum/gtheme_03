@@ -9,7 +9,7 @@ class gThemeModuleCore
 
 	function __construct( $args = array() )
 	{
-		if ( ( ! $this->_ajax && self::ajax() )
+		if ( ( ! $this->_ajax && self::isAJAX() )
 			|| ( defined( 'WP_INSTALLING' ) && constant( 'WP_INSTALLING' ) ) )
 			return;
 
@@ -19,9 +19,9 @@ class gThemeModuleCore
 
 	public function setup_actions( $args = array() ) {}
 
-	public static function ajax()
+	public static function isAJAX()
 	{
-		return ( defined( 'DOING_AJAX' ) && DOING_AJAX;
+		return defined( 'DOING_AJAX' ) && DOING_AJAX;
 	}
 
 	// helper
