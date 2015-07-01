@@ -15,19 +15,19 @@ class gThemeAdmin extends gThemeModuleCore
 
 		$this->_default_user = gThemeOptions::get_option( 'default_user', 0 );
 
-		add_filter( 'default_avatar_select', array( & $this, 'default_avatar_select' ) );
+		add_filter( 'default_avatar_select', array( &$this, 'default_avatar_select' ) );
 
 		if ( $this->_default_user > 0 ) {
 
 			if ( $set_def_user )
-				add_filter( 'wp_insert_post_data', array( & $this, 'wp_insert_post_data' ), 9, 2 );
+				add_filter( 'wp_insert_post_data', array( &$this, 'wp_insert_post_data' ), 9, 2 );
 
 			if ( $set_def_user_comments )
-				add_filter( 'preprocess_comment', array( & $this, 'preprocess_comment' ) );
+				add_filter( 'preprocess_comment', array( &$this, 'preprocess_comment' ) );
 		}
 
 		if ( $default_publish )
-			add_action ( 'admin_menu', array( & $this, 'admin_menu' ) );
+			add_action ( 'admin_menu', array( &$this, 'admin_menu' ) );
 	}
 
 	public function wp_insert_post_data( $data, $postarr )
@@ -39,9 +39,12 @@ class gThemeAdmin extends gThemeModuleCore
 
 		$post_type_object = get_post_type_object( $postarr['post_type'] );
 
-		if ( is_super_admin() || current_user_can( $post_type_object->cap->edit_others_posts ) ) {
-			if ( 'auto-draft' == $postarr['post_status'] && $user_ID == $postarr['post_author'] )
-				$data['post_author'] = (int) $this->_default_user;
+		if ( is_super_admin()
+			|| current_user_can( $post_type_object->cap->edit_others_posts ) ) {
+
+			if ( 'auto-draft' == $postarr['post_status']
+				&& $user_ID == $postarr['post_author'] )
+					$data['post_author'] = (int) $this->_default_user;
 		}
 
 		return $data;
@@ -50,7 +53,7 @@ class gThemeAdmin extends gThemeModuleCore
 	// force default user on admin comment replies by super admins
 	public function preprocess_comment( $commentdata )
 	{
-		if ( defined( 'DOING_AJAX' ) && constant( 'DOING_AJAX' ) ) {
+		if ( self::isAJAX() ) {
 			if ( is_admin() && is_super_admin() ) {
 				if ( $this->_default_user > 0 ) {
 					$user = get_user_by( 'id', (int) $this->_default_user );
@@ -79,6 +82,6 @@ class gThemeAdmin extends gThemeModuleCore
 	// disable avatar select on admin settings
 	public function default_avatar_select( $avatar_list )
 	{
-		return '<p>'.__( '<strong>The default avatar is overrided by the active theme.</strong>', GTHEME_TEXTDOMAIN ).'</p>';
+		return '<br /><p>'.__( '<strong>The default avatar is overrided by the active theme.</strong>', GTHEME_TEXTDOMAIN ).'</p>';
 	}
 }
