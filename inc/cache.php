@@ -25,20 +25,40 @@ class gThemeFragmentCache
 		$this->ttl       = $ttl;
 		$this->transient = is_null( $transient ) ? gtheme_wp_cache_disabled() : $transient;
 		$this->site      = is_multisite() && $site;
+		
+		if ( GTHEME_FLUSH )
+			$this->__flush();
+	}
+	
+	protected function __flush()
+	{
+		if ( $this->transient ) {
+			if ( $this->site ) {
+				delete_site_transient( GTHEME_FRAGMENTCACHE.'_'.$this->key );
+			} else {
+				delete_transient( GTHEME_FRAGMENTCACHE.'_'.$this->key );
+			}
+		} else {
+			wp_cache_delete( $this->key, GTHEME_FRAGMENTCACHE );
+		}
 	}
 
 	public function output()
 	{
-		if ( constant( 'GTHEME_FLUSH' ) || gThemeUtilities::isDev() )
+		if ( gThemeUtilities::isDev() )
 			return FALSE;
 
-		if ( $this->transient ) {
-			if ( $this->site )
-				$output = get_site_transient( GTHEME_FRAGMENTCACHE.'_'.$this->key );
-			else
-				$output = get_transient( GTHEME_FRAGMENTCACHE.'_'.$this->key );
-		} else {
-			$output = wp_cache_get( $this->key, GTHEME_FRAGMENTCACHE );
+		if ( GTHEME_FLUSH ) {
+			$output = '';
+		} else {			
+			if ( $this->transient ) {
+				if ( $this->site )
+					$output = get_site_transient( GTHEME_FRAGMENTCACHE.'_'.$this->key );
+				else
+					$output = get_transient( GTHEME_FRAGMENTCACHE.'_'.$this->key );
+			} else {
+				$output = wp_cache_get( $this->key, GTHEME_FRAGMENTCACHE );
+			}
 		}
 
 		if ( ! empty( $output ) ) {
@@ -55,26 +75,16 @@ class gThemeFragmentCache
 		if ( gThemeUtilities::isDev() )
 			return;
 
-		if ( ! constant( 'GTHEME_FLUSH' ) )
-			$output = ob_get_flush(); // Flushes the buffers
+		$output = ob_get_flush();
 
 		if ( $this->transient ) {
 			if ( $this->site ) {
-				if ( constant( 'GTHEME_FLUSH' ) )
-					delete_site_transient( GTHEME_FRAGMENTCACHE.'_'.$this->key );
-				else
-					set_site_transient( GTHEME_FRAGMENTCACHE.'_'.$this->key, $output, $this->ttl );
+				set_site_transient( GTHEME_FRAGMENTCACHE.'_'.$this->key, $output, $this->ttl );
 			} else {
-				if ( constant( 'GTHEME_FLUSH' ) )
-					delete_transient( GTHEME_FRAGMENTCACHE.'_'.$this->key );
-				else
-					set_transient( GTHEME_FRAGMENTCACHE.'_'.$this->key, $output, $this->ttl );
+				set_transient( GTHEME_FRAGMENTCACHE.'_'.$this->key, $output, $this->ttl );
 			}
 		} else {
-			if ( constant( 'GTHEME_FLUSH' ) )
-				wp_cache_delete( $this->key, GTHEME_FRAGMENTCACHE );
-			else
-				wp_cache_add( $this->key, $output, GTHEME_FRAGMENTCACHE, $this->ttl );
+			wp_cache_add( $this->key, $output, GTHEME_FRAGMENTCACHE, $this->ttl );
 		}
 
 		if ( $notice && current_user_can( $notice ) && ! gThemeUtilities::isDev() )
@@ -86,10 +96,10 @@ class gThemeFragmentCache
 		if ( gThemeUtilities::isDev() )
 			return;
 
-		if ( ! constant( 'GTHEME_FLUSH' ) )
-			$output = ob_get_flush(); // Flushes the buffers
+		$output = ob_get_flush();
 	}
 
+	// DEPRECATED
 	public static function flush( $key, $transient = null, $site = false )
 	{
 		if ( is_null( $transient ) )
