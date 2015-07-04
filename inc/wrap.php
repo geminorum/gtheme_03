@@ -89,16 +89,18 @@ class gThemeWrap extends gThemeModuleCore
 	public static function htmlOpen()
 	{
 		$attributes = array();
-		$html_attributes = '';
 
 		if ( function_exists( 'is_rtl' ) && is_rtl() )
 			$attributes[] = 'dir="rtl"';
 
 		if ( $lang = get_bloginfo( 'language' ) )
 			$attributes[] = "lang=\"$lang\"";
+		
+		$font_stack = gThemeOptions::info( 'css_font_stack', FALSE );
+		if ( $font_stack && count( $font_stack ) )
+			$attributes[] = 'data-font-stack=\''.json_encode( $font_stack ).'\'';
 
 		$html_attributes = ' '.apply_filters( 'language_attributes', implode( ' ', $attributes ) );
-		$html_attributes .= ' data-font-stack=\''.json_encode( gThemeOptions::info( 'css_font_stack', array( 'Arial', 'Tahoma' ) ) ).'\'';
 
 		$classes = array( 'no-js' );
 
@@ -115,7 +117,6 @@ class gThemeWrap extends gThemeModuleCore
 <!--[if !IE]><!--> <html<?php echo $html_attributes; ?> class="<?php echo $html_classes; ?>"> <!--<![endif]--><?php
 	}
 }
-
 
 function gtheme_template_path() {
 	return gThemeWrap::$main_template;
