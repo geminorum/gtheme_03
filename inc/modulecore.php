@@ -228,7 +228,7 @@ class gThemeModuleCore
 			echo '</td></tr>';
 	}
 
-	var $counter = 0;
+	var $_counter = 0;
 
 	public function selector( $prefix = 'theme-selector-%d' )
 	{
