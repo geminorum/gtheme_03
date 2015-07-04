@@ -44,6 +44,7 @@ final class gThemeCore
 			'shortcodes' => 'gThemeShortCodes',
 			'l10n'       => 'gThemeL10N',
 			'frontpage'  => 'gThemeFrontPage',
+			'pages'      => 'gThemePages',
 		);
 
 		if ( is_admin() ) {

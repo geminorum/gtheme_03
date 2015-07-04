@@ -84,6 +84,20 @@ class gThemeOptions extends gThemeModuleCore
 				),
 			),
 
+			// PAGES API
+			'pages' => array(
+				'search' => array(
+					'title' => __( 'Search Page', GTHEME_TEXTDOMAIN ),
+					'desc'  => __( 'Select Search Page', GTHEME_TEXTDOMAIN ),
+					'def'   => 0,
+				),
+				'latest' => array(
+					'title' => __( 'Latest Posts Page', GTHEME_TEXTDOMAIN ),
+					'desc'  => __( 'Select Latest Posts Page', GTHEME_TEXTDOMAIN ),
+					'def'   => 0,
+				),
+			),
+
 			'default_sep'        => ' ',
 			'title_sep'          => is_rtl()? ' &laquo; ' : ' &raquo; ',
 			'nav_sep'            => is_rtl() ? ' &raquo; ' : ' &laquo; ',
@@ -185,6 +199,7 @@ class gThemeOptions extends gThemeModuleCore
 			),
 
 			'settings_legend' => FALSE, // html content to appear after settings
+			// DEPRECATED: use PAGES API
 			'search_page' => gtheme_get_option( 'search_page', 0 ),
 
 			// 'home_url_override' => '', // full escaped url to overrided home page / comment to disable
@@ -224,7 +239,7 @@ class gThemeOptions extends gThemeModuleCore
 				'Tahoma',
 			),
 
-			// BANNERS
+			// BANNERS API
 			'banners_legend' => FALSE, // html before admin banners page
 			'banner_groups'  => array(
 				'first'  => _x( 'First', 'Banner Groups', GTHEME_TEXTDOMAIN ),

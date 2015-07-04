@@ -115,11 +115,6 @@ class gThemeModuleCore
 					'id'    => $id,
 				), $html );
 
-				if ( $args['desc'] )
-					echo gThemeUtilities::html( 'p', array(
-						'class' => 'description',
-					), $args['desc'] );
-
 			break;
 
 			case 'text' :
@@ -133,11 +128,6 @@ class gThemeModuleCore
 					'value' => $value,
 					'dir'   => $args['dir'],
 				) );
-
-				if ( $args['desc'] )
-					echo gThemeUtilities::html( 'p', array(
-						'class' => 'description',
-					), $args['desc'] );
 
 			break;
 
@@ -174,11 +164,6 @@ class gThemeModuleCore
 					), $html.'&nbsp;'.esc_html( $value_title ) ).'</p>';
 				}
 
-				if ( $args['desc'] )
-					echo gThemeUtilities::html( 'p', array(
-						'class' => 'description',
-					), $args['desc'] );
-
 			break;
 
 			case 'select' :
@@ -197,11 +182,8 @@ class gThemeModuleCore
 						'id'    => $id,
 					), $html );
 
-					if ( $args['desc'] )
-						echo gThemeUtilities::html( 'p', array(
-							'class' => 'description',
-						), $args['desc'] );
 				}
+
 			break;
 
 			case 'textarea' :
@@ -214,21 +196,33 @@ class gThemeModuleCore
 					'cols'  => 45,
 				), esc_textarea( $value ) );
 
-				if ( $args['desc'] )
-					echo gThemeUtilities::html( 'p', array(
-						'class' => 'description',
-					), $args['desc'] );
+			break;
 
+			case 'page' :
+
+				wp_dropdown_pages( array(
+					'post_type'        => 'page',
+					'selected'         => $value,
+					'name'             => $name,
+					'id'               => $id,
+					'class'            => $args['class'],
+					'show_option_none' => __( '&mdash; Select Page &mdash;', GTHEME_TEXTDOMAIN ),
+					'sort_column'      => 'menu_order',
+					'sort_order'       => 'asc',
+					'post_status'      => 'publish,private,draft',
+				));
 
 			break;
 
 			default :
 				echo 'Error: setting type\'s not defind';
-				if ( $args['desc'] )
-					echo gThemeUtilities::html( 'p', array(
-						'class' => 'description',
-					), $args['desc'] );
 		}
+
+		if ( $args['desc'] )
+			echo gThemeUtilities::html( 'p', array(
+				'class' => 'description',
+			), $args['desc'] );
+
 
 		if ( $wrap )
 			echo '</td></tr>';
