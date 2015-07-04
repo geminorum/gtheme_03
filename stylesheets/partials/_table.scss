@@ -1,42 +1,37 @@
 
 // COPY FROM P2 STYLE
-// JUST A COPY
 
-.postcontent table,
-.commentcontent table {
+table {
 	border: 1px solid #ccc;
 	border-width: 1px 1px 1px 0;
 	border-spacing: 0;
 	margin: .7em 0 1.5em;
 	width: 100%;
-}
-.postcontent table td,
-.commentcontent table td {
-	border: 1px solid #ccc;
-	border-width: 1px 0 0 1px;
-	padding: 6px 15px;
-}
-.postcontent table th,
-.commentcontent table th {
-	background-color: #f7f7f7;
-	color: #555;
-	border-left: 1px solid #ccc;
-	font-weight: bold;
-	padding: 6px 15px;
-}
-.postcontent table tr,
-.commentcontent table tr {
-	border: 0;
-	border-width: 0;
-}
-.postcontent table ul,
-.postcontent table ol,
-.postcontent table p,
-.postcontent table blockquote,
-.commentcontent table ul,
-.commentcontent table ol,
-.commentcontent table p,
-.commentcontent table blockquote, {
-	margin-top: 0 !important;
-	margin-bottom: 1.6em !important;
+	
+	td {
+		border: 1px solid #ccc;
+		border-width: 1px 0 0 1px;
+		padding: 6px 15px;
+	}
+	
+	th {
+		background-color: #f7f7f7;
+		color: #555;
+		border-left: 1px solid #ccc;
+		font-weight: bold;
+		padding: 6px 15px;
+	}
+	
+	tr {
+		border: 0;
+		border-width: 0;
+	}
+	
+	ul,
+	ol,
+	p,
+	blockquote {
+		margin-top: 0 !important;
+		margin-bottom: 1.6em !important;
+	}	
 }
