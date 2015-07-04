@@ -14,8 +14,8 @@
  * ====================================================================================================================*/
 @font-face {
   font-family: 'flexslider-icon';
-  src: url('../../gtheme_03/libs/flexslider/fonts/flexslider-icon.eot');
-  src: url('../../gtheme_03/libs/flexslider/fonts/flexslider-icon.eot?#iefix') format('embedded-opentype'), url('../../gtheme_03/libs/flexslider/fonts/flexslider-icon.woff') format('woff'), url('../../gtheme_03/libs/flexslider/fonts/flexslider-icon.ttf') format('truetype'), url('../../gtheme_03/libs/flexslider/fonts/flexslider-icon.svg#flexslider-icon') format('svg');
+  src: url('fonts/flexslider-icon.eot');
+  src: url('fonts/flexslider-icon.eot?#iefix') format('embedded-opentype'), url('fonts/flexslider-icon.woff') format('woff'), url('fonts/flexslider-icon.ttf') format('truetype'), url('fonts/flexslider-icon.svg#flexslider-icon') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -264,11 +264,11 @@ html[xmlns] .flexslider .slides {
  * ====================================================================================================================*/
 @media screen and (max-width: 860px) {
   .flex-direction-nav .flex-prev {
-	opacity: 1;
-	left: 10px;
+    opacity: 1;
+    left: 10px;
   }
   .flex-direction-nav .flex-next {
-	opacity: 1;
-	right: 10px;
+    opacity: 1;
+    right: 10px;
   }
 }
