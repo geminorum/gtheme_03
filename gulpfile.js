@@ -1,5 +1,5 @@
 var gulp    = require('gulp'),
-	//sass    = require('gulp-sass'),
+	// sass    = require('gulp-sass'),
 	compass = require('gulp-compass'),
 	plumber = require('gulp-plumber'),
 	notify  = require('gulp-notify'),
@@ -7,12 +7,12 @@ var gulp    = require('gulp'),
 	// path    = require('path');
 
 gulp.task('default', function(){
-    console.log( 'Hi, I\'m Gulp!' );
+	console.log( 'Hi, I\'m Gulp!' );
 });
 
 var plumberErrorHandler = { errorHandler: notify.onError({
-    title: 'Gulp',
-    message: 'Error: <%= error.message %>'
+	title: 'Gulp',
+	message: 'Error: <%= error.message %>'
   })
 };
 

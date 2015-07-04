@@ -25,7 +25,7 @@ class gThemeSettings extends gThemeModuleCore
 
 			add_action( 'admin_menu', array( &$this, 'admin_menu' ) );
 
-			add_action( 'gtheme_settings_sub_general', array( &$this, 'sub_general' ), 10, 2 );
+			add_action( 'gtheme_settings_sub_general', array( &$this, 'settings_sub_html' ), 10, 2 );
 			add_action( 'gtheme_settings_load', array( &$this, 'load' ) );
 
 		} else {
@@ -99,7 +99,7 @@ class gThemeSettings extends gThemeModuleCore
 		do_action( 'gtheme_settings_load', $sub );
 	}
 
-	public function sub_general( $settings_uri, $sub )
+	public function settings_sub_html( $settings_uri, $sub )
 	{
 		$defaults = self::defaults();
 		$options = gThemeOptions::get_options();

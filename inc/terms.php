@@ -8,17 +8,17 @@ class gThemeTerms extends gThemeModuleCore
 	public function setup_actions( $args = array() )
 	{
 		extract( shortcode_atts( array(
-			'system_tags' => false,
-			'p2p'         => false,
+			'system_tags' => FALSE,
+			'p2p'         => FALSE,
 		), $args ) );
 
 		if ( $system_tags ) {
-			add_action( 'init', array( & $this, 'register_taxonomies' ) );
-			add_filter( 'post_class', array( & $this, 'post_class' ), 10, 3 );
+			add_action( 'init', array( &$this, 'register_taxonomies' ) );
+			add_filter( 'post_class', array( &$this, 'post_class' ), 10, 3 );
 		}
 
 		if ( $p2p )
-			add_action( 'p2p_init', array( & $this, 'p2p_init' ) );
+			add_action( 'p2p_init', array( &$this, 'p2p_init' ) );
 	}
 
 	public function register_taxonomies()
@@ -31,7 +31,7 @@ class gThemeTerms extends gThemeModuleCore
 				'name'                       => _x( 'System Tags', 'system tags labels', GTHEME_TEXTDOMAIN ),
 				'singular_name'              => _x( 'System Tag', 'system tags labels', GTHEME_TEXTDOMAIN ),
 				'search_items'               => _x( 'Search System Tags', 'system tags labels', GTHEME_TEXTDOMAIN ),
-				'popular_items'              => null,
+				'popular_items'              => NULL,
 				'all_items'                  => _x( 'All System Tags', 'system tags labels', GTHEME_TEXTDOMAIN ),
 				'parent_item'                => _x( 'Parent System Tag', 'system tags labels', GTHEME_TEXTDOMAIN ),
 				'parent_item_colon'          => _x( 'Parent System Tag:', 'system tags labels', GTHEME_TEXTDOMAIN ),
@@ -44,14 +44,14 @@ class gThemeTerms extends gThemeModuleCore
 				'choose_from_most_used'      => _x( 'Choose from most used System Tags', 'system tags labels', GTHEME_TEXTDOMAIN ),
 				'menu_name'                  => _x( 'System Tags', 'system tags labels', GTHEME_TEXTDOMAIN ),
 			),
-			'public'                => false,
-			'show_in_nav_menus'     => false,
-			'show_ui'               => true,
-			'show_tagcloud'         => false,
-			'hierarchical'          => true,
+			'public'                => FALSE,
+			'show_in_nav_menus'     => FALSE,
+			'show_ui'               => TRUE,
+			'show_tagcloud'         => FALSE,
+			'hierarchical'          => TRUE,
 			'update_count_callback' => array( 'gThemeUtilities', 'update_count_callback' ),
-			'rewrite'               => false,
-			'query_var'             => true,
+			'rewrite'               => FALSE,
+			'query_var'             => TRUE,
 			'capabilities'          => array(
 				'manage_terms' => $cap,
 				'edit_terms'   => $cap,
@@ -79,7 +79,7 @@ class gThemeTerms extends gThemeModuleCore
 			'name'       => 'posts_to_posts',
 			'from'       => 'post',
 			'to'         => 'post',
-			'reciprocal' => true,
+			'reciprocal' => TRUE,
 			'title'      => __( 'Connected Posts', GTHEME_TEXTDOMAIN ),
 		) );
 	}
@@ -89,12 +89,12 @@ class gThemeTerms extends gThemeModuleCore
 	public static function insert_defaults( $taxonomy, $defaults )
 	{
 		if ( ! taxonomy_exists( $taxonomy ) )
-			return false;
+			return FALSE;
 
 		foreach ( $defaults as $term_slug => $term_name )
 			if ( ! term_exists( $term_slug, $taxonomy ) )
 				wp_insert_term( $term_name, $taxonomy, array( 'slug' => $term_slug ) );
 
-		return true;
+		return TRUE;
 	}
 }

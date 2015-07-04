@@ -1,7 +1,7 @@
 <?php defined( 'ABSPATH' ) or die( 'Restricted access' );
 
 // header
-get_header( gtheme_template_base() );
+	get_header( gtheme_template_base() );
 
 // before
 echo "\n\n".'<!-- BEFORE: START -->'."\n\n";

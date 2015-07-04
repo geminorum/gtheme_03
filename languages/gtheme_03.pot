@@ -1,589 +1,449 @@
-msgid ""
-msgstr ""
-"Project-Id-Version: gTheme 3 v0.3.3\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: \n"
-"PO-Revision-Date: 2015-07-04 07:04+0330\n"
-"Last-Translator: geminorum <contact@geminorum.ir>\n"
-"Language-Team: \n"
-"Language: fa_IR\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2;plural=n!=1;\n"
-"X-Generator: Poedit 1.8.1\n"
-"X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;"
-"_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2\n"
-"X-Poedit-Basepath: ../\n"
-"X-Textdomain-Support: yes\n"
-"X-Poedit-SearchPath-0: .\n"
-"X-Poedit-SearchPathExcluded-0: ../libs\n"
-
-# @ gtheme
 #: admin/banners.php:2
 msgid "Theme Banner Tiles Settings"
-msgstr "تنظیمات کاشی‌های پوسته"
+msgstr ""
 
-# @ gtheme
 #: admin/banners.php:6
 msgid "Legend"
 msgstr ""
 
-# @ gtheme
 #: admin/banners.php:8
 msgid "Your theme extra information"
 msgstr ""
 
-# @ gtheme
 #: admin/banners.php:15
 msgid "Group"
-msgstr "گروه"
+msgstr ""
 
-# @ gtheme
 #: admin/banners.php:16
 msgid "Ord."
-msgstr "تر…"
+msgstr ""
 
-# @ gtheme
 #: admin/banners.php:17
 msgid "Title"
-msgstr "عنوان"
+msgstr ""
 
-# @ gtheme
 #: admin/banners.php:18
 msgid "URL"
-msgstr "نشانی پیوند"
+msgstr ""
 
-# @ gtheme
 #: admin/banners.php:19
 msgid "Image"
-msgstr "نشانی تصویر"
+msgstr ""
 
-# @ gtheme
 #: admin/banners.php:40 admin/banners.php:54 admin/banners.php:67
 msgid "Remove"
-msgstr "حذف"
+msgstr ""
 
-# @ gtheme
 #: admin/banners.php:73
 msgid "Add Another"
-msgstr "افزودن گزینه دیگر"
+msgstr ""
 
-# @ default
 #: admin/banners.php:75
 msgid "Save"
 msgstr ""
 
-# @ gtheme
 #: comments.php:5
-msgid ""
-"This post is password protected. Enter the password to view any comments."
+msgid "This post is password protected. Enter the password to view any comments."
 msgstr ""
 
-# @ gtheme
 #: comments.php:35 inc/options.php:165
 msgid "Comments are closed."
-msgstr "دیدگاه‌ها مسدود است."
+msgstr ""
 
-# @ gtheme
 #: content-404.php:5
 msgid "Oops! That page can&rsquo;t be found."
-msgstr "متأسفیم"
-
-# @ gtheme
-#: content-404.php:11
-msgid ""
-"It looks like nothing was found at this location. Maybe try one of the links "
-"below or a search?"
 msgstr ""
-"نتوانستیم آن‌چه شما به‌دنبالش بودید را پیدا کنیم. شاید جستجوی دوباره یاری‌تان "
-"کند."
 
-# @ gtheme
+#: content-404.php:11
+msgid "It looks like nothing was found at this location. Maybe try one of the links below or a search?"
+msgstr ""
+
 #: inc/admin.php:85
 msgid "<strong>The default avatar is overrided by the active theme.</strong>"
-msgstr "<strong>آواتار پیش‌فرض توسط پوسته فعال تنظیم میشود.</strong>"
+msgstr ""
 
-# @ gtheme
 #: inc/banners.php:108
 msgid "Banners"
-msgstr "بنرها"
+msgstr ""
 
-# @ gtheme
 #: inc/cache.php:81
 msgid "Refreshed!"
 msgstr ""
 
-# @ gtheme
 #: inc/comments.php:139
 msgid "(This topic will automatically close in %s. )"
 msgstr ""
 
-# @ gtheme
 #: inc/comments.php:146
 msgid "Comment navigation"
-msgstr "راهبری نوشته‌ها"
+msgstr ""
 
-# @ gtheme
 #: inc/comments.php:147
 msgid "&larr; Older Comments"
 msgstr ""
 
-# @ gtheme
 #: inc/comments.php:148
 msgid "Newer Comments &rarr;"
 msgstr ""
 
-# @ gtheme
 #: inc/comments.php:166
 msgctxt "Comments Title"
 msgid "One thought on &ldquo;%2$s&rdquo;"
 msgid_plural "%1$s thoughts on &ldquo;%2$s&rdquo;"
-msgstr[0] "یک دیدگاه دربارهٔ «%2$s»"
-msgstr[1] "%1$s  دیدگاه دربارهٔ «%2$s»"
+msgstr[0] ""
+msgstr[1] ""
 
-# @ gtheme
 #: inc/comments.php:184
 msgid "Grab the feed for comments of this post"
 msgstr ""
 
-# @ gtheme
 #: inc/comments.php:219 inc/options.php:166
 msgid "Your comment is awaiting moderation."
-msgstr "دیدگاه شما در انتظار بررسی است."
+msgstr ""
 
-# @ gtheme
 #: inc/comments.php:234
 msgctxt "1: date, 2: time"
 msgid "%1$s at %2$s"
-msgstr "%1$s در %2$s"
+msgstr ""
 
-# @ default
 #: inc/comments.php:245
 msgid "Reply"
-msgstr "پاسخ"
+msgstr ""
 
-# @ default
 #: inc/comments.php:246
 msgid "Reply to %s"
 msgstr ""
 
-# @ default
 #: inc/comments.php:247
 msgid "Log in to Reply"
-msgstr "ورود برای پاسخ"
+msgstr ""
 
-# @ default
 #: inc/comments.php:248
 msgid "Edit This"
-msgstr "ویرایش کنید"
+msgstr ""
 
-# @ gtheme
 #: inc/comments.php:297
 msgctxt "Comment Form Strings"
 msgid "(Required)"
-msgstr "(الزامی)"
+msgstr ""
 
-# @ gtheme
 #: inc/comments.php:298
 msgctxt "Comment Form Strings"
 msgid "Name"
-msgstr "نام"
+msgstr ""
 
-# @ gtheme
 #: inc/comments.php:299
 msgctxt "Comment Form Strings"
 msgid "Email"
-msgstr "ایمیل"
+msgstr ""
 
-# @ gtheme
 #: inc/comments.php:300
 msgctxt "Comment Form Strings"
 msgid "Website"
-msgstr "نشانی"
+msgstr ""
 
-# @ gtheme
 #: inc/comments.php:301
 msgctxt "Comment Form Strings"
 msgid "Comment"
-msgstr "دیدگاه"
+msgstr ""
 
-# @ default
 #: inc/comments.php:302
 msgid "You must be <a href=\"%s\">logged in</a> to post a comment."
 msgstr ""
 
-# @ default
 #: inc/comments.php:303
-msgid ""
-"Logged in as <a href=\"%1$s\">%2$s</a>. <a href=\"%3$s\" title=\"Log out of "
-"this account\">Log out?</a>"
+msgid "Logged in as <a href=\"%1$s\">%2$s</a>. <a href=\"%3$s\" title=\"Log out of this account\">Log out?</a>"
 msgstr ""
 
-# @ default
 #: inc/comments.php:304
 msgid "Leave a Reply"
 msgstr ""
 
-# @ default
 #: inc/comments.php:305
 msgid "Leave a Reply to %s"
 msgstr ""
 
-# @ default
 #: inc/comments.php:306
 msgid "Cancel reply"
 msgstr ""
 
-# @ default
 #: inc/comments.php:307
 msgid "Post Comment"
 msgstr ""
 
-# @ gtheme
 #: inc/content.php:63
-msgid ""
-" <span class=\"sep edit-sep\">|</span> <a href=\"%1$s\" title=\"%2$s\" class="
-"\"%3$s\">%4$s</a>"
+msgid " <span class=\"sep edit-sep\">|</span> <a href=\"%1$s\" title=\"%2$s\" class=\"%3$s\">%4$s</a>"
 msgstr ""
 
-# @ gtheme
 #: inc/content.php:65
 msgid "Jump to edit page"
-msgstr "این متن را ویرایش کنید"
+msgstr ""
 
-# @ gtheme
 #: inc/content.php:67
 msgctxt "continue reading link"
 msgid "Edit"
-msgstr "ویرایش"
-
-# @ gtheme
-#: inc/content.php:77
-msgid ""
-"<a %1$s href=\"%2$s\" title=\"Continue reading &ldquo;%3$s&rdquo; &hellip;\" "
-"class=\"%4$s\" >%5$s</a>%6$s"
 msgstr ""
 
-# @ gtheme
+#: inc/content.php:77
+msgid "<a %1$s href=\"%2$s\" title=\"Continue reading &ldquo;%3$s&rdquo; &hellip;\" class=\"%4$s\" >%5$s</a>%6$s"
+msgstr ""
+
 #: inc/content.php:82
 msgid "Read more&nbsp;<span class=\"excerpt-link-arr\">&rarr;</span>"
-msgstr "ادامه &hellip;"
+msgstr ""
 
-# @ gtheme
 #: inc/content.php:97
 msgid "Permanent link to &mdash;%s&mdash;"
-msgstr "پیوند پایدار به &mdash;%s&mdash;"
+msgstr ""
 
-# @ gtheme
 #: inc/content.php:99
 msgid "Short link to &mdash;%s&mdash;"
 msgstr ""
 
-# @ gtheme
 #: inc/content.php:240 inc/content.php:400
 msgid "Print Version"
-msgstr "نسخه چاپی"
-
-# @ gtheme
-#: inc/content.php:247 inc/content.php:438
-msgid "Share This"
-msgstr "همخوان کنید"
-
-# @ gtheme
-#: inc/content.php:253
-msgid "Short Link"
-msgstr "پیوند کوتاه"
-
-# @ gtheme
-#: inc/content.php:286
-msgid "<a href=\"%3$s\" class=\"%1$s\">Your Comment</a>"
-msgstr "<a href=\"%3$s\" class=\"%1$s\">دیدگاه شما</a>"
-
-# @ gtheme
-#: inc/content.php:287
-msgid "<a href=\"%3$s\" class=\"%1$s\">One Comment</a>"
-msgstr "<a href=\"%3$s\" class=\"%1$s\">یک دیدگاه</a>"
-
-# @ gtheme
-#: inc/content.php:288
-msgid "<a href=\"%3$s\" class=\"%1$s\">%2$s Comments</a>"
-msgstr "<a href=\"%3$s\" class=\"%1$s\">%2$s دیدگاه</a>"
-
-# @ gtheme
-#: inc/content.php:295
-msgid ""
-" <small><small>(<a href=\"%1$s\" title=\"%2$s\" class=\"%3$s\"><abbr title="
-"\"Really Simple Syndication\">RSS</abbr></a>)</small></small>"
 msgstr ""
 
-# @ gtheme
+#: inc/content.php:247 inc/content.php:438
+msgid "Share This"
+msgstr ""
+
+#: inc/content.php:253
+msgid "Short Link"
+msgstr ""
+
+#: inc/content.php:286
+msgid "<a href=\"%3$s\" class=\"%1$s\">Your Comment</a>"
+msgstr ""
+
+#: inc/content.php:287
+msgid "<a href=\"%3$s\" class=\"%1$s\">One Comment</a>"
+msgstr ""
+
+#: inc/content.php:288
+msgid "<a href=\"%3$s\" class=\"%1$s\">%2$s Comments</a>"
+msgstr ""
+
+#: inc/content.php:295
+msgid " <small><small>(<a href=\"%1$s\" title=\"%2$s\" class=\"%3$s\"><abbr title=\"Really Simple Syndication\">RSS</abbr></a>)</small></small>"
+msgstr ""
+
 #: inc/content.php:297
 msgid "Feed for this post's comments"
-msgstr "خوراک برای دیدگاه‌های این نوشته"
+msgstr ""
 
-# @ gtheme
 #: inc/content.php:307
 msgid "Edit"
-msgstr "ویرایش"
+msgstr ""
 
-# @ gtheme
 #: inc/content.php:336
 msgid "Increase font size"
-msgstr "خط درشت‌تر"
+msgstr ""
 
-# @ gtheme
 #: inc/content.php:346
 msgid "Decrease font size"
-msgstr "خط کوچک‌تر"
+msgstr ""
 
-# @ gtheme
 #: inc/content.php:357
 msgid "Justify paragraphs"
-msgstr "هم‌چین کردن متن"
+msgstr ""
 
-# @ gtheme
 #: inc/content.php:364
 msgid "Un-justify paragraphs"
-msgstr "غیر هم‌چین کردن متن"
+msgstr ""
 
-# @ gtheme
 #: inc/content.php:439
 msgid "Share This with your friends."
-msgstr "این متن را با دوستان خود هم‌خوان کنید."
+msgstr ""
 
-# @ gtheme
 #: inc/content.php:535
 msgid "less than 1 minute"
 msgstr ""
 
-# @ gtheme
 #: inc/content.php:537
 msgid "%d minute"
 msgid_plural "%d minutes"
 msgstr[0] ""
 msgstr[1] ""
 
-# @ gtheme
 #: inc/content.php:553
 msgid "Estimated read time:"
 msgstr ""
 
-# @ gtheme
 #: inc/filters.php:204
 msgid "Page %s"
-msgstr "صفحه  %s"
+msgstr ""
 
-# @ gtheme
 #: inc/image.php:164
 msgctxt "Media Tag Checkbox Label"
 msgid "%1$s (%2$s&nbsp;&times;&nbsp;%3$s)"
 msgstr ""
 
-# @ gtheme
 #: inc/image.php:176
 msgid "Media Tags"
-msgstr "برچسب‌ها"
+msgstr ""
 
-# @ gtheme
 #: inc/image.php:237
 msgid "&mdash; Select a Term &mdash;"
 msgstr ""
 
-# @ gtheme
 #: inc/image.php:247
 msgid "Assign for"
 msgstr ""
 
-# @ gtheme
 #: inc/modulecore.php:47
 msgid "&mdash; Select &mdash;"
-msgstr "&mdash; انتخاب کنید &mdash;"
+msgstr ""
 
-# @ default
 #: inc/modulecore.php:105
 msgid "Disabled"
-msgstr "غیرفعال"
+msgstr ""
 
-# @ default
 #: inc/modulecore.php:110
 msgid "Enabled"
-msgstr "فعال"
+msgstr ""
 
 #: inc/modulecore.php:209
 msgid "&mdash; Select Page &mdash;"
 msgstr ""
 
-# @ gtheme
 #: inc/navigation.php:13
 msgctxt "Post Navigation"
 msgid "<span aria-hidden=\"true\">&larr;</span> Older"
-msgstr "<span aria-hidden=\"true\">&rarr;</span> کهنه‌تر"
+msgstr ""
 
-# @ gtheme
 #: inc/navigation.php:14
 msgctxt "Post Navigation"
 msgid "Newer <span aria-hidden=\"true\">&rarr;</span>"
-msgstr "تازه‌تر <span aria-hidden=\"true\">&larr;</span>"
+msgstr ""
 
-# @ gtheme
 #: inc/navigation.php:17
 msgctxt "Index Navigation"
 msgid "<span aria-hidden=\"true\">&larr;</span> Older"
-msgstr "<span aria-hidden=\"true\">&rarr;</span> کهنه‌تر"
+msgstr ""
 
-# @ gtheme
 #: inc/navigation.php:18
 msgctxt "Index Navigation"
 msgid "Newer <span aria-hidden=\"true\">&rarr;</span>"
-msgstr "تازه‌تر <span aria-hidden=\"true\">&larr;</span>"
+msgstr ""
 
-# @ gtheme
 #: inc/navigation.php:28
 msgctxt "Navigation Title (Screen Reader Only)"
 msgid "Posts Navigation"
-msgstr "راهبری نوشته‌ها"
+msgstr ""
 
-# @ gtheme
 #: inc/navigation.php:103
 msgid "(Preview)"
-msgstr "(پیش‌نمایش)"
+msgstr ""
 
-# @ gtheme
 #: inc/navigation.php:108
 msgid "Page <strong>%s</strong> of %s"
-msgstr "برگه <strong>%s</strong> از %s"
+msgstr ""
 
-# @ gtheme
 #: inc/navigation.php:156
 msgid "Category Archives for <strong>%s</strong>"
-msgstr "بایگانی <strong>%s</strong>"
+msgstr ""
 
-# @ gtheme
 #: inc/navigation.php:158
 msgid "Tag Archives for <strong>%s</strong>"
 msgstr ""
 
-# @ gtheme
 #: inc/navigation.php:160
 msgid "Taxonomy Archives for <strong>%s</strong>"
 msgstr ""
 
-# @ gtheme
 #: inc/navigation.php:165
 msgid "Author Archives for <strong>%s</strong>"
-msgstr "بایگانی <strong>%s</strong>"
+msgstr ""
 
-# @ gtheme
 #: inc/navigation.php:167
 msgid "Search Results for <strong>%s</strong>"
-msgstr "نتایج جست‌وجو برای <strong>%s</strong>"
+msgstr ""
 
-# @ gtheme
 #: inc/navigation.php:169
 msgid "Daily Archives for <strong>%s</strong>"
 msgstr ""
 
-# @ gtheme
 #: inc/navigation.php:171
 msgid "Monthly Archives for <strong>%s</strong>"
-msgstr "بایگانی <strong>%s</strong>"
+msgstr ""
 
-# @ gtheme
 #: inc/navigation.php:173
 msgid "Yearly Archives for <strong>%s</strong>"
 msgstr ""
 
-# @ gtheme
 #: inc/navigation.php:175 inc/navigation.php:177
 msgid "Site Archives"
-msgstr "بایگانی"
+msgstr ""
 
-# @ gtheme
 #: inc/navigation.php:181
 msgid "Page <strong>%s</strong>"
-msgstr "صفحهٔ <strong>%s</strong>"
+msgstr ""
 
-# @ gtheme
 #: inc/options.php:10
 msgctxt "Theme Title"
 msgid "gTheme"
 msgstr ""
 
-# @ gtheme
 #: inc/options.php:14
 msgctxt "Admin Menu Title"
 msgid "Theme Settings"
-msgstr "تنظیمات پوسته"
+msgstr ""
 
-# @ gtheme
 #: inc/options.php:15
 msgctxt "Admin Settings Page Title"
 msgid "gTheme Settings"
 msgstr ""
 
-# @ gtheme
 #: inc/options.php:40
 msgid "Primary Navigation"
 msgstr ""
 
-# @ gtheme
 #: inc/options.php:41
 msgid "Secondary Navigation"
 msgstr ""
 
-# @ gtheme
 #: inc/options.php:42
 msgid "Tertiary Navigation"
 msgstr ""
 
-# @ gtheme
 #: inc/options.php:50
 msgctxt "Sidebar Titles"
 msgid "Index: Side"
 msgstr ""
 
-# @ gtheme
 #: inc/options.php:51
 msgctxt "Sidebar Titles"
 msgid "Singular: Side"
 msgstr ""
 
-# @ gtheme
 #: inc/options.php:57
 msgctxt "Media Tag Titles"
 msgid "Raw"
-msgstr "خام"
+msgstr ""
 
-# @ gtheme
 #: inc/options.php:62
 msgctxt "Media Tag Titles"
 msgid "Big"
-msgstr "بزرگ"
+msgstr ""
 
-# @ gtheme
 #: inc/options.php:67
 msgctxt "Media Tag Titles"
 msgid "Single"
-msgstr "نوشته"
+msgstr ""
 
-# @ gtheme
 #: inc/options.php:76
 msgid "Dashboard"
-msgstr "پیشخوان"
+msgstr ""
 
-# @ gtheme
 #: inc/options.php:77
 msgid "Dashboard Count"
 msgstr ""
 
-# @ gtheme
 #: inc/options.php:81
 msgid "Latest Posts"
 msgstr ""
 
-# @ gtheme
 #: inc/options.php:82
 msgid "Latest Posts Count"
 msgstr ""
@@ -604,159 +464,131 @@ msgstr ""
 msgid "Select Latest Posts Page"
 msgstr ""
 
-# @ gtheme
 #: inc/options.php:156
 msgid "&copy; All right reserved."
-msgstr "&copy; تمامی حقوق محفوظ است."
+msgstr ""
 
-# @ gtheme
 #: inc/options.php:175
 msgctxt "System Tags Defaults"
 msgid "Dashboard"
-msgstr "پیشخوان"
+msgstr ""
 
-# @ gtheme
 #: inc/options.php:176
 msgctxt "System Tags Defaults"
 msgid "Latest"
-msgstr "آخرین‌ها"
+msgstr ""
 
-# @ gtheme
 #: inc/options.php:177
 msgctxt "System Tags Defaults"
 msgid "No FrontPage"
-msgstr "عدم نمایش در صفحه نخست"
+msgstr ""
 
-# @ gtheme
 #: inc/options.php:181
 msgctxt "Editor Default Content"
 msgid "[content not available yet]"
-msgstr "[این صفحه در حال تکمیل است.]"
+msgstr ""
 
-# @ gtheme
 #: inc/options.php:186
 msgctxt "Editor Custom Class"
 msgid "Source"
-msgstr "منبع"
+msgstr ""
 
-# @ gtheme
 #: inc/options.php:191
 msgctxt "Editor Custom Class"
 msgid "Blockquote"
-msgstr "نقل‌قول"
+msgstr ""
 
-# @ gtheme
 #: inc/options.php:196
 msgctxt "Editor Custom Class"
 msgid "Deleted"
-msgstr "حذف‌شده"
+msgstr ""
 
-# @ gtheme
 #: inc/options.php:245
 msgctxt "Banner Groups"
 msgid "First"
-msgstr "اول"
+msgstr ""
 
-# @ gtheme
 #: inc/options.php:246
 msgctxt "Banner Groups"
 msgid "Second"
-msgstr "دوم"
+msgstr ""
 
 #: inc/pages.php:35
 msgid "Pages"
 msgstr ""
 
-# @ gtheme
 #: inc/search.php:37 inc/search.php:42
 msgctxt "label"
 msgid "Search for:"
-msgstr "جست‌وجو برای:"
+msgstr ""
 
-# @ gtheme
 #: inc/search.php:39
 msgctxt "placeholder"
 msgid "Search &hellip;"
-msgstr "جست‌وجو &hellip;"
+msgstr ""
 
-# @ gtheme
 #: inc/search.php:44
 msgctxt "submit button"
 msgid "Search"
-msgstr "جست‌وجو"
+msgstr ""
 
-# @ gtheme
 #: inc/search.php:54
 msgctxt "buddypress: label"
 msgid "Search for:"
-msgstr "جست‌وجو برای:"
+msgstr ""
 
-# @ gtheme
 #: inc/search.php:58
 msgctxt "buddypress: placeholder"
 msgid "Search &hellip;"
-msgstr "جست‌وجو &hellip;"
+msgstr ""
 
-# @ gtheme
 #: inc/search.php:61
 msgctxt "buddypress: submit button"
 msgid "Search"
-msgstr "جست‌وجو"
+msgstr ""
 
-# @ gtheme
 #: inc/settings.php:64
 msgid "Overview"
-msgstr "در یک نگاه"
+msgstr ""
 
-# @ gtheme
 #: inc/settings.php:65
 msgid "General"
-msgstr "همگانی"
+msgstr ""
 
-# @ gtheme
 #: inc/settings.php:69
 msgid "Settings not updated."
-msgstr "تنظیمات به‌روز نشد."
+msgstr ""
 
-# @ gtheme
 #: inc/settings.php:70
 msgid "Settings updated."
-msgstr "تنظیمات به‌روز شد."
+msgstr ""
 
-# @ gtheme
 #: inc/settings.php:108
 msgid "General Settings"
-msgstr "تنظیمات همگانی"
+msgstr ""
 
-# @ gtheme
 #: inc/settings.php:112
 msgid "Site User"
-msgstr "کاربر سایت"
+msgstr ""
 
-# @ gtheme
 #: inc/settings.php:117
 msgid "Site default user. using to hide editors!"
 msgstr ""
 
-# @ gtheme
 #: inc/settings.php:121
 msgid "FrontPage Title"
 msgstr ""
 
-# @ gtheme
 #: inc/settings.php:125
 msgid "The title used on frontpage. Blank to use the build-in text."
 msgstr ""
 
-# @ gtheme
 #: inc/settings.php:129
 msgid "FrontPage Description"
 msgstr ""
 
-# @ gtheme
 #: inc/settings.php:133
-msgid ""
-"The description meta tag used on frontpage. Blank to use the build-in text."
+msgid "The description meta tag used on frontpage. Blank to use the build-in text."
 msgstr ""
 
 #: inc/settings.php:137
@@ -767,58 +599,48 @@ msgstr ""
 msgid "Additional class to append to the body classess."
 msgstr ""
 
-# @ gtheme
 #: inc/settings.php:202
 msgid "Flush"
 msgstr ""
 
-# @ default
 #: inc/settings.php:210
 msgid "All Posts"
 msgstr ""
 
-# @ gtheme
 #: inc/shortcodes.php:290
 msgctxt "Panel Shortcode Title"
 msgid "Untitled"
-msgstr "بدون عنوان"
+msgstr ""
 
-# @ gtheme
 #: inc/shortcodes.php:365
 msgctxt "Tab Shortcode Title"
 msgid "Untitled"
-msgstr "بدون عنوان"
+msgstr ""
 
-# @ default
 #: inc/shortcodes.php:511
 msgid "#%d (no title)"
 msgstr ""
 
-# @ gtheme
 #: inc/sidebar.php:254
 msgid "gTheme: Recent Posts"
 msgstr ""
 
-# @ gtheme
 #: inc/sidebar.php:255
 msgid "Customized most recent posts."
 msgstr ""
 
-# @ gtheme
 #: inc/sidebar.php:360 inc/sidebar.php:511 inc/sidebar.php:578
 #: inc/sidebar.php:633 inc/sidebar.php:692 inc/sidebar.php:758
 msgid "Title:"
-msgstr "عنوان:"
+msgstr ""
 
-# @ gtheme
 #: inc/sidebar.php:372 inc/sidebar.php:590 inc/sidebar.php:645
 msgid "Context:"
-msgstr "زمینه:"
+msgstr ""
 
-# @ gtheme
 #: inc/sidebar.php:384 inc/sidebar.php:535
 msgid "Number of posts to show:"
-msgstr "تعداد نوشته‌هایی که نمایش داده می‌شود:"
+msgstr ""
 
 #: inc/sidebar.php:393
 msgid "gTheme: Recent Comments"
@@ -832,151 +654,124 @@ msgstr ""
 msgid "Avatar Size:"
 msgstr ""
 
-# @ gtheme
 #: inc/sidebar.php:544
 msgid "gTheme: Search"
 msgstr ""
 
-# @ gtheme
 #: inc/sidebar.php:545
 msgid "Selectable search form"
 msgstr ""
 
-# @ gtheme
 #: inc/sidebar.php:599
 msgid "gTheme: Themplate Part"
 msgstr ""
 
-# @ gtheme
 #: inc/sidebar.php:600
 msgid "Include selected template part into sidebars"
 msgstr ""
 
-# @ gtheme
 #: inc/sidebar.php:654
 msgid "gTheme: Children"
 msgstr ""
 
-# @ gtheme
 #: inc/sidebar.php:655
 msgid "List of current post children"
 msgstr ""
 
-# @ gtheme
 #: inc/sidebar.php:711 inc/sidebar.php:777
 msgid "Post Type:"
 msgstr ""
 
-# @ gtheme
 #: inc/sidebar.php:720
 msgid "gTheme: Siblings"
 msgstr ""
 
-# @ gtheme
 #: inc/sidebar.php:721
 msgid "List of current post siblings"
 msgstr ""
 
-# @ gtheme
 #: inc/template.php:12
 msgid "Home"
-msgstr "خانه"
+msgstr ""
 
-# @ gtheme
 #: inc/terms.php:31 inc/terms.php:45
 msgctxt "system tags labels"
 msgid "System Tags"
-msgstr "ناوبری‌ها"
+msgstr ""
 
-# @ gtheme
 #: inc/terms.php:32
 msgctxt "system tags labels"
 msgid "System Tag"
 msgstr ""
 
-# @ gtheme
 #: inc/terms.php:33
 msgctxt "system tags labels"
 msgid "Search System Tags"
 msgstr ""
 
-# @ gtheme
 #: inc/terms.php:35
 msgctxt "system tags labels"
 msgid "All System Tags"
 msgstr ""
 
-# @ gtheme
 #: inc/terms.php:36
 msgctxt "system tags labels"
 msgid "Parent System Tag"
 msgstr ""
 
-# @ gtheme
 #: inc/terms.php:37
 msgctxt "system tags labels"
 msgid "Parent System Tag:"
 msgstr ""
 
-# @ gtheme
 #: inc/terms.php:38
 msgctxt "system tags labels"
 msgid "Edit System Tag"
 msgstr ""
 
-# @ gtheme
 #: inc/terms.php:39
 msgctxt "system tags labels"
 msgid "Update System Tag"
 msgstr ""
 
-# @ gtheme
 #: inc/terms.php:40
 msgctxt "system tags labels"
 msgid "Add New System Tag"
 msgstr ""
 
-# @ gtheme
 #: inc/terms.php:41
 msgctxt "system tags labels"
 msgid "New System Tag"
 msgstr ""
 
-# @ gtheme
 #: inc/terms.php:42
 msgctxt "system tags labels"
 msgid "Separate system tags with commas"
 msgstr ""
 
-# @ gtheme
 #: inc/terms.php:43
 msgctxt "system tags labels"
 msgid "Add or remove System Tags"
 msgstr ""
 
-# @ gtheme
 #: inc/terms.php:44
 msgctxt "system tags labels"
 msgid "Choose from most used System Tags"
 msgstr ""
 
-# @ gtheme
 #: inc/terms.php:83
 msgid "Connected Posts"
 msgstr ""
 
-# @ gtheme
 #: inc/utilities.php:245
 msgctxt "Alert button (screen reader only)"
 msgid "Close"
-msgstr "بستن"
+msgstr ""
 
-# @ default
 #: libs/wp-image/wp-image.php:49
 msgid "This image size has been registered"
 msgstr ""
 
-# @ default
 #: libs/wp-image/wp-image.php:56
 msgid "This image size already exists"
 msgstr ""
