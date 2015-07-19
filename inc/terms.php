@@ -23,8 +23,8 @@ class gThemeTerms extends gThemeModuleCore
 
 	public function register_taxonomies()
 	{
-		$cpt = gtheme_get_info( 'system_tags_cpt', array( 'post' ) );
-		$cap = gtheme_get_info( 'settings_access', 'edit_theme_options' );
+		$cpt = gThemeOptions::info( 'system_tags_cpt', array( 'post' ) );
+		$cap = gThemeOptions::info( 'settings_access', 'edit_theme_options' );
 
 		register_taxonomy( GTHEME_SYSTEMTAGS, $cpt, array(
 			'labels' => array(
@@ -59,6 +59,12 @@ class gThemeTerms extends gThemeModuleCore
 				'assign_terms' => $cap,
 			)
 		) );
+		
+		if ( is_admin() ) {
+			// FIXME: hook this to menu
+			$this->system_tags_table_action( 'gtheme_action' );
+			add_action( 'after-'.GTHEME_SYSTEMTAGS.'-table', array( &$this, 'after_system_tags_table' ) );
+		}
 	}
 
 	// system tags to post_classess
@@ -71,6 +77,49 @@ class gThemeTerms extends gThemeModuleCore
 				$classes[] = 'systemtag-'.$system_tag->slug;
 
 		return $classes;
+	}
+	
+	private function system_tags_table_action( $action_name )
+	{
+		if ( ! isset( $_REQUEST[$action_name] ) )
+			return FALSE;
+
+		if ( 'install_systemtags' == $_REQUEST[$action_name] ) {
+			
+			$defaults = gThemeOptions::info( 'system_tags_defaults', array() );
+			
+			if ( count( $defaults ) )
+				$added = self::insertDefaults( GTHEME_SYSTEMTAGS, $defaults );
+			else
+				$added = FALSE;
+
+			if ( $added )
+				$action = 'added_systemtags';
+			else
+				$action = 'error_systemtags';
+
+			wp_redirect( add_query_arg( $action_name, $action ) );
+			exit;
+		}
+	}
+	
+	public function after_system_tags_table( $taxonomy )
+	{
+		$action_name = 'gtheme_action';
+		$title       = __( 'Install Default System Tags', GTHEME_TEXTDOMAIN );
+		$action      = add_query_arg( $action_name, 'install_systemtags' );
+
+		if ( isset( $_GET[$action_name] ) ) {
+			if ( 'error_systemtags' == $_GET[$action_name] ) {
+				$title = __( 'Error while adding default system tags.', GTHEME_TEXTDOMAIN );
+			} else if ( 'added_systemtags' == $_GET[$action_name] ) {
+				$title = __( 'Default system tags added.', GTHEME_TEXTDOMAIN );
+			}
+		}
+
+		echo '<div class="form-wrap"><p>';
+			echo '<a href="'.esc_url( $action ).'" class="button">'.$title.'</a>';
+		echo '</p></div>';
 	}
 
 	public function p2p_init()
@@ -85,8 +134,7 @@ class gThemeTerms extends gThemeModuleCore
 	}
 
 	// helper for settings page
-	// TODO: add button on settings page / USE: gtheme_get_info( 'system_tags_defaults', array() );
-	public static function insert_defaults( $taxonomy, $defaults )
+	public static function insertDefaults( $taxonomy, $defaults )
 	{
 		if ( ! taxonomy_exists( $taxonomy ) )
 			return FALSE;
