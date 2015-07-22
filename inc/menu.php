@@ -8,6 +8,7 @@ class gThemeMenu extends gThemeModuleCore
 		extract( shortcode_atts( array(
 			'register_nav' => TRUE,
 			'allowedtags'  => FALSE,
+			'css_classes'  => FALSE,
 		), $args ) );
 
 		if ( $register_nav )
@@ -15,6 +16,9 @@ class gThemeMenu extends gThemeModuleCore
 
 		if ( $allowedtags )
 			add_filter( 'wp_nav_menu_container_allowedtags', array( &$this, 'wp_nav_menu_container_allowedtags' ) );
+
+		if ( $css_classes )
+			add_filter( 'nav_menu_css_class', array( &$this, 'nav_menu_css_class' ), 10, 4 );
 
 		if ( ! is_admin() ) {
 			// add_filter( 'wp_nav_menu_args', array( &$this, 'wp_nav_menu_args' ) );
@@ -71,6 +75,18 @@ class gThemeMenu extends gThemeModuleCore
 		if ( count( $new_tags ) )
 			$tags = array_merge( $tags, $new_tags );
 		return $tags;
+	}
+	
+	public function nav_menu_css_class( $classes, $item, $args, $depth = 0 )
+	{
+		if ( ! isset( $args->menu_class ) || empty( $args->menu_class ) ) 
+			return $classes;
+			
+		// http://getbootstrap.com/components/#list-group
+		if ( FALSE !== strpos( $args->menu_class, 'list-group' ) )
+			$classes[] = 'list-group-item';
+
+		return $classes;
 	}
 
 	public static function separated( $location, $sep = '' )
