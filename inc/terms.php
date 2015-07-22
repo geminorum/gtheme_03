@@ -10,6 +10,7 @@ class gThemeTerms extends gThemeModuleCore
 		extract( shortcode_atts( array(
 			'system_tags' => FALSE,
 			'p2p'         => FALSE,
+			'admin'       => FALSE,
 		), $args ) );
 
 		if ( $system_tags ) {
@@ -19,6 +20,108 @@ class gThemeTerms extends gThemeModuleCore
 
 		if ( $p2p )
 			add_action( 'p2p_init', array( &$this, 'p2p_init' ) );
+
+		if ( $admin && is_admin() ) {
+			add_filter( 'gtheme_settings_subs', array( &$this, 'subs' ), 5 );
+			add_action( 'gtheme_settings_load', array( &$this, 'load' ) );
+		}
+	}
+
+	public function subs( $subs )
+	{
+		$subs['terms'] = __( 'Primary Terms', GTHEME_TEXTDOMAIN );
+		return $subs;
+	}
+
+	public function load( $sub )
+	{
+		if ( 'terms' == $sub ) {
+
+			if ( ! empty( $_POST )
+				&& wp_verify_nonce( $_POST['_gtheme_terms'], 'gtheme-terms' ) ) {
+
+				if ( isset( $_POST['gtheme_terms'] ) ) {
+
+					$terms = $unordered = array();
+
+					foreach( $_POST['gtheme_terms'] as $term_id => $term_args ) {
+
+						$order = isset( $term_args['order'] ) && trim( $term_args['order'] ) ? intval( $term_args['order'] ) : FALSE;
+
+						if ( isset( $term_args['checked'] ) ) {
+
+							if ( FALSE !== $order )
+								$terms[$order] = $term_id;
+							else
+								$unordered[(count($terms)+1)*100] = $term_id;
+
+						} else if ( FALSE !== $order ) {
+							$terms[$order] = $term_id;
+						}
+					}
+
+					$options = $terms + $unordered;
+					ksort( $options, SORT_NUMERIC );
+
+					$result = gThemeOptions::update_option( 'terms', $options );
+					wp_redirect( add_query_arg( array( 'message' => ( $result ? 'updated' : 'error' ) ), wp_get_referer() ) );
+					exit();
+				}
+			}
+
+			add_action( 'gtheme_settings_sub_terms', array( &$this, 'settings_sub_html' ), 10, 2 );
+		}
+	}
+
+	public function settings_sub_html( $settings_uri, $sub = 'general' )
+	{
+		$legend   = gThemeOptions::info( 'primary_terms_legend', FALSE );
+		$taxonomy = gThemeOptions::info( 'primary_terms_taxonomy', 'category' );
+		$defaults = gThemeOptions::info( 'primary_terms_defaults', array() );
+		$options  = gThemeOptions::get_option( 'terms', $defaults );
+
+		echo '<form method="post" action="">';
+
+			if ( $legend )
+				echo $legend;
+
+			echo '<table class="form-table">';
+				echo '<tr><th scope="row">'.__( 'Primary Terms', GTHEME_TEXTDOMAIN ).'</th><td>';
+
+				foreach ( self::get( $taxonomy, FALSE, TRUE ) as $term ) {
+
+					echo gThemeUtilities::html( 'input', array(
+						'type'    => 'checkbox',
+						'name'    => 'gtheme_terms['.$term->term_id.'][checked]',
+						'id'      => 'gtheme_terms-'.$term->term_id.'-checked',
+						'checked' => in_array( intval( $term->term_id ), $options ),
+					) ).' | ';
+
+					$order = array_search( $term->term_id, $options );
+					echo gThemeUtilities::html( 'input', array(
+						'type'    => 'text',
+						'size'    => '1',
+						'name'    => 'gtheme_terms['.$term->term_id.'][order]',
+						'id'      => 'gtheme_terms-'.$term->term_id.'-order',
+						'value' => ( FALSE === $order ? '' : $order ),
+					) ).' | ';
+
+					echo gThemeUtilities::html( 'label', array(
+						'for'    => 'gtheme_terms-'.$term->term_id.'-checked',
+					), number_format_i18n( $term->term_id ).' | '
+						.esc_html( $term->name ).' | ('
+						.number_format_i18n( $term->count ).')' );
+
+					echo '<br />';
+				}
+
+				echo '</td></tr>';
+			echo '</table>';
+
+			submit_button(); // TODO: add reset button
+
+			wp_nonce_field( 'gtheme-terms', '_gtheme_terms' );
+		echo '</form>';
 	}
 
 	public function register_taxonomies()
@@ -59,7 +162,7 @@ class gThemeTerms extends gThemeModuleCore
 				'assign_terms' => $cap,
 			)
 		) );
-		
+
 		if ( is_admin() ) {
 			// FIXME: hook this to menu
 			$this->system_tags_table_action( 'gtheme_action' );
@@ -78,16 +181,16 @@ class gThemeTerms extends gThemeModuleCore
 
 		return $classes;
 	}
-	
+
 	private function system_tags_table_action( $action_name )
 	{
 		if ( ! isset( $_REQUEST[$action_name] ) )
 			return FALSE;
 
 		if ( 'install_systemtags' == $_REQUEST[$action_name] ) {
-			
+
 			$defaults = gThemeOptions::info( 'system_tags_defaults', array() );
-			
+
 			if ( count( $defaults ) )
 				$added = self::insertDefaults( GTHEME_SYSTEMTAGS, $defaults );
 			else
@@ -102,7 +205,7 @@ class gThemeTerms extends gThemeModuleCore
 			exit;
 		}
 	}
-	
+
 	public function after_system_tags_table( $taxonomy )
 	{
 		$action_name = 'gtheme_action';
@@ -144,5 +247,35 @@ class gThemeTerms extends gThemeModuleCore
 				wp_insert_term( $term_name, $taxonomy, array( 'slug' => $term_slug ) );
 
 		return TRUE;
+	}
+
+	// helper
+	public static function get( $taxonomy = 'category', $post_id = FALSE, $object = FALSE, $key = 'term_id' )
+	{
+		$the_terms = array();
+
+		if ( FALSE === $post_id ) {
+			$terms = get_terms( $taxonomy, array(
+				'hide_empty' => FALSE,
+				'orderby'    => 'name',
+				'order'      => 'ASC'
+			) );
+		} else {
+			$terms = get_the_terms( $post_id, $taxonomy );
+		}
+
+		if ( is_wp_error( $terms ) || FALSE === $terms )
+			return $the_terms;
+
+		$the_list = wp_list_pluck( $terms, $key );
+		$terms    = array_combine( $the_list, $terms );
+
+		if ( $object )
+			return $terms;
+
+		foreach ( $terms as $term )
+			$the_terms[] = $term->term_id;
+
+		return $the_terms;
 	}
 }

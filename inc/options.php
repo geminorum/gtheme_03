@@ -98,6 +98,11 @@ class gThemeOptions extends gThemeModuleCore
 				),
 			),
 
+			// PRIMARY TERMS API
+			'primary_terms_legend' => FALSE,
+			'primary_terms_taxonomy' => 'category',
+			'primary_terms_defaults' => array(),
+
 			'default_sep'        => ' ',
 			'title_sep'          => is_rtl()? ' &laquo; ' : ' &raquo; ',
 			'nav_sep'            => is_rtl() ? ' &raquo; ' : ' &laquo; ',
