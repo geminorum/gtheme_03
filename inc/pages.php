@@ -29,7 +29,7 @@ class gThemePages extends gThemeModuleCore
 
 		return $def;
 	}
-	
+
 	public static function link( $name, $def = '#' )
 	{
 		// FIXME
@@ -68,8 +68,6 @@ class gThemePages extends gThemeModuleCore
 
 			wp_nonce_field( 'gtheme-pages', '_gtheme_pages' );
 		echo '</form>';
-
-		gnetwork_dump($options);
 	}
 
 	public function load( $sub )

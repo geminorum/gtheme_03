@@ -66,7 +66,7 @@ class gThemeSettings extends gThemeModuleCore
 		) );
 
 		$messages = apply_filters( 'gtheme_settings_messages', array(
-			'error' => gThemeUtilities::notice( __( 'Settings not updated.', GTHEME_TEXTDOMAIN ), 'error', FALSE ),
+			'error'   => gThemeUtilities::notice( __( 'Settings not updated.', GTHEME_TEXTDOMAIN ), 'error', FALSE ),
 			'updated' => gThemeUtilities::notice( __( 'Settings updated.', GTHEME_TEXTDOMAIN ), 'updated fade', FALSE ),
 		) );
 
