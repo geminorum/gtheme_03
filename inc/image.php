@@ -7,11 +7,18 @@ class gThemeImage extends gThemeModuleCore
 
 	public function setup_actions( $args = array() )
 	{
+		extract( self::atts( array(
+			'responsive_class' => FALSE,
+		), $args ) );
+
 		add_action( 'init', array( &$this, 'init' ) );
 		add_filter( 'intermediate_image_sizes_advanced', array( &$this, 'intermediate_image_sizes_advanced' ) );
 
 		add_filter( 'get_image_tag_class', array( &$this, 'get_image_tag_class' ), 10, 4 );
 		add_filter( 'wp_get_attachment_image_attributes', array( &$this, 'wp_get_attachment_image_attributes' ), 10, 2 );
+
+		if ( $responsive_class )
+			add_filter( 'the_content', array( &$this, 'the_content_responsive_class' ), 100 );
 
 		add_filter( 'post_thumbnail_html', array( &$this, 'strip_width_height' ), 10 );
 		add_filter( 'image_send_to_editor', array( &$this, 'strip_width_height' ), 10 );
@@ -63,16 +70,38 @@ class gThemeImage extends gThemeModuleCore
 		return $sizes;
 	}
 
+	// http://stackoverflow.com/a/20499803
+	// https://gist.github.com/DavidCWebs/bb2df8a868a362510dc1
+	// TODO: test this
+	public function the_content_responsive_class( $content )
+	{
+		if ( empty( $content ) )
+			return $content;
+
+		$document = new DOMDocument();
+		libxml_use_internal_errors( TRUE );
+
+		$content = mb_convert_encoding( $content, 'HTML-ENTITIES', 'UTF-8' );
+		$document->loadHTML( utf8_decode( $content ) );
+		$images = $document->getElementsByTagName( 'img' );
+
+		foreach ( $images as $image )
+		   $image->setAttribute( 'class', 'img-responsive' );
+
+		$html = $document->saveHTML();
+		return $html;
+	}
+
 	public function wp_get_attachment_image_attributes( $attr, $attachment )
 	{
 		unset( $attr['title'] );
-		$attr['class'] = $attr['class'].' '.gtheme_get_info( 'image-class', 'the-img img-responsive' );
+		$attr['class'] = $attr['class'].' '.gThemeOptions::info( 'image-class', 'the-img img-responsive' );
 		return $attr;
 	}
 
 	public function get_image_tag_class( $class, $id, $align, $size )
 	{
-		return $class.' '.gtheme_get_info( 'image-class', 'the-img img-responsive' );
+		return $class.' '.gThemeOptions::info( 'image-class', 'the-img img-responsive' );
 	}
 
 	// http://css-tricks.com/snippets/wordpress/remove-width-and-height-attributes-from-inserted-images/
@@ -85,7 +114,7 @@ class gThemeImage extends gThemeModuleCore
 	public function image_send_to_editor( $html, $id, $caption, $title, $align, $url, $size, $alt )
 	{
 		// http://css-tricks.com/snippets/wordpress/insert-images-within-figure-element-from-media-uploader/
-		//$html = '<figure id="post-'.$id.' media-'.$id.'" class="align-'.$align.'"><img src="'.$url.'" alt="'.$title.'" />';
+		// $html = '<figure id="post-'.$id.' media-'.$id.'" class="align-'.$align.'"><img src="'.$url.'" alt="'.$title.'" />';
 		$html = '<figure id="post-'.$id.'-media-'.$id.'" class="align-'.$align.'"'.( empty( $title ) ? '' : ' title="'.$title.'"' ).'>'.$html;
 
 		if ( $caption )
@@ -96,22 +125,22 @@ class gThemeImage extends gThemeModuleCore
 
 	public function pre_option_image_default_link_type( $option )
 	{
-		return gtheme_get_info( 'editor_image_default_link_type', 'file' );
+		return gThemeOptions::info( 'editor_image_default_link_type', 'file' );
 	}
 
 	public function pre_option_image_default_align( $option )
 	{
-		return gtheme_get_info( 'editor_image_default_align', 'center' );
+		return gThemeOptions::info( 'editor_image_default_align', 'center' );
 	}
 
 	public function pre_option_image_default_size( $option )
 	{
-		return gtheme_get_info( 'editor_image_default_size', 'content' );
+		return gThemeOptions::info( 'editor_image_default_size', 'content' );
 	}
 
 	public function jpeg_quality( $quality, $context )
 	{
-		return gtheme_get_info( 'jpeg_quality', $quality );
+		return gThemeOptions::info( 'jpeg_quality', $quality );
 	}
 
 	//////////////////////////////////////////////////////////////
@@ -136,7 +165,7 @@ class gThemeImage extends gThemeModuleCore
 		}
 
 		$new_size_names = array();
-		$images = (array) gtheme_get_info( 'images', array() );
+		$images = (array) gThemeOptions::info( 'images', array() );
 
 		foreach( $images as $name => $size )
 			if ( $size['i'] && in_array( $post_type ,$size['p'] ) )
@@ -156,7 +185,7 @@ class gThemeImage extends gThemeModuleCore
 			$images = array();
 
 		$html = $checked = '';
-		$gtheme_images = (array) gtheme_get_info( 'images', array() );
+		$gtheme_images = (array) gThemeOptions::info( 'images', array() );
 
 		foreach( $gtheme_images as $name => $size ) {
 			if ( $size['t'] && in_array( $post_type ,$size['p'] ) ) {
@@ -191,7 +220,7 @@ class gThemeImage extends gThemeModuleCore
 			return $post;
 
 		$images = $striped = array();
-		$sizes = (array) gtheme_get_info( 'images', array() );
+		$sizes = (array) gThemeOptions::info( 'images', array() );
 		$saved_images = get_post_meta( $post_id, GTHEME_IMAGES_META, TRUE );
 		if ( ! is_array( $saved_images ) )
 			$saved_images = array();
@@ -224,7 +253,7 @@ class gThemeImage extends gThemeModuleCore
 		}
 
 		$post_type = get_post_type( $parent_id );
-		if ( ! in_array( $post_type, gtheme_get_info( 'support_images_terms', array() ) ) )
+		if ( ! in_array( $post_type, gThemeOptions::info( 'support_images_terms', array() ) ) )
 			return $form_fields;
 
 		$saved_terms = get_post_meta( $parent_id, GTHEME_IMAGES_TERMS_META, TRUE );
@@ -232,7 +261,7 @@ class gThemeImage extends gThemeModuleCore
 			$saved_terms = array();
 		$selected = array_search( $post->ID, $saved_terms );
 		$dropdown = wp_dropdown_categories( array(
-			'taxonomy'         => gtheme_get_info( 'support_images_terms_taxonomy', 'category' ),
+			'taxonomy'         => gThemeOptions::info( 'support_images_terms_taxonomy', 'category' ),
 			'selected'         => ( FALSE === $selected ? 0 : $selected ),
 			'show_option_none' => __( '&mdash; Select a Term &mdash;', GTHEME_TEXTDOMAIN ),
 			'name'             => 'attachments['.$post->ID.'][gtheme_images_terms]',
@@ -260,7 +289,7 @@ class gThemeImage extends gThemeModuleCore
 		}
 
 		$post_type = get_post_type( $parent_id );
-		if ( ! in_array( $post_type, gtheme_get_info( 'support_images_terms', array() ) ) )
+		if ( ! in_array( $post_type, gThemeOptions::info( 'support_images_terms', array() ) ) )
 			return $post;
 
 		if( isset( $attachment['gtheme_images_terms'] ) ) {
@@ -339,7 +368,7 @@ class gThemeImage extends gThemeModuleCore
 	// ANCESTOR : gtheme_get_the_image(), gtheme_get_image_caption()
 	public static function get_image( $atts = array() )
 	{
-		$args = shortcode_atts( array(
+		$args = self::atts( array(
 			'tag'               => 'raw',
 			'post_id'           => NULL,
 			'post_thumbnail_id' => FALSE,
@@ -424,7 +453,7 @@ class gThemeImage extends gThemeModuleCore
 					}
 
 					if ( $caption && $html )
-						$html = sprintf( gtheme_get_info( 'template_image_caption',
+						$html = sprintf( gThemeOptions::info( 'template_image_caption',
 							'<div class="%3$s">%1$s<p class="%4$s">%2$s</p></div>' ),
 								$html,
 								gtheme_l10n( $caption ),
@@ -443,7 +472,7 @@ class gThemeImage extends gThemeModuleCore
 	// ANCESTOR : gtheme_image(), gtheme_image_caption()
 	public static function image( $atts = array() )
 	{
-		$args = shortcode_atts( array(
+		$args = self::atts( array(
 			'tag'             => 'raw',
 			'post_id'         => NULL,
 			'link'            => 'parent',
@@ -482,6 +511,6 @@ class gThemeImage extends gThemeModuleCore
 
 	public static function holderJS( $width = 100, $height = 100, $atts = array() )
 	{
-		return '<img class="'.gtheme_get_info( 'image-class', 'the-img img-responsive' ).'" data-src="holder.js/'.$width.'x'.$height.'">';
+		return '<img class="'.gThemeOptions::info( 'image-class', 'the-img img-responsive' ).'" data-src="holder.js/'.$width.'x'.$height.'">';
 	}
 }
