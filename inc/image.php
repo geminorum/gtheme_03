@@ -86,7 +86,7 @@ class gThemeImage extends gThemeModuleCore
 		$images = $document->getElementsByTagName( 'img' );
 
 		foreach ( $images as $image )
-		   $image->setAttribute( 'class', 'img-responsive' );
+		   $image->setAttribute( 'class', 'img-responsive' ); // FIXME: this will replace all classes!!
 
 		$html = $document->saveHTML();
 		return $html;
