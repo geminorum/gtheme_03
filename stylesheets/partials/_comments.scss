@@ -1,0 +1,83 @@
+
+/// gTheme Default Comments Styles
+
+.comments-area {
+	
+	.no-password {}
+	.no-comments {}
+
+	.comment-navigation {
+		.nav-previous {}
+		.nav-next {}
+	}
+	
+	.comments-feed {
+		float:left;
+		a {
+			color: $gray-light;
+			&:hover {
+				color: $gray-darker;
+				text-decoration:none;
+			}
+		}
+	}
+	
+	.comments-title {
+		font-size:$font-size-h5;
+		margin:0;
+	}
+	
+	.comment-list {
+		margin-top: $theme-grid-gutter;
+		.comment {
+			margin-bottom: $theme-grid-gutter;
+			
+			
+			.comment-avatar {
+				
+			}
+			
+			.comment-body {
+				padding: $padding-base-vertical $padding-base-horizontal 0 0;
+			}
+			
+			.comment-content {
+				p {
+					color: $gray-dark;
+					font-size: $font-size-small;
+					line-height: $line-height-small;
+				}
+			}
+			
+			.comment-meta {
+				margin-bottom: $padding-large-vertical;
+			}
+			.comment-author {
+				
+			}
+			.comment-time {
+				font-size: $font-size-small * 0.8;
+				margin: 0 $padding-base-horizontal 0 0;
+				a {
+					color: $gray-light;
+					&:hover {
+						color: $gray-darker;
+						text-decoration:none;
+					}
+				}
+			}
+			.comment-moderation {
+				
+			}
+			.comment-actions {
+				font-size: $font-size-small;
+				a {
+					color: $gray-light;
+					&:hover {
+						color: $gray-darker;
+					}
+				}
+			}
+		}
+	}
+}

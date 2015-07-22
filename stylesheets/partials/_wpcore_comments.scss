@@ -1,0 +1,90 @@
+
+/// Default Comment Form Styles
+
+.comment-list {
+	
+	.reply {
+		a {}
+	}
+
+	.alt {}
+	.odd {}
+	.even {}
+	.thread-alt {}
+	.thread-odd {}
+	.thread-even {}
+	li { 
+		ul.children { 
+		
+			.alt {}
+			.odd {}
+			.even {}
+		}
+	}
+
+	.vcard {
+		cite.fn {}
+		span.says {}
+		img.photo {}
+		img.avatar {}
+		cite.fn a.url {}
+	}
+
+	.comment-meta {
+		a {}
+	} 
+	.commentmetadata {
+		a {}
+	}
+
+	.parent {}
+	.comment {}
+	.children {}
+	.pingback {}
+	.bypostauthor {}
+	.comment-author {}
+	.comment-author-admin {}
+
+	li {
+		p {
+			
+		}
+		ul {
+			&.children {
+				li {
+					&.alt {}
+					&.byuser {}
+					&.comment {}
+					// &.depth-{id} {}
+					&.bypostauthor {}
+					&.comment-author-admin {}
+				}
+			}
+		}
+	}
+}
+
+#cancel-comment-reply {
+	a {}
+}
+
+
+/// Comment Form
+
+#respond { } 
+#reply-title { } 
+#cancel-comment-reply-link { }
+#commentform { } 
+#author { } 
+#email { } 
+#url { } 
+#comment 
+#submit
+.comment-notes { } 
+.required { }
+.comment-form-author { }
+.comment-form-email { } 
+.comment-form-url { }
+.comment-form-comment { } 
+.form-allowed-tags { } 
+.form-submit
