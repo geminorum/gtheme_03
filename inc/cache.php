@@ -3,19 +3,22 @@
 /*
 * https://gist.github.com/markjaquith/2653957
 * Usage:
-	$frag = new gThemeFragmentCache( 'unique-key', 3600, gtheme_wp_cache_disabled(), false ); // Second param is TTL
-	if ( !$frag->output() ) { // NOTE, testing for a return of false
-	functions_that_do_stuff_live();
-	these_should_echo();
-	// IMPORTANT
-	$frag->store();
-	// YOU CANNOT FORGET THIS. If you do, the site will break.
+
+	$frag = new gThemeFragmentCache( 'unique-key', 3600, ! wp_using_ext_object_cache(), false ); // Second param is TTL
+
+	if ( ! $frag->output() ) { // testing for a return of false
+
+		functions_that_do_stuff_live();
+		these_should_echo();
+
+		// IMPORTANT
+		$frag->store(); // YOU CANNOT FORGET THIS. If you do, the site will break.
+
 	}
 */
 
 class gThemeFragmentCache
 {
-
 	var $key;
 	var $ttl;
 
@@ -23,13 +26,13 @@ class gThemeFragmentCache
 	{
 		$this->key       = $key;
 		$this->ttl       = $ttl;
-		$this->transient = is_null( $transient ) ? gtheme_wp_cache_disabled() : $transient;
+		$this->transient = is_null( $transient ) ? ! wp_using_ext_object_cache() : $transient;
 		$this->site      = is_multisite() && $site;
-		
+
 		if ( GTHEME_FLUSH )
 			$this->__flush();
 	}
-	
+
 	protected function __flush()
 	{
 		if ( $this->transient ) {
@@ -50,7 +53,7 @@ class gThemeFragmentCache
 
 		if ( GTHEME_FLUSH ) {
 			$output = '';
-		} else {			
+		} else {
 			if ( $this->transient ) {
 				if ( $this->site )
 					$output = get_site_transient( GTHEME_FRAGMENTCACHE.'_'.$this->key );
@@ -100,23 +103,14 @@ class gThemeFragmentCache
 	}
 
 	// DEPRECATED
-	public static function flush( $key, $transient = null, $site = false )
+	public static function flush( $key, $transient = NULL, $site = FALSE )
 	{
 		if ( is_null( $transient ) )
-			$transient = gtheme_wp_cache_disabled();
+			$transient = ! wp_using_ext_object_cache();
 
 		if ( $site )
 			delete_site_transient( GTHEME_FRAGMENTCACHE.'_'.$key );
 		else
 			delete_transient( GTHEME_FRAGMENTCACHE.'_'.$key );
 	}
-}
-
-function gtheme_wp_cache_disabled() {
-	global $_wp_using_ext_object_cache;
-
-	if ( $_wp_using_ext_object_cache )
-		return FALSE;
-
-	return TRUE;
 }

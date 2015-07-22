@@ -2,16 +2,16 @@
 
 class gThemeNavigation extends gThemeModuleCore
 {
-
-	public static function content( $id = FALSE )
+	
+	public static function content( $id = FALSE, $taxonomy = 'category' )
 	{
 		global $wp_query;
 
 		$classes = array( 'navigation' );
 
 		if ( is_single() ) {
-			$previous = get_adjacent_post_link( '%link', _x( '<span aria-hidden="true">&larr;</span> Older', 'Post Navigation', GTHEME_TEXTDOMAIN ), false, '', true,  'category' );
-			$next     = get_adjacent_post_link( '%link', _x( 'Newer <span aria-hidden="true">&rarr;</span>', 'Post Navigation', GTHEME_TEXTDOMAIN ), false, '', false, 'category' );
+			$previous = get_adjacent_post_link( '%link', _x( '<span aria-hidden="true">&larr;</span> Older', 'Post Navigation', GTHEME_TEXTDOMAIN ), FALSE, '', TRUE,  $taxonomy );
+			$next     = get_adjacent_post_link( '%link', _x( 'Newer <span aria-hidden="true">&rarr;</span>', 'Post Navigation', GTHEME_TEXTDOMAIN ), FALSE, '', FALSE, $taxonomy );
 			$classes[] = 'post-navigation';
 		} elseif ( $wp_query->max_num_pages > 1 && ( is_home() || is_archive() || is_search() ) ) {
 			$previous = get_previous_posts_link( _x( '<span aria-hidden="true">&larr;</span> Older', 'Index Navigation', GTHEME_TEXTDOMAIN ) );
@@ -38,8 +38,8 @@ class gThemeNavigation extends gThemeModuleCore
 		$html .= '</ul>';
 
 		echo gThemeUtilities::html( 'nav', array(
-			'role' => 'navigation',
-			'id' => $id,
+			'role'  => 'navigation',
+			'id'    => $id,
 			'class' => $classes,
 		), $html );
 	}

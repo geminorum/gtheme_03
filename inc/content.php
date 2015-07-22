@@ -190,17 +190,17 @@ class gThemeContent extends gThemeModuleCore
 		return get_post( $post )->post_name;
 	}
 
-	public static function actions( $before = '<span class="post-action %s">', $after = '</span>', $action_list = true, $icons = 'def' )
+	public static function actions( $before = '<span class="post-action %s">', $after = '</span>', $action_list = TRUE, $icons = 'def' )
 	{
-		if ( true === $action_list )
-			$actions = gtheme_get_info( 'post_actions', array() );
+		if ( TRUE === $action_list )
+			$actions = gThemeOptions::info( 'post_actions', array() );
 		else if ( is_array( $action_list ) )
 			$actions = $action_list;
 		else
 			$actions = array();
 
 		if ( 'def' === $icons )
-			$icons = gtheme_get_info( 'post_actions_icons', false );
+			$icons = gThemeOptions::info( 'post_actions_icons', FALSE );
 
 		do_action( 'gtheme_action_links_before', $before, $after, $actions, $icons );
 
@@ -210,7 +210,7 @@ class gThemeContent extends gThemeModuleCore
 		do_action( 'gtheme_action_links', $before, $after, $actions, $icons );
 	}
 
-	public static function do_actions( $action, $before, $after, $icons = false )
+	public static function do_actions( $action, $before, $after, $icons = FALSE )
 	{
 		switch ( $action ) {
 

@@ -8,11 +8,11 @@ class gThemeEditor extends gThemeModuleCore
 	function setup_actions( $args = array() )
 	{
 		extract( shortcode_atts( array(
-			'css'             => true, // this is the editor style!!
-			'buttons'         => true,
-			'buttons_2'       => true,
-			'advanced_styles' => true,
-			'default_content' => false,
+			'css'             => TRUE, // this is the editor style!!
+			'buttons'         => TRUE,
+			'buttons_2'       => TRUE,
+			'advanced_styles' => TRUE,
+			'default_content' => FALSE,
 		), $args ) );
 
 		if ( $css )
@@ -52,7 +52,7 @@ class gThemeEditor extends gThemeModuleCore
 
 	public function mce_buttons( $buttons )
 	{
-		$gtheme_buttons = gtheme_get_info( 'mce_buttons', array( 'sup', 'sub', 'hr' ) );
+		$gtheme_buttons = gThemeOptions::info( 'mce_buttons', array( 'sup', 'sub', 'hr' ) );
 
 		foreach ( $gtheme_buttons as $gtheme_button )
 			array_push( $buttons, $gtheme_button );
@@ -70,7 +70,7 @@ class gThemeEditor extends gThemeModuleCore
 		// http://stackoverflow.com/questions/12416678/how-to-customize-tinymce-button-output
 		$buttons = array_diff( $buttons, array( 'justifyfull' ) );
 
-		$gtheme_buttons = gtheme_get_info( 'mce_buttons_2', array( 'styleselect' ) );
+		$gtheme_buttons = gThemeOptions::info( 'mce_buttons_2', array( 'styleselect' ) );
 
 		foreach ( $gtheme_buttons as $gtheme_button )
 			array_unshift( $buttons, $gtheme_button );
@@ -81,9 +81,9 @@ class gThemeEditor extends gThemeModuleCore
 	// add "styles" drop-down content or classes
 	// SEE : http://www.tinymce.com/wiki.php/Configuration:formats
 	// SEE : http://www.tinymce.com/tryit/custom_formats.php
-	public static function tiny_mce_before_init( $settings )
+	public function tiny_mce_before_init( $settings )
 	{
-		$style_formats = gtheme_get_info( 'mce_style_formats', array() );
+		$style_formats = gThemeOptions::info( 'mce_style_formats', array() );
 
 		if ( count( $style_formats ) ) {
 			$style_formats = json_encode( $style_formats );
@@ -99,7 +99,6 @@ class gThemeEditor extends gThemeModuleCore
 
 	public function default_content( $post_content, $post )
 	{
-		return gtheme_get_info( 'default_content', $post_content );
+		return gThemeOptions::info( 'default_content', $post_content );
 	}
-
 }

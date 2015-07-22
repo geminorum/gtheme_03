@@ -30,7 +30,9 @@ msgstr ""
 msgid "Image"
 msgstr ""
 
-#: admin/banners.php:40 admin/banners.php:54 admin/banners.php:67
+#: admin/banners.php:40
+#: admin/banners.php:54
+#: admin/banners.php:67
 msgid "Remove"
 msgstr ""
 
@@ -46,7 +48,8 @@ msgstr ""
 msgid "This post is password protected. Enter the password to view any comments."
 msgstr ""
 
-#: comments.php:35 inc/options.php:165
+#: comments.php:35
+#: inc/options.php:165
 msgid "Comments are closed."
 msgstr ""
 
@@ -66,7 +69,20 @@ msgstr ""
 msgid "Banners"
 msgstr ""
 
-#: inc/cache.php:81
+#: inc/bootstrap.php:10
+msgid "Toggle navigation"
+msgstr ""
+
+#: inc/bootstrap.php:18
+#: inc/template.php:13
+msgid "Home"
+msgstr ""
+
+#: inc/bootstrap.php:45
+msgid "Search &hellip;"
+msgstr ""
+
+#: inc/cache.php:91
 msgid "Refreshed!"
 msgstr ""
 
@@ -97,7 +113,8 @@ msgstr[1] ""
 msgid "Grab the feed for comments of this post"
 msgstr ""
 
-#: inc/comments.php:219 inc/options.php:166
+#: inc/comments.php:219
+#: inc/options.php:166
 msgid "Your comment is awaiting moderation."
 msgstr ""
 
@@ -200,11 +217,13 @@ msgstr ""
 msgid "Short link to &mdash;%s&mdash;"
 msgstr ""
 
-#: inc/content.php:240 inc/content.php:400
+#: inc/content.php:240
+#: inc/content.php:400
 msgid "Print Version"
 msgstr ""
 
-#: inc/content.php:247 inc/content.php:438
+#: inc/content.php:247
+#: inc/content.php:438
 msgid "Share This"
 msgstr ""
 
@@ -372,7 +391,8 @@ msgstr ""
 msgid "Yearly Archives for <strong>%s</strong>"
 msgstr ""
 
-#: inc/navigation.php:175 inc/navigation.php:177
+#: inc/navigation.php:175
+#: inc/navigation.php:177
 msgid "Site Archives"
 msgstr ""
 
@@ -517,7 +537,8 @@ msgstr ""
 msgid "Pages"
 msgstr ""
 
-#: inc/search.php:37 inc/search.php:42
+#: inc/search.php:37
+#: inc/search.php:42
 msgctxt "label"
 msgid "Search for:"
 msgstr ""
@@ -629,16 +650,23 @@ msgstr ""
 msgid "Customized most recent posts."
 msgstr ""
 
-#: inc/sidebar.php:360 inc/sidebar.php:511 inc/sidebar.php:578
-#: inc/sidebar.php:633 inc/sidebar.php:692 inc/sidebar.php:758
+#: inc/sidebar.php:360
+#: inc/sidebar.php:511
+#: inc/sidebar.php:578
+#: inc/sidebar.php:633
+#: inc/sidebar.php:692
+#: inc/sidebar.php:758
 msgid "Title:"
 msgstr ""
 
-#: inc/sidebar.php:372 inc/sidebar.php:590 inc/sidebar.php:645
+#: inc/sidebar.php:372
+#: inc/sidebar.php:590
+#: inc/sidebar.php:645
 msgid "Context:"
 msgstr ""
 
-#: inc/sidebar.php:384 inc/sidebar.php:535
+#: inc/sidebar.php:384
+#: inc/sidebar.php:535
 msgid "Number of posts to show:"
 msgstr ""
 
@@ -678,7 +706,8 @@ msgstr ""
 msgid "List of current post children"
 msgstr ""
 
-#: inc/sidebar.php:711 inc/sidebar.php:777
+#: inc/sidebar.php:711
+#: inc/sidebar.php:777
 msgid "Post Type:"
 msgstr ""
 
@@ -690,11 +719,8 @@ msgstr ""
 msgid "List of current post siblings"
 msgstr ""
 
-#: inc/template.php:12
-msgid "Home"
-msgstr ""
-
-#: inc/terms.php:31 inc/terms.php:45
+#: inc/terms.php:31
+#: inc/terms.php:45
 msgctxt "system tags labels"
 msgid "System Tags"
 msgstr ""

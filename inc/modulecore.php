@@ -200,8 +200,11 @@ class gThemeModuleCore
 
 			case 'page' :
 
+				if ( ! $args['values'] )
+					$args['values'] = 'page';
+
 				wp_dropdown_pages( array(
-					'post_type'        => 'page',
+					'post_type'        => $args['values'],
 					'selected'         => $value,
 					'name'             => $name,
 					'id'               => $id,

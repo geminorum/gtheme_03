@@ -115,7 +115,7 @@ class gThemeComments extends gThemeModuleCore
 	// http://www.wpbeginner.com/wp-tutorials/how-to-disable-comments-on-wordpress-media-attachments/
 	public function comments_open( $open, $post_id )
 	{
-		$post_types = gtheme_get_info( 'comments_disable_types', array( 'attachment' ) );
+		$post_types = gThemeOptions::info( 'comments_disable_types', array( 'attachment' ) );
 		if ( $post_types && is_array( $post_types ) ) {
 			$post = get_post( $post_id );
 			if ( in_array( $post->post_type, $post_types ) )
@@ -142,7 +142,7 @@ class gThemeComments extends gThemeModuleCore
 
 	public static function navigation( $id = 'comment-nav-above' )
 	{
-		$strings = gtheme_get_info( 'comment_nav_strings', array(
+		$strings = gThemeOptions::info( 'comment_nav_strings', array(
 			'title'    => __( 'Comment navigation', GTHEME_TEXTDOMAIN ),
 			'previous' => __( '&larr; Older Comments', GTHEME_TEXTDOMAIN ),
 			'next'     => __( 'Newer Comments &rarr;', GTHEME_TEXTDOMAIN ),
@@ -204,18 +204,19 @@ class gThemeComments extends gThemeModuleCore
 					comment_class( 'media' );
 				echo ' id="li-comment-'.$comment->comment_ID.'">';
 
-					echo '<a class="'.( gThemeUtilities::isRTL() ? 'pull-right media-right' : 'pull-left media-left' ).'" href="'.get_comment_author_url().'" rel="external nofollow">';
-						gThemeTemplate::avatar( $comment, gtheme_get_info( 'comment_avatar_size', 75 ) );
-					echo '</a><div class="media-body" id="comment-body-'.$comment->comment_ID.'"><h4 class="media-heading">';
-						echo get_comment_author_link();
-						echo ' <small>';
+					echo '<a class="comment-avatar '.( gThemeUtilities::isRTL() ? 'pull-right media-right' : 'pull-left media-left' ).'" href="'.get_comment_author_url().'" rel="external nofollow">';
+						gThemeTemplate::avatar( $comment, gThemeOptions::info( 'comment_avatar_size', 75 ) );
+					echo '</a><div class="media-body comment-body" id="comment-body-'.$comment->comment_ID.'"><h6 class="media-heading comment-meta">';
+						echo '<span class="comment-author">'.get_comment_author_link().'</span>';
+						echo ' <small class="comment-time">';
 						self::time( $comment->comment_ID );
-					echo '</small></h4>';
+					echo '</small></h6><div class="comment-content">';
 						comment_text();
-
+					echo '</div>';
+					
 						if ( '0' == $comment->comment_approved )
-							echo '<p class="text-danger comment-awaiting-moderation">'
-							.gtheme_get_info( 'comment_awaiting',
+							echo '<p class="text-danger comment-awaiting-moderation comment-moderation">'
+							.gThemeOptions::info( 'comment_awaiting',
 								__( 'Your comment is awaiting moderation.', GTHEME_TEXTDOMAIN ) )
 							.'</p>';
 
@@ -241,7 +242,7 @@ class gThemeComments extends gThemeModuleCore
 	public static function actions( $comment, $args, $depth, $class = 'media-actions comment-actions' )
 	{
 		$actions = array();
-		$strings = gtheme_get_info( 'comment_action_strings', array(
+		$strings = gThemeOptions::info( 'comment_action_strings', array(
 			'reply_text'    => __( 'Reply' ),
 			'reply_to_text' => __( 'Reply to %s' ),
 			'login_text'    => __( 'Log in to Reply' ),
@@ -293,7 +294,7 @@ class gThemeComments extends gThemeModuleCore
 
 			$required = get_option( 'require_name_email' );
 			$html5 = current_theme_supports( 'html5', 'comment-form' ) ? true : false;
-			$strings = gtheme_get_info( 'comment_form_strings', array(
+			$strings = gThemeOptions::info( 'comment_form_strings', array(
 				'required'          => _x( '(Required)', 'Comment Form Strings', GTHEME_TEXTDOMAIN ),
 				'name'              => _x( 'Name', 'Comment Form Strings', GTHEME_TEXTDOMAIN ),
 				'email'             => _x( 'Email', 'Comment Form Strings', GTHEME_TEXTDOMAIN ),

@@ -175,6 +175,7 @@ class gThemeOptions extends gThemeModuleCore
 				'dashboard' => _x( 'Dashboard', 'System Tags Defaults', GTHEME_TEXTDOMAIN ),
 				'latest'    => _x( 'Latest', 'System Tags Defaults', GTHEME_TEXTDOMAIN ),
 				'no-front'  => _x( 'No FrontPage', 'System Tags Defaults', GTHEME_TEXTDOMAIN ),
+				'tile'      => _x( 'Tile', 'System Tags Defaults', GTHEME_TEXTDOMAIN ),
 			),
 
 			// EDITOR

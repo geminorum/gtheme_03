@@ -29,6 +29,12 @@ class gThemePages extends gThemeModuleCore
 
 		return $def;
 	}
+	
+	public static function link( $name, $def = '#' )
+	{
+		// FIXME
+		return $def;
+	}
 
 	public function subs( $subs )
 	{
@@ -36,7 +42,7 @@ class gThemePages extends gThemeModuleCore
 		return $subs;
 	}
 
-	public function settings_sub_html( $settings_uri, $sub )
+	public function settings_sub_html( $settings_uri, $sub = 'general' )
 	{
 		$defaults = gThemeOptions::info( 'pages', array() );
 		$options  = gThemeOptions::get_option( 'pages', array() );
@@ -48,6 +54,7 @@ class gThemePages extends gThemeModuleCore
 				foreach ( $defaults as $page => $default ) {
 					$this->do_settings_field( array(
 						'title'   => $default['title'],
+						'values'   => isset( $default['type'] ) ? $default['type'] : 'page',
 						'type'    => 'page',
 						'field'   => $page,
 						'default' => ( isset( $options[$page] ) ? $options[$page] : $defaults[$page]['def'] ),
@@ -89,5 +96,4 @@ class gThemePages extends gThemeModuleCore
 			add_action( 'gtheme_settings_sub_pages', array( &$this, 'settings_sub_html' ), 10, 2 );
 		}
 	}
-
 }

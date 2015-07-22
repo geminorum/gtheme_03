@@ -99,7 +99,7 @@ class gThemeSettings extends gThemeModuleCore
 		do_action( 'gtheme_settings_load', $sub );
 	}
 
-	public function settings_sub_html( $settings_uri, $sub )
+	public function settings_sub_html( $settings_uri, $sub = 'general' )
 	{
 		$defaults = self::defaults();
 		$options = gThemeOptions::get_options();

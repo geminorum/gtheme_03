@@ -19,5 +19,5 @@ jQuery(document).ready(function($){"use strict";
 	$('img').error(function(){$(this).hide();});
 	$('a[href="#"]').click( function(e){e.preventDefault();});
 	
-	$('[data-toggle="tooltip"]').tooltip();
+	// $('[data-toggle="tooltip"]').tooltip();
 });
