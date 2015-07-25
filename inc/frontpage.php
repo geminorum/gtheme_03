@@ -3,16 +3,7 @@
 class gThemeFrontPage extends gThemeModuleCore
 {
 
-	public function setup_actions( $args = array() )
-	{
-		extract( shortcode_atts( array(
-			'cleanup' => true,
-		), $args ) );
-
-		if ( $cleanup ) {
-		}
-	}
-
+	// ANCESTOR : gtheme_get_displayed()
 	public static function getDisplayed()
 	{
 		global $gtheme_front_page_displayed;
@@ -23,7 +14,8 @@ class gThemeFrontPage extends gThemeModuleCore
 		return $gtheme_front_page_displayed;
 	}
 
-	public static function addDisplayed( $post_id = null )
+	// ANCESTOR : gtheme_add_displayed()
+	public static function addDisplayed( $post_id = NULL )
 	{
 		global $gtheme_front_page_displayed;
 
@@ -35,5 +27,4 @@ class gThemeFrontPage extends gThemeModuleCore
 
 		$gtheme_front_page_displayed[] = $post_id;
 	}
-
 }
