@@ -110,13 +110,13 @@ class gThemeOptions extends gThemeModuleCore
 			'term_sep'           => ', ',
 			'comment_action_sep' => ' | ',
 
-			'text_size_increase' => '[ A+ ]',
-			'text_size_decrease' => '[ A- ]',
-			'text_size_sep'      => ' / ',
+			'text_size_increase' => _x( '[ A+ ]', 'Options: Text Size Increase', GTHEME_TEXTDOMAIN ),
+			'text_size_decrease' => _x( '[ A- ]', 'Options: Text Size Decrease', GTHEME_TEXTDOMAIN ),
+			'text_size_sep'      => _x( ' / ', 'Options: Text Size Sep', GTHEME_TEXTDOMAIN ),
 
-			'text_justify'     => '[ Ju ]',
-			'text_unjustify'   => '[ uJ ]',
-			'text_justify_sep' => ' / ',
+			'text_justify'     => _x( '[ Ju ]', 'Options: Text Justify', GTHEME_TEXTDOMAIN ),
+			'text_unjustify'   => _x( '[ uJ ]', 'Options: Text Unjustify', GTHEME_TEXTDOMAIN ),
+			'text_justify_sep' => _x( ' / ', 'Options: Text Justify Sep', GTHEME_TEXTDOMAIN ),
 
 			'excerpt_length'          => 40,
 			'excerpt_more'            => ' &hellip;',

@@ -433,7 +433,7 @@ class gThemeImage extends gThemeModuleCore
 					}
 
 					// last check
-					if ( $args['link'] ) // TODO : add template
+					if ( $args['link'] && $html ) // TODO : add template
 						$html = '<a href="'.esc_url( $args['link'] ).'">'.$html.'</a>';
 				}
 

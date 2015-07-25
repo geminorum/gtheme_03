@@ -13,10 +13,10 @@ class gThemeSideBar extends gThemeModuleCore
 		), $args ) );
 
 		if ( ! $disable_sidebars )
-			add_action( 'widgets_init', array( & $this, 'widgets_init' ), 18 );
+			add_action( 'widgets_init', array( &$this, 'widgets_init' ), 18 );
 
 		if ( $primary_cats_sidebar )
-			add_action( 'widgets_init', array( & $this, 'widgets_init_categories' ) );
+			add_action( 'widgets_init', array( &$this, 'widgets_init_categories' ) );
 	}
 
 	public static function sidebar( $name, $b = '', $a = '', $else = FALSE )
