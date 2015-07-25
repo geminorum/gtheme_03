@@ -1,0 +1,65 @@
+
+/// gTheme Default Widgets Styles
+
+.gtheme-widget {
+
+	.gtheme-widget-title {
+		font-size:$font-size-h4;
+		color:$gray-dark;
+	}
+
+	ul, ol {
+		padding:0;
+		padding-right:$theme-grid-gutter / 4;
+		li {
+			list-style: none;
+			padding:0;
+			margin-bottom: $theme-grid-gutter / 4;
+		}
+	}
+
+	&.widget_calendar {
+
+		table {
+			width: 100%;
+
+			a {
+				font-weight: 600;
+				&:hover {
+					color: $gray !important;
+					text-decoration:none;
+				}
+			}
+
+			caption {
+				color: $gray-dark;
+				padding: 5px 10px;
+				text-align:center;
+			}
+
+			thead {
+				background: $table-bg-accent;
+				-webkit-box-shadow: 0 1px 0 #ddd;
+						box-shadow: inset 0 -1px 0 #ddd;
+			}
+
+			th {
+				font-weight: 600;
+			}
+
+			th, td {
+				padding: 3px 0;
+				text-align: center;
+				border: 1px solid $table-border-color;
+			}
+
+			td:hover {
+				background: $table-bg-hover;
+			}
+
+			.pad {
+				padding: 0!important;
+			}
+		}
+	}
+}

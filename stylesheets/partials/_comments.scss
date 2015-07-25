@@ -2,7 +2,8 @@
 /// gTheme Default Comments Styles
 
 .comments-area {
-	
+	margin-bottom: $theme-grid-gutter / 2;
+
 	.no-password {}
 	.no-comments {}
 
@@ -10,7 +11,7 @@
 		.nav-previous {}
 		.nav-next {}
 	}
-	
+
 	.comments-feed {
 		float:left;
 		a {
@@ -21,26 +22,26 @@
 			}
 		}
 	}
-	
+
 	.comments-title {
 		font-size:$font-size-h5;
 		margin:0;
 	}
-	
+
 	.comment-list {
 		margin-top: $theme-grid-gutter;
 		.comment {
 			margin-bottom: $theme-grid-gutter;
-			
-			
+
+
 			.comment-avatar {
-				
+
 			}
-			
+
 			.comment-body {
 				padding: $padding-base-vertical $padding-base-horizontal 0 0;
 			}
-			
+
 			.comment-content {
 				p {
 					color: $gray-dark;
@@ -48,12 +49,12 @@
 					line-height: $line-height-small;
 				}
 			}
-			
+
 			.comment-meta {
 				margin-bottom: $padding-large-vertical;
 			}
 			.comment-author {
-				
+
 			}
 			.comment-time {
 				font-size: $font-size-small * 0.8;
@@ -67,7 +68,7 @@
 				}
 			}
 			.comment-moderation {
-				
+
 			}
 			.comment-actions {
 				font-size: $font-size-small;

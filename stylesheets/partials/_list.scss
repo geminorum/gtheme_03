@@ -1,0 +1,10 @@
+
+/// gTheme Default List Styles
+
+@mixin theme-list-before() {
+	list-style: none;
+	padding:0;
+	&:before {
+
+	}
+}
