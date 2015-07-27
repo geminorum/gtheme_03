@@ -243,4 +243,72 @@ class gThemeModuleCore
 		$this->_counter++;
 		return $selector;
 	}
+
+	public static function getTerms( $taxonomy = 'category', $post_id = FALSE, $object = FALSE, $key = 'term_id' )
+	{
+		$the_terms = array();
+
+		if ( FALSE === $post_id ) {
+			$terms = get_terms( $taxonomy, array(
+				'hide_empty' => FALSE,
+				'orderby'    => 'name',
+				'order'      => 'ASC'
+			) );
+		} else {
+			$terms = get_the_terms( $post_id, $taxonomy );
+		}
+
+		if ( is_wp_error( $terms ) || FALSE === $terms )
+			return $the_terms;
+
+		$the_list = wp_list_pluck( $terms, $key );
+		$terms    = array_combine( $the_list, $terms );
+
+		if ( $object )
+			return $terms;
+
+		foreach ( $terms as $term )
+			$the_terms[] = $term->term_id;
+
+		return $the_terms;
+	}
+
+	public static function getPostTypes()
+	{
+		$list = array();
+
+		$post_types = get_post_types( array(
+			'public'   => TRUE,
+			'_builtin' => TRUE,
+		), 'objects' );
+
+		foreach ( $post_types as $post_type => $post_type_obj )
+			$list[$post_type] = $post_type_obj->labels->name;
+
+		return $list;
+	}
+
+	public static function getTaxonomies( $with_post_type = FALSE )
+	{
+		$list = array();
+
+		$taxonomies = get_taxonomies( array(
+			'public'   => TRUE,
+			// '_builtin' => TRUE,
+		), 'objects' );
+
+		if ( $taxonomies ) {
+			foreach ( $taxonomies as $taxonomy ) {
+				if ( ! empty( $taxonomy->labels->menu_name )  ) {
+					if ( $with_post_type ) {
+						$list[$taxonomy->name] = $taxonomy->labels->menu_name.' ('.implode( __( ', ', GTHEME_TEXTDOMAIN ), $taxonomy->object_type ).')';
+					} else {
+						$list[$taxonomy->name] = $taxonomy->labels->menu_name;
+					}
+				}
+			}
+		}
+
+		return $list;
+	}
 }

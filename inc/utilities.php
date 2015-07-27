@@ -287,17 +287,10 @@ class gThemeUtilities extends gThemeModuleCore
 		return $current_url;
 	}
 
+	// BACK COMP
+	// DEPRECATED
 	public static function getPostTypes()
 	{
-		$list = array();
-		$post_types = get_post_types( array(
-			'public'   => TRUE,
-			'_builtin' => TRUE,
-		), 'objects' );
-
-		foreach ( $post_types as $post_type => $post_type_obj )
-			$list[$post_type] = $post_type_obj->labels->name;
-
-		return $list;
+		return gThemeModuleCore::getPostTypes();
 	}
 }
