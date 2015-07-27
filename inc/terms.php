@@ -16,6 +16,8 @@ class gThemeTerms extends gThemeModuleCore
 		if ( $system_tags ) {
 			add_action( 'init', array( &$this, 'register_taxonomies' ) );
 			add_filter( 'post_class', array( &$this, 'post_class' ), 10, 3 );
+
+			add_filter( 'geditorial_tweaks_strings', array( &$this, 'tweaks_strings' ) );
 		}
 
 		if ( $p2p )
@@ -88,7 +90,7 @@ class gThemeTerms extends gThemeModuleCore
 			echo '<table class="form-table">';
 				echo '<tr><th scope="row">'.__( 'Primary Terms', GTHEME_TEXTDOMAIN ).'</th><td>';
 
-				foreach ( self::get( $taxonomy, FALSE, TRUE ) as $term ) {
+				foreach ( self::getTerms( $taxonomy, FALSE, TRUE ) as $term ) {
 
 					echo gThemeUtilities::html( 'input', array(
 						'type'    => 'checkbox',
@@ -182,6 +184,21 @@ class gThemeTerms extends gThemeModuleCore
 		return $classes;
 	}
 
+	public function tweaks_strings( $strings )
+	{
+		$new = array(
+			'taxonomies' => array(
+				GTHEME_SYSTEMTAGS => array(
+					'column'     => 'taxonomy-'.GTHEME_SYSTEMTAGS,
+					'dashicon'   => 'admin-generic',
+					'title_attr' => _x( 'System Tags', 'system tags labels', GTHEME_TEXTDOMAIN ),
+				),
+			),
+		);
+
+		return gThemeUtilities::parse_args_r( $new, $strings );
+	}
+
 	private function system_tags_table_action( $action_name )
 	{
 		if ( ! isset( $_REQUEST[$action_name] ) )
@@ -249,33 +266,10 @@ class gThemeTerms extends gThemeModuleCore
 		return TRUE;
 	}
 
-	// helper
+	// BACK COMP
+	// DEPRECATED
 	public static function get( $taxonomy = 'category', $post_id = FALSE, $object = FALSE, $key = 'term_id' )
 	{
-		$the_terms = array();
-
-		if ( FALSE === $post_id ) {
-			$terms = get_terms( $taxonomy, array(
-				'hide_empty' => FALSE,
-				'orderby'    => 'name',
-				'order'      => 'ASC'
-			) );
-		} else {
-			$terms = get_the_terms( $post_id, $taxonomy );
-		}
-
-		if ( is_wp_error( $terms ) || FALSE === $terms )
-			return $the_terms;
-
-		$the_list = wp_list_pluck( $terms, $key );
-		$terms    = array_combine( $the_list, $terms );
-
-		if ( $object )
-			return $terms;
-
-		foreach ( $terms as $term )
-			$the_terms[] = $term->term_id;
-
-		return $the_terms;
+		return self::getTerms( $taxonomy, $post_id, $object, $key );
 	}
 }
