@@ -8,3 +8,25 @@
 
 	}
 }
+
+@mixin theme-list-wrap() {
+	.theme-list-wrap {
+		ul {
+			li {
+				@include theme-list-before();
+			}
+		}
+
+		&.related-posts {
+
+		}
+
+		&.recent-posts {
+
+		}
+
+		&.recent-comments {
+
+		}
+	}
+}
