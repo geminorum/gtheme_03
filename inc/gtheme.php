@@ -46,6 +46,7 @@ final class gThemeCore
 			'frontpage'  => 'gThemeFrontPage',
 			'pages'      => 'gThemePages',
 			'bootstrap'  => 'gThemeBootstrap',
+			'date'       => 'gThemeDate',
 		);
 
 		if ( is_admin() ) {
