@@ -477,7 +477,7 @@ class gThemeImage extends gThemeModuleCore
 			'post_id'         => NULL,
 			'link'            => 'parent',
 			'attr'            => '',
-			'empty'           => '',
+			'empty'           => self::holder( ( isset( $atts['tag'] ) ? $atts['tag'] : 'raw' ), ( isset( $atts['class'] ) ? $atts['class'] : 'gtheme-image' ) ),
 			'url'             => FALSE,
 			'caption'         => FALSE,
 			'default_caption' => '',
@@ -507,6 +507,18 @@ class gThemeImage extends gThemeModuleCore
 		} else if ( ! empty( $args['empty'] ) ) {
 			echo $args['before'].$args['empty'].$args['after'];
 		}
+	}
+
+	// ANCESTOR: gtheme_empty_image()
+	public static function holder( $tag = 'raw', $extra_class = '', $force = FALS )
+	{
+		if ( ! $force && ! current_user_can( 'edit_others_posts' ) )
+			return '';
+
+		return '<div class="gtheme-image-holder holder-image-'
+			.$tag.( gThemeUtilities::isDev() ? ' isdev ' : ' ' )
+			.$extra_class
+			.'"></div>';
 	}
 
 	public static function holderJS( $width = 100, $height = 100, $atts = array() )
