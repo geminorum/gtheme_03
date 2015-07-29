@@ -1,3 +1,15 @@
+### 0.3.4
+* better flush handling for cache module
+* new module: bootstrap helper
+* new module: date helper
+* css class in nav menus
+* default template base order changed to : header/start/template(w/o:sidebar)/end/footer
+* adding responsive class to image tags
+* primary terms api
+* better handling widgets
+* support for [gEditorial](https://github.com/geminorum/geditorial) tweaks module
+* image holder
+
 ### 0.3.3
 * cleanup almost all
 
