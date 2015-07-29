@@ -21,6 +21,8 @@
 	&.widget_calendar {
 
 		table {
+			margin-top:$theme-grid-gutter / 2;
+
 			width: 100%;
 
 			a {
@@ -33,7 +35,7 @@
 
 			caption {
 				color: $gray-dark;
-				padding: 5px 10px;
+				padding:$padding-base-vertical $padding-base-horizontal;
 				text-align:center;
 			}
 
