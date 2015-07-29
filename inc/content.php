@@ -324,6 +324,16 @@ class gThemeContent extends gThemeModuleCore
 				if ( is_object_in_taxonomy( get_post_type(), 'category' ) ) {
 					echo sprintf( $before, 'cat-links' ).gtheme_get_info( 'before_cat_list', '' ).get_the_category_list( gThemeUtilities::sanitize_sep( 'def', 'term_sep' ) ).$after;
 				}
+
+			break;
+			case 'the_date' :
+
+				gThemeDate::date( array(
+					'before' => sprintf( $before, 'the-date' ),
+					'after'  => $after,
+					'text'   => ( $icons ? '<div class="genericon genericon-edit"></div>' : NULL ),
+				) );
+
 			break;
 		}
 	}
@@ -457,15 +467,16 @@ a2a_config.locale = "fa";
 	public static function header( $atts = array() )
 	{
 		$args = self::atts( array(
-			'context'   => 'single',
-			'prefix'    => 'entry',
-			'actions'   => FALSE,
-			'shortlink' => FALSE,
-			'title_tag' => 'h2',
-			'meta_tag'  => 'h4',
-			'title'     => NULL,
-			'meta'      => TRUE,
-			'link'      => TRUE, // disable linking compeletly
+			'context'     => 'single',
+			'prefix'      => 'entry',
+			'actions'     => FALSE,
+			'action_icon' => 'def',
+			'shortlink'   => FALSE,
+			'title_tag'   => 'h2',
+			'meta_tag'    => 'h4',
+			'title'       => NULL,
+			'meta'        => TRUE,
+			'link'        => TRUE, // disable linking compeletly
 		), $atts );
 
 		if ( is_null( $args['title'] ) )
@@ -511,11 +522,38 @@ a2a_config.locale = "fa";
 
 		if ( $args['actions'] ) {
 			echo '<ul class="list-inline actions-class actions-'.$args['context'].' '.$args['prefix'].'-actions">';
-				self::actions( '<li class="post-action %s">', '</li>', $args['actions'] );
+				self::actions( '<li class="post-action %s">', '</li>', $args['actions'], $args['action_icon'] );
 			echo '</ul>';
 		}
 
 		echo '</header>';
+	}
+
+	public static function footer( $atts = array() )
+	{
+		$args = self::atts( array(
+			'context'     => 'single',
+			'prefix'      => 'entry',
+			'actions'     => FALSE,
+			'action_icon' => 'def',
+			'shortlink'   => FALSE,
+			'title_tag'   => 'h2',
+			'meta_tag'    => 'h4',
+			'title'       => NULL,
+			'meta'        => TRUE,
+			'link'        => TRUE, // disable linking compeletly
+		), $atts );
+
+
+		echo '<footer class="footer-class footer-'.$args['context'].' '.$args['prefix'].'-footer">';
+
+		if ( $args['actions'] ) {
+			echo '<ul class="list-inline actions-class actions-'.$args['context'].' '.$args['prefix'].'-actions">';
+				self::actions( '<li class="post-action %s">', '</li>', $args['actions'], $args['action_icon'] );
+			echo '</ul>';
+		}
+
+		echo '</footer>';
 	}
 
 	//////////////////////////////////////////////////////////////////
