@@ -28,6 +28,7 @@ class gThemeFragmentCache
 		$this->ttl       = $ttl;
 		$this->transient = is_null( $transient ) ? ! wp_using_ext_object_cache() : $transient;
 		$this->site      = is_multisite() && $site;
+		$this->ob        = FALSE;
 
 		if ( GTHEME_FLUSH )
 			$this->__flush();
@@ -69,6 +70,7 @@ class gThemeFragmentCache
 			return TRUE;
 		} else {
 			ob_start();
+			$this->ob = TRUE;
 			return FALSE;
 		}
 	}
@@ -99,7 +101,8 @@ class gThemeFragmentCache
 		if ( gThemeUtilities::isDev() )
 			return;
 
-		$output = ob_get_flush();
+		if ( $this->ob )
+			$output = ob_get_flush();
 	}
 
 	// DEPRECATED
