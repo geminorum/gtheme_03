@@ -510,7 +510,7 @@ class gThemeImage extends gThemeModuleCore
 	}
 
 	// ANCESTOR: gtheme_empty_image()
-	public static function holder( $tag = 'raw', $extra_class = '', $force = FALS )
+	public static function holder( $tag = 'raw', $extra_class = '', $force = FALSE )
 	{
 		if ( ! $force && ! current_user_can( 'edit_others_posts' ) )
 			return '';
