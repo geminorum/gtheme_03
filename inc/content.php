@@ -472,6 +472,7 @@ a2a_config.locale = "fa";
 			'actions'     => FALSE,
 			'action_icon' => 'def',
 			'shortlink'   => FALSE,
+			'wrap_tag'   => 'header',
 			'title_tag'   => 'h2',
 			'meta_tag'    => 'h4',
 			'title'       => NULL,
@@ -497,7 +498,7 @@ a2a_config.locale = "fa";
 		if ( $args['meta'] )
 			$args['meta'] = gThemeOptions::supports( 'geditorial-meta', TRUE );
 
-		echo '<header class="header-class header-'.$args['context'].' '.$args['prefix'].'-header">';
+		echo '<'.$args['wrap_tag'].' class="header-class header-'.$args['context'].' '.$args['prefix'].'-header">';
 		echo '<div class="titles-class '.$args['prefix'].'-titles">';
 
 		if ( $args['meta'] )
@@ -526,7 +527,7 @@ a2a_config.locale = "fa";
 			echo '</ul>';
 		}
 
-		echo '</header>';
+		echo '</'.$args['wrap_tag'].'>';
 	}
 
 	public static function footer( $atts = array() )
