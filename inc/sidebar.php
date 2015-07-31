@@ -567,7 +567,9 @@ class gThemeWidgetRecentPosts extends gThemeWidget
 
 	public function widget_html( $args, $instance )
 	{
-		$context = isset( $instance['context'] ) ? $instance['context'] : 'recent';
+		$post_type = empty( $instance['post_type'] ) ? 'post' : $instance['post_type'];
+		$context   = isset( $instance['context'] ) ? $instance['context'] : 'recent';
+
 		$title = apply_filters( 'widget_title',
 			empty( $instance['title'] ) ? '' : $instance['title'],
 			$instance,
@@ -579,6 +581,7 @@ class gThemeWidgetRecentPosts extends gThemeWidget
 
 		$row_query = new WP_Query( array(
 			'posts_per_page'         => $number,
+			'post_type'              => $post_type,
 			'post_status'            => 'publish',
 			'ignore_sticky_posts'    => TRUE,
 			'no_found_rows'          => TRUE, // counts posts, remove if pagination required
@@ -608,10 +611,11 @@ class gThemeWidgetRecentPosts extends gThemeWidget
 
 	public function update( $new_instance, $old_instance )
 	{
-		$instance            = $old_instance;
-		$instance['title']   = strip_tags( $new_instance['title'] );
-		$instance['number']  = intval( $new_instance['number'] );
-		$instance['context'] = strip_tags( $new_instance['context'] );
+		$instance              = $old_instance;
+		$instance['title']     = strip_tags( $new_instance['title'] );
+		$instance['post_type'] = strip_tags( $new_instance['post_type'] );
+		$instance['number']    = intval( $new_instance['number'] );
+		$instance['context']   = strip_tags( $new_instance['context'] );
 
 		$this->flush_widget_cache();
 
@@ -625,6 +629,7 @@ class gThemeWidgetRecentPosts extends gThemeWidget
 	public function form( $instance )
 	{
 		$this->form_title( $instance );
+		$this->form_post_type( $instance );
 		$this->form_context( $instance, 'recent' );
 		$this->form_number( $instance, '5' );
 	}
