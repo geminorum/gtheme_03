@@ -294,7 +294,7 @@ class gThemeModuleCore
 		$list = array();
 
 		$taxonomies = get_taxonomies( array(
-			'public'   => TRUE,
+			// 'public'   => TRUE,
 			// '_builtin' => TRUE,
 		), 'objects' );
 
