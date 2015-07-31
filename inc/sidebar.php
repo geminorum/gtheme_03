@@ -522,7 +522,7 @@ class gThemeWidgetTermPosts extends gThemeWidget
 			echo $args['before_widget'];
 			if ( $title )
 				echo $args['before_title'].$title.$args['after_title'];
-			echo '<div class="theme-list-wrap term-posts"><ul>';
+			echo '<div class="theme-list-wrap term-posts '.( $context ? 'context-'.$context : 'context-undefined' ).'"><ul>';
 			while ( $row_query->have_posts() ) {
 				$row_query->the_post();
 				if ( trim( get_the_title() ) ) {
@@ -641,7 +641,7 @@ class gThemeWidgetRelatedPosts extends gThemeWidget
 			echo $args['before_widget'];
 			if ( $title )
 				echo $args['before_title'].$title.$args['after_title'];
-			echo '<div class="theme-list-wrap related-posts"><ul>';
+			echo '<div class="theme-list-wrap related-posts '.( $context ? 'context-'.$context : 'context-undefined' ).'"><ul>';
 			while ( $row_query->have_posts() ) {
 				$row_query->the_post();
 				if ( trim( get_the_title() ) ) {
@@ -731,7 +731,7 @@ class gThemeWidgetRecentPosts extends gThemeWidget
 			echo $args['before_widget'];
 			if ( $title )
 				echo $args['before_title'].$title.$args['after_title'];
-			echo '<div class="theme-list-wrap recent-posts"><ul>';
+			echo '<div class="theme-list-wrap recent-posts '.( $context ? 'context-'.$context : 'context-undefined' ).'"><ul>';
 			while ( $row_query->have_posts() ) {
 				$row_query->the_post();
 				if ( trim( get_the_title() ) ) {
