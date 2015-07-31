@@ -286,11 +286,4 @@ class gThemeUtilities extends gThemeModuleCore
 
 		return $current_url;
 	}
-
-	// BACK COMP
-	// DEPRECATED
-	public static function getPostTypes()
-	{
-		return gThemeModuleCore::getPostTypes();
-	}
 }
