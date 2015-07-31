@@ -34,6 +34,7 @@ class gThemeSideBar extends gThemeModuleCore
 	{
 		return apply_filters( 'gtheme_widgets', array(
 			'gThemeWidgetSearch',
+			'gThemeWidgetTermPosts',
 			'gThemeWidgetRelatedPosts',
 			'gThemeWidgetRecentPosts',
 			'gThemeWidgetRecentComments',
@@ -427,6 +428,143 @@ class gThemeWidget extends WP_Widget
 		echo '<p>'. gThemeUtilities::html( 'label', array(
 			'for' => $this->get_field_id( $field ),
 		), __( 'Avatar Size:', GTHEME_TEXTDOMAIN ).$html ).'</p>';
+	}
+
+	public function form_term_id( $instance, $default = '0', $field = 'term_id', $taxonomy_field = 'taxonomy' )
+	{
+		$taxonomy = isset( $instance[$taxonomy_field] ) ? $instance[$taxonomy_field] : 'post_tag';
+		$term_id  = isset( $instance[$field] ) ? $instance[$field] : $default;
+
+		$html = gThemeUtilities::html( 'option', array(
+			'value'    => '0',
+			'selected' => $term_id == '0',
+		), __( '&mdash; Select &mdash;', GTHEME_TEXTDOMAIN ) );
+
+		foreach ( get_terms( $taxonomy ) as $term )
+			$html .= gThemeUtilities::html( 'option', array(
+				'value'    => $term->term_id,
+				'selected' => $term_id == $term->term_id,
+			), $term->name );
+
+		$html = gThemeUtilities::html( 'select', array(
+			'class' => 'widefat',
+			'name'  => $this->get_field_name( $field ),
+			'id'    => $this->get_field_id( $field ),
+		), $html );
+
+		echo '<p>'. gThemeUtilities::html( 'label', array(
+			'for' => $this->get_field_id( $field ),
+		), __( 'Term:', GTHEME_TEXTDOMAIN ).$html ).'</p>';
+	}
+}
+
+class gThemeWidgetTermPosts extends gThemeWidget
+{
+
+	protected function setup()
+	{
+		return array(
+			'name'  => 'term_posts',
+			'class' => 'term-posts',
+			'title' => __( 'gTheme: Term Posts', GTHEME_TEXTDOMAIN ),
+			'desc'  => __( 'Customized term posts.', GTHEME_TEXTDOMAIN ),
+			'flush' => array(
+				'save_post',
+				'deleted_post',
+				'switch_theme',
+			),
+		);
+	}
+
+	public function widget( $args, $instance )
+	{
+		$term_id = isset( $instance['term_id'] ) ? $instance['term_id'] : FALSE;
+
+		if ( ! $term_id )
+			return;
+
+		$this->widget_cache( $args, $instance, '_'.$term_id );
+	}
+
+	public function widget_html( $args, $instance )
+	{
+		$context   = isset( $instance['context'] ) ? $instance['context'] : 'recent';
+		$term_id   = isset( $instance['term_id'] ) ? $instance['term_id'] : FALSE;
+		$taxonomy  = isset( $instance['taxonomy'] ) ? $instance['taxonomy'] : 'post_tag';
+		$post_type = isset( $instance['post_type'] ) ? $instance['post_type'] : 'post';
+
+		$title = apply_filters( 'widget_title',
+			empty( $instance['title'] ) ? '' : $instance['title'],
+			$instance,
+			$this->id_base
+		);
+
+		if ( empty( $instance['number'] ) || ! $number = absint( $instance['number'] ) )
+			$number = 10;
+
+		$row_query = new WP_Query( array(
+			'tax_query' => array( array(
+				'taxonomy' => $taxonomy,
+				'field'    => 'id',
+				'terms'    => array( $term_id ),
+				'operator' => 'IN',
+			) ),
+			'posts_per_page'         => $number,
+			'post_type'              => $post_type,
+			'post_status'            => 'publish',
+			'ignore_sticky_posts'    => TRUE,
+			'no_found_rows'          => TRUE, // counts posts, remove if pagination required
+			'update_post_term_cache' => FALSE, // grabs terms, remove if terms required (category, tag...)
+			'update_post_meta_cache' => FALSE, // grabs post meta, remove if post meta required
+		) );
+
+		if ( $row_query->have_posts() ) {
+			echo $args['before_widget'];
+			if ( $title )
+				echo $args['before_title'].$title.$args['after_title'];
+			echo '<div class="theme-list-wrap term-posts"><ul>';
+			while ( $row_query->have_posts() ) {
+				$row_query->the_post();
+				if ( trim( get_the_title() ) ) {
+					echo '<li>'; get_template_part( 'row', $context ); echo '</li>';
+				}
+			}
+			wp_reset_postdata();
+			echo '</ul></div>'.$args['after_widget'];
+
+			return TRUE;
+		}
+
+		return FALSE;
+	}
+
+	public function update( $new_instance, $old_instance )
+	{
+		$instance              = $old_instance;
+		$instance['title']     = strip_tags( $new_instance['title'] );
+		$instance['term_id']   = strip_tags( $new_instance['term_id'] );
+		$instance['taxonomy']  = strip_tags( $new_instance['taxonomy'] );
+		$instance['post_type'] = strip_tags( $new_instance['post_type'] );
+		$instance['number']    = intval( $new_instance['number'] );
+		$instance['context']   = strip_tags( $new_instance['context'] );
+
+		$this->flush_widget_cache();
+
+		$alloptions = wp_cache_get( 'alloptions', 'options' );
+		if ( isset( $alloptions[$this->alt_option_name] ) )
+			delete_option( $this->alt_option_name );
+
+		return $instance;
+	}
+
+	public function form( $instance )
+	{
+		$this->form_title( $instance );
+		$this->form_term_id( $instance );
+		$this->form_taxonomy( $instance );
+		$this->form_post_type( $instance );
+		$this->form_context( $instance, 'recent' );
+		$this->form_number( $instance, '5' );
 	}
 }
 
