@@ -273,14 +273,15 @@ class gThemeModuleCore
 		return $the_terms;
 	}
 
-	public static function getPostTypes()
+	public static function getPostTypes( $builtin = NULL )
 	{
 		$list = array();
+		$args = array( 'public' => TRUE );
 
-		$post_types = get_post_types( array(
-			'public'   => TRUE,
-			'_builtin' => TRUE,
-		), 'objects' );
+		if ( ! is_null( $builtin ) )
+			$args['_builtin'] = $builtin;
+
+		$post_types = get_post_types( $args, 'objects' );
 
 		foreach ( $post_types as $post_type => $post_type_obj )
 			$list[$post_type] = $post_type_obj->labels->name;
