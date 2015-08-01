@@ -437,13 +437,14 @@ class gThemeImage extends gThemeModuleCore
 						$html = '<a href="'.esc_url( $args['link'] ).'">'.$html.'</a>';
 				}
 
+				// TODO: use : gThemeAttachment::caption()
 				if ( $args['caption'] ) {
 					$caption = FALSE;
 					if ( TRUE === $args['caption'] ) {
 						if ( ! isset( $attachment_post ) )
 							$attachment_post = get_post( $args['post_thumbnail_id'] );
 
-						if ( ! is_null( $attachment_post  ) ) {
+						if ( ! is_null( $attachment_post ) ) {
 							$caption = trim( $attachment_post->post_excerpt );
 						} else {
 							$caption = $args['default_caption'];
@@ -456,7 +457,7 @@ class gThemeImage extends gThemeModuleCore
 						$html = sprintf( gThemeOptions::info( 'template_image_caption',
 							'<div class="%3$s">%1$s<p class="%4$s">%2$s</p></div>' ),
 								$html,
-								gtheme_l10n( $caption ),
+								gThemeL10N::html( $caption ),
 								'the-caption',
 								'the-caption-text'
 							);
