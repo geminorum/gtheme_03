@@ -320,6 +320,30 @@ class gThemeWidget extends WP_Widget
 		}
 	}
 
+	public function widget_title( $args, $instance, $echo = TRUE )
+	{
+		$title = apply_filters( 'widget_title',
+			empty( $instance['title'] ) ? '' : $instance['title'],
+			$instance,
+			$this->id_base
+		);
+
+		if ( $title && isset( $instance['title_link'] ) && $instance['title_link'] )
+			$title = gThemeUtilities::html( 'a', array(
+				'href' => esc_url( $instance['title_link'] ),
+			), $title );
+
+		if ( ! $title )
+			return '';
+
+		$html = $args['before_title'].$title.$args['after_title'];
+
+		if ( ! $echo )
+			return $html;
+
+		echo $html;
+	}
+
 	public function flush_widget_cache()
 	{
 		wp_cache_delete( $this->alt_option_name, 'widget' );
@@ -415,6 +439,22 @@ class gThemeWidget extends WP_Widget
 		), __( 'Title:', GTHEME_TEXTDOMAIN ).$html ).'</p>';
 	}
 
+	public function form_title_link( $instance, $default = '', $field = 'title_link' )
+	{
+		$html = gThemeUtilities::html( 'input', array(
+			'type'  => 'text',
+			'class' => 'widefat',
+			'name'  => $this->get_field_name( $field ),
+			'id'    => $this->get_field_id( $field ),
+			'value' => isset( $instance[$field] ) ? $instance[$field] : $default,
+			'dir'   => 'ltr',
+		) );
+
+		echo '<p>'. gThemeUtilities::html( 'label', array(
+			'for' => $this->get_field_id( $field ),
+		), __( 'Title Link:', GTHEME_TEXTDOMAIN ).$html ).'</p>';
+	}
+
 	public function form_avatar_size( $instance, $default = '32', $field = 'avatar_size' )
 	{
 		$html = gThemeUtilities::html( 'input', array(
@@ -493,12 +533,6 @@ class gThemeWidgetTermPosts extends gThemeWidget
 		$taxonomy  = isset( $instance['taxonomy'] ) ? $instance['taxonomy'] : 'post_tag';
 		$post_type = isset( $instance['post_type'] ) ? $instance['post_type'] : 'post';
 
-		$title = apply_filters( 'widget_title',
-			empty( $instance['title'] ) ? '' : $instance['title'],
-			$instance,
-			$this->id_base
-		);
-
 		if ( empty( $instance['number'] ) || ! $number = absint( $instance['number'] ) )
 			$number = 10;
 
@@ -520,8 +554,7 @@ class gThemeWidgetTermPosts extends gThemeWidget
 
 		if ( $row_query->have_posts() ) {
 			echo $args['before_widget'];
-			if ( $title )
-				echo $args['before_title'].$title.$args['after_title'];
+			$this->widget_title( $args, $instance );
 			echo '<div class="theme-list-wrap term-posts '.( $context ? 'context-'.$context : 'context-undefined' ).'"><ul>';
 			while ( $row_query->have_posts() ) {
 				$row_query->the_post();
@@ -540,13 +573,14 @@ class gThemeWidgetTermPosts extends gThemeWidget
 
 	public function update( $new_instance, $old_instance )
 	{
-		$instance              = $old_instance;
-		$instance['title']     = strip_tags( $new_instance['title'] );
-		$instance['term_id']   = strip_tags( $new_instance['term_id'] );
-		$instance['taxonomy']  = strip_tags( $new_instance['taxonomy'] );
-		$instance['post_type'] = strip_tags( $new_instance['post_type'] );
-		$instance['number']    = intval( $new_instance['number'] );
-		$instance['context']   = strip_tags( $new_instance['context'] );
+		$instance               = $old_instance;
+		$instance['title']      = strip_tags( $new_instance['title'] );
+		$instance['title_link'] = strip_tags( $new_instance['title_link'] );
+		$instance['term_id']    = strip_tags( $new_instance['term_id'] );
+		$instance['taxonomy']   = strip_tags( $new_instance['taxonomy'] );
+		$instance['post_type']  = strip_tags( $new_instance['post_type'] );
+		$instance['number']     = intval( $new_instance['number'] );
+		$instance['context']    = strip_tags( $new_instance['context'] );
 
 		$this->flush_widget_cache();
 
@@ -560,6 +594,7 @@ class gThemeWidgetTermPosts extends gThemeWidget
 	public function form( $instance )
 	{
 		$this->form_title( $instance );
+		$this->form_title_link( $instance );
 		$this->form_term_id( $instance );
 		$this->form_taxonomy( $instance );
 		$this->form_post_type( $instance );
@@ -606,12 +641,6 @@ class gThemeWidgetRelatedPosts extends gThemeWidget
 		$taxonomy  = isset( $instance['taxonomy'] ) ? $instance['taxonomy'] : 'post_tag';
 		$post_type = isset( $instance['post_type'] ) ? $instance['post_type'] : 'post';
 
-		$title = apply_filters( 'widget_title',
-			empty( $instance['title'] ) ? '' : $instance['title'],
-			$instance,
-			$this->id_base
-		);
-
 		if ( empty( $instance['number'] ) || ! $number = absint( $instance['number'] ) )
 			$number = 10;
 
@@ -639,8 +668,7 @@ class gThemeWidgetRelatedPosts extends gThemeWidget
 
 		if ( $row_query->have_posts() ) {
 			echo $args['before_widget'];
-			if ( $title )
-				echo $args['before_title'].$title.$args['after_title'];
+			$this->widget_title( $args, $instance );
 			echo '<div class="theme-list-wrap related-posts '.( $context ? 'context-'.$context : 'context-undefined' ).'"><ul>';
 			while ( $row_query->have_posts() ) {
 				$row_query->the_post();
@@ -659,12 +687,13 @@ class gThemeWidgetRelatedPosts extends gThemeWidget
 
 	public function update( $new_instance, $old_instance )
 	{
-		$instance              = $old_instance;
-		$instance['title']     = strip_tags( $new_instance['title'] );
-		$instance['number']    = intval( $new_instance['number'] );
-		$instance['context']   = strip_tags( $new_instance['context'] );
-		$instance['post_type'] = strip_tags( $new_instance['post_type'] );
-		$instance['taxonomy']  = strip_tags( $new_instance['taxonomy'] );
+		$instance               = $old_instance;
+		$instance['title']      = strip_tags( $new_instance['title'] );
+		$instance['title_link'] = strip_tags( $new_instance['title_link'] );
+		$instance['number']     = intval( $new_instance['number'] );
+		$instance['context']    = strip_tags( $new_instance['context'] );
+		$instance['post_type']  = strip_tags( $new_instance['post_type'] );
+		$instance['taxonomy']   = strip_tags( $new_instance['taxonomy'] );
 
 		$this->flush_widget_cache();
 
@@ -678,6 +707,7 @@ class gThemeWidgetRelatedPosts extends gThemeWidget
 	public function form( $instance )
 	{
 		$this->form_title( $instance );
+		$this->form_title_link( $instance );
 		$this->form_taxonomy( $instance );
 		$this->form_post_type( $instance );
 		$this->form_context( $instance, 'related' );
@@ -708,12 +738,6 @@ class gThemeWidgetRecentPosts extends gThemeWidget
 		$post_type = empty( $instance['post_type'] ) ? 'post' : $instance['post_type'];
 		$context   = isset( $instance['context'] ) ? $instance['context'] : 'recent';
 
-		$title = apply_filters( 'widget_title',
-			empty( $instance['title'] ) ? '' : $instance['title'],
-			$instance,
-			$this->id_base
-		);
-
 		if ( empty( $instance['number'] ) || ! $number = absint( $instance['number'] ) )
 			$number = 10;
 
@@ -729,8 +753,7 @@ class gThemeWidgetRecentPosts extends gThemeWidget
 
 		if ( $row_query->have_posts() ) {
 			echo $args['before_widget'];
-			if ( $title )
-				echo $args['before_title'].$title.$args['after_title'];
+			$this->widget_title( $args, $instance );
 			echo '<div class="theme-list-wrap recent-posts '.( $context ? 'context-'.$context : 'context-undefined' ).'"><ul>';
 			while ( $row_query->have_posts() ) {
 				$row_query->the_post();
@@ -749,11 +772,12 @@ class gThemeWidgetRecentPosts extends gThemeWidget
 
 	public function update( $new_instance, $old_instance )
 	{
-		$instance              = $old_instance;
-		$instance['title']     = strip_tags( $new_instance['title'] );
-		$instance['post_type'] = strip_tags( $new_instance['post_type'] );
-		$instance['number']    = intval( $new_instance['number'] );
-		$instance['context']   = strip_tags( $new_instance['context'] );
+		$instance               = $old_instance;
+		$instance['title']      = strip_tags( $new_instance['title'] );
+		$instance['title_link'] = strip_tags( $new_instance['title_link'] );
+		$instance['post_type']  = strip_tags( $new_instance['post_type'] );
+		$instance['number']     = intval( $new_instance['number'] );
+		$instance['context']    = strip_tags( $new_instance['context'] );
 
 		$this->flush_widget_cache();
 
@@ -767,6 +791,7 @@ class gThemeWidgetRecentPosts extends gThemeWidget
 	public function form( $instance )
 	{
 		$this->form_title( $instance );
+		$this->form_title_link( $instance );
 		$this->form_post_type( $instance );
 		$this->form_context( $instance, 'recent' );
 		$this->form_number( $instance, '5' );
@@ -808,19 +833,12 @@ class gThemeWidgetRecentComments extends gThemeWidget
 			$callback = gThemeOptions::info( 'recent_comment_callback', array( $this, 'comment_callback' ) );
 			$avatar_size = empty( $instance['avatar_size'] ) ? 32 : absint( $instance['avatar_size'] );
 
-			$title = apply_filters( 'widget_title',
-				empty( $instance['title'] ) ? '' : $instance['title'],
-				$instance,
-				$this->id_base
-			);
-
 			// Prime cache for associated posts. (Prime post term cache if we need it for permalinks.)
 			$post_ids = array_unique( wp_list_pluck( $comments, 'comment_post_ID' ) );
 			_prime_post_caches( $post_ids, strpos( get_option( 'permalink_structure' ), '%category%' ), false );
 
 			echo $args['before_widget'];
-			if ( $title )
-				echo $args['before_title'].$title.$args['after_title'];
+			$this->widget_title( $args, $instance );
 			echo '<div class="theme-list-wrap recent-comments"><ul>';
 
 			foreach ( (array) $comments as $comment ) {
@@ -854,6 +872,7 @@ class gThemeWidgetRecentComments extends gThemeWidget
 	{
 		$instance                = $old_instance;
 		$instance['title']       = strip_tags( $new_instance['title'] );
+		$instance['title_link']  = strip_tags( $new_instance['title_link'] );
 		$instance['number']      = (int) $new_instance['number'];
 		$instance['avatar_size'] = (int) $new_instance['avatar_size'];
 		$this->flush_widget_cache();
@@ -868,6 +887,7 @@ class gThemeWidgetRecentComments extends gThemeWidget
 	public function form( $instance )
 	{
 		$this->form_title( $instance );
+		$this->form_title_link( $instance );
 		$this->form_avatar_size( $instance );
 		$this->form_number( $instance, '5' );
 	}
@@ -889,15 +909,9 @@ class gThemeWidgetSearch extends gThemeWidget
 	public function widget( $args, $instance )
 	{
 		$context = empty( $instance['context'] ) ? '' : $instance['context'];
-		$title = apply_filters( 'widget_title',
-			empty( $instance['title'] ) ? '' : $instance['title'],
-			$instance,
-			$this->id_base
-		);
 
 		echo $args['before_widget'];
-		if ( $title )
-			echo $args['before_title'].$title.$args['after_title'];
+		$this->widget_title( $args, $instance );
 			get_template_part( 'searchform', $context );
 		echo $args['after_widget'];
 	}
@@ -905,6 +919,7 @@ class gThemeWidgetSearch extends gThemeWidget
 	public function form( $instance )
 	{
 		$this->form_title( $instance );
+		$this->form_title_link( $instance );
 		$this->form_context( $instance );
 	}
 }
@@ -925,15 +940,9 @@ class gThemeWidgetTemplatePart extends gThemeWidget
 	public function widget( $args, $instance )
 	{
 		$context = empty( $instance['context'] ) ? '' : $instance['context'];
-		$title = apply_filters( 'widget_title',
-			empty( $instance['title'] ) ? '' : $instance['title'],
-			$instance,
-			$this->id_base
-		);
 
 		echo $args['before_widget'];
-		if ( $title )
-			echo $args['before_title'].$title.$args['after_title'];
+		$this->widget_title( $args, $instance );
 			get_template_part( 'widget', $context );
 		echo $args['after_widget'];
 	}
@@ -941,6 +950,7 @@ class gThemeWidgetTemplatePart extends gThemeWidget
 	public function form( $instance )
 	{
 		$this->form_title( $instance );
+		$this->form_title_link( $instance );
 		$this->form_context( $instance );
 	}
 }
@@ -961,18 +971,12 @@ class gThemeWidgetChildren extends gThemeWidget
 	public function widget( $args, $instance )
 	{
 		$post_type = empty( $instance['post_type'] ) ? 'page' : $instance['post_type'];
-		$title = apply_filters( 'widget_title',
-			empty( $instance['title'] ) ? '' : $instance['title'],
-			$instance,
-			$this->id_base
-		);
 
 		$html = gTheme()->shortcodes->shortcode_children( array( 'type' => $post_type ) );
 
 		if ( $html ) {
 			echo $args['before_widget'];
-				if ( $title )
-					echo $args['before_title'].$title.$args['after_title'];
+			$this->widget_title( $args, $instance );
 				echo $html;
 			echo $args['after_widget'];
 		}
@@ -981,6 +985,7 @@ class gThemeWidgetChildren extends gThemeWidget
 	public function form( $instance )
 	{
 		$this->form_title( $instance );
+		$this->form_title_link( $instance );
 		$this->form_post_type( $instance, 'page' );
 	}
 }
@@ -1001,18 +1006,12 @@ class gThemeWidgetSiblings extends gThemeWidget
 	public function widget( $args, $instance )
 	{
 		$post_type = empty( $instance['post_type'] ) ? 'page' : $instance['post_type'];
-		$title = apply_filters( 'widget_title',
-			empty( $instance['title'] ) ? '' : $instance['title'],
-			$instance,
-			$this->id_base
-		);
 
 		$html = gTheme()->shortcodes->shortcode_siblings( array( 'type' => $post_type ) );
 
 		if ( $html ) {
 			echo $args['before_widget'];
-				if ( $title )
-					echo $args['before_title'].$title.$args['after_title'];
+			$this->widget_title( $args, $instance );
 				echo $html;
 			echo $args['after_widget'];
 		}
@@ -1021,6 +1020,7 @@ class gThemeWidgetSiblings extends gThemeWidget
 	public function form( $instance )
 	{
 		$this->form_title( $instance );
+		$this->form_title_link( $instance );
 		$this->form_post_type( $instance, 'page' );
 	}
 }
