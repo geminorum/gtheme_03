@@ -48,6 +48,7 @@ final class gThemeCore
 			'bootstrap'  => 'gThemeBootstrap',
 			'date'       => 'gThemeDate',
 			'meta'       => 'gThemeMeta',
+			'attachment' => 'gThemeAttachment',
 		);
 
 		if ( is_admin() ) {
