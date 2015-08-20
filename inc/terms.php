@@ -133,21 +133,21 @@ class gThemeTerms extends gThemeModuleCore
 
 		register_taxonomy( GTHEME_SYSTEMTAGS, $cpt, array(
 			'labels' => array(
-				'name'                       => _x( 'System Tags', 'system tags labels', GTHEME_TEXTDOMAIN ),
-				'singular_name'              => _x( 'System Tag', 'system tags labels', GTHEME_TEXTDOMAIN ),
-				'search_items'               => _x( 'Search System Tags', 'system tags labels', GTHEME_TEXTDOMAIN ),
+				'name'                       => _x( 'System Tags', 'System Tags Label: name', GTHEME_TEXTDOMAIN ),
+				'singular_name'              => _x( 'System Tag', 'System Tags Label: singular_name', GTHEME_TEXTDOMAIN ),
+				'search_items'               => _x( 'Search System Tags', 'System Tags Label', GTHEME_TEXTDOMAIN ),
 				'popular_items'              => NULL,
-				'all_items'                  => _x( 'All System Tags', 'system tags labels', GTHEME_TEXTDOMAIN ),
-				'parent_item'                => _x( 'Parent System Tag', 'system tags labels', GTHEME_TEXTDOMAIN ),
-				'parent_item_colon'          => _x( 'Parent System Tag:', 'system tags labels', GTHEME_TEXTDOMAIN ),
-				'edit_item'                  => _x( 'Edit System Tag', 'system tags labels', GTHEME_TEXTDOMAIN ),
-				'update_item'                => _x( 'Update System Tag', 'system tags labels', GTHEME_TEXTDOMAIN ),
-				'add_new_item'               => _x( 'Add New System Tag', 'system tags labels', GTHEME_TEXTDOMAIN ),
-				'new_item_name'              => _x( 'New System Tag', 'system tags labels', GTHEME_TEXTDOMAIN ),
-				'separate_items_with_commas' => _x( 'Separate system tags with commas', 'system tags labels', GTHEME_TEXTDOMAIN ),
-				'add_or_remove_items'        => _x( 'Add or remove System Tags', 'system tags labels', GTHEME_TEXTDOMAIN ),
-				'choose_from_most_used'      => _x( 'Choose from most used System Tags', 'system tags labels', GTHEME_TEXTDOMAIN ),
-				'menu_name'                  => _x( 'System Tags', 'system tags labels', GTHEME_TEXTDOMAIN ),
+				'all_items'                  => _x( 'All System Tags', 'System Tags Label', GTHEME_TEXTDOMAIN ),
+				'parent_item'                => _x( 'Parent System Tag', 'System Tags Label', GTHEME_TEXTDOMAIN ),
+				'parent_item_colon'          => _x( 'Parent System Tag:', 'System Tags Label', GTHEME_TEXTDOMAIN ),
+				'edit_item'                  => _x( 'Edit System Tag', 'System Tags Label', GTHEME_TEXTDOMAIN ),
+				'update_item'                => _x( 'Update System Tag', 'System Tags Label', GTHEME_TEXTDOMAIN ),
+				'add_new_item'               => _x( 'Add New System Tag', 'System Tags Label', GTHEME_TEXTDOMAIN ),
+				'new_item_name'              => _x( 'New System Tag', 'System Tags Label', GTHEME_TEXTDOMAIN ),
+				'separate_items_with_commas' => _x( 'Separate system tags with commas', 'System Tags Label', GTHEME_TEXTDOMAIN ),
+				'add_or_remove_items'        => _x( 'Add or remove System Tags', 'System Tags Label', GTHEME_TEXTDOMAIN ),
+				'choose_from_most_used'      => _x( 'Choose from most used System Tags', 'System Tags Label', GTHEME_TEXTDOMAIN ),
+				'menu_name'                  => _x( 'System Tags', 'System Tags Label: menu_name', GTHEME_TEXTDOMAIN ),
 			),
 			'public'                => FALSE,
 			'show_in_nav_menus'     => FALSE,
@@ -156,12 +156,12 @@ class gThemeTerms extends gThemeModuleCore
 			'hierarchical'          => TRUE,
 			'update_count_callback' => array( 'gThemeUtilities', 'update_count_callback' ),
 			'rewrite'               => FALSE,
-			'query_var'             => TRUE,
+			'query_var'             => FALSE,
 			'capabilities'          => array(
 				'manage_terms' => $cap,
 				'edit_terms'   => $cap,
 				'delete_terms' => $cap,
-				'assign_terms' => $cap,
+				'assign_terms' => 'edit_posts',
 			)
 		) );
 
@@ -191,7 +191,7 @@ class gThemeTerms extends gThemeModuleCore
 				GTHEME_SYSTEMTAGS => array(
 					'column'     => 'taxonomy-'.GTHEME_SYSTEMTAGS,
 					'dashicon'   => 'admin-generic',
-					'title_attr' => _x( 'System Tags', 'system tags labels', GTHEME_TEXTDOMAIN ),
+					'title_attr' => _x( 'System Tags', 'System Tags Label: menu_name', GTHEME_TEXTDOMAIN ),
 				),
 			),
 		);
