@@ -47,7 +47,7 @@ final class gThemeCore
 			'pages'      => 'gThemePages',
 			'bootstrap'  => 'gThemeBootstrap',
 			'date'       => 'gThemeDate',
-			'meta'       => 'gThemeMeta',
+			'editorial'  => 'gThemeEditorial',
 			'attachment' => 'gThemeAttachment',
 		);
 

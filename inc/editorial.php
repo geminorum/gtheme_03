@@ -1,6 +1,6 @@
 <?php defined( 'ABSPATH' ) or die( 'Restricted access' );
 
-class gThemeMeta extends gThemeModuleCore
+class gThemeEditorial extends gThemeModuleCore
 {
 
 	// FIXME: add theme classes / before / after
