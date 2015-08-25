@@ -10,20 +10,20 @@
 	$('body').append('<div id="zoom"><a class="close"></a><a href="#previous" class="previous"></a><a href="#next" class="next"></a><div class="content loading"></div></div>');
 
 	var zoom = $('#zoom').hide(),
-	    zoomContent = $('#zoom .content'),
-	    overlay = '<div class="overlay"></div>',
-	    zoomedIn = false,
-	    openedImage = null,
-	    windowWidth = $(window).width(),
-	    windowHeight = $(window).height(),
+		zoomContent = $('#zoom .content'),
+		overlay = '<div class="overlay"></div>',
+		zoomedIn = false,
+		openedImage = null,
+		windowWidth = $(window).width(),
+		windowHeight = $(window).height(),
 		isRTL = $("html[dir~='rtl']").length;
-		
+
 	function open(event) {
 		if (event) {
 			event.preventDefault();
 		}
 		var link = $(this),
-		    src = link.attr('href');
+			src = link.attr('href');
 		if (!src) {
 			return;
 		}
@@ -41,21 +41,21 @@
 		zoomContent.prepend(overlay);
 		image.load(render).attr('src', src);
 		openedImage = link;
-		
+
 		function render() {
 			var image = $(this),
-			    borderWidth = parseInt(zoomContent.css('borderLeftWidth')),
-			    maxImageWidth = windowWidth - (borderWidth * 2),
-			    maxImageHeight = windowHeight - (borderWidth * 2),
-			    imageWidth = image.width(),
-			    imageHeight = image.height();
+				borderWidth = parseInt(zoomContent.css('borderLeftWidth')),
+				maxImageWidth = windowWidth - (borderWidth * 2),
+				maxImageHeight = windowHeight - (borderWidth * 2),
+				imageWidth = image.width(),
+				imageHeight = image.height();
 			if (imageWidth == zoomContent.width() && imageWidth <= maxImageWidth && imageHeight == zoomContent.height() && imageHeight <= maxImageHeight) {
 					show(image);
 					return;
 			}
 			if (imageWidth > maxImageWidth || imageHeight > maxImageHeight) {
 				var desiredHeight = maxImageHeight < imageHeight ? maxImageHeight : imageHeight,
-				    desiredWidth  = maxImageWidth  < imageWidth  ? maxImageWidth  : imageWidth;
+					desiredWidth  = maxImageWidth  < imageWidth  ? maxImageWidth  : imageWidth;
 				if ( desiredHeight / imageHeight <= desiredWidth / imageWidth ) {
 					image.width(Math.round(imageWidth * desiredHeight / imageHeight));
 					image.height(desiredHeight);
@@ -79,7 +79,7 @@
 			}
 		}
 	}
-	
+
 	function openPrevious() {
 		var prev = openedImage.parents('div.gallery-wrap').prev();
 		if (prev.length == 0) {
@@ -87,7 +87,7 @@
 		}
 		prev.find('a').trigger('click');
 	}
-	
+
 	function openNext() {
 		var next = openedImage.parents('div.gallery-wrap').next();
 		if (next.length == 0) {
@@ -95,7 +95,7 @@
 		}
 		next.find('a').trigger('click');
 	}
-		
+
 	function close(event) {
 		if (event) {
 			event.preventDefault();
@@ -106,12 +106,12 @@
 		$('body').removeClass('zoomed');
 		zoomContent.empty();
 	}
-	
+
 	function changeImageDimensions() {
 		windowWidth = $(window).width();
 		windowHeight = $(window).height();
 	}
-	
+
 	(function bindNavigation() {
 		zoom.on('click', function(event) {
 			event.preventDefault();
@@ -119,7 +119,7 @@
 				close();
 			}
 		});
-		
+
 		$('#zoom .close').on('click', close);
 		$('#zoom .previous').on('click', openPrevious);
 		$('#zoom .next').on('click', openNext);
