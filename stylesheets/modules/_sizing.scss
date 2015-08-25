@@ -21,7 +21,7 @@
 			not -khtml,
 			official
 		);
- 	} @else {
+	} @else {
 		@include experimental(border-radius, $radius,
 			-moz,
 			-webkit,
@@ -38,8 +38,8 @@
 // Use: font-size: px2em( 12px, 14px );
 @function px2em( $target, $context: $base-size-font ) {
 	@if $target == 0 {
-   		@return 0;
-   	}
+		   @return 0;
+	}
 
 	@return $target / $context + 0em;
 }

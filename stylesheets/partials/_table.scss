@@ -7,13 +7,13 @@ table {
 	border-spacing: 0;
 	margin: .7em 0 1.5em;
 	width: 100%;
-	
+
 	td {
 		border: 1px solid #ccc;
 		border-width: 1px 0 0 1px;
 		padding: 6px 15px;
 	}
-	
+
 	th {
 		background-color: #f7f7f7;
 		color: #555;
@@ -21,17 +21,17 @@ table {
 		font-weight: bold;
 		padding: 6px 15px;
 	}
-	
+
 	tr {
 		border: 0;
 		border-width: 0;
 	}
-	
+
 	ul,
 	ol,
 	p,
 	blockquote {
 		margin-top: 0 !important;
 		margin-bottom: 1.6em !important;
-	}	
+	}
 }

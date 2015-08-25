@@ -1,7 +1,7 @@
 
 
 %dir_rtl {
-	direction:rtl !important;
+	direction: rtl !important;
 }
 
 @mixin clearfix() {
@@ -14,75 +14,73 @@
 
 // DEPRICATED: use @include clearfix()
 %clearfix {
-  &:after {
-    content: "";
-    display: table;
-    clear: both;
-  }
+	&:after {
+		content: "";
+		display: table;
+		clear: both;
+	}
 }
 
 @mixin mainwrap() {
-	-webkit-box-sizing:border-box;
-	-moz-box-sizing:border-box;
-	box-sizing:border-box;
-    & *,
-    &:after,
-    & *:after,
-    &:before,
-    & *:before {
-		-webkit-box-sizing:border-box;
-		-moz-box-sizing:border-box;
-		box-sizing:border-box;
-    }
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	& *,
+	&:after,
+	& *:after,
+	&:before,
+	& *:before {
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		box-sizing: border-box;
+	}
 	padding:0;
 	margin:0;
 	border:0;
 }
 
 @mixin box-reset() {
-    -webkit-box-sizing:border-box;
-    -moz-box-sizing:border-box;
-    box-sizing:border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 // DEPRICATED: use @include box-reset()
 %box-reset {
-    -webkit-box-sizing:border-box;
-    -moz-box-sizing:border-box;
-    box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	-moz-box-sizing:border-box;
+	box-sizing:border-box;
 }
 
 // DEPRICATED: use @include mainwrap()
 %main_wrap {
 	@extend %box-reset;
-    & *,
-    &:after,
-    & *:after,
-    &:before,
-    & *:before {
-        @extend %box-reset;
-    }
-	padding:0;
-	margin:0;
-	border:0;
+	& *,
+	&:after,
+	& *:after,
+	&:before,
+	& *:before {
+		@extend %box-reset;
+	}
+	padding: 0;
+	margin: 0;
+	border: 0;
 }
 
 // MUST DEPRICATED: use @include mainwrap()
 @mixin main-wrap() {
 	@extend %box-reset;
-    & *,
-    &:after,
-    & *:after,
-    &:before,
-    & *:before {
-        @extend %box-reset;
-    }
-	padding:0;
-	margin:0;
-	border:0;
+	& *,
+	&:after,
+	& *:after,
+	&:before,
+	& *:before {
+		@extend %box-reset;
+	}
+	padding: 0;
+	margin: 0;
+	border: 0;
 }
-
-
 
 @mixin body-rtl() {
 	body.rtl & {
@@ -96,9 +94,9 @@
 //p { @include vendor-prefix(hyphens, auto)}
 
 @mixin vendor-prefix($name, $argument) {
-  -webkit-#{$name}: #{$argument};
-  -ms-#{$name}: #{$argument};
-  -moz-#{$name}: #{$argument};
-  -o-#{$name}: #{$argument};
-  #{$name}: #{$argument};
+	-webkit-#{$name}: #{$argument};
+	-ms-#{$name}: #{$argument};
+	-moz-#{$name}: #{$argument};
+	-o-#{$name}: #{$argument};
+	#{$name}: #{$argument};
 }

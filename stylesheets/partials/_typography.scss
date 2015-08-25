@@ -23,9 +23,9 @@
 
 // Adjusting font sizes for fallback fonts
 // In situations where font fallback occurs, fallback fonts may not share the same
-// aspect ratio as the desired font family and will thus appear less readable. 
-// The font-size-adjust property is a way to preserve the readability of text when 
-// font fallback occurs. It does this by adjusting the font-size so that the x-height 
+// aspect ratio as the desired font family and will thus appear less readable.
+// The font-size-adjust property is a way to preserve the readability of text when
+// font fallback occurs. It does this by adjusting the font-size so that the x-height
 // is the same regardless of the font used.
 @mixin theme-typography-adjust() {
 	font-size-adjust: auto;

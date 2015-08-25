@@ -2,7 +2,7 @@
 /// Default Comment Form Styles
 
 .comment-list {
-	
+
 	.reply {
 		a {}
 	}
@@ -13,9 +13,9 @@
 	.thread-alt {}
 	.thread-odd {}
 	.thread-even {}
-	li { 
-		ul.children { 
-		
+	li {
+		ul.children {
+
 			.alt {}
 			.odd {}
 			.even {}
@@ -32,7 +32,7 @@
 
 	.comment-meta {
 		a {}
-	} 
+	}
 	.commentmetadata {
 		a {}
 	}
@@ -47,7 +47,7 @@
 
 	li {
 		p {
-			
+
 		}
 		ul {
 			&.children {
@@ -71,20 +71,20 @@
 
 /// Comment Form
 
-#respond { } 
-#reply-title { } 
+#respond { }
+#reply-title { }
 #cancel-comment-reply-link { }
-#commentform { } 
-#author { } 
-#email { } 
-#url { } 
-#comment 
+#commentform { }
+#author { }
+#email { }
+#url { }
+#comment
 #submit
-.comment-notes { } 
+.comment-notes { }
 .required { }
 .comment-form-author { }
-.comment-form-email { } 
+.comment-form-email { }
 .comment-form-url { }
-.comment-form-comment { } 
-.form-allowed-tags { } 
+.comment-form-comment { }
+.form-allowed-tags { }
 .form-submit

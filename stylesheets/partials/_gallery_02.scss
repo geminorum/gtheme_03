@@ -2,10 +2,10 @@
 //body {background: #30303A;direction:rtl;}
 
 @keyframes rotation {
-	from { 
+	from {
 		transform: rotate(0deg);
 	}
-	
+
 	to {
 		transform: rotate(359deg);
 	}
@@ -26,12 +26,12 @@
 		position: relative;
 		margin: 0;
 		overflow: hidden;
-		
+
 		img {
 			width: 100%;
 			display: block;
 		}
-		
+
 		figcaption {
 			background: rgba(0,0,0,0.5);
 			position: absolute;
@@ -55,7 +55,7 @@
 			}
 		}
 	}
-	
+
 	.gallery-img.left {
 		figcaption {
 			top: 0;
@@ -137,7 +137,7 @@ body.rtl .gallery .gallery-img figcaption .gallery-description p { text-align:ri
 	margin:100px auto;
 	position:relative;
 	animation: rotation .6s infinite linear;
-	
+
 	border-left:   6px solid rgba(0,174,239,.15);
 	border-right:  6px solid rgba(0,174,239,.15);
 	border-bottom: 6px solid rgba(0,174,239,.15);
