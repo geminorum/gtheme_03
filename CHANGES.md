@@ -1,3 +1,11 @@
+### 0.3.5
+* recent posts now supports other posttypes
+* new module: editorial helper
+* new module: attachment helper
+* new widget: term posts
+* sidebar: title link api for all widgets
+* terms: editor cap for system tags assignments
+
 ### 0.3.4
 * better flush handling for cache module
 * new module: bootstrap helper
