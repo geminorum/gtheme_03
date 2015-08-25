@@ -96,7 +96,7 @@ class gThemeShortCodes extends gThemeModuleCore
 			'size'      => 'thumbnail',
 			'include'   => '',
 			'exclude'   => '',
-			'link'      => '', // 'file', 'none', empty
+			'link'      => 'file', // 'file', 'none', empty
 			'file_size' => gThemeOptions::info( 'gallery_file_size', 'big' ),
 			'nocaption' => '<span class="genericon genericon-search"></span>',
 		), $atts, $tag );
@@ -178,14 +178,14 @@ class gThemeShortCodes extends gThemeModuleCore
 			);
 		}
 
-		return '<div class="gallery-spinner"></div>'.gThemeUtilities::html( 'div', array(
+		return '<div class="theme-gallery-wrap -columns"><div class="gallery-spinner"></div>'.gThemeUtilities::html( 'div', array(
 			'id' => $selector,
 			'class' => array(
 				'gallery',
 				'gallery-columns-'.$args['columns'],
 				'gallery-size-'.sanitize_html_class( $args['size'] ),
 			),
-		), $html );
+		), $html ).'</div>';
 	}
 
 	public function shortcode_gallery_slider( $atts, $content = null, $tag = '' )
@@ -217,7 +217,7 @@ class gThemeShortCodes extends gThemeModuleCore
 
 		$attr = '';
 		$selector = $this->selector( 'slider-gallery-' );
-		$html = '<div class="flexslider" id="'.$selector.'"><ul class="slides">';
+		$html = '<div class="theme-gallery-wrap -flex"><div class="flexslider" id="'.$selector.'"><ul class="slides">';
 
 		foreach ( $attachments as $id => $attachment ) {
 			$html .= '<li>'.wp_get_attachment_image( $id, $args['size'], false, $attr );
@@ -229,7 +229,7 @@ class gThemeShortCodes extends gThemeModuleCore
 			) ).'</li>';
 		}
 
-		$html .= '</ul></div>';
+		$html .= '</ul></div></div>';
 		$html .= '<script type="text/javascript">
 /* <![CDATA[ */
 			jQuery(document).ready(function($){
