@@ -265,7 +265,7 @@ class gThemeWidget extends WP_Widget
 
 		parent::__construct( 'gtheme_'.$args['name'], $args['title'], array(
 			'description' => $args['desc'],
-			'classname'   => 'widget-gtheme-'.$args['class'],
+			'classname'   => '{GTHEME_WIDGET_CLASSNAME}'.'widget-gtheme-'.$args['class'],
 		) );
 
 		$this->alt_option_name = 'widget_gtheme_'.$args['name'];
@@ -318,6 +318,27 @@ class gThemeWidget extends WP_Widget
 		} else {
 			ob_end_flush();
 		}
+	}
+
+	public function before_widget( $args, $instance, $echo = TRUE )
+	{
+		$classes = isset( $instance['context'] ) && $instance['context'] ? 'context-'.sanitize_html_class( $instance['context'], 'general' ).' ' : '';
+		$classes .= isset( $instance['class'] ) && $instance['class'] ? $instance['class'].' ' : '';
+
+		$html = preg_replace( '%{GTHEME_WIDGET_CLASSNAME}%', $classes, $args['before_widget'] );
+
+		if ( ! $echo )
+			return $html;
+
+		echo $html;
+	}
+
+	public function after_widget( $args, $instance, $echo = TRUE )
+	{
+		if ( ! $echo )
+			return $args['after_widget'];
+
+		echo $args['after_widget'];
 	}
 
 	public function widget_title( $args, $instance, $echo = TRUE )
@@ -378,6 +399,22 @@ class gThemeWidget extends WP_Widget
 		echo '<p>'. gThemeUtilities::html( 'label', array(
 			'for' => $this->get_field_id( $field ),
 		), __( 'Context:', GTHEME_TEXTDOMAIN ).$html ).'</p>';
+	}
+
+	public function form_class( $instance, $default = '', $field = 'class' )
+	{
+		$html = gThemeUtilities::html( 'input', array(
+			'type'  => 'text',
+			'class' => 'widefat',
+			'name'  => $this->get_field_name( $field ),
+			'id'    => $this->get_field_id( $field ),
+			'value' => isset( $instance[$field] ) ? $instance[$field] : $default,
+			'dir'   => 'ltr',
+		) );
+
+		echo '<p>'. gThemeUtilities::html( 'label', array(
+			'for' => $this->get_field_id( $field ),
+		), __( 'Class:', GTHEME_TEXTDOMAIN ).$html ).'</p>';
 	}
 
 	public function form_post_type( $instance, $default = 'post', $field = 'post_type' )
@@ -553,7 +590,8 @@ class gThemeWidgetTermPosts extends gThemeWidget
 		) );
 
 		if ( $row_query->have_posts() ) {
-			echo $args['before_widget'];
+			$this->before_widget( $args, $instance );
+
 			$this->widget_title( $args, $instance );
 			echo '<div class="theme-list-wrap term-posts '.( $context ? 'context-'.$context : 'context-undefined' ).'"><ul>';
 			while ( $row_query->have_posts() ) {
@@ -563,7 +601,8 @@ class gThemeWidgetTermPosts extends gThemeWidget
 				}
 			}
 			wp_reset_postdata();
-			echo '</ul></div>'.$args['after_widget'];
+			echo '</ul></div>';
+			$this->after_widget( $args, $instance );
 
 			return TRUE;
 		}
@@ -581,6 +620,7 @@ class gThemeWidgetTermPosts extends gThemeWidget
 		$instance['post_type']  = strip_tags( $new_instance['post_type'] );
 		$instance['number']     = intval( $new_instance['number'] );
 		$instance['context']    = strip_tags( $new_instance['context'] );
+		$instance['class']      = strip_tags( $new_instance['class'] );
 
 		$this->flush_widget_cache();
 
@@ -599,6 +639,7 @@ class gThemeWidgetTermPosts extends gThemeWidget
 		$this->form_taxonomy( $instance );
 		$this->form_post_type( $instance );
 		$this->form_context( $instance, 'recent' );
+		$this->form_class( $instance );
 		$this->form_number( $instance, '5' );
 	}
 }
@@ -667,7 +708,7 @@ class gThemeWidgetRelatedPosts extends gThemeWidget
 		) );
 
 		if ( $row_query->have_posts() ) {
-			echo $args['before_widget'];
+			$this->before_widget( $args, $instance );
 			$this->widget_title( $args, $instance );
 			echo '<div class="theme-list-wrap related-posts '.( $context ? 'context-'.$context : 'context-undefined' ).'"><ul>';
 			while ( $row_query->have_posts() ) {
@@ -677,7 +718,8 @@ class gThemeWidgetRelatedPosts extends gThemeWidget
 				}
 			}
 			wp_reset_postdata();
-			echo '</ul></div>'.$args['after_widget'];
+			echo '</ul></div>';
+			$this->after_widget( $args, $instance );
 
 			return TRUE;
 		}
@@ -692,6 +734,7 @@ class gThemeWidgetRelatedPosts extends gThemeWidget
 		$instance['title_link'] = strip_tags( $new_instance['title_link'] );
 		$instance['number']     = intval( $new_instance['number'] );
 		$instance['context']    = strip_tags( $new_instance['context'] );
+		$instance['class']      = strip_tags( $new_instance['class'] );
 		$instance['post_type']  = strip_tags( $new_instance['post_type'] );
 		$instance['taxonomy']   = strip_tags( $new_instance['taxonomy'] );
 
@@ -711,6 +754,7 @@ class gThemeWidgetRelatedPosts extends gThemeWidget
 		$this->form_taxonomy( $instance );
 		$this->form_post_type( $instance );
 		$this->form_context( $instance, 'related' );
+		$this->form_class( $instance );
 		$this->form_number( $instance, '5' );
 	}
 }
@@ -752,7 +796,7 @@ class gThemeWidgetRecentPosts extends gThemeWidget
 		) );
 
 		if ( $row_query->have_posts() ) {
-			echo $args['before_widget'];
+			$this->before_widget( $args, $instance );
 			$this->widget_title( $args, $instance );
 			echo '<div class="theme-list-wrap recent-posts '.( $context ? 'context-'.$context : 'context-undefined' ).'"><ul>';
 			while ( $row_query->have_posts() ) {
@@ -762,7 +806,8 @@ class gThemeWidgetRecentPosts extends gThemeWidget
 				}
 			}
 			wp_reset_postdata();
-			echo '</ul></div>'.$args['after_widget'];
+			echo '</ul></div>';
+			$this->after_widget( $args, $instance );
 
 			return TRUE;
 		}
@@ -778,6 +823,7 @@ class gThemeWidgetRecentPosts extends gThemeWidget
 		$instance['post_type']  = strip_tags( $new_instance['post_type'] );
 		$instance['number']     = intval( $new_instance['number'] );
 		$instance['context']    = strip_tags( $new_instance['context'] );
+		$instance['class']      = strip_tags( $new_instance['class'] );
 
 		$this->flush_widget_cache();
 
@@ -794,6 +840,7 @@ class gThemeWidgetRecentPosts extends gThemeWidget
 		$this->form_title_link( $instance );
 		$this->form_post_type( $instance );
 		$this->form_context( $instance, 'recent' );
+		$this->form_class( $instance );
 		$this->form_number( $instance, '5' );
 	}
 }
@@ -837,7 +884,7 @@ class gThemeWidgetRecentComments extends gThemeWidget
 			$post_ids = array_unique( wp_list_pluck( $comments, 'comment_post_ID' ) );
 			_prime_post_caches( $post_ids, strpos( get_option( 'permalink_structure' ), '%category%' ), false );
 
-			echo $args['before_widget'];
+			$this->before_widget( $args, $instance );
 			$this->widget_title( $args, $instance );
 			echo '<div class="theme-list-wrap recent-comments"><ul>';
 
@@ -847,7 +894,8 @@ class gThemeWidgetRecentComments extends gThemeWidget
 				echo '</li>';
 			}
 
-			echo '</ul></div>'.$args['after_widget'];
+			echo '</ul></div>';
+			$this->after_widget( $args, $instance );
 
 			return TRUE;
 		}
@@ -873,6 +921,7 @@ class gThemeWidgetRecentComments extends gThemeWidget
 		$instance                = $old_instance;
 		$instance['title']       = strip_tags( $new_instance['title'] );
 		$instance['title_link']  = strip_tags( $new_instance['title_link'] );
+		$instance['class']       = strip_tags( $new_instance['class'] );
 		$instance['number']      = (int) $new_instance['number'];
 		$instance['avatar_size'] = (int) $new_instance['avatar_size'];
 		$this->flush_widget_cache();
@@ -890,6 +939,7 @@ class gThemeWidgetRecentComments extends gThemeWidget
 		$this->form_title_link( $instance );
 		$this->form_avatar_size( $instance );
 		$this->form_number( $instance, '5' );
+		$this->form_class( $instance );
 	}
 }
 
@@ -910,10 +960,10 @@ class gThemeWidgetSearch extends gThemeWidget
 	{
 		$context = empty( $instance['context'] ) ? '' : $instance['context'];
 
-		echo $args['before_widget'];
+		$this->before_widget( $args, $instance );
 		$this->widget_title( $args, $instance );
 			get_template_part( 'searchform', $context );
-		echo $args['after_widget'];
+		$this->after_widget( $args, $instance );
 	}
 
 	public function form( $instance )
@@ -921,6 +971,7 @@ class gThemeWidgetSearch extends gThemeWidget
 		$this->form_title( $instance );
 		$this->form_title_link( $instance );
 		$this->form_context( $instance );
+		$this->form_class( $instance );
 	}
 }
 
@@ -941,10 +992,10 @@ class gThemeWidgetTemplatePart extends gThemeWidget
 	{
 		$context = empty( $instance['context'] ) ? '' : $instance['context'];
 
-		echo $args['before_widget'];
+		$this->before_widget( $args, $instance );
 		$this->widget_title( $args, $instance );
 			get_template_part( 'widget', $context );
-		echo $args['after_widget'];
+		$this->after_widget( $args, $instance );
 	}
 
 	public function form( $instance )
@@ -952,6 +1003,7 @@ class gThemeWidgetTemplatePart extends gThemeWidget
 		$this->form_title( $instance );
 		$this->form_title_link( $instance );
 		$this->form_context( $instance );
+		$this->form_class( $instance );
 	}
 }
 
@@ -975,10 +1027,10 @@ class gThemeWidgetChildren extends gThemeWidget
 		$html = gTheme()->shortcodes->shortcode_children( array( 'type' => $post_type ) );
 
 		if ( $html ) {
-			echo $args['before_widget'];
+			$this->before_widget( $args, $instance );
 			$this->widget_title( $args, $instance );
 				echo $html;
-			echo $args['after_widget'];
+			$this->after_widget( $args, $instance );
 		}
 	}
 
@@ -987,6 +1039,7 @@ class gThemeWidgetChildren extends gThemeWidget
 		$this->form_title( $instance );
 		$this->form_title_link( $instance );
 		$this->form_post_type( $instance, 'page' );
+		$this->form_class( $instance );
 	}
 }
 
@@ -1010,10 +1063,10 @@ class gThemeWidgetSiblings extends gThemeWidget
 		$html = gTheme()->shortcodes->shortcode_siblings( array( 'type' => $post_type ) );
 
 		if ( $html ) {
-			echo $args['before_widget'];
+			$this->before_widget( $args, $instance );
 			$this->widget_title( $args, $instance );
 				echo $html;
-			echo $args['after_widget'];
+			$this->after_widget( $args, $instance );
 		}
 	}
 
@@ -1022,5 +1075,6 @@ class gThemeWidgetSiblings extends gThemeWidget
 		$this->form_title( $instance );
 		$this->form_title_link( $instance );
 		$this->form_post_type( $instance, 'page' );
+		$this->form_class( $instance );
 	}
 }
