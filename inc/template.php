@@ -27,7 +27,7 @@ class gThemeTemplate extends gThemeModuleCore
 				$title .= ' :: '.( wp_trim_words(
 					$term->description,
 					gtheme_get_info( 'excerpt_length', 40 ),
-					gtheme_get_info( 'excerpt_more', ' …' )
+					gtheme_get_info( 'excerpt_more', ' &hellip;' )
 				) );
 		}
 
