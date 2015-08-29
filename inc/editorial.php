@@ -3,18 +3,23 @@
 class gThemeEditorial extends gThemeModuleCore
 {
 
-	// FIXME: add theme classes / before / after
+	// FIXME: add theme classes / before / after : is's a shortcode!!
 	public static function series( $atts = array() )
 	{
-		if ( class_exists( 'gEditorialSeriesTemplates' ) )
+		if ( class_exists( 'gEditorialSeriesTemplates' ) ) {
 			echo gEditorialSeriesTemplates::shortcode_series( $atts );
+		} else {
+			return FALSE;
+		}
 	}
 
 	// old: gmeta_lead()
 	public static function label( $atts = array() )
 	{
 		if ( class_exists( 'gEditorialMetaTemplates' ) )
-			echo gEditorialMetaTemplates::metaLabel( $atts );
+			return gEditorialMetaTemplates::metaLabel( $atts );
+
+		return FALSE;
 	}
 
 	public static function meta( $field, $atts = array() )
@@ -37,8 +42,40 @@ class gThemeEditorial extends gThemeModuleCore
 					return $html;
 
 				echo $html;
+				return TRUE;
 			}
 		}
+
+		return FALSE;
+	}
+
+	public static function issueCover( $atts = array() )
+	{
+		if ( class_exists( 'gEditorialMagazineTemplates' ) ) {
+
+			$args = self::atts( array(
+				'before' => '',
+				'after'  => '',
+				'id'     => 'issue',
+				'size'   => 'raw',
+				'link'   => 'parent',
+				'echo'   => TRUE,
+			), $atts );
+
+			$atts['echo'] = FALSE;
+			$atts['id'] = $args['id'];
+			$html = gEditorialMagazineTemplates::issue_cover( $args['before'], $args['after'], $args['size'], $args['link'], $atts );
+
+			if ( $html ) {
+				if ( ! $args['echo'] )
+					return $html;
+
+				echo $html;
+				return TRUE;
+			}
+		}
+
+		return FALSE;
 	}
 
 	public static function lead( $atts = array() )
@@ -61,8 +98,11 @@ class gThemeEditorial extends gThemeModuleCore
 					return $html;
 
 				echo $html;
+				return TRUE;
 			}
 		}
+
+		return FALSE;
 	}
 
 	public static function refList( $atts = array() )
@@ -96,6 +136,17 @@ class gThemeEditorial extends gThemeModuleCore
 				return $html;
 
 			echo $html;
+			return TRUE;
 		}
+
+		return FALSE;
+	}
+
+	public static function reshareSource( $atts = array() )
+	{
+		if ( class_exists( 'gEditorialReshareTemplates' ) )
+			return gEditorialReshareTemplates::source( $atts );
+
+		return FALSE;
 	}
 }
