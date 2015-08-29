@@ -1,3 +1,6 @@
+### 0.3.6
+* sidebar: class api for all widgets
+
 ### 0.3.5
 * recent posts now supports other posttypes
 * new module: editorial helper
