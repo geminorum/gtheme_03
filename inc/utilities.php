@@ -13,15 +13,18 @@ class gThemeUtilities extends gThemeModuleCore
 	}
 
 	// http://davidwalsh.name/word-wrap-mootools-php
-	public static function word_wrap( $text, $min = 2 )
+	public static function wordWrap( $text, $min = 2 )
 	{
 		$return = $text;
-		$arr = explode( ' ', $text );
 
-		if ( count( $arr ) >= $min ) {
-			$arr[count( $arr ) - 2] .= '&nbsp;'.$arr[count( $arr ) - 1];
-			array_pop( $arr );
-			$return = implode( ' ', $arr );
+		if ( strlen( trim( $text ) ) ) {
+			$arr = explode( ' ', trim( $text ) );
+
+			if ( count( $arr ) >= $min ) {
+				$arr[count( $arr ) - 2] .= '&nbsp;'.$arr[count( $arr ) - 1];
+				array_pop( $arr );
+				$return = implode( ' ', $arr );
+			}
 		}
 
 		return $return;

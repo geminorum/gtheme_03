@@ -481,7 +481,7 @@ a2a_config.locale = "fa";
 		), $atts );
 
 		if ( is_null( $args['title'] ) )
-			$args['title'] = get_the_title();
+			$args['title'] = gThemeUtilities::wordWrap( get_the_title(), 2 );
 
 		if ( strlen( $args['title'] ) == 0 )
 			return;

@@ -19,7 +19,6 @@ class gThemeFilters extends gThemeModuleCore
 		add_filter( 'wp_title', array( &$this, 'wp_title' ), 5, 3 );
 		add_filter( 'get_wp_title_rss', array( &$this, 'get_wp_title_rss' ) );
 
-		add_filter( 'the_title', array( &$this, 'the_title' ) );
 		add_filter( 'the_excerpt', array( &$this, 'the_excerpt' ), 5 );
 		add_filter( 'excerpt_length', array( &$this, 'excerpt_length' ) );
 		add_filter( 'excerpt_more', array( &$this, 'excerpt_more' ) );
@@ -216,14 +215,6 @@ class gThemeFilters extends gThemeModuleCore
 			return $title;
 
 		return $title.trim( gThemeOptions::info( 'title_sep', '&#187;' ) );
-	}
-
-	public function the_title( $title )
-	{
-		if ( is_admin() || is_feed() )
-			return $title;
-
-		return gThemeUtilities::word_wrap( $title, 2 );
 	}
 
 	public function the_excerpt( $text )
