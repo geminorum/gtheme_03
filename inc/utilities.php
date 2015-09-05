@@ -94,6 +94,26 @@ class gThemeUtilities extends gThemeModuleCore
 		return gThemeOptions::info( 'rtl', is_rtl() ) ? $true : $false;
 	}
 
+	public static function IP()
+	{
+		if ( getenv( 'HTTP_CLIENT_IP' ) )
+			return getenv( 'HTTP_CLIENT_IP' );
+
+		if ( getenv( 'HTTP_X_FORWARDED_FOR' ) )
+			return getenv( 'HTTP_X_FORWARDED_FOR' );
+
+		if ( getenv( 'HTTP_X_FORWARDED' ) )
+			return getenv( 'HTTP_X_FORWARDED' );
+
+		if ( getenv( 'HTTP_FORWARDED_FOR' ) )
+			return getenv( 'HTTP_FORWARDED_FOR' );
+
+		if ( getenv( 'HTTP_FORWARDED' ) )
+			return getenv( 'HTTP_FORWARDED' );
+
+		return $_SERVER['REMOTE_ADDR'];
+	}
+
 	public static function home()
 	{
 		return gThemeOptions::info( 'home_url_override', esc_url( home_url( '/' ) ) );

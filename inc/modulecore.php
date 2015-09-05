@@ -41,6 +41,38 @@ class gThemeModuleCore
 		return $out;
 	}
 
+	public static function log( $error = '{NO Error Code}', $data = array(), $wp_error = NULL )
+	{
+		$log = array_merge( array(
+			'error'   => $error,
+			'time'    => current_time( 'mysql' ),
+			'ip'      => gThemeUtilities::IP(),
+			'message' => ( is_null( $wp_error ) ? '{NO WP_Error Object}' : $wp_error->get_error_message() ),
+		), $data );
+
+		// FIXME: we need to check WP_DEBUG_DISPLAY ?
+		error_log( print_r( $log, TRUE ) );
+	}
+
+	public static function getCurrentPostType()
+	{
+		global $post, $typenow, $pagenow, $current_screen;
+
+		if ( $post && $post->post_type )
+			return $post->post_type;
+
+		if ( $typenow )
+			return $typenow;
+
+		if ( $current_screen && isset( $current_screen->post_type ) )
+			return $current_screen->post_type;
+
+		if ( isset( $_REQUEST['post_type'] ) )
+			return sanitize_key( $_REQUEST['post_type'] );
+
+		return NULL;
+	}
+
 	// helper
 	public static function getUsers()
 	{
