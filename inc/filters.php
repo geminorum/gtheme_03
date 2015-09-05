@@ -139,7 +139,7 @@ class gThemeFilters extends gThemeModuleCore
 
 		$uri = explode( '/', $_SERVER['REQUEST_URI'] );
 		if ( isset( $uri[1] ) )
-			$classes[] = htmlentities( trim( strip_tags( $uri[1] ) ) );
+			$classes[] = 'uri-'.htmlentities( trim( strip_tags( $uri[1] ) ) );
 
 		/*
 		// http://www.wprecipes.com/how-to-automatically-add-a-class-to-body_class-if-theres-a-sidebar
