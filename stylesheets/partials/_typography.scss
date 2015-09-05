@@ -30,3 +30,20 @@
 @mixin theme-typography-adjust() {
 	font-size-adjust: auto;
 }
+
+// Default paragraph styles
+@mixin theme-default-paragraph(){
+	// font-size: $font-size-large;
+
+	// line-height: $headings-line-height * 1.2;
+	// line-height: $line-height-large;
+	// line-height:   $theme-grid-gutter;
+	// line-height: $line-height-base * 1.1;
+
+	// margin-bottom: $theme-grid-gutter;
+	// color: $gray-darker;
+
+	// text-align:justify;
+	// @include theme-typography-wordbreak();
+	// @include theme-typography-adjust();
+}

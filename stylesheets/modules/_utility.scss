@@ -12,6 +12,17 @@
 	}
 }
 
+@mixin clear-fix() {
+	&:before,
+	&:after {
+		content: " ";
+		display: table;
+	}
+	&:after {
+		clear: both;
+	}
+}
+
 // DEPRICATED: use @include clearfix()
 %clearfix {
 	&:after {
