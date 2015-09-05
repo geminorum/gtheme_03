@@ -63,7 +63,7 @@ class gThemeFilters extends gThemeModuleCore
 			echo "\t".'<meta name="viewport" content="'.$viewport.'" />'."\n";
 
 		// prevent search bots from indexing search results
-		if( is_search() )
+		if ( is_search() )
 			echo "\t".'<meta name="robots" content="noindex, nofollow" />'."\n";
 
 
@@ -131,7 +131,7 @@ class gThemeFilters extends gThemeModuleCore
 			$classes[] = 'ltr';
 
 		if ( is_single() )
-			foreach( get_the_category() as $category )
+			foreach ( get_the_category() as $category )
 			   $classes[] = 'cat-'.$category->slug;
 
 		if ( is_singular() )
@@ -167,14 +167,14 @@ class gThemeFilters extends gThemeModuleCore
 			if ( FALSE !== strpos( $post->post_content, '<!--more-->' ) )
 				$classes[] = 'more';
 
-			if( 0 == $wp_query->current_post )
+			if ( 0 == $wp_query->current_post )
 				$classes[] = 'first';
 
 			$classes[] = $this->_current_post_class;
 			$this->_current_post_class = ( 'odd' == $this->_current_post_class ) ? 'even' : 'odd';
 		}
 
-		foreach( get_the_category() as $category )
+		foreach ( get_the_category() as $category )
 		   $classes[] = 'cat-'.$category->slug;
 
 		return $classes;
@@ -345,7 +345,7 @@ class gThemeFilters extends gThemeModuleCore
 
 			$word_array = array_slice( $word_array, $each + $word_count, null, TRUE );
 			$word_count = 0;
-			foreach( $word_array as $i => $word ) {
+			foreach ( $word_array as $i => $word ) {
 
 				if ( 'p' != $word ) {
 					$word_count++;

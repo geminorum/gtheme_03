@@ -6,10 +6,10 @@ class gThemeFeed extends gThemeModuleCore
 	public function setup_actions( $args = array() )
 	{
 		extract( shortcode_atts( array(
-			'prepare'    => true,
-			'restricted' => false,
-			'enclosures' => true, // adding post image as rss enclosure
-			'paged'      => false,
+			'prepare'    => TRUE,
+			'restricted' => FALSE,
+			'enclosures' => TRUE, // adding post image as rss enclosure
+			'paged'      => FALSE,
 		), $args ) );
 
 		if ( $prepare )
@@ -31,11 +31,11 @@ class gThemeFeed extends gThemeModuleCore
 		$header = apply_filters( 'gtheme_feed_content_header_before', '', $content, $id, $feed_type );
 		$footer = apply_filters( 'gtheme_feed_content_footer_before', '', $content, $id, $feed_type );
 
-		$meta_label = gmeta_label( '<div class="label">', '</div>', false, array( 'echo' => false ) );
+		$meta_label = gmeta_label( '<div class="label">', '</div>', FALSE, array( 'echo' => FALSE ) );
 		if ( $meta_label )
 			$header .= $meta_label;
 
-		$meta_over_title = gmeta( 'over-title', '<h4>', '</h4>', false, array( 'echo' => false ) );
+		$meta_over_title = gmeta( 'over-title', '<h4>', '</h4>', FALSE, array( 'echo' => FALSE ) );
 		if ( $meta_over_title )
 			$header .= $meta_over_title;
 
@@ -43,18 +43,18 @@ class gThemeFeed extends gThemeModuleCore
 		if ( ! empty( $meta_title ) )
 			$header .= '<h2>'.$meta_title.'</h2>';
 
-		$meta_sub_title = gmeta( 'sub-title', '<h4>', '</h4>', false, array( 'echo' => false ) );
+		$meta_sub_title = gmeta( 'sub-title', '<h4>', '</h4>', FALSE, array( 'echo' => FALSE ) );
 		if ( $meta_sub_title )
 			$header .= $meta_sub_title;
 
-		$meta_author = gmeta_author( '<h4>', '</h4>', false, array( 'echo' => false ) );
+		$meta_author = gmeta_author( '<h4>', '</h4>', FALSE, array( 'echo' => FALSE ) );
 		if ( $meta_author )
 			$header .= $meta_author;
 
 		$header = apply_filters( 'gtheme_feed_content_header_after', $header, $content, $id, $feed_type );
 		$footer = apply_filters( 'gtheme_feed_content_footer_after', $footer, $content, $id, $feed_type );
 
-		$meta_lead = gmeta_lead( '<div class="lead">', '</div>', 'wpautop', array( 'echo' => false ) );
+		$meta_lead = gmeta_lead( '<div class="lead">', '</div>', 'wpautop', array( 'echo' => FALSE ) );
 		if ( $meta_lead )
 			$header .= $meta_lead;
 
@@ -96,7 +96,7 @@ class gThemeFeed extends gThemeModuleCore
 
 	public function the_content_feed_restricted( $content, $feed_type )
 	{
-		return gThemeContent::teaser( true, false );
+		return gThemeContent::teaser( TRUE, FALSE );
 	}
 
 	public function rss2_item()
@@ -126,7 +126,7 @@ class gThemeFeed extends gThemeModuleCore
 
 		$page = ( empty( $_GET['page'] ) ? 1 : (int) $_GET['page'] );
 
-		$query->set( 'nopaging', false );
+		$query->set( 'nopaging', FALSE );
 		$query->set( 'paged', $page );
 
 		return $where;

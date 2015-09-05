@@ -108,7 +108,7 @@ class gThemeMenu extends gThemeModuleCore
 			$primary = $secondary = '';
 			$parent = $current = '-1';
 
-			foreach( $sorted_menu_items as $menu ){
+			foreach ( $sorted_menu_items as $menu ){
 				if ( true == $menu->current )
 					$current = $menu->ID;
 

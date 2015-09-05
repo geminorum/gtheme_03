@@ -40,7 +40,7 @@ class gThemeImage extends gThemeModuleCore
 
 	public function init()
 	{
-		foreach( gtheme_get_info( 'images', array() ) as $name => $size )
+		foreach ( gtheme_get_info( 'images', array() ) as $name => $size )
 			self::addImageSize( $name, $size['w'], $size['h'], $size['c'], $size['p'] );
 	}
 
@@ -104,8 +104,6 @@ class gThemeImage extends gThemeModuleCore
 		return $class.' '.gThemeOptions::info( 'image-class', 'the-img img-responsive' );
 	}
 
-	// http://css-tricks.com/snippets/wordpress/remove-width-and-height-attributes-from-inserted-images/
-	// remove width and height attributes from inserted images
 	public function strip_width_height( $html )
 	{
 		return preg_replace( '/(width|height)="\d*"\s/', '', $html );
@@ -113,8 +111,6 @@ class gThemeImage extends gThemeModuleCore
 
 	public function image_send_to_editor( $html, $id, $caption, $title, $align, $url, $size, $alt )
 	{
-		// http://css-tricks.com/snippets/wordpress/insert-images-within-figure-element-from-media-uploader/
-		// $html = '<figure id="post-'.$id.' media-'.$id.'" class="align-'.$align.'"><img src="'.$url.'" alt="'.$title.'" />';
 		$html = '<figure id="post-'.$id.'-media-'.$id.'" class="align-'.$align.'"'.( empty( $title ) ? '' : ' title="'.$title.'"' ).'>'.$html;
 
 		if ( $caption )
@@ -187,7 +183,7 @@ class gThemeImage extends gThemeModuleCore
 		$html = $checked = '';
 		$gtheme_images = (array) gThemeOptions::info( 'images', array() );
 
-		foreach( $gtheme_images as $name => $size ) {
+		foreach ( $gtheme_images as $name => $size ) {
 			if ( $size['t'] && in_array( $post_type ,$size['p'] ) ) {
 				$checked = ( isset( $images[$name] ) && $images[$name] == $post->ID ) ? ' checked="checked"' : '';
 				$label = sprintf( _x( '%1$s (%2$s&nbsp;&times;&nbsp;%3$s)', 'Media Tag Checkbox Label', GTHEME_TEXTDOMAIN ), $size['n'], number_format_i18n( $size['w'] ), number_format_i18n( $size['h'] ) );
@@ -225,11 +221,11 @@ class gThemeImage extends gThemeModuleCore
 		if ( ! is_array( $saved_images ) )
 			$saved_images = array();
 
-		foreach( $sizes as $name => $size )
+		foreach ( $sizes as $name => $size )
 			if ( isset( $_REQUEST['gtheme_size_'.$name] ) && $name == $_REQUEST['gtheme_size_'.$name] )
 				$images[$name] = $post['ID'];
 
-		foreach( $saved_images as $saved_size => $saved_id )
+		foreach ( $saved_images as $saved_size => $saved_id )
 			if ( $post['ID'] != $saved_id )
 				$striped[$saved_size] = $saved_id;
 
@@ -292,7 +288,7 @@ class gThemeImage extends gThemeModuleCore
 		if ( ! in_array( $post_type, gThemeOptions::info( 'support_images_terms', array() ) ) )
 			return $post;
 
-		if( isset( $attachment['gtheme_images_terms'] ) ) {
+		if ( isset( $attachment['gtheme_images_terms'] ) ) {
 			$saved_terms = get_post_meta( $parent_id, GTHEME_IMAGES_TERMS_META, TRUE );
 			if ( ! is_array( $saved_terms ) )
 				$saved_terms = array();
@@ -337,8 +333,7 @@ class gThemeImage extends gThemeModuleCore
 			return $images['raw'];
 
 		// fallback
-		$thumbnail = get_post_thumbnail_id( $post_id );
-		if ( $thumbnail )
+		if ( $thumbnail = get_post_thumbnail_id( $post_id ) )
 			return $thumbnail;
 
 		return FALSE;
@@ -353,14 +348,13 @@ class gThemeImage extends gThemeModuleCore
 			return;
 
 		$thumb_ids = array();
-		foreach ( $wp_query->posts as $post ) {
+		foreach ( $wp_query->posts as $post )
 			if ( $id = self::id( $size, $post->ID ) )
 				$thumb_ids[] = $id;
 		}
 
-		if ( ! empty ( $thumb_ids ) ) {
+		if ( count( $thumb_ids ) )
 			_prime_post_caches( $thumb_ids, FALSE, TRUE );
-		}
 
 		$wp_query->thumbnails_cached = TRUE;
 	}

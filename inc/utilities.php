@@ -142,7 +142,7 @@ class gThemeUtilities extends gThemeModuleCore
 	private static function _tag_open( $tag, $atts, $content = TRUE )
 	{
 		$html = '<'.$tag;
-		foreach( $atts as $key => $att ) {
+		foreach ( $atts as $key => $att ) {
 
 			if ( is_array( $att ) && count( $att ) )
 				$att = implode( ' ', array_unique( array_filter( $att ) ) );

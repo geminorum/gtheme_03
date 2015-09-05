@@ -3,7 +3,7 @@
 class gThemeContent extends gThemeModuleCore
 {
 
-	public static function post( $context = null, $part = 'content' )
+	public static function post( $context = NULL, $part = 'content' )
 	{
 		if ( is_null( $context ) )
 			$context = gtheme_template_base();
@@ -24,7 +24,7 @@ class gThemeContent extends gThemeModuleCore
 		if ( constant( 'GTHEME_FLUSH' ) )
 			delete_transient( $key );
 
-		if ( false === ( $query = get_transient( $key ) ) ) {
+		if ( FALSE === ( $query = get_transient( $key ) ) ) {
 			 $query = new WP_Query( $args );
 			 set_transient( $key, $query, $expiration );
 		}
@@ -32,9 +32,10 @@ class gThemeContent extends gThemeModuleCore
 		return $query;
 	}
 
-	public static function content( $b = '<div class="entry-content">', $a = '</div>', $edit = FALSE )
+	// FIXME: WORKING DRAFT
+	public static function content( $before = '<div class="entry-content">', $after = '</div>', $edit = FALSE )
 	{
-		echo $b;
+		echo $before;
 
 		the_content( self::continue_reading( ( $edit ? get_edit_post_link() : '' ) ) );
 
@@ -45,9 +46,11 @@ class gThemeContent extends gThemeModuleCore
 		// 	'after' => '</div>',
 		// ) );
 
-		echo $a;
+		echo $after;
 	}
 
+	// FIXME: WORKING DRAFT
+	// SEE: gThemeDate::date()
 	public static function date( $b = '<div class="entry-date">', $a = '</div>' )
 	{
 		echo $b;
@@ -57,7 +60,7 @@ class gThemeContent extends gThemeModuleCore
 		echo $a;
 	}
 
-	public static function continue_reading( $edit = '', $scope = '', $permalink = false, $title_att = false )
+	public static function continue_reading( $edit = '', $scope = '', $permalink = FALSE, $title_att = FALSE )
 	{
 		if ( ! empty( $edit ) )
 			$edit = sprintf( __( ' <span class="sep edit-sep">|</span> <a href="%1$s" title="%2$s" class="%3$s">%4$s</a>', GTHEME_TEXTDOMAIN ),
@@ -67,10 +70,10 @@ class gThemeContent extends gThemeModuleCore
 				_x( 'Edit', 'continue reading link', GTHEME_TEXTDOMAIN )
 			);
 
-		if ( false === $permalink )
+		if ( FALSE === $permalink )
 			$permalink = get_permalink();
 
-		if ( false === $title_att )
+		if ( FALSE === $title_att )
 			$title_att = get_the_title();
 
 		return ' '.sprintf(
@@ -85,7 +88,7 @@ class gThemeContent extends gThemeModuleCore
 	}
 
 	// ANCESTOR: gtheme_the_title_attribute()
-	public static function title_attr( $echo = true, $title = null, $template = null, $empty = '' )
+	public static function title_attr( $echo = TRUE, $title = NULL, $template = NULL, $empty = '' )
 	{
 		if ( is_null( $title ) )
 			$title = get_the_title();
@@ -95,7 +98,7 @@ class gThemeContent extends gThemeModuleCore
 
 		if ( is_null( $template ) )
 			$title_attr = __( 'Permanent link to &mdash;%s&mdash;', GTHEME_TEXTDOMAIN );
-		else if ( false === $template )
+		else if ( FALSE === $template )
 			$title_attr = __( 'Short link to &mdash;%s&mdash;', GTHEME_TEXTDOMAIN );
 		else
 			$title_attr = $template;
@@ -109,7 +112,7 @@ class gThemeContent extends gThemeModuleCore
 	}
 
 	// ANCESTOR: gtheme_the_content_restricted()
-	public static function restricted( $stripteser = false, $restricted_message = '', $b = '<div class="restricted-content">', $a = '</div>' )
+	public static function restricted( $stripteser = FALSE, $restricted_message = '', $b = '<div class="restricted-content">', $a = '</div>' )
 	{
 		global $more;
 
@@ -118,13 +121,13 @@ class gThemeContent extends gThemeModuleCore
 			if ( ! empty( $restricted_message ) )
 				echo $b.$restricted_message.$a;
 		} else {
-			defined( 'DONOTCACHEPAGE' ) or define( 'DONOTCACHEPAGE', true ); // not caching the full article!
-			the_content( null, $stripteser );
+			defined( 'DONOTCACHEPAGE' ) or define( 'DONOTCACHEPAGE', TRUE ); // not caching the full article!
+			the_content( NULL, $stripteser );
 		}
 	}
 
 	// based on WP core : get_the_content()
-	public static function teaser( $fallback = true, $echo = true )
+	public static function teaser( $fallback = TRUE, $echo = TRUE )
 	{
 		global $more, $page, $pages;
 
@@ -145,19 +148,19 @@ class gThemeContent extends gThemeModuleCore
 		} else if ( $fallback ) {
 			$content = get_the_content();
 		} else {
-			return null;
+			return NULL;
 		}
 
 		$output = apply_filters( 'the_content', $content );
 		$output = str_replace(']]>', ']]&gt;', $output );
 
-		if( ! $echo )
+		if ( ! $echo )
 			return $output;
 		echo $output;
 	}
 
 	// ANCESTOR: gtheme_the_excerpt()
-	public static function excerpt( $atts = 'itemprop="description" ', $b = '<div class="entry-summary">', $a = '</div>', $only = false, $excerpt_length = false )
+	public static function excerpt( $atts = 'itemprop="description" ', $b = '<div class="entry-summary">', $a = '</div>', $only = FALSE, $excerpt_length = false )
 	{
 		if ( post_password_required() )
 			return;
@@ -218,7 +221,7 @@ class gThemeContent extends gThemeModuleCore
 			case 'textsize_buttons_nosep' :
 				self::text_size_buttons(
 					sprintf( $before, 'textsize-buttons hidden-print' ), $after,
-					( 'textsize_buttons_nosep' == $action ? false : 'def' ),
+					( 'textsize_buttons_nosep' == $action ? FALSE : 'def' ),
 					( $icons ? '<div class="genericon genericon-zoom"></div>' : 'def' ),
 					( $icons ? '<div class="genericon genericon-unzoom"></div>' : 'def' )
 					);
@@ -228,7 +231,7 @@ class gThemeContent extends gThemeModuleCore
 			case 'textjustify_buttons_nosep' :
 				self::justify_buttons(
 					sprintf( $before, 'textjustify-buttons hidden-print' ), $after,
-					( 'textjustify_buttons_nosep' == $action ? false : 'def' ),
+					( 'textjustify_buttons_nosep' == $action ? FALSE : 'def' ),
 					( $icons ? '<div class="genericon genericon-minimize"></div>' : 'def' ),
 					( $icons ? '<div class="genericon genericon-previous"></div>' : 'def' )
 					);
@@ -251,7 +254,7 @@ class gThemeContent extends gThemeModuleCore
 			case 'shortlink' :
 				the_shortlink(
 					( $icons ? '<div class="genericon genericon-link"></div>' : __( 'Short Link', GTHEME_TEXTDOMAIN ) ),
-					self::title_attr( false, null, '%s' ),
+					self::title_attr( FALSE, NULL, '%s' ),
 					sprintf( $before, 'post-short-link' ),
 					$after
 				);
@@ -347,7 +350,7 @@ class gThemeContent extends gThemeModuleCore
 			echo ( 'def' == $increase ? gtheme_get_info( 'text_size_increase', '[ A+ ]' ) : $increase );
 		echo '</a>';
 
-		if ( false !== $sep ) {
+		if ( FALSE !== $sep ) {
 			echo '<a id="jfontsize-default" class="fontsize-button" href="#">';
 			echo gThemeUtilities::sanitize_sep( $sep, 'text_size_sep' );
 			echo '</a>';
@@ -368,7 +371,7 @@ class gThemeContent extends gThemeModuleCore
 			echo ( 'def' == $justify ? gtheme_get_info( 'text_justify', 'Ju' ) : $justify );
 		echo '</a>';
 
-		if ( false !== $sep )
+		if ( FALSE !== $sep )
 			echo gThemeUtilities::sanitize_sep( $sep, 'text_justify_sep' );
 
 		echo '<a id="text-unjustify" class="text-justify-button" href="#" title="'.__( 'Un-justify paragraphs', GTHEME_TEXTDOMAIN ).'">';
@@ -379,7 +382,7 @@ class gThemeContent extends gThemeModuleCore
 	}
 
 	// http://www.printfriendly.com/button
-	public static function printfriendly( $b = '', $a = '', $text = null, $footer = true, $analytics = true )
+	public static function printfriendly( $b = '', $a = '', $text = NULL, $footer = TRUE, $analytics = TRUE )
 	{
 		if ( $footer && is_singular() )
 			add_action( 'wp_footer', array( __CLASS__, 'printfriendly_footer' ) );
@@ -401,7 +404,7 @@ class gThemeContent extends gThemeModuleCore
 		$onclick = 'onclick="window.print(); return false;"';
 		$title_var = "NULL";
 		$analytics_code = "if(typeof(_gaq) != 'undefined') { _gaq.push(['_trackEvent','PRINTFRIENDLY', 'print', '".$title_var."']);}";
-		if( $analytics )
+		if ( $analytics )
 			$onclick = 'onclick="window.print();'.$analytics_code.' return false;"';
 
 		echo $b;
@@ -418,11 +421,11 @@ class gThemeContent extends gThemeModuleCore
 	{
 		?><script type="text/javascript">
 		  (function() {
-			var e = document.createElement('script'); e.type="text/javascript";
+			var e = document.createElement('script');
+				e.type="text/javascript";
 			if('https:' == document.location.protocol) {
 			  js='https://pf-cdn.printfriendly.com/ssl/main.js';
-			}
-			else{
+			}else{
 			  js='http://cdn.printfriendly.com/printfriendly.js';
 			}
 			e.src = js;
@@ -432,14 +435,14 @@ class gThemeContent extends gThemeModuleCore
 	}
 
 	// http://www.addtoany.com/buttons/for/website
-	public static function addtoany( $b = '', $a = '', $text = null, $footer = true )
+	public static function addtoany( $b = '', $a = '', $text = NULL, $footer = TRUE )
 	{
 		if ( $footer && is_singular() )
 			add_action( 'wp_footer', array( __CLASS__, 'addtoany_footer' ) );
 
 		$query_args = array(
 			'linkurl' => urlencode( get_permalink() ),
-			'linkname' => self::title_attr( false, null, '%s' ),
+			'linkname' => self::title_attr( FALSE, NULL, '%s' ),
 		);
 
 		echo $b;
@@ -456,7 +459,7 @@ class gThemeContent extends gThemeModuleCore
 		?><script type="text/javascript">
 var a2a_config = a2a_config || {};
 a2a_config.linkname = '<?php echo esc_js( esc_url_raw( get_permalink() ) ); ?>';
-a2a_config.linkurl = '<?php echo esc_js( self::title_attr( false, null, '%s' ) ); ?>';
+a2a_config.linkurl = '<?php echo esc_js( self::title_attr( FALSE, NULL, '%s' ) ); ?>';
 a2a_config.onclick = 1;
 a2a_config.locale = "fa";
 </script>
@@ -508,7 +511,7 @@ a2a_config.locale = "fa";
 
 		if ( $args['link'] ) {
 			echo '<a itemprop="url" rel="bookmark" href="'.$link.'" title="';
-				self::title_attr( true, $args['title'] );
+				self::title_attr( TRUE, $args['title'] );
 			echo '">'.$args['title'].'</a>';
 		} else {
 			echo $args['title'];
@@ -581,7 +584,7 @@ a2a_config.locale = "fa";
 	{
 		global $post;
 
-		$seconds = get_post_meta( $post->ID, '_seconds_read_time', true );
+		$seconds = get_post_meta( $post->ID, '_seconds_read_time', TRUE );
 
 		if ( empty( $seconds ) )
 			return $content;

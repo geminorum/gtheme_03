@@ -46,7 +46,7 @@ class gThemeTerms extends gThemeModuleCore
 
 					$terms = $unordered = array();
 
-					foreach( $_POST['gtheme_terms'] as $term_id => $term_args ) {
+					foreach ( $_POST['gtheme_terms'] as $term_id => $term_args ) {
 
 						$order = isset( $term_args['order'] ) && trim( $term_args['order'] ) ? intval( $term_args['order'] ) : FALSE;
 

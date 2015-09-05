@@ -71,7 +71,7 @@ class gThemeTemplate extends gThemeModuleCore
 
 		// TODO : if $mode == child
 
-		foreach( $terms as $term )
+		foreach ( $terms as $term )
 			return self::term_parents( $term, gThemeUtilities::sanitize_sep( $sep, 'nav_sep', ' &raquo; ' ), $taxonomy );
 	}
 

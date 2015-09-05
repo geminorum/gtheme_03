@@ -2,7 +2,7 @@
 
 class gThemeNavigation extends gThemeModuleCore
 {
-	
+
 	public static function content( $id = FALSE, $taxonomy = 'category' )
 	{
 		global $wp_query;
@@ -70,29 +70,29 @@ class gThemeNavigation extends gThemeModuleCore
 		$crumbs = array();
 
 		$args = shortcode_atts( array(
-			'home'       => false,
+			'home'       => FALSE,
 			'term'       => 'both',
 			'tax'        => 'category',
-			'label'      => true,
-			'page_is'    => true,
-			'post_title' => false,
+			'label'      => TRUE,
+			'page_is'    => TRUE,
+			'post_title' => FALSE,
 			'class'      => 'gtheme-breadcrumb',
 			'before'     => '',
 			'after'      => '',
-			'context'    => null,
+			'context'    => NULL,
 		), $atts );
 
-		if ( false !== $args['home'] )
+		if ( FALSE !== $args['home'] )
 			$crumbs[] = '<a href="'.esc_url( home_url( '/' ) ).'" rel="home" title="">'. // TODO : add title
-				( 'home' == $args['home'] ? get_bloginfo( 'name' ) : $args['home'] ).'</a>';
+				( 'home' == $args['home'] ? get_bloginfo( 'name' ) : $args['home'] ).'</a>'; // TODO: use theme home override
 
 		$crumbs = apply_filters( 'gtheme_breadcrumb_after_home', $crumbs, $args );
 
-		if ( false !== $args['term'] )
-			$crumbs[] = gThemeTemplate::the_terms( false, $args['tax'], $args['term'] );
+		if ( FALSE !== $args['term'] )
+			$crumbs[] = gThemeTemplate::the_terms( FALSE, $args['tax'], $args['term'] );
 
-		if ( false !== $args['label'] && function_exists( 'gmeta_label' ) ) {
-			$label_html = gmeta_label( '', '', false, array( 'echo' => false ) );
+		if ( FALSE !== $args['label'] && function_exists( 'gmeta_label' ) ) {
+			$label_html = gmeta_label( '', '', FALSE, array( 'echo' => FALSE ) );
 			if ( ! empty( $label_html ) )
 				$crumbs[] = $label_html;
 		}
@@ -113,7 +113,7 @@ class gThemeNavigation extends gThemeModuleCore
 
 		if ( $args['post_title'] && get_the_title() )
 			$crumbs[] = '<a href="'.esc_url( apply_filters( 'the_permalink', get_permalink() ) )
-				  .'" title="'.gtheme_the_title_attribute( false ).'" rel="bookmark">'
+				  .'" title="'.gtheme_the_title_attribute( FALSE ).'" rel="bookmark">'
 				  .get_the_title().'</a>';
 
 		$count = count( $crumbs );
@@ -134,15 +134,15 @@ class gThemeNavigation extends gThemeModuleCore
 		$crumbs = array();
 
 		$args = shortcode_atts( array(
-			'home'    => false,
+			'home'    => FALSE,
 			'strings' => gThemeOptions::info( 'strings_breadcrumb_archive', array() ),
 			'class'   => 'gtheme-breadcrumb',
 			'before'  => '',
 			'after'   => '',
-			'context' => null,
+			'context' => NULL,
 		), $atts );
 
-		if ( false !== $args['home'] )
+		if ( FALSE !== $args['home'] )
 			$crumbs[] = '<a href="'.esc_url( home_url( '/' ) ).'" rel="home" title="">'. // TODO : add title
 				( 'home' == $args['home'] ? get_bloginfo( 'name' ) : $args['home'] ).'</a>';
 
@@ -153,11 +153,11 @@ class gThemeNavigation extends gThemeModuleCore
 		} else if ( is_home() ) {
 
 		} else if ( is_category() ) {
-			$crumbs[] = sprintf( ( isset( $args['strings']['category'] ) ? $args['strings']['category'] : __( 'Category Archives for <strong>%s</strong>', GTHEME_TEXTDOMAIN ) ), single_term_title( '', false ) );
+			$crumbs[] = sprintf( ( isset( $args['strings']['category'] ) ? $args['strings']['category'] : __( 'Category Archives for <strong>%s</strong>', GTHEME_TEXTDOMAIN ) ), single_term_title( '', FALSE ) );
 		} elseif ( is_tag() ) {
-			$crumbs[] = sprintf( ( isset( $args['strings']['tag'] ) ? $args['strings']['tag'] : __( 'Tag Archives for <strong>%s</strong>', GTHEME_TEXTDOMAIN ) ), single_term_title( '', false ) );
+			$crumbs[] = sprintf( ( isset( $args['strings']['tag'] ) ? $args['strings']['tag'] : __( 'Tag Archives for <strong>%s</strong>', GTHEME_TEXTDOMAIN ) ), single_term_title( '', FALSE ) );
 		} elseif ( is_tax() ) {
-			$crumbs[] = sprintf( ( isset( $args['strings']['tax'] ) ? $args['strings']['tax'] : __( 'Taxonomy Archives for <strong>%s</strong>', GTHEME_TEXTDOMAIN ) ), single_term_title( '', false ) );
+			$crumbs[] = sprintf( ( isset( $args['strings']['tax'] ) ? $args['strings']['tax'] : __( 'Taxonomy Archives for <strong>%s</strong>', GTHEME_TEXTDOMAIN ) ), single_term_title( '', FALSE ) );
 		} elseif ( is_author() ) {
 			$default_user = gtheme_get_option( 'default_user', 0 );
 			$author_id = intval( get_query_var( 'author' ) );

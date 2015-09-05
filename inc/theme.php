@@ -5,16 +5,16 @@ class gThemeTheme extends gThemeModuleCore {
 	function setup_actions( $args = array() )
 	{
 		extract( shortcode_atts( array(
-			'cleanup'      => true,
-			'adminbar'     => true,
-			'wpcf7'        => true,
-			'page_excerpt' => true,
-			'feed_links'   => true,
-			'post_formats' => false,
-			'html5'        => true,
-			'js'           => true,
-			'hooks'        => true,
-			'buddypress'   => true,
+			'cleanup'      => TRUE,
+			'adminbar'     => TRUE,
+			'wpcf7'        => TRUE,
+			'page_excerpt' => TRUE,
+			'feed_links'   => TRUE,
+			'post_formats' => FALSE,
+			'html5'        => TRUE,
+			'js'           => TRUE,
+			'hooks'        => TRUE,
+			'buddypress'   => TRUE,
 		), $args ) );
 
 		if ( $cleanup )
@@ -22,11 +22,11 @@ class gThemeTheme extends gThemeModuleCore {
 
 		if ( $adminbar ) {
 			add_theme_support( 'admin-bar', array( 'callback' => '__return_false' ) );
-			add_action( 'template_redirect', array( & $this, 'template_redirect_remove_styles' ), 99 );
+			add_action( 'template_redirect', array( &$this, 'template_redirect_remove_styles' ), 99 );
 		}
 
 		if ( $wpcf7 && function_exists( 'wpcf7_enqueue_scripts' ) )
-			add_action( 'wp_enqueue_scripts', array( & $this, 'wp_enqueue_scripts_wpcf7' ), 5 );
+			add_action( 'wp_enqueue_scripts', array( &$this, 'wp_enqueue_scripts_wpcf7' ), 5 );
 
 		if ( $page_excerpt )
 			add_post_type_support( 'page', 'excerpt' );
@@ -57,16 +57,17 @@ class gThemeTheme extends gThemeModuleCore {
 			) ) );
 
 		if ( $js )
-			add_action( 'wp_enqueue_scripts', array( & $this, 'wp_enqueue_scripts' ) );
+			add_action( 'wp_enqueue_scripts', array( &$this, 'wp_enqueue_scripts' ) );
 
-		if ( $hooks ) // http://justintadlock.com/archives/2011/09/01/a-better-way-for-plugins-to-hook-into-theme-templates
+		// http://justintadlock.com/archives/2011/09/01/a-better-way-for-plugins-to-hook-into-theme-templates
+		if ( $hooks )
 			add_theme_support( 'template-hooks', gtheme_get_info( 'support_template_hooks', array(
 				'before_post',
 				'after_post',
 				'template_body_top',
-				//'template_before_loop',
-				//'template_after_loop',
-				//'template_after_sidebar',
+				// 'template_before_loop',
+				// 'template_after_loop',
+				// 'template_after_sidebar',
 				'gtheme_do_header',
 				'gtheme_do_after_header',
 				'gtheme_do_before_footer',
@@ -123,9 +124,9 @@ class gThemeTheme extends gThemeModuleCore {
 	{
 		$suffix = ( ( ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) || gThemeUtilities::isDev() ) ? '' : '.min' );
 
-		wp_enqueue_script( 'gtheme-all', GTHEME_URL."/js/script.all$suffix.js", array( 'jquery' ), GTHEME_VERSION, true );
+		wp_enqueue_script( 'gtheme-all', GTHEME_URL."/js/script.all$suffix.js", array( 'jquery' ), GTHEME_VERSION, TRUE );
 
 		if ( is_singular() )
-			wp_enqueue_script( 'gtheme-singular', GTHEME_URL."/js/script.singular$suffix.js", array( 'jquery' ), GTHEME_VERSION, true );
+			wp_enqueue_script( 'gtheme-singular', GTHEME_URL."/js/script.singular$suffix.js", array( 'jquery' ), GTHEME_VERSION, TRUE );
 	}
 }

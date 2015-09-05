@@ -31,7 +31,7 @@ class gThemeModuleCore
 		$atts = (array) $atts;
 		$out = array();
 
-		foreach( $pairs as $name => $default ) {
+		foreach ( $pairs as $name => $default ) {
 			if ( array_key_exists( $name, $atts ) )
 				$out[$name] = $atts[$name];
 			else
@@ -133,7 +133,7 @@ class gThemeModuleCore
 
 			case 'checkbox' :
 				if ( count( $args['values'] ) ) {
-					foreach( $args['values'] as $value_name => $value_title ) {
+					foreach ( $args['values'] as $value_name => $value_title ) {
 						$html = gThemeUtilities::html( 'input', array(
 							'type'    => 'checkbox',
 							'class'   => $args['class'],

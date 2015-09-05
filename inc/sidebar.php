@@ -270,7 +270,7 @@ class gThemeWidget extends WP_Widget
 
 		$this->alt_option_name = 'widget_gtheme_'.$args['name'];
 
-		foreach( $args['flush'] as $action )
+		foreach ( $args['flush'] as $action )
 			add_action( $action, array( $this, 'flush_widget_cache' ) );
 	}
 

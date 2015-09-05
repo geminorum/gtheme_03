@@ -256,7 +256,7 @@ class gThemeOptions extends gThemeModuleCore
 		if ( FALSE === $option )
 			return $defaults;
 
-		if( isset( $defaults[$option] ) )
+		if ( isset( $defaults[$option] ) )
 			return $defaults[$option];
 
 		return $default;
@@ -340,7 +340,7 @@ class gThemeOptions extends gThemeModuleCore
 		if ( FALSE === $info )
 			return $gtheme_info;
 
-		if( isset( $gtheme_info[$info] ) )
+		if ( isset( $gtheme_info[$info] ) )
 			return $gtheme_info[$info];
 
 		return $default;
