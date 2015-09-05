@@ -151,23 +151,31 @@ class gThemeImage extends gThemeModuleCore
 		if ( isset( $_REQUEST['post_id'] ) && $post_id = absint( $_REQUEST['post_id'] ) ) {
 			$post = get_post( $post_id );
 			$post_type = $post->post_type;
-		} else if ( isset( $_REQUEST['post'] ) &&  $post_id = absint( $_REQUEST['post'] ) ) {
+
+		} else if ( isset( $_REQUEST['post'] ) && $post_id = absint( $_REQUEST['post'] ) ) {
 			$post = get_post( $post_id );
 			$post_type = $post->post_type;
+
 		} else if ( isset( $_REQUEST['post_type'] ) ) {
 			$post_type = $_REQUEST['post_type'];
+
+		} else if ( $current = self::getCurrentPostType() ) {
+			$post_type = $current;
+
 		} else {
 			$post_type = 'post';
 		}
 
 		$new_size_names = array();
-		$images = (array) gThemeOptions::info( 'images', array() );
 
-		foreach( $images as $name => $size )
+		foreach ( gThemeOptions::info( 'images', array() ) as $name => $size )
 			if ( $size['i'] && in_array( $post_type ,$size['p'] ) )
 				$new_size_names[$name] = $size['n'];
 
-		return apply_filters( 'gtheme_images_sizenames', ( $new_size_names + $size_names ), $new_size_names );
+		if ( gThemeUtilities::isDev() )
+			error_log( print_r( compact( 'post_type', 'new_size_names', 'size_names' ), TRUE ) );
+
+		return $new_size_names + $size_names;
 	}
 
 	public function tags_attachment_fields_to_edit( $fields, $post )
@@ -351,7 +359,6 @@ class gThemeImage extends gThemeModuleCore
 		foreach ( $wp_query->posts as $post )
 			if ( $id = self::id( $size, $post->ID ) )
 				$thumb_ids[] = $id;
-		}
 
 		if ( count( $thumb_ids ) )
 			_prime_post_caches( $thumb_ids, FALSE, TRUE );
