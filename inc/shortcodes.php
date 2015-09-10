@@ -86,12 +86,10 @@ class gThemeShortCodes extends gThemeModuleCore
 
 	public function shortcode_gallery_column( $atts, $content = null, $tag = 'gallery' )
 	{
-		$post = get_post();
-
 		$args = shortcode_atts( array(
 			'order'     => 'ASC',
 			'orderby'   => 'menu_order ID',
-			'id'        => $post ? $post->ID : 0,
+			'id'        => get_the_ID(),
 			'columns'   => 3,
 			'size'      => 'thumbnail',
 			'include'   => '',
@@ -126,7 +124,7 @@ class gThemeShortCodes extends gThemeModuleCore
 		}
 
 		if ( empty( $attachments ) )
-			return $empty;
+			return '';
 
 		if ( 'none' == $args['link'] ) {
 			$default = '<figure class="gallery-img">%1$s<figcaption><div class="gallery-description"><p>%3$s</p></div></figcaption></figure>';
@@ -205,7 +203,6 @@ class gThemeShortCodes extends gThemeModuleCore
 
 		$id = intval( $args['id'] );
 		$posts_args = array(
-			'post_parent'    => $id,
 			'post_status'    => 'inherit',
 			'post_type'      => 'attachment',
 			'post_mime_type' => 'image',
@@ -213,7 +210,22 @@ class gThemeShortCodes extends gThemeModuleCore
 			'orderby'        => $args['orderby'],
 		);
 
-		$attachments = get_children( $posts_args );
+		if ( ! empty( $args['include'] ) ) {
+			$attachments = array();
+			$posts_args['include'] = $args['include'];
+			foreach ( get_posts( $posts_args ) as $key => $val )
+				$attachments[$val->ID] = $val;
+		} elseif ( ! empty( $args['exclude'] ) ) {
+			$posts_args['post_parent'] = $id;
+			$posts_args['exclude']     = $args['exclude'];
+			$attachments = get_children( $posts_args );
+		} else {
+			$posts_args['post_parent'] = $id;
+			$attachments = get_children( $posts_args );
+		}
+
+		if ( empty( $attachments ) )
+			return '';
 
 		$attr = '';
 		$selector = $this->selector( 'slider-gallery-' );
