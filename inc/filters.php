@@ -111,24 +111,23 @@ class gThemeFilters extends gThemeModuleCore
 		if ( $gtheme_info['child_group_class'] )
 			$classes[] = $gtheme_info['child_group_class'];
 
-		$extra = gThemeOptions::get_option( 'body_class_extra', FALSE );
-		if ( $extra )
+		if ( $extra = gThemeOptions::get_option( 'body_class_extra', FALSE ) )
 			$classes[] = sanitize_html_class( $extra );
 
 		if ( ! empty( $pagenow ) )
 			$classes[] = sanitize_html_class( 'page-'.str_ireplace( '.php', '', $pagenow ) );
 
-		if ( is_page() )
-			$classes[] = sanitize_html_class( 'slug-'.gThemeContent::slug() );
-
 		if ( gThemeUtilities::isDev() )
 			$classes[] = 'stage-development';
 
-		if ( constant( 'WP_DEBUG' ) )
+		if ( gThemeUtilities::isDebug() )
 			$classes[] = 'wp-debug';
 
 		if ( ! gThemeUtilities::isRTL() )
 			$classes[] = 'ltr';
+
+		if ( is_page() )
+			$classes[] = sanitize_html_class( 'slug-'.gThemeContent::slug() );
 
 		if ( is_single() )
 			foreach ( get_the_category() as $category )
@@ -138,15 +137,15 @@ class gThemeFilters extends gThemeModuleCore
 			$classes[] = $post->post_type.'-'.$post->post_name;
 
 		$uri = explode( '/', $_SERVER['REQUEST_URI'] );
-		if ( isset( $uri[1] ) )
-			$classes[] = 'uri-'.htmlentities( trim( strip_tags( $uri[1] ) ) );
+		if ( isset( $uri[1] ) ) {
+			$uri_string = htmlentities( trim( strip_tags( $uri[1] ) ) );
+			if ( ! empty( $uri_string ) )
+				$classes[] = 'uri-'.$uri_string;
+		}
 
-		/*
-		// http://www.wprecipes.com/how-to-automatically-add-a-class-to-body_class-if-theres-a-sidebar
-		// todo : get sidebar list from gThemeOptions::info()
-		if ( is_active_sidebar( 'sidebar' ) )
-			$classes[] = 'has_sidebar';
-		*/
+		foreach ( $gtheme_info['sidebars'] as $sidebar_name => $sidebar_title )
+			if ( is_active_sidebar( $sidebar_name ) )
+				$classes[] = 'sidebar-'.$sidebar_name;
 
 		return $classes;
 	}
