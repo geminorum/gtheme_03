@@ -1,3 +1,8 @@
+### 0.3.7
+* content: using word wrap only via header helper
+* filters: body class: active sidebars / prefix the uri / check for debug display
+* shortcodes: fixed slider gallery not including ids
+
 ### 0.3.6
 * sidebar: class api for all widgets
 
