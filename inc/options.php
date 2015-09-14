@@ -265,7 +265,7 @@ class gThemeOptions extends gThemeModuleCore
 	public static function register_image( $n, $w, $h = 9999, $c = 0, $t = TRUE, $i = FALSE, $p = array( 'post' ), $d = '' )
 	{
 		return array(
-			'n' => $n, // name
+			'n' => $n, // name (title)
 			'w' => $w, // width
 			'h' => $h, // height
 			'c' => $c, // crop

@@ -194,8 +194,8 @@ class gThemeImage extends gThemeModuleCore
 			if ( $size['i'] && in_array( $post_type ,$size['p'] ) )
 				$new_size_names[$name] = $size['n'];
 
-		if ( gThemeUtilities::isDev() )
-			error_log( print_r( compact( 'post_type', 'new_size_names', 'size_names' ), TRUE ) );
+		// if ( gThemeUtilities::isDev() )
+		// 	error_log( print_r( compact( 'post_type', 'new_size_names', 'size_names' ), TRUE ) );
 
 		return $new_size_names + $size_names;
 	}

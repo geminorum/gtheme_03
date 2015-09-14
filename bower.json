@@ -10,6 +10,7 @@
 		"jcarousel": "~0.3.3",
 		"jquery.lazyload": "~1.9.5",
 		"normalize-scss": "~3.0.3",
+		"sanitize-css": "*",
 		"sass-css3-mixins": "*",
 		"css-spinners": "~2.0.2"
 	},

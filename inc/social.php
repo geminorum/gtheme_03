@@ -122,12 +122,12 @@ class gThemeSocial extends gThemeModuleCore
 	public static function author()
 	{
 		if ( is_single() ) {
+
 			$the_post = get_queried_object();
 			if ( ! $the_post )
 				return;
 
-			$default_user = gtheme_get_option( 'default_user', 0 );
-			if ( $the_post->post_author == $default_user )
+			if ( $the_post->post_author == gtheme_get_option( 'default_user', 0 ) )
 				return;
 
 			$plus_url = get_user_meta( $the_post->post_author, 'googleplus', TRUE );
