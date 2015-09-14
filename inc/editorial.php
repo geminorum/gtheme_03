@@ -15,7 +15,7 @@ class gThemeEditorial extends gThemeModuleCore
 
 	public function gmeta_meta( $meta, $field )
 	{
-		if ( $meta && in_array( $fields, array( 'ot', 'st', 'over-title', 'sub-title' ) ) )
+		if ( $meta && in_array( $field, array( 'ot', 'st', 'over-title', 'sub-title' ) ) )
 			return gThemeUtilities::wordWrap( $meta, 2 );
 
 		return $meta;
