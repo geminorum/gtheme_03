@@ -507,9 +507,84 @@ class gThemeWidget extends WP_Widget
 		), __( 'Avatar Size:', GTHEME_TEXTDOMAIN ).$html ).'</p>';
 	}
 
-	public function form_term_id( $instance, $default = '0', $field = 'term_id', $taxonomy_field = 'taxonomy' )
+	public function form_image_size( $instance, $default = 'thumbnail', $field = 'image_size', $post_type = 'post' )
 	{
-		$taxonomy = isset( $instance[$taxonomy_field] ) ? $instance[$taxonomy_field] : 'post_tag';
+		$sizes = array();
+
+		foreach ( gThemeOptions::info( 'images', array() ) as $name => $size )
+			if ( isset( $size['p'] ) && in_array( $post_type, $size['p'] ) )
+				$sizes[$name] = $size['n'].' ('.number_format_i18n( $size['w'] ).'&nbsp;&times;&nbsp;'.number_format_i18n( $size['h'] ).')';
+
+		if ( count( $sizes ) ) {
+
+			$selected = isset( $instance[$field] ) ? $instance[$field] : $default;
+			$html     = '';
+
+			foreach ( $sizes as $size => $title )
+				$html .= gThemeUtilities::html( 'option', array(
+					'value'    => $size,
+					'selected' => $selected == $size,
+				), $title );
+
+			$html = gThemeUtilities::html( 'select', array(
+				'class' => 'widefat',
+				'name'  => $this->get_field_name( $field ),
+				'id'    => $this->get_field_id( $field ),
+			), $html );
+
+			echo '<p>'. gThemeUtilities::html( 'label', array(
+				'for' => $this->get_field_id( $field ),
+			), __( 'Image Size:', GTHEME_TEXTDOMAIN ).$html ).'</p>';
+
+		} else {
+			echo '<p>'.__( 'No Image Size Available!', GTHEME_TEXTDOMAIN ).'</p>';
+		}
+	}
+
+	public function form_checkbox( $instance, $default = FALSE, $field = 'checked', $label = NULL )
+	{
+		if ( is_null( $label ) )
+			$label = __( 'Checked:', GTHEME_TEXTDOMAIN );
+
+		$html = gThemeUtilities::html( 'input', array(
+			'type'    => 'checkbox',
+			'name'  => $this->get_field_name( $field ),
+			'id'    => $this->get_field_id( $field ),
+			'checked' => isset( $instance[$field] ) ? $instance[$field] : $default,
+		) );
+
+		echo '<p>'.$html.'&nbsp;'.gThemeUtilities::html( 'label', array(
+			'for' => $this->get_field_id( $field ),
+		), $label ).'</p>';
+	}
+
+	public function form_post_id( $instance, $default = '0', $field = 'post_id', $post_type_field = 'posttype', $post_type_default = 'page', $label = NULL )
+	{
+		$post_type = isset( $instance[$post_type_field] ) ? $instance[$post_type_field] : $post_type_default;
+		$post_id  = isset( $instance[$field] ) ? $instance[$field] : $default;
+
+		if ( is_null( $label ) )
+			$label = __( 'Page:', GTHEME_TEXTDOMAIN );
+
+		$html = wp_dropdown_pages( array(
+			'post_type'        => $post_type,
+			'selected'         => $post_id,
+			'name'             => $this->get_field_name( $field ),
+			'id'               => $this->get_field_id( $field ),
+			'class'            => 'widefat',
+			'show_option_none' => __( '&mdash; Select &mdash;', GTHEME_TEXTDOMAIN ),
+			'sort_column'      => 'menu_order, post_title',
+			'echo'             => FALSE,
+		) );
+
+		echo '<p>'. gThemeUtilities::html( 'label', array(
+			'for' => $this->get_field_id( $field ),
+		), $label.$html ).'</p>';
+	}
+
+	public function form_term_id( $instance, $default = '0', $field = 'term_id', $taxonomy_field = 'taxonomy', $taxonomy_default = 'post_tag' )
+	{
+		$taxonomy = isset( $instance[$taxonomy_field] ) ? $instance[$taxonomy_field] : $taxonomy_default;
 		$term_id  = isset( $instance[$field] ) ? $instance[$field] : $default;
 
 		$html = gThemeUtilities::html( 'option', array(
