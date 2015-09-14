@@ -1,3 +1,7 @@
+### 0.3.8
+* images: also register title on additional sizes
+* editorial: word wrap on meta overtitle & subtitle
+
 ### 0.3.7
 * content: using word wrap only via header helper
 * filters: body class: active sidebars / prefix the uri / check for debug display
