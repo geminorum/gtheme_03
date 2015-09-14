@@ -3,6 +3,24 @@
 class gThemeEditorial extends gThemeModuleCore
 {
 
+	public function setup_actions( $args = array() )
+	{
+		extract( shortcode_atts( array(
+			'word_wrap' => TRUE,
+		), $args ) );
+
+		if ( $word_wrap )
+			add_filter( 'gmeta_meta', array( &$this, 'gmeta_meta' ), 12, 2 );
+	}
+
+	public function gmeta_meta( $meta, $field )
+	{
+		if ( $meta && in_array( $fields, array( 'ot', 'st', 'over-title', 'sub-title' ) ) )
+			return gThemeUtilities::wordWrap( $meta, 2 );
+
+		return $meta;
+	}
+
 	// FIXME: add theme classes / before / after : is's a shortcode!!
 	public static function series( $atts = array() )
 	{
