@@ -2,7 +2,7 @@
 
 class gThemeBootstrap extends gThemeModuleCore
 {
-	
+
 	public static function navbarHeader( $brand = NULL, $target = 'navbar' )
 	{
 		echo '<div class="navbar-header">';
@@ -10,20 +10,18 @@ class gThemeBootstrap extends gThemeModuleCore
 				echo '<span class="sr-only">'.__( 'Toggle navigation', GTHEME_TEXTDOMAIN ).'</span>';
 				echo '<span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>';
 			echo '</button>';
-		
+
 			if ( is_null( $brand ) )
 				$brand = get_bloginfo( 'name' );
-		
+
 			if ( FALSE !== $brand )
 				echo '<a class="navbar-brand" href="'.gThemeUtilities::home().'" title="'.esc_attr__( 'Home', GTHEME_TEXTDOMAIN ).'">'.$brand.'</a>';
-		
+
 		echo '</div>';
 	}
-	
+
 	public static function navbarNav( $location = 'primary', $wrap = 'navbar', $class = '' )
 	{
-		// require_once( GTHEME_DIR.DS.'libs'.DS.'wp-bootstrap-navwalker'.DS.'wp_bootstrap_navwalker.php' );
-		
 		$menu = wp_nav_menu( array(
 			'echo'            => 0,
 			'menu'            => $location,
@@ -34,16 +32,16 @@ class gThemeBootstrap extends gThemeModuleCore
 			'fallback_cb'     => 'wp_bootstrap_navwalker::fallback',
 			'walker'          => new gThemeBootstrap_Walker_NavBar()
 		) );
-		
-		if ( $menu ) 
+
+		if ( $menu )
 			echo $wrap ? '<div id="'.$wrap.'" class="collapse navbar-collapse">'.$menu.'</div>' : $menu;
 	}
-	
+
 	public static function navbarForm( $placeholder = NULL, $class = '' )
 	{
 		if ( is_null( $placeholder ) )
 			$placeholder = __( 'Search &hellip;', GTHEME_TEXTDOMAIN );
-			
+
 		echo '<form class="navbar-form '.$class.'" role="search" method="get" action="'.gThemeSearch::getAction().'"><div class="form-group">';
 			echo '<input type="text" class="form-control" name="'.gThemeSearch::getKey().'" value="'.gThemeSearch::query().'"';
 			if ( $placeholder )
@@ -55,20 +53,20 @@ class gThemeBootstrap extends gThemeModuleCore
 // ALSO SEE: http://www.creativewebdesign.ro/en/blog/wordpress/create-a-responsive-wordpress-theme-with-bootstrap-3-header-and-footer/
 // ORIGINALLY BASED ON: wp_bootstrap_navwalker class v2.0.4 by Edward McIntyre
 // https://github.com/twittem/wp-bootstrap-navwalker
-class gThemeBootstrap_Walker_NavBar extends Walker_Nav_Menu 
+class gThemeBootstrap_Walker_NavBar extends Walker_Nav_Menu
 {
 
-	public function start_lvl( &$output, $depth = 0, $args = array() ) 
+	public function start_lvl( &$output, $depth = 0, $args = array() )
 	{
 		$indent = str_repeat( "\t", $depth );
 		$output .= "\n$indent<ul role=\"menu\" class=\" dropdown-menu\">\n";
 	}
 
-	public function start_el( &$output, $item, $depth = 0, $args = array(), $id = 0 ) 
+	public function start_el( &$output, $item, $depth = 0, $args = array(), $id = 0 )
 	{
 		$indent = ( $depth ) ? str_repeat( "\t", $depth ) : '';
 
-		
+
 
 		/**
 		 * Dividers, Headers or Disabled
@@ -78,7 +76,7 @@ class gThemeBootstrap_Walker_NavBar extends Walker_Nav_Menu
 		 * comparison that is not case sensitive. The strcasecmp() function returns
 		 * a 0 if the strings are equal.
 		 */
-		
+
 		// if ( FALSE !== strripos( $item->attr_title, 'divider' ) && $depth === 1 ) {
 		// if ( strcasecmp( $item->attr_title, 'divider' ) == 0 && $depth === 1 ) {
 		if ( strcasecmp( $item->attr_title, 'divider' ) == 0 ) {
@@ -242,4 +240,3 @@ class gThemeBootstrap_Walker_NavBar extends Walker_Nav_Menu
 		}
 	}
 }
-

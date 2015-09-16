@@ -35,7 +35,7 @@ class gThemeEditor extends gThemeModuleCore
 	{
 		$file = gThemeUtilities::isRTL() ? 'editor-style-rtl.css' : 'editor-style.css';
 
-		if ( file_exists( GTHEME_CHILD_DIR.DS.'css'.DS.$file ) )
+		if ( file_exists( GTHEME_CHILD_DIR.'/css/'.$file ) )
 			return GTHEME_CHILD_URL.'/css/'.$file;
 		else
 			return GTHEME_URL.'/css/'.$file;
