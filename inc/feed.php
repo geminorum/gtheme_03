@@ -101,20 +101,20 @@ class gThemeFeed extends gThemeModuleCore
 
 	public function rss2_item()
 	{
-		$size = gtheme_get_info( 'enclosure_image_size', 'single' );
-		if ( ! $size )
-			return;
+		if ( $size = gtheme_get_info( 'enclosure_image_size', 'single' ) ) {
 
-		$id = gThemeImage::id( $size );
-		if ( ! $id )
-			return;
+			if ( $id = gThemeImage::id( $size ) ) {
 
-		$image = wp_get_attachment_image_src( $id, $size );
-		if ( ! $image )
-			return;
+				if ( $image = wp_get_attachment_image_src( $id, $size ) ) {
 
-		$post = get_post( $id );
-		echo "\t".'<enclosure url="'.trim( htmlspecialchars( $image[0] ) ).'" length="'.trim( gThemeUtilities::get_uri_length( $image[0] ) ).'" type="'.$post->post_mime_type.'" />'."\n";
+					$post = get_post( $id );
+
+					echo "\t".'<enclosure url="'.trim( htmlspecialchars( $image[0] ) )
+						.'" length="'.trim( gThemeUtilities::get_uri_length( $image[0] ) )
+						.'" type="'.$post->post_mime_type.'" />'."\n";
+				}
+			}
+		}
 	}
 
 	// https://gist.github.com/danielbachhuber/6557916
