@@ -4,7 +4,7 @@ class gThemeModuleCore
 {
 	var $_option_base = 'gtheme';
 	var $_option_key  = '';
-	var $_ajax        = false;
+	var $_ajax        = FALSE;
 	var $_args        = array();
 
 	function __construct( $args = array() )
@@ -39,6 +39,16 @@ class gThemeModuleCore
 		}
 
 		return $out;
+	}
+
+	// helper
+	// current user can
+	public static function cuc( $cap, $none = TRUE )
+	{
+		if ( 'none' == $cap || '0' == $cap )
+			return $none;
+
+		return current_user_can( $cap );
 	}
 
 	public static function log( $error = '{NO Error Code}', $data = array(), $wp_error = NULL )
@@ -98,35 +108,50 @@ class gThemeModuleCore
 		echo '</form>';
 	}
 
-	public function do_settings_field( $atts = array(), $wrap = false )
+	public function do_settings_field( $atts = array(), $wrap = FALSE )
 	{
+		// workaround to recent changes on WP 4.3
+		if ( isset( $atts['class'] ) && ! isset( $atts['field_class'] ) ) {
+			$atts['field_class'] = $atts['class'];
+			unset( $atts['class'] );
+		}
+
 		$args = shortcode_atts( array(
 			'title'        => '',
 			'label_for'    => '',
 			'type'         => 'enabled',
-			'field'        => false,
+			'field'        => FALSE,
 			'values'       => array(),
-			'filter'       => false, // will use via sanitize
-			'dir'          => false,
+			'exclude'      => '', // FIXME: check exclude on every values array
+			'filter'       => FALSE, // will use via sanitize
+			'dir'          => FALSE,
 			'default'      => '',
-			'desc'         => '',
-			'class'        => '',
+			'desc'         => '', // FIXME: change this to 'description'
+			'before'       => '', // html to print before field (not description)
+			'after'        => '', // html to print after field (not description)
+			'field_class'  => '', // formally just class!
+			'class'        => '', // now used on wrapper
 			'option_group' => $this->_option_key,
+			'name_attr'    => FALSE, // override
+			'id_attr'      => FALSE, // override
 		), $atts );
 
 		if ( $wrap ) {
 			if ( ! empty( $args['label_for'] ) )
 				echo '<tr><th scope="row"><label for="'.esc_attr( $args['label_for'] ).'">'.$args['title'].'</label></th><td>';
 			else
-				echo '<tr><th scope="row">'.$args['title'].'</th><td>';
+				echo '<tr class="'.$args['class'].'"><th scope="row">'.$args['title'].'</th><td>';
 		}
 
 		if ( ! $args['field'] )
 			return;
 
-		$name = $this->_option_base.'_'.$args['option_group'].'['.esc_attr( $args['field'] ).']';
-		$id = $this->_option_base.'-'.$args['option_group'].'-'.esc_attr( $args['field'] );
+		$name  = $args['name_attr'] ? $args['name_attr'] : $this->_option_base.'_'.$args['option_group'].'['.esc_attr( $args['field'] ).']';
+		$id    = $args['id_attr'] ? $args['id_attr'] : $this->_option_base.'-'.$args['option_group'].'-'.esc_attr( $args['field'] );
 		$value = isset( $this->options[$args['field']] ) ? $this->options[$args['field']] : $args['default'];
+
+		if ( $args['before'] )
+			echo $args['before'].'&nbsp;';
 
 		switch ( $args['type'] ) {
 			case 'enabled' :
@@ -142,19 +167,19 @@ class gThemeModuleCore
 				), esc_html__( 'Enabled' ) );
 
 				echo gThemeUtilities::html( 'select', array(
-					'class' => $args['class'],
+					'class' => $args['field_class'],
 					'name'  => $name,
 					'id'    => $id,
 				), $html );
 
 			break;
-
 			case 'text' :
+
 				if ( ! $args['class'] )
 					$args['class'] = 'regular-text';
 				echo gThemeUtilities::html( 'input', array(
 					'type'  => 'text',
-					'class' => $args['class'],
+					'class' => $args['field_class'],
 					'name'  => $name,
 					'id'    => $id,
 					'value' => $value,
@@ -162,13 +187,13 @@ class gThemeModuleCore
 				) );
 
 			break;
-
 			case 'checkbox' :
+
 				if ( count( $args['values'] ) ) {
 					foreach ( $args['values'] as $value_name => $value_title ) {
 						$html = gThemeUtilities::html( 'input', array(
 							'type'    => 'checkbox',
-							'class'   => $args['class'],
+							'class'   => $args['field_class'],
 							'name'    => $name.'['.$value_name.']',
 							'id'      => $id.'-'.$value_name,
 							'value'   => '1',
@@ -183,7 +208,7 @@ class gThemeModuleCore
 				} else {
 					$html = gThemeUtilities::html( 'input', array(
 						'type'    => 'checkbox',
-						'class'   => $args['class'],
+						'class'   => $args['field_class'],
 						'name'    => $name,
 						'id'      => $id,
 						'value'   => '1',
@@ -197,10 +222,9 @@ class gThemeModuleCore
 				}
 
 			break;
-
 			case 'select' :
 
-				if ( false !== $args['values'] ) { // alow hiding
+				if ( FALSE !== $args['values'] ) { // alow hiding
 					$html = '';
 					foreach ( $args['values'] as $value_name => $value_title )
 						$html .= gThemeUtilities::html( 'option', array(
@@ -209,27 +233,29 @@ class gThemeModuleCore
 						), esc_html( $value_title ) );
 
 					echo gThemeUtilities::html( 'select', array(
-						'class' => $args['class'],
+						'class' => $args['field_class'],
 						'name'  => $name,
 						'id'    => $id,
 					), $html );
-
 				}
 
 			break;
-
 			case 'textarea' :
 
 				echo gThemeUtilities::html( 'textarea', array(
-					'class' => array( 'large-text', 'textarea-autosize', $args['class'] ),
+					'class' => array(
+						'large-text',
+						// 'textarea-autosize',
+						$args['field_class'],
+					),
 					'name'  => $name,
 					'id'    => $id,
 					'rows'  => 5,
 					'cols'  => 45,
-				), esc_textarea( $value ) );
+				// ), esc_textarea( $value ) );
+				), $value );
 
 			break;
-
 			case 'page' :
 
 				if ( ! $args['values'] )
@@ -240,7 +266,8 @@ class gThemeModuleCore
 					'selected'         => $value,
 					'name'             => $name,
 					'id'               => $id,
-					'class'            => $args['class'],
+					'class'            => $args['field_class'],
+					'exclude'          => $args['exclude'],
 					'show_option_none' => __( '&mdash; Select Page &mdash;', GTHEME_TEXTDOMAIN ),
 					'sort_column'      => 'menu_order',
 					'sort_order'       => 'asc',
@@ -248,16 +275,53 @@ class gThemeModuleCore
 				));
 
 			break;
+			case 'button' :
 
+				submit_button(
+					$value,
+					( empty( $args['field_class'] ) ? 'secondary' : $args['field_class'] ),
+					$id,
+					FALSE
+				);
+
+			break;
+			case 'file' :
+
+				echo gThemeUtilities::html( 'input', array(
+					'type'  => 'file',
+					'class' => $args['field_class'],
+					'name'  => $id, // $name,
+					'id'    => $id,
+					// 'value' => $value,
+					'dir'   => $args['dir'],
+				) );
+
+			break;
+			case 'custom' :
+
+				if ( ! is_array( $args['values'] ) )
+					echo $args['values'];
+				else
+					echo $value;
+
+			break;
+			case 'debug' :
+
+				gThemeUtilities::dump( $this->options );
+
+			break;
 			default :
-				echo 'Error: setting type\'s not defind';
+
+				_e( 'Error: setting type undefined.', GTHEME_TEXTDOMAIN );
 		}
 
-		if ( $args['desc'] )
+		if ( $args['after'] )
+			echo '&nbsp;'.$args['after'];
+
+		if ( $args['desc'] && FALSE !== $args['values'] )
 			echo gThemeUtilities::html( 'p', array(
 				'class' => 'description',
 			), $args['desc'] );
-
 
 		if ( $wrap )
 			echo '</td></tr>';
@@ -267,7 +331,7 @@ class gThemeModuleCore
 
 	public function selector( $prefix = 'theme-selector-%d' )
 	{
-		if ( false === strpos( $prefix, '%d' ) )
+		if ( FALSE === strpos( $prefix, '%d' ) )
 			$selector = $prefix.$this->_counter;
 		else
 			$selector = sprintf( $prefix, $this->_counter );
