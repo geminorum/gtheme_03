@@ -122,13 +122,13 @@ class gThemeModuleCore
 			'type'         => 'enabled',
 			'field'        => FALSE,
 			'values'       => array(),
-			'exclude'      => '', // FIXME: check exclude on every values array
+			'exclude'      => '',
 			'filter'       => FALSE, // will use via sanitize
 			'dir'          => FALSE,
 			'default'      => '',
-			'desc'         => '', // FIXME: change this to 'description'
-			'before'       => '', // html to print before field (not description)
-			'after'        => '', // html to print after field (not description)
+			'description'  => isset( $atts['desc'] ) ? $atts['desc'] : '',
+			'before'       => '', // html to print before field
+			'after'        => '', // html to print after field
 			'field_class'  => '', // formally just class!
 			'class'        => '', // now used on wrapper
 			'option_group' => $this->_option_key,
@@ -146,9 +146,10 @@ class gThemeModuleCore
 		if ( ! $args['field'] )
 			return;
 
-		$name  = $args['name_attr'] ? $args['name_attr'] : $this->_option_base.'_'.$args['option_group'].'['.esc_attr( $args['field'] ).']';
-		$id    = $args['id_attr'] ? $args['id_attr'] : $this->_option_base.'-'.$args['option_group'].'-'.esc_attr( $args['field'] );
-		$value = isset( $this->options[$args['field']] ) ? $this->options[$args['field']] : $args['default'];
+		$name    = $args['name_attr'] ? $args['name_attr'] : $this->_option_base.'_'.$args['option_group'].'['.esc_attr( $args['field'] ).']';
+		$id      = $args['id_attr'] ? $args['id_attr'] : $this->_option_base.'-'.$args['option_group'].'-'.esc_attr( $args['field'] );
+		$value   = isset( $this->options[$args['field']] ) ? $this->options[$args['field']] : $args['default'];
+		$exclude = $args['exclude'] && ! is_array( $args['exclude'] ) ? array_filter( explode( ',', $args['exclude'] ) ) : array();
 
 		if ( $args['before'] )
 			echo $args['before'].'&nbsp;';
@@ -191,6 +192,10 @@ class gThemeModuleCore
 
 				if ( count( $args['values'] ) ) {
 					foreach ( $args['values'] as $value_name => $value_title ) {
+
+						if ( in_array( $value_name, $exclude ) )
+							continue;
+
 						$html = gThemeUtilities::html( 'input', array(
 							'type'    => 'checkbox',
 							'class'   => $args['field_class'],
@@ -205,7 +210,9 @@ class gThemeModuleCore
 							'for' => $id.'-'.$value_name,
 						), $html.'&nbsp;'.esc_html( $value_title ) ).'</p>';
 					}
+
 				} else {
+
 					$html = gThemeUtilities::html( 'input', array(
 						'type'    => 'checkbox',
 						'class'   => $args['field_class'],
@@ -226,11 +233,16 @@ class gThemeModuleCore
 
 				if ( FALSE !== $args['values'] ) { // alow hiding
 					$html = '';
-					foreach ( $args['values'] as $value_name => $value_title )
+					foreach ( $args['values'] as $value_name => $value_title ) {
+
+						if ( in_array( $value_name, $exclude ) )
+							continue;
+
 						$html .= gThemeUtilities::html( 'option', array(
 							'value'    => $value_name,
 							'selected' => $value_name == $value,
 						), esc_html( $value_title ) );
+					}
 
 					echo gThemeUtilities::html( 'select', array(
 						'class' => $args['field_class'],
@@ -267,7 +279,7 @@ class gThemeModuleCore
 					'name'             => $name,
 					'id'               => $id,
 					'class'            => $args['field_class'],
-					'exclude'          => $args['exclude'],
+					'exclude'          => implode( ',', $exclude ),
 					'show_option_none' => __( '&mdash; Select Page &mdash;', GTHEME_TEXTDOMAIN ),
 					'sort_column'      => 'menu_order',
 					'sort_order'       => 'asc',
@@ -312,16 +324,16 @@ class gThemeModuleCore
 			break;
 			default :
 
-				_e( 'Error: setting type undefined.', GTHEME_TEXTDOMAIN );
+				_e( 'Error: settings type undefined.', GTHEME_TEXTDOMAIN );
 		}
 
 		if ( $args['after'] )
 			echo '&nbsp;'.$args['after'];
 
-		if ( $args['desc'] && FALSE !== $args['values'] )
+		if ( $args['description'] && FALSE !== $args['values'] )
 			echo gThemeUtilities::html( 'p', array(
 				'class' => 'description',
-			), $args['desc'] );
+			), $args['description'] );
 
 		if ( $wrap )
 			echo '</td></tr>';
