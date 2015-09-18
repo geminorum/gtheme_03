@@ -1,3 +1,7 @@
+### 0.3.9
+* all: deprecate directory separator
+* utilities: check user cap before flush
+
 ### 0.3.8
 * images: also register title on additional sizes
 * editorial: word wrap on meta overtitle & subtitle
