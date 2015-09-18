@@ -30,7 +30,7 @@ class gThemeFragmentCache
 		$this->site      = is_multisite() && $site;
 		$this->ob        = FALSE;
 
-		if ( GTHEME_FLUSH )
+		if ( gThemeUtilities::isFlush() )
 			$this->__flush();
 	}
 
@@ -52,7 +52,7 @@ class gThemeFragmentCache
 		if ( gThemeUtilities::isDev() )
 			return FALSE;
 
-		if ( GTHEME_FLUSH ) {
+		if ( gThemeUtilities::isFlush() ) {
 			$output = '';
 		} else {
 			if ( $this->transient ) {

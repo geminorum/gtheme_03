@@ -18,7 +18,7 @@ $gtheme_constants = array(
 	'GTHEME_IMAGES_META'       => '_gtheme_images',
 	'GTHEME_IMAGES_TERMS_META' => '_gtheme_images_terms',
 
-	'GTHEME_FLUSH' => isset( $_GET['flush'] ),
+	'GTHEME_FLUSH' => isset( $_GET['flush'] ), // FIXME: DEPRECATED
 );
 
 foreach ( $gtheme_constants as $key => $val )

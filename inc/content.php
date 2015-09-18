@@ -21,7 +21,7 @@ class gThemeContent extends gThemeModuleCore
 
 		$key = 'gtq_'.md5( serialize( $args ) );
 
-		if ( constant( 'GTHEME_FLUSH' ) )
+		if ( gThemeUtilities::isFlush() )
 			delete_transient( $key );
 
 		if ( FALSE === ( $query = get_transient( $key ) ) ) {

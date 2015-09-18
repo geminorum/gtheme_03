@@ -84,6 +84,14 @@ class gThemeUtilities extends gThemeModuleCore
 		return FALSE;
 	}
 
+	public static function isFlush()
+	{
+		if ( isset( $_GET['flush'] ) )
+			return did_action( 'init' ) && current_user_can( 'publish_posts' );
+
+		return FALSE;
+	}
+
 	public static function isPrint()
 	{
 		return isset( $_GET['print'] );
