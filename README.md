@@ -4,8 +4,8 @@ Theme Framework for WordPress
 
 [![GitHub releases](https://img.shields.io/github/release/geminorum/gtheme_03.svg?style=flat-square)](https://github.com/geminorum/gtheme_03/releases)
 [![GitHub issues](https://img.shields.io/github/issues/geminorum/gtheme_03.svg?style=flat-square)](https://github.com/geminorum/gtheme_03/issues)
-[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/geminorum/gtheme_03?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 [![Gratipay](http://img.shields.io/gratipay/geminorum.svg?style=flat-square)](https://gratipay.com/geminorum/)
+[![Gitter](https://badges.gitter.im/Join%20Chat.svg?style=flat-square)](https://gitter.im/geminorum/gtheme_03?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 #### Included Packages
 * [Bootstrap](http://getbootstrap.com/) by Twitter, Inc.
