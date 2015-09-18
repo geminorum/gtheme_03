@@ -1,8 +1,9 @@
 <?php defined( 'ABSPATH' ) or die( 'Restricted access' );
 
-class gThemeTheme extends gThemeModuleCore {
+class gThemeTheme extends gThemeModuleCore
+{
 
-	function setup_actions( $args = array() )
+	public function setup_actions( $args = array() )
 	{
 		extract( shortcode_atts( array(
 			'cleanup'      => TRUE,

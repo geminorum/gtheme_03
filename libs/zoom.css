@@ -1,7 +1,7 @@
 /**
 	This is the customized version for gTheme 03 Framework : https://github.com/geminorum/gtheme_03
 	- image re-route
-	- RTL 
+	- RTL
 	- WP Admin-bar
 **/
 
@@ -84,7 +84,5 @@ body.rtl #zoom .previous { right:0; left:auto; background: url('../../gtheme_03/
 #zoom .previous:hover,
 #zoom .next:hover,
 body.rtl #zoom .previous:hover,
-body.rtl #zoom .next:hover 
+body.rtl #zoom .next:hover
 { background-color: #0088cc; }
-
-

@@ -95,7 +95,7 @@ class gThemeWrap extends gThemeModuleCore
 
 		if ( $lang = get_bloginfo( 'language' ) )
 			$attributes[] = "lang=\"$lang\"";
-		
+
 		$font_stack = gThemeOptions::info( 'css_font_stack', FALSE );
 		if ( $font_stack && count( $font_stack ) )
 			$attributes[] = 'data-font-stack=\''.json_encode( $font_stack ).'\'';

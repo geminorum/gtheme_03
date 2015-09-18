@@ -99,7 +99,7 @@ html[xmlns] .slides {display: block;}
 
 @media screen and (max-width: 860px) {
   .flex-direction-nav .flex-prev { opacity: 1; left: 10px;}
-  	.flexslider-rtl .flex-direction-nav .flex-prev{left:auto; right:10px;}
+	  .flexslider-rtl .flex-direction-nav .flex-prev{left:auto; right:10px;}
   .flex-direction-nav .flex-next { opacity: 1; right: 10px;}
-    .flexslider-rtl .flex-direction-nav .flex-next{right:auto; left:10px;}
+	.flexslider-rtl .flex-direction-nav .flex-next{right:auto; left:10px;}
 }

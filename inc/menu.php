@@ -76,12 +76,12 @@ class gThemeMenu extends gThemeModuleCore
 			$tags = array_merge( $tags, $new_tags );
 		return $tags;
 	}
-	
+
 	public function nav_menu_css_class( $classes, $item, $args, $depth = 0 )
 	{
-		if ( ! isset( $args->menu_class ) || empty( $args->menu_class ) ) 
+		if ( ! isset( $args->menu_class ) || empty( $args->menu_class ) )
 			return $classes;
-			
+
 		// http://getbootstrap.com/components/#list-group
 		if ( FALSE !== strpos( $args->menu_class, 'list-group' ) )
 			$classes[] = 'list-group-item';

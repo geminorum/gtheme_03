@@ -213,7 +213,7 @@ class gThemeComments extends gThemeModuleCore
 					echo '</small></h6><div class="comment-content">';
 						comment_text();
 					echo '</div>';
-					
+
 						if ( '0' == $comment->comment_approved )
 							echo '<p class="text-danger comment-awaiting-moderation comment-moderation">'
 							.gThemeOptions::info( 'comment_awaiting',

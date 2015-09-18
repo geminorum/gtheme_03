@@ -3,7 +3,7 @@
 class gThemeTemplate extends gThemeModuleCore
 {
 
-	// DEPRECATED
+	// FIXME: DEPRECATED
 	public static function logo( $context = 'header' )
 	{
 		printf( gtheme_get_info( 'template_logo',

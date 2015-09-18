@@ -15,5 +15,6 @@ if ( ! function_exists( 'gmeta_author' ) ) :
 		echo $html;
 	}
 endif;
+
 // gPeople
 if ( ! function_exists( 'gpeople_byline' ) ) : function gpeople_byline() {} endif;
