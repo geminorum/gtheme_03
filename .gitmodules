@@ -1,9 +1,0 @@
-[submodule "libs/normalize"]
-	path = libs/normalize
-	url = git://github.com/necolas/normalize.css.git
-[submodule "libs/bootstrap-rtl"]
-	path = libs/bootstrap-rtl
-	url = https://github.com/morteza/bootstrap-rtl.git
-[submodule "libs/genericons"]
-	path = libs/genericons
-	url = https://github.com/Automattic/Genericons.git

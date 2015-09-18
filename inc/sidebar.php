@@ -1,38 +1,41 @@
 <?php defined( 'ABSPATH' ) or die( 'Restricted access' );
 
-class gThemeSideBar extends gThemeModuleCore 
+class gThemeSideBar extends gThemeModuleCore
 {
-	var $_ajax = true;
+
+	var $_ajax = TRUE;
 
 	public function setup_actions( $args = array() )
 	{
 		extract( shortcode_atts( array(
-			'disable_sidebars' => false,
-			'primary_cats_sidebar' => false,
+			'disable_sidebars'     => FALSE,
+			'primary_cats_sidebar' => FALSE,
 		), $args ) );
-		
+
 		if ( ! $disable_sidebars )
-			add_action( 'widgets_init', array( & $this, 'widgets_init' ), 18 );
-		
+			add_action( 'widgets_init', array( &$this, 'widgets_init' ), 18 );
+
 		if ( $primary_cats_sidebar )
-			add_action( 'widgets_init', array( & $this, 'widgets_init_categories' ) );
+			add_action( 'widgets_init', array( &$this, 'widgets_init_categories' ) );
 	}
-	
-	public static function sidebar( $name, $b = '', $a = '', $else = false ) 
+
+	public static function sidebar( $name, $b = '', $a = '', $else = FALSE )
 	{
 		if ( is_active_sidebar( $name )  ) {
 			echo $b;
 			dynamic_sidebar( $name );
 			echo $a;
 		} else if ( $else ) { // TODO : add dev env, empty space remainder!
-			echo $b.$else.$a;		
+			echo $b.$else.$a;
 		}
 	}
-	
+
 	public static function widgets()
 	{
 		return apply_filters( 'gtheme_widgets', array(
 			'gThemeWidgetSearch',
+			'gThemeWidgetTermPosts',
+			'gThemeWidgetRelatedPosts',
 			'gThemeWidgetRecentPosts',
 			'gThemeWidgetRecentComments',
 			'gThemeWidgetTemplatePart',
@@ -40,11 +43,11 @@ class gThemeSideBar extends gThemeModuleCore
 			'gThemeWidgetSiblings',
 		) );
 	}
-		
+
 	public function widgets_init()
 	{
 		global $wp_widget_factory;
-		
+
 		foreach ( self::widgets() as $widget ) {
 			if ( 'gThemeWidgetSearch' == $widget ) {
 				$wp_widget_factory->widgets['WP_Widget_Search'] = new gThemeWidgetSearch();
@@ -56,11 +59,11 @@ class gThemeSideBar extends gThemeModuleCore
 				$wp_widget_factory->widgets[$widget] = new $widget();
 			}
 		}
-		
+
 		$sidebars = apply_filters( 'gtheme_sidebars', gtheme_get_info( 'sidebars', array() ) );
 		if ( ! count( $sidebars ) )
 			return;
-			
+
 		$sidebar_args_func = gtheme_get_info( 'sidebar_args_func', array( __CLASS__, 'args' ) );
 		foreach ( $sidebars as $sidebar_id => $sidebar_title ) {
 			$args = array( 'id' => $sidebar_id );
@@ -68,55 +71,55 @@ class gThemeSideBar extends gThemeModuleCore
 				$args = array_merge( $args, $sidebar_title );
 			else
 				$args = call_user_func_array( $sidebar_args_func, array( $sidebar_id, $sidebar_title ) );
-			register_sidebar( $args ); 
+			register_sidebar( $args );
 		}
-	} 
+	}
 
 	public static function args( $sidebar_id, $sidebar_title )
 	{
 		return array(
-			'id' => $sidebar_id,
-			'name' => $sidebar_title,
+			'id'            => $sidebar_id,
+			'name'          => $sidebar_title,
 			'before_widget' => '<section id="%1$s" class="widget gtheme-widget widget-'.$sidebar_id.' %2$s">',
-			'after_widget' => "</section>",
-			'before_title' => '<h3 class="widget-title gtheme-widget-title widget-'.$sidebar_id.'-title">',
-			'after_title' => '</h3>',	
+			'after_widget'  => "</section>",
+			'before_title'  => '<h3 class="widget-title gtheme-widget-title widget-'.$sidebar_id.'-title">',
+			'after_title'   => '</h3>',
 		);
 	}
-	
+
 	// DRAFT
 	// create widgetized sidebars for each category
 	// http://bavotasan.com/2012/create-widgetized-sidebars-for-each-category-in-wordpress/
 	public function widgets_init_categories()
 	{
 		// must use primary cats
-		$categories = get_categories( array( 'hide_empty'=> 0 ) );
+		$categories = get_categories( array( 'hide_empty' => 0 ) );
 
 		foreach ( $categories as $category ) {
 			if ( 0 == $category->parent )
 				register_sidebar( array(
-					'name' => $category->cat_name,
-					'id' => $category->category_nicename . '-sidebar',
-					'description' => 'This is the ' . $category->cat_name . ' widgetized area',
+					'name'          => $category->cat_name,
+					'id'            => $category->category_nicename . '-sidebar',
+					'description'   => 'This is the ' . $category->cat_name . ' widgetized area',
 					'before_widget' => '<aside id="%1$s" class="widget %2$s">',
-					'after_widget' => '</aside>',
-					'before_title' => '<h3 class="widget-title">',
-					'after_title' => '</h3>',
+					'after_widget'  => '</aside>',
+					'before_title'  => '<h3 class="widget-title">',
+					'after_title'   => '</h3>',
 				) );
-		}	
+		}
 	}
-	
+
 	public static function category( $name = null )
 	{
 		if ( ! is_category() )
 			return;
-			
+
 		if ( is_null( $name ) )
 			$name = get_cat_name( get_query_var( 'cat' ) );
 
 		dynamic_sidebar( sanitize_title( $name ).'-sidebar' );
 	}
-	
+
 	// https://gist.github.com/boonebgorges/3909373
 	// adding widgets to sidebars
 	/**
@@ -130,12 +133,12 @@ class gThemeSideBar extends gThemeModuleCore
 	 *     ),
 	 *   );
 	 */
-	public static function set_widget( $args ) 
+	public static function set_widget( $args )
 	{
 		$r = wp_parse_args( $args, array(
-			'id_base' => '',
+			'id_base'    => '',
 			'sidebar_id' => '',
-			'settings' => array(),
+			'settings'   => array(),
 		) );
 
 		$id_base    = $r['id_base'];
@@ -214,10 +217,10 @@ class gThemeSideBar extends gThemeModuleCore
 	// https://gist.github.com/boonebgorges/3909373
 	// moves all active widgets from a given sidebar into the inactive array
 	// gThemeSideBar::clear( 'sidebar-1' );
-	public static function clear( $sidebar_id, $delete_to = 'inactive' ) 
+	public static function clear( $sidebar_id, $delete_to = 'inactive' )
 	{
 		$sidebars = wp_get_sidebars_widgets();
-		
+
 		if ( ! isset( $sidebars[ $sidebar_id ] ) )
 			return new WP_Error( 'sidebar_does_not_exist', 'Sidebar does not exist' );
 
@@ -230,7 +233,7 @@ class gThemeSideBar extends gThemeModuleCore
 
 	// https://gist.github.com/boonebgorges/3909373
 	// check to see whether a widget has been registered
-	public static function widget_exists( $id_base ) 
+	public static function widget_exists( $id_base )
 	{
 		global $wp_widget_factory;
 
@@ -244,93 +247,456 @@ class gThemeSideBar extends gThemeModuleCore
 	}
 }
 
-
-class gThemeWidgetRecentPosts extends WP_Widget 
+class gThemeWidget extends WP_Widget
 {
 
-	public function __construct() 
+	public function __construct()
 	{
-		parent::__construct( 'gtheme_recent_posts', __( 'gTheme: Recent Posts', GTHEME_TEXTDOMAIN ), array( 
-			'description' => __( 'Customized most recent posts.', GTHEME_TEXTDOMAIN ),
-			'classname' => 'widget-gtheme-recent-posts',
-		) );
-		
-		$this->alt_option_name = 'widget_gtheme_recent_posts';
+		$args = gThemeModuleCore::atts( array(
+			'name'  => FALSE,
+			'class' => '',
+			'title' => '',
+			'desc'  => '',
+			'flush' => array(),
+		), $this->setup() );
 
-		add_action( 'save_post', array( $this, 'flush_widget_cache' ) );
-		add_action( 'deleted_post', array( $this, 'flush_widget_cache' ) );
-		add_action( 'switch_theme', array( $this, 'flush_widget_cache' ) );
+		if ( ! $args['name'] )
+			return FALSE;
+
+		parent::__construct( 'gtheme_'.$args['name'], $args['title'], array(
+			'description' => $args['desc'],
+			'classname'   => '{GTHEME_WIDGET_CLASSNAME}'.'widget-gtheme-'.$args['class'],
+		) );
+
+		$this->alt_option_name = 'widget_gtheme_'.$args['name'];
+
+		foreach ( $args['flush'] as $action )
+			add_action( $action, array( $this, 'flush_widget_cache' ) );
 	}
 
-	public function widget( $args, $instance ) 
+	protected function setup()
+	{
+		return array(
+			'name' => '',
+			'class' => '',
+			'title' => '',
+			'desc' => '',
+			'flush' => array(
+				'save_post',
+				'deleted_post',
+				'switch_theme',
+			),
+		);
+	}
+
+	public function widget( $args, $instance )
+	{
+		$this->widget_cache( $args, $instance );
+	}
+
+	public function widget_cache( $args, $instance, $prefix = '' )
 	{
 		$cache = $this->is_preview() ? array() : wp_cache_get( $this->alt_option_name, 'widget' );
 
 		if ( ! isset( $args['widget_id'] ) )
 			$args['widget_id'] = $this->id;
 
-		if ( is_array( $cache ) && isset( $cache[ $args['widget_id'] ] ) ) {
-			echo $cache[ $args['widget_id'] ];
+		if ( is_array( $cache ) && isset( $cache[$args['widget_id'].$prefix] ) ) {
+			echo $cache[$args['widget_id'].$prefix];
 			return;
 		}
 
 		ob_start();
-		
-		$context = isset( $instance['context'] ) ? $instance['context'] : 'recent';
-		$title = apply_filters( 'widget_title', 
+
+		if ( $this->widget_html( $args, $instance ) ) {
+			if ( ! $this->is_preview() ) {
+				$cache[$args['widget_id'].$prefix] = ob_get_flush();
+				wp_cache_set( $this->alt_option_name, $cache, 'widget' );
+			} else {
+				ob_end_flush();
+			}
+		} else {
+			ob_end_flush();
+		}
+	}
+
+	public function before_widget( $args, $instance, $echo = TRUE )
+	{
+		$classes = isset( $instance['context'] ) && $instance['context'] ? 'context-'.sanitize_html_class( $instance['context'], 'general' ).' ' : '';
+		$classes .= isset( $instance['class'] ) && $instance['class'] ? $instance['class'].' ' : '';
+
+		$html = preg_replace( '%{GTHEME_WIDGET_CLASSNAME}%', $classes, $args['before_widget'] );
+
+		if ( ! $echo )
+			return $html;
+
+		echo $html;
+	}
+
+	public function after_widget( $args, $instance, $echo = TRUE )
+	{
+		if ( ! $echo )
+			return $args['after_widget'];
+
+		echo $args['after_widget'];
+	}
+
+	public function widget_title( $args, $instance, $echo = TRUE )
+	{
+		$title = apply_filters( 'widget_title',
 			empty( $instance['title'] ) ? '' : $instance['title'],
 			$instance,
 			$this->id_base
 		);
-		
-		if ( empty( $instance['number'] ) 
-			|| ! $number = absint( $instance['number'] ) )
- 			$number = 10;
 
-		$row_query = new WP_Query( array( 
-			/**'tax_query' => array( array(
-				'taxonomy' => $term->taxonomy,
-				'field' => 'term_id',
-				'terms' => $term->term_id,
-			) ), **/
-			'posts_per_page' => $number,
-			'post_status' => 'publish',
-			'ignore_sticky_posts' => true,
-			// http://www.billerickson.net/code/improve-performance-of-wp_query/
-			'no_found_rows' => true, // counts posts, remove if pagination required
-			'update_post_term_cache' => false, // grabs terms, remove if terms required (category, tag...)
-			'update_post_meta_cache' => false, // grabs post meta, remove if post meta required	
-		) );	
-		
-		if ( $row_query->have_posts() ) { 
-			echo $args['before_widget'];
-			if ( $title )
-				echo $args['before_title'].$title.$args['after_title'];
-			echo '<ul class="list-unstyled row-ul list-rows">';
-			while ( $row_query->have_posts() ) { 
-				$row_query->the_post();
-				if ( trim( get_the_title() ) ) {
-					echo '<li class="list-row">'; get_template_part( 'row', $context ); echo '</li>'; 
-				}
-			}
-			wp_reset_postdata();
-			echo '</ul>'.$args['after_widget'];
-		} 
-		
-		if ( $this->is_preview() ) {
-			ob_end_flush();
+		if ( $title && isset( $instance['title_link'] ) && $instance['title_link'] )
+			$title = gThemeUtilities::html( 'a', array(
+				'href' => esc_url( $instance['title_link'] ),
+			), $title );
+
+		if ( ! $title )
+			return '';
+
+		$html = $args['before_title'].$title.$args['after_title'];
+
+		if ( ! $echo )
+			return $html;
+
+		echo $html;
+	}
+
+	public function flush_widget_cache()
+	{
+		wp_cache_delete( $this->alt_option_name, 'widget' );
+	}
+
+	public function form_number( $instance, $default = '10', $field = 'number' )
+	{
+		$html = gThemeUtilities::html( 'input', array(
+			'type'  => 'text',
+			'size'  => 3,
+			'name'  => $this->get_field_name( $field ),
+			'id'    => $this->get_field_id( $field ),
+			'value' => isset( $instance[$field] ) ? $instance[$field] : $default,
+		) );
+
+		echo '<p>'. gThemeUtilities::html( 'label', array(
+			'for' => $this->get_field_id( $field ),
+		), __( 'Number of posts to show:', GTHEME_TEXTDOMAIN ).' '.$html ).'</p>';
+	}
+
+	public function form_context( $instance, $default = '', $field = 'context' )
+	{
+		$html = gThemeUtilities::html( 'input', array(
+			'type'  => 'text',
+			'class' => 'widefat',
+			'name'  => $this->get_field_name( $field ),
+			'id'    => $this->get_field_id( $field ),
+			'value' => isset( $instance[$field] ) ? $instance[$field] : $default,
+			'dir'   => 'ltr',
+		) );
+
+		echo '<p>'. gThemeUtilities::html( 'label', array(
+			'for' => $this->get_field_id( $field ),
+		), __( 'Context:', GTHEME_TEXTDOMAIN ).$html ).'</p>';
+	}
+
+	public function form_class( $instance, $default = '', $field = 'class' )
+	{
+		$html = gThemeUtilities::html( 'input', array(
+			'type'  => 'text',
+			'class' => 'widefat',
+			'name'  => $this->get_field_name( $field ),
+			'id'    => $this->get_field_id( $field ),
+			'value' => isset( $instance[$field] ) ? $instance[$field] : $default,
+			'dir'   => 'ltr',
+		) );
+
+		echo '<p>'. gThemeUtilities::html( 'label', array(
+			'for' => $this->get_field_id( $field ),
+		), __( 'Class:', GTHEME_TEXTDOMAIN ).$html ).'</p>';
+	}
+
+	public function form_post_type( $instance, $default = 'post', $field = 'post_type' )
+	{
+		$html = '';
+		$type = isset( $instance[$field] ) ? $instance[$field] : $default;
+
+		foreach ( gThemeModuleCore::getPostTypes() as $name => $title )
+			$html .= gThemeUtilities::html( 'option', array(
+				'value'    => $name,
+				'selected' => $type == $name,
+			), $title );
+
+		$html = gThemeUtilities::html( 'select', array(
+			'class' => 'widefat',
+			'name'  => $this->get_field_name( $field ),
+			'id'    => $this->get_field_id( $field ),
+		), $html );
+
+		echo '<p>'. gThemeUtilities::html( 'label', array(
+			'for' => $this->get_field_id( $field ),
+		), __( 'PostType:', GTHEME_TEXTDOMAIN ).$html ).'</p>';
+	}
+
+	public function form_taxonomy( $instance, $default = 'post_tag', $field = 'taxonomy' )
+	{
+		$html = '';
+		$tax = isset( $instance[$field] ) ? $instance[$field] : $default;
+
+		foreach ( gThemeModuleCore::getTaxonomies( TRUE ) as $name => $title )
+			$html .= gThemeUtilities::html( 'option', array(
+				'value'    => $name,
+				'selected' => $tax == $name,
+			), $title );
+
+		$html = gThemeUtilities::html( 'select', array(
+			'class' => 'widefat',
+			'name'  => $this->get_field_name( $field ),
+			'id'    => $this->get_field_id( $field ),
+		), $html );
+
+		echo '<p>'. gThemeUtilities::html( 'label', array(
+			'for' => $this->get_field_id( $field ),
+		), __( 'Taxonomy:', GTHEME_TEXTDOMAIN ).$html ).'</p>';
+	}
+
+	public function form_title( $instance, $default = '', $field = 'title' )
+	{
+		$html = gThemeUtilities::html( 'input', array(
+			'type'  => 'text',
+			'class' => 'widefat',
+			'name'  => $this->get_field_name( $field ),
+			'id'    => $this->get_field_id( $field ),
+			'value' => isset( $instance[$field] ) ? $instance[$field] : $default,
+		) );
+
+		echo '<p>'. gThemeUtilities::html( 'label', array(
+			'for' => $this->get_field_id( $field ),
+		), __( 'Title:', GTHEME_TEXTDOMAIN ).$html ).'</p>';
+	}
+
+	public function form_title_link( $instance, $default = '', $field = 'title_link' )
+	{
+		$html = gThemeUtilities::html( 'input', array(
+			'type'  => 'text',
+			'class' => 'widefat',
+			'name'  => $this->get_field_name( $field ),
+			'id'    => $this->get_field_id( $field ),
+			'value' => isset( $instance[$field] ) ? $instance[$field] : $default,
+			'dir'   => 'ltr',
+		) );
+
+		echo '<p>'. gThemeUtilities::html( 'label', array(
+			'for' => $this->get_field_id( $field ),
+		), __( 'Title Link:', GTHEME_TEXTDOMAIN ).$html ).'</p>';
+	}
+
+	public function form_avatar_size( $instance, $default = '32', $field = 'avatar_size' )
+	{
+		$html = gThemeUtilities::html( 'input', array(
+			'type'  => 'text',
+			'size'  => 3,
+			'name'  => $this->get_field_name( $field ),
+			'id'    => $this->get_field_id( $field ),
+			'value' => isset( $instance[$field] ) ? $instance[$field] : $default,
+		) );
+
+		echo '<p>'. gThemeUtilities::html( 'label', array(
+			'for' => $this->get_field_id( $field ),
+		), __( 'Avatar Size:', GTHEME_TEXTDOMAIN ).$html ).'</p>';
+	}
+
+	public function form_image_size( $instance, $default = 'thumbnail', $field = 'image_size', $post_type = 'post' )
+	{
+		$sizes = array();
+
+		foreach ( gThemeOptions::info( 'images', array() ) as $name => $size )
+			if ( isset( $size['p'] ) && in_array( $post_type, $size['p'] ) )
+				$sizes[$name] = $size['n'].' ('.number_format_i18n( $size['w'] ).'&nbsp;&times;&nbsp;'.number_format_i18n( $size['h'] ).')';
+
+		if ( count( $sizes ) ) {
+
+			$selected = isset( $instance[$field] ) ? $instance[$field] : $default;
+			$html     = '';
+
+			foreach ( $sizes as $size => $title )
+				$html .= gThemeUtilities::html( 'option', array(
+					'value'    => $size,
+					'selected' => $selected == $size,
+				), $title );
+
+			$html = gThemeUtilities::html( 'select', array(
+				'class' => 'widefat',
+				'name'  => $this->get_field_name( $field ),
+				'id'    => $this->get_field_id( $field ),
+			), $html );
+
+			echo '<p>'. gThemeUtilities::html( 'label', array(
+				'for' => $this->get_field_id( $field ),
+			), __( 'Image Size:', GTHEME_TEXTDOMAIN ).$html ).'</p>';
+
 		} else {
-			$cache[$args['widget_id']] = ob_get_flush();
-			wp_cache_set( $this->alt_option_name, $cache, 'widget' );
+			echo '<p>'.__( 'No Image Size Available!', GTHEME_TEXTDOMAIN ).'</p>';
 		}
 	}
 
-	public function update( $new_instance, $old_instance ) 
+	public function form_checkbox( $instance, $default = FALSE, $field = 'checked', $label = NULL )
 	{
-		$instance = $old_instance;
-		$instance['title'] = strip_tags( $new_instance['title'] );
-		$instance['number'] = (int) $new_instance['number'];
-		$instance['context'] = strip_tags( $new_instance['context'] );
+		if ( is_null( $label ) )
+			$label = __( 'Checked:', GTHEME_TEXTDOMAIN );
+
+		$html = gThemeUtilities::html( 'input', array(
+			'type'    => 'checkbox',
+			'name'  => $this->get_field_name( $field ),
+			'id'    => $this->get_field_id( $field ),
+			'checked' => isset( $instance[$field] ) ? $instance[$field] : $default,
+		) );
+
+		echo '<p>'.$html.'&nbsp;'.gThemeUtilities::html( 'label', array(
+			'for' => $this->get_field_id( $field ),
+		), $label ).'</p>';
+	}
+
+	public function form_post_id( $instance, $default = '0', $field = 'post_id', $post_type_field = 'posttype', $post_type_default = 'page', $label = NULL )
+	{
+		$post_type = isset( $instance[$post_type_field] ) ? $instance[$post_type_field] : $post_type_default;
+		$post_id  = isset( $instance[$field] ) ? $instance[$field] : $default;
+
+		if ( is_null( $label ) )
+			$label = __( 'Page:', GTHEME_TEXTDOMAIN );
+
+		$html = wp_dropdown_pages( array(
+			'post_type'        => $post_type,
+			'selected'         => $post_id,
+			'name'             => $this->get_field_name( $field ),
+			'id'               => $this->get_field_id( $field ),
+			'class'            => 'widefat',
+			'show_option_none' => __( '&mdash; Select &mdash;', GTHEME_TEXTDOMAIN ),
+			'sort_column'      => 'menu_order, post_title',
+			'echo'             => FALSE,
+		) );
+
+		echo '<p>'. gThemeUtilities::html( 'label', array(
+			'for' => $this->get_field_id( $field ),
+		), $label.$html ).'</p>';
+	}
+
+	public function form_term_id( $instance, $default = '0', $field = 'term_id', $taxonomy_field = 'taxonomy', $taxonomy_default = 'post_tag' )
+	{
+		$taxonomy = isset( $instance[$taxonomy_field] ) ? $instance[$taxonomy_field] : $taxonomy_default;
+		$term_id  = isset( $instance[$field] ) ? $instance[$field] : $default;
+
+		$html = gThemeUtilities::html( 'option', array(
+			'value'    => '0',
+			'selected' => $term_id == '0',
+		), __( '&mdash; Select &mdash;', GTHEME_TEXTDOMAIN ) );
+
+		foreach ( get_terms( $taxonomy ) as $term )
+			$html .= gThemeUtilities::html( 'option', array(
+				'value'    => $term->term_id,
+				'selected' => $term_id == $term->term_id,
+			), $term->name );
+
+		$html = gThemeUtilities::html( 'select', array(
+			'class' => 'widefat',
+			'name'  => $this->get_field_name( $field ),
+			'id'    => $this->get_field_id( $field ),
+		), $html );
+
+		echo '<p>'. gThemeUtilities::html( 'label', array(
+			'for' => $this->get_field_id( $field ),
+		), __( 'Term:', GTHEME_TEXTDOMAIN ).$html ).'</p>';
+	}
+}
+
+class gThemeWidgetTermPosts extends gThemeWidget
+{
+
+	protected function setup()
+	{
+		return array(
+			'name'  => 'term_posts',
+			'class' => 'term-posts',
+			'title' => __( 'gTheme: Term Posts', GTHEME_TEXTDOMAIN ),
+			'desc'  => __( 'Customized term posts.', GTHEME_TEXTDOMAIN ),
+			'flush' => array(
+				'save_post',
+				'deleted_post',
+				'switch_theme',
+			),
+		);
+	}
+
+	public function widget( $args, $instance )
+	{
+		$term_id = isset( $instance['term_id'] ) ? $instance['term_id'] : FALSE;
+
+		if ( ! $term_id )
+			return;
+
+		$this->widget_cache( $args, $instance, '_'.$term_id );
+	}
+
+	public function widget_html( $args, $instance )
+	{
+		$context   = isset( $instance['context'] ) ? $instance['context'] : 'recent';
+		$term_id   = isset( $instance['term_id'] ) ? $instance['term_id'] : FALSE;
+		$taxonomy  = isset( $instance['taxonomy'] ) ? $instance['taxonomy'] : 'post_tag';
+		$post_type = isset( $instance['post_type'] ) ? $instance['post_type'] : 'post';
+
+		if ( empty( $instance['number'] ) || ! $number = absint( $instance['number'] ) )
+			$number = 10;
+
+		$row_query = new WP_Query( array(
+			'tax_query' => array( array(
+				'taxonomy' => $taxonomy,
+				'field'    => 'id',
+				'terms'    => array( $term_id ),
+				'operator' => 'IN',
+			) ),
+			'posts_per_page'         => $number,
+			'post_type'              => $post_type,
+			'post_status'            => 'publish',
+			'ignore_sticky_posts'    => TRUE,
+			'no_found_rows'          => TRUE, // counts posts, remove if pagination required
+			'update_post_term_cache' => FALSE, // grabs terms, remove if terms required (category, tag...)
+			'update_post_meta_cache' => FALSE, // grabs post meta, remove if post meta required
+		) );
+
+		if ( $row_query->have_posts() ) {
+			$this->before_widget( $args, $instance );
+
+			$this->widget_title( $args, $instance );
+			echo '<div class="theme-list-wrap term-posts"><ul>';
+			while ( $row_query->have_posts() ) {
+				$row_query->the_post();
+				if ( trim( get_the_title() ) ) {
+					echo '<li>'; get_template_part( 'row', $context ); echo '</li>';
+				}
+			}
+			wp_reset_postdata();
+			echo '</ul></div>';
+			$this->after_widget( $args, $instance );
+
+			return TRUE;
+		}
+
+		return FALSE;
+	}
+
+	public function update( $new_instance, $old_instance )
+	{
+		$instance               = $old_instance;
+		$instance['title']      = strip_tags( $new_instance['title'] );
+		$instance['title_link'] = strip_tags( $new_instance['title_link'] );
+		$instance['term_id']    = strip_tags( $new_instance['term_id'] );
+		$instance['taxonomy']   = strip_tags( $new_instance['taxonomy'] );
+		$instance['post_type']  = strip_tags( $new_instance['post_type'] );
+		$instance['number']     = intval( $new_instance['number'] );
+		$instance['context']    = strip_tags( $new_instance['context'] );
+		$instance['class']      = strip_tags( $new_instance['class'] );
+
 		$this->flush_widget_cache();
 
 		$alloptions = wp_cache_get( 'alloptions', 'options' );
@@ -340,84 +706,244 @@ class gThemeWidgetRecentPosts extends WP_Widget
 		return $instance;
 	}
 
-	public function flush_widget_cache() 
+	public function form( $instance )
 	{
-		wp_cache_delete( $this->alt_option_name, 'widget' );
-	}
-
-	public function form( $instance ) 
-	{
-		$html = gThemeUtilities::html( 'input', array( 
-			'type' => 'text',
-			'class' => 'widefat',
-			'name' => $this->get_field_name( 'title' ),
-			'id' => $this->get_field_id( 'title' ),
-			'value' => isset( $instance['title'] ) ? $instance['title'] : '',
-		) );
-		
-		echo '<p>'. gThemeUtilities::html( 'label', array( 
-			'for' => $this->get_field_id( 'title' ),
-		), __( 'Title:', GTHEME_TEXTDOMAIN ).$html ).'</p>';
-		
-		$html = gThemeUtilities::html( 'input', array( 
-			'type' => 'text',
-			'class' => 'widefat',
-			'name' => $this->get_field_name( 'context' ),
-			'id' => $this->get_field_id( 'context' ),
-			'value' => isset( $instance['context'] ) ? $instance['context'] : 'recent',
-		) );
-		
-		echo '<p>'. gThemeUtilities::html( 'label', array( 
-			'for' => $this->get_field_id( 'context' ),
-		), __( 'Context:', GTHEME_TEXTDOMAIN ).$html ).'</p>';
-		
-		$html = gThemeUtilities::html( 'input', array( 
-			'type' => 'text',
-			'size' => 3,
-			'name' => $this->get_field_name( 'number' ),
-			'id' => $this->get_field_id( 'number' ),
-			'value' => isset( $instance['number'] ) ? $instance['number'] : 5,
-		) );
-		
-		echo '<p>'. gThemeUtilities::html( 'label', array( 
-			'for' => $this->get_field_id( 'number' ),
-		), __( 'Number of posts to show:', GTHEME_TEXTDOMAIN ).' '.$html ).'</p>';
+		$this->form_title( $instance );
+		$this->form_title_link( $instance );
+		$this->form_term_id( $instance );
+		$this->form_taxonomy( $instance );
+		$this->form_post_type( $instance );
+		$this->form_context( $instance, 'recent' );
+		$this->form_class( $instance );
+		$this->form_number( $instance, '5' );
 	}
 }
 
-class gThemeWidgetRecentComments extends WP_Widget 
+class gThemeWidgetRelatedPosts extends gThemeWidget
 {
 
-	public function __construct() 
+	protected function setup()
 	{
-		parent::__construct( 'gtheme_recent_comments', __( 'gTheme: Recent Comments', GTHEME_TEXTDOMAIN ), array( 
-			'description' => __( 'Customized most recent commments.', GTHEME_TEXTDOMAIN ),
-			'classname' => 'widget-gtheme-recent-commments',
-		) );
-		
-		$this->alt_option_name = 'widget_gtheme_recent_commments';
-
-		add_action( 'comment_post', array( $this, 'flush_widget_cache' ) );
-		add_action( 'edit_comment', array( $this, 'flush_widget_cache' ) );
-		add_action( 'transition_comment_status', array( $this, 'flush_widget_cache' ) );
+		return array(
+			'name'  => 'related_posts',
+			'class' => 'related-posts',
+			'title' => __( 'gTheme: Related Posts', GTHEME_TEXTDOMAIN ),
+			'desc'  => __( 'Customized related posts.', GTHEME_TEXTDOMAIN ),
+			'flush' => array(
+				'save_post',
+				'deleted_post',
+				'switch_theme',
+			),
+		);
 	}
 
-	public function widget( $args, $instance ) 
+	public function widget( $args, $instance )
 	{
-		$cache = $this->is_preview() ? array() : wp_cache_get( $this->alt_option_name, 'widget' );
-		
-		if ( ! isset( $args['widget_id'] ) )
-			$args['widget_id'] = $this->id;
+		global $post;
 
-		if ( is_array( $cache ) && isset( $cache[ $args['widget_id'] ] ) ) {
-			echo $cache[ $args['widget_id'] ];
+		$post_type = isset( $instance['post_type'] ) ? $instance['post_type'] : 'post';
+
+		if ( ! is_singular( $post_type ) )
 			return;
+
+		$this->widget_cache( $args, $instance, '_'.$post->ID );
+	}
+
+	public function widget_html( $args, $instance )
+	{
+		global $post;
+
+		$context   = isset( $instance['context'] ) ? $instance['context'] : 'related';
+		$taxonomy  = isset( $instance['taxonomy'] ) ? $instance['taxonomy'] : 'post_tag';
+		$post_type = isset( $instance['post_type'] ) ? $instance['post_type'] : 'post';
+
+		if ( empty( $instance['number'] ) || ! $number = absint( $instance['number'] ) )
+			$number = 10;
+
+		$terms = wp_get_object_terms( $post->ID, $taxonomy, array( 'fields' => 'ids' ) );
+		if ( is_wp_error( $terms ) || ! count( $terms ) )
+			return;
+
+		$row_query = new WP_Query( array(
+			'tax_query' => array( array(
+				'taxonomy' => $taxonomy,
+				'field'    => 'id',
+				// 'terms'    => array_filter( array_values( $terms ), 'intval' ),
+				'terms'    => $terms,
+				'operator' => 'IN',
+			) ),
+			'post_type'              => $post_type,
+			'post__not_in'           => array( $post->ID ),
+			'posts_per_page'         => $number,
+			'post_status'            => 'publish',
+			'ignore_sticky_posts'    => TRUE,
+			'no_found_rows'          => TRUE, // counts posts, remove if pagination required
+			'update_post_term_cache' => FALSE, // grabs terms, remove if terms required (category, tag...)
+			'update_post_meta_cache' => FALSE, // grabs post meta, remove if post meta required
+		) );
+
+		if ( $row_query->have_posts() ) {
+			$this->before_widget( $args, $instance );
+			$this->widget_title( $args, $instance );
+			echo '<div class="theme-list-wrap related-posts"><ul>';
+			while ( $row_query->have_posts() ) {
+				$row_query->the_post();
+				if ( trim( get_the_title() ) ) {
+					echo '<li>'; get_template_part( 'row', $context ); echo '</li>';
+				}
+			}
+			wp_reset_postdata();
+			echo '</ul></div>';
+			$this->after_widget( $args, $instance );
+
+			return TRUE;
 		}
 
-		if ( empty( $instance['number'] ) 
+		return FALSE;
+	}
+
+	public function update( $new_instance, $old_instance )
+	{
+		$instance               = $old_instance;
+		$instance['title']      = strip_tags( $new_instance['title'] );
+		$instance['title_link'] = strip_tags( $new_instance['title_link'] );
+		$instance['number']     = intval( $new_instance['number'] );
+		$instance['context']    = strip_tags( $new_instance['context'] );
+		$instance['class']      = strip_tags( $new_instance['class'] );
+		$instance['post_type']  = strip_tags( $new_instance['post_type'] );
+		$instance['taxonomy']   = strip_tags( $new_instance['taxonomy'] );
+
+		$this->flush_widget_cache();
+
+		$alloptions = wp_cache_get( 'alloptions', 'options' );
+		if ( isset( $alloptions[$this->alt_option_name] ) )
+			delete_option( $this->alt_option_name );
+
+		return $instance;
+	}
+
+	public function form( $instance )
+	{
+		$this->form_title( $instance );
+		$this->form_title_link( $instance );
+		$this->form_taxonomy( $instance );
+		$this->form_post_type( $instance );
+		$this->form_context( $instance, 'related' );
+		$this->form_class( $instance );
+		$this->form_number( $instance, '5' );
+	}
+}
+
+class gThemeWidgetRecentPosts extends gThemeWidget
+{
+
+	protected function setup()
+	{
+		return array(
+			'name'  => 'recent_posts',
+			'class' => 'recent-posts',
+			'title' => __( 'gTheme: Recent Posts', GTHEME_TEXTDOMAIN ),
+			'desc'  => __( 'Customized most recent posts.', GTHEME_TEXTDOMAIN ),
+			'flush' => array(
+				'save_post',
+				'deleted_post',
+				'switch_theme',
+			),
+		);
+	}
+
+	public function widget_html( $args, $instance )
+	{
+		$post_type = empty( $instance['post_type'] ) ? 'post' : $instance['post_type'];
+		$context   = isset( $instance['context'] ) ? $instance['context'] : 'recent';
+
+		if ( empty( $instance['number'] ) || ! $number = absint( $instance['number'] ) )
+			$number = 10;
+
+		$row_query = new WP_Query( array(
+			'posts_per_page'         => $number,
+			'post_type'              => $post_type,
+			'post_status'            => 'publish',
+			'ignore_sticky_posts'    => TRUE,
+			'no_found_rows'          => TRUE, // counts posts, remove if pagination required
+			'update_post_term_cache' => FALSE, // grabs terms, remove if terms required (category, tag...)
+			'update_post_meta_cache' => FALSE, // grabs post meta, remove if post meta required
+		) );
+
+		if ( $row_query->have_posts() ) {
+			$this->before_widget( $args, $instance );
+			$this->widget_title( $args, $instance );
+			echo '<div class="theme-list-wrap recent-posts"><ul>';
+			while ( $row_query->have_posts() ) {
+				$row_query->the_post();
+				if ( trim( get_the_title() ) ) {
+					echo '<li>'; get_template_part( 'row', $context ); echo '</li>';
+				}
+			}
+			wp_reset_postdata();
+			echo '</ul></div>';
+			$this->after_widget( $args, $instance );
+
+			return TRUE;
+		}
+
+		return FALSE;
+	}
+
+	public function update( $new_instance, $old_instance )
+	{
+		$instance               = $old_instance;
+		$instance['title']      = strip_tags( $new_instance['title'] );
+		$instance['title_link'] = strip_tags( $new_instance['title_link'] );
+		$instance['post_type']  = strip_tags( $new_instance['post_type'] );
+		$instance['number']     = intval( $new_instance['number'] );
+		$instance['context']    = strip_tags( $new_instance['context'] );
+		$instance['class']      = strip_tags( $new_instance['class'] );
+
+		$this->flush_widget_cache();
+
+		$alloptions = wp_cache_get( 'alloptions', 'options' );
+		if ( isset( $alloptions[$this->alt_option_name] ) )
+			delete_option( $this->alt_option_name );
+
+		return $instance;
+	}
+
+	public function form( $instance )
+	{
+		$this->form_title( $instance );
+		$this->form_title_link( $instance );
+		$this->form_post_type( $instance );
+		$this->form_context( $instance, 'recent' );
+		$this->form_class( $instance );
+		$this->form_number( $instance, '5' );
+	}
+}
+
+class gThemeWidgetRecentComments extends gThemeWidget
+{
+
+	protected function setup()
+	{
+		return array(
+			'name'  => 'recent_comments',
+			'class' => 'recent-comments',
+			'title' => __( 'gTheme: Recent Comments', GTHEME_TEXTDOMAIN ),
+			'desc'  => __( 'Customized most recent comments.', GTHEME_TEXTDOMAIN ),
+			'flush' => array(
+				'comment_post',
+				'edit_comment',
+				'transition_comment_status',
+			),
+		);
+	}
+
+	public function widget_html( $args, $instance )
+	{
+		if ( empty( $instance['number'] )
 			|| ! $number = absint( $instance['number'] ) )
 				$number = 10;
-		
+
 		$comments = get_comments( apply_filters( 'widget_comments_args', array(
 			'number'      => $number,
 			'status'      => 'approve',
@@ -429,40 +955,29 @@ class gThemeWidgetRecentComments extends WP_Widget
 			$callback = gThemeOptions::info( 'recent_comment_callback', array( $this, 'comment_callback' ) );
 			$avatar_size = empty( $instance['avatar_size'] ) ? 32 : absint( $instance['avatar_size'] );
 
-			$title = apply_filters( 'widget_title', 
-				empty( $instance['title'] ) ? '' : $instance['title'],
-				$instance,
-				$this->id_base
-			);
-			
-			ob_start();
-			
 			// Prime cache for associated posts. (Prime post term cache if we need it for permalinks.)
 			$post_ids = array_unique( wp_list_pluck( $comments, 'comment_post_ID' ) );
 			_prime_post_caches( $post_ids, strpos( get_option( 'permalink_structure' ), '%category%' ), false );
 
-			echo $args['before_widget'];
-			if ( $title )
-				echo $args['before_title'].$title.$args['after_title'];
-			echo '<ul class="recent-comments list-unstyled row-ul list-rows">';
+			$this->before_widget( $args, $instance );
+			$this->widget_title( $args, $instance );
+			echo '<div class="theme-list-wrap recent-comments"><ul>';
 
 			foreach ( (array) $comments as $comment ) {
-				echo '<li class="list-row recentcomments">'; 
+				echo '<li>';
 					echo call_user_func_array( $callback, array( $comment, $avatar_size ) );
-				echo '</li>'; 
+				echo '</li>';
 			}
-			
-			echo '</ul>'.$args['after_widget'];
-			
-			if ( $this->is_preview() ) {
-				ob_end_flush();
-			} else {
-				$cache[$args['widget_id']] = ob_get_flush();
-				wp_cache_set( $this->alt_option_name, $cache, 'widget' );
-			}			
+
+			echo '</ul></div>';
+			$this->after_widget( $args, $instance );
+
+			return TRUE;
 		}
+
+		return FALSE;
 	}
-	
+
 	public function comment_callback( $comment, $avatar_size )
 	{
 		$content = gThemeL10N::str( wp_strip_all_tags( $comment->comment_content, true ) );
@@ -476,11 +991,13 @@ class gThemeWidgetRecentComments extends WP_Widget
 		);
 	}
 
-	public function update( $new_instance, $old_instance ) 
+	public function update( $new_instance, $old_instance )
 	{
-		$instance = $old_instance;
-		$instance['title'] = strip_tags( $new_instance['title'] );
-		$instance['number'] = (int) $new_instance['number'];
+		$instance                = $old_instance;
+		$instance['title']       = strip_tags( $new_instance['title'] );
+		$instance['title_link']  = strip_tags( $new_instance['title_link'] );
+		$instance['class']       = strip_tags( $new_instance['class'] );
+		$instance['number']      = (int) $new_instance['number'];
 		$instance['avatar_size'] = (int) $new_instance['avatar_size'];
 		$this->flush_widget_cache();
 
@@ -491,289 +1008,148 @@ class gThemeWidgetRecentComments extends WP_Widget
 		return $instance;
 	}
 
-	public function flush_widget_cache() 
+	public function form( $instance )
 	{
-		wp_cache_delete( $this->alt_option_name, 'widget' );
-	}
-
-	public function form( $instance ) 
-	{
-		$html = gThemeUtilities::html( 'input', array( 
-			'type' => 'text',
-			'class' => 'widefat',
-			'name' => $this->get_field_name( 'title' ),
-			'id' => $this->get_field_id( 'title' ),
-			'value' => isset( $instance['title'] ) ? $instance['title'] : '',
-		) );
-		
-		echo '<p>'. gThemeUtilities::html( 'label', array( 
-			'for' => $this->get_field_id( 'title' ),
-		), __( 'Title:', GTHEME_TEXTDOMAIN ).$html ).'</p>';
-		
-		$html = gThemeUtilities::html( 'input', array( 
-			'type' => 'text',
-			'size' => 3,
-			'name' => $this->get_field_name( 'avatar_size' ),
-			'id' => $this->get_field_id( 'avatar_size' ),
-			'value' => isset( $instance['avatar_size'] ) ? $instance['avatar_size'] : 32,
-		) );
-
-		echo '<p>'. gThemeUtilities::html( 'label', array( 
-			'for' => $this->get_field_id( 'avatar_size' ),
-		), __( 'Avatar Size:', GTHEME_TEXTDOMAIN ).$html ).'</p>';
-		
-		$html = gThemeUtilities::html( 'input', array( 
-			'type' => 'text',
-			'size' => 3,
-			'name' => $this->get_field_name( 'number' ),
-			'id' => $this->get_field_id( 'number' ),
-			'value' => isset( $instance['number'] ) ? $instance['number'] : 5,
-		) );
-		
-		echo '<p>'. gThemeUtilities::html( 'label', array( 
-			'for' => $this->get_field_id( 'number' ),
-		), __( 'Number of posts to show:', GTHEME_TEXTDOMAIN ).' '.$html ).'</p>';
+		$this->form_title( $instance );
+		$this->form_title_link( $instance );
+		$this->form_avatar_size( $instance );
+		$this->form_number( $instance, '5' );
+		$this->form_class( $instance );
 	}
 }
 
-class gThemeWidgetSearch extends WP_Widget 
+class gThemeWidgetSearch extends gThemeWidget
 {
 
-	public function __construct() 
+	protected function setup()
 	{
-		parent::__construct( 'gtheme_search', __( 'gTheme: Search', GTHEME_TEXTDOMAIN ), array( 
-			'description' => __( 'Selectable search form', GTHEME_TEXTDOMAIN ),
-			'classname' => 'widget-gtheme-search',
-			) );
+		return array(
+			'name'  => 'search',
+			'class' => 'search',
+			'title' => __( 'gTheme: Search', GTHEME_TEXTDOMAIN ),
+			'desc'  => __( 'Selectable search form', GTHEME_TEXTDOMAIN ),
+		);
 	}
 
-	public function widget( $args, $instance ) 
+	public function widget( $args, $instance )
 	{
 		$context = empty( $instance['context'] ) ? '' : $instance['context'];
-		$title = apply_filters( 'widget_title', 
-			empty( $instance['title'] ) ? '' : $instance['title'],
-			$instance,
-			$this->id_base
-		);	
 
-		echo $args['before_widget'];
-		if ( $title ) 
-			echo $args['before_title'].$title.$args['after_title'];
+		$this->before_widget( $args, $instance );
+		$this->widget_title( $args, $instance );
 			get_template_part( 'searchform', $context );
-		echo $args['after_widget'];
+		$this->after_widget( $args, $instance );
 	}
 
-	public function form( $instance ) 
+	public function form( $instance )
 	{
-		$html = gThemeUtilities::html( 'input', array( 
-			'type' => 'text',
-			'class' => 'widefat',
-			'name' => $this->get_field_name( 'title' ),
-			'id' => $this->get_field_id( 'title' ),
-			'value' => isset( $instance['title'] ) ? $instance['title'] : '',
-		) );
-		
-		echo '<p>'. gThemeUtilities::html( 'label', array( 
-			'for' => $this->get_field_id( 'title' ),
-		), __( 'Title:', GTHEME_TEXTDOMAIN ).$html ).'</p>';
-		
-		$html = gThemeUtilities::html( 'input', array( 
-			'type' => 'text',
-			'class' => 'widefat',
-			'name' => $this->get_field_name( 'context' ),
-			'id' => $this->get_field_id( 'context' ),
-			'value' => isset( $instance['context'] ) ? $instance['context'] : '',
-		) );
-		
-		echo '<p>'. gThemeUtilities::html( 'label', array( 
-			'for' => $this->get_field_id( 'context' ),
-		), __( 'Context:', GTHEME_TEXTDOMAIN ).$html ).'</p>';
+		$this->form_title( $instance );
+		$this->form_title_link( $instance );
+		$this->form_context( $instance );
+		$this->form_class( $instance );
 	}
 }
 
-class gThemeWidgetTemplatePart extends WP_Widget 
+class gThemeWidgetTemplatePart extends gThemeWidget
 {
 
-	public function __construct() 
+	protected function setup()
 	{
-		parent::__construct( 'gtheme_template_part', __( 'gTheme: Themplate Part', GTHEME_TEXTDOMAIN ), array( 
-			'description' => __( 'Include selected template part into sidebars', GTHEME_TEXTDOMAIN ),
-			'classname' => 'widget-gtheme-template-part',
-			) );
+		return array(
+			'name'  => 'template_part',
+			'class' => 'template-part',
+			'title' => __( 'gTheme: Themplate Part', GTHEME_TEXTDOMAIN ),
+			'desc'  => __( 'Include selected template part into sidebars', GTHEME_TEXTDOMAIN ),
+		);
 	}
 
-	public function widget( $args, $instance ) 
+	public function widget( $args, $instance )
 	{
 		$context = empty( $instance['context'] ) ? '' : $instance['context'];
-		$title = apply_filters( 'widget_title', 
-			empty( $instance['title'] ) ? '' : $instance['title'],
-			$instance,
-			$this->id_base
-		);	
 
-		echo $args['before_widget'];
-		if ( $title ) 
-			echo $args['before_title'].$title.$args['after_title'];
+		$this->before_widget( $args, $instance );
+		$this->widget_title( $args, $instance );
 			get_template_part( 'widget', $context );
-		echo $args['after_widget'];
+		$this->after_widget( $args, $instance );
 	}
 
-	public function form( $instance ) 
+	public function form( $instance )
 	{
-		$html = gThemeUtilities::html( 'input', array( 
-			'type' => 'text',
-			'class' => 'widefat',
-			'name' => $this->get_field_name( 'title' ),
-			'id' => $this->get_field_id( 'title' ),
-			'value' => isset( $instance['title'] ) ? $instance['title'] : '',
-		) );
-		
-		echo '<p>'. gThemeUtilities::html( 'label', array( 
-			'for' => $this->get_field_id( 'title' ),
-		), __( 'Title:', GTHEME_TEXTDOMAIN ).$html ).'</p>';
-		
-		$html = gThemeUtilities::html( 'input', array( 
-			'type' => 'text',
-			'class' => 'widefat',
-			'name' => $this->get_field_name( 'context' ),
-			'id' => $this->get_field_id( 'context' ),
-			'value' => isset( $instance['context'] ) ? $instance['context'] : '',
-		) );
-		
-		echo '<p>'. gThemeUtilities::html( 'label', array( 
-			'for' => $this->get_field_id( 'context' ),
-		), __( 'Context:', GTHEME_TEXTDOMAIN ).$html ).'</p>';
+		$this->form_title( $instance );
+		$this->form_title_link( $instance );
+		$this->form_context( $instance );
+		$this->form_class( $instance );
 	}
 }
 
-class gThemeWidgetChildren extends WP_Widget 
+class gThemeWidgetChildren extends gThemeWidget
 {
 
-	public function __construct() 
+	protected function setup()
 	{
-		parent::__construct( 'gtheme_children', __( 'gTheme: Children', GTHEME_TEXTDOMAIN ), array( 
-			'description' => __( 'List of current post children', GTHEME_TEXTDOMAIN ),
-			'classname' => 'widget-gtheme-children',
-			) );
+		return array(
+			'name'  => 'children',
+			'class' => 'children',
+			'title' => __( 'gTheme: Children', GTHEME_TEXTDOMAIN ),
+			'desc'  => __( 'List of current post children', GTHEME_TEXTDOMAIN ),
+		);
 	}
 
-	public function widget( $args, $instance ) 
+	public function widget( $args, $instance )
 	{
 		$post_type = empty( $instance['post_type'] ) ? 'page' : $instance['post_type'];
-		$title = apply_filters( 'widget_title', 
-			empty( $instance['title'] ) ? '' : $instance['title'],
-			$instance,
-			$this->id_base
-		);	
 
 		$html = gTheme()->shortcodes->shortcode_children( array( 'type' => $post_type ) );
-		
+
 		if ( $html ) {
-			echo $args['before_widget'];
-				if ( $title ) 
-					echo $args['before_title'].$title.$args['after_title'];
+			$this->before_widget( $args, $instance );
+			$this->widget_title( $args, $instance );
 				echo $html;
-			echo $args['after_widget'];
+			$this->after_widget( $args, $instance );
 		}
 	}
 
-	public function form( $instance ) 
+	public function form( $instance )
 	{
-		$html = gThemeUtilities::html( 'input', array( 
-			'type' => 'text',
-			'class' => 'widefat',
-			'name' => $this->get_field_name( 'title' ),
-			'id' => $this->get_field_id( 'title' ),
-			'value' => isset( $instance['title'] ) ? $instance['title'] : '',
-		) );
-		
-		echo '<p>'. gThemeUtilities::html( 'label', array( 
-			'for' => $this->get_field_id( 'title' ),
-		), __( 'Title:', GTHEME_TEXTDOMAIN ).$html ).'</p>';
-
-		$html = '';
-		$value = isset( $instance['post_type'] ) ? $instance['post_type'] : 'page';
-		
-		foreach( gThemeUtilities::getPostTypes() as $post_type_name => $post_type_title )
-			$html .= gThemeUtilities::html( 'option', array(
-				'value' => $post_type_name,
-				'selected' => $post_type_name == $value,
-			), esc_html( $post_type_title ) );
-		
-		$html = gThemeUtilities::html( 'select', array(
-			'class' => 'widefat',
-			'name' => $this->get_field_name( 'post_type' ),
-			'id' => $this->get_field_id( 'post_type' ),
-		), $html );
-		
-		echo '<p>'. gThemeUtilities::html( 'label', array( 
-			'for' => $this->get_field_id( 'post_type' ),
-		), __( 'Post Type:', GTHEME_TEXTDOMAIN ).$html ).'</p>';
+		$this->form_title( $instance );
+		$this->form_title_link( $instance );
+		$this->form_post_type( $instance, 'page' );
+		$this->form_class( $instance );
 	}
 }
 
-class gThemeWidgetSiblings extends WP_Widget 
+class gThemeWidgetSiblings extends gThemeWidget
 {
 
-	public function __construct() 
+	protected function setup()
 	{
-		parent::__construct( 'gtheme_siblings', __( 'gTheme: Siblings', GTHEME_TEXTDOMAIN ), array( 
-			'description' => __( 'List of current post siblings', GTHEME_TEXTDOMAIN ),
-			'classname' => 'widget-gtheme-siblings',
-			) );
+		return array(
+			'name'  => 'siblings',
+			'class' => 'siblings',
+			'title' => __( 'gTheme: Siblings', GTHEME_TEXTDOMAIN ),
+			'desc'  => __( 'List of current post siblings', GTHEME_TEXTDOMAIN ),
+		);
 	}
 
-	public function widget( $args, $instance ) 
+	public function widget( $args, $instance )
 	{
 		$post_type = empty( $instance['post_type'] ) ? 'page' : $instance['post_type'];
-		$title = apply_filters( 'widget_title', 
-			empty( $instance['title'] ) ? '' : $instance['title'],
-			$instance,
-			$this->id_base
-		);	
 
 		$html = gTheme()->shortcodes->shortcode_siblings( array( 'type' => $post_type ) );
-		
+
 		if ( $html ) {
-			echo $args['before_widget'];
-				if ( $title ) 
-					echo $args['before_title'].$title.$args['after_title'];
+			$this->before_widget( $args, $instance );
+			$this->widget_title( $args, $instance );
 				echo $html;
-			echo $args['after_widget'];
+			$this->after_widget( $args, $instance );
 		}
 	}
 
-	public function form( $instance ) 
+	public function form( $instance )
 	{
-		$html = gThemeUtilities::html( 'input', array( 
-			'type' => 'text',
-			'class' => 'widefat',
-			'name' => $this->get_field_name( 'title' ),
-			'id' => $this->get_field_id( 'title' ),
-			'value' => isset( $instance['title'] ) ? $instance['title'] : '',
-		) );
-		
-		echo '<p>'. gThemeUtilities::html( 'label', array( 
-			'for' => $this->get_field_id( 'title' ),
-		), __( 'Title:', GTHEME_TEXTDOMAIN ).$html ).'</p>';
-
-		$html = '';
-		$value = isset( $instance['post_type'] ) ? $instance['post_type'] : 'page';
-		
-		foreach( gThemeUtilities::getPostTypes() as $post_type_name => $post_type_title )
-			$html .= gThemeUtilities::html( 'option', array(
-				'value' => $post_type_name,
-				'selected' => $post_type_name == $value,
-			), esc_html( $post_type_title ) );
-		
-		$html = gThemeUtilities::html( 'select', array(
-			'class' => 'widefat',
-			'name' => $this->get_field_name( 'post_type' ),
-			'id' => $this->get_field_id( 'post_type' ),
-		), $html );
-		
-		echo '<p>'. gThemeUtilities::html( 'label', array( 
-			'for' => $this->get_field_id( 'post_type' ),
-		), __( 'Post Type:', GTHEME_TEXTDOMAIN ).$html ).'</p>';
+		$this->form_title( $instance );
+		$this->form_title_link( $instance );
+		$this->form_post_type( $instance, 'page' );
+		$this->form_class( $instance );
 	}
 }

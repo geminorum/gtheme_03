@@ -1,6 +1,6 @@
 <form method="post" action="">
 	<h3><?php _e( 'Theme Banner Tiles Settings', GTHEME_TEXTDOMAIN ); ?></h3>
-	
+
 	<?php if ( $banners_legend = gThemeOptions::info( 'banners_legend', false ) ) { ?>
 		<table class="form-table"><tbody><tr valign="top">
 			<th scope="row"><label><?php _e( 'Legend', GTHEME_TEXTDOMAIN ); ?></label></th>
@@ -9,7 +9,7 @@
 			</td>
 		</tr></tbody></table>
 	<?php } ?>
-	
+
 	<table id="repeatable-fieldset-one" width="100%">
 		<thead><tr>
 			<th width="10%"><?php _e( 'Group', GTHEME_TEXTDOMAIN ); ?></th>
@@ -20,9 +20,9 @@
 			<th width="8%"></th>
 		</tr></thead>
 		<tbody>
-	
-	
-	<?php 
+
+
+	<?php
 	$banner_groups = gThemeOptions::info( 'banner_groups', array() );
 	$banners = gThemeOptions::get_option( 'banners', array() );
 	if ( count( $banners ) ) {
@@ -52,8 +52,8 @@
 			<td><input type="text" class="widefat" name="gtheme-banners-url[]" value="http://" dir="ltr" /></td>
 			<td><input type="text" class="widefat" name="gtheme-banners-image[]" value="http://" dir="ltr" /></td>
 			<td><a class="button remove-row" href="#"><?php _e( 'Remove', GTHEME_TEXTDOMAIN ); ?></a></td>
-		</tr><?php 
-	} 
+		</tr><?php
+	}
 	?><tr class="empty-row screen-reader-text">
 		<td><select name="gtheme-banners-group[]" style="width:100%;">
 			<?php foreach ( $banner_groups as $value => $label ) : ?>
@@ -67,14 +67,14 @@
 		<td><a class="button remove-row" href="#"><?php _e( 'Remove', GTHEME_TEXTDOMAIN ); ?></a></td>
 	</tr>
 	</tbody></table>
-	
+
 	<p class="submit">
-		<a id="add-row" class="button" href="#"><?php 
-			_e( 'Add Another', GTHEME_TEXTDOMAIN ); 
+		<a id="add-row" class="button" href="#"><?php
+			_e( 'Add Another', GTHEME_TEXTDOMAIN );
 		?></a>
 		<input type="submit" class="button-primary" name="submitform" value="&nbsp;&nbsp;<?php _e( 'Save' ); ?>&nbsp;&nbsp;" />
 	</p>
-	
+
 	<?php wp_nonce_field( 'gtheme-banners', '_gtheme_banners' ); ?>
 </form>
 
@@ -86,7 +86,7 @@
 			row.insertBefore( '#repeatable-fieldset-one tbody>tr:last' );
 			return false;
 		});
-  	
+
 		$( '.remove-row' ).on('click', function() {
 			$(this).parents('tr').remove();
 			return false;

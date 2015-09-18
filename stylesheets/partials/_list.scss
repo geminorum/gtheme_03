@@ -1,0 +1,50 @@
+
+/// gTheme Default List Styles
+
+@mixin theme-list-reset() {
+	@include gutter-reset();
+	list-style: none;
+	// li:before,
+	// li:after {
+	// 	content: "";
+	// 	margin: 0;
+	// 	padding: 0;
+	// 	display: none;
+	// }
+}
+
+@mixin theme-list-before() {
+	list-style: none;
+	padding:0;
+	&:before {
+
+	}
+}
+
+@mixin theme-list-wrap() {
+	.theme-list-wrap {
+		ul {
+			@include theme-list-reset();
+			li {
+				@include theme-list-before();
+				a {
+					&.permalink {
+
+					}
+				}
+			}
+		}
+
+		&.related-posts {
+
+		}
+
+		&.recent-posts {
+
+		}
+
+		&.recent-comments {
+
+		}
+	}
+}

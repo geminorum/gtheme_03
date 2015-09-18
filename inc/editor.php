@@ -1,89 +1,90 @@
 <?php defined( 'ABSPATH' ) or die( 'Restricted access' );
 
-class gThemeEditor extends gThemeModuleCore 
+class gThemeEditor extends gThemeModuleCore
 {
-	var $_ajax = true;
-	
+
+	var $_ajax = TRUE;
+
 	function setup_actions( $args = array() )
 	{
 		extract( shortcode_atts( array(
-			'css' => true, // this is the editor style!!
-			'buttons' => true,
-			'buttons_2' => true,
-			'advanced_styles' => true,
-			'default_content' => false,
+			'css'             => TRUE, // this is the editor style!!
+			'buttons'         => TRUE,
+			'buttons_2'       => TRUE,
+			'advanced_styles' => TRUE,
+			'default_content' => FALSE,
 		), $args ) );
-		
+
 		if ( $css )
-			add_filter( 'mce_css', array( & $this, 'mce_css' ) );
+			add_filter( 'mce_css', array( &$this, 'mce_css' ) );
 
 		if ( $buttons )
-			add_filter( 'mce_buttons', array( & $this, 'mce_buttons' ) );
-			
-		if ( $buttons_2 ) 
-			add_filter( 'mce_buttons_2', array( & $this, 'mce_buttons_2' ) );
-		
+			add_filter( 'mce_buttons', array( &$this, 'mce_buttons' ) );
+
+		if ( $buttons_2 )
+			add_filter( 'mce_buttons_2', array( &$this, 'mce_buttons_2' ) );
+
 		if ( $advanced_styles )
-			add_filter( 'tiny_mce_before_init', array( & $this, 'tiny_mce_before_init' ), 12 );
-		
+			add_filter( 'tiny_mce_before_init', array( &$this, 'tiny_mce_before_init' ), 12 );
+
 		if ( $default_content )
-			add_filter( 'default_content', array( & $this, 'default_content' ), 10, 2 );
+			add_filter( 'default_content', array( &$this, 'default_content' ), 10, 2 );
 	}
-	
-	public static function style_url() 
+
+	public static function style_url()
 	{
-		$file = gThemeUtilities::is_rtl() ? 'editor-style-rtl.css' : 'editor-style.css';
-		
-		if ( file_exists( GTHEME_CHILD_DIR.DS.'css'.DS.$file ) ) 
-			return GTHEME_CHILD_URL.'/css/'.$file; 
+		$file = gThemeUtilities::isRTL() ? 'editor-style-rtl.css' : 'editor-style.css';
+
+		if ( file_exists( GTHEME_CHILD_DIR.'/css/'.$file ) )
+			return GTHEME_CHILD_URL.'/css/'.$file;
 		else
-			return GTHEME_URL.'/css/'.$file; 
+			return GTHEME_URL.'/css/'.$file;
 	}
-	
-	// the comma-delimited list of stylesheets to load in TinyMCE.	
-	public function mce_css( $url ) 
+
+	// the comma-delimited list of stylesheets to load in TinyMCE.
+	public function mce_css( $url )
 	{
 		if ( ! empty( $url ) )
 			$url .= ',';
-		
+
 		return $url.self::style_url();
 	}
-	
-	public function mce_buttons( $buttons ) 
+
+	public function mce_buttons( $buttons )
 	{
-		$gtheme_buttons = gtheme_get_info( 'mce_buttons', array( 'sup', 'sub', 'hr' ) );
-		
+		$gtheme_buttons = gThemeOptions::info( 'mce_buttons', array( 'sup', 'sub', 'hr' ) );
+
 		foreach ( $gtheme_buttons as $gtheme_button )
 			array_push( $buttons, $gtheme_button );
-			
+
 		return $buttons;
 	}
-	
+
 	// add "styles" drop-down for the second row
 	public function mce_buttons_2( $buttons )
 	{
-		if ( gThemeUtilities::is_rtl() )
+		if ( gThemeUtilities::isRTL() )
 			$buttons = array_diff( $buttons, array( 'outdent', 'indent' ) );
-			
+
 		// must this : better to use on gpersiandate!
-		// http://stackoverflow.com/questions/12416678/how-to-customize-tinymce-button-output		
+		// http://stackoverflow.com/questions/12416678/how-to-customize-tinymce-button-output
 		$buttons = array_diff( $buttons, array( 'justifyfull' ) );
-		
-		$gtheme_buttons = gtheme_get_info( 'mce_buttons_2', array( 'styleselect' ) );
-		
+
+		$gtheme_buttons = gThemeOptions::info( 'mce_buttons_2', array( 'styleselect' ) );
+
 		foreach ( $gtheme_buttons as $gtheme_button )
 			array_unshift( $buttons, $gtheme_button );
-			
+
 		return $buttons;
 	}
-	
+
 	// add "styles" drop-down content or classes
 	// SEE : http://www.tinymce.com/wiki.php/Configuration:formats
 	// SEE : http://www.tinymce.com/tryit/custom_formats.php
-	public static function tiny_mce_before_init( $settings )
+	public function tiny_mce_before_init( $settings )
 	{
-		$style_formats = gtheme_get_info( 'mce_style_formats', array() );
-		
+		$style_formats = gThemeOptions::info( 'mce_style_formats', array() );
+
 		if ( count( $style_formats ) ) {
 			$style_formats = json_encode( $style_formats );
 			if ( isset( $settings['style_formats'] ) ) {
@@ -92,13 +93,12 @@ class gThemeEditor extends gThemeModuleCore
 				$settings['style_formats'] = $style_formats;
 			}
 		}
-		
+
 		return $settings;
 	}
-	
-	public function default_content( $post_content, $post ) 
+
+	public function default_content( $post_content, $post )
 	{
-		return gtheme_get_info( 'default_content', $post_content );
+		return gThemeOptions::info( 'default_content', $post_content );
 	}
-	
 }

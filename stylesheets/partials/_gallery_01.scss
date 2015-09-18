@@ -58,7 +58,7 @@
 
 .gallery .gallery-img.animated figcaption {
   -webkit-transition: 0.3s ease-out;
-          transition: 0.3s ease-out;
+		  transition: 0.3s ease-out;
 }
 .gallery .gallery-img.left.animated figcaption {left: 0;}
 .gallery .gallery-img.right.animated figcaption { right: 0;}
@@ -79,12 +79,12 @@ body.rtl .gallery .gallery-img figcaption .gallery-description p { text-align:ri
 .gallery {
 /**
   -webkit-column-count: 3;
-     -moz-column-count: 3;
-          column-count: 3;
+	 -moz-column-count: 3;
+		  column-count: 3;
 		  **/
   -webkit-column-gap: 0;
-     -moz-column-gap: 0;
-          column-gap: 0;
+	 -moz-column-gap: 0;
+		  column-gap: 0;
   /* Set opacity to 0 until the gallery images are loaded */
 	opacity: 0;
 }

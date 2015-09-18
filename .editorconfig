@@ -17,5 +17,14 @@ indent_style = tab
 indent_style = space
 indent_size = 2
 
-[{*.txt,wp-config-sample.php}]
+[{*.txt,*.css,wp-config-sample.php}]
 end_of_line = crlf
+
+# Mine!
+
+[*.md]
+trim_trailing_whitespace = false
+
+[{package,bower}.json]
+indent_style = space
+indent_size = 2
