@@ -37,7 +37,7 @@ class gThemeContent extends gThemeModuleCore
 	{
 		echo $before;
 
-		the_content( self::continue_reading( ( $edit ? get_edit_post_link() : '' ) ) );
+		the_content( self::continueReading( ( $edit ? get_edit_post_link() : '' ) ) );
 
 
 		// wp_link_pages( array(
@@ -60,7 +60,13 @@ class gThemeContent extends gThemeModuleCore
 		echo $a;
 	}
 
+	// FIXME: DEPRECATED
 	public static function continue_reading( $edit = '', $scope = '', $permalink = FALSE, $title_att = FALSE )
+	{
+		return self::continueReading( $edit, $scope, $permalink, $title_att );
+	}
+
+	public static function continueReading( $edit = '', $scope = '', $permalink = FALSE, $title_att = FALSE )
 	{
 		if ( ! empty( $edit ) )
 			$edit = sprintf( __( ' <span class="sep edit-sep">|</span> <a href="%1$s" title="%2$s" class="%3$s">%4$s</a>', GTHEME_TEXTDOMAIN ),

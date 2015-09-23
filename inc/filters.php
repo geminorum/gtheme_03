@@ -17,11 +17,23 @@ class gThemeFilters extends gThemeModuleCore
 		add_filter( 'body_class', array( &$this, 'body_class' ), 10, 2 );
 		add_filter( 'post_class', array( &$this, 'post_class' ), 10, 3 );
 		add_filter( 'wp_title', array( &$this, 'wp_title' ), 5, 3 );
-		add_filter( 'get_wp_title_rss', array( &$this, 'get_wp_title_rss' ) );
 
-		add_filter( 'the_excerpt', array( &$this, 'the_excerpt' ), 5 );
-		add_filter( 'excerpt_length', array( &$this, 'excerpt_length' ) );
-		add_filter( 'excerpt_more', array( &$this, 'excerpt_more' ) );
+		add_filter( 'get_wp_title_rss', function( $title ){
+			return empty( $title ) ? $title : $title.trim( gThemeOptions::info( 'title_sep', '&#187;' ) );
+		} );
+
+		add_filter( 'the_excerpt', function( $text ){
+			// return $text.gThemeContent::continueReading( get_edit_post_link() );
+			return $text.gThemeContent::continueReading();
+		}, 5 );
+
+		add_filter( 'excerpt_length', function( $length ){
+			return gThemeOptions::info( 'excerpt_length', 40 );
+		} );
+
+		add_filter( 'excerpt_more', function( $more ){
+			return gThemeOptions::info( 'excerpt_more', ' &hellip;' );
+		} );
 
 		if ( gThemeOptions::info( 'trim_excerpt_characters', FALSE ) ) {
 			remove_filter( 'get_the_excerpt', 'wp_trim_excerpt' );
@@ -211,31 +223,7 @@ class gThemeFilters extends gThemeModuleCore
 		return $title.' '.gThemeOptions::info( 'blog_title', get_bloginfo( 'name' ) );
 	}
 
-	public function get_wp_title_rss( $title )
-	{
-		if ( empty( $title ) )
-			return $title;
-
-		return $title.trim( gThemeOptions::info( 'title_sep', '&#187;' ) );
-	}
-
-	public function the_excerpt( $text )
-	{
-		// return $text.' '.gThemeContent::continue_reading( get_edit_post_link() );
-		return $text.' '.gThemeContent::continue_reading();
-	}
-
-	public function excerpt_length( $length )
-	{
-		return gThemeOptions::info( 'excerpt_length', 40 );
-	}
-
-	public function excerpt_more( $more )
-	{
-		return gThemeOptions::info( 'excerpt_more', ' &hellip;' );
-	}
-
-	// Originally from : http://wordpress.org/extend/plugins/character-count-excerpt/
+	// Originally from : http://wordpress.org/plugins/character-count-excerpt/
 	public function get_the_excerpt( $text, $excerpt_length = FALSE )
 	{
 		if ( FALSE === $excerpt_length )
