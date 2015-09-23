@@ -258,7 +258,7 @@ class gThemeUtilities extends gThemeModuleCore
 	// http://stackoverflow.com/a/9241873
 	public static function json_merge( $first, $second )
 	{
-		return json_encode(
+		return wp_json_encode(
 			array_merge_recursive(
 				json_decode( $first,  TRUE ),
 				json_decode( $second, TRUE )

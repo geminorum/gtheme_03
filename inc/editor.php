@@ -86,7 +86,7 @@ class gThemeEditor extends gThemeModuleCore
 		$style_formats = gThemeOptions::info( 'mce_style_formats', array() );
 
 		if ( count( $style_formats ) ) {
-			$style_formats = json_encode( $style_formats );
+			$style_formats = wp_json_encode( $style_formats );
 			if ( isset( $settings['style_formats'] ) ) {
 				$settings['style_formats'] = gThemeUtilities::json_merge( $settings['style_formats'], $style_formats );
 			} else {

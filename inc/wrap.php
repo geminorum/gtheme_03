@@ -98,7 +98,7 @@ class gThemeWrap extends gThemeModuleCore
 
 		$font_stack = gThemeOptions::info( 'css_font_stack', FALSE );
 		if ( $font_stack && count( $font_stack ) )
-			$attributes[] = 'data-font-stack=\''.json_encode( $font_stack ).'\'';
+			$attributes[] = 'data-font-stack=\''.wp_json_encode( $font_stack ).'\'';
 
 		$html_attributes = ' '.apply_filters( 'language_attributes', implode( ' ', $attributes ) );
 
