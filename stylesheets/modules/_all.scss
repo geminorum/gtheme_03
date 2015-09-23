@@ -1,9 +1,10 @@
 
 // FIXME: move these to partial/vars
-$base-size-font: 16px; // default font size
-$base-size-baseline: 16px;
+$base-size-font: 16px  !default;
+$base-size-baseline: 16px  !default;
 
 @import "utility";
+@import "responsive";
 @import "coloring";
 @import "sizing";
 @import "transform";
