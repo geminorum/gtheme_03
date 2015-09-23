@@ -111,6 +111,9 @@ class gThemeFilters extends gThemeModuleCore
 		if ( $gtheme_info['child_group_class'] )
 			$classes[] = $gtheme_info['child_group_class'];
 
+		if ( gThemeOptions::info( 'bootstrap_navbar_fixed', FALSE ) )
+			$classes[] = 'navbar-fixed';
+
 		if ( $extra = gThemeOptions::get_option( 'body_class_extra', FALSE ) )
 			$classes[] = sanitize_html_class( $extra );
 

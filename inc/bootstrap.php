@@ -3,6 +3,13 @@
 class gThemeBootstrap extends gThemeModuleCore
 {
 
+	public static function navbarClass( $additional = '', $inverse = FALSE )
+	{
+		$fixed = gThemeOptions::info( 'bootstrap_navbar_fixed', FALSE );
+
+		echo 'class="navbar navbar-default'.( $fixed ? ' navbar-fixed-top' : '' ).( $inverse ? ' navbar-inverse' : '' ).'"';
+	}
+
 	public static function navbarHeader( $brand = NULL, $target = 'navbar' )
 	{
 		echo '<div class="navbar-header">';
