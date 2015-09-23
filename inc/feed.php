@@ -88,7 +88,7 @@ class gThemeFeed extends gThemeModuleCore
 			}
 			*/
 
-		if ( gtheme_is_rtl() )
+		if ( gThemeUtilities::isRTL() )
 			return '<div style="direction:rtl !important;text-align:right !important;">'.$header.$content.$footer.'</div>';
 
 		return $header.$content.$footer;
