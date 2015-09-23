@@ -1,3 +1,7 @@
+### 0.3.10
+* all: safe json encode
+* bootstrap: navbar class helper
+
 ### 0.3.9
 * all: deprecate directory separator
 * utilities: check user cap before flush
