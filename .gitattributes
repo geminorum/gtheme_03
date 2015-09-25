@@ -1,2 +1,5 @@
-# Auto detect text files and perform LF normalization
-* text=auto
+# normalize all the line endings
+* text eol=lf
+
+*.txt text eol=crlf
+*.css text eol=crlf
