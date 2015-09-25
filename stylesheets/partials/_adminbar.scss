@@ -16,6 +16,10 @@ $theme-bs-navbar-height: 50px !default;; // Bootstrap Navbar Height
 	$touch-max-width: 782px;
 	$smart-max-width: 600px;
 
+	body.navbar-fixed {
+		padding-top: $bs;
+	}
+
 	/// For Admin-Bar
 	html.html-admin-bar body {
 		padding-top: $adminbar;
