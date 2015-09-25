@@ -225,7 +225,9 @@ class gThemeModuleCore
 
 					echo '<p>'.gThemeUtilities::html( 'label', array(
 						'for' => $id,
-					), $html.'&nbsp;'.esc_html( $value_title ) ).'</p>';
+					), $html.'&nbsp;'.$args['description'] ).'</p>';
+					
+					$args['description'] = FALSE;
 				}
 
 			break;
