@@ -3,17 +3,24 @@
 class gThemeNavigation extends gThemeModuleCore
 {
 
-	public static function content( $id = FALSE, $taxonomy = 'category' )
+	// SEE: https://codex.wordpress.org/Pagination
+	public static function content( $context = 'index', $taxonomy = 'category', $max_num_pages = NULL )
 	{
 		global $wp_query;
 
 		$classes = array( 'navigation' );
 
+		if ( $context )
+			$classes[] = 'navigation-'.$context;
+
+		if ( is_null( $max_num_pages ) )
+			$max_num_pages = $wp_query->max_num_pages;
+
 		if ( is_single() ) {
 			$previous = get_adjacent_post_link( '%link', _x( '<span aria-hidden="true">&larr;</span> Older', 'Post Navigation', GTHEME_TEXTDOMAIN ), FALSE, '', TRUE,  $taxonomy );
 			$next     = get_adjacent_post_link( '%link', _x( 'Newer <span aria-hidden="true">&rarr;</span>', 'Post Navigation', GTHEME_TEXTDOMAIN ), FALSE, '', FALSE, $taxonomy );
 			$classes[] = 'post-navigation';
-		} elseif ( $wp_query->max_num_pages > 1 && ( is_home() || is_archive() || is_search() ) ) {
+		} elseif ( $max_num_pages > 1 && ( is_home() || is_archive() || is_search() ) ) {
 			$previous = get_previous_posts_link( _x( '<span aria-hidden="true">&larr;</span> Older', 'Index Navigation', GTHEME_TEXTDOMAIN ) );
 			$next     = get_next_posts_link( _x( 'Newer <span aria-hidden="true">&rarr;</span>', 'Index Navigation', GTHEME_TEXTDOMAIN ) );
 			$classes[] = 'paging-navigation';
@@ -39,17 +46,19 @@ class gThemeNavigation extends gThemeModuleCore
 
 		echo gThemeUtilities::html( 'nav', array(
 			'role'  => 'navigation',
-			'id'    => $id,
 			'class' => $classes,
 		), $html );
 	}
 
 	// ANCESTOR: gtheme_content_nav()
-	public static function part( $context = null )
+	public static function part( $context = NULL, $max_num_pages = NULL )
 	{
 		global $wp_query;
 
-		if ( $wp_query->max_num_pages > 1 )
+		if ( is_null( $max_num_pages ) )
+			$max_num_pages = $wp_query->max_num_pages;
+
+		if ( $max_num_pages > 1 )
 			get_template_part( 'nav', $context );
 	}
 
