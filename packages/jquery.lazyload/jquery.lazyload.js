@@ -1,4 +1,4 @@
-/*
+/*!
  * Lazy Load - jQuery plugin for lazy loading images
  *
  * Copyright (c) 2007-2015 Mika Tuupola
@@ -9,7 +9,7 @@
  * Project home:
  *   http://www.appelsiini.net/projects/lazyload
  *
- * Version:  1.9.5
+ * Version:  1.9.7
  *
  */
 
