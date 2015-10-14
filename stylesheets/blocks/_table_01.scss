@@ -1,0 +1,53 @@
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+/// gTheme Blocks: Table 01 - 20151008
+// COPY FROM P2 STYLE
+////////////////////////////////////////////////////////////////////////////////
+
+table {
+
+	border: 1px solid $table-border-color;
+	border-width: 1px 1px 1px 0;
+	border-spacing: 0;
+	margin: .7em 0 1.5em;
+	width: 100%;
+
+	td {
+		border: 1px solid $table-border-color;
+		border-width: 1px 0 0 1px;
+		padding: $padding-base-vertical $padding-base-horizontal;
+		vertical-align: top;
+
+		figure {
+			margin-left: - $padding-base-horizontal;
+			margin-right: - $padding-small-vertical;
+		}
+	}
+
+	th {
+		background-color: $table-bg-accent;
+		color: $gray;
+		border-left: 1px solid $table-border-color;
+		font-weight: bold;
+		padding: $padding-base-vertical $padding-base-horizontal;
+	}
+
+	tr {
+		border: 0;
+		border-width: 0;
+	}
+
+	ul,
+	ol,
+	p,
+	blockquote {
+		margin-top: 0 !important;
+		margin-bottom: 1.6em !important;
+	}
+
+	ul,
+	ol {
+		@include theme-list-reset();
+	}
+}

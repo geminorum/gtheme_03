@@ -6,14 +6,15 @@
 
 // http://bootsnipp.com/snippets/featured/detect-viewport-context
 body::before {
-  content: "xs";
+  content: "XS";
   position: fixed;
-  bottom: 0;
+  top: 32px;
   right: 0;
   z-index: 9999999;
   background-color: #000;
-  color: #fff;
+  color: yellow;
+  padding: 5px 5px 2px;
 }
-@media (min-width : 768px) { body::before { content: "sm"; }}
-@media (min-width : 992px) { body::before { content: "md"; }}
-@media (min-width : 1200px) { body::before { content: "lg"; }}
+@media (min-width : 768px) { body::before { content: "SM"; }}
+@media (min-width : 992px) { body::before { content: "MD"; }}
+@media (min-width : 1200px) { body::before { content: "LG"; }}

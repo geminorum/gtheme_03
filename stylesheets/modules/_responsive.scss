@@ -5,7 +5,7 @@
 /// [Creating a Dead Simple Sass Mixin to Handle Responsive Breakpoints — Developing with Sass — Medium]
 /// https://medium.com/developing-with-sass/creating-a-dead-simple-sass-mixin-to-handle-responsive-breakpoints-889927b37740
 
-@mixin breakpoint($min: 0, $max: 0) {
+@mixin theme-breakpoint($min: 0, $max: 0) {
 
 	$type: type-of($min);
 
@@ -62,7 +62,7 @@
 	}
 }
 
-@mixin breakpoint-nomobile($min: 0, $max: 0) {
+@mixin theme-breakpoint-nomobile($min: 0, $max: 0) {
 
 	$type: type-of($min);
 

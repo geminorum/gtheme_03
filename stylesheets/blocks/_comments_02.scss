@@ -1,0 +1,189 @@
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+/// gTheme Blocks: Comments 02 - 20151009
+// Inspired by : http://devs.mailchimp.com/blog/
+////////////////////////////////////////////////////////////////////////////////
+
+.comments-area {
+
+	.lockdown-notice {
+		color: $brand-warning;
+	}
+
+	.comment-navigation {
+
+		&.comment-nav-above {
+			margin-top: $theme-grid-gutter;
+			padding-bottom: $theme-grid-gutter / 4;
+			border-bottom: 1px solid $gray-lighter;
+		}
+
+		&.comment-nav-below {
+			margin-bottom: $theme-grid-gutter;
+			padding-top: $theme-grid-gutter / 4;
+			border-top: 1px solid $gray-lighter;
+		}
+
+		// SCREEN-READER-ONLY
+		.assistive-text { // #h4.assistive-text.sr-only
+			// margin: 0;
+			// text-align: center;
+			// font-size: $font-size-base;
+			// // font-weight: normal;
+			// color: $gray;
+		}
+
+		// default floats added by : @include theme-floats-navigation();
+		.nav-next,
+		.nav-previous {
+			// display: inline-block;
+			a {
+				color: $gray-light;
+				&:hover {
+					color: $gray-darker;
+					text-decoration: none;
+				}
+			}
+		}
+	}
+
+
+	.comment-form {
+
+		margin-top: $theme-grid-gutter;
+
+		.comment-reply-title {  // h3#reply-title
+
+			margin: 0 2px $padding-large-vertical 2px;
+			font-size: $font-size-base;
+			// font-weight: normal;
+
+			// padding-bottom: $theme-grid-gutter;
+			// margin-bottom: $theme-grid-gutter;
+			// border-bottom: 1px solid $gray-light;
+
+			small a { // a#cancel-comment-reply-link
+
+			}
+		}
+
+		label {}
+
+		.form-input,
+		.form-area {
+			// margin-bottom: $theme-grid-gutter;
+		}
+
+		.quicktags-toolbar {
+
+			margin-bottom: $padding-xs-vertical;
+
+			.button {
+				border: 1px solid transparent;
+				@include button-variant($btn-default-color, $btn-default-bg, $btn-default-border);
+				line-height: initial;
+			}
+
+			.button-small {
+				margin-left: $padding-xs-horizontal;
+				@include button-size($padding-xs-vertical, $padding-xs-horizontal, $font-size-small, $line-height-small, $btn-border-radius-small);
+			}
+		}
+
+		.comment-form-author {}
+		.comment-form-email {}
+		.comment-form-url {}
+
+		.comment-form-comment {
+			textarea {
+				resize: vertical;
+				transition: height 0.6s ease 0s;
+			}
+		}
+
+		.comment-field-ltr {
+			direction: ltr;
+		}
+	}
+}
+
+////////////////////////////////////////////////////////////////////////////////
+
+.comments-area {
+
+	margin-bottom: $theme-grid-gutter / 2;
+
+	.no-password {}
+	.no-comments {}
+
+	.comments-feed {
+		float:left;
+		a {
+			color: $gray-light;
+			&:hover {
+				color: $gray-darker;
+				text-decoration:none;
+			}
+		}
+	}
+
+	.comments-title {
+		font-size:$font-size-h5;
+		margin:0;
+	}
+
+	.comment-list {
+		margin-top: $theme-grid-gutter;
+		.comment {
+			margin-bottom: $theme-grid-gutter;
+
+
+			.comment-avatar {
+
+			}
+
+			.comment-body {
+				padding: $padding-base-vertical $padding-base-horizontal 0 0;
+			}
+
+			.comment-content {
+				p {
+					color: $gray-dark;
+					font-size: $font-size-small;
+					line-height: $line-height-small;
+				}
+			}
+
+			.comment-meta {
+				margin-bottom: $padding-large-vertical;
+			}
+			.comment-author {
+
+			}
+			.comment-time {
+				font-size: $font-size-small * 0.8;
+				margin: 0 $padding-base-horizontal 0 0;
+				a {
+					color: $gray-light;
+					&:hover {
+						color: $gray-darker;
+						text-decoration:none;
+					}
+				}
+			}
+			.comment-moderation {
+
+			}
+			.comment-actions {
+				font-size: $font-size-small;
+				a {
+					color: $gray-light;
+					&:hover {
+						color: $gray-darker;
+					}
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,93 @@
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+/// gTheme Blocks: Bootstrap RTL 02 - 20151010
+// NOTE: must load after bootstrap
+////////////////////////////////////////////////////////////////////////////////
+
+.navbar-collapse,
+.form-control {
+	box-shadow: none;
+}
+
+.form-control {
+
+	@include theme-forms-focus-reset();
+
+	.comment-form & {
+		// padding: $padding-large-vertical $padding-large-horizontal;
+		padding: $padding-large-horizontal $padding-large-horizontal $padding-large-vertical;
+		height: auto;
+	}
+
+	// input[type="text"]&,
+	// input[type="search"]& {
+	// 	line-height: initial;
+	// }
+
+	// FIXME: move this to forms
+	// &:-webkit-autofill{
+	// 	background: gray;
+	// 	 -webkit-box-shadow: 0 0 0px 1000px white inset;
+	// }
+
+	// -webkit-text-fill-color: yellow !important;
+
+	// http://stackoverflow.com/a/29350537/4864081
+	// &:-webkit-autofill,
+	// &:-webkit-autofill:hover,
+	// &:-webkit-autofill:focus,
+	// &:-webkit-autofill:active {
+	// 	transition: background-color 5000s ease-in-out 0s;
+	// }
+
+	// http://stackoverflow.com/a/29044088/4864081
+	// @each $prefix in -webkit, -moz {
+		// @include with-prefix($prefix) {
+			// @each $element in input, textarea, select {
+				// #{$element}:#{$prefix}-autofill {
+					// @include single-box-shadow(0, 0, 0, 1000px, $white, inset);
+				// }
+			// }
+		// }
+	// }
+}
+
+label {
+	font-weight: normal;
+	margin: 0 2px 2px 2px;
+}
+
+.pager {
+
+	li {
+		> a,
+		> span {
+			padding: ( $padding-small-vertical * 1.4 ) $padding-base-horizontal ( $padding-small-vertical * 0.6 ); // FIXME: make this a mixin
+		}
+
+		> a > span {
+			vertical-align: middle;
+		}
+	}
+}
+
+.tooltip {
+	line-height: initial;
+}
+
+@media print {
+	a[href]:after {
+		content:none;
+	}
+}
+
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+/// MISSING RTL enhancements
+
+// .navbar-nav {
+// 	@media (min-width: $grid-float-breakpoint) {
+// 		float: right;
+// 	}
+// }
