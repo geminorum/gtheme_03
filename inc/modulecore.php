@@ -24,8 +24,47 @@ class gThemeModuleCore
 		return defined( 'DOING_AJAX' ) && DOING_AJAX;
 	}
 
-	// helper
-	// ANCESTOR : shortcode_atts()
+	// INTERNAL: used on anything deprecated
+	protected static function __dep( $use = FALSE )
+	{
+		if ( ! WP_DEBUG_LOG )
+			return;
+
+		$trace = debug_backtrace();
+
+		$log = 'DEP: ';
+
+		if ( isset( $trace[1]['class'] ) )
+			$log .= $trace[1]['class'].'::';
+
+		$log .= $trace[1]['function'].'()';
+
+		if ( isset( $trace[2]['function'] ) ) {
+			$log .= '|FROM: ';
+			if ( isset( $trace[2]['class'] ) )
+				$log .= $trace[2]['class'].'::';
+			$log .= $trace[2]['function'].'()';
+		}
+
+		if ( $use )
+			$log .= '|USE: '.$use;
+
+		error_log( $log );
+	}
+
+	// TODO: DRAFT: not tested
+	// http://stackoverflow.com/a/9934684
+	// SEE: http://xdebug.org/docs/install
+	protected function __callee()
+	{
+		return sprintf("callee() called @ %s: %s from %s::%s",
+			xdebug_call_file(),
+			xdebug_call_line(),
+			xdebug_call_class(),
+			xdebug_call_function()
+		);
+	}
+
 	public static function atts( $pairs, $atts )
 	{
 		$atts = (array) $atts;
@@ -64,6 +103,19 @@ class gThemeModuleCore
 		error_log( print_r( $log, TRUE ) );
 	}
 
+	// HELPER
+	public static function error( $message )
+	{
+		return gThemeUtilities::notice( $message, 'error fade', FALSE );
+	}
+
+	// HELPER
+	public static function updated( $message )
+	{
+		return gThemeUtilities::notice( $message, 'updated fade', FALSE );
+	}
+
+	// HELPER
 	public static function getCurrentPostType()
 	{
 		global $post, $typenow, $pagenow, $current_screen;
