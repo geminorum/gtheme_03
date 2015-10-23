@@ -80,7 +80,7 @@ class gThemeTerms extends gThemeModuleCore
 		$legend   = gThemeOptions::info( 'primary_terms_legend', FALSE );
 		$taxonomy = gThemeOptions::info( 'primary_terms_taxonomy', 'category' );
 		$defaults = gThemeOptions::info( 'primary_terms_defaults', array() );
-		$options  = gThemeOptions::get_option( 'terms', $defaults );
+		$options  = gThemeOptions::getOption( 'terms', $defaults );
 
 		echo '<form method="post" action="">';
 

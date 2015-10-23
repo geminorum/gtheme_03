@@ -206,7 +206,7 @@ class gThemeOptions extends gThemeModuleCore
 
 			'settings_legend' => FALSE, // html content to appear after settings
 			// DEPRECATED: use PAGES API
-			'search_page' => gtheme_get_option( 'search_page', 0 ),
+			'search_page' => self::getOption( 'search_page', 0 ),
 
 			// 'home_url_override' => '', // full escaped url to overrided home page / comment to disable
 			// 'empty_search_query' => '', // string to use on search input form / comment to use default
@@ -286,7 +286,14 @@ class gThemeOptions extends gThemeModuleCore
 		return update_option( constant( 'GTHEME' ), $options );
 	}
 
+	// FIXME: DEPRECATED: use gThemeOptions::getOption();
 	public static function get_option( $name, $default = FALSE )
+	{
+		self::__dep( 'gThemeOptions::getOption()' );
+		return self::getOption( $name, $default );
+	}
+
+	public static function getOption( $name, $default = FALSE )
 	{
 		global $gtheme_options;
 		if ( empty(	$gtheme_options ) )
@@ -387,7 +394,7 @@ class gThemeOptions extends gThemeModuleCore
 
 // DEPRECATED / BACK COMP
 function gtheme_get_info( $info = FALSE, $default = FALSE ) { return gThemeOptions::info( $info, $default ); }
-function gtheme_get_option( $name, $default = FALSE ) { return gThemeOptions::get_option( $name, $default ); }
+function gtheme_get_option( $name, $default = FALSE ) { return gThemeOptions::getOption( $name, $default ); }
 function gtheme_update_option( $name, $value ) { return gThemeOptions::update_option( $name, $value ); }
 function gtheme_delete_option( $name ) { return gThemeOptions::delete_option( $name ); }
 function gtheme_get_count( $name, $def = 0 ){ return gThemeOptions::count( $name, $def ); }

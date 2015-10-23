@@ -45,7 +45,7 @@ class gThemePages extends gThemeModuleCore
 	public function settings_sub_html( $settings_uri, $sub = 'general' )
 	{
 		$defaults = gThemeOptions::info( 'pages', array() );
-		$options  = gThemeOptions::get_option( 'pages', array() );
+		$options  = gThemeOptions::getOption( 'pages', array() );
 
 		echo '<form method="post" action="">';
 			// echo '<h3>'.__( 'General Settings', GTHEME_TEXTDOMAIN ).'</h3>';
@@ -77,7 +77,8 @@ class gThemePages extends gThemeModuleCore
 			if ( ! empty( $_POST )
 				&& wp_verify_nonce( $_POST['_gtheme_pages'], 'gtheme-pages' ) ) {
 
-					$options = gThemeOptions::get_option( 'pages', array() );
+					$options = gThemeOptions::getOption( 'pages', array() );
+
 					foreach ( gThemeOptions::info( 'pages', array() ) as $option => $default )
 						if ( isset( $_POST['gtheme_pages'][$option] )
 							&& trim( $_POST['gtheme_pages'][$option] ) )

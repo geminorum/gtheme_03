@@ -27,7 +27,7 @@ class gThemeBanners extends gThemeModuleCore
 
 	public static function group( $group, $atts = array() )
 	{
-		$banners = gThemeOptions::get_option( 'banners', array() );
+		$banners = gThemeOptions::getOption( 'banners', array() );
 		$saved = array();
 
 		foreach ( $banners as $banner ) {
@@ -61,7 +61,7 @@ class gThemeBanners extends gThemeModuleCore
 	// ANCESTOR: gtheme_get_banner()
 	public static function get( $group, $order = 0 )
 	{
-		$banners = gThemeOptions::get_option( 'banners', array() );
+		$banners = gThemeOptions::getOption( 'banners', array() );
 
 		foreach ( $banners as $banner ) {
 			if ( isset( $banner['group'] ) && $group == $banner['group'] ) {
@@ -116,7 +116,7 @@ class gThemeBanners extends gThemeModuleCore
 				&& wp_verify_nonce( $_POST['_gtheme_banners'], 'gtheme-banners' ) ) {
 
 				$banner_groups = gThemeOptions::info( 'banner_groups', array() );
-				$old = gThemeOptions::get_option( 'banners', array() );
+				$old = gThemeOptions::getOption( 'banners', array() );
 				$new = array();
 
 				$titles = $_POST['gtheme-banners-title'];

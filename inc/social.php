@@ -79,7 +79,7 @@ class gThemeSocial extends gThemeModuleCore
 				$output = gtheme_get_info( 'default_image_src', FALSE );
 				if ( is_single() )
 					$output = gThemeImage::get_image( array(
-						'tag'   => gtheme_get_info( 'meta_image_size', 'single' ),
+						'tag'   => gThemeOptions::info( 'meta_image_size', 'single' ),
 						'url'   => TRUE,
 						'empty' => FALSE,
 					) );
@@ -127,7 +127,7 @@ class gThemeSocial extends gThemeModuleCore
 			if ( ! $the_post )
 				return;
 
-			if ( $the_post->post_author == gtheme_get_option( 'default_user', 0 ) )
+			if ( $the_post->post_author == gThemeOptions::getOption( 'default_user', 0 ) )
 				return;
 
 			$plus_url = get_user_meta( $the_post->post_author, 'googleplus', TRUE );

@@ -13,7 +13,7 @@ class gThemeAdmin extends gThemeModuleCore
 			'default_publish'       => FALSE,
 		), $args ) );
 
-		$this->_default_user = gThemeOptions::get_option( 'default_user', 0 );
+		$this->_default_user = gThemeOptions::getOption( 'default_user', 0 );
 
 		add_filter( 'default_avatar_select', array( &$this, 'default_avatar_select' ) );
 

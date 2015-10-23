@@ -24,7 +24,7 @@
 
 	<?php
 	$banner_groups = gThemeOptions::info( 'banner_groups', array() );
-	$banners = gThemeOptions::get_option( 'banners', array() );
+	$banners = gThemeOptions::getOption( 'banners', array() );
 	if ( count( $banners ) ) {
 		foreach ( $banners as $banner ) {
 			?><tr>

@@ -168,7 +168,7 @@ class gThemeNavigation extends gThemeModuleCore
 		} elseif ( is_tax() ) {
 			$crumbs[] = sprintf( ( isset( $args['strings']['tax'] ) ? $args['strings']['tax'] : __( 'Taxonomy Archives for <strong>%s</strong>', GTHEME_TEXTDOMAIN ) ), single_term_title( '', FALSE ) );
 		} elseif ( is_author() ) {
-			$default_user = gtheme_get_option( 'default_user', 0 );
+			$default_user = gThemeOptions::getOption( 'default_user', 0 );
 			$author_id = intval( get_query_var( 'author' ) );
 			if ( $default_user != $author_id )
 				$crumbs[] = sprintf( ( isset( $args['strings']['author'] ) ? $args['strings']['author'] : __( 'Author Archives for <strong>%s</strong>', GTHEME_TEXTDOMAIN ) ), get_the_author_meta( 'display_name', $author_id ) );
