@@ -240,6 +240,26 @@ class gThemeModuleCore
 				) );
 
 			break;
+			case 'number' :
+
+				if ( ! $args['field_class'] )
+					$args['field_class'] = 'small-text';
+
+				if ( ! $args['dir'] )
+					$args['dir'] = 'ltr';
+
+				echo gThemeUtilities::html( 'input', array(
+					'type'  => 'number',
+					'class' => $args['field_class'],
+					'name'  => $name,
+					'id'    => $id,
+					'value' => $value,
+					'step'  => '1', // FIXME: get from args
+					'min'   => '0', // FIXME: get from args
+					'dir'   => $args['dir'],
+				) );
+
+			break;
 			case 'checkbox' :
 
 				if ( count( $args['values'] ) ) {
