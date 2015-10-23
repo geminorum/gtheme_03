@@ -3,15 +3,27 @@
 class gThemeTemplate extends gThemeModuleCore
 {
 
-	// FIXME: DEPRECATED
-	public static function logo( $context = 'header' )
+	public static function logo( $context = 'header', $template = NULL, $echo = TRUE )
 	{
-		printf( gtheme_get_info( 'template_logo',
-			'<a class="navbar-brand no-outline" href="%1$s" title="%3$s" rel="home"><h1 class="text-hide main-logo">%2$s</h1></a>' ),
-				gThemeUtilities::home(),
-				get_bloginfo( 'name' ),
-				esc_attr__( 'Home', GTHEME_TEXTDOMAIN )
-		);
+		if ( is_null( $template ) ) {
+			// $template = '<h1><a class="logo-class main-logo no-outline" href="'.gtheme_get_home().'" rel="home">'.get_bloginfo( 'name' ).'</a></h1>';
+			// $template = '<a class="head-logo no-outline" href="%1$s" title="%3$s" rel="home"><h1 class="text-hide main-logo">%2$s</h1></a>';
+			// $template = '<a class="navbar-brand no-outline" href="%1$s" title="%3$s" rel="home"><h1 class="text-hide main-logo">%2$s</h1></a>';
+			$template = '<a href="%1$s" title="%3$s" rel="home"><img src="'.GTHEME_CHILD_URL.'/images/logo.png" alt="%2$s" /></a>';
+
+			$template = gThemeOptions::info( 'template_logo', $template );
+		}
+
+		$logo = vsprintf( $template, array(
+			gThemeUtilities::home(),
+			gThemeOptions::info( 'blog_name', '' ),
+			esc_attr( gThemeOptions::info( 'logo_title', '' ) ),
+		) );
+
+		if ( ! $echo )
+			return $logo;
+
+		echo $logo;
 	}
 
 	// ANCESTOR : gtheme_get_term_link_tag()

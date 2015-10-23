@@ -19,10 +19,17 @@ class gThemeBootstrap extends gThemeModuleCore
 			echo '</button>';
 
 			if ( is_null( $brand ) )
-				$brand = get_bloginfo( 'name' );
+				$brand = gThemeOptions::info( 'blog_name', FALSE );
+
+			else if ( 'logo' == $brand )
+				$brand = gThemeTemplate::logo( 'navbar', '<img src="'.GTHEME_CHILD_URL.'/images/logo.png" alt="%2$s" />', FALSE );
 
 			if ( FALSE !== $brand )
-				echo '<a class="navbar-brand" href="'.gThemeUtilities::home().'" title="'.esc_attr__( 'Home', GTHEME_TEXTDOMAIN ).'">'.$brand.'</a>';
+				vprintf( '<a class="navbar-brand" href="%1$s" title="%3$s">%2$s</a>', array(
+					gThemeUtilities::home(),
+					$brand,
+					esc_attr( gThemeOptions::info( 'logo_title', '' ) ),
+				) );
 
 		echo '</div>';
 	}
