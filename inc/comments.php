@@ -141,6 +141,22 @@ class gThemeComments extends gThemeModuleCore
 	}
 
 	public static function navigation( $id = 'comment-nav-above' )
+	public static function passwordRequired( $print = TRUE )
+	{
+		if ( post_password_required() ) {
+
+			if ( $print ) {
+				echo '<p class="no-password">';
+					_e( 'This post is password protected. Enter the password to view any comments.', GTHEME_TEXTDOMAIN );
+				echo '</p></div>';
+			}
+
+			return TRUE;;
+		}
+
+		return FALSE;
+	}
+
 	{
 		$strings = gThemeOptions::info( 'comment_nav_strings', array(
 			'title'    => __( 'Comment navigation', GTHEME_TEXTDOMAIN ),

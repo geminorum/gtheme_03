@@ -1,11 +1,7 @@
 <div id="comments" class="comments-area"><?php 
 
-	if ( post_password_required() ) {
-		echo '<p class="no-password">';
-			_e( 'This post is password protected. Enter the password to view any comments.', GTHEME_TEXTDOMAIN );
-		echo '</p></div>';
+	if ( gThemeComments::passwordRequired() )
 		return;
-	}
 
 	if ( have_comments() ) {
 
