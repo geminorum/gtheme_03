@@ -17,6 +17,42 @@ class gThemePages extends gThemeModuleCore
 		}
 	}
 
+	public static function defaults( $extra = array() )
+	{
+		return array_merge( array(
+			'about' => array(
+				'title' => _x( 'About Page', 'Pages Module', GTHEME_TEXTDOMAIN ),
+				'desc'  => _x( 'Select a page for this site\'s main information', 'Pages Module', 'Pages Module', GTHEME_TEXTDOMAIN ),
+				'def'   => 0,
+			),
+			'contact' => array(
+				'title' => _x( 'Contact Page', 'Pages Module', GTHEME_TEXTDOMAIN ),
+				'desc'  => _x( 'Select a page for this site\'s contact details', 'Pages Module', GTHEME_TEXTDOMAIN ),
+				'def'   => 0,
+			),
+			'search' => array(
+				'title' => _x( 'Search Page', 'Pages Module', GTHEME_TEXTDOMAIN ),
+				'desc'  => _x( 'Select a page for this site\'s advanced search tools', 'Pages Module', GTHEME_TEXTDOMAIN ),
+				'def'   => 0,
+			),
+			'archives' => array(
+				'title' => _x( 'Archives Page', 'Pages Module', 'Pages Module', GTHEME_TEXTDOMAIN ),
+				'desc'  => _x( 'Select a page for this site\'s main archives', 'Pages Module', GTHEME_TEXTDOMAIN ),
+				'def'   => 0,
+			),
+			'latest' => array(
+				'title' => _x( 'Latest Posts Page', 'Pages Module', GTHEME_TEXTDOMAIN ),
+				'desc'  => _x( 'Select a page for this site\'s latest posts list', 'Pages Module', GTHEME_TEXTDOMAIN ),
+				'def'   => 0,
+			),
+			'social' => array(
+				'title' => _x( 'Social Profiles Page', 'Pages Module', GTHEME_TEXTDOMAIN ),
+				'desc'  => _x( 'Select a page for this site\'s social profiles', 'Pages Module', GTHEME_TEXTDOMAIN ),
+				'def'   => 0,
+			),
+		), $extra );
+	}
+
 	public static function get( $name, $def = 0 )
 	{
 		$option_pages = gThemeOptions::get_option( 'pages', array() );

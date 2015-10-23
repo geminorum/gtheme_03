@@ -85,18 +85,7 @@ class gThemeOptions extends gThemeModuleCore
 			),
 
 			// PAGES API
-			'pages' => array(
-				'search' => array(
-					'title' => __( 'Search Page', GTHEME_TEXTDOMAIN ),
-					'desc'  => __( 'Select Search Page', GTHEME_TEXTDOMAIN ),
-					'def'   => 0,
-				),
-				'latest' => array(
-					'title' => __( 'Latest Posts Page', GTHEME_TEXTDOMAIN ),
-					'desc'  => __( 'Select Latest Posts Page', GTHEME_TEXTDOMAIN ),
-					'def'   => 0,
-				),
-			),
+			'pages' => gThemePages::defaults(), // NOTE: use gThemePages::defaults( array( -extra / override -) )
 
 			// PRIMARY TERMS API
 			'primary_terms_legend' => FALSE,
