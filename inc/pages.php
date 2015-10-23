@@ -31,9 +31,42 @@ class gThemePages extends gThemeModuleCore
 	}
 
 	public static function link( $name, $def = '#' )
+	public static function link( $name, $atts = array() )
 	{
-		// FIXME
-		return $def;
+		$args = self::atts( array(
+			'title'   => NULL,
+			'attr'    => FALSE,
+			'def'     => '#',
+			'class'   => FALSE,
+			'before'  => '',
+			'after'   => '',
+			'echo'    => TRUE,
+			'context' => NULL,
+			'rel'     => FALSE,
+		), $atts );
+
+		if ( $page = self::get( $name, 0 ) ) {
+			$args['def'] = get_permalink( $page );
+
+			if ( ! $args['title'] )
+				$args['title'] = get_the_title( $page );
+		}
+
+		if ( $args['title'] ) {
+			$html = $args['before'].gThemeUtilities::html( 'a', array(
+				'href'  => $args['def'],
+				'class' => $args['class'],
+				'title' => $args['attr'],
+			), $args['title'] ).$args['after'];
+
+			if ( ! $args['echo'] )
+				return $html;
+
+			echo $html;
+
+		} else if ( ! $args['echo'] ) {
+			return FALSE;
+		}
 	}
 
 	public function subs( $subs )
