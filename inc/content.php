@@ -63,6 +63,7 @@ class gThemeContent extends gThemeModuleCore
 	// FIXME: DEPRECATED
 	public static function continue_reading( $edit = '', $scope = '', $permalink = FALSE, $title_att = FALSE )
 	{
+		self::__dep( 'gThemeContent::continueReading()' );
 		return self::continueReading( $edit, $scope, $permalink, $title_att );
 	}
 
@@ -352,17 +353,17 @@ class gThemeContent extends gThemeModuleCore
 	{
 		echo $b;
 
-		echo '<a id="jfontsize-plus" class="fontsize-button increase-font" href="#" title="'.__( 'Increase font size', GTHEME_TEXTDOMAIN ).'">';
+		echo '<a id="gtheme-fontsize-plus" class="fontsize-button increase-font" href="#" title="'.__( 'Increase font size', GTHEME_TEXTDOMAIN ).'">';
 			echo ( 'def' == $increase ? gtheme_get_info( 'text_size_increase', '[ A+ ]' ) : $increase );
 		echo '</a>';
 
 		if ( FALSE !== $sep ) {
-			echo '<a id="jfontsize-default" class="fontsize-button" href="#">';
+			echo '<a id="gtheme-fontsize-default" class="fontsize-button" href="#">';
 			echo gThemeUtilities::sanitize_sep( $sep, 'text_size_sep' );
 			echo '</a>';
 		}
 
-		echo '<a id="jfontsize-minus" class="fontsize-button decrease-font" href="#" title="'.__( 'Decrease font size', GTHEME_TEXTDOMAIN ).'">';
+		echo '<a id="gtheme-fontsize-minus" class="fontsize-button decrease-font" href="#" title="'.__( 'Decrease font size', GTHEME_TEXTDOMAIN ).'">';
 			echo ( 'def' == $decrease ? gtheme_get_info( 'text_size_decrease', '[ A- ]' ) : $decrease );
 		echo '</a>';
 
@@ -554,77 +555,12 @@ a2a_config.locale = "fa";
 			'link'        => TRUE, // disable linking compeletly
 		), $atts );
 
-
-		echo '<footer class="footer-class footer-'.$args['context'].' '.$args['prefix'].'-footer">';
-
 		if ( $args['actions'] ) {
-			echo '<ul class="list-inline actions-class actions-'.$args['context'].' '.$args['prefix'].'-actions">';
-				self::actions( '<li class="post-action %s">', '</li>', $args['actions'], $args['action_icon'] );
-			echo '</ul>';
+			echo '<footer class="footer-class footer-'.$args['context'].' '.$args['prefix'].'-footer">';
+				echo '<ul class="list-inline actions-class actions-'.$args['context'].' '.$args['prefix'].'-actions">';
+					self::actions( '<li class="post-action %s">', '</li>', $args['actions'], $args['action_icon'] );
+				echo '</ul>';
+			echo '</footer>';
 		}
-
-		echo '</footer>';
 	}
-
-	//////////////////////////////////////////////////////////////////
-	//////////////////////////////////////////////////////////////////
-	/////READ TIME////////////////////////////////////////////////////
-	//////////////////////////////////////////////////////////////////
-	// https://gist.github.com/norcross/d10e26839699f61c00b7
-	//////////////////////////////////////////////////////////////////
-	// !! working but need adjustment with post actions
-
-	// handle the calculation
-	public static function calc_read_time( $seconds = 0 )
-	{
-		$minutes = floor( $seconds / 60 );
-
-		if ( $minutes < 1 )
-			return __( 'less than 1 minute', GTHEME_TEXTDOMAIN );
-
-		return sprintf( _n( '%d minute', '%d minutes', $minutes, GTHEME_TEXTDOMAIN ), $minutes );
-	}
-
-	// display the estimated time to read the content
-	public static function display_read_time( $content )
-	{
-		global $post;
-
-		$seconds = get_post_meta( $post->ID, '_seconds_read_time', TRUE );
-
-		if ( empty( $seconds ) )
-			return $content;
-
-		$readtime = self::calc_read_time( $seconds );
-
-		// create a prefix
-		$readprfx = __( 'Estimated read time:', GTHEME_TEXTDOMAIN );
-
-		// make a fancy box
-		$readbox = '<p class="estimated-read-time"><strong>'.esc_attr( $readprfx ).'</strong> '.esc_attr( $readtime ).'</p>';
-
-		// send it back before the content
-		return $readbox.$content;
-
-	}
-	// add_filter( 'the_content', 'rkv_display_read_time', 10 );
-
-	// store the estimated time to read the content
-	public static function store_read_time( $post_id = 0 )
-	{
-		if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE )
-			return $post_id;
-
-		if ( get_post_type( $post_id ) != 'post' )
-			return $post_id;
-
-		$content = get_post_field( 'post_content', $post_id, 'raw' );
-		$wordnum = str_word_count( strip_tags( $content ) );
-		$avgtime = apply_filters( 'gtheme_estimated_reading_time', 120 );
-		$seconds = floor( (int) $wordnum / (int) $avgtime ) * 60;
-		update_post_meta( $post_id, '_seconds_read_time', $seconds );
-
-		return $post_id;
-	}
-	// add_action( 'save_post', 'rkv_store_read_time' );
 }

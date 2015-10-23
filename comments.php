@@ -1,4 +1,4 @@
-<div id="comments" class="comments-area"><?php 
+<div id="comments" class="comments-area"><?php
 
 	if ( gThemeComments::passwordRequired() )
 		return;
@@ -30,8 +30,8 @@
 			gThemeComments::navigation( 'comment-nav-below' );
 
 	} elseif ( ! comments_open() && ! is_page() && post_type_supports( get_post_type(), 'comments' ) ) {
-		$closed = gThemeOptions::info( 'comments_closed', __( 'Comments are closed.' , GTHEME_TEXTDOMAIN ) );
-		if ( $closed )
+
+		if ( $closed = gThemeOptions::info( 'comments_closed', __( 'Comments are closed.' , GTHEME_TEXTDOMAIN ) ) )
 			echo '<p class="no-comments">'.$closed.'</p>';
 	}
 

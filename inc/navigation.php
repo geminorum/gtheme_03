@@ -79,7 +79,7 @@ class gThemeNavigation extends gThemeModuleCore
 	{
 		$crumbs = array();
 
-		$args = shortcode_atts( array(
+		$args = self::atts( array(
 			'home'       => FALSE,
 			'term'       => 'both',
 			'tax'        => 'category',
@@ -93,8 +93,8 @@ class gThemeNavigation extends gThemeModuleCore
 		), $atts );
 
 		if ( FALSE !== $args['home'] )
-			$crumbs[] = '<a href="'.esc_url( home_url( '/' ) ).'" rel="home" title="">'. // TODO : add title
-				( 'home' == $args['home'] ? get_bloginfo( 'name' ) : $args['home'] ).'</a>'; // TODO: use theme home override
+			$crumbs[] = '<a href="'.esc_url( home_url( '/' ) ).'" rel="home" title="">'. // TODO: add title
+				( 'home' == $args['home'] ? gThemeOptions::info( 'blog_name' ) : $args['home'] ).'</a>'; // TODO: use theme home override
 
 		$crumbs = apply_filters( 'gtheme_breadcrumb_after_home', $crumbs, $args );
 
@@ -143,7 +143,7 @@ class gThemeNavigation extends gThemeModuleCore
 	{
 		$crumbs = array();
 
-		$args = shortcode_atts( array(
+		$args = self::atts( array(
 			'home'    => FALSE,
 			'strings' => gThemeOptions::info( 'strings_breadcrumb_archive', array() ),
 			'class'   => 'gtheme-breadcrumb',

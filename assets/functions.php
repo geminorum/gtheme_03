@@ -1,6 +1,6 @@
 <?php
 
-function include_css( $array = array(), $debug = false ){
+function include_css( $array = array(), $debug = FALSE ){
 	foreach( $array as $css )
 		if ( file_exists( $css ) )
 			include( $css );

@@ -1,4 +1,5 @@
 .sass-cache
+.ftpconfig
 .temp
 
 /components
@@ -6,5 +7,9 @@
 /vendor
 /bin
 /node_modules
+.env
+
+/images/temp
 
 composer.lock
+npm-debug.log

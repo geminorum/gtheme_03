@@ -70,23 +70,8 @@ class gThemeFeed extends gThemeModuleCore
 				$footer = str_replace( array_keys( $replaces ), $replaces, $footer );
 		}
 
-			/*
-			$header .= gcharghad_nounder_thumb( $the_cat, '<p style="float:right;margin-left:15px;margin-bottom:10px;">', '</p>', false );
-
-
-			if ( $external ) {
-				$header .= '<p style="margin-left:auto;margin-right:auto;text-align:center;">'.do_shortcode( '[ms_place name="raw" max_width="650" link="'.$external.'" title="'.the_title_attribute( 'echo=0' ).'"]' ).'</p>';
-				$footer .= '<hr /><p style="margin-left:auto;margin-right:auto;text-align:center;direction:rtl;font:bold 1.3em arial;"><a style="text-decoration:none;color:#ccc;" href="'.$external.'">������ ���� ������ �� �� ������ �����</a></p>';
-			} else {
-				// TODO : adjust this. what if there's no raw media?
-				//$header .= '<p style="margin-left:auto;margin-right:auto;text-align:center;">'.do_shortcode( '[ms_place name="raw" max_width="650" link="'.get_permalink().'" title="'.the_title_attribute( 'echo=0' ).'"]' ).'</p>';
-
-				// TODO : add related posts by p2p & tags
-				$footer .= '<hr /><p style="direction:rtl;font:bold 1.3em arial;">'
-						.'<a style="text-decoration:none;color:#ccc;" href="'.get_permalink( $id ).'/#respond">��ϐ�� ���</a> / '
-						.'<a style="text-decoration:none;color:#ccc;" href="'.get_option( 'home' ).'/?p='.$id.'">����� �����</a></p>';
-			}
-			*/
+		// TODO: add shortlink
+		// TODO: add comment link
 
 		if ( gThemeUtilities::isRTL() )
 			return '<div style="direction:rtl !important;text-align:right !important;">'.$header.$content.$footer.'</div>';

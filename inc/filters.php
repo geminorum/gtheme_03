@@ -101,7 +101,7 @@ class gThemeFilters extends gThemeModuleCore
 			gThemeUtilities::linkStyleSheet( GTHEME_URL.'/css/dev.css', GTHEME_VERSION, 'all' );
 
 		if ( is_singular() )
-			echo "\t".'<link rel="pingback" href="'.get_bloginfo( 'pingback_url' ).'" />'."\n";
+			echo "\t".'<link rel="pingback" href="'.get_bloginfo( 'pingback_url', 'display' ).'" />'."\n";
 	}
 
 	public function body_class( $classes, $class )
@@ -126,7 +126,7 @@ class gThemeFilters extends gThemeModuleCore
 		if ( gThemeOptions::info( 'bootstrap_navbar_fixed', FALSE ) )
 			$classes[] = 'navbar-fixed';
 
-		if ( $extra = gThemeOptions::get_option( 'body_class_extra', FALSE ) )
+		if ( $extra = gThemeOptions::getOption( 'body_class_extra', FALSE ) )
 			$classes[] = sanitize_html_class( $extra );
 
 		if ( ! empty( $pagenow ) )
@@ -209,7 +209,7 @@ class gThemeFilters extends gThemeModuleCore
 			global $page, $paged;
 			$sep = gThemeOptions::info( 'title_sep', ' &raquo; ' );
 
-			$frontpage_title = gThemeOptions::info( 'frontpage_title', get_bloginfo( 'name' ) );
+			$frontpage_title = gThemeOptions::info( 'frontpage_title', FALSE );
 			if ( FALSE === $frontpage_title )
 				$frontpage_title = '';
 
@@ -219,8 +219,11 @@ class gThemeFilters extends gThemeModuleCore
 			return $frontpage_title;
 		}
 
-		// sep already added
-		return $title.' '.gThemeOptions::info( 'blog_title', get_bloginfo( 'name' ) );
+		// NOTE: sep already added
+		if ( $blog_title = gThemeOptions::info( 'blog_title', FALSE ) )
+			return $title.' '.$blog_title;
+
+		return $title;
 	}
 
 	// Originally from : http://wordpress.org/plugins/character-count-excerpt/
@@ -360,7 +363,7 @@ class gThemeFilters extends gThemeModuleCore
 		$query->posts[0]->post_content = $content;
 	}
 
-	// TODO : add the link to wp_list_page ( or whatever! )
+	// TODO: add the link to wp_list_page ( or whatever! )
 	// https://gist.github.com/danielbachhuber/1636361
 	// filter canonical redirects so we can support full page URLs
 	public function redirect_canonical( $redirect_url, $requested_url )

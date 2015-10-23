@@ -27,7 +27,7 @@ class gThemeTemplate extends gThemeModuleCore
 	}
 
 	// ANCESTOR : gtheme_get_term_link_tag()
-	public static function term_link( $term, $taxonomy, $title = null )
+	public static function term_link( $term, $taxonomy, $title = NULL )
 	{
 		if ( ! is_object( $term ) )
 			$term = get_term( $term, $taxonomy );
@@ -38,19 +38,20 @@ class gThemeTemplate extends gThemeModuleCore
 				//$title .= ' :: '.strip_tags( wp_trim_words(
 				$title .= ' :: '.( wp_trim_words(
 					$term->description,
-					gtheme_get_info( 'excerpt_length', 40 ),
-					gtheme_get_info( 'excerpt_more', ' &hellip;' )
+					gThemeOptions::info( 'excerpt_length', 40 ),
+					gThemeOptions::info( 'excerpt_more', ' &hellip;' )
 				) );
 		}
 
-		return sprintf( gtheme_get_info( 'template_term_link',
-			//'<a href="%1$s" title="%3$s" class="%4$s">%2$s</a>' ),
-			'<a href="%1$s" title="%3$s" class="%4$s" data-html="true" data-toggle="tooltip" data-placement="top">%2$s</a>' ),
-				esc_url( get_term_link( $term, $taxonomy ) ),
-				esc_html( apply_filters( 'single_term_title', $term->name ) ),
-				esc_attr( $title ),
-				'term-link term-'.$taxonomy.'-link'
-		);
+		// $template = '<a href="%1$s" title="%3$s" class="%4$s">%2$s</a>';
+		$template = '<a href="%1$s" title="%3$s" class="%4$s" data-html="true" data-toggle="tooltip" data-placement="top">%2$s</a>';
+
+		return vprintf( gThemeOptions::info( 'template_term_link', $template ), array(
+			esc_url( get_term_link( $term, $taxonomy ) ),
+			esc_html( apply_filters( 'single_term_title', $term->name ) ),
+			esc_attr( $title ),
+			'term-link term-'.$taxonomy.'-link',
+		) );
 	}
 
 	// ANCESTOR : get_category_parents()
@@ -78,24 +79,24 @@ class gThemeTemplate extends gThemeModuleCore
 	{
 		$terms = get_the_terms( get_the_ID(), $taxonomy );
 
-		if ( false === $terms || is_wp_error( $terms ) )
+		if ( FALSE === $terms || is_wp_error( $terms ) )
 			return '';
 
-		// TODO : if $mode == child
+		// TODO: if $mode == child
 
 		foreach ( $terms as $term )
 			return self::term_parents( $term, gThemeUtilities::sanitize_sep( $sep, 'nav_sep', ' &raquo; ' ), $taxonomy );
 	}
 
-	public static function avatar( $id_or_email, $size = null )
+	public static function avatar( $id_or_email, $size = NULL )
 	{
-		if ( 0 === $size || false === $size )
+		if ( 0 === $size || FALSE === $size )
 			return;
 
 		if ( is_null( $size ) )
-			$size = (int) gtheme_get_info( 'comment_avatar_size', 64 );
+			$size = (int) gThemeOptions::info( 'comment_avatar_size', 64 );
 
-		$default = gtheme_get_info( 'default_avatar_src', false );
+		$default = gThemeOptions::info( 'default_avatar_src', FALSE );
 
 		if ( gThemeUtilities::isDev() && $default )
 			echo gThemeUtilities::html( 'img', array(
@@ -109,15 +110,15 @@ class gThemeTemplate extends gThemeModuleCore
 	}
 
 	// ANCESTOR : gtheme_copyright()
-	public static function copyright( $b = '<p class="copyright text-muted credit">', $a = '</p>', $p = false )
+	public static function copyright( $b = '<p class="copyright text-muted credit">', $a = '</p>', $p = FALSE )
 	{
-		$copyright = gtheme_get_info( 'copyright', false );
+		$copyright = gThemeOptions::info( 'copyright', FALSE );
 
-		if ( false === $copyright )
+		if ( FALSE === $copyright )
 			return;
 
 		if ( $p )
-			$copyright = wpautop( $copyright, false );
+			$copyright = wpautop( gThemeUtilities::wordWrap( $copyright ), FALSE );
 
 		echo $b.$copyright.$a;
 	}

@@ -68,7 +68,7 @@ class gThemeWrap extends gThemeModuleCore
 	//////////////////////////////////////////////////////////////////////
 	// SEE : https://make.wordpress.org/core/2014/10/29/title-tags-in-4-1/
 	// SEE : https://core.trac.wordpress.org/ticket/18548
-	// DEPRECATED use in: head.php
+	// FIXME: DEPRECATED use in: head.php
 	public static function html_title( $sep = ' &raquo; ', $display = TRUE, $seplocation = '' )
 	{
 		echo "\t".'<title>';
@@ -90,10 +90,10 @@ class gThemeWrap extends gThemeModuleCore
 	{
 		$attributes = array();
 
-		if ( function_exists( 'is_rtl' ) && is_rtl() )
+		if ( gThemeOptions::info( 'rtl', FALSE ) )
 			$attributes[] = 'dir="rtl"';
 
-		if ( $lang = get_bloginfo( 'language' ) )
+		if ( $lang = get_bloginfo( 'language', 'display' ) )
 			$attributes[] = "lang=\"$lang\"";
 
 		$font_stack = gThemeOptions::info( 'css_font_stack', FALSE );

@@ -1,6 +1,6 @@
 <?php
 
-// SAMPLE
+// NOTE: SAMPLE
 
 echo '@charset "UTF-8";';
 
@@ -16,5 +16,3 @@ include('defaults.css');
 include('theme.css');
 include('queries.css');
 include('colors.css');
-
-?>

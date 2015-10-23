@@ -1,4 +1,4 @@
-<article id="post-0" class="post entry-wrap error404 not-found"><?php
+<article id="post-0" class="post entry-wrap error-404 not-found"><?php
 
 	gThemeContent::header( array(
 		'context' => '404',

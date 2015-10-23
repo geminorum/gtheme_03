@@ -197,7 +197,7 @@ class gThemeSettings extends gThemeModuleCore
 			$wp_admin_bar->add_node( array(
 				'id'    => 'gtheme-flush',
 				'title' => '<span class="ab-icon dashicons dashicons-backup" style="margin:2px 0 0 0;"></span>',
-				'href'  => add_query_arg( 'flush', 'flush', gThemeUtilities::getCurrentURL() ),
+				'href'  => add_query_arg( 'flush', '', gThemeUtilities::getCurrentURL() ),
 				'meta'  => array(
 					'title' => __( 'Flush', GTHEME_TEXTDOMAIN ),
 				),

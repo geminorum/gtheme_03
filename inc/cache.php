@@ -34,14 +34,21 @@ class gThemeFragmentCache
 			$this->__flush();
 	}
 
+	protected function key()
+	{
+		return GTHEME_FRAGMENTCACHE.'_'.$this->key;
+	}
+
 	protected function __flush()
 	{
 		if ( $this->transient ) {
-			if ( $this->site ) {
-				delete_site_transient( GTHEME_FRAGMENTCACHE.'_'.$this->key );
-			} else {
-				delete_transient( GTHEME_FRAGMENTCACHE.'_'.$this->key );
-			}
+
+			if ( $this->site )
+				delete_site_transient( $this->key() );
+
+			else
+				delete_transient( $this->key() );
+
 		} else {
 			wp_cache_delete( $this->key, GTHEME_FRAGMENTCACHE );
 		}
@@ -54,15 +61,15 @@ class gThemeFragmentCache
 
 		if ( gThemeUtilities::isFlush() ) {
 			$output = '';
+
 		} else {
-			if ( $this->transient ) {
-				if ( $this->site )
-					$output = get_site_transient( GTHEME_FRAGMENTCACHE.'_'.$this->key );
-				else
-					$output = get_transient( GTHEME_FRAGMENTCACHE.'_'.$this->key );
-			} else {
+
+			if ( $this->transient )
+				$output = $this->site ? get_site_transient( $this->key() ) : get_transient( $this->key() );
+
+			else
 				$output = wp_cache_get( $this->key, GTHEME_FRAGMENTCACHE );
-			}
+
 		}
 
 		if ( ! empty( $output ) ) {
@@ -83,11 +90,13 @@ class gThemeFragmentCache
 		$output = ob_get_flush();
 
 		if ( $this->transient ) {
-			if ( $this->site ) {
-				set_site_transient( GTHEME_FRAGMENTCACHE.'_'.$this->key, $output, $this->ttl );
-			} else {
-				set_transient( GTHEME_FRAGMENTCACHE.'_'.$this->key, $output, $this->ttl );
-			}
+
+			if ( $this->site )
+				set_site_transient( $this->key(), $output, $this->ttl );
+
+			else
+				set_transient( $this->key(), $output, $this->ttl );
+			
 		} else {
 			wp_cache_add( $this->key, $output, GTHEME_FRAGMENTCACHE, $this->ttl );
 		}

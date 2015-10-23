@@ -127,11 +127,13 @@ class gThemeComments extends gThemeModuleCore
 
 	// inform user about automatic comment closing time
 	// http://wpengineer.com/2692/inform-user-about-automatic-comment-closing-time/
-	// TODO : bootstrap styling / notice
+	// TODO: bootstrap styling / notice
 	public function comment_form_top()
 	{
 		global $post;
+
 		if ( 'open' == $post->comment_status ) {
+
 			$expires = strtotime( "{$post->post_date_gmt} GMT" )
 					 + get_option( 'close_comments_days_old' )
 					 * DAY_IN_SECONDS;
@@ -364,6 +366,7 @@ class gThemeComments extends gThemeModuleCore
 					'id'                 => 'email',
 					'name'               => 'email',
 					'value'              => $commenter['comment_author_email'],
+					// 'placeholder'        => $strings['email'], // NOTE: problem with rtl
 				) ).'</div>';
 
 			$fields['url'] = '<div class="form-group comment-form-url"><label for="url">'
@@ -376,12 +379,13 @@ class gThemeComments extends gThemeModuleCore
 					'id'    => 'url',
 					'name'  => 'url',
 					'value' => $commenter['comment_author_url'],
+					// 'placeholder'   => $strings['url'], // NOTE: problem with rtl
 				) ).'</div>';
 
 			$defaults = array(
 				'fields' => apply_filters( 'comment_form_default_fields', $fields ),
 
-				'comment_field' => '<div class="form-group comment-form-comment"><label for="comment">'
+				'comment_field' => '<div class="form-group comment-form-comment"><label for="comment" class="sr-only">'
 					.$strings['comment'].'</label>'
 					.gThemeUtilities::html( 'textarea', array(
 						'aria-required' => 'true',
@@ -390,7 +394,8 @@ class gThemeComments extends gThemeModuleCore
 						'rows'          => '4',
 						'id'            => 'comment',
 						'name'          => 'comment',
-					), null ).'</div>',
+						'placeholder'   => $strings['comment'],
+					), NULL ).'</div>',
 
 				'must_log_in' => '<p class="must-log-in">'.sprintf( $strings['must_log_in'],
 					wp_login_url( apply_filters( 'the_permalink', get_permalink( $post_id ) ) ) ).'</p>',
@@ -423,7 +428,7 @@ class gThemeComments extends gThemeModuleCore
 	{
 		do_action( 'comment_form_before' );
 
-		echo '<div id="respond"><h3 id="reply-title">';
+		echo '<div id="respond" class="comment-form"><h3 id="reply-title" class="comment-reply-title">';
 			comment_form_title( $args['title_reply'], $args['title_reply_to'] );
 			echo ' <small>';
 				cancel_comment_reply_link( $args['cancel_reply_link'] );

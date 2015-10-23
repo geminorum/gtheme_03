@@ -58,6 +58,8 @@ class gThemeImage extends gThemeModuleCore
 			'crop'      => $crop,
 			'post_type' => $post_type,
 		);
+
+		self::__dep( 'gThemeImage::registerImageSize()' );
 	}
 
 	public static function registerImageSize( $name, $atts = array() )
@@ -134,7 +136,7 @@ class gThemeImage extends gThemeModuleCore
 
 	public function image_send_to_editor( $html, $id, $caption, $title, $align, $url, $size, $alt )
 	{
-		$html = '<figure id="post-'.$id.'-media-'.$id.'" class="align-'.$align.'"'.( empty( $title ) ? '' : ' title="'.$title.'"' ).'>'.$html;
+		$html = '<figure id="post-'.$id.'-media-'.$id.'" class="align'.$align.'"'.( empty( $title ) ? '' : ' title="'.$title.'"' ).'>'.$html;
 
 		if ( $caption )
 			$html .= '<figcaption>'.$caption.'</figcaption>';
@@ -462,7 +464,7 @@ class gThemeImage extends gThemeModuleCore
 					}
 
 					// last check
-					if ( $args['link'] && $html ) // TODO : add template
+					if ( $args['link'] && $html ) // TODO: add template
 						$html = '<a href="'.esc_url( $args['link'] ).'">'.$html.'</a>';
 				}
 

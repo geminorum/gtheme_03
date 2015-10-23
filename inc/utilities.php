@@ -79,7 +79,7 @@ class gThemeUtilities extends gThemeModuleCore
 			&& 'development' == constant( 'WP_STAGE' ) )
 				return TRUE;
 
-		// TODO : check stage production and debug constant then true
+		// TODO: check stage production and debug constant then true
 
 		return FALSE;
 	}
@@ -234,9 +234,10 @@ class gThemeUtilities extends gThemeModuleCore
 		return $sanitized;
 	}
 
-	// DEPRECATED: use gThemeUtilities::linkStyleSheet()
+	// FIXME: DEPRECATED: use gThemeUtilities::linkStyleSheet()
 	public static function link_stylesheet( $url, $attr = 'media="all"' )
 	{
+		self::__dep( 'gThemeUtilities::linkStyleSheet()' );
 		echo "\t".'<link rel="stylesheet" href="'.esc_url( $url ).'" type="text/css" '.$attr.' />'."\n";
 	}
 

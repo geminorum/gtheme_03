@@ -55,7 +55,7 @@ class gThemePages extends gThemeModuleCore
 
 	public static function get( $name, $def = 0 )
 	{
-		$option_pages = gThemeOptions::get_option( 'pages', array() );
+		$option_pages = gThemeOptions::getOption( 'pages', array() );
 		if ( count( $option_pages ) && isset( $option_pages[$name] ) )
 			return $option_pages[$name];
 
@@ -66,7 +66,6 @@ class gThemePages extends gThemeModuleCore
 		return $def;
 	}
 
-	public static function link( $name, $def = '#' )
 	public static function link( $name, $atts = array() )
 	{
 		$args = self::atts( array(
@@ -107,11 +106,11 @@ class gThemePages extends gThemeModuleCore
 
 	public function subs( $subs )
 	{
-		$subs['pages'] = __( 'Pages', GTHEME_TEXTDOMAIN );
+		$subs['pages'] = _x( 'Pages', 'Pages Module: Tab Title', GTHEME_TEXTDOMAIN );
 		return $subs;
 	}
 
-	public function settings_sub_html( $settings_uri, $sub = 'general' )
+	public function settings_sub_html( $uri, $sub = 'general' )
 	{
 		$defaults = gThemeOptions::info( 'pages', array() );
 		$options  = gThemeOptions::getOption( 'pages', array() );
@@ -127,7 +126,7 @@ class gThemePages extends gThemeModuleCore
 						'type'    => 'page',
 						'field'   => $page,
 						'default' => ( isset( $options[$page] ) ? $options[$page] : $defaults[$page]['def'] ),
-						'desc'    => $default['desc'],
+						'desc'    => isset( $default['desc'] ) ? $default['desc'] : '',
 					), TRUE );
 				}
 
@@ -149,13 +148,16 @@ class gThemePages extends gThemeModuleCore
 					$options = gThemeOptions::getOption( 'pages', array() );
 
 					foreach ( gThemeOptions::info( 'pages', array() ) as $option => $default )
+
 						if ( isset( $_POST['gtheme_pages'][$option] )
 							&& trim( $_POST['gtheme_pages'][$option] ) )
 								$options[$option] = $_POST['gtheme_pages'][$option];
+
 						else
 							unset( $options[$option] );
 
 					$result = gThemeOptions::update_option( 'pages', $options );
+
 					wp_redirect( add_query_arg( array( 'message' => ( $result ? 'updated' : 'error' ) ), wp_get_referer() ) );
 					exit();
 

@@ -31,7 +31,6 @@ class gThemeEditorial extends gThemeModuleCore
 		}
 	}
 
-	// old: gmeta_lead()
 	public static function label( $atts = array() )
 	{
 		if ( class_exists( 'gEditorialMetaTemplates' ) )
@@ -133,6 +132,7 @@ class gThemeEditorial extends gThemeModuleCore
 		return FALSE;
 	}
 
+	// ANCESTOR: gmeta_lead()
 	public static function lead( $atts = array() )
 	{
 		if ( class_exists( 'gEditorialMetaTemplates' ) ) {
@@ -185,7 +185,9 @@ class gThemeEditorial extends gThemeModuleCore
 		$html = $gNetwork->shortcodes->shortcode_reflist( $args, NULL, 'reflist' );
 
 		if ( $html ) {
-			$html = $args['before'].$args['title'].apply_filters( 'the_content', $html ).$args['after'];
+			// FIXME: messing up html!
+			// $html = $args['before']$args['title'].apply_filters( 'the_content', $html ).$args['after'];
+			$html = $args['before'].$args['title'].$html.$args['after'];
 
 			if ( ! $args['echo'] )
 				return $html;

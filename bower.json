@@ -5,8 +5,12 @@
 	"devDependencies": {
 		"bootstrap-sass": "*",
 		"bootstrap-rtl": "*",
-		"Genericons": "Automattic/Genericons#release/3.3",
+		"font-awesome": "*",
+		"Genericons": "Automattic/Genericons#master",
+		"flexslider-rtl": "layalk/FlexSlider#rtl",
 		"anything-slider": "CSS-Tricks/AnythingSlider",
+		"FontDetect": "JenniferSimonds/FontDetect",
+		"autosize": "*",
 		"jcarousel": "~0.3.3",
 		"jquery.lazyload": "~1.9.5",
 		"normalize-scss": "~3.0.3",
@@ -16,21 +20,29 @@
 	},
 	"install": {
 		"path": "packages",
+		"ignore": ["jquery"],
 		"sources": {
 			"bootstrap-sass": "components/bootstrap-sass/assets/**",
+			"bootstrap-rtl": "components/bootstrap-rtl/dist/css/**",
+			"font-awesome": [
+				"components/font-awesome/scss/**",
+				"components/font-awesome/fonts/**"
+			],
+			"Genericons": "components/Genericons/genericons/**",
+			"FontDetect": "components/FontDetect/lib/**",
+			"autosize": "components/autosize/dist/**",
+			"flexslider-rtl": [
+        "components/flexslider-rtl/jquery.flexslider-min.js",
+        "components/flexslider-rtl/jquery.flexslider.js",
+        "components/flexslider-rtl/flexslider-rtl.css",
+        "components/flexslider-rtl/flexslider.css"
+      ],
 			"anything-slider": [
 				"components/anything-slider/css/anythingslider.css",
 				"components/anything-slider/js/jquery.anythingslider.js",
 				"components/anything-slider/js/jquery.anythingslider.min.js",
 				"components/anything-slider/js/jquery.anythingslider.fx.js",
 				"components/anything-slider/js/jquery.anythingslider.video.js"
-			],
-			"Genericons": [
-				"components/Genericons/genericons/Genericons.eot",
-				"components/Genericons/genericons/Genericons.svg",
-				"components/Genericons/genericons/Genericons.ttf",
-				"components/Genericons/genericons/Genericons.woff",
-				"components/Genericons/genericons/genericons.css"
 			]
 		}
 	}

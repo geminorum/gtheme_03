@@ -51,6 +51,9 @@ class gThemeBootstrap extends gThemeModuleCore
 			echo $wrap ? '<div id="'.$wrap.'" class="collapse navbar-collapse">'.$menu.'</div>' : $menu;
 	}
 
+	// TODO: another smaller search form
+	// SEE: http://jsbin.com/futeyo/1/edit?html,css,js,output
+	// SEE: http://bootsnipp.com/snippets/featured/expanding-search-button-in-css
 	public static function navbarForm( $placeholder = NULL, $class = '' )
 	{
 		if ( is_null( $placeholder ) )

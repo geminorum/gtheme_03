@@ -11,7 +11,7 @@ class gThemeAttachment extends gThemeModuleCore
 			'after'  => '<div>',
 			'id'     => get_the_ID(),
 			'echo'   => TRUE,
-			'length'   => NULL, // trim chars
+			'length' => NULL, // trim chars
 		), $atts );
 
 		$post = get_post( $args['id'] );

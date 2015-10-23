@@ -2,6 +2,7 @@
 
 class gThemeModuleCore
 {
+
 	var $_option_base = 'gtheme';
 	var $_option_key  = '';
 	var $_ajax        = FALSE;
@@ -65,6 +66,8 @@ class gThemeModuleCore
 		);
 	}
 
+	// HELPER
+	// ANCESTOR: shortcode_atts()
 	public static function atts( $pairs, $atts )
 	{
 		$atts = (array) $atts;
@@ -80,8 +83,7 @@ class gThemeModuleCore
 		return $out;
 	}
 
-	// helper
-	// current user can
+	// HELPER: wrapper for current_user_can()
 	public static function cuc( $cap, $none = TRUE )
 	{
 		if ( 'none' == $cap || '0' == $cap )
@@ -90,8 +92,12 @@ class gThemeModuleCore
 		return current_user_can( $cap );
 	}
 
+	// HELPER
 	public static function log( $error = '{NO Error Code}', $data = array(), $wp_error = NULL )
 	{
+		if ( ! WP_DEBUG_LOG )
+			return;
+
 		$log = array_merge( array(
 			'error'   => $error,
 			'time'    => current_time( 'mysql' ),
@@ -99,7 +105,6 @@ class gThemeModuleCore
 			'message' => ( is_null( $wp_error ) ? '{NO WP_Error Object}' : $wp_error->get_error_message() ),
 		), $data );
 
-		// FIXME: we need to check WP_DEBUG_DISPLAY ?
 		error_log( print_r( $log, TRUE ) );
 	}
 
@@ -135,7 +140,7 @@ class gThemeModuleCore
 		return NULL;
 	}
 
-	// helper
+	// HELPER
 	public static function getUsers()
 	{
 		$users = array( 0 => __( '&mdash; Select &mdash;', GTHEME_TEXTDOMAIN ) );
@@ -144,13 +149,13 @@ class gThemeModuleCore
 		return $users;
 	}
 
-	// used by module settings pages
+	// HELPER: used by module settings pages
 	public function field_debug()
 	{
 		gThemeUtilities::dump( $this->options );
 	}
 
-	// default setting sub html
+	// DEFAULT METHOD: setting sub html
 	public function settings_sub_html( $settings_uri, $sub = 'general' )
 	{
 		echo '<form method="post" action="">';
@@ -228,8 +233,9 @@ class gThemeModuleCore
 			break;
 			case 'text' :
 
-				if ( ! $args['class'] )
-					$args['class'] = 'regular-text';
+				if ( ! $args['field_class'] )
+					$args['field_class'] = 'regular-text';
+
 				echo gThemeUtilities::html( 'input', array(
 					'type'  => 'text',
 					'class' => $args['field_class'],
@@ -298,7 +304,7 @@ class gThemeModuleCore
 					echo '<p>'.gThemeUtilities::html( 'label', array(
 						'for' => $id,
 					), $html.'&nbsp;'.$args['description'] ).'</p>';
-					
+
 					$args['description'] = FALSE;
 				}
 
@@ -455,6 +461,7 @@ class gThemeModuleCore
 		return $the_terms;
 	}
 
+	// HELPER
 	public static function getPostTypes( $builtin = NULL )
 	{
 		$list = array();
@@ -471,6 +478,7 @@ class gThemeModuleCore
 		return $list;
 	}
 
+	// HELPER
 	public static function getTaxonomies( $with_post_type = FALSE )
 	{
 		$list = array();

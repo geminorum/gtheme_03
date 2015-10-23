@@ -7,12 +7,17 @@ class gThemeDate extends gThemeModuleCore
 	//ANCESTOR: gtheme_the_date()
 	public static function date( $atts = array() )
 	{
+		$post_id  = get_the_ID();
+		$template = '<span class="date"><a href="%1$s" title="%2$s" rel="shortlink"><time class="%5$s-date" datetime="%3$s">%4$s</time></a></span>';
+
 		$args = self::atts( array(
 			'before'      => '',
 			'after'       => '',
 			'context'     => 'single',
 			'prefix'      => 'entry',
-			'format'      => gThemeOptions::info( 'the_date_format', 'j M Y' ),
+			'post_id'     => $post_id,
+			'format'      => gThemeOptions::info( 'format_the_date', 'j M Y' ),
+			'template'    => gThemeOptions::info( 'template_the_date', $template ),
 			'onceperdate' => FALSE,
 			'shortlink'   => TRUE,
 			'title'       => NULL,
@@ -22,25 +27,45 @@ class gThemeDate extends gThemeModuleCore
 			'echo'        => TRUE, // disable linking compeletly
 		), $atts );
 
-		global $post;
+		if ( $args['onceperdate'] ) {
+			$args['post_id'] = $post_id; // NOTE: must be global b/c we also use the_date()
+			$date = the_date( $args['format'], '', '', FALSE );
+		} else {
+			$date = get_the_date( $args['format'], $args['post_id'] );
+		}
 
-		$date = sprintf( '<span class="date"><a href="%1$s" title="%2$s" rel="shortlink"><time class="entry-date" datetime="%3$s">%4$s</time></a></span>',
-			esc_url( wp_get_shortlink( $post->ID ) ),
-			// the_context_time( 'y/n/j', false ),
+		$link = $args['shortlink'] ? wp_get_shortlink( $args['post_id'] ) : get_the_permalink( $args['post_id'] );
+
+
+		$html = vsprintf( $args['template'], array(
+			esc_url( $link ),
+
+			// self::context( $args['post_id'], 'y/n/j' ),
 			'',
-			//gThemePost::titleAttr( false, null, true ),
-			//esc_attr( sprintf( __( 'Permalink to %s', 'twentythirteen' ), the_title_attribute( 'echo=0' ) ) ),
-			esc_attr( get_the_date( 'c' ) ),
-			esc_html( ( $args['onceperdate'] ? the_date( $args['format'], '', '', false ) : get_the_date( $args['format'] ) ) )
-		);
+
+			// gThemePost::titleAttr( FALSE, NULL, TRUE ),
+			// esc_attr( sprintf( __( 'Permalink to %s', GTHEME_TEXTDOMAIN ), the_title_attribute( 'echo=0' ) ) ),
+			esc_attr( get_the_date( 'c', $args['post_id'] ) ),
+
+			esc_html( $date ),
+
+			$args['prefix'],
+		) );
 
 		if ( ! $args['echo'] )
-			return $args['before'].$date.$args['after'];
+			return $args['before'].$html.$args['after'];
 
-		echo $args['before'].$date.$args['after'];
+		echo $args['before'].$html.$args['after'];
 	}
 
-	// DRAFT: WORKING
+	// FIXME: DRAFT: NOT WORKING
+	public static function context( $id = NULL, $format = 'j F Y' )
+	{
+		// if ( class_exists( 'gPersianDate' ) )
+		// 	echo gPersianDate::the_context_time( $format, FALSE );
+	}
+
+	// FIXME: DRAFT: WORKING
 	// http://php.net/manual/en/function.date.php
 	public static function entryDate()
 	{
@@ -53,7 +78,7 @@ class gThemeDate extends gThemeModuleCore
 		echo '<div class="visible-print-inline-block">'.$date.'</div>';
 	}
 
-	// DRAFT: WORKING
+	// FIXME: DRAFT: WORKING
 	public static function arabicDate( $format = 'j F Y' )
 	{
 		if ( class_exists( 'gPersianDateDate' ) )

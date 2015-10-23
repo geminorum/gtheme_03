@@ -66,7 +66,7 @@ class gThemeEditor extends gThemeModuleCore
 		if ( gThemeUtilities::isRTL() )
 			$buttons = array_diff( $buttons, array( 'outdent', 'indent' ) );
 
-		// must this : better to use on gpersiandate!
+		// FIXME: MOVE: this to gPersianDate
 		// http://stackoverflow.com/questions/12416678/how-to-customize-tinymce-button-output
 		$buttons = array_diff( $buttons, array( 'justifyfull' ) );
 

@@ -73,20 +73,11 @@ class gThemeOptions extends gThemeModuleCore
 				),
 			),
 
-			// COUNTS API
-			'counts' => array(
-				'dashboard' => array(
-					'title' => __( 'Dashboard', GTHEME_TEXTDOMAIN ),
-					'desc'  => __( 'Dashboard Count', GTHEME_TEXTDOMAIN ),
-					'def'   => 5,
-				),
-				'latest' => array(
-					'title' => __( 'Latest Posts', GTHEME_TEXTDOMAIN ),
-					'desc'  => __( 'Latest Posts Count', GTHEME_TEXTDOMAIN ),
-					'def'   => 5,
-				),
-			),
+			// 'jpeg_quality'          => 80, // quality of JPEG images uploaded to WP
+			// 'wp_editor_set_quality' => 80, // quality of JPEG images edited within WP
 
+			// COUNTS API
+			'counts' => gThemeCounts::defaults(),  // NOTE: use gThemeCounts::defaults( array( -extra / override -) )
 			// PAGES API
 			'pages' => gThemePages::defaults(), // NOTE: use gThemePages::defaults( array( -extra / override -) )
 
@@ -123,6 +114,7 @@ class gThemeOptions extends gThemeModuleCore
 
 			// FIXME: make ltr compatible
 			// FEEDS
+			'enclosure_image_size' => 'single',
 			'feed_str_replace' => array(
 				'<p>'                            => '<p style="direction:rtl;font-family:tahoma;line-height:22px;font-size:14px !important;">',
 				'<p style="text-align: right;">' => '<p style="direction:rtl;font-family:tahoma;line-height:22px;font-size:14px !important;">',
@@ -137,7 +129,6 @@ class gThemeOptions extends gThemeModuleCore
 				'<div class="lead">'             => '<div style="color:#ccc;">',
 				'<div class="label">'            => '<div style="float:left;color:#333;">',
 			),
-			'enclosure_image_size' => 'single',
 
 			// SEO
 			'meta_image_size' => 'single',
@@ -145,12 +136,12 @@ class gThemeOptions extends gThemeModuleCore
 			'twitter_site'    => FALSE,
 			'googlecse_cx'    => FALSE,
 
-			'blog_title'      => gtheme_get_option( 'blog_title', get_bloginfo( 'name' ) ), // used on page title other than frontpage
-			'frontpage_title' => gtheme_get_option( 'frontpage_title', get_bloginfo( 'name' ) ), // set FALSE to disable
-			'frontpage_desc'  => gtheme_get_option( 'frontpage_desc', get_bloginfo( 'description' ) ), // set FALSE to disable
+			'blog_title'      => self::getOption( 'blog_title', get_bloginfo( 'name', 'display' ) ), // used on page title other than frontpage
+			'frontpage_title' => self::getOption( 'frontpage_title', get_bloginfo( 'name', 'display' ) ), // set FALSE to disable
+			'frontpage_desc'  => self::getOption( 'frontpage_desc', get_bloginfo( 'description', 'display' ) ), // set FALSE to disable
 
-			'default_image_src' => GTHEME_URL.'/images/document.png',
-			'copyright'         => gtheme_get_option( 'copyright', __( '&copy; All right reserved.', GTHEME_TEXTDOMAIN ) ),
+			'default_image_src' => GTHEME_URL.'/images/document.png', // FIXME: MUST DEP
+			'copyright'         => self::getOption( 'copyright', __( '&copy; All right reserved.', GTHEME_TEXTDOMAIN ) ),
 
 			// COMMENTS
 			'comments_disable_types' => array( 'attachment' ),
@@ -202,7 +193,7 @@ class gThemeOptions extends gThemeModuleCore
 
 			// 'home_url_override' => '', // full escaped url to overrided home page / comment to disable
 			// 'empty_search_query' => '', // string to use on search input form / comment to use default
-			// 'the_date_format' => 'j M Y', // used on post by line
+
 
 			'post_actions_icons' => FALSE,
 			'post_actions' => array( // the order is important!
@@ -227,7 +218,6 @@ class gThemeOptions extends gThemeModuleCore
 				// 'category' => 'Category Archives for <strong>%s</strong>',
 			),
 
-			'author_link_template' => '<a href="%1$s" title="%2$s" rel="author">%3$s</a>',
 			'default_editor'       => 'html', // set default editor of post edit screen to html for each user // needs module arg // Either 'tinymce', or 'html', or 'test'
 
 			'additional_body_class' => FALSE, // body class just in case!
@@ -243,6 +233,15 @@ class gThemeOptions extends gThemeModuleCore
 				'first'  => _x( 'First', 'Banner Groups', GTHEME_TEXTDOMAIN ),
 				'second' => _x( 'Second', 'Banner Groups', GTHEME_TEXTDOMAIN ),
 			),
+
+			// TEMPLATES
+			// 'template_logo'        => '<a class="navbar-brand no-outline" href="%1$s" title="%3$s" rel="home"><h1 class="text-hide main-logo">%2$s</h1></a>',
+			// 'template_term_link'   => '<a href="%1$s" title="%3$s" class="%4$s" data-html="true" data-toggle="tooltip" data-placement="top">%2$s</a>',
+			// 'template_author_link' => '<a href="%1$s" title="%2$s" rel="author">%3$s</a>', // FIXME: no gThemeAuthors yet! / RENAMED
+			// 'template_the_date'    => '<span class="date"><a href="%1$s" title="%2$s" rel="shortlink"><time class="%5$s-date" datetime="%3$s">%4$s</time></a></span>',
+
+			// FORMATS
+			// 'format_the_date' => 'j M Y', // used on post by line
 		);
 
 		if ( FALSE === $option )
@@ -345,17 +344,11 @@ class gThemeOptions extends gThemeModuleCore
 		return $default;
 	}
 
+	// FIXME: DEPRECATED: use gThemeCounts::get()
 	public static function count( $name, $def = 0 )
 	{
-		$option_counts = self::get_option( 'counts', array() );
-		if ( count( $option_counts ) && isset( $option_counts[$name] ) )
-			return $option_counts[$name];
-
-		$info_counts = self::info( 'counts', array() );
-		if ( count( $info_counts ) && isset( $info_counts[$name] )  )
-			return $info_counts[$name]['def'];
-
-		return $def;
+		self::__dep( 'gThemeCounts::get()' );
+		return gThemeCounts::get( $name, $def );
 	}
 
 	public static function supports( $plugins, $if_not_set = FALSE )
@@ -375,7 +368,7 @@ class gThemeOptions extends gThemeModuleCore
 
 	public static function user_can( $role = 'editor' )
 	{
-		return current_user_can( self::info( $role.'_access', 'edit_others_posts' ) );
+		return self::cuc( self::info( $role.'_access', 'edit_others_posts' ), FALSE );
 	}
 
 	public static function editor_can( $then = TRUE, $not = FALSE )

@@ -266,10 +266,10 @@ class gThemeTerms extends gThemeModuleCore
 		return TRUE;
 	}
 
-	// BACK COMP
-	// DEPRECATED
+	// FIXME: DEPRECATED
 	public static function get( $taxonomy = 'category', $post_id = FALSE, $object = FALSE, $key = 'term_id' )
 	{
+		self::__dep( 'gThemeModuleCore::getTerms()' );
 		return self::getTerms( $taxonomy, $post_id, $object, $key );
 	}
 }
