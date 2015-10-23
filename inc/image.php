@@ -28,6 +28,7 @@ class gThemeImage extends gThemeModuleCore
 		add_filter( 'pre_option_image_default_align', array( &$this, 'pre_option_image_default_align' ), 10 );
 		add_filter( 'pre_option_image_default_size', array( &$this, 'pre_option_image_default_size' ), 10 );
 		add_filter( 'jpeg_quality', array( &$this, 'jpeg_quality' ), 10, 2 );
+		add_filter( 'wp_editor_set_quality', array( &$this, 'wp_editor_set_quality' ), 10, 2 );
 
 		add_filter( 'image_size_names_choose', array( &$this, 'image_size_names_choose' ) );
 		add_filter( 'attachment_fields_to_edit', array( &$this, 'tags_attachment_fields_to_edit' ), 10, 2 );
@@ -159,6 +160,11 @@ class gThemeImage extends gThemeModuleCore
 	public function jpeg_quality( $quality, $context )
 	{
 		return gThemeOptions::info( 'jpeg_quality', $quality );
+	}
+
+	public function wp_editor_set_quality( $default_quality, $mime_type )
+	{
+		return gThemeOptions::info( 'wp_editor_set_quality', $default_quality );
 	}
 
 	//////////////////////////////////////////////////////////////
