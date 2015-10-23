@@ -67,6 +67,43 @@ class gThemeEditorial extends gThemeModuleCore
 		return FALSE;
 	}
 
+	public static function issueRowCallback( $post, $args )
+	{
+		ob_start();
+			echo '<li>';
+
+				// NOTE: the shortcode will setup postdata already
+				get_template_part( 'row', 'issue' );
+
+			echo '</li>';
+		return ob_get_clean();
+	}
+
+	public static function issuePosts( $atts = array() )
+	{
+		if ( class_exists( 'gEditorialMagazineTemplates' ) ) {
+
+			$args = self::atts( array(
+				'before' => '',
+				'after'  => '',
+				'cb'     => array( __CLASS__, 'issueRowCallback' ),
+				'echo'   => TRUE,
+			), $atts );
+
+			$html = gEditorialMagazineTemplates::issue_shortcode( $args );
+
+			if ( $html ) {
+				if ( ! $args['echo'] )
+					return $args['before'].$html.$args['after'];
+
+				echo $args['before'].$html.$args['after'];
+				return TRUE;
+			}
+		}
+
+		return FALSE;
+	}
+
 	public static function issueCover( $atts = array() )
 	{
 		if ( class_exists( 'gEditorialMagazineTemplates' ) ) {
