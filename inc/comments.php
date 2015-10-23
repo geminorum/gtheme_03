@@ -140,7 +140,6 @@ class gThemeComments extends gThemeModuleCore
 		}
 	}
 
-	public static function navigation( $id = 'comment-nav-above' )
 	public static function passwordRequired( $print = TRUE )
 	{
 		if ( post_password_required() ) {
@@ -157,16 +156,17 @@ class gThemeComments extends gThemeModuleCore
 		return FALSE;
 	}
 
+	public static function navigation( $class = 'comment-nav-above' )
 	{
 		$strings = gThemeOptions::info( 'comment_nav_strings', array(
-			'title'    => __( 'Comment navigation', GTHEME_TEXTDOMAIN ),
-			'previous' => __( '&larr; Older Comments', GTHEME_TEXTDOMAIN ),
-			'next'     => __( 'Newer Comments &rarr;', GTHEME_TEXTDOMAIN ),
+			'title'    => _x( 'Comment navigation', 'Comments Module', GTHEME_TEXTDOMAIN ),
+			'previous' => _x( '&rarr; Older Comments', 'Comments Module', GTHEME_TEXTDOMAIN ),
+			'next'     => _x( 'Newer Comments &larr;', 'Comments Module', GTHEME_TEXTDOMAIN ),
 		) );
 
-		echo '<nav id="'.$id.'" class="comment-navigation" role="navigation">';
+		echo '<nav class="navigation comment-navigation '.$class.'" role="navigation">';
 		if ( $strings['title'] )
-			echo '<h4 class="assistive-text">'.$strings['title'].'</h4>';
+			echo '<h4 class="assistive-text sr-only">'.$strings['title'].'</h4>';
 		echo '<div class="nav-previous">';
 			previous_comments_link( $strings['previous'] );
 		echo '</div><div class="nav-next">';
