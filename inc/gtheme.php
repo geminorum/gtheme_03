@@ -45,6 +45,7 @@ final class gThemeCore
 			'l10n'       => 'gThemeL10N',
 			'frontpage'  => 'gThemeFrontPage',
 			'pages'      => 'gThemePages',
+			'counts'     => 'gThemeCounts',
 			'bootstrap'  => 'gThemeBootstrap',
 			'date'       => 'gThemeDate',
 			'editorial'  => 'gThemeEditorial',
