@@ -153,8 +153,8 @@ class gThemeNavigation extends gThemeModuleCore
 		), $atts );
 
 		if ( FALSE !== $args['home'] )
-			$crumbs[] = '<a href="'.esc_url( home_url( '/' ) ).'" rel="home" title="">'. // TODO : add title
-				( 'home' == $args['home'] ? get_bloginfo( 'name' ) : $args['home'] ).'</a>';
+			$crumbs[] = '<a href="'.esc_url( home_url( '/' ) ).'" rel="home" title="">'. // TODO: add title
+				( 'home' == $args['home'] ? gThemeOptions::info( 'blog_name' ) : $args['home'] ).'</a>';
 
 		$crumbs = apply_filters( 'gtheme_breadcrumb_after_home', $crumbs, $args );
 

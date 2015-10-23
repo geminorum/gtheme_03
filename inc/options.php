@@ -10,6 +10,9 @@ class gThemeOptions extends gThemeModuleCore
 			'title'     => _x( 'gTheme', 'Theme Title', GTHEME_TEXTDOMAIN ),
 			'sub_title' => FALSE, //'gTheme Child',
 
+			'blog_name'  => get_bloginfo( 'name', 'display' ),
+			'logo_title' => _x( 'Home', 'Logo Title', GTHEME_TEXTDOMAIN ),
+
 			// SETTINGS PAGE
 			'menu_title'     => _x( 'Theme Settings', 'Admin Menu Title', GTHEME_TEXTDOMAIN ),
 			'settings_title' => _x( 'gTheme Settings', 'Admin Settings Page Title', GTHEME_TEXTDOMAIN ),
