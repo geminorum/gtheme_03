@@ -8,6 +8,8 @@
 		gThemeComments::feed();
 		gThemeComments::title();
 
+		gThemeComments::lockDownNotice();
+
 		$gtheme_comment_navigation = ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) );
 
 		if ( $gtheme_comment_navigation )

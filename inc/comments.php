@@ -205,6 +205,16 @@ class gThemeComments extends gThemeModuleCore
 		), $html );
 	}
 
+	// When this is enabled, new comments on a post will not refresh the cached static files.
+	public static function lockDownNotice( $class = '' )
+	{
+		if ( defined( 'WPLOCKDOWN' ) && constant( 'WPLOCKDOWN' ) ) {
+			echo '<div class="lockdown-notice '.$class.'">';
+				_ex( 'Sorry, The site is locked down. Updates will appear shortly', 'Comments Module', GTHEME_TEXTDOMAIN );
+			echo '</div>';
+		}
+	}
+
 	// UNFINISHED but working
 	public static function comment_callback( $comment, $args, $depth )
 	{
