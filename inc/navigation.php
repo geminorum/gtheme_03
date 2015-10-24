@@ -20,7 +20,7 @@ class gThemeNavigation extends gThemeModuleCore
 			$previous = get_adjacent_post_link( '%link', _x( '<span aria-hidden="true">&larr;</span> Older', 'Post Navigation', GTHEME_TEXTDOMAIN ), FALSE, '', TRUE,  $taxonomy );
 			$next     = get_adjacent_post_link( '%link', _x( 'Newer <span aria-hidden="true">&rarr;</span>', 'Post Navigation', GTHEME_TEXTDOMAIN ), FALSE, '', FALSE, $taxonomy );
 			$classes[] = 'post-navigation';
-		} elseif ( $max_num_pages > 1 && ( is_home() || is_archive() || is_search() ) ) {
+		} else if ( $max_num_pages > 1 && ( is_home() || is_archive() || is_search() ) ) {
 			// NOTE: we use reverse!
 			$previous = get_next_posts_link( _x( '<span aria-hidden="true">&larr;</span> Older', 'Index Navigation', GTHEME_TEXTDOMAIN ) );
 			$next     = get_previous_posts_link( _x( 'Newer <span aria-hidden="true">&rarr;</span>', 'Index Navigation', GTHEME_TEXTDOMAIN ) );
@@ -164,24 +164,24 @@ class gThemeNavigation extends gThemeModuleCore
 
 		} else if ( is_category() ) {
 			$crumbs[] = sprintf( ( isset( $args['strings']['category'] ) ? $args['strings']['category'] : __( 'Category Archives for <strong>%s</strong>', GTHEME_TEXTDOMAIN ) ), single_term_title( '', FALSE ) );
-		} elseif ( is_tag() ) {
+		} else if ( is_tag() ) {
 			$crumbs[] = sprintf( ( isset( $args['strings']['tag'] ) ? $args['strings']['tag'] : __( 'Tag Archives for <strong>%s</strong>', GTHEME_TEXTDOMAIN ) ), single_term_title( '', FALSE ) );
-		} elseif ( is_tax() ) {
+		} else if ( is_tax() ) {
 			$crumbs[] = sprintf( ( isset( $args['strings']['tax'] ) ? $args['strings']['tax'] : __( 'Taxonomy Archives for <strong>%s</strong>', GTHEME_TEXTDOMAIN ) ), single_term_title( '', FALSE ) );
-		} elseif ( is_author() ) {
+		} else if ( is_author() ) {
 			$default_user = gThemeOptions::getOption( 'default_user', 0 );
 			$author_id = intval( get_query_var( 'author' ) );
 			if ( $default_user != $author_id )
 				$crumbs[] = sprintf( ( isset( $args['strings']['author'] ) ? $args['strings']['author'] : __( 'Author Archives for <strong>%s</strong>', GTHEME_TEXTDOMAIN ) ), get_the_author_meta( 'display_name', $author_id ) );
-		} elseif ( is_search() ) {
+		} else if ( is_search() ) {
 			$crumbs[] = sprintf( ( isset( $args['strings']['search'] ) ? $args['strings']['search'] : __( 'Search Results for <strong>%s</strong>', GTHEME_TEXTDOMAIN ) ), ''.get_search_query().'' );
-		} elseif ( is_day() ) {
+		} else if ( is_day() ) {
 			$crumbs[] = sprintf( ( isset( $args['strings']['day'] ) ? $args['strings']['day'] : __( 'Daily Archives for <strong>%s</strong>', GTHEME_TEXTDOMAIN ) ), get_the_date() );
-		} elseif ( is_month() ) {
+		} else if ( is_month() ) {
 			$crumbs[] = sprintf( ( isset( $args['strings']['month'] ) ? $args['strings']['month'] : __( 'Monthly Archives for <strong>%s</strong>', GTHEME_TEXTDOMAIN ) ), get_the_date('F Y') );
-		} elseif ( is_year() ) {
+		} else if ( is_year() ) {
 			$crumbs[] = sprintf( ( isset( $args['strings']['year'] ) ? $args['strings']['year'] : __( 'Yearly Archives for <strong>%s</strong>', GTHEME_TEXTDOMAIN ) ), get_the_date('Y') );
-		} elseif ( is_archive() ) {
+		} else if ( is_archive() ) {
 			$crumbs[] = ( isset( $args['strings']['archive'] ) ? $args['strings']['archive'] : __( 'Site Archives', GTHEME_TEXTDOMAIN ) );
 		} else {
 			$crumbs[] = __( 'Site Archives', GTHEME_TEXTDOMAIN );

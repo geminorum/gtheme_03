@@ -13,10 +13,10 @@ class gThemeFilters extends gThemeModuleCore
 			'disable_autoembed'  => TRUE,
 		), $args ) );
 
-		add_action( 'wp_head', array( &$this, 'wp_head' ), 5 );
-		add_filter( 'body_class', array( &$this, 'body_class' ), 10, 2 );
-		add_filter( 'post_class', array( &$this, 'post_class' ), 10, 3 );
-		add_filter( 'wp_title', array( &$this, 'wp_title' ), 5, 3 );
+		add_action( 'wp_head', array( $this, 'wp_head' ), 5 );
+		add_filter( 'body_class', array( $this, 'body_class' ), 10, 2 );
+		add_filter( 'post_class', array( $this, 'post_class' ), 10, 3 );
+		add_filter( 'wp_title', array( $this, 'wp_title' ), 5, 3 );
 
 		add_filter( 'get_wp_title_rss', function( $title ){
 			return empty( $title ) ? $title : $title.trim( gThemeOptions::info( 'title_sep', '&#187;' ) );
@@ -37,26 +37,26 @@ class gThemeFilters extends gThemeModuleCore
 
 		if ( gThemeOptions::info( 'trim_excerpt_characters', FALSE ) ) {
 			remove_filter( 'get_the_excerpt', 'wp_trim_excerpt' );
-			add_filter( 'get_the_excerpt', array( &$this, 'get_the_excerpt' ) );
+			add_filter( 'get_the_excerpt', array( $this, 'get_the_excerpt' ) );
 		}
 
-		add_filter( 'the_content', array( &$this, 'the_content' ), 15 );
-		add_filter( 'the_content_more_link', array( &$this, 'the_content_more_link' ) );
+		add_filter( 'the_content', array( $this, 'the_content' ), 15 );
+		add_filter( 'the_content_more_link', array( $this, 'the_content_more_link' ) );
 
 		if ( $content_extra )
-			add_filter( 'the_content', array( &$this, 'the_content_extra' ), 16 );
+			add_filter( 'the_content', array( $this, 'the_content_extra' ), 16 );
 
 		if ( $auto_paginate )
-			add_action( 'loop_start', array( &$this, 'loop_start' ) );
+			add_action( 'loop_start', array( $this, 'loop_start' ) );
 
 		if ( $redirect_canonical )
-			add_filter( 'redirect_canonical', array( &$this, 'redirect_canonical' ), 10, 2 );
+			add_filter( 'redirect_canonical', array( $this, 'redirect_canonical' ), 10, 2 );
 
 		if ( $default_editor )
-			add_filter( 'wp_default_editor', array( &$this, 'wp_default_editor' ) );
+			add_filter( 'wp_default_editor', array( $this, 'wp_default_editor' ) );
 
 		// gNetwork Cite Shortcode: [reflist]
-		add_filter( 'shortcode_atts_reflist', array( &$this, 'shortcode_atts_reflist' ), 10, 3 );
+		add_filter( 'shortcode_atts_reflist', array( $this, 'shortcode_atts_reflist' ), 10, 3 );
 
 		// https://gist.github.com/ocean90/3796628
 		// disables the auto-embeds function in WordPress 3.5

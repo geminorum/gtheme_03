@@ -12,13 +12,13 @@ class gThemeShortCodes extends gThemeModuleCore
 		), $args ) );
 
 		if ( $defaults )
-			add_action( 'init', array( &$this, 'init' ), 14 );
+			add_action( 'init', array( $this, 'init' ), 14 );
 
 		if ( $caption_override )
-			add_filter( 'img_caption_shortcode', array( &$this, 'img_caption_shortcode' ), 10, 3 );
+			add_filter( 'img_caption_shortcode', array( $this, 'img_caption_shortcode' ), 10, 3 );
 
 		if ( $gallery_override )
-			add_filter( 'post_gallery', array( &$this, 'post_gallery' ), 10, 2 );
+			add_filter( 'post_gallery', array( $this, 'post_gallery' ), 10, 2 );
 	}
 
 	public function init()
@@ -36,7 +36,7 @@ class gThemeShortCodes extends gThemeModuleCore
 
 		foreach ( $shortcodes as $shortcode => $method ) {
 			remove_shortcode( $shortcode );
-			add_shortcode( $shortcode, array( &$this, $method) );
+			add_shortcode( $shortcode, array( $this, $method ) );
 		}
 	}
 
@@ -114,7 +114,7 @@ class gThemeShortCodes extends gThemeModuleCore
 			$posts_args['include'] = $args['include'];
 			foreach ( get_posts( $posts_args ) as $key => $val )
 				$attachments[$val->ID] = $val;
-		} elseif ( ! empty( $args['exclude'] ) ) {
+		} else if ( ! empty( $args['exclude'] ) ) {
 			$posts_args['post_parent'] = $id;
 			$posts_args['exclude']     = $args['exclude'];
 			$attachments = get_children( $posts_args );
@@ -215,7 +215,7 @@ class gThemeShortCodes extends gThemeModuleCore
 			$posts_args['include'] = $args['include'];
 			foreach ( get_posts( $posts_args ) as $key => $val )
 				$attachments[$val->ID] = $val;
-		} elseif ( ! empty( $args['exclude'] ) ) {
+		} else if ( ! empty( $args['exclude'] ) ) {
 			$posts_args['post_parent'] = $id;
 			$posts_args['exclude']     = $args['exclude'];
 			$attachments = get_children( $posts_args );
@@ -514,10 +514,10 @@ class gTheme_Walker_Page extends Walker_Page
 			if ( $page->ID == $current_page ) {
 				$css_class[] = 'active';
 				$css_class[] = 'current_page_item';
-			} elseif ( $_current_page && $page->ID == $_current_page->post_parent ) {
+			} else if ( $_current_page && $page->ID == $_current_page->post_parent ) {
 				$css_class[] = 'current_page_parent';
 			}
-		} elseif ( $page->ID == get_option('page_for_posts') ) {
+		} else if ( $page->ID == get_option('page_for_posts') ) {
 			$css_class[] = 'current_page_parent';
 		}
 

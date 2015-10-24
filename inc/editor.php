@@ -16,19 +16,19 @@ class gThemeEditor extends gThemeModuleCore
 		), $args ) );
 
 		if ( $css )
-			add_filter( 'mce_css', array( &$this, 'mce_css' ) );
+			add_filter( 'mce_css', array( $this, 'mce_css' ) );
 
 		if ( $buttons )
-			add_filter( 'mce_buttons', array( &$this, 'mce_buttons' ) );
+			add_filter( 'mce_buttons', array( $this, 'mce_buttons' ) );
 
 		if ( $buttons_2 )
-			add_filter( 'mce_buttons_2', array( &$this, 'mce_buttons_2' ) );
+			add_filter( 'mce_buttons_2', array( $this, 'mce_buttons_2' ) );
 
 		if ( $advanced_styles )
-			add_filter( 'tiny_mce_before_init', array( &$this, 'tiny_mce_before_init' ), 12 );
+			add_filter( 'tiny_mce_before_init', array( $this, 'tiny_mce_before_init' ), 12 );
 
 		if ( $default_content )
-			add_filter( 'default_content', array( &$this, 'default_content' ), 10, 2 );
+			add_filter( 'default_content', array( $this, 'default_content' ), 10, 2 );
 	}
 
 	public static function style_url()

@@ -12,23 +12,23 @@ class gThemeComments extends gThemeModuleCore
 			'closing_time'     => FALSE,
 		), $args ) );
 
-		add_filter( 'comment_class', array( &$this, 'comment_class' ), 10 ,4 );
-		add_action( 'comment_form_before', array( &$this, 'comment_form_before' ) );
+		add_filter( 'comment_class', array( $this, 'comment_class' ), 10 ,4 );
+		add_action( 'comment_form_before', array( $this, 'comment_form_before' ) );
 
 		if ( $strip_trackbacks ) {
-			add_filter( 'the_posts', array( &$this, 'the_posts' ) );
-			add_filter( 'comments_array', array( &$this, 'comments_array' ) );
-			add_filter( 'get_comments_number', array( &$this, 'get_comments_number' ) );
+			add_filter( 'the_posts', array( $this, 'the_posts' ) );
+			add_filter( 'comments_array', array( $this, 'comments_array' ) );
+			add_filter( 'get_comments_number', array( $this, 'get_comments_number' ) );
 		}
 
 		if ( $reverse_comments )
-			add_filter( 'comments_array', array( &$this, 'comments_array_reverse' ), 12 );
+			add_filter( 'comments_array', array( $this, 'comments_array_reverse' ), 12 );
 
 		if ( $disable_types )
-			add_filter( 'comments_open', array( &$this, 'comments_open' ), 10 , 2 );
+			add_filter( 'comments_open', array( $this, 'comments_open' ), 10 , 2 );
 
 		if ( $closing_time )
-			add_action( 'comment_form_top', array( &$this, 'comment_form_top' ) );
+			add_action( 'comment_form_top', array( $this, 'comment_form_top' ) );
 
 	}
 

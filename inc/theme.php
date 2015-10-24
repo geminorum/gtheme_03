@@ -23,11 +23,11 @@ class gThemeTheme extends gThemeModuleCore
 
 		if ( $adminbar ) {
 			add_theme_support( 'admin-bar', array( 'callback' => '__return_false' ) );
-			add_action( 'template_redirect', array( &$this, 'template_redirect_remove_styles' ), 99 );
+			add_action( 'template_redirect', array( $this, 'template_redirect_remove_styles' ), 99 );
 		}
 
 		if ( $wpcf7 && function_exists( 'wpcf7_enqueue_scripts' ) )
-			add_action( 'wp_enqueue_scripts', array( &$this, 'wp_enqueue_scripts_wpcf7' ), 5 );
+			add_action( 'wp_enqueue_scripts', array( $this, 'wp_enqueue_scripts_wpcf7' ), 5 );
 
 		if ( $page_excerpt )
 			add_post_type_support( 'page', 'excerpt' );
@@ -58,7 +58,7 @@ class gThemeTheme extends gThemeModuleCore
 			) ) );
 
 		if ( $js )
-			add_action( 'wp_enqueue_scripts', array( &$this, 'wp_enqueue_scripts' ) );
+			add_action( 'wp_enqueue_scripts', array( $this, 'wp_enqueue_scripts' ) );
 
 		// http://justintadlock.com/archives/2011/09/01/a-better-way-for-plugins-to-hook-into-theme-templates
 		if ( $hooks )

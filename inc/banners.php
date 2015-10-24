@@ -10,8 +10,8 @@ class gThemeBanners extends gThemeModuleCore
 		), $args ) );
 
 		if ( $admin && is_admin() ) {
-			add_filter( 'gtheme_settings_subs', array( &$this, 'subs' ), 5 );
-			add_action( 'gtheme_settings_load', array( &$this, 'load' ) );
+			add_filter( 'gtheme_settings_subs', array( $this, 'subs' ), 5 );
+			add_action( 'gtheme_settings_load', array( $this, 'load' ) );
 		}
 	}
 

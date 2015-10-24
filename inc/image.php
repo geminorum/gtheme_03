@@ -11,32 +11,32 @@ class gThemeImage extends gThemeModuleCore
 			'responsive_class' => FALSE,
 		), $args ) );
 
-		add_action( 'init', array( &$this, 'init' ) );
-		add_filter( 'intermediate_image_sizes_advanced', array( &$this, 'intermediate_image_sizes_advanced' ) );
+		add_action( 'init', array( $this, 'init' ) );
+		add_filter( 'intermediate_image_sizes_advanced', array( $this, 'intermediate_image_sizes_advanced' ) );
 
-		add_filter( 'get_image_tag_class', array( &$this, 'get_image_tag_class' ), 10, 4 );
-		add_filter( 'wp_get_attachment_image_attributes', array( &$this, 'wp_get_attachment_image_attributes' ), 10, 2 );
+		add_filter( 'get_image_tag_class', array( $this, 'get_image_tag_class' ), 10, 4 );
+		add_filter( 'wp_get_attachment_image_attributes', array( $this, 'wp_get_attachment_image_attributes' ), 10, 2 );
 
 		if ( $responsive_class )
-			add_filter( 'the_content', array( &$this, 'the_content_responsive_class' ), 100 );
+			add_filter( 'the_content', array( $this, 'the_content_responsive_class' ), 100 );
 
-		add_filter( 'post_thumbnail_html', array( &$this, 'strip_width_height' ), 10 );
-		add_filter( 'image_send_to_editor', array( &$this, 'strip_width_height' ), 10 );
-		add_filter( 'image_send_to_editor', array( &$this, 'image_send_to_editor' ), 12, 8 );
+		add_filter( 'post_thumbnail_html', array( $this, 'strip_width_height' ), 10 );
+		add_filter( 'image_send_to_editor', array( $this, 'strip_width_height' ), 10 );
+		add_filter( 'image_send_to_editor', array( $this, 'image_send_to_editor' ), 12, 8 );
 
-		add_filter( 'pre_option_image_default_link_type', array( &$this, 'pre_option_image_default_link_type' ), 10 );
-		add_filter( 'pre_option_image_default_align', array( &$this, 'pre_option_image_default_align' ), 10 );
-		add_filter( 'pre_option_image_default_size', array( &$this, 'pre_option_image_default_size' ), 10 );
-		add_filter( 'jpeg_quality', array( &$this, 'jpeg_quality' ), 10, 2 );
-		add_filter( 'wp_editor_set_quality', array( &$this, 'wp_editor_set_quality' ), 10, 2 );
+		add_filter( 'pre_option_image_default_link_type', array( $this, 'pre_option_image_default_link_type' ), 10 );
+		add_filter( 'pre_option_image_default_align', array( $this, 'pre_option_image_default_align' ), 10 );
+		add_filter( 'pre_option_image_default_size', array( $this, 'pre_option_image_default_size' ), 10 );
+		add_filter( 'jpeg_quality', array( $this, 'jpeg_quality' ), 10, 2 );
+		add_filter( 'wp_editor_set_quality', array( $this, 'wp_editor_set_quality' ), 10, 2 );
 
-		add_filter( 'image_size_names_choose', array( &$this, 'image_size_names_choose' ) );
-		add_filter( 'attachment_fields_to_edit', array( &$this, 'tags_attachment_fields_to_edit' ), 10, 2 );
-		add_filter( 'attachment_fields_to_save', array( &$this, 'tags_attachment_fields_to_save' ), 10, 2 );
+		add_filter( 'image_size_names_choose', array( $this, 'image_size_names_choose' ) );
+		add_filter( 'attachment_fields_to_edit', array( $this, 'tags_attachment_fields_to_edit' ), 10, 2 );
+		add_filter( 'attachment_fields_to_save', array( $this, 'tags_attachment_fields_to_save' ), 10, 2 );
 
 		// image for terms on admin media editor
-		add_filter( 'attachment_fields_to_edit', array( &$this, 'terms_attachment_fields_to_edit' ), 9, 2 );
-		add_filter( 'attachment_fields_to_save', array( &$this, 'terms_attachment_fields_to_save' ), 9, 2 );
+		add_filter( 'attachment_fields_to_edit', array( $this, 'terms_attachment_fields_to_edit' ), 9, 2 );
+		add_filter( 'attachment_fields_to_save', array( $this, 'terms_attachment_fields_to_save' ), 9, 2 );
 	}
 
 	public function init()
@@ -454,12 +454,12 @@ class gThemeImage extends gThemeModuleCore
 							$attachment_post = get_post( $args['post_thumbnail_id'] );
 							$args['link'] = is_null( $attachment_post ) ? FALSE : get_attachment_link( $attachment_post );
 						}
-					} elseif ( 'parent' == $args['link'] ) {
+					} else if ( 'parent' == $args['link'] ) {
 						$args['link'] = get_permalink( $args['post_id'] );
-					} elseif ( 'attachment' == $args['link'] ) {
+					} else if ( 'attachment' == $args['link'] ) {
 						$attachment_post = get_post( $args['post_thumbnail_id'] );
 						$args['link'] = is_null( $attachment_post ) ? FALSE : get_attachment_link( $attachment_post );
-					} elseif ( 'url' == $args['link'] ) {
+					} else if ( 'url' == $args['link'] ) {
 						$args['link'] = is_null( get_post( $args['post_thumbnail_id'] ) ) ? FALSE : wp_get_attachment_url( $args['post_thumbnail_id'] );
 					}
 

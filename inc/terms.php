@@ -14,18 +14,18 @@ class gThemeTerms extends gThemeModuleCore
 		), $args ) );
 
 		if ( $system_tags ) {
-			add_action( 'init', array( &$this, 'register_taxonomies' ) );
-			add_filter( 'post_class', array( &$this, 'post_class' ), 10, 3 );
+			add_action( 'init', array( $this, 'register_taxonomies' ) );
+			add_filter( 'post_class', array( $this, 'post_class' ), 10, 3 );
 
-			add_filter( 'geditorial_tweaks_strings', array( &$this, 'tweaks_strings' ) );
+			add_filter( 'geditorial_tweaks_strings', array( $this, 'tweaks_strings' ) );
 		}
 
 		if ( $p2p )
-			add_action( 'p2p_init', array( &$this, 'p2p_init' ) );
+			add_action( 'p2p_init', array( $this, 'p2p_init' ) );
 
 		if ( $admin && is_admin() ) {
-			add_filter( 'gtheme_settings_subs', array( &$this, 'subs' ), 5 );
-			add_action( 'gtheme_settings_load', array( &$this, 'load' ) );
+			add_filter( 'gtheme_settings_subs', array( $this, 'subs' ), 5 );
+			add_action( 'gtheme_settings_load', array( $this, 'load' ) );
 		}
 	}
 
@@ -71,7 +71,7 @@ class gThemeTerms extends gThemeModuleCore
 				}
 			}
 
-			add_action( 'gtheme_settings_sub_terms', array( &$this, 'settings_sub_html' ), 10, 2 );
+			add_action( 'gtheme_settings_sub_terms', array( $this, 'settings_sub_html' ), 10, 2 );
 		}
 	}
 
@@ -168,7 +168,7 @@ class gThemeTerms extends gThemeModuleCore
 		if ( is_admin() ) {
 			// FIXME: hook this to menu
 			$this->system_tags_table_action( 'gtheme_action' );
-			add_action( 'after-'.GTHEME_SYSTEMTAGS.'-table', array( &$this, 'after_system_tags_table' ) );
+			add_action( 'after-'.GTHEME_SYSTEMTAGS.'-table', array( $this, 'after_system_tags_table' ) );
 		}
 	}
 

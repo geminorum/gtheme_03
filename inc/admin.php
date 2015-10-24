@@ -15,19 +15,19 @@ class gThemeAdmin extends gThemeModuleCore
 
 		$this->_default_user = gThemeOptions::getOption( 'default_user', 0 );
 
-		add_filter( 'default_avatar_select', array( &$this, 'default_avatar_select' ) );
+		add_filter( 'default_avatar_select', array( $this, 'default_avatar_select' ) );
 
 		if ( $this->_default_user > 0 ) {
 
 			if ( $set_def_user )
-				add_filter( 'wp_insert_post_data', array( &$this, 'wp_insert_post_data' ), 9, 2 );
+				add_filter( 'wp_insert_post_data', array( $this, 'wp_insert_post_data' ), 9, 2 );
 
 			if ( $set_def_user_comments )
-				add_filter( 'preprocess_comment', array( &$this, 'preprocess_comment' ) );
+				add_filter( 'preprocess_comment', array( $this, 'preprocess_comment' ) );
 		}
 
 		if ( $default_publish )
-			add_action ( 'admin_menu', array( &$this, 'admin_menu' ) );
+			add_action ( 'admin_menu', array( $this, 'admin_menu' ) );
 	}
 
 	public function wp_insert_post_data( $data, $postarr )

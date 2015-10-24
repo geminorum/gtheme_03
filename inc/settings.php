@@ -23,14 +23,14 @@ class gThemeSettings extends gThemeModuleCore
 				}
 			}
 
-			add_action( 'admin_menu', array( &$this, 'admin_menu' ) );
+			add_action( 'admin_menu', array( $this, 'admin_menu' ) );
 
-			add_action( 'gtheme_settings_sub_general', array( &$this, 'settings_sub_html' ), 10, 2 );
-			add_action( 'gtheme_settings_load', array( &$this, 'load' ) );
+			add_action( 'gtheme_settings_sub_general', array( $this, 'settings_sub_html' ), 10, 2 );
+			add_action( 'gtheme_settings_load', array( $this, 'load' ) );
 
 		} else {
 
-			add_action( 'admin_bar_menu', array( &$this, 'admin_bar_menu' ), 32 );
+			add_action( 'admin_bar_menu', array( $this, 'admin_bar_menu' ), 32 );
 
 		}
 	}
@@ -49,10 +49,10 @@ class gThemeSettings extends gThemeModuleCore
 			$info['menu_title'],
 			$info['settings_access'],
 			$info['settings_page'],
-			array( &$this, 'admin_settings' )
+			array( $this, 'admin_settings' )
 		);
 
-		add_action( 'load-'.$hook, array( &$this, 'admin_settings_load' ) );
+		add_action( 'load-'.$hook, array( $this, 'admin_settings_load' ) );
 	}
 
 	public function admin_settings()

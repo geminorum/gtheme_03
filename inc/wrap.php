@@ -10,9 +10,9 @@ class gThemeWrap extends gThemeModuleCore
 		), $args ) );
 
 		if ( $images_404 )
-			add_filter( 'template_include', array( &$this, 'template_include_404_images' ), -1 );
+			add_filter( 'template_include', array( $this, 'template_include_404_images' ), -1 );
 
-		add_action( 'wp_head', array( &$this, 'wp_head' ) );
+		add_action( 'wp_head', array( $this, 'wp_head' ) );
 		add_filter( 'template_include', array( 'gThemeWrap', 'wrap' ), 99 );
 	}
 

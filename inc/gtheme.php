@@ -66,7 +66,7 @@ final class gThemeCore
 		add_action( 'after_setup_theme', array( $this, 'after_setup_theme' ) );
 		add_action( 'init', array( $this, 'init_late' ), 99 );
 
-		do_action_ref_array( 'gtheme_after_setup_actions', array( &$this ) );
+		do_action_ref_array( 'gtheme_after_setup_actions', array( $this ) );
 	}
 
 	private function load_modules( $modules, $root = null )

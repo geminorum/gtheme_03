@@ -13,16 +13,16 @@ class gThemeFeed extends gThemeModuleCore
 		), $args ) );
 
 		if ( $prepare )
-			add_filter( 'the_content_feed', array( &$this, 'the_content_feed' ), 12, 2 );
+			add_filter( 'the_content_feed', array( $this, 'the_content_feed' ), 12, 2 );
 
 		if ( $restricted )
-			add_filter( 'the_content_feed', array( &$this, 'the_content_feed_restricted' ), 11, 2 );
+			add_filter( 'the_content_feed', array( $this, 'the_content_feed_restricted' ), 11, 2 );
 
 		if ( $enclosures )
-			add_action( 'rss2_item', array( &$this, 'rss2_item' ) );
+			add_action( 'rss2_item', array( $this, 'rss2_item' ) );
 
 		if ( $paged )
-			add_filter( 'posts_where', array( &$this, 'posts_where' ), 10, 2 );
+			add_filter( 'posts_where', array( $this, 'posts_where' ), 10, 2 );
 	}
 
 	public function the_content_feed( $content, $feed_type )

@@ -12,16 +12,16 @@ class gThemeMenu extends gThemeModuleCore
 		), $args ) );
 
 		if ( $register_nav )
-			add_action( 'init', array( &$this, 'init' ) );
+			add_action( 'init', array( $this, 'init' ) );
 
 		if ( $allowedtags )
-			add_filter( 'wp_nav_menu_container_allowedtags', array( &$this, 'wp_nav_menu_container_allowedtags' ) );
+			add_filter( 'wp_nav_menu_container_allowedtags', array( $this, 'wp_nav_menu_container_allowedtags' ) );
 
 		if ( $css_classes )
-			add_filter( 'nav_menu_css_class', array( &$this, 'nav_menu_css_class' ), 10, 4 );
+			add_filter( 'nav_menu_css_class', array( $this, 'nav_menu_css_class' ), 10, 4 );
 
 		if ( ! is_admin() ) {
-			// add_filter( 'wp_nav_menu_args', array( &$this, 'wp_nav_menu_args' ) );
+			// add_filter( 'wp_nav_menu_args', array( $this, 'wp_nav_menu_args' ) );
 		}
 	}
 
