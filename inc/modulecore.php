@@ -167,13 +167,7 @@ class gThemeModuleCore
 
 	public function do_settings_field( $atts = array(), $wrap = FALSE )
 	{
-		// workaround to recent changes on WP 4.3
-		if ( isset( $atts['class'] ) && ! isset( $atts['field_class'] ) ) {
-			$atts['field_class'] = $atts['class'];
-			unset( $atts['class'] );
-		}
-
-		$args = shortcode_atts( array(
+		$args = self::atts( array(
 			'title'        => '',
 			'label_for'    => '',
 			'type'         => 'enabled',
@@ -191,6 +185,7 @@ class gThemeModuleCore
 			'option_group' => $this->_option_key,
 			'name_attr'    => FALSE, // override
 			'id_attr'      => FALSE, // override
+			'placeholder'  => FALSE,
 		), $atts );
 
 		if ( $wrap ) {
@@ -203,6 +198,7 @@ class gThemeModuleCore
 		if ( ! $args['field'] )
 			return;
 
+		$html    = '';
 		$name    = $args['name_attr'] ? $args['name_attr'] : $this->_option_base.'_'.$args['option_group'].'['.esc_attr( $args['field'] ).']';
 		$id      = $args['id_attr'] ? $args['id_attr'] : $this->_option_base.'-'.$args['option_group'].'-'.esc_attr( $args['field'] );
 		$value   = isset( $this->options[$args['field']] ) ? $this->options[$args['field']] : $args['default'];
@@ -212,9 +208,22 @@ class gThemeModuleCore
 			echo $args['before'].'&nbsp;';
 
 		switch ( $args['type'] ) {
+
+			case 'hidden' :
+
+				echo gThemeUtilities::html( 'input', array(
+					'type'  => 'hidden',
+					'name'  => $name,
+					'id'    => $id,
+					'value' => $value,
+				) );
+
+				$args['description'] = FALSE;
+
+			break;
 			case 'enabled' :
 
-				$html = gThemeUtilities::html( 'option', array(
+				$html .= gThemeUtilities::html( 'option', array(
 					'value'    => '0',
 					'selected' => '0' == $value,
 				), esc_html__( 'Disabled' ) );
@@ -237,12 +246,13 @@ class gThemeModuleCore
 					$args['field_class'] = 'regular-text';
 
 				echo gThemeUtilities::html( 'input', array(
-					'type'  => 'text',
-					'class' => $args['field_class'],
-					'name'  => $name,
-					'id'    => $id,
-					'value' => $value,
-					'dir'   => $args['dir'],
+					'type'        => 'text',
+					'class'       => $args['field_class'],
+					'name'        => $name,
+					'id'          => $id,
+					'value'       => $value,
+					'dir'         => $args['dir'],
+					'placeholder' => $args['placeholder'],
 				) );
 
 			break;
@@ -255,14 +265,15 @@ class gThemeModuleCore
 					$args['dir'] = 'ltr';
 
 				echo gThemeUtilities::html( 'input', array(
-					'type'  => 'number',
-					'class' => $args['field_class'],
-					'name'  => $name,
-					'id'    => $id,
-					'value' => $value,
-					'step'  => '1', // FIXME: get from args
-					'min'   => '0', // FIXME: get from args
-					'dir'   => $args['dir'],
+					'type'        => 'number',
+					'class'       => $args['field_class'],
+					'name'        => $name,
+					'id'          => $id,
+					'value'       => $value,
+					'step'        => '1', // FIXME: get from args
+					'min'         => '0', // FIXME: get from args
+					'dir'         => $args['dir'],
+					'placeholder' => $args['placeholder'],
 				) );
 
 			break;
@@ -274,7 +285,7 @@ class gThemeModuleCore
 						if ( in_array( $value_name, $exclude ) )
 							continue;
 
-						$html = gThemeUtilities::html( 'input', array(
+						$html .= gThemeUtilities::html( 'input', array(
 							'type'    => 'checkbox',
 							'class'   => $args['field_class'],
 							'name'    => $name.'['.$value_name.']',
@@ -291,7 +302,7 @@ class gThemeModuleCore
 
 				} else {
 
-					$html = gThemeUtilities::html( 'input', array(
+					$html .= gThemeUtilities::html( 'input', array(
 						'type'    => 'checkbox',
 						'class'   => $args['field_class'],
 						'name'    => $name,
@@ -311,8 +322,8 @@ class gThemeModuleCore
 			break;
 			case 'select' :
 
-				if ( FALSE !== $args['values'] ) { // alow hiding
-					$html = '';
+				if ( FALSE !== $args['values'] ) {
+
 					foreach ( $args['values'] as $value_name => $value_title ) {
 
 						if ( in_array( $value_name, $exclude ) )
@@ -335,15 +346,16 @@ class gThemeModuleCore
 			case 'textarea' :
 
 				echo gThemeUtilities::html( 'textarea', array(
-					'class' => array(
+					'rows'        => 5,
+					'cols'        => 45,
+					'name'        => $name,
+					'id'          => $id,
+					'placeholder' => $args['placeholder'],
+					'class'       => array(
 						'large-text',
 						// 'textarea-autosize',
 						$args['field_class'],
 					),
-					'name'  => $name,
-					'id'    => $id,
-					'rows'  => 5,
-					'cols'  => 45,
 				// ), esc_textarea( $value ) );
 				), $value );
 
@@ -380,12 +392,13 @@ class gThemeModuleCore
 			case 'file' :
 
 				echo gThemeUtilities::html( 'input', array(
-					'type'  => 'file',
-					'class' => $args['field_class'],
-					'name'  => $id, // $name,
-					'id'    => $id,
-					// 'value' => $value,
-					'dir'   => $args['dir'],
+					'type'        => 'file',
+					'class'       => $args['field_class'],
+					'name'        => $id, // $name,
+					'id'          => $id,
+					// 'value'       => $value,
+					'dir'         => $args['dir'],
+					'placeholder' => $args['placeholder'],
 				) );
 
 			break;
