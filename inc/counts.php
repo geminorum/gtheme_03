@@ -3,7 +3,7 @@
 class gThemeCounts extends gThemeModuleCore
 {
 
-	var $_option_key = 'counts';
+	protected $option_key = 'counts';
 
 	public function setup_actions( $args = array() )
 	{

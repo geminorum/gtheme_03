@@ -3,7 +3,7 @@
 class gThemeAdmin extends gThemeModuleCore
 {
 
-	var $_default_user = 0;
+	protected $default_user = 0;
 
 	public function setup_actions( $args = array() )
 	{
@@ -13,11 +13,11 @@ class gThemeAdmin extends gThemeModuleCore
 			'default_publish'       => FALSE,
 		), $args ) );
 
-		$this->_default_user = gThemeOptions::getOption( 'default_user', 0 );
+		$this->default_user = gThemeOptions::getOption( 'default_user', 0 );
 
 		add_filter( 'default_avatar_select', array( $this, 'default_avatar_select' ) );
 
-		if ( $this->_default_user > 0 ) {
+		if ( $this->default_user > 0 ) {
 
 			if ( $set_def_user )
 				add_filter( 'wp_insert_post_data', array( $this, 'wp_insert_post_data' ), 9, 2 );
@@ -34,7 +34,7 @@ class gThemeAdmin extends gThemeModuleCore
 	{
 		global $user_ID;
 
-		if ( $this->_default_user < 1 )
+		if ( $this->default_user < 1 )
 			return $data;
 
 		$post_type_object = get_post_type_object( $postarr['post_type'] );
@@ -44,7 +44,7 @@ class gThemeAdmin extends gThemeModuleCore
 
 			if ( 'auto-draft' == $postarr['post_status']
 				&& $user_ID == $postarr['post_author'] )
-					$data['post_author'] = (int) $this->_default_user;
+					$data['post_author'] = (int) $this->default_user;
 		}
 
 		return $data;
@@ -55,8 +55,8 @@ class gThemeAdmin extends gThemeModuleCore
 	{
 		if ( self::isAJAX() ) {
 			if ( is_admin() && is_super_admin() ) {
-				if ( $this->_default_user > 0 ) {
-					$user = get_user_by( 'id', (int) $this->_default_user );
+				if ( $this->default_user > 0 ) {
+					$user = get_user_by( 'id', (int) $this->default_user );
 
 					$commentdata['user_ID']              = $commentdata['user_id'] = $user->ID;
 					$commentdata['comment_author']       = wp_slash( $user->display_name );

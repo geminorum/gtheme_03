@@ -19,8 +19,8 @@
 
 class gThemeFragmentCache
 {
-	var $key;
-	var $ttl;
+	protected $key;
+	protected $ttl;
 
 	public function __construct( $key, $ttl = GTHEME_CACHETTL, $transient = NULL, $site = FALSE )
 	{
@@ -96,7 +96,7 @@ class gThemeFragmentCache
 
 			else
 				set_transient( $this->key(), $output, $this->ttl );
-			
+
 		} else {
 			wp_cache_add( $this->key, $output, GTHEME_FRAGMENTCACHE, $this->ttl );
 		}

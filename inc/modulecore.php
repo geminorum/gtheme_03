@@ -3,18 +3,19 @@
 class gThemeModuleCore
 {
 
-	var $_option_base = 'gtheme';
-	var $_option_key  = '';
-	var $_ajax        = FALSE;
-	var $_args        = array();
+	protected $option_base = 'gtheme';
+	protected $option_key  = '';
+	protected $ajax        = FALSE;
+	protected $args        = array();
+	protected $counter     = 0;
 
 	function __construct( $args = array() )
 	{
-		if ( ( ! $this->_ajax && self::isAJAX() )
+		if ( ( ! $this->ajax && self::isAJAX() )
 			|| ( defined( 'WP_INSTALLING' ) && constant( 'WP_INSTALLING' ) ) )
 			return;
 
-		$this->_args = $args;
+		$this->args = $args;
 		$this->setup_actions( $args );
 	}
 
@@ -182,7 +183,7 @@ class gThemeModuleCore
 			'after'        => '', // html to print after field
 			'field_class'  => '', // formally just class!
 			'class'        => '', // now used on wrapper
-			'option_group' => $this->_option_key,
+			'option_group' => $this->option_key,
 			'name_attr'    => FALSE, // override
 			'id_attr'      => FALSE, // override
 			'placeholder'  => FALSE,
@@ -199,8 +200,8 @@ class gThemeModuleCore
 			return;
 
 		$html    = '';
-		$name    = $args['name_attr'] ? $args['name_attr'] : $this->_option_base.'_'.$args['option_group'].'['.esc_attr( $args['field'] ).']';
-		$id      = $args['id_attr'] ? $args['id_attr'] : $this->_option_base.'-'.$args['option_group'].'-'.esc_attr( $args['field'] );
+		$name    = $args['name_attr'] ? $args['name_attr'] : $this->option_base.'_'.$args['option_group'].'['.esc_attr( $args['field'] ).']';
+		$id      = $args['id_attr'] ? $args['id_attr'] : $this->option_base.'-'.$args['option_group'].'-'.esc_attr( $args['field'] );
 		$value   = isset( $this->options[$args['field']] ) ? $this->options[$args['field']] : $args['default'];
 		$exclude = $args['exclude'] && ! is_array( $args['exclude'] ) ? array_filter( explode( ',', $args['exclude'] ) ) : array();
 
@@ -432,16 +433,14 @@ class gThemeModuleCore
 			echo '</td></tr>';
 	}
 
-	var $_counter = 0;
-
 	public function selector( $prefix = 'theme-selector-%d' )
 	{
 		if ( FALSE === strpos( $prefix, '%d' ) )
-			$selector = $prefix.$this->_counter;
+			$selector = $prefix.$this->counter;
 		else
-			$selector = sprintf( $prefix, $this->_counter );
+			$selector = sprintf( $prefix, $this->counter );
 
-		$this->_counter++;
+		$this->counter++;
 		return $selector;
 	}
 

@@ -3,7 +3,7 @@
 class gThemeSideBar extends gThemeModuleCore
 {
 
-	var $_ajax = TRUE;
+	protected $ajax = TRUE;
 
 	public function setup_actions( $args = array() )
 	{

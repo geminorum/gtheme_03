@@ -84,7 +84,7 @@ class gThemeShortCodes extends gThemeModuleCore
 		return $empty;
 	}
 
-	public function shortcode_gallery_column( $atts, $content = null, $tag = 'gallery' )
+	public function shortcode_gallery_column( $atts, $content = NULL, $tag = 'gallery' )
 	{
 		$args = shortcode_atts( array(
 			'order'     => 'ASC',
@@ -130,19 +130,19 @@ class gThemeShortCodes extends gThemeModuleCore
 			$default = '<figure class="gallery-img">%1$s<figcaption><div class="gallery-description"><p>%3$s</p></div></figcaption></figure>';
 		} else {
 			$default = '<div class="gallery-wrap"><figure class="gallery-img">%1$s<figcaption><a href="%2$s" title="%4$s" id="%5$s"><div class="gallery-description"><p>%3$s</p></div></a></figcaption></figure></div>';
-			if ( gThemeOptions::supports( 'zoom', true ) ) {
+			if ( gThemeOptions::supports( 'zoom', TRUE ) ) {
 				$args['link'] = 'file';
 
 				// CAUTION: css must added manually
-				wp_enqueue_script( 'gtheme-zoom', GTHEME_URL.'/libs/zoom.min.js', array( 'jquery' ), '20141123', true );
+				wp_enqueue_script( 'gtheme-zoom', GTHEME_URL.'/libs/zoom.min.js', array( 'jquery' ), '20141123', TRUE );
 			}
 		}
 
 		// CAUTION: css must added manually
-		wp_register_script( 'gtheme-imagesloaded', GTHEME_URL.'/js/jquery.imagesloaded.min.js', array( 'jquery' ), '3.0.4', true );
-		wp_enqueue_script( 'gtheme-gallery', GTHEME_URL.'/js/script.gallery.js', array( 'jquery', 'gtheme-imagesloaded' ), GTHEME_VERSION, true );
+		wp_register_script( 'gtheme-imagesloaded', GTHEME_URL.'/js/jquery.imagesloaded.min.js', array( 'jquery' ), '3.0.4', TRUE );
+		wp_enqueue_script( 'gtheme-gallery', GTHEME_URL.'/js/script.gallery.js', array( 'jquery', 'gtheme-imagesloaded' ), GTHEME_VERSION, TRUE );
 
-		$html = '';
+		$html     = '';
 		$template = gThemeOptions::info( 'gallery_template', $default );
 		$selector = $this->selector( 'gallery-column-' );
 
@@ -186,7 +186,7 @@ class gThemeShortCodes extends gThemeModuleCore
 		), $html ).'</div>';
 	}
 
-	public function shortcode_gallery_slider( $atts, $content = null, $tag = '' )
+	public function shortcode_gallery_slider( $atts, $content = NULL, $tag = '' )
 	{
 		$args = shortcode_atts( array(
 			'order'   => 'ASC',
@@ -253,7 +253,7 @@ class gThemeShortCodes extends gThemeModuleCore
 /* ]]> */
 		</script>';
 
-		wp_enqueue_script( 'gtheme-flexslider', GTHEME_URL.'/libs/flexslider-rtl/jquery.flexslider-min.js', array( 'jquery' ), '2.2.0', true );
+		wp_enqueue_script( 'gtheme-flexslider', GTHEME_URL.'/libs/flexslider-rtl/jquery.flexslider-min.js', array( 'jquery' ), '2.2.0', TRUE );
 
 		return $html;
 	}
@@ -268,45 +268,45 @@ class gThemeShortCodes extends gThemeModuleCore
 
 	**/
 
-	var $_panel_group_count = 0;
-	var $_panel_count = 0;
-	var $_panel_parent = false;
+	protected $panel_group_count = 0;
+	protected $panel_count       = 0;
+	protected $panel_parent      = FALSE;
 
-	public function shortcode_panels( $atts, $content = null, $tag = '' )
+	public function shortcode_panels( $atts, $content = NULL, $tag = '' )
 	{
 		if ( is_null( $content ) )
 			return $content;
 
 		$args = shortcode_atts( array(
 			'class' => '',
-			'id'    => 'panel-group-'.$this->_panel_group_count,
+			'id'    => 'panel-group-'.$this->panel_group_count,
 			'role'  => 'tablist',
 		), $atts, $tag );
 
-		$this->_panel_parent = $args['id'];
+		$this->panel_parent = $args['id'];
 
 		$html  = '<div class="panel-group '.$args['class'].'" id="'.$args['id'].'" role="'.$args['role'].'" aria-multiselectable="true">';
 		$html .= do_shortcode( $content );
 		$html .= '</div>';
 
-		$this->_panel_parent = false;
-		$this->_panel_group_count++;
+		$this->panel_parent = FALSE;
+		$this->panel_group_count++;
 
 		return $html;
 	}
 
-	public function shortcode_panel( $atts, $content = null, $tag = '' )
+	public function shortcode_panel( $atts, $content = NULL, $tag = '' )
 	{
 		if ( is_null( $content ) )
 			return $content;
 
 		$args = shortcode_atts( array(
-			'parent'    => ( $this->_panel_parent ? $this->_panel_parent : 'panel-group-'.$this->_panel_group_count ),
-			'id'        => 'panel-'.$this->_panel_count,
+			'parent'    => ( $this->panel_parent ? $this->panel_parent : 'panel-group-'.$this->panel_group_count ),
+			'id'        => 'panel-'.$this->panel_count,
 			'title'     => _x( 'Untitled', 'Panel Shortcode Title', GTHEME_TEXTDOMAIN ),
 			'title_tag' => 'h4',
 			'context'   => 'default',
-			'expanded'  => false,
+			'expanded'  => FALSE,
 		), $atts, $tag );
 
 		$html  = '<div class="panel panel-'.$args['context'].'">';
@@ -316,7 +316,7 @@ class gThemeShortCodes extends gThemeModuleCore
 		$html .= '<div id="'.$args['id'].'" class="panel-collapse collapse'.( $args['expanded'] ? ' in' : '' ).'" role="tabpanel" aria-labelledby="'.$args['id'].'-wrap">';
 		$html .= '<div class="panel-body">'.$content.'</div></div></div>';
 
-		$this->_panel_count++;
+		$this->panel_count++;
 		return $html;
 	}
 
@@ -330,33 +330,33 @@ class gThemeShortCodes extends gThemeModuleCore
 
 	**/
 
-	var $_tabs_active = '';
-	var $_tabs_nav = array();
-	var $_tabs_count = 0;
+	protected $tabs_active = '';
+	protected $tabs_nav    = array();
+	protected $tabs_count  = 0;
 
-	public function shortcode_tabs( $atts, $content = null, $tag = '' )
+	public function shortcode_tabs( $atts, $content = NULL, $tag = '' )
 	{
 		if ( is_null( $content ) )
 			return $content;
 
 		$args = shortcode_atts( array(
 			'class' => '',
-			'id'    => 'tabs-'.$this->_tabs_count,
+			'id'    => 'tabs-'.$this->tabs_count,
 			'role'  => 'tabpanel',
 		), $atts, $tag );
 
 		$tabs = do_shortcode( trim( $content, '<br />'."\n" ) );
 
-		if ( ! count( $this->_tabs_nav ) )
+		if ( ! count( $this->tabs_nav ) )
 			return $content;
 
 		$html  = '<div class="'.$args['class'].'" id="'.$args['id'];
 		$html .= '" role="'.$args['role'].'">';
 		$html .= '<ul class="nav nav-tabs" role="tablist">';
 
-		foreach ( $this->_tabs_nav as $id => $title ) {
+		foreach ( $this->tabs_nav as $id => $title ) {
 			$html .= '<li role="presentation"';
-			$html .= ( $id == $this->_tabs_active ? ' class="active"' : '' ).'>';
+			$html .= ( $id == $this->tabs_active ? ' class="active"' : '' ).'>';
 			$html .= '<a href="#'.$id.'" aria-controls="'.$id;
 			$html .= '" role="tab" data-toggle="tab">'.$title.'</a></li>';
 		}
@@ -365,28 +365,28 @@ class gThemeShortCodes extends gThemeModuleCore
 		$html .= $tabs;
 		$html .= '</div></div>';
 
-		$this->_tabs_nav = array();
-		$this->_tabs_count++;
+		$this->tabs_nav = array();
+		$this->tabs_count++;
 
 		return $html;
 	}
 
-	public function shortcode_tab( $atts, $content = null, $tag = '' )
+	public function shortcode_tab( $atts, $content = NULL, $tag = '' )
 	{
 		if ( is_null( $content ) )
 			return $content;
 
 		$args = shortcode_atts( array(
-			'id'        => 'tab-'.$this->_tabs_count.'-'.count( $this->_tabs_nav ),
-			'title'     => _x( 'Untitled', 'Tab Shortcode Title', GTHEME_TEXTDOMAIN ),
-			'context'   => 'default',
-			'active'  => false,
+			'id'      => 'tab-'.$this->tabs_count.'-'.count( $this->tabs_nav ),
+			'title'   => _x( 'Untitled', 'Tab Shortcode Title', GTHEME_TEXTDOMAIN ),
+			'context' => 'default',
+			'active'  => FALSE,
 		), $atts, $tag );
 
 		if ( $args['active'] )
-			$this->_tabs_active = $args['id'];
+			$this->tabs_active = $args['id'];
 
-		$this->_tabs_nav[$args['id']] = $args['title'];
+		$this->tabs_nav[$args['id']] = $args['title'];
 
 		$html  = '<div role="tabpanel" class="tab-pane tab-'.$args['context'];
 		$html .= ( $args['active'] ? ' active' : '' ).'" id="'.$args['id'].'">';
@@ -395,39 +395,39 @@ class gThemeShortCodes extends gThemeModuleCore
 		return $html;
 	}
 
-	public function shortcode_theme_image( $atts, $content = null, $tag = '' )
+	public function shortcode_theme_image( $atts, $content = NULL, $tag = '' )
 	{
 		$args = shortcode_atts( array(
-			'src' => false,
-			'alt' => false,
-			'title' => false,
-			'width' => false,
-			'height' => false,
-			'url' => false,
-			'dir' => 'images',
+			'src'    => FALSE,
+			'alt'    => FALSE,
+			'title'  => FALSE,
+			'width'  => FALSE,
+			'height' => FALSE,
+			'url'    => FALSE,
+			'dir'    => 'images',
 		), $atts, $tag );
 
 		if ( ! $args['src'] )
 			return $content;
 
 		$html = gThemeUtilities::html( 'img', array(
-			'src' => GTHEME_CHILD_URL.'/'.$args['dir'].'/'.$args['src'],
-			'alt' => $args['alt'],
-			'title' => ( $args['url'] ? false : $args['title'] ),
-			'width' => $args['width'],
+			'src'    => GTHEME_CHILD_URL.'/'.$args['dir'].'/'.$args['src'],
+			'alt'    => $args['alt'],
+			'title'  => $args['url'] ? FALSE : $args['title'],
+			'width'  => $args['width'],
 			'height' => $args['height'],
 		) );
 
 		if ( $args['url'] )
 			return gThemeUtilities::html( 'a', array(
-				'href' => $args['url'],
+				'href'  => $args['url'],
 				'title' => $args['title'],
 			), $html );
 
 		return $html;
 	}
 
-	public function shortcode_children( $atts, $content = null, $tag = '' )
+	public function shortcode_children( $atts, $content = NULL, $tag = '' )
 	{
 		$args = shortcode_atts( array(
 			'id'      => get_queried_object_id(),
@@ -458,12 +458,12 @@ class gThemeShortCodes extends gThemeModuleCore
 		return '<div class="list-group children">'.$children.'</div>';
 	}
 
-	public function shortcode_siblings( $atts, $content = null, $tag = '' )
+	public function shortcode_siblings( $atts, $content = NULL, $tag = '' )
 	{
 		$args = shortcode_atts( array(
-			'parent'  => null,
+			'parent'  => NULL,
 			'type'    => 'page',
-			'excerpt' => true,
+			'excerpt' => TRUE,
 		), $atts, $tag );
 
 		if ( ! is_singular( $args['type'] ) )
@@ -482,7 +482,7 @@ class gThemeShortCodes extends gThemeModuleCore
 			'child_of'    => $args['parent'],
 			'post_type'   => $args['type'],
 			'excerpt'     => $args['excerpt'],
-			'echo'        => false,
+			'echo'        => FALSE,
 			'depth'       => 1,
 			'title_li'    => '',
 			'sort_column' => 'menu_order, post_title',
@@ -507,16 +507,20 @@ class gTheme_Walker_Page extends Walker_Page
 			$css_class[] = 'page_item_has_children';
 
 		if ( ! empty( $current_page ) ) {
+
 			$_current_page = get_post( $current_page );
-			if ( $_current_page && in_array( $page->ID, $_current_page->ancestors ) ) {
+
+			if ( $_current_page && in_array( $page->ID, $_current_page->ancestors ) )
 				$css_class[] = 'current_page_ancestor';
-			}
+
 			if ( $page->ID == $current_page ) {
 				$css_class[] = 'active';
 				$css_class[] = 'current_page_item';
+
 			} else if ( $_current_page && $page->ID == $_current_page->post_parent ) {
 				$css_class[] = 'current_page_parent';
 			}
+
 		} else if ( $page->ID == get_option('page_for_posts') ) {
 			$css_class[] = 'current_page_parent';
 		}
@@ -534,6 +538,7 @@ class gTheme_Walker_Page extends Walker_Page
 				apply_filters( 'the_title', $page->post_title, $page->ID ),
 				$page->post_excerpt
 			);
+
 		} else {
 			$output .= sprintf(
 				'<a class="%s" href="%s">%s</a>',

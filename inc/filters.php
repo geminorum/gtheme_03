@@ -165,7 +165,7 @@ class gThemeFilters extends gThemeModuleCore
 		return $classes;
 	}
 
-	var $_current_post_class = 'odd';
+	protected $current_post_class = 'odd';
 
 	public function post_class( $classes, $class, $post_ID )
 	{
@@ -184,8 +184,8 @@ class gThemeFilters extends gThemeModuleCore
 			if ( 0 == $wp_query->current_post )
 				$classes[] = 'first';
 
-			$classes[] = $this->_current_post_class;
-			$this->_current_post_class = ( 'odd' == $this->_current_post_class ) ? 'even' : 'odd';
+			$classes[] = $this->current_post_class;
+			$this->current_post_class = ( 'odd' == $this->current_post_class ) ? 'even' : 'odd';
 		}
 
 		foreach ( get_the_category() as $category )
@@ -197,7 +197,7 @@ class gThemeFilters extends gThemeModuleCore
 	// helper to reset post class
 	public function reset_post_class( $class = 'odd' )
 	{
-		$this->_current_post_class = $class;
+		$this->current_post_class = $class;
 	}
 
 	public function wp_title( $title, $sep, $seplocation )

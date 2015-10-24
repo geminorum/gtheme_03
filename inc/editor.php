@@ -3,7 +3,7 @@
 class gThemeEditor extends gThemeModuleCore
 {
 
-	var $_ajax = TRUE;
+	protected $ajax = TRUE;
 
 	function setup_actions( $args = array() )
 	{
