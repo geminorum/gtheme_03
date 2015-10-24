@@ -53,7 +53,7 @@ class gThemeMenu extends gThemeModuleCore
 	{
 		$args = array(
 			'fallback_cb'    => '__return_null',
-			'echo'           => isset( $atts['echo'] ) ? $atts['echo'] : true,
+			'echo'           => isset( $atts['echo'] ) ? $atts['echo'] : TRUE,
 			'depth'          => isset( $atts['depth'] ) ? $atts['depth'] : 1,
 			'container'      => isset( $atts['container'] ) ? $atts['container'] : 'nav',
 			'theme_location' => isset( $atts['location'] ) ? $atts['location'] : 'primary',
@@ -108,11 +108,11 @@ class gThemeMenu extends gThemeModuleCore
 			$primary = $secondary = '';
 			$parent = $current = '-1';
 
-			foreach ( $sorted_menu_items as $menu ){
-				if ( true == $menu->current )
+			foreach ( $sorted_menu_items as $menu ) {
+				if ( TRUE == $menu->current )
 					$current = $menu->ID;
 
-				if ( true == $menu->current_item_ancestor )
+				if ( TRUE == $menu->current_item_ancestor )
 					$parent = $menu->ID;
 
 				if ( '0' == $menu->menu_item_parent )
@@ -120,6 +120,7 @@ class gThemeMenu extends gThemeModuleCore
 
 				if ( $current == $menu->menu_item_parent )
 					$secondary .= self::menu_el( $menu );
+
 				else if ( $parent == $menu->menu_item_parent )
 					$secondary .= self::menu_el( $menu );
 
@@ -134,21 +135,21 @@ class gThemeMenu extends gThemeModuleCore
 
 			$cache->store();
 		}
-
 	}
 
 	public static function menu_el( $item )
 	{
 		$html = gThemeUtilities::html( 'a', array(
-			'title' => ( empty( $item->attr_title ) ? false : $item->attr_title ),
-			'target' => ( empty( $item->target ) ? false : $item->target ),
-			'rel' => ( empty( $item->xfn ) ? false : $item->xfn ),
-			'href' => ( empty( $item->url ) ? false : $item->url ),
+			'title'  => ( empty( $item->attr_title ) ? FALSE : $item->attr_title ),
+			'target' => ( empty( $item->target ) ? FALSE : $item->target ),
+			'rel'    => ( empty( $item->xfn ) ? FALSE : $item->xfn ),
+			'href'   => ( empty( $item->url ) ? FALSE : $item->url ),
 		), $item->title );
 
 		$classes = empty( $item->classes ) ? array() : (array) $item->classes;
+
 		return gThemeUtilities::html( 'li', array(
-			'id' => apply_filters( 'nav_menu_item_id', 'menu-item-'.$item->ID, $item, array(), 0 ),
+			'id'    => apply_filters( 'nav_menu_item_id', 'menu-item-'.$item->ID, $item, array(), 0 ),
 			'class' => apply_filters( 'nav_menu_css_class', array_filter( $classes ), $item, array(), 0 ),
 		), $html );
 	}

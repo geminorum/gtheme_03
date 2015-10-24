@@ -19,7 +19,7 @@ class gThemeL10N extends gThemeModuleCore
 	public static function localize_fa_IR( $string )
 	{
 		if ( is_null( $string ) )
-			return null;
+			return NULL;
 
 		$pairs = array(
 			'0'                 => chr(0xDB).chr(0xB0),
