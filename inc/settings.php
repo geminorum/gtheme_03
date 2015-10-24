@@ -59,15 +59,16 @@ class gThemeSettings extends gThemeModuleCore
 	{
 		$info = gThemeOptions::info();
 		$settings_uri = $this->_settings_uri; // back comp
+
 		$sub = isset( $_GET['sub'] ) ? trim( $_GET['sub'] ) : 'general';
 		$subs = apply_filters( 'gtheme_settings_subs', array(
-			'overview' => __( 'Overview', GTHEME_TEXTDOMAIN ),
-			'general'  => __( 'General', GTHEME_TEXTDOMAIN ),
+			'overview' => _x( 'Overview', 'Settings Module: Sub Title', GTHEME_TEXTDOMAIN ),
+			'general'  => _x( 'General', 'Settings Module: Sub Title', GTHEME_TEXTDOMAIN ),
 		) );
 
 		$messages = apply_filters( 'gtheme_settings_messages', array(
-			'error'   => gThemeUtilities::notice( __( 'Settings not updated.', GTHEME_TEXTDOMAIN ), 'error', FALSE ),
-			'updated' => gThemeUtilities::notice( __( 'Settings updated.', GTHEME_TEXTDOMAIN ), 'updated fade', FALSE ),
+			'error'   => self::error( _x( 'Settings not updated.', 'Settings Module', GTHEME_TEXTDOMAIN ) ),
+			'updated' => self::updated( _x( 'Settings updated.', 'Settings Module', GTHEME_TEXTDOMAIN ) ),
 		) );
 
 		echo '<div class="wrap"><h2>'.$info['settings_title'].'</h2>';
@@ -102,45 +103,53 @@ class gThemeSettings extends gThemeModuleCore
 	public function settings_sub_html( $settings_uri, $sub = 'general' )
 	{
 		$defaults = self::defaults();
-		$options = gThemeOptions::get_options();
+		$options  = gThemeOptions::getOptions();
 
 		echo '<form method="post" action="">';
-			echo '<h3>'.__( 'General Settings', GTHEME_TEXTDOMAIN ).'</h3>';
+			echo '<h3>'._x( 'General Settings', 'Settings Module', GTHEME_TEXTDOMAIN ).'</h3>';
 			echo '<table class="form-table">';
 
 			$this->do_settings_field( array(
-				'title'   => __( 'Site User', GTHEME_TEXTDOMAIN ),
+				'title'   => _x( 'Site User', 'Settings Module', GTHEME_TEXTDOMAIN ),
 				'type'    => 'select',
 				'field'   => 'default_user',
 				'values'  => self::getUsers(),
 				'default' => ( isset( $options['default_user'] ) ? $options['default_user'] : $defaults['default_user'] ),
-				'desc'    => __( 'Site default user. using to hide editors!', GTHEME_TEXTDOMAIN ),
+				'desc'    => _x( 'Site default user. For hiding the editoris!', 'Settings Module', GTHEME_TEXTDOMAIN ),
 			), TRUE );
 
 			$this->do_settings_field( array(
-				'title'   => __( 'FrontPage Title', GTHEME_TEXTDOMAIN ),
+				'title'   => _x( 'FrontPage Title', 'Settings Module', GTHEME_TEXTDOMAIN ),
 				'type'    => 'text',
 				'field'   => 'frontpage_title',
 				'default' => ( isset( $options['frontpage_title'] ) ? $options['frontpage_title'] : $defaults['frontpage_title'] ),
-				'desc'    => __( 'The title used on frontpage. Blank to use the build-in text.', GTHEME_TEXTDOMAIN ),
+				'desc'    => _x( 'The title used on frontpage. Blank to use the build-in text.', 'Settings Module', GTHEME_TEXTDOMAIN ),
 			), TRUE );
 
 			$this->do_settings_field( array(
-				'title'   => __( 'FrontPage Description', GTHEME_TEXTDOMAIN ),
+				'title'   => _x( 'FrontPage Description', 'Settings Module', GTHEME_TEXTDOMAIN ),
 				'type'    => 'text',
 				'field'   => 'frontpage_desc',
 				'default' => ( isset( $options['frontpage_desc'] ) ? $options['frontpage_desc'] : $defaults['frontpage_desc'] ),
-				'desc'    => __( 'The description meta tag used on frontpage. Blank to use the build-in text.', GTHEME_TEXTDOMAIN ),
+				'desc'    => _x( 'The description meta tag used on frontpage. Blank to use the build-in text.', 'Settings Module', GTHEME_TEXTDOMAIN ),
 			), TRUE );
 
 			$this->do_settings_field( array(
-				'title'   => __( 'Extra Body Class', GTHEME_TEXTDOMAIN ),
+				'title'   => _x( 'Extra Body Class', 'Settings Module', GTHEME_TEXTDOMAIN ),
 				'type'    => 'text',
 				'field'   => 'body_class_extra',
 				'default' => ( isset( $options['body_class_extra'] ) ? $options['body_class_extra'] : $defaults['body_class_extra'] ),
-				'desc'    => __( 'Additional class to append to the body classess.', GTHEME_TEXTDOMAIN ),
+				'desc'    => _x( 'Additional class to append to the body classess. Seperate with single space', 'Settings Module', GTHEME_TEXTDOMAIN ),
 				'dir'     => 'ltr',
 			), TRUE );
+
+			if ( $legend = gThemeOptions::info( 'settings_legend', FALSE ) )
+				$this->do_settings_field( array(
+					'title'  => _x( 'Legend', 'Settings Module', GTHEME_TEXTDOMAIN ),
+					'type'   => 'custom',
+					'field'  => 'custom',
+					'values' => $legend,
+				), TRUE );
 
 			echo '</table>';
 
@@ -156,7 +165,7 @@ class gThemeSettings extends gThemeModuleCore
 			if ( ! empty( $_POST )
 				&& wp_verify_nonce( $_POST['_gtheme_settings'], 'gtheme-settings' ) ) {
 
-				$options = gThemeOptions::get_options();
+				$options = gThemeOptions::getOptions();
 				foreach ( self::defaults() as $option => $default )
 					if ( isset( $_POST['gtheme_settings'][$option] )
 						&& trim( $_POST['gtheme_settings'][$option] ) )
@@ -164,7 +173,7 @@ class gThemeSettings extends gThemeModuleCore
 					else
 						unset( $options[$option] );
 
-				$result = gThemeOptions::update_options( $options );
+				$result = gThemeOptions::updateOptions( $options );
 				wp_redirect( add_query_arg( array( 'message' => ( $result ? 'updated' : 'error' ) ), wp_get_referer() ) );
 				exit();
 			}
@@ -199,7 +208,7 @@ class gThemeSettings extends gThemeModuleCore
 				'title' => '<span class="ab-icon dashicons dashicons-backup" style="margin:2px 0 0 0;"></span>',
 				'href'  => add_query_arg( 'flush', '', gThemeUtilities::getCurrentURL() ),
 				'meta'  => array(
-					'title' => __( 'Flush', GTHEME_TEXTDOMAIN ),
+					'title' => _x( 'Flush', 'Settings Module', GTHEME_TEXTDOMAIN ),
 				),
 			) );
 
@@ -207,7 +216,7 @@ class gThemeSettings extends gThemeModuleCore
 			$wp_admin_bar->add_node( array(
 				'parent' => 'site-name',
 				'id'     => 'all-posts',
-				'title'  => __( 'All Posts' ),
+				'title'  => _x( 'All Posts', 'Settings Module', GTHEME_TEXTDOMAIN ),
 				'href'   => admin_url( 'edit.php' ),
 			) );
 
