@@ -188,8 +188,8 @@ class gThemeOptions extends gThemeModuleCore
 			),
 
 			'settings_legend' => FALSE, // html content to appear after settings
-			// DEPRECATED: use PAGES API
-			'search_page' => self::getOption( 'search_page', 0 ),
+			// FIXME: DEPRECATED: use PAGES API
+			// 'search_page' => self::getOption( 'search_page', 0 ),
 
 			// 'home_url_override' => '', // full escaped url to overrided home page / comment to disable
 			// 'empty_search_query' => '', // string to use on search input form / comment to use default
@@ -267,14 +267,28 @@ class gThemeOptions extends gThemeModuleCore
 		);
 	}
 
-	public static function get_options()
+	public static function getOptions()
 	{
 		return get_option( constant( 'GTHEME' ) );
 	}
 
-	public static function update_options( $options )
+	// FIXME: DEPRECATED: use gThemeOptions::getOptions();
+	public static function get_options()
+	{
+		self::__dep( 'gThemeOptions::getOptions()' );
+		return self::getOptions();
+	}
+
+	public static function updateOptions( $options )
 	{
 		return update_option( constant( 'GTHEME' ), $options );
+	}
+
+	// FIXME: DEPRECATED: use gThemeOptions::updateOptions();
+	public static function update_options( $options )
+	{
+		self::__dep( 'gThemeOptions::updateOptions()' );
+		return self::updateOptions( $options );
 	}
 
 	// FIXME: DEPRECATED: use gThemeOptions::getOption();
@@ -288,7 +302,7 @@ class gThemeOptions extends gThemeModuleCore
 	{
 		global $gtheme_options;
 		if ( empty(	$gtheme_options ) )
-			$gtheme_options = self::get_options();
+			$gtheme_options = self::getOptions();
 
 		if ( $gtheme_options === FALSE )
 			$gtheme_options = array();
@@ -304,28 +318,28 @@ class gThemeOptions extends gThemeModuleCore
 	{
 		global $gtheme_options;
 		if ( empty(	$gtheme_options ) )
-			$gtheme_options = self::get_options();
+			$gtheme_options = self::getOptions();
 
 		if ( $gtheme_options === FALSE )
 			$gtheme_options = array();
 
 		$gtheme_options[$name] = $value;
 
-		return self::update_options( $gtheme_options );
+		return self::updateOptions( $gtheme_options );
 	}
 
 	public static function delete_option( $name )
 	{
 		global $gtheme_options;
 		if ( empty(	$gtheme_options ) )
-			$gtheme_options = self::get_options();
+			$gtheme_options = self::getOptions();
 
 		if ( $gtheme_options === FALSE )
 			$gtheme_options = array();
 
 		unset( $gtheme_options[$name] );
 
-		return self::update_options( $gtheme_options );
+		return self::updateOptions( $gtheme_options );
 	}
 
 	public static function info( $info = FALSE, $default = FALSE )
