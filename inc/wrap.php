@@ -72,7 +72,13 @@ class gThemeWrap extends gThemeModuleCore
 	public static function html_title( $sep = ' &raquo; ', $display = TRUE, $seplocation = '' )
 	{
 		echo "\t".'<title>';
-		wp_title( trim( gtheme_get_info( 'title_sep', $sep ) ), TRUE, ( gThemeUtilities::isRTL() ? 'right' : $seplocation ) );
+
+		// NOTE: switched since WP v4.4.0
+		if ( function_exists( 'wp_get_document_title' ) )
+			echo wp_get_document_title();
+		else
+			wp_title( trim( gtheme_get_info( 'title_sep', $sep ) ), TRUE, ( gThemeUtilities::isRTL() ? 'right' : $seplocation ) );
+
 		echo '</title>'."\n";
 	}
 

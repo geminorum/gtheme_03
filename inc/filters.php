@@ -16,11 +16,17 @@ class gThemeFilters extends gThemeModuleCore
 		add_action( 'wp_head', array( $this, 'wp_head' ), 5 );
 		add_filter( 'body_class', array( $this, 'body_class' ), 10, 2 );
 		add_filter( 'post_class', array( $this, 'post_class' ), 10, 3 );
-		add_filter( 'wp_title', array( $this, 'wp_title' ), 5, 3 );
 
-		add_filter( 'get_wp_title_rss', function( $title ){
-			return empty( $title ) ? $title : $title.trim( gThemeOptions::info( 'title_sep', '&#187;' ) );
-		} );
+		if ( function_exists( 'wp_get_document_title' ) ) {
+			add_filter( 'document_title_separator', function( $sep ){
+				return gThemeOptions::info( 'title_sep', $sep );
+			} );
+		} else {
+			add_filter( 'wp_title', array( $this, 'wp_title' ), 5, 3 );
+			add_filter( 'get_wp_title_rss', function( $title ){
+				return empty( $title ) ? $title : $title.trim( gThemeOptions::info( 'title_sep', '&#187;' ) );
+			} );
+		}
 
 		add_filter( 'the_excerpt', function( $text ){
 			// return $text.gThemeContent::continueReading( get_edit_post_link() );
@@ -200,6 +206,7 @@ class gThemeFilters extends gThemeModuleCore
 		$this->current_post_class = $class;
 	}
 
+	// FIXME: DEPRECATED as WP v4.4.0
 	public function wp_title( $title, $sep, $seplocation )
 	{
 		if ( is_feed() )
