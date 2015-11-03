@@ -27,29 +27,33 @@ class gThemeModuleCore
 	}
 
 	// INTERNAL: used on anything deprecated
-	protected static function __dep( $use = FALSE )
+	protected static function __dep( $note = '' )
 	{
-		if ( ! WP_DEBUG_LOG )
+		if ( defined( 'WP_DEBUG_LOG' ) && ! WP_DEBUG_LOG )
 			return;
 
 		$trace = debug_backtrace();
 
 		$log = 'DEP: ';
 
-		if ( isset( $trace[1]['class'] ) )
+		if ( isset( $trace[1]['object'] ) )
+			$log .= get_class( $trace[1]['object'] ).'::';
+		else if ( isset( $trace[1]['class'] ) )
 			$log .= $trace[1]['class'].'::';
 
 		$log .= $trace[1]['function'].'()';
 
 		if ( isset( $trace[2]['function'] ) ) {
 			$log .= '|FROM: ';
-			if ( isset( $trace[2]['class'] ) )
+			if ( isset( $trace[2]['object'] ) )
+				$log .= get_class( $trace[2]['object'] ).'::';
+			else if ( isset( $trace[2]['class'] ) )
 				$log .= $trace[2]['class'].'::';
 			$log .= $trace[2]['function'].'()';
 		}
 
-		if ( $use )
-			$log .= '|USE: '.$use;
+		if ( $note )
+			$log .= '|'.$note;
 
 		error_log( $log );
 	}
