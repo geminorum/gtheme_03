@@ -488,6 +488,7 @@ a2a_config.locale = "fa";
 			'title'       => NULL,
 			'meta'        => TRUE,
 			'link'        => TRUE, // disable linking compeletly
+			'anchor'      => TRUE, // permalink anchor for the post
 		), $atts );
 
 		if ( is_null( $args['title'] ) )
@@ -523,6 +524,9 @@ a2a_config.locale = "fa";
 		} else {
 			echo $args['title'];
 		}
+		
+		if ( $args['anchor'] )
+			permalink_anchor();
 
 		echo '</'.$args['title_tag'].'>';
 
