@@ -95,7 +95,7 @@ class gThemeFeed extends gThemeModuleCore
 					$post = get_post( $id );
 
 					echo "\t".'<enclosure url="'.trim( htmlspecialchars( $image[0] ) )
-						.'" length="'.trim( gThemeUtilities::get_uri_length( $image[0] ) )
+						.'" length="'.trim( gThemeUtilities::getURILength( $image[0] ) )
 						.'" type="'.$post->post_mime_type.'" />'."\n";
 				}
 			}

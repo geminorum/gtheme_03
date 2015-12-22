@@ -52,10 +52,11 @@ class gThemeUtilities extends gThemeModuleCore
 		return $text;
 	}
 
-	public static function get_uri_length( $url, $default = '' )
+	public static function getURILength( $url, $default = 0 )
 	{
 		if ( $headers = wp_get_http_headers( $url ) )
-			return (int) $headers['content-length'];
+			if ( isset( $headers['content-length'] ) )
+				return (int) $headers['content-length'];
 
 		return $default;
 	}
