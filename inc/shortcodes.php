@@ -192,7 +192,7 @@ class gThemeShortCodes extends gThemeModuleCore
 			'order'   => 'ASC',
 			'orderby' => 'menu_order ID',
 			'id'      => get_the_ID(),
-			'size'    => 'thumbnail',
+			'size'    => 'big',
 			'include' => '',
 			'exclude' => '',
 			'link'    => '', // 'file', 'none', empty
