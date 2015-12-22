@@ -233,7 +233,7 @@ class gThemeComments extends gThemeModuleCore
 				echo ' id="comment-'.$comment->comment_ID.'">';
 
 					echo '<a class="comment-avatar '.( gThemeUtilities::isRTL() ? 'pull-right media-right' : 'pull-left media-left' ).'" href="'.get_comment_author_url().'" rel="external nofollow">';
-						gThemeTemplate::avatar( $comment, gThemeOptions::info( 'comment_avatar_size', 75 ) );
+						gThemeTemplate::avatar( $comment );
 					echo '</a><div class="media-body comment-body" id="comment-body-'.$comment->comment_ID.'"><h6 class="media-heading comment-meta">';
 						echo '<span class="comment-author">'.get_comment_author_link().'</span>';
 						echo ' <small class="comment-time">';
