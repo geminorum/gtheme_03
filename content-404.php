@@ -5,6 +5,7 @@
 		'title'   => __( 'Oops! That page can&rsquo;t be found.', GTHEME_TEXTDOMAIN ),
 		'link'    => FALSE,
 		'meta'    => FALSE,
+		'anchor'  => FALSE,
 	) );
 
 	echo '<div class="entry-content entry-404"><p>';
