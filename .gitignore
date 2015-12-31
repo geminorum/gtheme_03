@@ -1,5 +1,7 @@
+.idea
 .sass-cache
-.ftpconfig
+.gulp
+.imdone
 .temp
 
 /components
@@ -13,3 +15,4 @@
 
 composer.lock
 npm-debug.log
+.ftpconfig
