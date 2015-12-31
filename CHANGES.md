@@ -1,3 +1,11 @@
+### 0.3.11
+* modulecore: single checkbox desc as title
+* navigation: passing custom max num pages to next/pre helper
+* counts: new module
+* settings: legend info
+* filters: switched to document title with fallback to the old one
+* comments: correct anchor for after posting comments
+
 ### 0.3.10
 * all: safe json encode
 * bootstrap: navbar class helper
