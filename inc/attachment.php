@@ -23,7 +23,7 @@ class gThemeAttachment extends gThemeModuleCore
 			return;
 
 		// $html = $args['before'].apply_filters( 'the_excerpt', $post->post_excerpt ). $args['after'];
-		$html = $args['before'].$post->post_excerpt. $args['after'];
+		$html = $args['before'].$post->post_excerpt.$args['after'];
 
 		if ( ! $args['echo'] )
 			return $html;
@@ -35,17 +35,16 @@ class gThemeAttachment extends gThemeModuleCore
 	public static function link( $attachment_id, $atts = array() )
 	{
 		echo '<div class="entry-link"><a href="';
-			echo wp_get_attachment_url( $post->ID );
-			echo '" title="'.wp_specialchars( get_the_title( $post->ID ), 1 ).'" rel="attachment">';
+			echo wp_get_attachment_url( $attachment_id );
+			echo '" title="'.wp_specialchars( get_the_title( $attachment_id ), 1 ).'" rel="attachment">';
 			_e( 'Download Attachment', GTHEME_TEXTDOMAIN );
 		echo '</a></div>';
-
 	}
 
-	// FIXME: DRAFT
-	// old: gmeta_lead()
+	// FIXME: DRAFT / UNFINISHED
+	// OLD: gtheme_attachment()
 	public static function image( $atts = array() )
 	{
-		return wp_get_attachment_image( $id, $args['size'], false, $attr );
+		return wp_get_attachment_image( $id, $args['size'], FALSE, $attr );
 	}
 }
