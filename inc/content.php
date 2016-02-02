@@ -494,7 +494,7 @@ a2a_config.locale = "fa";
 		if ( is_null( $args['title'] ) )
 			$args['title'] = gThemeUtilities::wordWrap( get_the_title(), 2 );
 
-		if ( strlen( $args['title'] ) == 0 )
+		if ( 0 == strlen( $args['title'] ) )
 			return;
 
 		if ( $args['link'] ) {
@@ -519,12 +519,12 @@ a2a_config.locale = "fa";
 
 		if ( $args['link'] ) {
 			echo '<a itemprop="url" rel="bookmark" href="'.$link.'" title="';
-				self::title_attr( TRUE, $args['title'] );
+				self::title_attr( TRUE, $args['title'], ( TRUE === $args['shortlink'] ? FALSE : NULL ) );
 			echo '">'.$args['title'].'</a>';
 		} else {
 			echo $args['title'];
 		}
-		
+
 		if ( $args['anchor'] )
 			permalink_anchor();
 
