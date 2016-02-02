@@ -8,7 +8,8 @@ class gThemeSocial extends gThemeModuleCore
 		add_action( 'wp_head', array( $this, 'wp_head' ) );
 	}
 
-	// SEE: http://scotch.io/quick-tips/all-search-and-social-media-meta-tags-starter-template
+	// @REF: [The Open Graph protocol](http://ogp.me/)
+	// @SEE: http://scotch.io/quick-tips/all-search-and-social-media-meta-tags-starter-template
 	public function wp_head()
 	{
 		echo "\t".'<meta name="twitter:card" content="summary" />'."\n";
@@ -64,7 +65,7 @@ class gThemeSocial extends gThemeModuleCore
 			case 'type':
 
 				if ( is_home() || is_front_page() )
-					$output = FALSE; // get_permalink();
+					$output = 'website';
 
 				else if ( is_single() )
 					$output = 'article';
@@ -73,7 +74,7 @@ class gThemeSocial extends gThemeModuleCore
 			case 'url':
 
 				if ( is_home() || is_front_page() )
-					$output = FALSE; // get_permalink();
+					$output = FALSE;
 
 				else if ( is_single() )
 					$output = get_permalink();
@@ -87,7 +88,7 @@ class gThemeSocial extends gThemeModuleCore
 					$output = gThemeImage::get_image( array(
 						'tag'   => gThemeOptions::info( 'meta_image_size', 'single' ),
 						'url'   => TRUE,
-						'empty' => FALSE,
+						'empty' => $output,
 					) );
 
 			break;
@@ -134,7 +135,7 @@ class gThemeSocial extends gThemeModuleCore
 			if ( $plus = get_user_meta( $the_post->post_author, 'googleplus', TRUE ) )
 				echo "\t".'<link href="'.esc_url( untrailingslashit( $plus ).'?rel=author' ).'" rel="author" />'."\n";
 
-			// NOTE: use gtheme_sanitize_twitter() to display
+			// FIXME: use gtheme_sanitize_twitter() to display
 			if ( $twitter = get_user_meta( $the_post->post_author, 'twitter', TRUE ) )
 				echo "\t".'<meta name="twitter:creator" content="@'.$twitter.'" />'."\n";
 		}
