@@ -252,8 +252,16 @@ class gThemeContent extends gThemeModuleCore
 			break;
 
 			case 'a2a_dd' :
+			case 'addtoany' :
 				self::addtoany(
 					sprintf( $before, 'addtoany post-share-link' ), $after,
+					( $icons ? '<div class="genericon genericon-share"></div>' : __( 'Share This', GTHEME_TEXTDOMAIN ) )
+				);
+			break;
+
+			case 'addthis' :
+				self::addthis(
+					sprintf( $before, 'addthis post-share-link' ), $after,
 					( $icons ? '<div class="genericon genericon-share"></div>' : __( 'Share This', GTHEME_TEXTDOMAIN ) )
 				);
 			break;
@@ -445,7 +453,7 @@ class gThemeContent extends gThemeModuleCore
 	public static function addtoany( $b = '', $a = '', $text = NULL, $footer = TRUE )
 	{
 		if ( $footer && is_singular() )
-			add_action( 'wp_footer', array( __CLASS__, 'addtoany_footer' ) );
+			add_action( 'wp_footer', array( __CLASS__, 'addtoany_footer' ), 5 );
 
 		$query_args = array(
 			'linkurl' => urlencode( get_permalink() ),
@@ -469,6 +477,43 @@ a2a_config.linkname = '<?php echo esc_js( esc_url_raw( get_permalink() ) ); ?>';
 a2a_config.linkurl = '<?php echo esc_js( self::title_attr( FALSE, NULL, '%s' ) ); ?>';
 a2a_config.onclick = 1;
 a2a_config.locale = "fa";
+</script>
+<script type="text/javascript" src="//static.addtoany.com/menu/page.js"></script><?php
+	}
+
+	// FIXME: DRAFT / NOT TESTED
+	// @SEE: http://www.addthis.com/academy/the-addthis_share-variable/
+	// @SEE: http://www.addthis.com/academy/setting-the-url-title-to-share/
+	// @SEE: http://www.addthis.com/academy/specifying-the-image-posted-to-pinterest/
+	public static function addthis( $b = '', $a = '', $text = NULL, $footer = TRUE )
+	{
+		if ( $footer && is_singular() )
+			add_action( 'wp_footer', array( __CLASS__, 'addthis_footer' ), 5 );
+
+		echo $b;
+		echo '<div class="addthis_sharing_toolbox" data-url="'.get_permalink().'" data-title="';
+			the_title_attribute();
+		echo '" data-image=""></div>';
+		echo $a;
+	}
+
+	// FIXME: DRAFT / NOT TESTED
+	// @SEE: http://www.addthis.com/academy/the-addthis_config-variable/
+	// @SEE: http://www.addthis.com/academy/integrating-with-google-analytics/
+	public static function addthis_footer()
+	{
+		?><script type="text/javascript">
+var addthis_config = addthis_config || {};
+addthis_config.username = '';
+addthis_config.ui_language = 'fa';
+addthis_config.data_track_clickback = false;
+addthis_config.services_custom = [
+	{
+		name: "My Service",
+		url: "http://share.example.com?url={{URL}}&title={{TITLE}}",
+		icon: "http://example.com/icon.jpg"
+	}
+];
 </script>
 <script type="text/javascript" src="//static.addtoany.com/menu/page.js"></script><?php
 	}
