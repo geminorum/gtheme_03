@@ -1,3 +1,7 @@
+### 0.3.12
+* social: default [OGp](http://ogp.me/) type to `website`
+* content: correct title attr for shortlinks
+
 ### 0.3.11
 * modulecore: single checkbox desc as title
 * navigation: passing custom max num pages to next/pre helper
