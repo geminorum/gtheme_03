@@ -329,7 +329,7 @@ class gThemeComments extends gThemeModuleCore
 				'url'               => _x( 'Website', 'Comment Form Strings', GTHEME_TEXTDOMAIN ),
 				'comment'           => _x( 'Comment', 'Comment Form Strings', GTHEME_TEXTDOMAIN ),
 				'must_log_in'       => __( 'You must be <a href="%s">logged in</a> to post a comment.' ),
-				'logged_in_as'      => __( 'Logged in as <a href="%1$s">%2$s</a>. <a href="%3$s" title="Log out of this account">Log out?</a>' ),
+				'logged_in_as'      => __( '<a href="%1$s" aria-label="Logged in as %2$s. Edit your profile.">Logged in as %2$s</a>. <a href="%3$s">Log out?</a>' ),
 				'title_reply'       => __( 'Leave a Reply' ),
 				'title_reply_to'    => __( 'Leave a Reply to %s' ),
 				'cancel_reply_link' => __( 'Cancel reply' ),
