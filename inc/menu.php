@@ -5,7 +5,7 @@ class gThemeMenu extends gThemeModuleCore
 
 	public function setup_actions( $args = array() )
 	{
-		extract( shortcode_atts( array(
+		extract( self::atts( array(
 			'register_nav' => TRUE,
 			'allowedtags'  => FALSE,
 			'css_classes'  => FALSE,

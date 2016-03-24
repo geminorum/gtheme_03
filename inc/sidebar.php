@@ -7,7 +7,7 @@ class gThemeSideBar extends gThemeModuleCore
 
 	public function setup_actions( $args = array() )
 	{
-		extract( shortcode_atts( array(
+		extract( self::atts( array(
 			'disable_sidebars'     => FALSE,
 			'primary_cats_sidebar' => FALSE,
 		), $args ) );

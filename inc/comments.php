@@ -5,7 +5,7 @@ class gThemeComments extends gThemeModuleCore
 
 	public function setup_actions( $args = array() )
 	{
-		extract( shortcode_atts( array(
+		extract( self::atts( array(
 			'strip_trackbacks' => TRUE,
 			'reverse_comments' => FALSE,
 			'disable_types'    => FALSE,

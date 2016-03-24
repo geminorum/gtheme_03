@@ -7,7 +7,7 @@ class gThemeCounts extends gThemeModuleCore
 
 	public function setup_actions( $args = array() )
 	{
-		extract( shortcode_atts( array(
+		extract( self::atts( array(
 			'admin' => FALSE,
 		), $args ) );
 
