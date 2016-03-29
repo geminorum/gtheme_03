@@ -5,7 +5,7 @@ class gThemeFeed extends gThemeModuleCore
 
 	public function setup_actions( $args = array() )
 	{
-		extract( shortcode_atts( array(
+		extract( self::atts( array(
 			'prepare'    => TRUE,
 			'restricted' => FALSE,
 			'enclosures' => TRUE, // adding post image as rss enclosure

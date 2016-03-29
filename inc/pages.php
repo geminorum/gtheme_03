@@ -7,7 +7,7 @@ class gThemePages extends gThemeModuleCore
 
 	public function setup_actions( $args = array() )
 	{
-		extract( shortcode_atts( array(
+		extract( self::atts( array(
 			'admin' => FALSE,
 		), $args ) );
 
@@ -22,7 +22,7 @@ class gThemePages extends gThemeModuleCore
 		return array_merge( array(
 			'about' => array(
 				'title' => _x( 'About Page', 'Pages Module', GTHEME_TEXTDOMAIN ),
-				'desc'  => _x( 'Select a page for this site\'s main information', 'Pages Module', 'Pages Module', GTHEME_TEXTDOMAIN ),
+				'desc'  => _x( 'Select a page for this site\'s main information', 'Pages Module', GTHEME_TEXTDOMAIN ),
 				'def'   => 0,
 			),
 			'contact' => array(
@@ -116,16 +116,16 @@ class gThemePages extends gThemeModuleCore
 		$options  = gThemeOptions::getOption( 'pages', array() );
 
 		echo '<form method="post" action="">';
-			// echo '<h3>'.__( 'General Settings', GTHEME_TEXTDOMAIN ).'</h3>';
+			echo '<h3>'._x( 'Site Page Settings', 'Pages Module: Form Title', GTHEME_TEXTDOMAIN ).'</h3>';
 			echo '<table class="form-table">';
 
 				foreach ( $defaults as $page => $default ) {
 					$this->do_settings_field( array(
 						'title'   => $default['title'],
-						'values'   => isset( $default['type'] ) ? $default['type'] : 'page',
+						'values'  => isset( $default['type'] ) ? $default['type'] : 'page',
 						'type'    => 'page',
 						'field'   => $page,
-						'default' => ( isset( $options[$page] ) ? $options[$page] : $defaults[$page]['def'] ),
+						'default' => isset( $options[$page] ) ? $options[$page] : $defaults[$page]['def'],
 						'desc'    => isset( $default['desc'] ) ? $default['desc'] : '',
 					), TRUE );
 				}

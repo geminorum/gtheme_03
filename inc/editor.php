@@ -7,7 +7,7 @@ class gThemeEditor extends gThemeModuleCore
 
 	function setup_actions( $args = array() )
 	{
-		extract( shortcode_atts( array(
+		extract( self::atts( array(
 			'css'             => TRUE, // this is the editor style!!
 			'buttons'         => TRUE,
 			'buttons_2'       => TRUE,

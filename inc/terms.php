@@ -7,7 +7,7 @@ class gThemeTerms extends gThemeModuleCore
 
 	public function setup_actions( $args = array() )
 	{
-		extract( shortcode_atts( array(
+		extract( self::atts( array(
 			'system_tags' => FALSE,
 			'p2p'         => FALSE,
 			'admin'       => FALSE,
