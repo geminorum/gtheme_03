@@ -83,29 +83,25 @@ class gThemeBootstrap_Walker_NavBar extends Walker_Nav_Menu
 	{
 		$indent = ( $depth ) ? str_repeat( "\t", $depth ) : '';
 
+		if ( 0 == strcasecmp( $item->attr_title, 'divider' )
+			|| 0 == strcasecmp( $item->title, 'divider' ) ) {
+			$output .= $indent.'<li role="presentation" class="divider">';
 
+		} else if ( 1 === $depth && 0 == strcasecmp( $item->attr_title, 'header' ) ) {
+			$output .= $indent.'<li role="presentation" class="dropdown-header">'.esc_attr( $item->title );
 
-		/**
-		 * Dividers, Headers or Disabled
-		 * =============================
-		 * Determine whether the item is a Divider, Header, Disabled or regular
-		 * menu item. To prevent errors we use the strcasecmp() function to so a
-		 * comparison that is not case sensitive. The strcasecmp() function returns
-		 * a 0 if the strings are equal.
-		 */
+		} else if ( 0 == strcasecmp( $item->attr_title, 'disabled' ) ) {
+			$output .= $indent.'<li role="presentation" class="disabled"><a href="#">'.esc_attr( $item->title ).'</a>';
 
-		// if ( FALSE !== strripos( $item->attr_title, 'divider' ) && $depth === 1 ) {
-		// if ( strcasecmp( $item->attr_title, 'divider' ) == 0 && $depth === 1 ) {
-		if ( strcasecmp( $item->attr_title, 'divider' ) == 0 ) {
-			$output .= $indent . '<li role="presentation" class="divider">';
-		// } else if ( FALSE !== strripos( $item->title, 'divider' ) && $depth === 1 ) {
-		// } else if ( strcasecmp( $item->title, 'divider') == 0 && $depth === 1 ) {
-		} else if ( strcasecmp( $item->title, 'divider') == 0 ) {
-			$output .= $indent . '<li role="presentation" class="divider">';
-		} else if ( strcasecmp( $item->attr_title, 'dropdown-header') == 0 && $depth === 1 ) {
-			$output .= $indent . '<li role="presentation" class="dropdown-header">' . esc_attr( $item->title );
-		} else if ( strcasecmp($item->attr_title, 'disabled' ) == 0 ) {
-			$output .= $indent . '<li role="presentation" class="disabled"><a href="#">' . esc_attr( $item->title ) . '</a>';
+		} else if ( 1 === $depth && 0 == strcasecmp( $item->attr_title, 'yamm' ) ) {
+			$output .= $indent.'<li><div class="yamm-content">';
+
+			ob_start();
+				get_template_part( 'menu', esc_attr( $item->title ) );
+
+			$output .= ob_get_flush();
+			$output .= '</div>';
+
 		} else {
 
 			$class_names = $value = '';
@@ -163,7 +159,7 @@ class gThemeBootstrap_Walker_NavBar extends Walker_Nav_Menu
 			 * property is NOT null we apply it as the class name for the glyphicon.
 			 */
 			if ( ! empty( $item->attr_title ) )
-				$item_output .= '<a'. $attributes .'><span class="glyphicon ' . esc_attr( $item->attr_title ) . '"></span>&nbsp;';
+				$item_output .= '<a'. $attributes .'><span class="glyphicon '.esc_attr( $item->attr_title ).'"></span>&nbsp;';
 			else
 				$item_output .= '<a'. $attributes .'>';
 
