@@ -36,7 +36,7 @@ class gThemePages extends gThemeModuleCore
 				'def'   => 0,
 			),
 			'archives' => array(
-				'title' => _x( 'Archives Page', 'Pages Module', 'Pages Module', GTHEME_TEXTDOMAIN ),
+				'title' => _x( 'Archives Page', 'Pages Module', GTHEME_TEXTDOMAIN ),
 				'desc'  => _x( 'Select a page for this site\'s main archives', 'Pages Module', GTHEME_TEXTDOMAIN ),
 				'def'   => 0,
 			),
