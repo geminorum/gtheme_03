@@ -123,7 +123,7 @@ class gThemeTheme extends gThemeModuleCore
 
 	public function wp_enqueue_scripts()
 	{
-		$suffix = ( ( ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) || gThemeUtilities::isDev() ) ? '' : '.min' );
+		$suffix = SCRIPT_DEBUG ? '' : '.min';
 
 		wp_enqueue_script( 'gtheme-all', GTHEME_URL."/js/script.all$suffix.js", array( 'jquery' ), GTHEME_VERSION, TRUE );
 
