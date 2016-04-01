@@ -16,9 +16,9 @@ class gThemeTerms extends gThemeModuleCore
 		if ( $system_tags ) {
 			add_action( 'init', array( $this, 'register_taxonomies' ) );
 			add_filter( 'post_class', array( $this, 'post_class' ), 10, 3 );
-			
+
 			add_filter( 'geditorial_tweaks_strings', array( $this, 'tweaks_strings' ) );
-			
+
 			if ( is_admin() )
 				add_action( 'load-edit-tags.php', array( $this, 'load_edit_tags' ) );
 		}
@@ -113,7 +113,7 @@ class gThemeTerms extends gThemeModuleCore
 
 					echo gThemeUtilities::html( 'label', array(
 						'for'    => 'gtheme_terms-'.$term->term_id.'-checked',
-					), number_format_i18n( $term->term_id ).' | '
+					), $term->term_id.' | '
 						.esc_html( $term->name ).' | ('
 						.number_format_i18n( $term->count ).')' );
 
@@ -196,7 +196,7 @@ class gThemeTerms extends gThemeModuleCore
 
 		return gThemeUtilities::parse_args_r( $new, $strings );
 	}
-	
+
 	public function load_edit_tags()
 	{
 		if ( isset( $_REQUEST['taxonomy'] ) && GTHEME_SYSTEMTAGS == $_REQUEST['taxonomy'] ) {
