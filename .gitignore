@@ -4,15 +4,17 @@
 .imdone
 .temp
 
+/images/temp
+
 /components
 /packages/jquery
 /vendor
 /bin
 /node_modules
-.env
 
-/images/temp
+/x-local-*
 
 composer.lock
 npm-debug.log
 .ftpconfig
+.env
