@@ -8,7 +8,8 @@ class gThemeImage extends gThemeModuleCore
 	public function setup_actions( $args = array() )
 	{
 		extract( self::atts( array(
-			'responsive_class' => FALSE,
+			'responsive_class'            => FALSE,
+			'gnetwork_media_object_sizes' => TRUE,
 		), $args ) );
 
 		add_action( 'init', array( $this, 'init' ) );
@@ -16,6 +17,9 @@ class gThemeImage extends gThemeModuleCore
 
 		add_filter( 'get_image_tag_class', array( $this, 'get_image_tag_class' ), 10, 4 );
 		add_filter( 'wp_get_attachment_image_attributes', array( $this, 'wp_get_attachment_image_attributes' ), 10, 2 );
+
+		if ( $gnetwork_media_object_sizes )
+			add_filter( 'gnetwork_media_object_sizes', '__return_true' );
 
 		if ( $responsive_class )
 			add_filter( 'the_content', array( $this, 'the_content_responsive_class' ), 100 );
