@@ -90,19 +90,48 @@ class gThemeFilters extends gThemeModuleCore
 		if ( ! gThemeUtilities::isRTL() )
 			$args['ltr'] = '';
 
-		if ( is_singular() && gThemeUtilities::isPrint() ) {
-			$css = file_exists( GTHEME_CHILD_DIR.'/print.css' ) ? GTHEME_CHILD_URL.'/print.css' : GTHEME_URL.'/print.css';
-		} else {
-			$css = file_exists( GTHEME_CHILD_DIR.'/css/css.php' ) ? GTHEME_CHILD_URL.'/css/' : GTHEME_CHILD_URL.'/style.css';
-		}
-
-		gThemeUtilities::linkStyleSheet( $css, $args, 'all' );
+		gThemeUtilities::linkStyleSheet( self::getStyle(), $args, 'all' );
 
 		if ( gThemeUtilities::isDev() && ! gThemeUtilities::isPrint() )
 			gThemeUtilities::linkStyleSheet( GTHEME_URL.'/css/dev.css', GTHEME_VERSION, 'all' );
 
 		if ( is_singular() )
 			echo "\t".'<link rel="pingback" href="'.get_bloginfo( 'pingback_url', 'display' ).'" />'."\n";
+	}
+
+	public static function getStyle()
+	{
+		if ( is_singular() && gThemeUtilities::isPrint() )
+			$css = file_exists( GTHEME_CHILD_DIR.'/print.css' )
+				? GTHEME_CHILD_URL.'/print.css'
+				: GTHEME_URL.'/print.css';
+
+		else
+			$css = file_exists( GTHEME_CHILD_DIR.'/css/css.php' )
+				? GTHEME_CHILD_URL.'/css/'
+				: GTHEME_CHILD_URL.'/style.css';
+
+		return $css;
+	}
+
+	// FIXME: use this!
+	// @SOURCE: [Optimize CSS Delivery](https://developers.google.com/speed/docs/insights/OptimizeCSSDelivery)
+	public static function asyncStyle( $css = NULL )
+	{
+		if ( is_null( $css ) )
+			$css = self::getStyle();
+			
+?><script>
+	var cb = function() {
+		var l = document.createElement('link'); l.rel = 'stylesheet';
+		l.href = '<?php echo $css; ?>';
+		var h = document.getElementsByTagName('head')[0]; h.parentNode.insertBefore(l, h);
+	};
+	var raf = requestAnimationFrame || mozRequestAnimationFrame ||
+		webkitRequestAnimationFrame || msRequestAnimationFrame;
+	if (raf) raf(cb);
+	else window.addEventListener('load', cb);
+</script><?php
 	}
 
 	public function body_class( $classes, $class )
