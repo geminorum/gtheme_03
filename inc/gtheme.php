@@ -20,6 +20,7 @@ final class gThemeCore
 	{
 		$modules = array(
 			'constants'  => '',
+			'basecore'   => '',
 			'modulecore' => '',
 			'cache'      => '',
 			'utilities'  => 'gThemeUtilities',

@@ -1,6 +1,6 @@
 <?php defined( 'ABSPATH' ) or die( 'Restricted access' );
 
-class gThemeModuleCore
+class gThemeModuleCore extends gThemeBaseCore
 {
 
 	protected $option_base = 'gtheme';
