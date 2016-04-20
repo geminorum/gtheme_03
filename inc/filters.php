@@ -80,11 +80,6 @@ class gThemeFilters extends gThemeModuleCore
 		if ( $viewport )
 			echo "\t".'<meta name="viewport" content="'.$viewport.'" />'."\n";
 
-		// prevent search bots from indexing search results
-		if ( is_search() )
-			echo "\t".'<meta name="robots" content="noindex, nofollow" />'."\n";
-
-
 		$args = array(
 			'ver' => GTHEME_CHILD_VERSION,
 		);
