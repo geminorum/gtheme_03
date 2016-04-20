@@ -73,8 +73,8 @@ class gThemeOptions extends gThemeModuleCore
 				),
 			),
 
-			// 'jpeg_quality'          => 80, // quality of JPEG images uploaded to WP
-			// 'wp_editor_set_quality' => 80, // quality of JPEG images edited within WP
+			// 'jpeg_quality'          => 82, // quality of JPEG images uploaded to WP
+			// 'wp_editor_set_quality' => 82, // quality of JPEG images edited within WP
 
 			// COUNTS API
 			'counts' => gThemeCounts::defaults(),  // NOTE: use gThemeCounts::defaults( array( -extra / override -) )
