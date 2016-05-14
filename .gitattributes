@@ -1,5 +1,12 @@
-# normalize all the line endings
 * text eol=lf
 
 *.txt text eol=crlf
 *.css text eol=crlf
+
+*.png binary
+*.jpg binary
+
+*.woff binary
+*.woff2 binary
+*.ttf binary
+*.eot binary
