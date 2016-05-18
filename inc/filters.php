@@ -75,10 +75,11 @@ class gThemeFilters extends gThemeModuleCore
 
 	public function wp_head()
 	{
-		// override mobile media query support
-		$viewport = gThemeOptions::info( 'head_viewport', 'width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no' );
-		if ( $viewport )
+		if ( $viewport = gThemeOptions::info( 'head_viewport', 'width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no' ) )
 			echo "\t".'<meta name="viewport" content="'.$viewport.'" />'."\n";
+
+		if ( $theme_color = gThemeOptions::info( 'theme_color' ) )
+			echo "\t".'<meta name="theme-color" content="'.$theme_color.'" />'."\n";
 
 		$args = array(
 			'ver' => GTHEME_CHILD_VERSION,
