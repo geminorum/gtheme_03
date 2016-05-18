@@ -1,6 +1,6 @@
 {
-	"analytics": false,
-	"strict-ssl": false,
-	"color": true,
-	"directory": "components"
+  "analytics": false,
+  "strict-ssl": false,
+  "color": true,
+  "directory": "components"
 }
