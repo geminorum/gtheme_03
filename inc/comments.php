@@ -116,6 +116,7 @@ class gThemeComments extends gThemeModuleCore
 	public function comments_open( $open, $post_id )
 	{
 		$post_types = gThemeOptions::info( 'comments_disable_types', array( 'attachment' ) );
+
 		if ( $post_types && is_array( $post_types ) ) {
 			$post = get_post( $post_id );
 			if ( in_array( $post->post_type, $post_types ) )
@@ -138,24 +139,23 @@ class gThemeComments extends gThemeModuleCore
 					 + get_option( 'close_comments_days_old' )
 					 * DAY_IN_SECONDS;
 
-			printf( __( '(This topic will automatically close in %s. )', GTHEME_TEXTDOMAIN ),  human_time_diff( $expires ) );
+			printf( _x( '(This topic will automatically close in %s. )', 'Comments Module', GTHEME_TEXTDOMAIN ), human_time_diff( $expires ) );
 		}
 	}
 
 	public static function passwordRequired( $print = TRUE )
 	{
-		if ( post_password_required() ) {
+		if ( ! post_password_required() )
+			return FALSE;
 
-			if ( $print ) {
-				echo '<p class="no-password">';
-					_e( 'This post is password protected. Enter the password to view any comments.', GTHEME_TEXTDOMAIN );
-				echo '</p></div>';
-			}
+		if ( $print )
+			echo '<p class="no-password">'
+				._x( 'This post is password protected. Enter the password to view any comments.', 'Comments Module', GTHEME_TEXTDOMAIN )
+			.'</p>';
 
-			return TRUE;;
-		}
+		echo '</div>';
 
-		return FALSE;
+		return TRUE;
 	}
 
 	public static function navigation( $class = 'comment-nav-above' )
@@ -199,7 +199,7 @@ class gThemeComments extends gThemeModuleCore
 
 		$html = gThemeUtilities::html( 'a', array(
 			'href'  => get_post_comments_feed_link(),
-			'title' => __( 'Grab the feed for comments of this post', GTHEME_TEXTDOMAIN ),
+			'title' => _x( 'Grab the feed for comments of this post', 'Comments Module', GTHEME_TEXTDOMAIN ),
 		), $icon );
 
 		echo gThemeUtilities::html( 'div', array(
@@ -245,7 +245,7 @@ class gThemeComments extends gThemeModuleCore
 						if ( '0' == $comment->comment_approved )
 							echo '<p class="text-danger comment-awaiting-moderation comment-moderation">'
 							.gThemeOptions::info( 'comment_awaiting',
-								__( 'Your comment is awaiting moderation.', GTHEME_TEXTDOMAIN ) )
+								_x( 'Your comment is awaiting moderation.', 'Comments Module', GTHEME_TEXTDOMAIN ) )
 							.'</p>';
 
 						self::actions( $comment, $args, $depth );
@@ -270,11 +270,12 @@ class gThemeComments extends gThemeModuleCore
 	public static function actions( $comment, $args, $depth, $class = 'media-actions comment-actions' )
 	{
 		$actions = array();
+
 		$strings = gThemeOptions::info( 'comment_action_strings', array(
-			'reply_text'    => __( 'Reply' ),
-			'reply_to_text' => __( 'Reply to %s' ),
-			'login_text'    => __( 'Log in to Reply' ),
-			'edit'          => __( 'Edit This' ),
+			'reply_text'    => _x( 'Reply', 'Comments Module: Action String', GTHEME_TEXTDOMAIN ),
+			'reply_to_text' => _x( 'Reply to %s', 'Comments Module: Action String', GTHEME_TEXTDOMAIN ),
+			'login_text'    => _x( 'Log in to Reply', 'Comments Module: Action String', GTHEME_TEXTDOMAIN ),
+			'edit'          => _x( 'Edit This', 'Comments Module: Action String', GTHEME_TEXTDOMAIN ),
 		) );
 
 		$reply = get_comment_reply_link( array(
@@ -291,10 +292,9 @@ class gThemeComments extends gThemeModuleCore
 		if ( $reply )
 			$actions['reply'] = $reply;
 
-		$edit = get_edit_comment_link( $comment->comment_ID );
-		if ( $edit )
+		if ( $edit = get_edit_comment_link( $comment->comment_ID ) )
 			$actions['edit-link'] = gThemeUtilities::html( 'a', array(
-				'href' => $edit,
+				'href'  => $edit,
 				'class' => 'comment-edit-link',
 			), $strings['edit'] );
 
@@ -304,8 +304,8 @@ class gThemeComments extends gThemeModuleCore
 			return;
 
 		echo '<ul class="list-inline '.$class.'">';
-			foreach ( $actions as $class => $action )
-				echo '<li class="'.$class.'">'.$action.'</li>';
+			foreach ( $actions as $action_class => $action )
+				echo '<li class="'.$action_class.'">'.$action.'</li>';
 		echo '</ul>';
 	}
 
@@ -316,24 +316,27 @@ class gThemeComments extends gThemeModuleCore
 			if ( is_null( $post_id ) )
 				$post_id = get_the_ID();
 
-			$user = wp_get_current_user();
+			$user          = wp_get_current_user();
 			$user_identity = ! empty( $user->ID ) ? $user->display_name : '';
-			$commenter = wp_get_current_commenter();
+			$commenter     = wp_get_current_commenter();
+			$permalink     = apply_filters( 'the_permalink', get_permalink( $post_id ) );
+			$required      = get_option( 'require_name_email' );
+			$html5         = current_theme_supports( 'html5', 'comment-form' ) ? true : false;
 
-			$required = get_option( 'require_name_email' );
-			$html5 = current_theme_supports( 'html5', 'comment-form' ) ? true : false;
 			$strings = gThemeOptions::info( 'comment_form_strings', array(
-				'required'          => _x( '(Required)', 'Comment Form Strings', GTHEME_TEXTDOMAIN ),
-				'name'              => _x( 'Name', 'Comment Form Strings', GTHEME_TEXTDOMAIN ),
-				'email'             => _x( 'Email', 'Comment Form Strings', GTHEME_TEXTDOMAIN ),
-				'url'               => _x( 'Website', 'Comment Form Strings', GTHEME_TEXTDOMAIN ),
-				'comment'           => _x( 'Comment', 'Comment Form Strings', GTHEME_TEXTDOMAIN ),
-				'must_log_in'       => __( 'You must be <a href="%s">logged in</a> to post a comment.' ),
-				'logged_in_as'      => __( '<a href="%1$s" aria-label="Logged in as %2$s. Edit your profile.">Logged in as %2$s</a>. <a href="%3$s">Log out?</a>' ),
-				'title_reply'       => __( 'Leave a Reply' ),
-				'title_reply_to'    => __( 'Leave a Reply to %s' ),
-				'cancel_reply_link' => __( 'Cancel reply' ),
-				'label_submit'      => __( 'Post Comment' ),
+				'required' => _x( '(Required)', 'Comments Module: Comment Form String', GTHEME_TEXTDOMAIN ),
+				'name'     => _x( 'Name', 'Comments Module: Comment Form String', GTHEME_TEXTDOMAIN ),
+				'email'    => _x( 'Email', 'Comments Module: Comment Form String', GTHEME_TEXTDOMAIN ),
+				'url'      => _x( 'Website', 'Comments Module: Comment Form String', GTHEME_TEXTDOMAIN ),
+				'comment'  => _x( 'Comment', 'Comments Module: Comment Form String', GTHEME_TEXTDOMAIN ),
+
+				'must_log_in'        => _x( 'You must be <a href="%s">logged in</a> to post a comment.', 'Comments Module: Comment Form String', GTHEME_TEXTDOMAIN ),
+				'logged_in_as'       => _x( '<a href="%1$s" aria-label="%2$s">Logged in as %3$s</a>. <a href="%4$s">Log out?</a>', 'Comments Module: Comment Form String', GTHEME_TEXTDOMAIN ),
+				'logged_in_as_title' => _x( 'Logged in as %s. Edit your profile.', 'Comments Module: Comment Form String', GTHEME_TEXTDOMAIN ),
+				'title_reply'        => _x( 'Leave a Reply', 'Comments Module: Comment Form String', GTHEME_TEXTDOMAIN ),
+				'title_reply_to'     => _x( 'Leave a Reply to %s', 'Comments Module: Comment Form String', GTHEME_TEXTDOMAIN ),
+				'cancel_reply_link'  => _x( 'Cancel reply', 'Comments Module: Comment Form String', GTHEME_TEXTDOMAIN ),
+				'label_submit'       => _x( 'Post Comment', 'Comments Module: Comment Form String', GTHEME_TEXTDOMAIN ),
 			) );
 
 			$fields = array();
@@ -397,25 +400,45 @@ class gThemeComments extends gThemeModuleCore
 						'placeholder'   => $strings['comment'],
 					), NULL ).'</div>',
 
-				'must_log_in' => '<p class="must-log-in">'.sprintf( $strings['must_log_in'],
-					wp_login_url( apply_filters( 'the_permalink', get_permalink( $post_id ) ) ) ).'</p>',
+				'must_log_in' => '<p class="must-log-in">'
+						.sprintf( $strings['must_log_in'], wp_login_url( $permalink ) )
+					.'</p>',
 
-				'logged_in_as' => '<p class="logged-in-as">'.sprintf( $strings['logged_in_as'],
-					get_edit_user_link(), $user_identity, wp_logout_url( apply_filters( 'the_permalink', get_permalink( $post_id ) ) ) ).'</p>',
+				'logged_in_as' => '<p class="logged-in-as">'
+					.vsprintf( $strings['logged_in_as'], array(
+						get_edit_user_link(),
+						esc_attr( sprintf( $strings['logged_in_as_title'], $user_identity ) ),
+						$user_identity,
+						wp_logout_url( $permalink ),
+					) ).'</p>',
 
-				'comment_notes_before' => '', //'<p class="comment-notes"><span id="email-notes">' . __( 'Your email address will not be published.' ) . '</span>'. ( $req ? $required_text : '' ) . '</p>',
-				'comment_notes_after'  => '', //'<p class="form-allowed-tags" id="form-allowed-tags">' . sprintf( __( 'You may use these <abbr title="HyperText Markup Language">HTML</abbr> tags and attributes: %s' ), ' <code>' . allowed_tags() . '</code>' ) . '</p>',
-				'id_form'              => 'commentform',
-				'id_submit'            => 'submit',
-				'class_submit'         => 'submit',
-				'name_submit'          => 'submit',
-				'title_reply'          => $strings['title_reply'],
-				'title_reply_to'       => $strings['title_reply_to'],
-				'cancel_reply_link'    => $strings['cancel_reply_link'],
-				'label_submit'         => $strings['label_submit'],
+				'comment_notes_before' => '',
+				'comment_notes_after'  => '',
+
+				'id_form'      => 'commentform',
+				'id_submit'    => 'submit',
+				'class_form'   => 'form-comment-form',
+				'class_submit' => 'submit btn btn-default',
+				'name_submit'  => 'submit',
+
+				'title_reply'        => $strings['title_reply'],
+				'title_reply_to'     => $strings['title_reply_to'],
+				'title_reply_before' => '<h3 id="reply-title" class="comment-reply-title">',
+				'title_reply_after'  => '</h3>',
+
+				'cancel_reply_link'   => $strings['cancel_reply_link'],
+				'cancel_reply_before' => ' <small>',
+				'cancel_reply_after'  => '</small>',
+
+				'label_submit'  => $strings['label_submit'],
+				'submit_button' => '<input name="%1$s" type="submit" id="%2$s" class="%3$s" value="%4$s" />',
+				'submit_field'  => '<p class="form-submit">%1$s %2$s</p>',
+
+				'action' => site_url( '/wp-comments-post.php' ),
 			);
 
 			$args = wp_parse_args( $args, apply_filters( 'comment_form_defaults', $defaults ) );
+
 			self::form( $post_id, $args, $commenter, $user_identity );
 
 		} else {
@@ -428,11 +451,14 @@ class gThemeComments extends gThemeModuleCore
 	{
 		do_action( 'comment_form_before' );
 
-		echo '<div id="respond" class="comment-form"><h3 id="reply-title" class="comment-reply-title">';
-			comment_form_title( $args['title_reply'], $args['title_reply_to'] );
-			echo ' <small>';
-				cancel_comment_reply_link( $args['cancel_reply_link'] );
-			echo '</small></h3>';
+		echo '<div id="respond" class="comment-form">';
+
+			echo $args['title_reply_before'];
+				comment_form_title( $args['title_reply'], $args['title_reply_to'] );
+				echo $args['cancel_reply_before'];
+					cancel_comment_reply_link( $args['cancel_reply_link'] );
+				echo $args['cancel_reply_after'];
+			echo $args['title_reply_after'];
 
 			if ( get_option( 'comment_registration' ) && ! is_user_logged_in() ) {
 
@@ -441,8 +467,10 @@ class gThemeComments extends gThemeModuleCore
 
 			} else {
 
-				echo '<form action="'.site_url( '/wp-comments-post.php' )
-					.'" method="post" id="'.esc_attr( $args['id_form'] ).'" role="form">';
+				echo '<form action="'.$args['action']
+					.'" method="post" id="'.esc_attr( $args['id_form'] )
+					.'" class="'.esc_attr( $args['class_form'] )
+					.'" role="form">';
 
 					do_action( 'comment_form_top' );
 
@@ -468,8 +496,21 @@ class gThemeComments extends gThemeModuleCore
 
 					echo $args['comment_notes_after'];
 
-					echo '<button class="btn btn-default" type="submit" id="'.esc_attr( $args['id_submit'] ).'">'.$args['label_submit'].'</button>';
-					comment_id_fields( $post_id );
+					$submit_button = sprintf(
+						$args['submit_button'],
+						esc_attr( $args['name_submit'] ),
+						esc_attr( $args['id_submit'] ),
+						esc_attr( $args['class_submit'] ),
+						esc_attr( $args['label_submit'] )
+					);
+
+					$submit_field = sprintf(
+						$args['submit_field'],
+						apply_filters( 'comment_form_submit_button', $submit_button, $args ),
+						get_comment_id_fields( $post_id )
+					);
+
+					echo apply_filters( 'comment_form_submit_field', $submit_field, $args );
 
 					do_action( 'comment_form', $post_id );
 
