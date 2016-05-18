@@ -92,7 +92,7 @@ class gThemeWrap extends gThemeModuleCore
 	//////////////////////////////////////////////////////////////////////
 	// used in: head.php
 	// http://www.paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/
-	public static function htmlOpen()
+	public static function htmlOpen( $after = '' )
 	{
 		$attributes = array();
 
@@ -121,6 +121,24 @@ class gThemeWrap extends gThemeModuleCore
 <!--[if IE 9 ]> <html<?php echo $html_attributes; ?> class="<?php echo $html_classes.' ie ie9 lte9'; ?>"> <![endif]-->
 <!--[if gt IE 9]> <html<?php echo $html_attributes; ?> class="<?php echo $html_classes; ?>"> <![endif]-->
 <!--[if !IE]><!--> <html<?php echo $html_attributes; ?> class="<?php echo $html_classes; ?>"> <!--<![endif]--><?php
+
+		echo $after."\n";
+	}
+
+	// used in: head.php
+	public static function bodyOpen( $before = '', $extra_atts = '' )
+	{
+		echo "\n".$before;
+
+		echo '<body ';
+
+		body_class();
+
+		echo $extra_atts;
+
+		echo '>';
+
+		do_action( 'template_body_top' );
 	}
 }
 
