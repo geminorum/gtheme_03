@@ -1,160 +1,97 @@
+(function() {
+	'use strict';
 
-var gulp    = require('gulp'),
-	// sass         = require('gulp-sass'),
-	compass      = require('gulp-compass'),
-	plumber      = require('gulp-plumber'),
-	notify       = require('gulp-notify'),
-	htmlmin      = require('gulp-htmlmin'), // https://github.com/jonschlinkert/gulp-htmlmin
-	rename       = require('gulp-rename'), // https://github.com/hparra/gulp-rename
-	minifyCSS    = require('gulp-minify-css'),
-	postcss      = require('gulp-postcss'), // https://github.com/postcss/postcss
-	sourcemaps   = require('gulp-sourcemaps'),
-	autoprefixer = require('autoprefixer'); // https://github.com/postcss/autoprefixer
-	// path    = require('path');
+	var
+		gulp = require('gulp'),
+		sass = require('gulp-sass'), // https://github.com/dlmanning/gulp-sass
+		changed = require('gulp-changed'),
+		tinypng = require('gulp-tinypng'), // https://github.com/creativeaura/gulp-tinypng
+		nano = require('gulp-cssnano'), // https://github.com/ben-eb/gulp-cssnano
+		sourcemaps = require('gulp-sourcemaps'),
+		smushit = require('gulp-smushit'), // https://github.com/heldr/gulp-smushit
+		excludeGitignore = require('gulp-exclude-gitignore'), // https://github.com/sboudrias/gulp-exclude-gitignore
+		wpPot = require('gulp-wp-pot'), // https://github.com/rasmusbe/gulp-wp-pot
+		sort = require('gulp-sort'),
+		fs = require('fs');
 
-gulp.task('default', function(){
-	console.log( 'Hi, I\'m Gulp!' );
-});
+	var
+		pkg = JSON.parse(fs.readFileSync('./package.json'));
 
-var plumberErrorHandler = { errorHandler: notify.onError({
-	title: 'Gulp',
-	message: 'Error: <%= error.message %>'
-  })
-};
+	gulp.task('tinypng', function() {
 
-gulp.task('watch', function() {
+		return gulp.src('./images/raw/*.png')
 
-	gulp.watch('./stylesheets/**', ['compass']);
-	// gulp.watch('./root/assets/stylesheets/**/*.scss', ['sass']);
-	// gulp.watch('js/src/*.js', ['js']);
-	// gulp.watch('img/src/*.{png,jpg,gif}', ['img']);
-});
+		.pipe(tinypng(''))
 
-gulp.task('compass', function() {
-	gulp.src('./stylesheets/*.scss')
+		.pipe(gulp.dest('./images'));
+	});
 
-		.pipe(plumber(plumberErrorHandler))
+	gulp.task('smushit', function() {
 
-		.pipe(compass({
-			project: __dirname, //path.join(__dirname, 'assets'),
-			css: 'css',
-			sass: 'sass',
-			image: 'images',
-			font: 'fonts',
-			import_path: [
-				"components/bootstrap-sass/assets/stylesheets"
-			],
-			require: [
-				'sass-css-importer'
-			]
+		return gulp.src('./images/raw/**/*.{jpg,png}')
+
+		.pipe(smushit())
+
+		.pipe(gulp.dest('./images'));
+	});
+
+	gulp.task('pot', function() {
+
+		return gulp.src([
+			'./**/*.php',
+			'!./assets/**',
+			'!./css/**',
+			'!./fonts/**',
+			'!./images/**',
+			'!./js/**',
+			'!./libs/**',
+			'!./packages/**',
+			'!./stylesheets/**'
+		])
+
+		.pipe(excludeGitignore())
+
+		.pipe(sort())
+
+		.pipe(wpPot(pkg._pot))
+
+		.pipe(gulp.dest('./languages'));
+	});
+
+	gulp.task('sass', function() {
+
+		return gulp.src('./stylesheets/*.scss')
+
+		.pipe(sourcemaps.init())
+
+		.pipe(sass.sync({
+			includePaths: 'components/bootstrap-sass/assets/stylesheets',
+		}).on('error', sass.logError))
+
+		.pipe(nano({
+			// http://cssnano.co/optimisations/
+			zindex: false,
+			discardComments: {
+				removeAll: true
+			}
 		}))
 
-		.pipe(minifyCSS())
+		.pipe(sourcemaps.write('./maps'))
 
 		.pipe(gulp.dest('./css'));
-});
+	});
 
-////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////
+	gulp.task('watch', function() {
 
+		return gulp.watch([
+			'./stylesheets/**'
+		], ['sass']);
 
-// gulp.task('sass', function () {
-// 	gulp.src('./root/assets/stylesheets/style.scss')
-// 	.pipe(plumber(plumberErrorHandler))
-// 	.pipe(sass({
-// 		// includePaths: require('node-neat').includePaths
-// 		// includePaths: require('node-bourbon').with('other/path', 'another/path')
-//     }))
-//     .pipe(gulp.dest('./root/assets/css'));
-// });
+	});
 
-////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////
+	gulp.task('default', function() {
 
+		console.log('Hi, I\'m Gulp!');
+	});
 
-// https://github.com/sass/sass/issues/556#issuecomment-39321867
-gulp.task('components', function() {
-  return gulp.src(['bower_components/normalize.css/normalize.css'])
-  .pipe(plugins.rename('_normalize.scss'))
-  .pipe(gulp.dest('assets/src/scss'));
-});
-
-////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////
-
-
-// https://github.com/sass/sass/issues/556#issuecomment-50825607
-gulp.task('cssToSass', function() {
-  return gulp.src(paths.cssToSass.src)
-	.pipe(cached('cssToSass'))
-	.pipe(rename(function(path) {
-	  path.basename = '_' + path.basename;
-	  path.extname = '.scss';
-	}))
-	.pipe(gulp.dest(paths.cssToSass.dest));
-});
-
-////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////
-
-
-// https://github.com/sass/sass/issues/556#issuecomment-50837783
-// https://github.com/yuguo/gulp-import-css
-gulp.task('styles', function () {
-	return gulp.src('app/scss/app.scss')
-		.pipe(sass())
-		.pipe(importCss())
-		.pipe(gulp.dest('dist/styles'));
-});
-
-////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////
-
-
-// ALSO SEE: https://gist.github.com/geminorum/35b4e1c5f0e7d6a4a914
-// https://github.com/yuguo/gulp-import-css
-
-////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////
-// RENAME :
-
-// SEE: https://github.com/hparra/gulp-rename/blob/master/test/rename.spec.js
-
-// http://stackoverflow.com/a/22147264/4864081
-
-// gulp.src("./partials/**/*.hmtl")
-// .pipe(rename(function (path) {
-  // path.suffix += ".min";
-// }))
-// .pipe(gulp.dest("./dist"));
-
-gulp.task('compress', function() {
-  gulp.src('./partials/**/*.html')
-	.pipe(htmlmin())
-	.pipe(gulp.dest('dist'))
-});
-
-////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
-// https://github.com/postcss/autoprefixer
-
-// gulp.task('autoprefixer', function () {
-// 	return gulp.src('./src/*.css')
-// 		.pipe(sourcemaps.init())
-// 		.pipe(postcss([ autoprefixer({ browsers: ['last 2 versions'] }) ]))
-// 		.pipe(sourcemaps.write('.'))
-// 		.pipe(gulp.dest('./dest'));
-// });
-
-////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
-
-gulp.task('default', ['compass', 'watch']);
+}());
