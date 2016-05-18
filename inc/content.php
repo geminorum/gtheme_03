@@ -49,6 +49,24 @@ class gThemeContent extends gThemeModuleCore
 		echo $after;
 	}
 
+	public static function row( $before = '', $after = '', $empty = FALSE )
+	{
+		if ( ! get_the_title() && ! $empty )
+			return;
+
+		echo $before;
+
+			echo '<a class="permalink" title="';
+				self::title_attr();
+			echo '" href="';
+				the_permalink();
+			echo '">';
+				echo gThemeUtilities::wordWrap( get_the_title(), 2 );
+			echo '</a>';
+
+		echo $after;
+	}
+
 	// FIXME: WORKING DRAFT
 	// SEE: gThemeDate::date()
 	public static function date( $b = '<div class="entry-date">', $a = '</div>' )
