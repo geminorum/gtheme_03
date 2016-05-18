@@ -546,7 +546,7 @@ addthis_config.services_custom = [
 			if ( FALSE === $args['shortlink'] )
 				$link = get_permalink();
 			else if ( TRUE === $args['shortlink'] )
-				$link = wp_get_shortlink( 0, 'query' );
+				$link = wp_get_shortlink( 0, 'post' );
 			else
 				$link = $args['shortlink'];
 		}
