@@ -13,64 +13,70 @@ class gThemeFilters extends gThemeModuleCore
 			'disable_autoembed'  => TRUE,
 		), $args ) );
 
-		add_action( 'wp_head', array( $this, 'wp_head' ), 5 );
-		add_filter( 'body_class', array( $this, 'body_class' ), 10, 2 );
-		add_filter( 'post_class', array( $this, 'post_class' ), 10, 3 );
 
-		if ( function_exists( 'wp_get_document_title' ) ) {
-			add_filter( 'document_title_separator', function( $sep ){
-				return gThemeOptions::info( 'title_sep', $sep );
-			} );
+		if ( is_admin() ) {
+
 		} else {
-			add_filter( 'wp_title', array( $this, 'wp_title' ), 5, 3 );
-			add_filter( 'get_wp_title_rss', function( $title ){
-				return empty( $title ) ? $title : $title.trim( gThemeOptions::info( 'title_sep', '&#187;' ) );
+
+			add_action( 'wp_head', array( $this, 'wp_head' ), 5 );
+			add_filter( 'body_class', array( $this, 'body_class' ), 10, 2 );
+			add_filter( 'post_class', array( $this, 'post_class' ), 10, 3 );
+
+			if ( function_exists( 'wp_get_document_title' ) ) {
+				add_filter( 'document_title_separator', function( $sep ){
+					return gThemeOptions::info( 'title_sep', $sep );
+				} );
+			} else {
+				add_filter( 'wp_title', array( $this, 'wp_title' ), 5, 3 );
+				add_filter( 'get_wp_title_rss', function( $title ){
+					return empty( $title ) ? $title : $title.trim( gThemeOptions::info( 'title_sep', '&#187;' ) );
+				} );
+			}
+
+			add_filter( 'the_excerpt', function( $text ){
+				// return $text.gThemeContent::continueReading( get_edit_post_link() );
+				return $text.gThemeContent::continueReading();
+			}, 5 );
+
+			add_filter( 'excerpt_length', function( $length ){
+				return gThemeOptions::info( 'excerpt_length', 40 );
 			} );
+
+			add_filter( 'excerpt_more', function( $more ){
+				return gThemeOptions::info( 'excerpt_more', ' &hellip;' );
+			} );
+
+			if ( gThemeOptions::info( 'trim_excerpt_characters', FALSE ) ) {
+				remove_filter( 'get_the_excerpt', 'wp_trim_excerpt' );
+				add_filter( 'get_the_excerpt', array( $this, 'get_the_excerpt' ) );
+			}
+
+			add_filter( 'the_content', array( $this, 'the_content' ), 15 );
+			add_filter( 'the_content_more_link', array( $this, 'the_content_more_link' ) );
+
+			if ( $content_extra )
+				add_filter( 'the_content', array( $this, 'the_content_extra' ), 16 );
+
+			if ( $auto_paginate )
+				add_action( 'loop_start', array( $this, 'loop_start' ) );
+
+			if ( $redirect_canonical )
+				add_filter( 'redirect_canonical', array( $this, 'redirect_canonical' ), 10, 2 );
+
+			if ( $default_editor )
+				add_filter( 'wp_default_editor', array( $this, 'wp_default_editor' ) );
+
+			// gNetwork Cite Shortcode: [reflist]
+			add_filter( 'shortcode_atts_reflist', array( $this, 'shortcode_atts_reflist' ), 10, 3 );
+
+			// https://gist.github.com/ocean90/3796628
+			// disables the auto-embeds function in WordPress 3.5
+			if ( $disable_autoembed )
+				remove_filter( 'the_content', array( $GLOBALS['wp_embed'], 'autoembed' ), 8 );
+
+			// to remove wp recent comments widget styles
+			add_filter( 'show_recent_comments_widget_style', '__return_false' );
 		}
-
-		add_filter( 'the_excerpt', function( $text ){
-			// return $text.gThemeContent::continueReading( get_edit_post_link() );
-			return $text.gThemeContent::continueReading();
-		}, 5 );
-
-		add_filter( 'excerpt_length', function( $length ){
-			return gThemeOptions::info( 'excerpt_length', 40 );
-		} );
-
-		add_filter( 'excerpt_more', function( $more ){
-			return gThemeOptions::info( 'excerpt_more', ' &hellip;' );
-		} );
-
-		if ( gThemeOptions::info( 'trim_excerpt_characters', FALSE ) ) {
-			remove_filter( 'get_the_excerpt', 'wp_trim_excerpt' );
-			add_filter( 'get_the_excerpt', array( $this, 'get_the_excerpt' ) );
-		}
-
-		add_filter( 'the_content', array( $this, 'the_content' ), 15 );
-		add_filter( 'the_content_more_link', array( $this, 'the_content_more_link' ) );
-
-		if ( $content_extra )
-			add_filter( 'the_content', array( $this, 'the_content_extra' ), 16 );
-
-		if ( $auto_paginate )
-			add_action( 'loop_start', array( $this, 'loop_start' ) );
-
-		if ( $redirect_canonical )
-			add_filter( 'redirect_canonical', array( $this, 'redirect_canonical' ), 10, 2 );
-
-		if ( $default_editor )
-			add_filter( 'wp_default_editor', array( $this, 'wp_default_editor' ) );
-
-		// gNetwork Cite Shortcode: [reflist]
-		add_filter( 'shortcode_atts_reflist', array( $this, 'shortcode_atts_reflist' ), 10, 3 );
-
-		// https://gist.github.com/ocean90/3796628
-		// disables the auto-embeds function in WordPress 3.5
-		if ( $disable_autoembed )
-			remove_filter( 'the_content', array( $GLOBALS['wp_embed'], 'autoembed' ), 8 );
-
-		// to remove wp recent comments widget styles
-		add_filter( 'show_recent_comments_widget_style', '__return_false' );
 	}
 
 	public function wp_head()
@@ -121,7 +127,7 @@ class gThemeFilters extends gThemeModuleCore
 	{
 		if ( is_null( $css ) )
 			$css = self::getStyle();
-			
+
 ?><script>
 	var cb = function() {
 		var l = document.createElement('link'); l.rel = 'stylesheet';
@@ -200,9 +206,6 @@ class gThemeFilters extends gThemeModuleCore
 
 	public function post_class( $classes, $class, $post_ID )
 	{
-		if ( is_admin() )
-			return $classes;
-
 		global $wp_query, $post;
 
 		$classes[] = 'pf-content'; // print friendly / for : gThemeContent::printfriendly()
