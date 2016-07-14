@@ -45,7 +45,7 @@ class gThemeDate extends gThemeModuleCore
 
 			// gThemePost::titleAttr( FALSE, NULL, TRUE ),
 			// esc_attr( sprintf( __( 'Permalink to %s', GTHEME_TEXTDOMAIN ), the_title_attribute( 'echo=0' ) ) ),
-			esc_attr( get_the_date( 'c', $args['post_id'] ) ),
+			esc_attr( get_the_date( 'c', $args['post_id'] ) ), // FIXME: must be % ago
 
 			esc_html( $date ),
 

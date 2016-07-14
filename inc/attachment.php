@@ -4,6 +4,7 @@ class gThemeAttachment extends gThemeModuleCore
 {
 
 	// FIXME: DRAFT
+	// SEE: https://core.trac.wordpress.org/changeset/37915
 	public static function caption( $atts = array() )
 	{
 		$args = self::atts( array(

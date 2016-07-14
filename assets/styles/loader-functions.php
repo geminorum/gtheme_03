@@ -12,6 +12,7 @@ function include_css( $array = array(), $debug = FALSE ){
 SEE :
 	http://www.catswhocode.com/blog/3-ways-to-compress-css-files-using-php
 	https://github.com/GaryJones/Simple-PHP-CSS-Minification/
+	- [Finding Comments in Source Code Using Regular Expressions – Stephen Ostermiller](http://blog.ostermiller.org/find-comment)
 */
 
 function minify_css( $buffer ) {

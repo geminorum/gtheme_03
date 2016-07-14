@@ -3,7 +3,8 @@
 class gThemeNavigation extends gThemeModuleCore
 {
 
-	// SEE: https://codex.wordpress.org/Pagination
+	// @SEE: https://codex.wordpress.org/Pagination
+	// @SEE: [New Functions Available In WordPress 4.1](https://paulund.co.uk/new-functions-available-wordpress-4-1)
 	public static function content( $context = 'index', $taxonomy = 'category', $max_num_pages = NULL )
 	{
 		global $wp_query;
@@ -139,6 +140,7 @@ class gThemeNavigation extends gThemeModuleCore
 
 	// home > archives > paged
 	// bootstrap 3 compatible markup
+	// @SEE: [get_the_archive_title()](https://developer.wordpress.org/reference/functions/get_the_archive_title/)
 	public static function breadcrumb_archive( $atts = array() )
 	{
 		$crumbs = array();
@@ -199,5 +201,24 @@ class gThemeNavigation extends gThemeModuleCore
 			echo '<li'.( ( $count-1 ) == $offset ? ' class="active"' : '' ).'>'.$crumb.'</li>';
 		}
 		echo '</ol>'.$args['after'];
+	}
+
+	// FIXME: DRAFT
+	// @SOURCE: [Create Your Own Pagination Links](https://paulund.co.uk/create-pagination)
+	public static function paginateLinks()
+	{
+		global $wp_query;
+
+		$big = 999999999;
+
+		$pagination_links = paginate_links( array(
+			'base' => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
+			'format' => '?paged=%#%',
+			'current' => max( 1, get_query_var('paged') ),
+			'mid_size' => 8,
+			'total' => $wp_query->max_num_pages
+		) );
+
+		echo $pagination_links;
 	}
 }

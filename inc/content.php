@@ -233,12 +233,12 @@ class gThemeContent extends gThemeModuleCore
 		do_action( 'gtheme_action_links_before', $before, $after, $actions, $icons );
 
 		foreach ( $actions as $action )
-			self::do_actions( $action, $before, $after, $icons );
+			self::do_action( $action, $before, $after, $icons );
 
 		do_action( 'gtheme_action_links', $before, $after, $actions, $icons );
 	}
 
-	public static function do_actions( $action, $before, $after, $icons = FALSE )
+	public static function do_action( $action, $before, $after, $icons = FALSE )
 	{
 		switch ( $action ) {
 
@@ -474,7 +474,7 @@ class gThemeContent extends gThemeModuleCore
 			add_action( 'wp_footer', array( __CLASS__, 'addtoany_footer' ), 5 );
 
 		$query_args = array(
-			'linkurl' => urlencode( get_permalink() ),
+			'linkurl'  => urlencode( get_permalink() ),
 			'linkname' => self::title_attr( FALSE, NULL, '%s' ),
 		);
 

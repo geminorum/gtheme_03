@@ -4,7 +4,7 @@ if ( $debug ) {
 
 	header( 'Content-Type: text/css; charset=UTF-8' );
 	header( 'Cache-Control: no-cache, no-store, must-revalidate' );
-	header( 'Pragma: no-cache' );
+	// header( 'Pragma: no-cache' ); // https://core.trac.wordpress.org/ticket/37250
 	header( 'Expires: 0' );
 
 } else {
