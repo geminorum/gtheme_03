@@ -16,25 +16,25 @@
 
 	@if $type == string {
 
-		@if $min == xs {
+		@if $min == 'xs' {
 			@media (max-width: 767px) {
 				@content;
 			}
 		}
 
-		@else if $min == sm {
+		@else if $min == 'sm' {
 			@media (min-width: 768px) {
 				@content;
 			}
 		}
 
-		@else if $min == md {
+		@else if $min == 'md' {
 			@media (min-width: 992px) {
 				@content;
 			}
 		}
 
-		@else if $min == lg {
+		@else if $min == 'lg' {
 			@media (min-width: 1200px) {
 				@content;
 			}
@@ -73,26 +73,26 @@
 
 	@if $type == string {
 
-		@if $min == lg {
+		@if $min == 'lg' {
 			@media (max-width: 1200px) {
 				@content;
 			}
 		}
 
-		@else if $min == md {
+		@else if $min == 'md' {
 			@media (max-width: 992px) {
 				@content;
 			}
 		}
 
-		@else if $min == sm {
+		@else if $min == 'sm' {
 			@media (max-width: 768px) {
 				@content;
 			}
 		}
 
 
-		@else if $min == xs {
+		@else if $min == 'xs' {
 			@media (max-width: 767px) {
 				@content;
 			}

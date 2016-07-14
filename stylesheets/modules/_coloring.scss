@@ -60,3 +60,39 @@
 		}
 	}
 }
+
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+/// [Gray out image with CSS](http://stackoverflow.com/a/11842712)
+// @SEE: [The CSS3 Filter property](http://blog.nmsdvid.com/css-filter-property/)
+// EXAMPLE: @include coloring-filter-grayscale(80%);
+
+@mixin coloring-filter-grayscale($amount: 100%) {
+
+	filter:         gray;
+	-webkit-filter: grayscale($amount);
+	-moz-filter:    grayscale($amount);
+	-o-filter:      grayscale($amount);
+	-ms-filter:     grayscale($amount);
+	filter:         grayscale($amount);
+
+	// -webkit-backface-visibility: hidden;
+	// -moz-backface-visibility:    hidden;
+	// -ms-backface-visibility:     hidden;
+	// -o-backface-visibility:      hidden;
+	// backface-visibility:         hidden;
+
+	transition: all 0.6s ease;
+
+	&:hover {
+		-webkit-filter: grayscale(0%);
+		-moz-filter:    grayscale(0%);
+		-o-filter:      grayscale(0%);
+		-ms-filter:     grayscale(0%);
+		filter:         grayscale(0%);
+		filter:         none;
+
+		transition: all 0.3s ease;
+	}
+}
