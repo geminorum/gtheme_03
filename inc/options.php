@@ -105,6 +105,8 @@ class gThemeOptions extends gThemeModuleCore
 			'excerpt_more'            => ' &hellip;',
 			'trim_excerpt_characters' => FALSE, // set this to desired characters count. like : 300
 
+			'copy_disabled' => FALSE, // set TRUE to make hard copying the contents!
+
 			// comment to use default
 			// 'read_more_text'  => '&hellip;',
 			// 'read_more_title' => '<a %1$s href="%2$s" title="Continue reading &ldquo;%3$s&rdquo; &hellip;" class="%4$s" >%5$s</a>%6$s',

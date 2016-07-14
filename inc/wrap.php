@@ -132,6 +132,9 @@ class gThemeWrap extends gThemeModuleCore
 
 		echo '<body ';
 
+		if ( gThemeOptions::info( 'copy_disabled', FALSE ) )
+			echo 'onContextMenu="return false" '; // http://stackoverflow.com/a/3021151/4864081
+
 		body_class();
 
 		echo $extra_atts;
