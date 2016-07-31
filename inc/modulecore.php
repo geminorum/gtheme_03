@@ -170,6 +170,31 @@ class gThemeModuleCore extends gThemeBaseCore
 		echo '</form>';
 	}
 
+	// FIXME: temporarly: see gNetwork module core!
+	protected function settings_buttons( $sub = NULL, $wrap = '' )
+	{
+		if ( FALSE !== $wrap )
+			echo '<p class="submit gtheme-settings-buttons '.$wrap.'">';
+
+		echo get_submit_button( _x( 'Save Changes', 'Module Core', GTHEME_TEXTDOMAIN ), 'primary', 'submit', FALSE, array( 'default' => 'default' ) ).'&nbsp;&nbsp;';
+
+		// FIXME: working but also needs the action
+		// echo get_submit_button( _x( 'Reset Settings', 'Module Core', GTHEME_TEXTDOMAIN ), 'secondary', 'reset', FALSE, self::getButtonConfirm() ).'&nbsp;&nbsp;';
+
+		if ( FALSE !== $wrap )
+			echo '</p>';
+	}
+
+	public static function getButtonConfirm( $message = NULL )
+	{
+		if ( is_null( $message ) )
+			$message = _x( 'Are you sure? This operation can not be undone.', 'Module Core', GTHEME_TEXTDOMAIN );
+
+		return array(
+			'onclick' => sprintf( 'return confirm(\'%s\')', esc_attr( $message ) ),
+		);
+	}
+
 	public function do_settings_field( $atts = array(), $wrap = FALSE )
 	{
 		$args = self::atts( array(
@@ -386,11 +411,12 @@ class gThemeModuleCore extends gThemeBaseCore
 			break;
 			case 'button' :
 
-				submit_button(
+				echo get_submit_button(
 					$value,
 					( empty( $args['field_class'] ) ? 'secondary' : $args['field_class'] ),
-					$id,
-					FALSE
+					$args['field'],
+					FALSE,
+					$args['values']
 				);
 
 			break;
