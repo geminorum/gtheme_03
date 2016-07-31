@@ -78,8 +78,12 @@ class gThemeOptions extends gThemeModuleCore
 
 			// COUNTS API
 			'counts' => gThemeCounts::defaults(),  // NOTE: use gThemeCounts::defaults( array( -extra / override -) )
+
 			// PAGES API
-			'pages' => gThemePages::defaults(), // NOTE: use gThemePages::defaults( array( -extra / override -) )
+			'pages_list'     => gThemePages::defaults(), // NOTE: use gThemePages::defaults( array( -extra / override -) )
+			'pages_pre_map'  => gThemePages::defaultPages(), // NOTE: use gThemePages::defaultPages( array( -extra / override -) )
+			'pages_pre_text' => _x( '[ This page is being completed ]', 'Options: Page Pre-Text', GTHEME_TEXTDOMAIN ),
+
 
 			// PRIMARY TERMS API
 			'primary_terms_legend' => FALSE,
