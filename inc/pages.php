@@ -141,6 +141,7 @@ class gThemePages extends gThemeModuleCore
 
 				$this->settings_buttons( 'pages', FALSE );
 				echo get_submit_button( _x( 'Create Default Pages', 'Pages Module', GTHEME_TEXTDOMAIN ), 'secondary', 'create-default-pages', FALSE, self::getButtonConfirm() ).'&nbsp;&nbsp;';
+				echo get_submit_button( _x( 'Create Default Menus', 'Pages Module', GTHEME_TEXTDOMAIN ), 'secondary', 'create-default-menus', FALSE, self::getButtonConfirm() ).'&nbsp;&nbsp;';
 
 			echo '</p>';
 			wp_nonce_field( 'gtheme-pages', '_gtheme_pages' );
@@ -155,7 +156,42 @@ class gThemePages extends gThemeModuleCore
 				&& wp_verify_nonce( $_POST['_gtheme_pages'], 'gtheme-pages' ) ) {
 
 
-				if ( ! empty( $_POST['create-default-pages'] ) ) {
+				if ( ! empty( $_POST['create-default-menus'] ) ) {
+
+					$map   = gThemeOptions::info( 'pages_pre_map', array() );
+					$nav   = gThemeOptions::info( 'pages_nav_menu', 'primary' );
+					$count = 0;
+
+					if ( $map && count( $map ) ) {
+
+						if ( $object = wp_get_nav_menu_object( $nav ) )
+							$menu = $object->term_id;
+						else
+							$menu = wp_create_nav_menu( $nav );
+
+						foreach( $map as $slug => $title ) {
+							if ( $page = get_page_by_path( $slug, OBJECT, 'page' ) ) {
+								$id = wp_update_nav_menu_item( $menu, 0, array(
+									'menu-item-title'     => $title,
+									'menu-item-object'    => 'page',
+									'menu-item-object-id' => $page->ID,
+									'menu-item-type'      => 'post_type',
+									'menu-item-status'    => 'publish'
+							   ) );
+
+							   if ( ! is_wp_error( $id ) )
+								   $count++;
+							}
+						}
+
+						wp_redirect( add_query_arg( array(
+							'message' => 'created',
+							'count'   => $count,
+						), wp_get_referer() ) );
+						exit();
+					}
+
+				} else if ( ! empty( $_POST['create-default-pages'] ) ) {
 
 					$map   = gThemeOptions::info( 'pages_pre_map', array() );
 					$text  = gThemeOptions::info( 'pages_pre_text', '' );
@@ -166,24 +202,25 @@ class gThemePages extends gThemeModuleCore
 						foreach( $map as $slug => $title ) {
 							if ( ! $page = get_page_by_path( $slug, OBJECT, 'page' ) ) {
 								$id = wp_insert_post( array(
-    								'post_title'   => $title,
-    								'post_content' => $text,
+									'post_title'   => $title,
+									'post_name'    => $slug,
+									'post_content' => $text,
 									'post_author'  => $user,
-    								'post_status'  => 'publish',
-    								'post_type'    => 'page',
+									'post_status'  => 'publish',
+									'post_type'    => 'page',
 								) );
 
 								if ( ! is_wp_error( $id ) )
 									$count++;
 							}
 						}
-					}
 
-					wp_redirect( add_query_arg( array(
-						'message' => 'created',
-						'count'   => $count,
-					), wp_get_referer() ) );
-					exit();
+						wp_redirect( add_query_arg( array(
+							'message' => 'created',
+							'count'   => $count,
+						), wp_get_referer() ) );
+						exit();
+					}
 
 				} else {
 
