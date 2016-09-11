@@ -648,7 +648,7 @@ class gThemeWidgetTermPosts extends gThemeWidget
 		if ( empty( $instance['number'] ) || ! $number = absint( $instance['number'] ) )
 			$number = 10;
 
-		$row_query = new WP_Query( array(
+		$query_args = array(
 			'tax_query' => array( array(
 				'taxonomy' => $taxonomy,
 				'field'    => 'id',
@@ -662,7 +662,12 @@ class gThemeWidgetTermPosts extends gThemeWidget
 			'no_found_rows'          => TRUE, // counts posts, remove if pagination required
 			'update_post_term_cache' => FALSE, // grabs terms, remove if terms required (category, tag...)
 			'update_post_meta_cache' => FALSE, // grabs post meta, remove if post meta required
-		) );
+		);
+
+		if ( is_singular() )
+			$query_args['post__not_in'] = array( get_queried_object_id() );
+
+		$row_query = new \WP_Query( $query_args );
 
 		if ( $row_query->have_posts() ) {
 			$this->before_widget( $args, $instance );
@@ -860,7 +865,7 @@ class gThemeWidgetRecentPosts extends gThemeWidget
 		if ( empty( $instance['number'] ) || ! $number = absint( $instance['number'] ) )
 			$number = 10;
 
-		$row_query = new WP_Query( array(
+		$query_args = array(
 			'posts_per_page'         => $number,
 			'post_type'              => $post_type,
 			'post_status'            => 'publish',
@@ -868,7 +873,12 @@ class gThemeWidgetRecentPosts extends gThemeWidget
 			'no_found_rows'          => TRUE, // counts posts, remove if pagination required
 			'update_post_term_cache' => FALSE, // grabs terms, remove if terms required (category, tag...)
 			'update_post_meta_cache' => FALSE, // grabs post meta, remove if post meta required
-		) );
+		);
+
+		if ( is_singular() )
+			$query_args['post__not_in'] = array( get_queried_object_id() );
+
+		$row_query = new \WP_Query( $query_args );
 
 		if ( $row_query->have_posts() ) {
 			$this->before_widget( $args, $instance );
