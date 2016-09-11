@@ -67,7 +67,7 @@ class gThemePages extends gThemeModuleCore
 
 		$info_pages = gThemeOptions::info( 'pages_list', array() );
 		if ( count( $info_pages ) && isset( $info_pages[$name] ) )
-			if ( $page = get_page_by_path( $slug, OBJECT, 'page' ) )
+			if ( $page = get_page_by_path( $name, OBJECT, 'page' ) )
 				return $page->ID;
 
 		return $def;
