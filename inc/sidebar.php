@@ -592,7 +592,7 @@ class gThemeWidget extends WP_Widget
 			'selected' => $term_id == '0',
 		), __( '&mdash; Select &mdash;', GTHEME_TEXTDOMAIN ) );
 
-		foreach ( get_terms( $taxonomy ) as $term )
+		foreach ( get_terms( $taxonomy, array( 'hide_empty' => FALSE ) ) as $term )
 			$html .= gThemeUtilities::html( 'option', array(
 				'value'    => $term->term_id,
 				'selected' => $term_id == $term->term_id,
