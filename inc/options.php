@@ -84,7 +84,6 @@ class gThemeOptions extends gThemeModuleCore
 			'pages_pre_map'  => gThemePages::defaultPages(), // NOTE: use gThemePages::defaultPages( array( -extra / override -) )
 			'pages_pre_text' => _x( '[ This page is being completed ]', 'Options: Page Pre-Text', GTHEME_TEXTDOMAIN ),
 
-
 			// PRIMARY TERMS API
 			'primary_terms_legend' => FALSE,
 			'primary_terms_taxonomy' => 'category',
@@ -146,7 +145,7 @@ class gThemeOptions extends gThemeModuleCore
 			'frontpage_title' => self::getOption( 'frontpage_title', get_bloginfo( 'name', 'display' ) ), // set FALSE to disable
 			'frontpage_desc'  => self::getOption( 'frontpage_desc', get_bloginfo( 'description', 'display' ) ), // set FALSE to disable
 
-			'default_image_src' => GTHEME_URL.'/images/document.png', // FIXME: MUST DEP
+			'default_image_src' => GTHEME_URL.'/images/document-large.png', // FIXME: MUST DEP
 			'copyright'         => self::getOption( 'copyright', __( '&copy; All right reserved.', GTHEME_TEXTDOMAIN ) ),
 
 			// COMMENTS
