@@ -30,3 +30,18 @@ function minify_css( $buffer ) {
 
 	return trim( $buffer );
 }
+
+// @REF: http://php.net/manual/en/function.ob-start.php#71953
+// @REF: http://stackoverflow.com/a/6225706
+function minify_html( $buffer ) {
+	
+	return preg_replace( array(
+		'/\>[^\S ]+/s', //strip whitespaces after tags, except space
+		'/[^\S ]+\</s', //strip whitespaces before tags, except space
+		'/(\s)+/s' // shorten multiple whitespace sequences
+	), array(
+		'>',
+		'<',
+		'\\1'
+	), $buffer );
+}
