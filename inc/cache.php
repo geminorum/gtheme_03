@@ -17,7 +17,7 @@
 	}
 */
 
-class gThemeFragmentCache
+class gThemeFragmentCache extends gThemeBaseCore
 {
 	protected $key;
 	protected $ttl;

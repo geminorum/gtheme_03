@@ -71,23 +71,6 @@ class gThemeModuleCore extends gThemeBaseCore
 		);
 	}
 
-	// HELPER
-	// ANCESTOR: shortcode_atts()
-	public static function atts( $pairs, $atts )
-	{
-		$atts = (array) $atts;
-		$out = array();
-
-		foreach ( $pairs as $name => $default ) {
-			if ( array_key_exists( $name, $atts ) )
-				$out[$name] = $atts[$name];
-			else
-				$out[$name] = $default;
-		}
-
-		return $out;
-	}
-
 	// HELPER: wrapper for current_user_can()
 	public static function cuc( $cap, $none = TRUE )
 	{
@@ -157,7 +140,7 @@ class gThemeModuleCore extends gThemeBaseCore
 	// HELPER: used by module settings pages
 	public function field_debug()
 	{
-		gThemeUtilities::dump( $this->options );
+		self::dump( $this->options );
 	}
 
 	// DEFAULT METHOD: setting sub html
@@ -443,7 +426,7 @@ class gThemeModuleCore extends gThemeBaseCore
 			break;
 			case 'debug' :
 
-				gThemeUtilities::dump( $this->options );
+				self::dump( $this->options );
 
 			break;
 			default :

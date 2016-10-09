@@ -1,16 +1,7 @@
 <?php defined( 'ABSPATH' ) or die( 'Restricted access' );
 
-class gThemeUtilities extends gThemeModuleCore
+class gThemeUtilities extends gThemeBaseCore
 {
-
-	public static function dump( $var, $htmlSafe = TRUE )
-	{
-		$result = var_export( $var, TRUE );
-
-		echo '<pre dir="ltr" style="text-align:left;direction:ltr;">'
-			.( $htmlSafe ? htmlspecialchars( $result ) : $result )
-			.'</pre>';
-	}
 
 	// http://davidwalsh.name/word-wrap-mootools-php
 	public static function wordWrap( $text, $min = 2 )

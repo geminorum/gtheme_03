@@ -19,11 +19,14 @@ final class gThemeCore
 	private function setup_globals()
 	{
 		$modules = array(
+			'core/base' => '',
+			'core/html' => '',
+
 			'constants'  => '',
-			'basecore'   => '',
+			'utilities'  => '',
 			'modulecore' => '',
 			'cache'      => '',
-			'utilities'  => 'gThemeUtilities',
+
 			'template'   => 'gThemeTemplate',
 			'options'    => 'gThemeOptions',
 			'theme'      => 'gThemeTheme',
@@ -81,17 +84,22 @@ final class gThemeCore
 
 			if ( file_exists( $stylesheet.'/gtheme/'.$module_slug.'.php' ) )
 				require_once( $stylesheet.'/gtheme/'.$module_slug.'.php' );
+
 			else if ( file_exists( $root.'/inc/'.$module_slug.'.php' ) )
 				require_once( $root.'/inc/'.$module_slug.'.php' );
 		}
 	}
 
-	private function init_modules( $modules, $args = array() )
+	private function init_modules( $modules, $options = array() )
 	{
 		foreach ( $modules as $module_slug => $module_class ) {
+
 			if ( $module_class && class_exists( $module_class ) ) {
-				$module_args = isset( $args[$module_slug] ) ? $args[$module_slug] : array();
-				$this->{$module_slug} = new $module_class( $module_args );
+
+				$slug = str_ireplace( array( 'core/', 'modules/', 'misc/' ), '', $module_slug );
+				$args = empty( $options[$module_slug] ) ? array() : $options[$module_slug];
+
+				$this->{$module_slug} = new $module_class( $args );
 			}
 		}
 	}
