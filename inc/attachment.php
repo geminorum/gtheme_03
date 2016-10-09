@@ -9,7 +9,7 @@ class gThemeAttachment extends gThemeModuleCore
 	{
 		$args = self::atts( array(
 			'before' => '<div class="entry-summary entry-caption">',
-			'after'  => '<div>',
+			'after'  => '</div>',
 			'id'     => get_the_ID(),
 			'echo'   => TRUE,
 			'length' => NULL, // trim chars
@@ -42,10 +42,26 @@ class gThemeAttachment extends gThemeModuleCore
 		echo '</a></div>';
 	}
 
-	// FIXME: DRAFT / UNFINISHED
+	// FIXME: DRAFT / WORKING
 	// OLD: gtheme_attachment()
+	// SEE: prepend_attachment()
 	public static function image( $atts = array() )
 	{
-		return wp_get_attachment_image( $id, $args['size'], FALSE, $attr );
+		$args = self::atts( array(
+			'before' => '<div class="entry-attachment entry-attachment-image">',
+			'after'  => '</div>',
+			'id'     => get_the_ID(),
+			'tag'    => 'big',
+			'echo'   => TRUE,
+		), $atts );
+
+		// $html = wp_get_attachment_image( $id, $args['size'], FALSE, $attr );
+		$html = wp_get_attachment_link( $args['id'], $args['tag'], FALSE );
+
+		if ( ! $args['echo'] )
+			return $html ? $args['before'].$html.$args['after'] : FALSE;
+
+		if ( $html )
+			echo $args['before'].$html.$args['after'];
 	}
 }
