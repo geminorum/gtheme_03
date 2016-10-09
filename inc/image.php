@@ -229,10 +229,13 @@ class gThemeImage extends gThemeModuleCore
 			if ( $size['t'] && in_array( $post_type ,$size['p'] ) ) {
 
 				$id      = 'attachments-'.$post->ID.'-gtheme-size-'.$name;
-                $label   = sprintf( _x( '%1$s (%2$s&nbsp;&times;&nbsp;%3$s)', 'Media Tag Checkbox Label', GTHEME_TEXTDOMAIN ), $size['n'], number_format_i18n( $size['w'] ), number_format_i18n( $size['h'] ) );
 				$checked = ( isset( $images[$name] ) && $images[$name] == $post->ID ) ? ' checked="checked"' : '';
+				$label   = sprintf( _x( '%1$s (%2$s&nbsp;&times;&nbsp;%3$s)', 'Media Tag Checkbox Label', GTHEME_TEXTDOMAIN ),
+					$size['n'], number_format_i18n( $size['w'] ), number_format_i18n( $size['h'] ) );
 
-				$html .= '<li><label for="'.$id.'"><input style="width:10px;vertical-align:bottom;" type="checkbox" value="'.$name.'" id="gtheme_size_'.$name.'" name="gtheme_size_'.$name.'" '.$checked.' /> '.esc_html( $label ).'</label></li>';
+				$html .= '<li><label for="'.$id.'"><input style="width:10px;vertical-align:bottom;" type="checkbox" value="'.
+					$name.'" id="gtheme_size_'.$name.'" name="gtheme_size_'.
+					$name.'" '.$checked.' /> '.esc_html( $label ).'</label></li>';
 			}
 		}
 
@@ -242,9 +245,9 @@ class gThemeImage extends gThemeModuleCore
 					'<input type="hidden" name="attachments['.$post->ID.']" value="dummy" />';
 
 			$fields['gtheme_image_sizes'] = array(
-                'label' => __( 'Media Tags', GTHEME_TEXTDOMAIN ),
-                'input' => 'html',
-                'html'  => $html,
+				'label' => __( 'Media Tags', GTHEME_TEXTDOMAIN ),
+				'input' => 'html',
+				'html'  => $html,
 			);
 		}
 		return $fields;

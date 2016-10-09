@@ -187,7 +187,10 @@ class gThemeModuleCore extends gThemeBaseCore
 			'field'        => FALSE,
 			'values'       => array(),
 			'exclude'      => '',
+			'none_title'   => NULL, // select option none title
+			'none_value'   => NULL, // select option none value
 			'filter'       => FALSE, // will use via sanitize
+			'callback'     => FALSE, // callable for `callback` type
 			'dir'          => FALSE,
 			'default'      => '',
 			'description'  => isset( $atts['desc'] ) ? $atts['desc'] : '',
@@ -196,9 +199,13 @@ class gThemeModuleCore extends gThemeBaseCore
 			'field_class'  => '', // formally just class!
 			'class'        => '', // now used on wrapper
 			'option_group' => $this->option_key,
+			'network'      => NULL, // FIXME: WTF?
+			'disabled'     => FALSE,
 			'name_attr'    => FALSE, // override
 			'id_attr'      => FALSE, // override
 			'placeholder'  => FALSE,
+			'constant'     => FALSE, // override value if constant defined & disabling
+			'data'         => array(), // data attr
 		), $atts );
 
 		if ( $wrap ) {
@@ -397,7 +404,7 @@ class gThemeModuleCore extends gThemeBaseCore
 				echo get_submit_button(
 					$value,
 					( empty( $args['field_class'] ) ? 'secondary' : $args['field_class'] ),
-					$args['field'],
+					$args['field'], // $id,
 					FALSE,
 					$args['values']
 				);
@@ -406,13 +413,13 @@ class gThemeModuleCore extends gThemeBaseCore
 			case 'file' :
 
 				echo gThemeUtilities::html( 'input', array(
-					'type'        => 'file',
-					'class'       => $args['field_class'],
-					'name'        => $id, // $name,
-					'id'          => $id,
-					// 'value'       => $value,
-					'dir'         => $args['dir'],
-					'placeholder' => $args['placeholder'],
+					'type'     => 'file',
+					'id'       => $id,
+					'name'     => $id,
+					'class'    => $args['field_class'],
+					'disabled' => $args['disabled'],
+					'dir'      => $args['dir'],
+					'data'     => $args['data'],
 				) );
 
 			break;

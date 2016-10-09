@@ -7,7 +7,7 @@ class gThemeBootstrap extends gThemeModuleCore
 	{
 		$fixed = gThemeOptions::info( 'bootstrap_navbar_fixed', FALSE );
 
-		echo 'class="navbar navbar-default'.( $fixed ? ' navbar-fixed-top' : '' ).( $inverse ? ' navbar-inverse' : '' ).'"';
+		echo 'class="navbar navbar-default'.( $fixed ? ' navbar-fixed-top' : '' ).( $inverse ? ' navbar-inverse' : '' ).' '.$additional.'"';
 	}
 
 	public static function navbarHeader( $brand = NULL, $target = 'navbar' )
@@ -199,7 +199,7 @@ class gThemeBootstrap_Walker_NavBar extends Walker_Nav_Menu
 
 		// Display this element.
 		if ( is_object( $args[0] ) )
-		   $args[0]->has_children = ! empty( $children_elements[ $element->$id_field ] );
+			$args[0]->has_children = ! empty( $children_elements[ $element->$id_field ] );
 
 		parent::display_element( $element, $children_elements, $max_depth, $depth, $args, $output );
 	}

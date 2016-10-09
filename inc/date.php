@@ -72,7 +72,7 @@ class gThemeDate extends gThemeModuleCore
 		$date = get_the_date( 'Y/m/j' );
 		echo '<div class="entry-date hidden-print" title="'.esc_attr( $date ).'">';
 			echo '<div class="entry-day"><a href="'.wp_get_shortlink( 0, 'query' ).'">'.get_the_date( 'j' ).'</a></div>';
-			//echo '<div class="entry-month"><a href="'.get_month_link( '', '' ).'">'.get_the_date( 'F' ).'</a></div>';
+			// echo '<div class="entry-month"><a href="'.get_month_link( '', '' ).'">'.get_the_date( 'F' ).'</a></div>';
 			echo '<div class="entry-month">'.get_the_date( 'F' ).'</div>';
 		echo '</div>';
 		echo '<div class="visible-print-inline-block">'.$date.'</div>';

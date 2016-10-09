@@ -105,7 +105,7 @@ class gThemeContent extends gThemeModuleCore
 			$title_att = get_the_title();
 
 		return ' '.sprintf(
-			gtheme_get_info( 'read_more_title', __( '<a %1$s href="%2$s" title="Continue reading &ldquo;%3$s&rdquo; &hellip;" class="%4$s" >%5$s</a>%6$s', GTHEME_TEXTDOMAIN ) ),
+			gtheme_get_info( 'read_more_title', __( '<a %1$s href="%2$s" aria-label="Continue reading &ldquo;%3$s&rdquo; &hellip;" class="%4$s" >%5$s</a>%6$s', GTHEME_TEXTDOMAIN ) ),
 			$scope,
 			$permalink,
 			$title_att,
@@ -554,7 +554,7 @@ addthis_config.services_custom = [
 			'title'       => NULL,
 			'meta'        => TRUE,
 			'link'        => TRUE, // disable linking compeletly
-			'anchor'      => TRUE, // permalink anchor for the post
+			'anchor'      => FALSE, // permalink anchor for the post
 		), $atts );
 
 		if ( is_null( $args['title'] ) )
