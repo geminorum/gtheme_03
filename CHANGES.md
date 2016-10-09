@@ -1,3 +1,26 @@
+### 3.13.0
+* moved to [Semantic Versioning](http://semver.org/)
+* restructure inc folder
+* setting up gulp
+* first draft: copy disabled
+* assets: better loading styles, [see](https://make.wordpress.org/core/2016/03/08/enhanced-script-loader-in-wordpress-4-5/)
+* script: [Autosize](http://www.jacklmoore.com/autosize/) updated to v3.0.15
+* module/attachment: image helper
+* module/comments: using theme strings
+* module/terms: hook term installer to load edit tags page
+* module/bootstrap: mega menu support for menu walker
+* module/image: support [gNetwork](https://github.com/geminorum/gnetwork/) [Media](https://github.com/geminorum/gnetwork/wiki/Modules-Media) Object Sizes
+* module/filters: theme color meta tag
+* module/filters: skip on admin
+* module/content: row helper
+* module/wrap: head/body helpers
+* module/pages: pre page creator api
+* module/pages: nav menu for pre pages
+* module/pages: drop def arg on pages api
+* module/pages: getting default by path on pages api
+* module/sidebar: list empty terms
+* module/sidebar: exclude current post from the list
+
 ### 0.3.12
 * social: default [OGp](http://ogp.me/) type to `website`
 * content: correct title attr for shortlinks
