@@ -22,6 +22,19 @@
 // SEE: https://css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice/
 
 @mixin theme-box-reset() {
+
+	// FIXME: this is testing for: "content-box" removes the html border on iphone5
+	html { box-sizing: content-box; }
+	body { box-sizing: border-box; }
+
+	*,
+	*:before,
+	*:after {
+		box-sizing: inherit;
+	}
+}
+
+@mixin theme-box-reset-OLD() {
 	html {
 		box-sizing: border-box;
 	}
