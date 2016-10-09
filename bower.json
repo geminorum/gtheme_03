@@ -10,13 +10,13 @@
     "flexslider-rtl": "layalk/FlexSlider#rtl",
     "anything-slider": "CSS-Tricks/AnythingSlider",
     "FontDetect": "JenniferSimonds/FontDetect",
-    "autosize": "*",
+    "autosize": "^3.0.17",
     "jcarousel": "~0.3.3",
     "jquery.lazyload": "~1.9.5",
     "normalize-scss": "~3.0.3",
     "sanitize-css": "*",
     "sass-css3-mixins": "*",
-    "css-spinners": "~2.0.2"
+    "css-spinners": "~2.2.0"
   },
   "install": {
     "path": "packages",

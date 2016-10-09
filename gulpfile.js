@@ -1,6 +1,8 @@
 (function() {
 	'use strict';
 
+	// https://www.npmjs.com/package/gulp-iconfont
+
 	var
 		gulp = require('gulp'),
 		sass = require('gulp-sass'), // https://github.com/dlmanning/gulp-sass
@@ -62,7 +64,7 @@
 
 		return gulp.src('./stylesheets/*.scss')
 
-		.pipe(sourcemaps.init())
+		// .pipe(sourcemaps.init())
 
 		.pipe(sass.sync({
 			includePaths: 'components/bootstrap-sass/assets/stylesheets',
@@ -76,7 +78,7 @@
 			}
 		}))
 
-		.pipe(sourcemaps.write('./maps'))
+		// .pipe(sourcemaps.write('./maps'))
 
 		.pipe(gulp.dest('./css'));
 	});

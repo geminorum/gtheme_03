@@ -1,20 +1,23 @@
+.build
 .idea
 .sass-cache
 .gulp
 .imdone
 .temp
 
-/images/temp
-
+/bin
+/css/maps
 /components
 /packages/jquery
+/packages/bootstrap
+/packages/bootstrap-sass
 /vendor
-/bin
 /node_modules
 
 /x-local-*
 
 composer.lock
 npm-debug.log
+
+environment.yml
 .ftpconfig
-.env
