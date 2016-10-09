@@ -11,6 +11,8 @@
 /packages/jquery
 /packages/bootstrap
 /packages/bootstrap-sass
+/packages/font-awesome
+/packages/anything-slider
 /vendor
 /node_modules
 
