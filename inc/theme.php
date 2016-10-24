@@ -79,7 +79,6 @@ class gThemeTheme extends gThemeModuleCore
 	public function cleanup()
 	{
 		foreach ( array(
-			'wp_head',
 			'rss2_head',
 			'commentsrss2_head',
 			'rss_head',
@@ -89,6 +88,8 @@ class gThemeTheme extends gThemeModuleCore
 			'opml_head',
 			'app_head',
 			) as $action ) remove_action( $action, 'the_generator' );
+
+		remove_action( 'wp_head', 'wp_generator' );
 
 		// completely remove the version number from pages and feeds
 		add_filter( 'the_generator', '__return_null', 99 );
@@ -102,7 +103,7 @@ class gThemeTheme extends gThemeModuleCore
 
 		remove_filter( 'comment_text', 'make_clickable', 9 );
 		remove_filter( 'comment_text', 'capital_P_dangit', 31 );
-		foreach ( array( 'the_content', 'the_title' ) as $filter )
+		foreach ( array( 'the_content', 'the_title', 'wp_title' ) as $filter )
 			remove_filter( $filter, 'capital_P_dangit', 11 );
 	}
 
