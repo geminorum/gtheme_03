@@ -633,7 +633,10 @@ addthis_config.services_custom = [
 		echo '<div class="titles-class '.$args['prefix'].'-titles">';
 
 		if ( $args['meta'] )
-			gmeta( 'over-title', '<'.$args['meta_tag'].' itemprop="alternativeHeadline" class="overtitle '.$args['prefix'].'-overtitle">', '</'.$args['meta_tag'].'>' );
+			gThemeEditorial::meta( 'over-title', array(
+				'before' => '<'.$args['meta_tag'].' itemprop="alternativeHeadline" class="overtitle '.$args['prefix'].'-overtitle">',
+				'after'  => '</'.$args['meta_tag'].'>',
+			) );
 
 		echo '<'.$args['title_tag'].' itemprop="headline" class="title '.$args['prefix'].'-title">';
 
@@ -651,7 +654,10 @@ addthis_config.services_custom = [
 		echo '</'.$args['title_tag'].'>';
 
 		if ( $args['meta'] )
-			gmeta( 'sub-title', '<'.$args['meta_tag'].' itemprop="alternativeHeadline" class="subtitle '.$args['prefix'].'-subtitle">', '</'.$args['meta_tag'].'>' );
+			gThemeEditorial::meta( 'sub-title', array(
+				'before' => '<'.$args['meta_tag'].' itemprop="alternativeHeadline" class="subtitle '.$args['prefix'].'-subtitle">',
+				'after'  => '</'.$args['meta_tag'].'>',
+			) );
 
 		echo '</div>';
 

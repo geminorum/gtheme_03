@@ -6,7 +6,7 @@ class gThemeEditorial extends gThemeModuleCore
 	public function setup_actions( $args = array() )
 	{
 		extract( self::atts( array(
-			'word_wrap' => TRUE,
+			'word_wrap' => FALSE,
 		), $args ) );
 
 		if ( $word_wrap )
@@ -33,13 +33,69 @@ class gThemeEditorial extends gThemeModuleCore
 
 	public static function label( $atts = array() )
 	{
-		if ( class_exists( 'gEditorialMetaTemplates' ) )
-			return gEditorialMetaTemplates::metaLabel( $atts );
+		if ( ! is_callable( 'gEditorialMetaTemplates', 'metaLabel' ) )
+			return FALSE;
 
-		return FALSE;
+		return gEditorialMetaTemplates::metaLabel( $atts );
+	}
+
+	public static function source( $atts = array() )
+	{
+		if ( ! is_callable( 'gEditorialMetaTemplates', 'metaLink' ) )
+			return FALSE;
+
+		return gEditorialMetaTemplates::metaLink( $atts );
+	}
+
+	public static function author( $atts = array() )
+	{
+		if ( ! is_callable( 'gEditorialMetaTemplates', 'metaAuthor' ) )
+			return FALSE;
+
+		return gEditorialMetaTemplates::metaAuthor( $atts );
+	}
+
+	public static function lead( $atts = array() )
+	{
+		if ( ! is_callable( 'gEditorialMetaTemplates', 'metaLead' ) )
+			return FALSE;
+
+		return gEditorialMetaTemplates::metaLead( $atts );
 	}
 
 	public static function meta( $field, $atts = array() )
+	{
+		if ( ! is_callable( 'gEditorialMetaTemplates', 'getMetaField' ) )
+			return FALSE;
+
+		$args = self::atts( array(
+			'id'     => isset( $atts['post_id'] ) ? $atts['post_id'] : NULL,
+			'filter' => FALSE,
+		), $atts );
+
+		if ( ! $html = gEditorialMetaTemplates::getMetaField( $field, $args ) )
+			return FALSE;
+
+		$args = self::atts( array(
+			'before' => '',
+			'after'  => '',
+			'echo'   => TRUE,
+		), $atts );
+
+		if ( in_array( $field, array( 'ot', 'st', 'over-title', 'sub-title' ) ) )
+			$html = gThemeUtilities::wordWrap( $html, 2 );
+
+		$html = $args['before'].$html.$args['after'];
+
+		if ( ! $args['echo'] )
+			return $html;
+
+		echo $html;
+		return TRUE;
+	}
+
+	// FIXME: DROP THIS
+	public static function meta_OLD( $field, $atts = array() )
 	{
 		if ( class_exists( 'gEditorialMetaTemplates' ) ) {
 
@@ -105,6 +161,15 @@ class gThemeEditorial extends gThemeModuleCore
 
 	public static function issueCover( $atts = array() )
 	{
+		if ( ! is_callable( 'gEditorialMagazineTemplates', 'issueCover' ) )
+			return FALSE;
+
+		return gEditorialMagazineTemplates::issueCover( $atts );
+	}
+
+	// FIXME: DROP THIS
+	public static function issueCover_OLD( $atts = array() )
+	{
 		if ( class_exists( 'gEditorialMagazineTemplates' ) ) {
 
 			$args = self::atts( array(
@@ -132,8 +197,9 @@ class gThemeEditorial extends gThemeModuleCore
 		return FALSE;
 	}
 
+	// FIXME: DROP THIS
 	// ANCESTOR: gmeta_lead()
-	public static function lead( $atts = array() )
+	public static function lead_OLD( $atts = array() )
 	{
 		if ( class_exists( 'gEditorialMetaTemplates' ) ) {
 
@@ -201,9 +267,7 @@ class gThemeEditorial extends gThemeModuleCore
 
 	public static function reshareSource( $atts = array() )
 	{
-		if ( class_exists( 'gEditorialReshareTemplates' ) )
-			return gEditorialReshareTemplates::source( $atts );
-
-		return FALSE;
+		self::__dep( 'gThemeEditorial::source()' );
+		return self::source( $atts );
 	}
 }
