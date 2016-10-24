@@ -12,7 +12,6 @@ class gThemeSocial extends gThemeModuleCore
 	// @SEE: http://scotch.io/quick-tips/all-search-and-social-media-meta-tags-starter-template
 	public function wp_head()
 	{
-		echo "\t".'<meta name="twitter:card" content="summary" />'."\n";
 		echo "\t".'<meta property="og:locale" content="'.esc_attr( gThemeOptions::info( 'locale', get_locale() ) ).'" />'."\n";
 		echo "\t".'<meta property="og:site_name" content="'.esc_attr( gThemeOptions::info( 'blog_name' ) ).'" />'."\n";
 
@@ -25,7 +24,7 @@ class gThemeSocial extends gThemeModuleCore
 			"\t".'<meta name="twitter:url" content="',
 		), '" />'."\n" , 'esc_url' );
 
-		self::meta( 'image', array(
+		$image = self::meta( 'image', array(
 			"\t".'<meta itemprop="image" content="',
 			"\t".'<meta property="og:image" content="',
 			"\t".'<meta name="twitter:image" content="',
@@ -44,6 +43,8 @@ class gThemeSocial extends gThemeModuleCore
 			"\t".'<meta name="description" content="',
 			"\t".'<meta name="twitter:description" content="',
 		), '" />'."\n" , 'esc_attr' );
+
+		echo "\t".'<meta name="twitter:card" content="'.( $image ? 'summary_large_image' : 'summary' ).'" />'."\n";
 
 		if ( $publisher = gThemeOptions::info( 'rel_publisher', FALSE ) )
 			echo "\t".'<link href="'.esc_url( $publisher ).'" rel="publisher" />'."\n";
@@ -119,6 +120,8 @@ class gThemeSocial extends gThemeModuleCore
 				echo $before.( $f ? $f( $output ) : $output ).( is_array( $a ) ? $a[$key] : $a );
 		else
 			echo $b.( $f ? $f( $output ) : $output ).$a;
+
+		return TRUE;
 	}
 
 	public static function author()
