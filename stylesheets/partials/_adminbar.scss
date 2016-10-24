@@ -4,52 +4,51 @@
 /// gTheme Default Adminbar Helpers
 
 $theme-wp-adminbar-height: 32px !default; // WordPress Adminbar Height
-$theme-bs-navbar-height: 50px !default;; // Bootstrap Navbar Height
+$theme-bs-navbar-height: 50px !default; // Bootstrap Navbar Height
 
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
-
 @mixin theme-adminbar-init($bs: $theme-bs-navbar-height, $adminbar: $theme-wp-adminbar-height) {
+  $touch-addition: 14px;
+  $touch-max-width: 782px;
+  $smart-max-width: 600px;
 
-	$touch-addition: 14px;
-	$touch-max-width: 782px;
-	$smart-max-width: 600px;
+  body.navbar-fixed {
+    padding-top: $bs;
+  }
+  /// For Admin-Bar
+  html.html-admin-bar body {
+    padding-top: $adminbar;
 
-	body.navbar-fixed {
-		padding-top: $bs;
-	}
+    &.navbar-fixed {
+      padding-top: $adminbar + $bs;
 
-	/// For Admin-Bar
-	html.html-admin-bar body {
-		padding-top: $adminbar;
-		&.navbar-fixed {
-			padding-top: $adminbar + $bs;
-			.navbar-fixed-top {
-				top: $adminbar;
-			}
-		}
-	}
+      .navbar-fixed-top {
+        top: $adminbar;
+      }
+    }
+  }
+  // @media screen and (max-width: $touch-max-width) {
+  @media (max-width: $touch-max-width) {
+    html.html-admin-bar body {
+      padding-top: $adminbar + $touch-addition;
 
-	// @media screen and (max-width: $touch-max-width) {
-	@media (max-width: $touch-max-width) {
-		html.html-admin-bar body {
-			padding-top: $adminbar + $touch-addition;
-			&.navbar-fixed {
-				padding-top: $adminbar + $bs + $touch-addition;
-				.navbar-fixed-top {
-					top: $adminbar + $touch-addition;
-				}
-			}
-		}
-	}
+      &.navbar-fixed {
+        padding-top: $adminbar + $bs + $touch-addition;
 
-	// @media screen and (max-width: $smart-max-width) {
-	@media (max-width: $smart-max-width) {
-		body.navbar-fixed {
-			.navbar-fixed-top {
-				position: absolute;
-			}
-		}
-	}
+        .navbar-fixed-top {
+          top: $adminbar + $touch-addition;
+        }
+      }
+    }
+  }
+  // @media screen and (max-width: $smart-max-width) {
+  @media (max-width: $smart-max-width) {
+    body.navbar-fixed {
+      .navbar-fixed-top {
+        position: absolute;
+      }
+    }
+  }
 }

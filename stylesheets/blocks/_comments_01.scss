@@ -6,83 +6,89 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 .comments-area {
-	margin-bottom: $theme-grid-gutter / 2;
+  margin-bottom: $theme-grid-gutter / 2;
 
-	.no-password {}
-	.no-comments {}
+  .no-password {}
 
-	.comment-navigation {
-		.nav-previous {}
-		.nav-next {}
-	}
+  .no-comments {}
 
-	.comments-feed {
-		float:left;
-		a {
-			color: $gray-light;
-			&:hover {
-				color: $gray-darker;
-				text-decoration:none;
-			}
-		}
-	}
+  .comment-navigation {
+    .nav-previous {}
 
-	.comments-title {
-		font-size:$font-size-h5;
-		margin:0;
-	}
+    .nav-next {}
+  }
 
-	.comment-list {
-		margin-top: $theme-grid-gutter;
-		.comment {
-			margin-bottom: $theme-grid-gutter;
+  .comments-feed {
+    float: left;
 
+    a {
+      color: $gray-light;
 
-			.comment-avatar {
+      &:hover {
+        color: $gray-darker;
+        text-decoration: none;
+      }
+    }
+  }
 
-			}
+  .comments-title {
+    font-size: $font-size-h5;
+    margin: 0;
+  }
 
-			.comment-body {
-				padding: $padding-base-vertical $padding-base-horizontal 0 0;
-			}
+  .comment-list {
+    margin-top: $theme-grid-gutter;
 
-			.comment-content {
-				p {
-					color: $gray-dark;
-					font-size: $font-size-small;
-					line-height: $line-height-small;
-				}
-			}
+    .comment {
+      margin-bottom: $theme-grid-gutter;
 
-			.comment-meta {
-				margin-bottom: $padding-large-vertical;
-			}
-			.comment-author {
+      .comment-avatar {}
 
-			}
-			.comment-time {
-				font-size: $font-size-small * 0.8;
-				margin: 0 $padding-base-horizontal 0 0;
-				a {
-					color: $gray-light;
-					&:hover {
-						color: $gray-darker;
-						text-decoration:none;
-					}
-				}
-			}
-			.comment-moderation {
+      .comment-body {
+        padding: $padding-base-vertical $padding-base-horizontal 0 0;
+      }
 
-			}
-			.comment-actions {
-				font-size: $font-size-small;
-				a {
-					color: $gray-light;
-					&:hover {
-						color: $gray-darker;
-					}
-				}
-			}
-		}
-	}
+      .comment-content {
+        p {
+          color: $gray-dark;
+          font-size: $font-size-small;
+          line-height: $line-height-small;
+        }
+      }
+
+      .comment-meta {
+        margin-bottom: $padding-large-vertical;
+      }
+
+      .comment-author {}
+
+      .comment-time {
+        font-size: $font-size-small * 0.8;
+        margin: 0 $padding-base-horizontal 0 0;
+
+        a {
+          color: $gray-light;
+
+          &:hover {
+            color: $gray-darker;
+            text-decoration: none;
+          }
+        }
+      }
+
+      .comment-moderation {}
+
+      .comment-actions {
+        font-size: $font-size-small;
+
+        a {
+          color: $gray-light;
+
+          &:hover {
+            color: $gray-darker;
+          }
+        }
+      }
+    }
+  }
 }

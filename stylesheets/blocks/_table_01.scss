@@ -6,48 +6,47 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 table {
+  border: 1px solid $table-border-color;
+  border-width: 1px 1px 1px 0;
+  border-spacing: 0;
+  margin: 0.7em 0 1.5em;
+  width: 100%;
 
-	border: 1px solid $table-border-color;
-	border-width: 1px 1px 1px 0;
-	border-spacing: 0;
-	margin: .7em 0 1.5em;
-	width: 100%;
+  td {
+    border: 1px solid $table-border-color;
+    border-width: 1px 0 0 1px;
+    padding: $padding-base-vertical $padding-base-horizontal;
+    vertical-align: top;
 
-	td {
-		border: 1px solid $table-border-color;
-		border-width: 1px 0 0 1px;
-		padding: $padding-base-vertical $padding-base-horizontal;
-		vertical-align: top;
+    figure {
+      margin-left: - $padding-base-horizontal;
+      margin-right: - $padding-small-vertical;
+    }
+  }
 
-		figure {
-			margin-left: - $padding-base-horizontal;
-			margin-right: - $padding-small-vertical;
-		}
-	}
+  th {
+    background-color: $table-bg-accent;
+    color: $gray;
+    border-left: 1px solid $table-border-color;
+    font-weight: bold;
+    padding: $padding-base-vertical $padding-base-horizontal;
+  }
 
-	th {
-		background-color: $table-bg-accent;
-		color: $gray;
-		border-left: 1px solid $table-border-color;
-		font-weight: bold;
-		padding: $padding-base-vertical $padding-base-horizontal;
-	}
+  tr {
+    border: 0;
+    border-width: 0;
+  }
 
-	tr {
-		border: 0;
-		border-width: 0;
-	}
+  blockquote,
+  ol,
+  p,
+  ul {
+    margin-top: 0 !important;
+    margin-bottom: 1.6em !important;
+  }
 
-	ul,
-	ol,
-	p,
-	blockquote {
-		margin-top: 0 !important;
-		margin-bottom: 1.6em !important;
-	}
-
-	ul,
-	ol {
-		@include theme-list-reset();
-	}
+  ol,
+  ul {
+    @include theme-list-reset();
+  }
 }
