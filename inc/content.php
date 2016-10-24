@@ -21,6 +21,14 @@ class gThemeContent extends gThemeModuleCore
 		echo '</'.$tag.'>';
 	}
 
+	public static function notFoundMessage( $before = '<p class="not-found">', $after = '</p>' )
+	{
+		$default = _x( 'It looks like nothing was found at this location. Maybe try one of the links below or a search?', 'Content: Not Found Message', GTHEME_TEXTDOMAIN );
+
+		if ( $message = gThemeOptions::info( 'message_notfound', $default ) )
+			echo $before.gThemeUtilities::wordWrap( $message ).$after;
+	}
+
 	public static function post( $context = NULL, $part = 'content' )
 	{
 		if ( is_null( $context ) )

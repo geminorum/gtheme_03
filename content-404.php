@@ -10,13 +10,13 @@ gThemeContent::wrapOpen( '404' );
 		'anchor'  => FALSE,
 	) );
 
-	echo '<div class="entry-content entry-404"><p>';
-		_e( 'It looks like nothing was found at this location. Maybe try one of the links below or a search?', GTHEME_TEXTDOMAIN );
-		echo '</p>';
+	echo '<div class="entry-content entry-404">';
 
+		gThemeContent::notFoundMessage();
 		gThemeSearch::form( '404' );
 
 		do_action( 'gtheme_content_404' );
+
 		/*
 			EXAMPLES :
 				the_widget( 'WP_Widget_Recent_Posts' );
