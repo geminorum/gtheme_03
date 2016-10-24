@@ -55,8 +55,10 @@ class gThemeAttachment extends gThemeModuleCore
 			'echo'   => TRUE,
 		), $atts );
 
-		// $html = wp_get_attachment_image( $id, $args['size'], FALSE, $attr );
-		$html = wp_get_attachment_link( $args['id'], $args['tag'], FALSE );
+		if ( ! wp_attachment_is_image( $args['id'] ) )
+			return FALSE;
+
+		$html = wp_get_attachment_image( $args['id'], $args['tag'] );
 
 		if ( ! $args['echo'] )
 			return $html ? $args['before'].$html.$args['after'] : FALSE;
