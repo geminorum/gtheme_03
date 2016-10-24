@@ -58,19 +58,17 @@ class gThemeContent extends gThemeModuleCore
 		return $query;
 	}
 
-	// FIXME: WORKING DRAFT
-	public static function content( $before = '<div class="entry-content">', $after = '</div>', $edit = FALSE )
+	public static function content( $before = '<div class="entry-content">', $after = '</div>', $edit = NULL )
 	{
+		if ( is_null( $edit ) )
+			$edit = gThemeOptions::info( 'read_more_edit', FALSE );
+
 		echo $before;
 
-		the_content( self::continueReading( ( $edit ? get_edit_post_link() : '' ) ) );
-
-
-		// wp_link_pages( array(
-		// 	'before' => '<div class="page-link"><span>'
-		// 		.__( 'Pages:', GTHEME_TEXTDOMAIN ).'</span>',
-		// 	'after' => '</div>',
-		// ) );
+		if ( gThemeOptions::info( 'restricted_content', FALSE ) )
+			self::restricted();
+		else
+			the_content( self::continueReading( ( $edit ? get_edit_post_link() : '' ) ) );
 
 		if ( gThemeOptions::info( 'copy_disabled', FALSE ) )
 			echo '<div class="copy-disabled"></div>'; // http://stackoverflow.com/a/23337329/4864081
@@ -114,74 +112,106 @@ class gThemeContent extends gThemeModuleCore
 		return self::continueReading( $edit, $scope, $permalink, $title_att );
 	}
 
-	public static function continueReading( $edit = '', $scope = '', $permalink = FALSE, $title_att = FALSE )
+	public static function continueReading( $edit = '', $scope = '', $link = FALSE, $title = FALSE )
 	{
+		if ( FALSE === $title )
+			$title = esc_attr( strip_tags( get_the_title() ) );
+
+		if ( FALSE === $link )
+			$link = esc_url( get_permalink() );
+
 		if ( ! empty( $edit ) )
-			$edit = sprintf( __( ' <span class="sep edit-sep">|</span> <a href="%1$s" title="%2$s" class="%3$s">%4$s</a>', GTHEME_TEXTDOMAIN ),
+			$edit = vsprintf( ' <a href="%1$s" title="%3$s" class="%4$s">%2$s</a>', array(
 				$edit,
-				__( 'Jump to edit page', GTHEME_TEXTDOMAIN ),
+				_x( 'Edit', 'Content: Read More Edit', GTHEME_TEXTDOMAIN ),
+				_x( 'Jump to edit page', 'Content: Read More Edit Title', GTHEME_TEXTDOMAIN ),
 				'post-edit-link',
-				_x( 'Edit', 'continue reading link', GTHEME_TEXTDOMAIN )
-			);
+			) );
 
-		if ( FALSE === $permalink )
-			$permalink = get_permalink();
+		$text  = gThemeOptions::info( 'read_more_text', _x( 'Read more&nbsp;<span class="excerpt-link-hellip">&hellip;</span>', 'Content: Read More Text', GTHEME_TEXTDOMAIN ) );
+		$title = sprintf( gThemeOptions::info( 'read_more_title', _x( 'Continue reading &ldquo;%s&rdquo; &hellip;', 'Content: Read More Title', GTHEME_TEXTDOMAIN ) ), $title );
 
-		if ( FALSE === $title_att )
-			$title_att = get_the_title();
-
-		return ' '.sprintf(
-			gtheme_get_info( 'read_more_title', __( '<a %1$s href="%2$s" aria-label="Continue reading &ldquo;%3$s&rdquo; &hellip;" class="%4$s" >%5$s</a>%6$s', GTHEME_TEXTDOMAIN ) ),
-			$scope,
-			$permalink,
-			$title_att,
-			'excerpt-link',
-			gtheme_get_info( 'read_more_text', __( 'Read more&nbsp;<span class="excerpt-link-arr">&rarr;</span>', GTHEME_TEXTDOMAIN ) ),
-			$edit
-		);
+		return vsprintf( ' <a %6$s href="%1$s" aria-label="%3$s" class="%4$s">%2$s</a>%5$s', array( $link, $text, $title, 'excerpt-link', $edit, $scope ) );
 	}
 
-	// ANCESTOR: gtheme_the_title_attribute()
+	// OLD: gtheme_the_title_attribute()
 	public static function title_attr( $echo = TRUE, $title = NULL, $template = NULL, $empty = '' )
 	{
 		if ( is_null( $title ) )
-			$title = get_the_title();
+			$title = trim( strip_tags( get_the_title() ) );
 
-		if ( strlen( $title ) == 0 )
+		if ( 0 === strlen( $title ) )
 			return $empty;
 
 		if ( is_null( $template ) )
-			$title_attr = __( 'Permanent link to &mdash;%s&mdash;', GTHEME_TEXTDOMAIN );
-		else if ( FALSE === $template )
-			$title_attr = __( 'Short link to &mdash;%s&mdash;', GTHEME_TEXTDOMAIN );
-		else
-			$title_attr = $template;
+			$attr = _x( 'Permanent link to &ndash;%s&ndash;', 'Content: Title Attr',GTHEME_TEXTDOMAIN );
 
-		$title_attr = esc_attr( sprintf( $title_attr, strip_tags( $title ) ) );
+		else if ( FALSE === $template )
+			$attr = _x( 'Short link for &ndash;%s&ndash;', 'Content: Title Attr', GTHEME_TEXTDOMAIN );
+
+		else
+			$attr = $template;
+
+		$result = esc_attr( sprintf( $attr, $title ) );
 
 		if ( ! $echo )
-			return $title_attr;
+			return $result;
 
-		echo $title_attr;
+		echo $result;
 	}
 
-	// ANCESTOR: gtheme_the_content_restricted()
-	public static function restricted( $stripteser = FALSE, $restricted_message = '', $b = '<div class="restricted-content">', $a = '</div>' )
+	public static function isRestricted()
 	{
-		global $more;
+		return apply_filters( 'gtheme_content_restricted', ! is_user_logged_in() );
+	}
 
-		if ( apply_filters( 'gtheme_content_restricted', ! is_user_logged_in() ) ) {
-			gThemeContent::teaser();
-			if ( ! empty( $restricted_message ) )
-				echo $b.$restricted_message.$a;
+	public static function restricted( $stripteser = NULL, $message = NULL, $before = '<div class="restricted-content">', $after = '</div>' )
+	{
+		if ( self::isRestricted() ) {
+
+			global $more;
+			$more = 0;
+
+			the_content( FALSE );
+
+			if ( is_null( $message ) )
+				$message = gThemeOptions::info( 'restricted_message', '' );
+
+			if ( $message )
+				echo $before.$message.$after;
+
 		} else {
-			defined( 'DONOTCACHEPAGE' ) or define( 'DONOTCACHEPAGE', TRUE ); // not caching the full article!
-			the_content( NULL, $stripteser );
+
+			// not caching the full article!
+			self::doNotCache();
+
+			if ( is_null( $stripteser ) )
+				$stripteser = ! gThemeOptions::info( 'restricted_teaser', FALSE );
+
+			the_content( self::continueReading(), $stripteser );
 		}
 	}
 
+	// @REF: https://developer.wordpress.org/reference/functions/the_content/#comment-338
+	public static function teaser( $before = '<div class="entry-teaser">', $after = '</div>', $link = NULL, $edit = NULL )
+	{
+		global $more;
+		$more = 0;
+
+		if ( is_null( $edit ) )
+			$edit = gThemeOptions::info( 'read_more_edit', FALSE );
+
+		if ( is_null( $link ) )
+			$link = self::continueReading( ( $edit ? get_edit_post_link() : '' ) );
+
+		echo $before;
+			the_content( $link );
+		echo $after;
+	}
+
+	// FIXME: DEPRECATED: DROP THIS
 	// based on WP core : get_the_content()
-	public static function teaser( $fallback = TRUE, $echo = TRUE )
+	public static function teaser_OLD( $fallback = TRUE, $echo = TRUE )
 	{
 		global $more, $page, $pages;
 

@@ -16,7 +16,7 @@ class gThemeFeed extends gThemeModuleCore
 			add_filter( 'the_content_feed', array( $this, 'the_content_feed' ), 12, 2 );
 
 		if ( $restricted )
-			add_filter( 'the_content_feed', array( $this, 'the_content_feed_restricted' ), 11, 2 );
+			add_filter( 'the_content_feed', array( $this, 'the_content_feed_restricted' ), 1, 2 );
 
 		if ( $enclosures )
 			add_action( 'rss2_item', array( $this, 'rss2_item' ) );
@@ -81,7 +81,10 @@ class gThemeFeed extends gThemeModuleCore
 
 	public function the_content_feed_restricted( $content, $feed_type )
 	{
-		return gThemeContent::teaser( TRUE, FALSE );
+		global $more;
+		$more = 0;
+
+		return str_replace( ']]>', ']]&gt;', apply_filters( 'the_content', get_the_content( FALSE ) ) );
 	}
 
 	public function rss2_item()
