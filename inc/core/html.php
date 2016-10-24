@@ -21,7 +21,7 @@ class gThemeHTML extends gThemeBaseCore
 		return $html.$content.'</'.$tag.'>'.$sep;
 	}
 
-	public static function class()
+	public static function attrClass()
 	{
 		$classes = array();
 

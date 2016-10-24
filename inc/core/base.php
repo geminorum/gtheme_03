@@ -3,17 +3,46 @@
 class gThemeBaseCore
 {
 
-	public static function dump( $var, $htmlsafe = TRUE, $echo = TRUE )
+	public static function dump( $var, $safe = TRUE, $echo = TRUE )
 	{
-		$result = var_export( $var, TRUE );
+		$export = var_export( $var, TRUE );
+		if ( $safe ) $export = htmlspecialchars( $export );
+		$export = '<pre dir="ltr" style="text-align:left;direction:ltr;">'.$export.'</pre>';
+		if ( ! $echo ) return $export;
+		echo $export;
+	}
 
-		$html = '<pre dir="ltr" style="text-align:left;direction:ltr;">'
-			.( $htmlsafe ? htmlspecialchars( $result ) : $result ).'</pre>';
+	public static function kill( $var = FALSE )
+	{
+		if ( $var ) self::dump( $var );
+		echo self::stat();
+		die();
+	}
 
-		if ( ! $echo )
-			return $html;
+	public static function stat( $format = NULL )
+	{
+		if ( is_null( $format ) )
+			$format = '%d queries in %.3f seconds, using %.2fMB memory.';
 
-		echo $html;
+		return sprintf( $format,
+			@$GLOBALS['wpdb']->num_queries,
+			self::timerStop( FALSE, 3 ),
+			memory_get_peak_usage() / 1024 / 1024
+		);
+	}
+
+	// WP core function without number_format_i18n
+	public static function timerStop( $echo = FALSE, $precision = 3 )
+	{
+		global $timestart;
+		$total = number_format( ( microtime( TRUE ) - $timestart ), $precision );
+		if ( $echo ) echo $total;
+		return $total;
+	}
+
+	public static function doNotCache()
+	{
+		defined( 'DONOTCACHEPAGE' ) or define( 'DONOTCACHEPAGE', TRUE );
 	}
 
 	// ANCESTOR : shortcode_atts()

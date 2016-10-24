@@ -77,7 +77,7 @@ class gThemeWrap extends gThemeModuleCore
 		if ( function_exists( 'wp_get_document_title' ) )
 			echo wp_get_document_title();
 		else
-			wp_title( trim( gtheme_get_info( 'title_sep', $sep ) ), TRUE, ( gThemeUtilities::isRTL() ? 'right' : $seplocation ) );
+			wp_title( trim( gThemeOptions::info( 'title_sep', $sep ) ), TRUE, ( gThemeUtilities::isRTL() ? 'right' : $seplocation ) );
 
 		echo '</title>'."\n";
 	}

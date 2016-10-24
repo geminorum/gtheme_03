@@ -28,13 +28,15 @@ function minify_css( $buffer ) {
 	$buffer = preg_replace( '/0 0 0 0/', '0', $buffer ); // converts all zeros value into short-hand
 	$buffer = preg_replace( '/#([a-f0-9])\\1([a-f0-9])\\2([a-f0-9])\\3/i', '#\1\2\3', $buffer ); // shortern 6-character hex color codes to 3-character where possible
 
+	$buffer = preg_replace( '/\x{FEFF}/u', '', $buffer ); // remove utf8 bom
+
 	return trim( $buffer );
 }
 
 // @REF: http://php.net/manual/en/function.ob-start.php#71953
 // @REF: http://stackoverflow.com/a/6225706
 function minify_html( $buffer ) {
-	
+
 	return preg_replace( array(
 		'/\>[^\S ]+/s', //strip whitespaces after tags, except space
 		'/[^\S ]+\</s', //strip whitespaces before tags, except space

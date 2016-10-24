@@ -72,13 +72,13 @@ class gThemeContent extends gThemeModuleCore
 
 	// FIXME: WORKING DRAFT
 	// SEE: gThemeDate::date()
-	public static function date( $b = '<div class="entry-date">', $a = '</div>' )
+	public static function date( $before = '<div class="entry-date">', $after = '</div>' )
 	{
-		echo $b;
+		echo $before;
 
 		the_date( 'Y/j/m' );
 
-		echo $a;
+		echo $after;
 	}
 
 	// FIXME: DEPRECATED
@@ -188,7 +188,7 @@ class gThemeContent extends gThemeModuleCore
 	}
 
 	// ANCESTOR: gtheme_the_excerpt()
-	public static function excerpt( $atts = 'itemprop="description" ', $b = '<div class="entry-summary">', $a = '</div>', $only = FALSE, $excerpt_length = false )
+	public static function excerpt( $atts = 'itemprop="description" ', $b = '<div class="entry-summary">', $a = '</div>', $only = FALSE, $excerpt_length = FALSE )
 	{
 		if ( post_password_required() )
 			return;
@@ -200,8 +200,6 @@ class gThemeContent extends gThemeModuleCore
 
 		if ( $only && empty( $post->post_excerpt ) )
 			return;
-
-		$excerpt = $post->post_excerpt;
 
 		if ( $excerpt_length )
 			// MIGHT be a problem since we bypass other filters too
@@ -592,7 +590,7 @@ addthis_config.services_custom = [
 		}
 
 		if ( $args['anchor'] )
-			permalink_anchor();
+			permalink_anchor( 'id' );
 
 		echo '</'.$args['title_tag'].'>';
 

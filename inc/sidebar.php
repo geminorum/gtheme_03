@@ -19,14 +19,17 @@ class gThemeSideBar extends gThemeModuleCore
 			add_action( 'widgets_init', array( $this, 'widgets_init_categories' ) );
 	}
 
-	public static function sidebar( $name, $b = '', $a = '', $else = FALSE )
+	public static function sidebar( $name, $before = '', $after = '', $else = FALSE )
 	{
 		if ( is_active_sidebar( $name )  ) {
-			echo $b;
-			dynamic_sidebar( $name );
-			echo $a;
-		} else if ( $else ) { // TODO : add dev env, empty space remainder!
-			echo $b.$else.$a;
+
+			echo $before;
+				dynamic_sidebar( $name );
+			echo $after;
+
+		} else if ( FALSE !== $else ) {
+			// TODO : add dev env, empty space remainder!
+			echo $before.$else.$after;
 		}
 	}
 

@@ -71,7 +71,9 @@ class gThemeSettings extends gThemeModuleCore
 			'updated' => self::updated( _x( 'Settings updated.', 'Settings Module', GTHEME_TEXTDOMAIN ) ),
 		) );
 
-		echo '<div class="wrap"><h2>'.$info['settings_title'].'</h2>';
+		echo '<div class="wrap"><h1>'.$info['settings_title']
+			.' <a href="http://geminorum.ir/wordpress/gtheme_03" class="page-title-action" target="_blank">'
+			.GTHEME_VERSION.'</a></h1>';
 
 			gThemeUtilities::headerNav( $settings_uri, $sub, $subs );
 

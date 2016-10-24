@@ -14,9 +14,7 @@ class gThemeFilters extends gThemeModuleCore
 		), $args ) );
 
 
-		if ( is_admin() ) {
-
-		} else {
+		if ( ! is_admin() ) {
 
 			add_action( 'wp_head', array( $this, 'wp_head' ), 5 );
 			add_filter( 'body_class', array( $this, 'body_class' ), 10, 2 );

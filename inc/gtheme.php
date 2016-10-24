@@ -117,10 +117,10 @@ final class gThemeCore
 
 	public function init_late()
 	{
-		$this->load_modules( array( 'fallbacks' => null ) );
+		$this->load_modules( array( 'fallbacks' => NULL ) );
 	}
 
-	public static function version( $theme = null )
+	public static function version( $theme = NULL )
 	{
 		$theme = wp_get_theme( $theme );
 		if ( ! $theme->exists() )
