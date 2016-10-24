@@ -24,15 +24,19 @@ jQuery(document).ready(function($) {
 			scrollTop: $(this.hash).offset().top
 		}, 500);
 	});
+
 	$('a.scroll-to-top').click(function(e) {
 		e.preventDefault();
 		$('html, body').animate({
 			scrollTop: 0
 		}, 'slow');
 	});
-	$('img').error(function() {
-		$(this).hide();
+
+	$('img').on('error', function() {
+		console.log('error loading image: '+$(this).attr('src'));
+		$(this).addClass('error-image').hide();
 	});
+
 	$('a[href="#"]').click(function(e) {
 		e.preventDefault();
 	});
