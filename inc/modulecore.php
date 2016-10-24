@@ -9,11 +9,13 @@ class gThemeModuleCore extends gThemeBaseCore
 	protected $args        = array();
 	protected $counter     = 0;
 
-	function __construct( $args = array() )
+	public function __construct( $args = array() )
 	{
-		if ( ( ! $this->ajax && self::isAJAX() )
-			|| ( defined( 'WP_INSTALLING' ) && constant( 'WP_INSTALLING' ) ) )
-			return;
+		if ( ! $this->ajax && self::isAJAX() )
+			throw new Exception( 'Not on AJAX Calls!' );
+
+		if ( wp_installing() )
+			throw new Exception( 'Not while WP is Installing!' );
 
 		$this->args = $args;
 		$this->setup_actions( $args );

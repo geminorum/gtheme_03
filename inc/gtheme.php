@@ -99,7 +99,11 @@ final class gThemeCore
 				$slug = str_ireplace( array( 'core/', 'modules/', 'misc/' ), '', $module_slug );
 				$args = empty( $options[$module_slug] ) ? array() : $options[$module_slug];
 
-				$this->{$module_slug} = new $module_class( $args );
+				try {
+					$this->{$module_slug} = new $module_class( $args );
+				} catch ( Exception $e ) {
+					// do nothing!
+				}
 			}
 		}
 	}
