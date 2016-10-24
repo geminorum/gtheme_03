@@ -27,38 +27,31 @@ class gThemeFeed extends gThemeModuleCore
 
 	public function the_content_feed( $content, $feed_type )
 	{
-		global $id;
-		$header = apply_filters( 'gtheme_feed_content_header_before', '', $content, $id, $feed_type );
-		$footer = apply_filters( 'gtheme_feed_content_footer_before', '', $content, $id, $feed_type );
+		$header = gThemeOptions::info( 'feed_content_header_before', '' );
+		$footer = gThemeOptions::info( 'feed_content_footer_before', '' );
 
-		$meta_label = gmeta_label( '<div class="label">', '</div>', FALSE, array( 'echo' => FALSE ) );
-		if ( $meta_label )
-			$header .= $meta_label;
+		ob_start();
+			gThemeEditorial::label( array( 'before' => '<div class="label">', 'after' => '</div>' ) );
+			gThemeEditorial::meta( 'over-title', array( 'before' => '<h4>', 'after' => '</h4>' ) );
+			if ( $title = get_the_title() ) echo '<h2>'.$title.'</h2>';
+			gThemeEditorial::meta( 'sub-title', array( 'before' => '<h4>', 'after' => '</h4>' ) );
+			gThemeEditorial::author( array( 'before' => '<h4>', 'after' => '</h4>' ) );
+		$header .= ob_get_clean();
 
-		$meta_over_title = gmeta( 'over-title', '<h4>', '</h4>', FALSE, array( 'echo' => FALSE ) );
-		if ( $meta_over_title )
-			$header .= $meta_over_title;
+		$header .= gThemeOptions::info( 'feed_content_header_after', '' );
+		$footer .= gThemeOptions::info( 'feed_content_footer_after', '' );
 
-		$meta_title = get_the_title();
-		if ( ! empty( $meta_title ) )
-			$header .= '<h2>'.$meta_title.'</h2>';
+		$lead = gThemeEditorial::lead( array(
+			'before' => '<div class="lead">',
+			'after'  => '</div>',
+			'echo'   => FALSE,
+		) );
 
-		$meta_sub_title = gmeta( 'sub-title', '<h4>', '</h4>', FALSE, array( 'echo' => FALSE ) );
-		if ( $meta_sub_title )
-			$header .= $meta_sub_title;
+		if ( $lead )
+			$header .= $lead;
 
-		$meta_author = gmeta_author( '<h4>', '</h4>', FALSE, array( 'echo' => FALSE ) );
-		if ( $meta_author )
-			$header .= $meta_author;
+		$replaces = gThemeOptions::info( 'feed_str_replace', array() );
 
-		$header = apply_filters( 'gtheme_feed_content_header_after', $header, $content, $id, $feed_type );
-		$footer = apply_filters( 'gtheme_feed_content_footer_after', $footer, $content, $id, $feed_type );
-
-		$meta_lead = gmeta_lead( '<div class="lead">', '</div>', 'wpautop', array( 'echo' => FALSE ) );
-		if ( $meta_lead )
-			$header .= $meta_lead;
-
-		$replaces = gtheme_get_info( 'feed_str_replace', array() );
 		if ( count( $replaces ) ) {
 			if ( ! empty( $header ) )
 				$header = str_replace( array_keys( $replaces ), $replaces, $header );
