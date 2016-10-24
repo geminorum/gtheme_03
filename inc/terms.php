@@ -34,7 +34,7 @@ class gThemeTerms extends gThemeModuleCore
 
 	public function subs( $subs )
 	{
-		$subs['terms'] = __( 'Primary Terms', GTHEME_TEXTDOMAIN );
+		$subs['terms'] = _x( 'Primary Terms', 'Terms Module', GTHEME_TEXTDOMAIN );
 		return $subs;
 	}
 
@@ -45,7 +45,19 @@ class gThemeTerms extends gThemeModuleCore
 			if ( ! empty( $_POST )
 				&& wp_verify_nonce( $_POST['_gtheme_terms'], 'gtheme-terms' ) ) {
 
-				if ( isset( $_POST['gtheme_terms'] ) ) {
+				if ( ! empty( $_POST['create-default-terms'] ) ) {
+
+					$defaults = gThemeOptions::info( 'primary_terms_defaults', array() );
+					$taxonomy = gThemeOptions::info( 'primary_terms_taxonomy', 'category' );
+
+					if ( count( $defaults ) ) {
+
+						$result = self::insertDefaults( $taxonomy, $defaults );
+						wp_redirect( add_query_arg( array( 'message' => ( $result ? 'updated' : 'error' ) ), wp_get_referer() ) );
+						exit();
+					}
+
+				} else if ( ! empty( $_POST['gtheme_terms'] ) ) {
 
 					$terms = $unordered = array();
 
@@ -83,8 +95,7 @@ class gThemeTerms extends gThemeModuleCore
 	{
 		$legend   = gThemeOptions::info( 'primary_terms_legend', FALSE );
 		$taxonomy = gThemeOptions::info( 'primary_terms_taxonomy', 'category' );
-		$defaults = gThemeOptions::info( 'primary_terms_defaults', array() );
-		$options  = gThemeOptions::getOption( 'terms', $defaults );
+		$options  = gThemeOptions::getOption( 'terms', array() );
 
 		echo '<form method="post" action="">';
 
@@ -92,7 +103,7 @@ class gThemeTerms extends gThemeModuleCore
 				echo $legend;
 
 			echo '<table class="form-table">';
-				echo '<tr><th scope="row">'.__( 'Primary Terms', GTHEME_TEXTDOMAIN ).'</th><td>';
+				echo '<tr><th scope="row">'._x( 'Primary Terms', 'Terms Module', GTHEME_TEXTDOMAIN ).'</th><td>';
 
 				foreach ( self::getTerms( $taxonomy, FALSE, TRUE ) as $term ) {
 
@@ -123,9 +134,12 @@ class gThemeTerms extends gThemeModuleCore
 
 				echo '</td></tr>';
 			echo '</table>';
+			echo '<p class="submit">';
 
-			submit_button(); // TODO: add reset button
+				$this->settings_buttons( 'terms', FALSE );
+				echo get_submit_button( _x( 'Create Default Primary Terms', 'Terms Module', GTHEME_TEXTDOMAIN ), 'secondary', 'create-default-terms', FALSE, self::getButtonConfirm() ).'&nbsp;&nbsp;';
 
+			echo '</p>';
 			wp_nonce_field( 'gtheme-terms', '_gtheme_terms' );
 		echo '</form>';
 	}
@@ -200,7 +214,10 @@ class gThemeTerms extends gThemeModuleCore
 
 	public function load_edit_tags()
 	{
-		if ( isset( $_REQUEST['taxonomy'] ) && GTHEME_SYSTEMTAGS == $_REQUEST['taxonomy'] ) {
+		if ( empty( $_REQUEST['taxonomy'] ) )
+			return;
+
+		if ( GTHEME_SYSTEMTAGS == $_REQUEST['taxonomy'] ) {
 			$this->system_tags_table_action( 'gtheme_action' );
 			add_action( 'after-'.GTHEME_SYSTEMTAGS.'-table', array( $this, 'after_system_tags_table' ) );
 		}
@@ -208,43 +225,42 @@ class gThemeTerms extends gThemeModuleCore
 
 	private function system_tags_table_action( $action_name )
 	{
-		if ( ! isset( $_REQUEST[$action_name] ) )
+		if ( empty( $_REQUEST[$action_name] ) )
 			return FALSE;
 
 		if ( 'install_systemtags' == $_REQUEST[$action_name] ) {
 
 			$defaults = gThemeOptions::info( 'system_tags_defaults', array() );
+			$taxonomy = GTHEME_SYSTEMTAGS;
 
-			if ( count( $defaults ) )
-				$added = self::insertDefaults( GTHEME_SYSTEMTAGS, $defaults );
-			else
-				$added = FALSE;
-
-			if ( $added )
-				$action = 'added_systemtags';
-			else
-				$action = 'error_systemtags';
-
-			wp_redirect( add_query_arg( $action_name, $action ) );
-			exit;
+		} else {
+			return FALSE;
 		}
+
+		if ( ! count( $defaults ) )
+			return FALSE;
+
+		$action = self::insertDefaults( $taxonomy, $defaults ) ? 'added_'.$taxonomy : $action = 'error_'.$taxonomy;
+
+		wp_redirect( add_query_arg( $action_name, $action ) );
+		exit;
 	}
 
 	public function after_system_tags_table( $taxonomy )
 	{
 		$action_name = 'gtheme_action';
-		$title       = __( 'Install Default System Tags', GTHEME_TEXTDOMAIN );
+		$title       = _x( 'Install Default System Tags', 'Terms Module', GTHEME_TEXTDOMAIN );
 		$action      = add_query_arg( $action_name, 'install_systemtags' );
 
 		if ( isset( $_GET[$action_name] ) ) {
 			if ( 'error_systemtags' == $_GET[$action_name] ) {
-				$title = __( 'Error while adding default system tags.', GTHEME_TEXTDOMAIN );
+				$title = _x( 'Error while adding default system tags.', 'Terms Module', GTHEME_TEXTDOMAIN );
 			} else if ( 'added_systemtags' == $_GET[$action_name] ) {
-				$title = __( 'Default system tags added.', GTHEME_TEXTDOMAIN );
+				$title = _x( 'Default system tags added.', 'Terms Module', GTHEME_TEXTDOMAIN );
 			}
 		}
 
-		echo '<div class="form-wrap"><p>';
+		echo '<div class="form-field"><p>';
 			echo '<a href="'.esc_url( $action ).'" class="button">'.$title.'</a>';
 		echo '</p></div>';
 	}
