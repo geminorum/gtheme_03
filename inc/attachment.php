@@ -64,4 +64,31 @@ class gThemeAttachment extends gThemeModuleCore
 		if ( $html )
 			echo $args['before'].$html.$args['after'];
 	}
+
+	public static function backlink( $atts = array() )
+	{
+		$args = self::atts( array(
+			'before'   => '<div class="entry-backlink">',
+			'after'    => '</div>',
+			'id'       => get_the_ID(),
+			'template' => _x( '&larr; Back to &ldquo;%s&rdquo;', 'Module: Attachment: Backlink Template', GTHEME_TEXTDOMAIN ),
+			'echo'     => TRUE,
+		), $atts );
+
+		$post = get_post( $args['id'] );
+
+		if ( ! $post )
+			return FALSE;
+
+		if ( empty( $post->post_parent ) )
+			return FALSE;
+
+		$html = '<a href="'.get_permalink( $post->post_parent ).'" class="-backlink">'
+			.sprintf( $args['template'], get_the_title( $post->post_parent ) ).'</a>';
+
+		if ( ! $args['echo'] )
+			return $args['before'].$html.$args['after'];
+
+		echo $args['before'].$html.$args['after'];
+	}
 }
