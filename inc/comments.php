@@ -29,7 +29,13 @@ class gThemeComments extends gThemeModuleCore
 
 		if ( $closing_time )
 			add_action( 'comment_form_top', array( $this, 'comment_form_top' ) );
+	}
 
+	public static function template( $before = '', $after = '' )
+	{
+		echo $before;
+			comments_template( '', FALSE );
+		echo $after;
 	}
 
 	public function comment_class( $classes, $class, $comment_id, $post_id )
@@ -234,29 +240,39 @@ class gThemeComments extends gThemeModuleCore
 
 					echo '<a class="comment-avatar '.( gThemeUtilities::isRTL() ? 'pull-right media-right' : 'pull-left media-left' ).'" href="'.get_comment_author_url().'" rel="external nofollow">';
 						gThemeTemplate::avatar( $comment );
-					echo '</a><div class="media-body comment-body" id="comment-body-'.$comment->comment_ID.'"><h6 class="media-heading comment-meta">';
-						echo '<span class="comment-author">'.get_comment_author_link().'</span>';
-						echo ' <small class="comment-time">';
-						self::time( $comment->comment_ID );
-					echo '</small></h6><div class="comment-content">';
-						comment_text();
-					echo '</div>';
+					echo '</a>';
 
-						if ( '0' == $comment->comment_approved )
-							echo '<p class="text-danger comment-awaiting-moderation comment-moderation">'
-							.gThemeOptions::info( 'comment_awaiting',
-								_x( 'Your comment is awaiting moderation.', 'Comments Module', GTHEME_TEXTDOMAIN ) )
-							.'</p>';
+					echo '<div class="media-body comment-body" id="comment-body-'.$comment->comment_ID.'">';
 
+						echo '<h6 class="media-heading comment-meta">';
+							echo '<span class="comment-author">'.get_comment_author_link().'</span>';
+							echo ' <small class="comment-time">';
+							self::time( $comment->comment_ID );
+						echo '</small></h6>';
+
+						echo '<div class="comment-content">';
+							comment_text( $comment->comment_ID );
+						echo '</div>';
+
+						self::awaiting( $comment );
 						self::actions( $comment, $args, $depth );
-					echo '</div>';
+
+					echo '</div><div class=" clearfix"></div>';
 			break;
 		}
 	}
 
-	public static function time( $id )
+	public static function awaiting( $comment, $before = '<p class="text-danger comment-awaiting-moderation comment-moderation">', $after = '</p>' )
 	{
-		echo '<a href="'.esc_url( get_comment_link( $id ) ).'">';
+		if ( '0' == $comment->comment_approved )
+			echo $before.gThemeOptions::info( 'comment_awaiting',
+					_x( 'Your comment is awaiting moderation.', 'Comments Module', GTHEME_TEXTDOMAIN ) )
+				.$after;
+	}
+
+	public static function time( $comment_ID )
+	{
+		echo '<a href="'.esc_url( get_comment_link( $comment_ID ) ).'">';
 			echo '<time datetime="';
 				comment_time( 'c' );
 			echo '">'.sprintf(
