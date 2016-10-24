@@ -3,6 +3,24 @@
 class gThemeContent extends gThemeModuleCore
 {
 
+	public static function wrapOpen( $context = 'index', $extra = array(), $tag = 'article' )
+	{
+		$classes = array_merge( array(
+			'entry-wrap',
+			'content-'.$context,
+			'clearfix',
+		), $extra );
+
+		$post_id = get_the_ID();
+
+		echo '<'.$tag.( $post_id ? ' id="post-'.$post_id.'"' : '' ).' class="'.join( ' ', get_post_class( $classes, $post_id ) ).'">';
+	}
+
+	public static function wrapClose( $tag = 'article' )
+	{
+		echo '</'.$tag.'>';
+	}
+
 	public static function post( $context = NULL, $part = 'content' )
 	{
 		if ( is_null( $context ) )

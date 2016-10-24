@@ -1,4 +1,6 @@
-<article id="post-<?php the_ID(); ?>" <?php post_class( 'entry-wrap content-index clearfix' ); ?>><?php
+<?php defined( 'ABSPATH' ) or die( 'Restricted access' );
+
+gThemeContent::wrapOpen( 'index' );
 
 	gThemeImage::image( array( 'tag' => 'single' ) );
 	gThemeContent::header( array( 'context' => 'index', ) );
@@ -9,4 +11,4 @@
 		gThemeContent::excerpt();
 	}
 
-?></article>
+gThemeContent::wrapClose();

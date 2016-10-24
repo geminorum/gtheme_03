@@ -1,4 +1,6 @@
-<article id="post-0" class="post entry-wrap error-404 not-found"><?php
+<?php defined( 'ABSPATH' ) or die( 'Restricted access' );
+
+gThemeContent::wrapOpen( '404' );
 
 	gThemeContent::header( array(
 		'context' => '404',
@@ -26,4 +28,4 @@
 
 	echo '</div>';
 
-?></article>
+gThemeContent::wrapClose();
