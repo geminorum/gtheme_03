@@ -3,6 +3,16 @@
 class gThemeAttachment extends gThemeModuleCore
 {
 
+	// used in caption shortcode
+	public static function normalizeCaption( $caption, $before = '', $after = '', $default = '' )
+	{
+		if ( $caption = trim( str_ireplace( '&nbsp;', ' ', $caption ) ) )
+			return $before.gThemeUtilities::wordWrap(
+				gThemeL10N::str( $caption ), 2 ).$after;
+
+		return $default;
+	}
+
 	// FIXME: DRAFT
 	// SEE: https://core.trac.wordpress.org/changeset/37915
 	public static function caption( $atts = array() )

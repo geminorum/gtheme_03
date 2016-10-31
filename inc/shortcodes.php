@@ -49,18 +49,12 @@ class gThemeShortCodes extends gThemeModuleCore
 		if ( $args['width'] < 1 || empty( $args['caption'] ) )
 			return $content;
 
-		if ( ! empty( $args['id'] ) )
-			$args['id'] = 'id="'.esc_attr( $args['id'] ).'" ';
+		$caption = gThemeAttachment::normalizeCaption( $args['caption'], '<figcaption>', '</figcaption>' );
 
-		$class = trim( 'the-img-caption '.$args['align'].' '.$args['class'] );
-
-		return '<figure '.$args['id']
-			   //.' style="width: '.(int) $args['width'].'px;"'
-			   .' class="'.esc_attr( $class ).'">'
-			   .do_shortcode( $content )
-			   .'<figcaption class="the-img-caption-text">'
-			   .gThemeL10N::str( $args['caption'] )
-			   .'</figcaption></figure>';
+		return gThemeHTML::tag( 'figure', array(
+			'id'    => $args['id'],
+			'class' => trim( $args['align'].' '.$args['class'] ),
+		), do_shortcode( $content ).$caption );
 	}
 
 	public function post_gallery( $empty, $attr )
