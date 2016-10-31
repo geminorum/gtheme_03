@@ -23,6 +23,14 @@ class gThemeModuleCore extends gThemeBaseCore
 
 	public function setup_actions( $args = array() ) {}
 
+	public function shortcodes( $shortcodes = array() )
+	{
+		foreach ( $shortcodes as $shortcode => $method ) {
+			remove_shortcode( $shortcode );
+			add_shortcode( $shortcode, array( $this, $method ) );
+		}
+	}
+
 	public static function isAJAX()
 	{
 		return defined( 'DOING_AJAX' ) && DOING_AJAX;

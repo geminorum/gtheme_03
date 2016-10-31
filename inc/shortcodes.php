@@ -23,7 +23,7 @@ class gThemeShortCodes extends gThemeModuleCore
 
 	public function init()
 	{
-		$shortcodes = array(
+		$this->shortcodes( array(
 			'theme-image' => 'shortcode_theme_image',
 			'panels'      => 'shortcode_panels',
 			'panel'       => 'shortcode_panel',
@@ -32,12 +32,7 @@ class gThemeShortCodes extends gThemeModuleCore
 			'children'    => 'shortcode_children',
 			'siblings'    => 'shortcode_siblings',
 			// 'slider'      => 'shortcode_gallery_slider',
-		);
-
-		foreach ( $shortcodes as $shortcode => $method ) {
-			remove_shortcode( $shortcode );
-			add_shortcode( $shortcode, array( $this, $method ) );
-		}
+		) );
 	}
 
 	public function img_caption_shortcode( $empty, $attr, $content )
