@@ -93,6 +93,7 @@ class gThemeImage extends gThemeModuleCore
 		unset(
 			$sizes['thumbnail'],
 			$sizes['medium'],
+			$sizes['medium_large'],
 			$sizes['large']
 		);
 
