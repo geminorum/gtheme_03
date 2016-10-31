@@ -1,3 +1,24 @@
+### 3.14.0
+* assets/styles: strip utf bom
+* assets/styles: normalize charset def
+* core/html: method renamed, fixed fatal on PHP5.6
+* main/modulecore: throw & catch exceptions for ajax/installing
+* main/modulecore: shortcode helper
+* script/all: apply jquery migrate notices
+* module/attachment: back link helper
+* module/attachment: check if image
+* module/editorial: comp with the latest version
+* module/feed: refactoring feed content enhancements
+* module/comments: new helpers
+* module/content: not found message helper
+* module/content: method refactoring!
+* module/content: wrap open/close helpers
+* module/terms: install button for default primary terms
+* module/social: large image on twitter cards
+* module/shortcodes: rewriting `[caption]` shortcode
+* module/image: disable new core default image size
+* module/image: rewriting img tag instead of figure
+
 ### 3.13.0
 * moved to [Semantic Versioning](http://semver.org/)
 * restructure inc folder
