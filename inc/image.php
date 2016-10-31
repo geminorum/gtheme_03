@@ -24,9 +24,8 @@ class gThemeImage extends gThemeModuleCore
 		if ( $responsive_class )
 			add_filter( 'the_content', array( $this, 'the_content_responsive_class' ), 100 );
 
+		add_filter( 'get_image_tag', array( $this, 'get_image_tag' ), 5, 6 );
 		add_filter( 'post_thumbnail_html', array( $this, 'strip_width_height' ), 10 );
-		add_filter( 'image_send_to_editor', array( $this, 'strip_width_height' ), 10 );
-		add_filter( 'image_send_to_editor', array( $this, 'image_send_to_editor' ), 12, 8 );
 
 		add_filter( 'pre_option_image_default_link_type', array( $this, 'pre_option_image_default_link_type' ), 10 );
 		add_filter( 'pre_option_image_default_align', array( $this, 'pre_option_image_default_align' ), 10 );
@@ -122,6 +121,11 @@ class gThemeImage extends gThemeModuleCore
 		return $html;
 	}
 
+	public function get_image_tag_class( $class, $id, $align, $size )
+	{
+		return $class.' '.gThemeOptions::info( 'image-class', 'the-img img-responsive' );
+	}
+
 	public function wp_get_attachment_image_attributes( $attr, $attachment )
 	{
 		unset( $attr['title'] );
@@ -129,24 +133,27 @@ class gThemeImage extends gThemeModuleCore
 		return $attr;
 	}
 
-	public function get_image_tag_class( $class, $id, $align, $size )
+	public function get_image_tag( $html, $id, $alt, $title, $align, $size )
 	{
-		return $class.' '.gThemeOptions::info( 'image-class', 'the-img img-responsive' );
+		list( $src, $width, $height ) = image_downsize( $id, $size );
+
+		return gThemeHTML::tag( 'img', array(
+			'src'   => $src,
+			'alt'   => $alt,
+			'class' => apply_filters( 'get_image_tag_class', 'align'.$align, $id, $align, $size ),
+			'data'  => array(
+				'width'  => $width, // need this for `image_add_caption()`
+				// 'height' => $height,
+				'id'     => $id,
+				'size'   => $size,
+				// 'align'  => $align,
+			),
+		) );
 	}
 
 	public function strip_width_height( $html )
 	{
 		return preg_replace( '/(width|height)="\d*"\s/', '', $html );
-	}
-
-	public function image_send_to_editor( $html, $id, $caption, $title, $align, $url, $size, $alt )
-	{
-		$html = '<figure id="post-'.$id.'-media-'.$id.'" class="align'.$align.'"'.( empty( $title ) ? '' : ' title="'.$title.'"' ).'>'.$html;
-
-		if ( $caption )
-			$html .= '<figcaption>'.$caption.'</figcaption>';
-
-		return $html.'</figure>';
 	}
 
 	public function pre_option_image_default_link_type( $option )
