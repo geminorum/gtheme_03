@@ -51,12 +51,8 @@ class gThemeBaseCore
 		$atts = (array) $atts;
 		$out  = array();
 
-		foreach ( $pairs as $name => $default ) {
-			if ( array_key_exists( $name, $atts ) )
-				$out[$name] = $atts[$name];
-			else
-				$out[$name] = $default;
-		}
+		foreach ( $pairs as $name => $default )
+			$out[$name] = array_key_exists( $name, $atts ) ? $atts[$name] : $default;
 
 		return $out;
 	}

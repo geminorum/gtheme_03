@@ -41,20 +41,24 @@ class gThemeTheme extends gThemeModuleCore
 		add_filter( 'bp_use_theme_compat_with_current_theme', ( $buddypress ? '__return_true' : '__return_false' ) );
 
 		if ( $post_formats )
-			add_theme_support( 'post-formats', gtheme_get_info( 'support_post_formats', array(
-				'aside',
-				'link',
-				'gallery',
-				'status',
-				'quote',
-				'image',
+			add_theme_support( 'post-formats',
+				gThemeOptions::info( 'support_post_formats', array(
+					'aside',
+					'link',
+					'gallery',
+					'status',
+					'quote',
+					'image',
 			) ) );
 
 		if ( $html5 )
-			add_theme_support( 'html5', gtheme_get_info( 'support_html5', array(
-				'comment-list',
-				'search-form',
-				'comment-form',
+			add_theme_support( 'html5',
+				gThemeOptions::info( 'support_html5', array(
+					'comment-list',
+					'search-form',
+					'comment-form',
+					'gallery',
+					'caption',
 			) ) );
 
 		if ( $js )
@@ -62,17 +66,18 @@ class gThemeTheme extends gThemeModuleCore
 
 		// http://justintadlock.com/archives/2011/09/01/a-better-way-for-plugins-to-hook-into-theme-templates
 		if ( $hooks )
-			add_theme_support( 'template-hooks', gtheme_get_info( 'support_template_hooks', array(
-				'before_post',
-				'after_post',
-				'template_body_top',
-				// 'template_before_loop',
-				// 'template_after_loop',
-				// 'template_after_sidebar',
-				'gtheme_do_header',
-				'gtheme_do_after_header',
-				'gtheme_do_before_footer',
-				'gtheme_do_footer',
+			add_theme_support( 'template-hooks',
+				gThemeOptions::info( 'support_template_hooks', array(
+					'before_post',
+					'after_post',
+					'template_body_top',
+					// 'template_before_loop',
+					// 'template_after_loop',
+					// 'template_after_sidebar',
+					'gtheme_do_header',
+					'gtheme_do_after_header',
+					'gtheme_do_before_footer',
+					'gtheme_do_footer',
 			) ) );
 	}
 

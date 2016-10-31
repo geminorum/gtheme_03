@@ -408,5 +408,5 @@ function gtheme_get_info( $info = FALSE, $default = FALSE ) { return gThemeOptio
 function gtheme_get_option( $name, $default = FALSE ) { return gThemeOptions::getOption( $name, $default ); }
 function gtheme_update_option( $name, $value ) { return gThemeOptions::update_option( $name, $value ); }
 function gtheme_delete_option( $name ) { return gThemeOptions::delete_option( $name ); }
-function gtheme_get_count( $name, $def = 0 ){ return gThemeOptions::count( $name, $def ); }
+function gtheme_get_count( $name, $def = 0 ) { return gThemeOptions::count( $name, $def ); }
 function gtheme_supports( $plugins, $if_not_set = FALSE ) { return gThemeOptions::supports( $plugins, $if_not_set ); }

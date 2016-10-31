@@ -463,7 +463,7 @@ class gThemeModuleCore extends gThemeBaseCore
 			echo '</td></tr>';
 	}
 
-	public function selector( $prefix = 'theme-selector-%d' )
+	protected function selector( $prefix = 'theme-selector-%d' )
 	{
 		if ( FALSE === strpos( $prefix, '%d' ) )
 			$selector = $prefix.$this->counter;

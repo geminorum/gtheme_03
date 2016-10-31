@@ -63,11 +63,11 @@ class gThemeSideBar extends gThemeModuleCore
 			}
 		}
 
-		$sidebars = apply_filters( 'gtheme_sidebars', gtheme_get_info( 'sidebars', array() ) );
+		$sidebars = apply_filters( 'gtheme_sidebars', gThemeOptions::info( 'sidebars', array() ) );
 		if ( ! count( $sidebars ) )
 			return;
 
-		$sidebar_args_func = gtheme_get_info( 'sidebar_args_func', array( __CLASS__, 'args' ) );
+		$sidebar_args_func = gThemeOptions::info( 'sidebar_args_func', array( __CLASS__, 'args' ) );
 		foreach ( $sidebars as $sidebar_id => $sidebar_title ) {
 			$args = array( 'id' => $sidebar_id );
 			if ( is_array( $sidebar_title ) )

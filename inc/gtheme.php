@@ -112,7 +112,7 @@ final class gThemeCore
 	{
 		load_theme_textdomain( GTHEME_TEXTDOMAIN, GTHEME_DIR.'/languages' );
 
-		$this->init_modules( $this->modules, gtheme_get_info( 'module_args', array() ) );
+		$this->init_modules( $this->modules, gThemeOptions::info( 'module_args', array() ) );
 	}
 
 	public function init_late()

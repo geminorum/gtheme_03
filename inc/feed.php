@@ -82,7 +82,7 @@ class gThemeFeed extends gThemeModuleCore
 
 	public function rss2_item()
 	{
-		if ( $size = gtheme_get_info( 'enclosure_image_size', 'single' ) ) {
+		if ( $size = gThemeOptions::info( 'enclosure_image_size', 'single' ) ) {
 
 			if ( $id = gThemeImage::id( $size ) ) {
 

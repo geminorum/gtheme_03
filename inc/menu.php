@@ -27,7 +27,7 @@ class gThemeMenu extends gThemeModuleCore
 
 	public function init()
 	{
-		$menus = gtheme_get_info( 'register_nav_menus', array() );
+		$menus = gThemeOptions::info( 'register_nav_menus', array() );
 		if ( $menus && count( $menus ) )
 			register_nav_menus( $menus );
 	}
@@ -71,7 +71,7 @@ class gThemeMenu extends gThemeModuleCore
 
 	public function wp_nav_menu_container_allowedtags( $tags )
 	{
-		$new_tags = (array) gtheme_get_info( 'nav_menu_allowedtags', array( 'p' ) );
+		$new_tags = (array) gThemeOptions::info( 'nav_menu_allowedtags', array( 'p' ) );
 		if ( count( $new_tags ) )
 			$tags = array_merge( $tags, $new_tags );
 		return $tags;

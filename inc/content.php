@@ -279,8 +279,10 @@ class gThemeContent extends gThemeModuleCore
 	{
 		if ( TRUE === $action_list )
 			$actions = gThemeOptions::info( 'post_actions', array() );
+
 		else if ( is_array( $action_list ) )
 			$actions = $action_list;
+
 		else
 			$actions = array();
 
@@ -301,57 +303,64 @@ class gThemeContent extends gThemeModuleCore
 
 			case 'textsize_buttons' :
 			case 'textsize_buttons_nosep' :
+
 				self::text_size_buttons(
 					sprintf( $before, 'textsize-buttons hidden-print' ), $after,
 					( 'textsize_buttons_nosep' == $action ? FALSE : 'def' ),
 					( $icons ? '<div class="genericon genericon-zoom"></div>' : 'def' ),
 					( $icons ? '<div class="genericon genericon-unzoom"></div>' : 'def' )
-					);
-			break;
+				);
 
+			break;
 			case 'textjustify_buttons' :
 			case 'textjustify_buttons_nosep' :
+
 				self::justify_buttons(
 					sprintf( $before, 'textjustify-buttons hidden-print' ), $after,
 					( 'textjustify_buttons_nosep' == $action ? FALSE : 'def' ),
 					( $icons ? '<div class="genericon genericon-minimize"></div>' : 'def' ),
 					( $icons ? '<div class="genericon genericon-previous"></div>' : 'def' )
-					);
-			break;
+				);
 
+			break;
 			case 'printfriendly' :
+
 				self::printfriendly(
 					sprintf( $before, 'printfriendly post-print-link hidden-print' ), $after,
 					( $icons ? '<div class="genericon genericon-print"></div>' : __( 'Print Version', GTHEME_TEXTDOMAIN ) )
 				);
-			break;
 
+			break;
 			case 'a2a_dd' :
 			case 'addtoany' :
+
 				self::addtoany(
 					sprintf( $before, 'addtoany post-share-link' ), $after,
 					( $icons ? '<div class="genericon genericon-share"></div>' : __( 'Share This', GTHEME_TEXTDOMAIN ) )
 				);
-			break;
 
+			break;
 			case 'addthis' :
+
 				self::addthis(
 					sprintf( $before, 'addthis post-share-link' ), $after,
 					( $icons ? '<div class="genericon genericon-share"></div>' : __( 'Share This', GTHEME_TEXTDOMAIN ) )
 				);
-			break;
 
+			break;
 			case 'shortlink' :
+
 				the_shortlink(
 					( $icons ? '<div class="genericon genericon-link"></div>' : __( 'Short Link', GTHEME_TEXTDOMAIN ) ),
 					self::title_attr( FALSE, NULL, '%s' ),
 					sprintf( $before, 'post-short-link' ),
 					$after
 				);
-			break;
 
+			break;
 			case 'comments_link' :
 			case 'comments_link_feed' :
+
 				if ( comments_open() ) {
 					printf( $before, 'comments-link' );
 
@@ -365,10 +374,10 @@ class gThemeContent extends gThemeModuleCore
 					*/
 
 					if ( is_singular() ) {
-						$link = '#respond';
+						$link  = '#respond';
 						$class = 'scroll1';
 					} else {
-						$link = get_permalink().'#respond';
+						$link  = get_permalink().'#respond';
 						$class = 'hastip1';
 					}
 
@@ -393,29 +402,35 @@ class gThemeContent extends gThemeModuleCore
 					}
 					echo $after;
 				}
-			break;
 
+			break;
 			case 'edit_post_link' :
+
 				edit_post_link(
 					( $icons ? '<div class="genericon genericon-edit"></div>' : __( 'Edit', GTHEME_TEXTDOMAIN ) ),
 					sprintf( $before, 'post-edit-link post-edit-link-li' ),
 					$after
 				);
-			break;
 
+			break;
 			case 'tag_list' :
-				if ( is_object_in_taxonomy( get_post_type(), 'post_tag' ) ) {
-					echo get_the_tag_list( sprintf( $before, 'tag-links' ).gtheme_get_info( 'before_tag_list', '' ), gThemeUtilities::sanitize_sep( 'def', 'term_sep' ), $after );
-					/*
-					$tag_list = get_the_tag_list( '', gThemeUtilities::sanitize_sep( 'def', 'term_sep' ) );
-					if ( $tag_list )
-						echo sprintf( $before, 'tags-links' ).$tag_list.$after;
-					*/
-				}
+
+				if ( is_object_in_taxonomy( get_post_type(), 'post_tag' ) )
+					the_tags(
+						sprintf( $before, 'tag-links' ).
+						gThemeOptions::info( 'before_tag_list', '' ),
+						gThemeUtilities::sanitize_sep( 'def', 'term_sep' ),
+						$after
+					);
+
 			break;
 			case 'cat_list' :
+
 				if ( is_object_in_taxonomy( get_post_type(), 'category' ) ) {
-					echo sprintf( $before, 'cat-links' ).gtheme_get_info( 'before_cat_list', '' ).get_the_category_list( gThemeUtilities::sanitize_sep( 'def', 'term_sep' ) ).$after;
+					echo sprintf( $before, 'cat-links' )
+						.gThemeOptions::info( 'before_cat_list', '' )
+						.get_the_category_list( gThemeUtilities::sanitize_sep( 'def', 'term_sep' ) )
+						.$after;
 				}
 
 			break;
@@ -424,10 +439,8 @@ class gThemeContent extends gThemeModuleCore
 				gThemeDate::date( array(
 					'before' => sprintf( $before, 'the-date' ),
 					'after'  => $after,
-					'text'   => ( $icons ? '<div class="genericon genericon-edit"></div>' : NULL ),
+					'text'   => $icons ? '<div class="genericon genericon-edit"></div>' : NULL,
 				) );
-
-			break;
 		}
 	}
 
@@ -437,7 +450,7 @@ class gThemeContent extends gThemeModuleCore
 		echo $b;
 
 		echo '<a id="gtheme-fontsize-plus" class="fontsize-button increase-font" href="#" title="'.__( 'Increase font size', GTHEME_TEXTDOMAIN ).'">';
-			echo ( 'def' == $increase ? gtheme_get_info( 'text_size_increase', '[ A+ ]' ) : $increase );
+			echo ( 'def' == $increase ? gThemeOptions::info( 'text_size_increase', '[ A+ ]' ) : $increase );
 		echo '</a>';
 
 		if ( FALSE !== $sep ) {
@@ -447,7 +460,7 @@ class gThemeContent extends gThemeModuleCore
 		}
 
 		echo '<a id="gtheme-fontsize-minus" class="fontsize-button decrease-font" href="#" title="'.__( 'Decrease font size', GTHEME_TEXTDOMAIN ).'">';
-			echo ( 'def' == $decrease ? gtheme_get_info( 'text_size_decrease', '[ A- ]' ) : $decrease );
+			echo ( 'def' == $decrease ? gThemeOptions::info( 'text_size_decrease', '[ A- ]' ) : $decrease );
 		echo '</a>';
 
 		echo $a;
@@ -458,14 +471,14 @@ class gThemeContent extends gThemeModuleCore
 		echo $b;
 
 		echo '<a id="text-justify" class="text-justify-button hidden" href="#" title="'.__( 'Justify paragraphs', GTHEME_TEXTDOMAIN ).'">';
-			echo ( 'def' == $justify ? gtheme_get_info( 'text_justify', 'Ju' ) : $justify );
+			echo ( 'def' == $justify ? gThemeOptions::info( 'text_justify', 'Ju' ) : $justify );
 		echo '</a>';
 
 		if ( FALSE !== $sep )
 			echo gThemeUtilities::sanitize_sep( $sep, 'text_justify_sep' );
 
 		echo '<a id="text-unjustify" class="text-justify-button" href="#" title="'.__( 'Un-justify paragraphs', GTHEME_TEXTDOMAIN ).'">';
-			echo ( 'def' == $unjustify ? gtheme_get_info( 'text_unjustify', 'uJ' ) : $unjustify );
+			echo ( 'def' == $unjustify ? gThemeOptions::info( 'text_unjustify', 'uJ' ) : $unjustify );
 		echo '</a>';
 
 		echo $a;
