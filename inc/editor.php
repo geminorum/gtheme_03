@@ -52,7 +52,7 @@ class gThemeEditor extends gThemeModuleCore
 
 	public function mce_buttons( $buttons )
 	{
-		$gtheme_buttons = gThemeOptions::info( 'mce_buttons', array( 'sup', 'sub', 'hr' ) );
+		$gtheme_buttons = gThemeOptions::info( 'mce_buttons', array() );
 
 		foreach ( $gtheme_buttons as $gtheme_button )
 			array_push( $buttons, $gtheme_button );
@@ -65,10 +65,6 @@ class gThemeEditor extends gThemeModuleCore
 	{
 		if ( gThemeUtilities::isRTL() )
 			$buttons = array_diff( $buttons, array( 'outdent', 'indent' ) );
-
-		// FIXME: MOVE: this to gPersianDate
-		// http://stackoverflow.com/questions/12416678/how-to-customize-tinymce-button-output
-		$buttons = array_diff( $buttons, array( 'justifyfull' ) );
 
 		$gtheme_buttons = gThemeOptions::info( 'mce_buttons_2', array( 'styleselect' ) );
 

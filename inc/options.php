@@ -180,7 +180,7 @@ class gThemeOptions extends gThemeModuleCore
 
 			// EDITOR
 			'default_content'   => _x( '[content not available yet]', 'Editor Default Content', GTHEME_TEXTDOMAIN ),
-			'mce_buttons'       => array( 'sup', 'sub', 'hr' ),
+			'mce_buttons'       => array(), // 'superscript', 'subscript'
 			'mce_buttons_2'     => array( 'styleselect' ),
 			'mce_style_formats' => array(
 				array(
@@ -192,10 +192,6 @@ class gThemeOptions extends gThemeModuleCore
 					'title'   => _x( 'Blockquote', 'Editor Custom Class', GTHEME_TEXTDOMAIN ),
 					'block'   => 'p',
 					'classes' => 'entry-quote',
-				),
-				array(
-					'title'  => _x( 'Deleted', 'Editor Custom Class', GTHEME_TEXTDOMAIN ),
-					'inline' => 'del',
 				),
 			),
 
