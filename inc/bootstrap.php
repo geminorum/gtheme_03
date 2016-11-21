@@ -37,14 +37,15 @@ class gThemeBootstrap extends gThemeModuleCore
 	public static function navbarNav( $location = 'primary', $wrap = 'navbar', $class = '' )
 	{
 		$menu = wp_nav_menu( array(
-			'echo'            => 0,
-			'menu'            => $location,
-			'theme_location'  => $location,
-			'depth'           => 2,
-			'container'       => '',
-			'menu_class'      => 'nav navbar-nav '.$class,
-			'fallback_cb'     => 'wp_bootstrap_navwalker::fallback',
-			'walker'          => new gThemeBootstrap_Walker_NavBar()
+			'echo'           => 0,
+			'menu'           => $location,
+			'theme_location' => $location,
+			'depth'          => 2,
+			'container'      => '',
+			'item_spacing'   => 'discard',
+			'menu_class'     => 'nav navbar-nav '.$class,
+			'fallback_cb'    => 'wp_bootstrap_navwalker::fallback',
+			'walker'         => new gThemeBootstrap_Walker_NavBar(),
 		) );
 
 		if ( $menu )

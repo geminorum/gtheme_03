@@ -431,14 +431,15 @@ class gThemeShortCodes extends gThemeModuleCore
 			return $content;
 
 		$children = wp_list_pages( array(
-			'child_of'    => $args['id'],
-			'post_type'   => $args['type'],
-			'excerpt'     => $args['excerpt'],
-			'echo'        => FALSE,
-			'depth'       => 1,
-			'title_li'    => '',
-			'sort_column' => 'menu_order, post_title',
-			'walker'      => new gTheme_Walker_Page(),
+			'child_of'     => $args['id'],
+			'post_type'    => $args['type'],
+			'excerpt'      => $args['excerpt'],
+			'echo'         => FALSE,
+			'depth'        => 1,
+			'title_li'     => '',
+			'item_spacing' => 'discard',
+			'sort_column'  => 'menu_order, post_title',
+			'walker'       => new gTheme_Walker_Page(),
 		) );
 
 		if ( ! $children )
@@ -468,14 +469,15 @@ class gThemeShortCodes extends gThemeModuleCore
 			return $content;
 
 		$siblings = wp_list_pages( array(
-			'child_of'    => $args['parent'],
-			'post_type'   => $args['type'],
-			'excerpt'     => $args['excerpt'],
-			'echo'        => FALSE,
-			'depth'       => 1,
-			'title_li'    => '',
-			'sort_column' => 'menu_order, post_title',
-			'walker'      => new gTheme_Walker_Page(),
+			'child_of'     => $args['parent'],
+			'post_type'    => $args['type'],
+			'excerpt'      => $args['excerpt'],
+			'echo'         => FALSE,
+			'depth'        => 1,
+			'title_li'     => '',
+			'item_spacing' => 'discard',
+			'sort_column'  => 'menu_order, post_title',
+			'walker'       => new gTheme_Walker_Page(),
 		) );
 
 		if ( ! $siblings )

@@ -53,6 +53,7 @@ class gThemeMenu extends gThemeModuleCore
 	{
 		$args = array(
 			'fallback_cb'    => '__return_null',
+			'item_spacing'   => 'discard',
 			'echo'           => isset( $atts['echo'] ) ? $atts['echo'] : TRUE,
 			'depth'          => isset( $atts['depth'] ) ? $atts['depth'] : 1,
 			'container'      => isset( $atts['container'] ) ? $atts['container'] : 'nav',
