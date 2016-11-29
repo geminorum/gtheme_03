@@ -139,7 +139,7 @@ class gThemeImage extends gThemeModuleCore
 
 		return gThemeHTML::tag( 'img', array(
 			'src'   => $src,
-			'alt'   => $alt,
+			'alt'   => $alt ? $alt : FALSE,
 			'class' => apply_filters( 'get_image_tag_class', 'align'.$align, $id, $align, $size ),
 			'data'  => array(
 				'width'  => $width, // need this for `image_add_caption()`
