@@ -33,7 +33,7 @@ class gThemeEditorial extends gThemeModuleCore
 
 	public static function label( $atts = array() )
 	{
-		if ( ! is_callable( 'gEditorialMetaTemplates', 'metaLabel' ) )
+		if ( ! is_callable( array( 'gEditorialMetaTemplates', 'metaLabel' ) ) )
 			return FALSE;
 
 		return gEditorialMetaTemplates::metaLabel( $atts );
@@ -41,7 +41,7 @@ class gThemeEditorial extends gThemeModuleCore
 
 	public static function source( $atts = array() )
 	{
-		if ( ! is_callable( 'gEditorialMetaTemplates', 'metaLink' ) )
+		if ( ! is_callable( array( 'gEditorialMetaTemplates', 'metaLink' ) ) )
 			return FALSE;
 
 		return gEditorialMetaTemplates::metaLink( $atts );
@@ -49,7 +49,7 @@ class gThemeEditorial extends gThemeModuleCore
 
 	public static function author( $atts = array() )
 	{
-		if ( ! is_callable( 'gEditorialMetaTemplates', 'metaAuthor' ) )
+		if ( ! is_callable( array( 'gEditorialMetaTemplates', 'metaAuthor' ) ) )
 			return FALSE;
 
 		return gEditorialMetaTemplates::metaAuthor( $atts );
@@ -57,7 +57,7 @@ class gThemeEditorial extends gThemeModuleCore
 
 	public static function lead( $atts = array() )
 	{
-		if ( ! is_callable( 'gEditorialMetaTemplates', 'metaLead' ) )
+		if ( ! is_callable( array( 'gEditorialMetaTemplates', 'metaLead' ) ) )
 			return FALSE;
 
 		return gEditorialMetaTemplates::metaLead( $atts );
@@ -65,7 +65,7 @@ class gThemeEditorial extends gThemeModuleCore
 
 	public static function meta( $field, $atts = array() )
 	{
-		if ( ! is_callable( 'gEditorialMetaTemplates', 'getMetaField' ) )
+		if ( ! is_callable( array( 'gEditorialMetaTemplates', 'getMetaField' ) ) )
 			return FALSE;
 
 		$args = self::atts( array(
@@ -161,7 +161,7 @@ class gThemeEditorial extends gThemeModuleCore
 
 	public static function issueCover( $atts = array() )
 	{
-		if ( ! is_callable( 'gEditorialMagazineTemplates', 'issueCover' ) )
+		if ( ! is_callable( array( 'gEditorialMagazineTemplates', 'issueCover' ) ) )
 			return FALSE;
 
 		return gEditorialMagazineTemplates::issueCover( $atts );
