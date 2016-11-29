@@ -1,3 +1,10 @@
+### 3.14.1
+* main/editor: cleanup default buttons, [see](https://make.wordpress.org/core/?p=20431)
+* module/editorial: :warning: correct callback checking
+* module/image: skip empty alt on html tags
+* module/image: cleanup old thumbnail id
+* module/menu: discarding whitespace in menu/page lists, [see](https://make.wordpress.org/core/?p=20577)
+
 ### 3.14.0
 * assets/styles: strip utf bom
 * assets/styles: normalize charset def
