@@ -226,9 +226,7 @@ class gThemeImage extends gThemeModuleCore
 			return $fields;
 
 		$post_type = get_post_type( $post_id );
-		$images = get_post_meta( $post_id, GTHEME_IMAGES_META, TRUE );
-		if ( ! is_array( $images ) )
-			$images = array();
+		$images = self::getMetaImages( $post_id, TRUE );
 
 		$html = $checked = '';
 		$gtheme_images = (array) gThemeOptions::info( 'images', array() );
@@ -272,9 +270,7 @@ class gThemeImage extends gThemeModuleCore
 
 		$images = $striped = array();
 		$sizes = (array) gThemeOptions::info( 'images', array() );
-		$saved_images = get_post_meta( $post_id, GTHEME_IMAGES_META, TRUE );
-		if ( ! is_array( $saved_images ) )
-			$saved_images = array();
+		$saved_images = self::getMetaImages( $post_id );
 
 		foreach ( $sizes as $name => $size )
 			if ( isset( $_REQUEST['gtheme_size_'.$name] ) && $name == $_REQUEST['gtheme_size_'.$name] )
@@ -284,12 +280,7 @@ class gThemeImage extends gThemeModuleCore
 			if ( $post['ID'] != $saved_id )
 				$striped[$saved_size] = $saved_id;
 
-		$final = array_merge( $striped, $images );
-
-		if ( count( $final ) )
-			update_post_meta( $post_id, GTHEME_IMAGES_META, $final );
-		else
-			delete_post_meta( $post_id, GTHEME_IMAGES_META );
+		self::setMetaImages( array_merge( $striped, $images ), $post_id );
 
 		return $post;
 	}
@@ -372,6 +363,54 @@ class gThemeImage extends gThemeModuleCore
 	///////////////////////////////////////////////////////////
 	///////////////////////////////////////////////////////////
 	///STATIC/METHODS//////////////////////////////////////////
+
+	public static function getMetaImages( $post_id = NULL, $check = FALSE )
+	{
+		global $gThemeImagesMeta;
+
+		if ( is_null( $post_id ) )
+			$post_id = get_the_ID();
+
+		if ( empty( $gThemeImagesMeta ) )
+			$gThemeImagesMeta = array();
+
+		if ( isset( $gThemeImagesMeta[$post_id] ) )
+			return $gThemeImagesMeta[$post_id];
+
+		if ( $images = get_post_meta( $post_id, GTHEME_IMAGES_META, TRUE ) )
+			$gThemeImagesMeta[$post_id] = $images;
+
+		else
+			$gThemeImagesMeta[$post_id] = array();
+
+		if ( $check && $thumbnail = get_post_thumbnail_id( $post_id ) ) {
+
+			if ( ! isset( $gThemeImagesMeta[$post_id]['raw'] ) )
+				$gThemeImagesMeta[$post_id]['raw'] = $thumbnail;
+
+			delete_post_meta( $post_id, '_thumbnail_id' );
+		}
+
+		return $gThemeImagesMeta[$post_id];
+	}
+
+	public static function setMetaImages( $images, $post_id = NULL, $check = FALSE )
+	{
+		global $gThemeImagesMeta;
+
+		if ( is_null( $post_id ) )
+			$post_id = get_the_ID();
+
+		if ( count( $images ) )
+			update_post_meta( $post_id, GTHEME_IMAGES_META, $images );
+		else
+			delete_post_meta( $post_id, GTHEME_IMAGES_META );
+
+		if ( $check )
+			delete_post_meta( $post_id, '_thumbnail_id' );
+
+		$gThemeImagesMeta[$post_id] = $images;
+	}
 
 	// ANCESTOR : gtheme_get_image_id()
 	public static function id( $tag = 'raw', $post_id = NULL )
