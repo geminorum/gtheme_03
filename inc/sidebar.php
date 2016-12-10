@@ -1071,7 +1071,7 @@ class gThemeWidgetTemplatePart extends gThemeWidget
 		return array(
 			'name'  => 'template_part',
 			'class' => 'template-part',
-			'title' => __( 'gTheme: Themplate Part', GTHEME_TEXTDOMAIN ),
+			'title' => __( 'gTheme: Template Part', GTHEME_TEXTDOMAIN ),
 			'desc'  => __( 'Include selected template part into sidebars', GTHEME_TEXTDOMAIN ),
 		);
 	}
