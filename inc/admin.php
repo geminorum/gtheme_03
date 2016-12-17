@@ -39,8 +39,7 @@ class gThemeAdmin extends gThemeModuleCore
 
 		$post_type_object = get_post_type_object( $postarr['post_type'] );
 
-		if ( is_super_admin()
-			|| current_user_can( $post_type_object->cap->edit_others_posts ) ) {
+		if ( current_user_can( $post_type_object->cap->edit_others_posts ) ) {
 
 			if ( 'auto-draft' == $postarr['post_status']
 				&& $user_ID == $postarr['post_author'] )
@@ -54,8 +53,11 @@ class gThemeAdmin extends gThemeModuleCore
 	public function preprocess_comment( $commentdata )
 	{
 		if ( self::isAJAX() ) {
-			if ( is_admin() && is_super_admin() ) {
+
+			if ( is_admin() && current_user_can( 'manage_network' ) ) {
+
 				if ( $this->default_user > 0 ) {
+
 					$user = get_user_by( 'id', (int) $this->default_user );
 
 					$commentdata['user_ID']              = $commentdata['user_id'] = $user->ID;
