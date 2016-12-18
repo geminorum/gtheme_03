@@ -2,7 +2,7 @@
 /// gTheme Default List Styles
 
 @mixin theme-list-reset() {
-	@include gutter-reset();
+	@include theme-gutter-reset();
 	list-style: none;
 	// li:before,
 	// li:after {

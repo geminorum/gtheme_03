@@ -49,10 +49,15 @@
 ////////////////////////////////////////////////////////////////////////////////
 // FIXME: must add suffix
 
-@mixin gutter-reset() {
+@mixin theme-gutter-reset() {
 	padding: 0;
 	margin: 0;
 	border: 0;
+}
+
+// DEP
+@mixin gutter-reset() {
+  @include theme-gutter-reset();
 }
 
 @mixin box-reset() {
