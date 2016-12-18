@@ -1,10 +1,10 @@
 ### 3.14.2
 * new default template: search advanced
-* main/sidebar: fixed typo
-* main/admin: deprecating is super admin
+* module/admin: deprecating is super admin
 * module/options: new editor style format for entry-list
 * module/options: editor style format p to blockquote on entry-quote
 * module/sidebar: :new: widget: the term
+* module/sidebar: fixed typo
 * module/navigation: breadcrumbs methods revised
 
 ### 3.14.1
