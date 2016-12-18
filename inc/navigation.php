@@ -68,15 +68,14 @@ class gThemeNavigation extends gThemeModuleCore
 	public static function breadcrumb( $atts = array() )
 	{
 		if ( is_singular() )
-			self::breadcrumb_single( $atts );
+			self::breadcrumbSingle( $atts );
 		else
-			self::breadcrumb_archive( $atts );
-
+			self::breadcrumbArchive( $atts );
 	}
 
 	// Home > Cat > Label
 	// bootstrap 3 compatible markup
-	public static function breadcrumb_single( $atts = array() )
+	public static function breadcrumbSingle( $atts = array() )
 	{
 		$crumbs = array();
 
@@ -88,8 +87,8 @@ class gThemeNavigation extends gThemeModuleCore
 			'page_is'    => TRUE,
 			'post_title' => FALSE,
 			'class'      => 'gtheme-breadcrumb',
-			'before'     => '',
-			'after'      => '',
+			'before'     => '<div class="nav-content nav-content-single">',
+			'after'      => '</div>',
 			'context'    => NULL,
 		), $atts );
 
@@ -111,12 +110,14 @@ class gThemeNavigation extends gThemeModuleCore
 		if ( is_singular() ) {
 			$single_html = '';
 			if ( is_preview() )
-				$single_html .= __( '(Preview)', GTHEME_TEXTDOMAIN );
+				$single_html .= _x( '(Preview)', 'Navigation Module: Breadcrumbs', GTHEME_TEXTDOMAIN );
 
 			if ( $args['page_is'] && in_the_loop() ) { // CAUTION : must be in the loop after the_post()
 				global $page, $numpages;
 				if ( ! empty( $page ) && 1 != $numpages ) //&& $page > 1 )
-					$single_html .= sprintf( __( 'Page <strong>%s</strong> of %s', GTHEME_TEXTDOMAIN ), number_format_i18n( $page ), number_format_i18n( $numpages ) );
+					$single_html .= sprintf( _x( 'Page <strong>%s</strong> of %s', 'Navigation Module: Breadcrumbs', GTHEME_TEXTDOMAIN ),
+						number_format_i18n( $page ),
+						number_format_i18n( $numpages ) );
 			}
 			if ( ! empty( $single_html ) )
 				$crumbs[] = $single_html;
@@ -124,24 +125,32 @@ class gThemeNavigation extends gThemeModuleCore
 
 		if ( $args['post_title'] && get_the_title() )
 			$crumbs[] = '<a href="'.esc_url( apply_filters( 'the_permalink', get_permalink() ) )
-				  .'" title="'.gThemeContent::title_attr( FALSE ).'" rel="bookmark">'
-				  .get_the_title().'</a>';
+					.'" title="'.gThemeContent::title_attr( FALSE ).'" rel="bookmark">'
+					.get_the_title().'</a>';
 
 		$count = count( $crumbs );
+
 		if ( ! $count )
 			return;
 
 		echo $args['before'].'<ol class="breadcrumb '.$args['class'].'">';
-		foreach ( $crumbs as $offset => $crumb ) {
-			echo '<li'.( ( $count-1 ) == $offset ? ' class="active"' : '' ).'>'.$crumb.'</li>';
-		}
+
+		foreach ( $crumbs as $offset => $crumb )
+			echo '<li'.( ( $count - 1 ) == $offset ? ' class="active"' : '' ).'>'.$crumb.'</li>';
+
 		echo '</ol>'.$args['after'];
+	}
+
+	public static function breadcrumb_single( $atts = array() )
+	{
+		self::__dep( 'gThemeNavigation::breadcrumbSingle()' );
+		self::breadcrumbSingle( $atts );
 	}
 
 	// home > archives > paged
 	// bootstrap 3 compatible markup
 	// @SEE: [get_the_archive_title()](https://developer.wordpress.org/reference/functions/get_the_archive_title/)
-	public static function breadcrumb_archive( $atts = array() )
+	public static function breadcrumbArchive( $atts = array() )
 	{
 		$crumbs = array();
 
@@ -149,8 +158,8 @@ class gThemeNavigation extends gThemeModuleCore
 			'home'    => FALSE,
 			'strings' => gThemeOptions::info( 'strings_breadcrumb_archive', array() ),
 			'class'   => 'gtheme-breadcrumb',
-			'before'  => '',
-			'after'   => '',
+			'before'  => '<div class="nav-content nav-content-archive">',
+			'after'   => '</div>',
 			'context' => NULL,
 		), $atts );
 
@@ -158,53 +167,93 @@ class gThemeNavigation extends gThemeModuleCore
 			$crumbs[] = '<a href="'.esc_url( home_url( '/' ) ).'" rel="home" title="">'. // TODO: add title
 				( 'home' == $args['home'] ? gThemeOptions::info( 'blog_name' ) : $args['home'] ).'</a>';
 
-		$crumbs = apply_filters( 'gtheme_breadcrumb_after_home', $crumbs, $args );
+		$crumbs   = apply_filters( 'gtheme_breadcrumb_after_home', $crumbs, $args );
+
+		$template = empty( $args['strings']['archive'] ) ? _x( 'Site Archives', 'Navigation Module: Breadcrumbs', GTHEME_TEXTDOMAIN ) : $args['strings']['archive'];
 
 		if ( is_front_page() ) {
 
 		} else if ( is_home() ) {
 
 		} else if ( is_category() ) {
-			$crumbs[] = sprintf( ( isset( $args['strings']['category'] ) ? $args['strings']['category'] : __( 'Category Archives for <strong>%s</strong>', GTHEME_TEXTDOMAIN ) ), single_term_title( '', FALSE ) );
+
+			$template = empty( $args['strings']['category'] ) ? _x( 'Category Archives for <strong>%s</strong>', 'Navigation Module: Breadcrumbs', GTHEME_TEXTDOMAIN ) : $args['strings']['category'];
+			$crumbs[] = sprintf( $template, single_term_title( '', FALSE ) );
+
 		} else if ( is_tag() ) {
-			$crumbs[] = sprintf( ( isset( $args['strings']['tag'] ) ? $args['strings']['tag'] : __( 'Tag Archives for <strong>%s</strong>', GTHEME_TEXTDOMAIN ) ), single_term_title( '', FALSE ) );
+
+			$template = empty( $args['strings']['tag'] ) ? _x( 'Tag Archives for <strong>%s</strong>', 'Navigation Module: Breadcrumbs', GTHEME_TEXTDOMAIN ) : $args['strings']['tag'];
+			$crumbs[] = sprintf( $template, single_term_title( '', FALSE ) );
+
 		} else if ( is_tax() ) {
-			$crumbs[] = sprintf( ( isset( $args['strings']['tax'] ) ? $args['strings']['tax'] : __( 'Taxonomy Archives for <strong>%s</strong>', GTHEME_TEXTDOMAIN ) ), single_term_title( '', FALSE ) );
+
+			$template = empty( $args['strings']['tax'] ) ? _x( 'Archives for <strong>%s</strong>', 'Navigation Module: Breadcrumbs', GTHEME_TEXTDOMAIN ) : $args['strings']['tax'];
+			$crumbs[] = sprintf( $template, single_term_title( '', FALSE ) );
+
 		} else if ( is_author() ) {
+
 			$default_user = gThemeOptions::getOption( 'default_user', 0 );
 			$author_id = intval( get_query_var( 'author' ) );
-			if ( $default_user != $author_id )
-				$crumbs[] = sprintf( ( isset( $args['strings']['author'] ) ? $args['strings']['author'] : __( 'Author Archives for <strong>%s</strong>', GTHEME_TEXTDOMAIN ) ), get_the_author_meta( 'display_name', $author_id ) );
+
+			if ( $default_user != $author_id ) {
+				$template = empty( $args['strings']['author'] ) ? _x( 'Author Archives for <strong>%s</strong>', 'Navigation Module: Breadcrumbs', GTHEME_TEXTDOMAIN ) : $args['strings']['author'];
+				$crumbs[] = sprintf( $template, get_the_author_meta( 'display_name', $author_id ) );
+			}
+
 		} else if ( is_search() ) {
-			$crumbs[] = sprintf( ( isset( $args['strings']['search'] ) ? $args['strings']['search'] : __( 'Search Results for <strong>%s</strong>', GTHEME_TEXTDOMAIN ) ), ''.get_search_query().'' );
+
+			$template = empty( $args['strings']['search'] ) ? _x( 'Search Results for <strong>%s</strong>', 'Navigation Module: Breadcrumbs', GTHEME_TEXTDOMAIN ) : $args['strings']['search'];
+			$crumbs[] = sprintf( $template, ''.get_search_query().'' );
+
 		} else if ( is_day() ) {
-			$crumbs[] = sprintf( ( isset( $args['strings']['day'] ) ? $args['strings']['day'] : __( 'Daily Archives for <strong>%s</strong>', GTHEME_TEXTDOMAIN ) ), get_the_date() );
+
+			$template = empty( $args['strings']['day'] ) ? _x( 'Daily Archives for <strong>%s</strong>', 'Navigation Module: Breadcrumbs', GTHEME_TEXTDOMAIN ) : $args['strings']['day'];
+			$crumbs[] = sprintf( $template, get_the_date() );
+
 		} else if ( is_month() ) {
-			$crumbs[] = sprintf( ( isset( $args['strings']['month'] ) ? $args['strings']['month'] : __( 'Monthly Archives for <strong>%s</strong>', GTHEME_TEXTDOMAIN ) ), get_the_date('F Y') );
+
+			$template = empty( $args['strings']['month'] ) ? _x( 'Monthly Archives for <strong>%s</strong>', 'Navigation Module: Breadcrumbs', GTHEME_TEXTDOMAIN ) : $args['strings']['month'];
+			$crumbs[] = sprintf( $template, get_the_date( 'F Y' ) );
+
 		} else if ( is_year() ) {
-			$crumbs[] = sprintf( ( isset( $args['strings']['year'] ) ? $args['strings']['year'] : __( 'Yearly Archives for <strong>%s</strong>', GTHEME_TEXTDOMAIN ) ), get_the_date('Y') );
+
+			$template = empty( $args['strings']['year'] ) ? _x( 'Yearly Archives for <strong>%s</strong>', 'Navigation Module: Breadcrumbs', GTHEME_TEXTDOMAIN ) : $args['strings']['year'];
+			$crumbs[] = sprintf( $template, get_the_date( 'Y' ) );
+
 		} else if ( is_archive() ) {
-			$crumbs[] = ( isset( $args['strings']['archive'] ) ? $args['strings']['archive'] : __( 'Site Archives', GTHEME_TEXTDOMAIN ) );
+			$crumbs[] = $template;
+
 		} else {
-			$crumbs[] = __( 'Site Archives', GTHEME_TEXTDOMAIN );
+			$crumbs[] = $template;
 		}
 
-		if ( is_paged() )
-			$crumbs[] = sprintf( ( isset( $args['strings']['paged'] ) ? $args['strings']['paged'] : __( 'Page <strong>%s</strong>', GTHEME_TEXTDOMAIN ) ), number_format_i18n( get_query_var( 'paged' ) ) );
+		if ( is_paged() ) {
+			$template = empty( $args['strings']['paged'] ) ? _x( 'Page <strong>%s</strong>', 'Navigation Module: Breadcrumbs', GTHEME_TEXTDOMAIN ) : $args['strings']['paged'];
+			$crumbs[] = sprintf( $template, number_format_i18n( get_query_var( 'paged' ) ) );
+		}
 
 		$count = count( $crumbs );
+
 		if ( ! $count )
 			return;
 
 		echo $args['before'].'<ol class="breadcrumb '.$args['class'].'">';
-		foreach ( $crumbs as $offset => $crumb ) {
-			echo '<li'.( ( $count-1 ) == $offset ? ' class="active"' : '' ).'>'.$crumb.'</li>';
-		}
+
+		foreach ( $crumbs as $offset => $crumb )
+			echo '<li'.( ( $count - 1 ) == $offset ? ' class="active"' : '' ).'>'.$crumb.'</li>';
+
 		echo '</ol>'.$args['after'];
+	}
+
+	public static function breadcrumb_archive( $atts = array() )
+	{
+		self::__dep( 'gThemeNavigation::breadcrumbArchive()' );
+		self::breadcrumbArchive( $atts );
 	}
 
 	// FIXME: DRAFT
 	// @SOURCE: [Create Your Own Pagination Links](https://paulund.co.uk/create-pagination)
+	// to add pagination to your search results and archives
 	public static function paginateLinks()
 	{
 		global $wp_query;
@@ -212,13 +261,59 @@ class gThemeNavigation extends gThemeModuleCore
 		$big = 999999999;
 
 		$pagination_links = paginate_links( array(
-			'base' => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
-			'format' => '?paged=%#%',
-			'current' => max( 1, get_query_var('paged') ),
-			'mid_size' => 8,
-			'total' => $wp_query->max_num_pages
+			'base'               => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
+			'format'             => '?paged=%#%',
+			'current'            => max( 1, get_query_var( 'paged' ) ),
+			'mid_size'           => 8,
+			'total'              => $wp_query->max_num_pages,
+			'before_page_number' => '<span class="screen-reader-text">'._x( 'Page', 'Navigation Module', GTHEME_TEXTDOMAIN ).' </span>',
 		) );
 
 		echo $pagination_links;
+	}
+
+	// FIXME: DRAFT
+	// @SOURCE: [matzko/filosofo-pagination](https://github.com/matzko/filosofo-pagination)
+	public static function paginateLinksAlt( $args = array() )
+	{
+		global $paged, $posts_per_page, $request, $wp_query, $wpdb;
+
+		if ( is_single() || is_page() )
+			return TRUE;
+
+		$query_obj = get_queried_object();
+
+		if ( is_string( $args ) )
+			parse_str( $args, $args );
+
+		$defaults = array(
+			'adjacents'  => 1,
+			'newer_link' => _x( 'Newer Posts', 'Navigation Module', GTHEME_TEXTDOMAIN ),
+			'older_link' => _x( 'Older Posts', 'Navigation Module', GTHEME_TEXTDOMAIN ),
+			'type'       => 'list',
+		);
+
+		$args = array_merge( $defaults, $args );
+
+		if( is_tax() ) {
+			$total_items = isset( $query_obj->count ) ? (int) $query_obj->count : 0;
+		} else {
+			$total_items = $wp_query->found_posts;
+		}
+
+		$limit = $posts_per_page;
+		$page = empty( $paged ) ? 1 : (int) $paged;
+
+		$page_links = paginate_links( array(
+			'base'      => str_replace( '367965', '%#%', get_pagenum_link( 367965 ) ), // hacky way to generate link base
+			'format'    => '',
+			'prev_text' => $args['newer_link'],
+			'next_text' => $args['older_link'],
+			'total'     => $wp_query->max_num_pages,
+			'current'   => $page,
+			'type'      => $args['type'],
+		) );
+
+		echo $page_links;
 	}
 }
