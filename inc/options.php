@@ -193,6 +193,11 @@ class gThemeOptions extends gThemeModuleCore
 					'block'   => 'p',
 					'classes' => 'entry-quote',
 				),
+				array(
+					'title'    => _x( 'List', 'Editor Custom Class', GTHEME_TEXTDOMAIN ),
+					'selector' => 'ul', // http://wordpress.stackexchange.com/a/85071
+					'classes'  => 'entry-list',
+				),
 			),
 
 			'settings_legend' => FALSE, // html content to appear after settings
