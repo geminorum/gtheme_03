@@ -44,6 +44,7 @@ class gThemeSideBar extends gThemeModuleCore
 			'gThemeWidgetTemplatePart',
 			'gThemeWidgetChildren',
 			'gThemeWidgetSiblings',
+			'gThemeWidgetTheTerm',
 		) );
 	}
 
@@ -1164,5 +1165,39 @@ class gThemeWidgetSiblings extends gThemeWidget
 		$this->form_title_link( $instance );
 		$this->form_post_type( $instance, 'page' );
 		$this->form_class( $instance );
+	}
+}
+
+class gThemeWidgetTheTerm extends gThemeWidget
+{
+
+	protected function setup()
+	{
+		return array(
+			'name'  => 'the_term',
+			'class' => 'the-term',
+			'title' => _x( 'gTheme: The Term', 'Sidebar Module: Widget: Title', GTHEME_TEXTDOMAIN ),
+			'desc'  => _x( 'Display the current term info based on the query', 'Sidebar Module: Widget Description', GTHEME_TEXTDOMAIN ),
+		);
+	}
+
+	public function widget( $args, $instance )
+	{
+		if ( ! ( is_tax() || is_tag() || is_category() ) )
+			return;
+
+		$this->before_widget( $args, $instance );
+
+		$term  = get_queried_object();
+		$title = single_term_title( '', FALSE );
+		$desc  = get_term_field( 'description', $term->term_id, $term->taxonomy );
+
+		if ( $title )
+			echo $args['before_title'].$title.$args['after_title'];
+
+		if ( $desc )
+			echo wpautop( $desc, FALSE );
+
+		$this->after_widget( $args, $instance );
 	}
 }
