@@ -190,7 +190,7 @@ class gThemeOptions extends gThemeModuleCore
 				),
 				array(
 					'title'   => _x( 'Blockquote', 'Editor Custom Class', GTHEME_TEXTDOMAIN ),
-					'block'   => 'p',
+					'block'   => 'blockquote',
 					'classes' => 'entry-quote',
 				),
 				array(
