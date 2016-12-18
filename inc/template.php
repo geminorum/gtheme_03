@@ -35,7 +35,7 @@ class gThemeTemplate extends gThemeModuleCore
 		if ( ! is_null( $title ) ) {
 			$title = $term->name;
 			if ( $term->description )
-				//$title .= ' :: '.strip_tags( wp_trim_words(
+				// $title .= ' :: '.strip_tags( wp_trim_words(
 				$title .= ' :: '.( wp_trim_words(
 					$term->description,
 					gThemeOptions::info( 'excerpt_length', 40 ),
@@ -68,7 +68,7 @@ class gThemeTemplate extends gThemeModuleCore
 			$html .= self::term_parents( $parent->parent, $sep, $taxonomy, $visited );
 		}
 
-		//$html .= '<a href="' . esc_url( get_category_link( $parent->term_id ) ) . '">'.$parent->name.'</a>' . $sep;
+		// $html .= '<a href="' . esc_url( get_category_link( $parent->term_id ) ) . '">'.$parent->name.'</a>' . $sep;
 		$html .= self::term_link( $parent, $taxonomy ).$sep;
 
 		return $html;

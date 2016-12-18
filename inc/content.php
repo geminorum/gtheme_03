@@ -45,7 +45,7 @@ class gThemeContent extends gThemeModuleCore
 		if ( gThemeUtilities::isDev() )
 			return new WP_Query( $args );
 
-		$key = 'gtq_'.md5( serialize( $args ) );
+		$key = md5( 'gtq_'.serialize( $args ) );
 
 		if ( gThemeUtilities::isFlush() )
 			delete_transient( $key );

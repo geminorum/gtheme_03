@@ -1,89 +1,80 @@
 (function() {
-	'use strict';
+  'use strict';
 
-	// https://www.npmjs.com/package/gulp-iconfont
+  // https://www.npmjs.com/package/gulp-iconfont
 
-	var
-		gulp = require('gulp'),
-		sass = require('gulp-sass'), // https://github.com/dlmanning/gulp-sass
-		changed = require('gulp-changed'),
-		nano = require('gulp-cssnano'), // https://github.com/ben-eb/gulp-cssnano
-		sourcemaps = require('gulp-sourcemaps'),
-		smushit = require('gulp-smushit'), // https://github.com/heldr/gulp-smushit
-		excludeGitignore = require('gulp-exclude-gitignore'), // https://github.com/sboudrias/gulp-exclude-gitignore
-		wpPot = require('gulp-wp-pot'), // https://github.com/rasmusbe/gulp-wp-pot
-		sort = require('gulp-sort'),
-		fs = require('fs');
+  var
+    gulp = require('gulp'),
+    sass = require('gulp-sass'), // https://github.com/dlmanning/gulp-sass
+    nano = require('gulp-cssnano'), // https://github.com/ben-eb/gulp-cssnano
+    sourcemaps = require('gulp-sourcemaps'),
+    smushit = require('gulp-smushit'), // https://github.com/heldr/gulp-smushit
+    excludeGitignore = require('gulp-exclude-gitignore'), // https://github.com/sboudrias/gulp-exclude-gitignore
+    wpPot = require('gulp-wp-pot'), // https://github.com/rasmusbe/gulp-wp-pot
+    fs = require('fs');
 
-	var
-		pkg = JSON.parse(fs.readFileSync('./package.json'));
+  var
+    pkg = JSON.parse(fs.readFileSync('./package.json'));
 
-	gulp.task('smushit', function() {
+  gulp.task('smushit', function() {
 
-		return gulp.src('./images/raw/**/*.{jpg,png}')
+    return gulp.src('./images/raw/**/*.{jpg,png}')
 
-		.pipe(smushit())
+      .pipe(smushit())
 
-		.pipe(gulp.dest('./images'));
-	});
+      .pipe(gulp.dest('./images'));
+  });
 
-	gulp.task('pot', function() {
+  gulp.task('pot', function() {
 
-		return gulp.src([
-			'./**/*.php',
-			'!./assets/**',
-			'!./css/**',
-			'!./fonts/**',
-			'!./images/**',
-			'!./js/**',
-			'!./libs/**',
-			'!./packages/**',
-			'!./stylesheets/**'
-		])
+    return gulp.src([
+      './**/*.php',
+      '!./assets/**',
+      '!./css/**',
+      '!./fonts/**',
+      '!./images/**',
+      '!./js/**',
+      '!./libs/**',
+      '!./packages/**',
+      '!./stylesheets/**'
+    ])
 
-		.pipe(excludeGitignore())
+      .pipe(excludeGitignore())
 
-		.pipe(sort())
+      .pipe(wpPot(pkg._pot))
 
-		.pipe(wpPot(pkg._pot))
+      .pipe(gulp.dest('./languages/' + pkg.name + '.pot'));
+  });
 
-		.pipe(gulp.dest('./languages'));
-	});
+  gulp.task('sass', function() {
 
-	gulp.task('sass', function() {
+    return gulp.src('./stylesheets/*.scss')
 
-		return gulp.src('./stylesheets/*.scss')
+      // .pipe(sourcemaps.init())
 
-		// .pipe(sourcemaps.init())
+      .pipe(sass.sync({
+        includePaths: 'components/bootstrap-sass/assets/stylesheets'
+      }).on('error', sass.logError)).pipe(nano({
+        // http://cssnano.co/optimisations/
+        zindex: false,
+        discardComments: {
+          removeAll: true
+        }
+      }))
 
-		.pipe(sass.sync({
-			includePaths: 'components/bootstrap-sass/assets/stylesheets',
-		}).on('error', sass.logError))
+      // .pipe(sourcemaps.write('./maps'))
 
-		.pipe(nano({
-			// http://cssnano.co/optimisations/
-			zindex: false,
-			discardComments: {
-				removeAll: true
-			}
-		}))
+      .pipe(gulp.dest('./css'));
+  });
 
-		// .pipe(sourcemaps.write('./maps'))
+  gulp.task('watch', function() {
 
-		.pipe(gulp.dest('./css'));
-	});
+    gulp.watch('./stylesheets/**', gulp.series('sass'));
+  });
 
-	gulp.task('watch', function() {
+  gulp.task('default', function() {
 
-		return gulp.watch([
-			'./stylesheets/**'
-		], ['sass']);
-
-	});
-
-	gulp.task('default', function() {
-
-		console.log('Hi, I\'m Gulp!');
-	});
-
+    console.log('Hi, I\'m Gulp!');
+    console.log("Sass is:\n" + require('node-sass').info);
+  });
 }());

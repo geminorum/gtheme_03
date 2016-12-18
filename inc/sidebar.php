@@ -994,9 +994,10 @@ class gThemeWidgetRecentComments extends gThemeWidget
 
 	public function comment_callback( $comment, $avatar_size )
 	{
-		$content = gThemeL10N::str( wp_strip_all_tags( $comment->comment_content, true ) );
+		$content = gThemeL10N::str( wp_strip_all_tags( $comment->comment_content, TRUE ) );
+
 		return sprintf( '<span class="comment-author-link">%1$s</span>: <a class="comment-post-link" href="%2$s" data-toggle="tooltip" data-placement="bottom" title="%3$s on %4$s">%5$s</a>',
-			//get_comment_author_link(),
+			// get_comment_author_link(),
 			gThemeL10N::str( get_comment_author( $comment->comment_ID ) ),
 			esc_url( get_comment_link( $comment->comment_ID ) ),
 			esc_attr( $content ),

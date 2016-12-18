@@ -3,7 +3,8 @@
 class gThemeUtilities extends gThemeBaseCore
 {
 
-	// http://davidwalsh.name/word-wrap-mootools-php
+	// @REF: http://davidwalsh.name/word-wrap-mootools-php
+	// @REF: https://css-tricks.com/preventing-widows-in-post-titles/
 	public static function wordWrap( $text, $min = 2 )
 	{
 		$return = $text;
@@ -21,7 +22,7 @@ class gThemeUtilities extends gThemeBaseCore
 		return $return;
 	}
 
-	// http://bavotasan.com/2012/trim-characters-using-php/
+	// @SOURCE: http://bavotasan.com/2012/trim-characters-using-php/
 	public static function trimChars( $text, $length = 45, $append = '&hellip;' )
 	{
 		$length = (int) $length;
