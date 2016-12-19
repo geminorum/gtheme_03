@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: gTheme 3 v3.14.2\n"
 "Report-Msgid-Bugs-To: https://github.com/geminorum/gtheme_03/issues\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2016-12-18 13:18+0330\n"
+"PO-Revision-Date: 2016-12-19 05:06+0330\n"
 "Last-Translator: geminorum <contact@geminorum.ir>\n"
 "Language-Team: geminorum <contact@geminorum.ir>\n"
 "Language: fa_IR\n"
@@ -392,10 +392,9 @@ msgstr "صفحه  %s"
 msgid "Undefined Image Size"
 msgstr "اندازه نامشخص"
 
-# @ gtheme
 #: inc/image.php:239
-msgctxt "Media Tag Checkbox Label"
-msgid "%1$s (%2$s&nbsp;&times;&nbsp;%3$s)"
+msgctxt "Image Module: Media Tag Checkbox Label"
+msgid "%1$s <small>(%2$s&times;%3$s)</small>"
 msgstr ""
 
 # @ gtheme
@@ -404,12 +403,12 @@ msgid "Media Tags"
 msgstr "برچسب‌ها"
 
 # @ gtheme
-#: inc/image.php:308
+#: inc/image.php:313
 msgid "&mdash; Select a Term &mdash;"
 msgstr "&mdash; انتخاب کنید &mdash;"
 
 # @ gtheme
-#: inc/image.php:318
+#: inc/image.php:323
 msgid "Assign for"
 msgstr ""
 

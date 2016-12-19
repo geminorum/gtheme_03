@@ -343,19 +343,19 @@ msgid "Undefined Image Size"
 msgstr ""
 
 #: inc/image.php:239
-msgctxt "Media Tag Checkbox Label"
-msgid "%1$s (%2$s&nbsp;&times;&nbsp;%3$s)"
+msgctxt "Image Module: Media Tag Checkbox Label"
+msgid "%1$s <small>(%2$s&times;%3$s)</small>"
 msgstr ""
 
 #: inc/image.php:254
 msgid "Media Tags"
 msgstr ""
 
-#: inc/image.php:308
+#: inc/image.php:313
 msgid "&mdash; Select a Term &mdash;"
 msgstr ""
 
-#: inc/image.php:318
+#: inc/image.php:323
 msgid "Assign for"
 msgstr ""
 
