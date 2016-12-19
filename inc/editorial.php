@@ -238,21 +238,23 @@ class gThemeEditorial extends gThemeModuleCore
 			return;
 
 		$args = self::atts( array(
-			'before'       => '',
-			'after'        => '',
-			'echo'         => TRUE,
 			'context'      => 'single',
 			'number'       => TRUE,
 			'after_number' => '. ',
 			'back'         => '[^]', //'[&#8617;]', // TODO: add theme option for this
-			'title' => '',
 		), $atts );
 
 		$html = $gNetwork->shortcodes->shortcode_reflist( $args, NULL, 'reflist' );
 
 		if ( $html ) {
-			// FIXME: messing up html!
-			// $html = $args['before']$args['title'].apply_filters( 'the_content', $html ).$args['after'];
+
+			$args = self::atts( array(
+				'before' => '',
+				'after'  => '',
+				'echo'   => TRUE,
+				'title'  => '',
+			), $atts );
+
 			$html = $args['before'].$args['title'].$html.$args['after'];
 
 			if ( ! $args['echo'] )
