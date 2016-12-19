@@ -115,7 +115,7 @@ class gThemeImage extends gThemeModuleCore
 		$images = $document->getElementsByTagName( 'img' );
 
 		foreach ( $images as $image )
-		   $image->setAttribute( 'class', 'img-responsive' ); // FIXME: this will replace all classes!!
+			$image->setAttribute( 'class', 'img-responsive' ); // FIXME: this will replace all classes!!
 
 		$html = $document->saveHTML();
 		return $html;
@@ -236,12 +236,12 @@ class gThemeImage extends gThemeModuleCore
 
 				$id      = 'attachments-'.$post->ID.'-gtheme-size-'.$name;
 				$checked = ( isset( $images[$name] ) && $images[$name] == $post->ID ) ? ' checked="checked"' : '';
-				$label   = sprintf( _x( '%1$s (%2$s&nbsp;&times;&nbsp;%3$s)', 'Media Tag Checkbox Label', GTHEME_TEXTDOMAIN ),
-					$size['n'], number_format_i18n( $size['w'] ), number_format_i18n( $size['h'] ) );
+				$label   = sprintf( _x( '%1$s <small>(%2$s&times;%3$s)</small>', 'Image Module: Media Tag Checkbox Label', GTHEME_TEXTDOMAIN ),
+					$size['n'], number_format_i18n( $size['h'] ), number_format_i18n( $size['w'] ) );
 
-				$html .= '<li><label for="'.$id.'"><input style="width:10px;vertical-align:bottom;" type="checkbox" value="'.
-					$name.'" id="gtheme_size_'.$name.'" name="gtheme_size_'.
-					$name.'" '.$checked.' /> '.esc_html( $label ).'</label></li>';
+				$html .= '<li><label for="'.$id.'"><input style="width:10px;vertical-align:bottom;"'
+					.' type="checkbox" value="'.$name.'" id="'.$id.'" name="gtheme_size_'.$name
+					.'" '.$checked.' />'.$label.'</label></li>';
 			}
 		}
 
@@ -299,22 +299,27 @@ class gThemeImage extends gThemeModuleCore
 			return $form_fields;
 
 		$saved_terms = get_post_meta( $parent_id, GTHEME_IMAGES_TERMS_META, TRUE );
+
 		if ( ! is_array( $saved_terms ) )
 			$saved_terms = array();
+
 		$selected = array_search( $post->ID, $saved_terms );
+
+		$id = 'attachments-'.$post->ID.'-gtheme_images_terms';
+
 		$dropdown = wp_dropdown_categories( array(
 			'taxonomy'         => gThemeOptions::info( 'support_images_terms_taxonomy', 'category' ),
 			'selected'         => ( FALSE === $selected ? 0 : $selected ),
 			'show_option_none' => __( '&mdash; Select a Term &mdash;', GTHEME_TEXTDOMAIN ),
 			'name'             => 'attachments['.$post->ID.'][gtheme_images_terms]',
-			'id'               => 'attachments-'.$post->ID.'-gtheme_images_terms',
+			'id'               => $id,
 			'show_count'       => 0,
 			'hide_empty'       => 0,
 			'hierarchical'     => 1,
 			'echo'             => 0,
 		) );
 
-		$form_fields['gtheme_images_terms']['tr'] = '<tr><th class="label" valign="top" scope="row"><label for="attachments-'.$post->ID.'-gtheme_images_terms"><span>'
+		$form_fields['gtheme_images_terms']['tr'] = '<tr><th class="label" valign="top" scope="row"><label for="'.$id.'"><span>'
 			.__( 'Assign for', GTHEME_TEXTDOMAIN ).'</span></label></th><td class="field">'
 			.$dropdown.'</td></tr>';
 
