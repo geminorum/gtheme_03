@@ -1,3 +1,7 @@
+### 3.14.3
+* module/sidebar: constant to hide term info widget
+* module/image: correct id for label for attr
+
 ### 3.14.2
 * new default template: search advanced
 * module/admin: deprecating is super admin
