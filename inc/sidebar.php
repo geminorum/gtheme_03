@@ -1184,6 +1184,10 @@ class gThemeWidgetTheTerm extends gThemeWidget
 
 	public function widget( $args, $instance )
 	{
+		if ( defined( 'GTHEME_WIDGET_THETERM_DISABLED' )
+			&& GTHEME_WIDGET_THETERM_DISABLED )
+				return;
+
 		if ( ! ( is_tax() || is_tag() || is_category() ) )
 			return;
 
