@@ -6,7 +6,6 @@ class gThemeComments extends gThemeModuleCore
 	public function setup_actions( $args = array() )
 	{
 		extract( self::atts( array(
-			'strip_trackbacks' => TRUE,
 			'reverse_comments' => FALSE,
 			'disable_types'    => FALSE,
 			'closing_time'     => FALSE,
@@ -14,12 +13,6 @@ class gThemeComments extends gThemeModuleCore
 
 		add_filter( 'comment_class', array( $this, 'comment_class' ), 10 ,4 );
 		add_action( 'comment_form_before', array( $this, 'comment_form_before' ) );
-
-		if ( $strip_trackbacks ) {
-			add_filter( 'the_posts', array( $this, 'the_posts' ) );
-			add_filter( 'comments_array', array( $this, 'comments_array' ) );
-			add_filter( 'get_comments_number', array( $this, 'get_comments_number' ) );
-		}
 
 		if ( $reverse_comments )
 			add_filter( 'comments_array', array( $this, 'comments_array_reverse' ), 12 );
@@ -57,59 +50,6 @@ class gThemeComments extends gThemeModuleCore
 	{
 		if ( comments_open() && get_option( 'thread_comments' ) )
 			wp_enqueue_script( 'comment-reply' );
-	}
-
-	// http://www.honeytechblog.com/how-to-remove-tracbacks-and-pings-from-wordpress-posts/
-	// http://plugins.svn.wordpress.org/hide-trackbacks/trunk/hide-trackbacks.php
-	public function the_posts( $posts )
-	{
-		foreach ( $posts as $key => $p ) {
-			if ( $p->comment_count <= 0 )
-				return $posts;
-			$posts[$key]->comment_count = self::count( (int) $p->ID );
-		}
-		return $posts;
-	}
-
-	// updates the count for comments and trackbacks
-	public function comments_array( $array )
-	{
-		global $comments;
-		$comments = self::strip_trackbacks( $array );
-
-		return $comments;
-	}
-
-	// corrects comment count within the loop
-	public function get_comments_number( $commentcount )
-	{
-		return self::count( get_the_ID() );
-	}
-
-	// helper: counting comments per post
-	public static function count( $id )
-	{
-		$comments = self::strip_trackbacks( get_approved_comments( $id ) );
-		return sizeof( $comments );
-	}
-
-	// helper: filtering out the trackbacks / pingbacks leaving comments only from list of comments
-	public static function strip_trackbacks( $comments )
-	{
-		if ( ! is_array( $comments ) )
-			return $comments;
-
-		return array_filter( $comments, array( __CLASS__, 'strip_trackback' ) );
-	}
-
-	// helper: strips out trackbacks/pingbacks
-	public static function strip_trackback( $comment )
-	{
-		if ( $comment->comment_type == 'trackback'
-			|| $comment->comment_type == 'pingback' )
-				return FALSE;
-
-		return TRUE;
 	}
 
 	// http://www.wprecipes.com/how-to-reverse-wordpress-comments-order
