@@ -184,19 +184,29 @@ class gThemeOptions extends gThemeModuleCore
 			'mce_buttons_2'     => array( 'styleselect' ),
 			'mce_style_formats' => array(
 				array(
-					'title'   => _x( 'Source', 'Editor Custom Class', GTHEME_TEXTDOMAIN ),
-					'block'   => 'p',
-					'classes' => 'entry-source',
-				),
-				array(
 					'title'   => _x( 'Blockquote', 'Editor Custom Class', GTHEME_TEXTDOMAIN ),
 					'block'   => 'blockquote',
 					'classes' => 'entry-quote',
 				),
 				array(
-					'title'    => _x( 'List', 'Editor Custom Class', GTHEME_TEXTDOMAIN ),
+					'title'    => _x( 'Unordered List', 'Editor Custom Class', GTHEME_TEXTDOMAIN ),
 					'selector' => 'ul', // http://wordpress.stackexchange.com/a/85071
 					'classes'  => 'entry-list',
+				),
+				array(
+					'title'    => _x( 'Ordered List', 'Editor Custom Class', GTHEME_TEXTDOMAIN ),
+					'selector' => 'ol',
+					'classes'  => 'entry-list',
+				),
+				array(
+					'title'   => _x( 'Note', 'Editor Custom Class', GTHEME_TEXTDOMAIN ),
+					'block'   => 'p',
+					'classes' => 'entry-note',
+				),
+				array(
+					'title'   => _x( 'Source', 'Editor Custom Class', GTHEME_TEXTDOMAIN ),
+					'block'   => 'p',
+					'classes' => 'entry-source',
 				),
 			),
 
