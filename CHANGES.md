@@ -1,3 +1,9 @@
+### 3.14.4
+* module/comments: removed strip trackbacks in favor of comment list arg
+* module/content: callback post actions
+* module/editorial: skip passing before/after ro ref-list shortcode
+* module/options: more default style formats
+
 ### 3.14.3
 * module/sidebar: constant to hide term info widget
 * module/image: correct id for label for attr
