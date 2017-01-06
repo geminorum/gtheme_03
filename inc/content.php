@@ -291,8 +291,18 @@ class gThemeContent extends gThemeModuleCore
 
 		do_action( 'gtheme_action_links_before', $before, $after, $actions, $icons );
 
-		foreach ( $actions as $action )
-			self::do_action( $action, $before, $after, $icons );
+		foreach ( $actions as $action ) {
+
+			if ( is_array( $action ) ) {
+
+				if ( is_callable( $action ) )
+					call_user_func_array( $action, array( $before, $after, $icons ) );
+
+			} else {
+
+				self::do_action( $action, $before, $after, $icons );
+			}
+		}
 
 		do_action( 'gtheme_action_links', $before, $after, $actions, $icons );
 	}
