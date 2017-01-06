@@ -326,8 +326,8 @@ class gThemeFilters extends gThemeModuleCore
 		if ( gThemeOptions::info( 'content_remove_image_p', TRUE ) )
 			$content = preg_replace( '/<p>\s*(<a .*>)?\s*(<img .* \/>)\s*(<\/a>)?\s*<\/p>/iU', '\1\2\3', $content );
 
-	   // http://bavotasan.com/2009/removing-images-from-a-wordpress-post/
-	   // preg_replace( '/<img[^>]+./','', $content );
+		// http://bavotasan.com/2009/removing-images-from-a-wordpress-post/
+		// preg_replace( '/<img[^>]+./','', $content );
 
 		return $content;
 	}

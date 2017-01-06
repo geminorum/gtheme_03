@@ -209,7 +209,7 @@ class gThemeTerms extends gThemeModuleCore
 			),
 		);
 
-		return gThemeUtilities::parse_args_r( $new, $strings );
+		return self::recursiveParseArgs( $new, $strings );
 	}
 
 	public function load_edit_tags()

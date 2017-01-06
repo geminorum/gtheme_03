@@ -7,6 +7,7 @@ gThemeContent::wrapOpen( 'index' );
 
 	if ( is_singular() ) {
 		gThemeContent::content();
+		
 	} else {
 		gThemeContent::excerpt();
 	}

@@ -34,9 +34,7 @@ class gThemeOptions extends gThemeModuleCore
 				'zoom'                      => TRUE,
 			),
 
-			'module_args' => array(
-
-			),
+			'module_args' => array(),
 
 			// NAVIGATION & MENUS
 			'register_nav_menus' => array(
@@ -44,9 +42,7 @@ class gThemeOptions extends gThemeModuleCore
 				'secondary' => __( 'Secondary Navigation', GTHEME_TEXTDOMAIN ),
 				'tertiary'  => __( 'Tertiary Navigation', GTHEME_TEXTDOMAIN ),
 			),
-			'nav_menu_allowedtags' => array(
-				'p'
-			),
+			'nav_menu_allowedtags' => array( 'p' ),
 
 			// SIDEBARS
 			'sidebars' => array(

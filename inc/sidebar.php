@@ -1205,4 +1205,6 @@ class gThemeWidgetTheTerm extends gThemeWidget
 
 		$this->after_widget( $args, $instance );
 	}
+
+	// option: title only if desc
 }

@@ -131,10 +131,10 @@ class gThemeUtilities extends gThemeBaseCore
 		return $sep;
 	}
 
-	// FIXME: DEPRECATED: use gThemeUtilities::recursiveParseArgs()
+	// FIXME: DEPRECATED: use self::recursiveParseArgs()
 	public static function parse_args_r( &$a, $b )
 	{
-		// self::__dep( 'gThemeUtilities::recursiveParseArgs()' );
+		// self::__dep( 'self::recursiveParseArgs()' );
 
 		$a = (array) $a;
 		$b = (array) $b;
