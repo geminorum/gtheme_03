@@ -108,8 +108,7 @@ class gThemeFeed extends gThemeModuleCore
 
 	public function the_content_feed_restricted( $content, $feed_type )
 	{
-		global $more;
-		$more = 0;
+		$GLOBALS['more'] = 0;
 
 		return str_replace( ']]>', ']]&gt;', apply_filters( 'the_content', get_the_content( FALSE ) ) );
 	}

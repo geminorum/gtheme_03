@@ -45,6 +45,31 @@ class gThemeBaseCore
 		defined( 'DONOTCACHEPAGE' ) or define( 'DONOTCACHEPAGE', TRUE );
 	}
 
+	public static function req( $key, $default = '' )
+	{
+		return empty( $_REQUEST[$key] ) ? $default : $_REQUEST[$key];
+	}
+
+	public static function limit( $default = 25, $key = 'limit' )
+	{
+		return intval( self::req( $key, $default ) );
+	}
+
+	public static function paged( $default = 1, $key = 'paged' )
+	{
+		return intval( self::req( $key, $default ) );
+	}
+
+	public static function orderby( $default = 'title', $key = 'orderby' )
+	{
+		return self::req( $key, $default );
+	}
+
+	public static function order( $default = 'desc', $key = 'order' )
+	{
+		return self::req( $key, $default );
+	}
+
 	// ANCESTOR : shortcode_atts()
 	public static function atts( $pairs, $atts )
 	{
