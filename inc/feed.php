@@ -27,13 +27,47 @@ class gThemeFeed extends gThemeModuleCore
 
 	public function the_content_feed( $content, $feed_type )
 	{
+		$for = self::req( 'for' );
+
+		if ( 'twitter' == $for ) {
+
+			// preparing feed for twitter
+			// /feed?for=twitter
+
+			ob_start();
+
+				gThemeEditorial::label( array(
+					'after'       => '<br />',
+					'image'       => FALSE,
+					'link'        => FALSE,
+					'description' => FALSE,
+				) );
+
+				gThemeEditorial::meta( 'over-title', array( 'after' => '<br />' ) );
+
+				if ( $title = get_the_title_rss() )
+					echo $title.'<br />';
+
+				gThemeEditorial::meta( 'sub-title', array( 'after' => '<br />' ) );
+				gThemeEditorial::author( array( 'after' => '<br />' ) );
+
+			return trim( str_ireplace( '&nbsp;', ' ', ob_get_clean() ) );
+
+		} else if ( 'list' == $for ) {
+
+			// preparing feed for list
+			// /feed?for=list
+
+			return '';
+		}
+
 		$header = gThemeOptions::info( 'feed_content_header_before', '' );
 		$footer = gThemeOptions::info( 'feed_content_footer_before', '' );
 
 		ob_start();
 			gThemeEditorial::label( array( 'before' => '<div class="label">', 'after' => '</div>' ) );
 			gThemeEditorial::meta( 'over-title', array( 'before' => '<h4>', 'after' => '</h4>' ) );
-			if ( $title = get_the_title() ) echo '<h2>'.$title.'</h2>';
+			if ( $title = get_the_title_rss() ) echo '<h2>'.$title.'</h2>';
 			gThemeEditorial::meta( 'sub-title', array( 'before' => '<h4>', 'after' => '</h4>' ) );
 			gThemeEditorial::author( array( 'before' => '<h4>', 'after' => '</h4>' ) );
 		$header .= ob_get_clean();
