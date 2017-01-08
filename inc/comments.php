@@ -167,6 +167,7 @@ class gThemeComments extends gThemeModuleCore
 	public static function comment_callback( $comment, $args, $depth )
 	{
 		switch ( $comment->comment_type ) {
+
 			case 'pingback' :
 			case 'trackback' :
 				break;
@@ -174,13 +175,19 @@ class gThemeComments extends gThemeModuleCore
 			case 'comment' :
 			default :
 
+				$avatar = get_option( 'show_avatars' );
+
 				echo '<li ';
-					comment_class( 'media' );
+					comment_class( 'media'.( $avatar ? ' -with-avatar' : ' -no-avatar' ) );
 				echo ' id="comment-'.$comment->comment_ID.'">';
 
-					echo '<a class="comment-avatar '.( gThemeUtilities::isRTL() ? 'pull-right media-right' : 'pull-left media-left' ).'" href="'.get_comment_author_url().'" rel="external nofollow">';
-						gThemeTemplate::avatar( $comment );
-					echo '</a>';
+					if ( $avatar ) {
+						echo '<a class="comment-avatar '
+							.( gThemeUtilities::isRTL() ? 'pull-right media-right' : 'pull-left media-left' )
+							.'" href="'.get_comment_author_url().'" rel="external nofollow">';
+							gThemeTemplate::avatar( $comment );
+						echo '</a>';
+					}
 
 					echo '<div class="media-body comment-body" id="comment-body-'.$comment->comment_ID.'">';
 

@@ -143,10 +143,23 @@
           padding-right: $theme-grid-gutter;
         }
       }
+
       .comment-avatar {}
 
-      .comment-body {
-        padding: $padding-base-vertical $padding-base-horizontal 0 0;
+      &.-no-avatar {
+        .comment-body {
+          padding: $padding-base-vertical 0 0 0;
+        }
+      }
+
+      &.-with-avatar {
+        .comment-body {
+          padding-left: $padding-base-horizontal;
+          @include body-rtl() {
+            padding-left: 0;
+            padding-right: $padding-base-horizontal;
+          }
+        }
       }
 
       .comment-content {
