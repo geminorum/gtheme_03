@@ -385,10 +385,10 @@ class gThemeContent extends gThemeModuleCore
 
 					if ( is_singular() ) {
 						$link  = '#respond';
-						$class = 'scroll1';
+						$class = 'scroll';
 					} else {
 						$link  = get_permalink().'#respond';
-						$class = 'hastip1';
+						$class = ''; // hastip
 					}
 
 					if ( $icons )

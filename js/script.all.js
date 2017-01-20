@@ -3,43 +3,43 @@
 
 jQuery(document).ready(function($) {
 
-	"use strict";
+  "use strict";
 
-	$('html').removeClass('no-js');
+  $('html').removeClass('no-js');
 
-	// $.each($('html').data('font-stack'), function(i,v) {
-	// 	var wf=v,wt=wf.toLowerCase().replace(/'/g, '').replace(/\s+/g, '-');
-	// 	FontDetect.onFontLoaded(wf, function(){
-	// 		$('body').addClass('wf-'+wt);
-	// 		console.log("font loaded: " + wf);
-	// 	}, function(){
-	// 		$('body').addClass('wf-not-'+wt);
-	// 		console.log("font not loaded: " + wf);
-	// 	},{msTimeout:3000});
-	// });
+  // $.each($('html').data('font-stack'), function(i,v) {
+  //   var wf=v,wt=wf.toLowerCase().replace(/'/g, '').replace(/\s+/g, '-');
+  //   FontDetect.onFontLoaded(wf, function(){
+  //     $('body').addClass('wf-'+wt);
+  //     console.log("font loaded: " + wf);
+  //   }, function(){
+  //     $('body').addClass('wf-not-'+wt);
+  //     console.log("font not loaded: " + wf);
+  //   },{msTimeout:3000});
+  // });
 
-	$("a.scroll").click(function(e) {
-		e.preventDefault();
-		$('html,body').animate({
-			scrollTop: $(this.hash).offset().top
-		}, 500);
-	});
+  $("a.scroll").click(function(e) {
+    e.preventDefault();
+    $('html,body').animate({
+      scrollTop: $(this.hash).offset().top
+    }, 500);
+  });
 
-	$('a.scroll-to-top').click(function(e) {
-		e.preventDefault();
-		$('html, body').animate({
-			scrollTop: 0
-		}, 'slow');
-	});
+  $('a.scroll-to-top').click(function(e) {
+    e.preventDefault();
+    $('html, body').animate({
+      scrollTop: 0
+    }, 'slow');
+  });
 
-	$('img').on('error', function() {
-		console.log('error loading image: '+$(this).attr('src'));
-		$(this).addClass('error-image').hide();
-	});
+  $('img').on('error', function() {
+    console.log('error loading image: '+$(this).attr('src'));
+    $(this).addClass('error-image').hide();
+  });
 
-	$('a[href="#"]').click(function(e) {
-		e.preventDefault();
-	});
+  $('a[href="#"]').click(function(e) {
+    e.preventDefault();
+  });
 
-	// $('[data-toggle="tooltip"]').tooltip();
+  // $('[data-toggle="tooltip"]').tooltip();
 });

@@ -14,7 +14,6 @@ class gThemeFilters extends gThemeModuleCore
 			'overwrite_author'   => TRUE,
 		), $args ) );
 
-
 		if ( ! is_admin() ) {
 
 			add_action( 'wp_head', array( $this, 'wp_head' ), 5 );
@@ -28,7 +27,7 @@ class gThemeFilters extends gThemeModuleCore
 			} else {
 				add_filter( 'wp_title', array( $this, 'wp_title' ), 5, 3 );
 				add_filter( 'get_wp_title_rss', function( $title ){
-					return empty( $title ) ? $title : $title.trim( gThemeOptions::info( 'title_sep', '&#187;' ) );
+					return empty( $title ) ? $title : $title.trim( gThemeOptions::info( 'title_sep', ' &raquo; ' ) );
 				} );
 			}
 

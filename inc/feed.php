@@ -153,8 +153,8 @@ class gThemeFeed extends gThemeModuleCore
 		}
 	}
 
-	// https://gist.github.com/danielbachhuber/6557916
 	// paginated rss feeds / 'page' sets the page number
+	// @SOURCE: https://gist.github.com/danielbachhuber/6557916
 	public function posts_where( $where, $query )
 	{
 		if ( ! is_feed() )
@@ -168,15 +168,3 @@ class gThemeFeed extends gThemeModuleCore
 		return $where;
 	}
 }
-
-// https://gist.github.com/danielbachhuber/2418510
-// http://digwp.com/2012/10/customizing-wordpress-feeds/
-
-// http://wp.tutsplus.com/tutorials/creative-coding/tips-to-customize-and-optimize-your-blogs-feed/
-// http://wp.tutsplus.com/tutorials/creative-coding/extending-the-default-wordpress-rss-feed/
-
-// http://www.wpbeginner.com/wp-tutorials/how-to-add-content-and-completely-manipulate-your-wordpress-rss-feeds/
-// http://www.wpbeginner.com/wp-tutorials/how-to-create-custom-rss-feeds-in-wordpress/
-// http://www.wpbeginner.com/plugins/control-your-rss-feeds-footer-in-wordpress/
-
-// http://feedly.uservoice.com/knowledgebase/topics/33323-publishers-optimize-your-feeds-for-feedly

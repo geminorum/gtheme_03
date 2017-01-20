@@ -293,7 +293,7 @@ class gThemeTerms extends gThemeModuleCore
 	// FIXME: DEPRECATED
 	public static function get( $taxonomy = 'category', $post_id = FALSE, $object = FALSE, $key = 'term_id' )
 	{
-		self::__dep( 'gThemeModuleCore::getTerms()' );
+		self::__dep( 'gThemeTerms::getTerms()' );
 		return self::getTerms( $taxonomy, $post_id, $object, $key );
 	}
 

@@ -22,10 +22,10 @@
     "gulp": "github:gulpjs/gulp#4.0",
     "gulp-cssnano": "^2.1.2",
     "gulp-exclude-gitignore": "^1.1.1",
-    "gulp-sass": "^3.0.0",
+    "gulp-sass": "^3.1.0",
     "gulp-smushit": "^1.2.0",
-    "gulp-sourcemaps": "^2.2.0",
-    "gulp-wp-pot": "^2.0.1"
+    "gulp-sourcemaps": "^2.4.0",
+    "gulp-wp-pot": "^2.0.3"
   },
   "readme": "ERROR: No README data found!",
   "private": true,

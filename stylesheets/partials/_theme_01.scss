@@ -58,17 +58,22 @@ li.menu-item-has-children {}
 .entry-wrap.error404 { width:65%; margin:40px auto; }
 .entry-header {}
 .entry-date { }
+.entry-date .entry-day {}
+.entry-date .entry-month {}
 .entry-lead { font-weight:bold; margin-bottom:20px; }
 .entry-content { margin-bottom:20px; }
 .entry-summary { margin-bottom:20px; }
-.entry-source {}
-.entry-quote {}
-
-.entry-date .entry-day {}
-.entry-date .entry-month {}
 
 ////////////////////////////////////////////////////////////////////////////////
-//--- COMMENTS -----------------------------------------------------------------
+/// SEE: gTheme Option: `mce_style_formats`
+blockquote.entry-quote {}
+ul.entry-list {}
+ol.entry-list {}
+p.entry-note {}
+p.entry-source {}
+
+////////////////////////////////////////////////////////////////////////////////
+/// COMMENTS -------------------------------------------------------------------
 .comments-area { margin-bottom:15px; }
 .comments-title {}
 .comments-feed { float:left; }
