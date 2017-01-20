@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: gTheme 3 v3.14.4\n"
+"Project-Id-Version: gTheme 3 v3.14.5\n"
 "Report-Msgid-Bugs-To: https://github.com/geminorum/gtheme_03/issues\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2017-01-06 20:03+0330\n"
+"PO-Revision-Date: 2017-01-20 09:32+0330\n"
 "Last-Translator: geminorum <contact@geminorum.ir>\n"
 "Language-Team: geminorum <contact@geminorum.ir>\n"
 "Language: fa_IR\n"
@@ -18,7 +18,7 @@ msgstr ""
 "X-Poedit-Bookmarks: 124,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
 
 # @ gtheme
-#: comments.php:34, inc/options.php:161
+#: comments.php:34, inc/options.php:162
 msgid "Comments are closed."
 msgstr "دیدگاه‌ها مسدود است."
 
@@ -82,11 +82,11 @@ msgstr "افزودن گزینه دیگر"
 msgid "<strong>The default avatar is overrided by the active theme.</strong>"
 msgstr "<strong>آواتار پیش‌فرض توسط پوسته فعال تنظیم میشود.</strong>"
 
-#: inc/attachment.php:51
+#: inc/attachment.php:56
 msgid "Download Attachment"
 msgstr "دریافت پیوست"
 
-#: inc/attachment.php:86
+#: inc/attachment.php:91
 msgctxt "Module: Attachment: Backlink Template"
 msgid "&larr; Back to &ldquo;%s&rdquo;"
 msgstr "&rarr; بازگشت به «%s»"
@@ -155,68 +155,68 @@ msgstr ""
 "متأسفیم، به دلیل ترافیک بالا، سایت قفل شده است. تغییرات به زودی اعمال خواهد "
 "شد."
 
-#: inc/comments.php:209
+#: inc/comments.php:216
 msgctxt "Comments Module"
 msgid "Your comment is awaiting moderation."
 msgstr "دیدگاه شما در انتظار بررسی است."
 
 # @ gtheme
-#: inc/comments.php:219
+#: inc/comments.php:226
 msgctxt "1: date, 2: time"
 msgid "%1$s at %2$s"
 msgstr "%1$s در %2$s"
 
-#: inc/comments.php:231
+#: inc/comments.php:238
 msgctxt "Comments Module: Action String"
 msgid "Reply"
 msgstr "پاسخ"
 
-#: inc/comments.php:232
+#: inc/comments.php:239
 msgctxt "Comments Module: Action String"
 msgid "Reply to %s"
 msgstr "پاسخ به %s"
 
-#: inc/comments.php:233
+#: inc/comments.php:240
 msgctxt "Comments Module: Action String"
 msgid "Log in to Reply"
 msgstr "برای ارسال پاسخ، ابتدا وارد شوید"
 
-#: inc/comments.php:234
+#: inc/comments.php:241
 msgctxt "Comments Module: Action String"
 msgid "Edit This"
 msgstr "ویرایش کنید"
 
-#: inc/comments.php:283
+#: inc/comments.php:290
 msgctxt "Comments Module: Comment Form String"
 msgid "(Required)"
 msgstr "(ضروری)"
 
-#: inc/comments.php:284
+#: inc/comments.php:291
 msgctxt "Comments Module: Comment Form String"
 msgid "Name"
 msgstr "نام"
 
-#: inc/comments.php:285
+#: inc/comments.php:292
 msgctxt "Comments Module: Comment Form String"
 msgid "Email"
 msgstr "ایمیل"
 
-#: inc/comments.php:286
+#: inc/comments.php:293
 msgctxt "Comments Module: Comment Form String"
 msgid "Website"
 msgstr "وب‌گاه"
 
-#: inc/comments.php:287
+#: inc/comments.php:294
 msgctxt "Comments Module: Comment Form String"
 msgid "Comment"
 msgstr "دیدگاه"
 
-#: inc/comments.php:289
+#: inc/comments.php:296
 msgctxt "Comments Module: Comment Form String"
 msgid "You must be <a href=\"%s\">logged in</a> to post a comment."
 msgstr "برای ارسال دیدگاه باید <a href=\"%s\">وارد</a> شده باشید."
 
-#: inc/comments.php:290
+#: inc/comments.php:297
 msgctxt "Comments Module: Comment Form String"
 msgid ""
 "<a href=\"%1$s\" aria-label=\"%2$s\">Logged in as %3$s</a>. <a href=\"%4$s"
@@ -225,27 +225,27 @@ msgstr ""
 "<a href=\"%1$s\" aria-label=\"%2$s\">وارد شده با نام %3$s</a>. <a href=\"%4$s"
 "\">خروج؟</a>"
 
-#: inc/comments.php:291
+#: inc/comments.php:298
 msgctxt "Comments Module: Comment Form String"
 msgid "Logged in as %s. Edit your profile."
 msgstr "هم‌اکنون با نام %s شناخته شده‌اید. نمایه خود را ویرایش کنید."
 
-#: inc/comments.php:292
+#: inc/comments.php:299
 msgctxt "Comments Module: Comment Form String"
 msgid "Leave a Reply"
 msgstr "پاسخ دهید"
 
-#: inc/comments.php:293
+#: inc/comments.php:300
 msgctxt "Comments Module: Comment Form String"
 msgid "Leave a Reply to %s"
 msgstr "به %s پاسخ دهید"
 
-#: inc/comments.php:294
+#: inc/comments.php:301
 msgctxt "Comments Module: Comment Form String"
 msgid "Cancel reply"
 msgstr "انصراف"
 
-#: inc/comments.php:295
+#: inc/comments.php:302
 msgctxt "Comments Module: Comment Form String"
 msgid "Post Comment"
 msgstr "ارسال دیدگاه"
@@ -385,7 +385,7 @@ msgid "Counts"
 msgstr "تعداد"
 
 # @ gtheme
-#: inc/filters.php:252
+#: inc/filters.php:255
 msgid "Page %s"
 msgstr "صفحه  %s"
 
@@ -653,110 +653,159 @@ msgctxt "Options: Page Pre-Text"
 msgid "[ This page is being completed ]"
 msgstr "[این صفحه در حال آماده‌سازی است.]"
 
-#: inc/options.php:95
+#: inc/options.php:88
+msgctxt "Options: Separator: Default"
+msgid " "
+msgstr ""
+
+#: inc/options.php:89
+msgctxt "Options: Separator: Title"
+msgid " &raquo; "
+msgstr " &laquo; "
+
+#: inc/options.php:90
+msgctxt "Options: Separator: Nav"
+msgid " &laquo; "
+msgstr " &raquo; "
+
+#: inc/options.php:91
+msgctxt "Options: Separator: Byline"
+msgid " | "
+msgstr ""
+
+#: inc/options.php:92
+msgctxt "Options: Separator: Term"
+msgid ", "
+msgstr "، "
+
+#: inc/options.php:93
+msgctxt "Options: Separator: Feed"
+msgid "; "
+msgstr "؛ "
+
+#: inc/options.php:94
+msgctxt "Options: Separator: Comment Action"
+msgid " | "
+msgstr ""
+
+#: inc/options.php:96
 msgctxt "Options: Text Size Increase"
 msgid "[ A+ ]"
 msgstr "[ الف+ ]"
 
-#: inc/options.php:96
+#: inc/options.php:97
 msgctxt "Options: Text Size Decrease"
 msgid "[ A- ]"
 msgstr "[ الف– ]"
 
-#: inc/options.php:97
+#: inc/options.php:98
 msgctxt "Options: Text Size Sep"
 msgid " / "
 msgstr "\\"
 
-#: inc/options.php:99
+#: inc/options.php:100
 msgctxt "Options: Text Justify"
 msgid "[ Ju ]"
 msgstr "[ همـ ]"
 
-#: inc/options.php:100
+#: inc/options.php:101
 msgctxt "Options: Text Unjustify"
 msgid "[ uJ ]"
 msgstr "[ ناهمـ ]"
 
-#: inc/options.php:101
+#: inc/options.php:102
 msgctxt "Options: Text Justify Sep"
 msgid " / "
 msgstr "\\"
 
 # @ gtheme
-#: inc/options.php:152
+#: inc/options.php:153
 msgid "&copy; All right reserved."
 msgstr "&copy; تمامی حقوق محفوظ است."
 
 # @ gtheme
-#: inc/options.php:162
+#: inc/options.php:163
 msgid "Your comment is awaiting moderation."
 msgstr "دیدگاه شما در انتظار بررسی است."
 
 # @ gtheme
-#: inc/options.php:171
+#: inc/options.php:173
 msgctxt "System Tags Defaults"
 msgid "Dashboard"
 msgstr "پیشخوان"
 
+#: inc/options.php:174
+msgctxt "System Tags Defaults"
+msgid "Featured"
+msgstr "برگزیده"
+
 # @ gtheme
-#: inc/options.php:172
+#: inc/options.php:175
 msgctxt "System Tags Defaults"
 msgid "Latest"
 msgstr "آخرین‌ها"
 
-# @ gtheme
-#: inc/options.php:173
-msgctxt "System Tags Defaults"
-msgid "No FrontPage"
-msgstr "عدم نمایش در صفحه نخست"
-
-#: inc/options.php:174
+#: inc/options.php:176
 msgctxt "System Tags Defaults"
 msgid "Tile"
 msgstr "کاشی"
 
-# @ gtheme
+#: inc/options.php:177
+msgctxt "System Tags Defaults"
+msgid "Full Article"
+msgstr "متن کامل"
+
 #: inc/options.php:178
+msgctxt "System Tags Defaults"
+msgid "Not on FrontPage"
+msgstr "عدم نمایش در صفحه نخست"
+
+#: inc/options.php:179
+msgctxt "System Tags Defaults"
+msgid "Not on Feed"
+msgstr "عدم نمایش در خوراک"
+
+# @ gtheme
+#: inc/options.php:183
 msgctxt "Editor Default Content"
 msgid "[content not available yet]"
 msgstr "[این صفحه در حال تکمیل است.]"
 
 # @ gtheme
-#: inc/options.php:183
+#: inc/options.php:188
 msgctxt "Editor Custom Class"
 msgid "Blockquote"
 msgstr "نقل‌قول"
 
-#: inc/options.php:188
+#: inc/options.php:193
 msgctxt "Editor Custom Class"
 msgid "Unordered List"
 msgstr "فهرست بدون ترتیب"
 
-#: inc/options.php:193
+#: inc/options.php:198
 msgctxt "Editor Custom Class"
 msgid "Ordered List"
 msgstr "فهرست مرتب‌شده"
 
-#: inc/options.php:198
+#: inc/options.php:203
 msgctxt "Editor Custom Class"
 msgid "Note"
 msgstr "توضیح"
 
 # @ gtheme
-#: inc/options.php:203
+#: inc/options.php:208
 msgctxt "Editor Custom Class"
 msgid "Source"
 msgstr "منبع"
 
 # @ gtheme
-#: inc/options.php:252
+#: inc/options.php:256
 msgctxt "Banner Groups"
 msgid "First"
 msgstr "اول"
 
 # @ gtheme
-#: inc/options.php:253
+#: inc/options.php:257
 msgctxt "Banner Groups"
 msgid "Second"
 msgstr "دوم"
@@ -872,37 +921,37 @@ msgid "Create Default Menus"
 msgstr "ساختن فهرست‌های پیش‌فرض"
 
 # @ gtheme
-#: inc/search.php:73, inc/search.php:83
+#: inc/search.php:37, inc/search.php:42
 msgctxt "label"
 msgid "Search for:"
 msgstr "جست‌وجو برای:"
 
 # @ gtheme
-#: inc/search.php:77
+#: inc/search.php:39
 msgctxt "placeholder"
 msgid "Search &hellip;"
 msgstr "جست‌وجو &hellip;"
 
 # @ gtheme
-#: inc/search.php:87
+#: inc/search.php:44
 msgctxt "submit button"
 msgid "Search"
 msgstr "جست‌وجو"
 
 # @ gtheme
-#: inc/search.php:107
+#: inc/search.php:54
 msgctxt "buddypress: label"
 msgid "Search for:"
 msgstr "جست‌وجو برای:"
 
 # @ gtheme
-#: inc/search.php:115
+#: inc/search.php:58
 msgctxt "buddypress: placeholder"
 msgid "Search &hellip;"
 msgstr "جست‌وجو &hellip;"
 
 # @ gtheme
-#: inc/search.php:121
+#: inc/search.php:61
 msgctxt "buddypress: submit button"
 msgid "Search"
 msgstr "جست‌وجو"
@@ -1229,28 +1278,28 @@ msgctxt "System Tag Tax Labels"
 msgid "System Tags list"
 msgstr "فهرست برچسب‌های راه‌بری"
 
-#: inc/terms.php:207
+#: inc/terms.php:208
 msgctxt "System Tags Label: menu_name"
 msgid "System Tags"
 msgstr "برچسب‌های راه‌بری"
 
-#: inc/terms.php:252
+#: inc/terms.php:253
 msgctxt "Terms Module"
 msgid "Install Default System Tags"
 msgstr "نصب برچسب‌های راه‌بری پیش‌فرض"
 
-#: inc/terms.php:257
+#: inc/terms.php:258
 msgctxt "Terms Module"
 msgid "Error while adding default system tags."
-msgstr ""
+msgstr "خطایی هنگام افزودن برچسب‌های راه‌بری پیش‌فرض اتفاق افتاده است."
 
-#: inc/terms.php:259
+#: inc/terms.php:260
 msgctxt "Terms Module"
 msgid "Default system tags added."
-msgstr ""
+msgstr "برچسب‌های راه‌بری پیش‌فرض افزوده شد."
 
 # @ gtheme
-#: inc/terms.php:275
+#: inc/terms.php:276
 msgid "Connected Posts"
 msgstr "نوشته‌های مرتبط"
 
@@ -1259,6 +1308,11 @@ msgstr "نوشته‌های مرتبط"
 msgctxt "Alert button (screen reader only)"
 msgid "Close"
 msgstr "بستن"
+
+# @ gtheme
+#~ msgctxt "System Tags Defaults"
+#~ msgid "No FrontPage"
+#~ msgstr "عدم نمایش در صفحه نخست"
 
 #~ msgctxt "Editor Custom Class"
 #~ msgid "List"
