@@ -6,9 +6,14 @@ class gThemeAttachment extends gThemeModuleCore
 	// used in caption shortcode
 	public static function normalizeCaption( $caption, $before = '', $after = '', $default = '' )
 	{
-		if ( $caption = trim( str_ireplace( '&nbsp;', ' ', $caption ) ) )
-			return $before.gThemeUtilities::wordWrap(
-				gThemeL10N::str( $caption ), 2 ).$after;
+		if ( $caption = trim( str_ireplace( '&nbsp;', ' ', $caption ) ) ) {
+
+			$caption = gThemeL10N::str( $caption );
+			$caption = apply_filters( 'gnetwork_typography', $caption );
+
+			if ( trim( $caption ) )
+				return $before.gThemeUtilities::wordWrap( $caption, 2 ).$after;
+		}
 
 		return $default;
 	}
