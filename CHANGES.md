@@ -1,3 +1,15 @@
+### 3.14.5
+* module/admin: not setting the default author by default
+* module/attachment: apply typography filters on captions
+* module/comments: respect show avatars option
+* module/feed: exclude posts from rss by system tags
+* module/feed: preparing feed content for twitter/list
+* module/feed: using separator on feed metas
+* module/filters: overwrite author display name
+* module/options: translate separators
+* module/options: more default system tags
+* module/terms: custom callback for system tags meta box
+
 ### 3.14.4
 * module/comments: removed strip trackbacks in favor of comment list arg
 * module/content: callback post actions
