@@ -40,20 +40,22 @@ class gThemeFeed extends gThemeModuleCore
 
 			ob_start();
 
+				$sep = gThemeUtilities::sanitize_sep( 'def', 'feed_sep', '; ' );
+
 				gThemeEditorial::label( array(
-					'after'       => '<br />',
+					'after'       => ': ',
 					'image'       => FALSE,
 					'link'        => FALSE,
 					'description' => FALSE,
 				) );
 
-				gThemeEditorial::meta( 'over-title', array( 'after' => '<br />' ) );
+				gThemeEditorial::meta( 'over-title', array( 'after' => $sep ) );
 
 				if ( $title = get_the_title_rss() )
-					echo $title.'<br />';
+					echo $title;
 
-				gThemeEditorial::meta( 'sub-title', array( 'after' => '<br />' ) );
-				gThemeEditorial::author( array( 'after' => '<br />' ) );
+				gThemeEditorial::meta( 'sub-title', array( 'before' => $sep ) );
+				gThemeEditorial::author( array( 'before' => ' — ' ) );
 
 			return trim( str_ireplace( '&nbsp;', ' ', ob_get_clean() ) );
 
