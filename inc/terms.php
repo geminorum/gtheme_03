@@ -173,6 +173,7 @@ class gThemeTerms extends gThemeModuleCore
 			'show_ui'               => TRUE,
 			'show_tagcloud'         => FALSE,
 			'hierarchical'          => TRUE,
+			'meta_box_cb'           => array( 'gThemeTerms', 'checklistTerms' ),
 			'update_count_callback' => array( 'gThemeUtilities', 'update_count_callback' ),
 			'rewrite'               => FALSE,
 			'query_var'             => FALSE,
@@ -294,5 +295,37 @@ class gThemeTerms extends gThemeModuleCore
 	{
 		self::__dep( 'gThemeModuleCore::getTerms()' );
 		return self::getTerms( $taxonomy, $post_id, $object, $key );
+	}
+
+	// callback for meta box for choose only tax
+	// CAUTION: tax must be cat (hierarchical)
+	// @SOURCE: `post_categories_meta_box()`
+	public static function checklistTerms( $post, $box )
+	{
+		$args = self::atts( array(
+			'taxonomy' => 'category',
+			'edit_url' => NULL,
+		), empty( $box['args'] ) ? array() : $box['args'] );
+
+		$tax_name = esc_attr( $args['taxonomy'] );
+		$taxonomy = get_taxonomy( $args['taxonomy'] );
+
+		$html = wp_terms_checklist( $post->ID, array(
+			'taxonomy'      => $tax_name,
+			'checked_ontop' => FALSE,
+			'echo'          => FALSE,
+		) );
+
+		echo '<div id="taxonomy-'.$tax_name.'" class="geditorial-admin-wrap-metabox choose-tax">';
+			if ( $html ) {
+				echo '<div class="field-wrap-list"><ul>'.$html.'</ul></div>';
+				// allows for an empty term set to be sent. 0 is an invalid Term ID and will be ignored by empty() checks.
+				echo '<input type="hidden" name="tax_input['.$tax_name.'][]" value="0" />';
+			} else {
+				echo '<div class="field-wrap field-wrap-empty">';
+					echo '<span>'.$taxonomy->labels->not_found.'</span>';
+				echo '</div>';
+			}
+		echo '</div>';
 	}
 }
