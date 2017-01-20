@@ -85,12 +85,12 @@ class gThemeOptions extends gThemeModuleCore
 			'primary_terms_taxonomy' => 'category',
 			'primary_terms_defaults' => array(),
 
-			'default_sep'        => ' ',
-			'title_sep'          => is_rtl()? ' &laquo; ' : ' &raquo; ',
-			'nav_sep'            => is_rtl() ? ' &raquo; ' : ' &laquo; ',
-			'byline_sep'         => ' | ',
-			'term_sep'           => ', ',
-			'comment_action_sep' => ' | ',
+			'default_sep'        => _x( ' ', 'Options: Separator: Default', GTHEME_TEXTDOMAIN ),
+			'title_sep'          => _x( ' &raquo; ', 'Options: Separator: Title', GTHEME_TEXTDOMAIN ),
+			'nav_sep'            => _x( ' &laquo; ', 'Options: Separator: Nav', GTHEME_TEXTDOMAIN ),
+			'byline_sep'         => _x( ' | ', 'Options: Separator: Byline', GTHEME_TEXTDOMAIN ),
+			'term_sep'           => _x( ', ', 'Options: Separator: Term', GTHEME_TEXTDOMAIN ),
+			'comment_action_sep' => _x( ' | ', 'Options: Separator: Comment Action', GTHEME_TEXTDOMAIN ),
 
 			'text_size_increase' => _x( '[ A+ ]', 'Options: Text Size Increase', GTHEME_TEXTDOMAIN ),
 			'text_size_decrease' => _x( '[ A- ]', 'Options: Text Size Decrease', GTHEME_TEXTDOMAIN ),
