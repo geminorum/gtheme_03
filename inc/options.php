@@ -167,6 +167,7 @@ class gThemeOptions extends gThemeModuleCore
 
 			// SYSTEM TAGS
 			'system_tags_cpt'      => array( 'post' ),
+			'system_tags_excludes' => array( 'no-front', 'no-feed' ),
 			'system_tags_defaults' => array(
 				'dashboard' => _x( 'Dashboard', 'System Tags Defaults', GTHEME_TEXTDOMAIN ),
 				'latest'    => _x( 'Latest', 'System Tags Defaults', GTHEME_TEXTDOMAIN ),
