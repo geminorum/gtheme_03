@@ -169,10 +169,13 @@ class gThemeOptions extends gThemeModuleCore
 			'system_tags_cpt'      => array( 'post' ),
 			'system_tags_excludes' => array( 'no-front', 'no-feed' ),
 			'system_tags_defaults' => array(
-				'dashboard' => _x( 'Dashboard', 'System Tags Defaults', GTHEME_TEXTDOMAIN ),
-				'latest'    => _x( 'Latest', 'System Tags Defaults', GTHEME_TEXTDOMAIN ),
-				'no-front'  => _x( 'No FrontPage', 'System Tags Defaults', GTHEME_TEXTDOMAIN ),
-				'tile'      => _x( 'Tile', 'System Tags Defaults', GTHEME_TEXTDOMAIN ),
+				'dashboard'    => _x( 'Dashboard', 'System Tags Defaults', GTHEME_TEXTDOMAIN ),
+				'featured'     => _x( 'Featured', 'System Tags Defaults', GTHEME_TEXTDOMAIN ),
+				'latest'       => _x( 'Latest', 'System Tags Defaults', GTHEME_TEXTDOMAIN ),
+				'tile'         => _x( 'Tile', 'System Tags Defaults', GTHEME_TEXTDOMAIN ),
+				'full-article' => _x( 'Full Article', 'System Tags Defaults', GTHEME_TEXTDOMAIN ),
+				'no-front'     => _x( 'Not on FrontPage', 'System Tags Defaults', GTHEME_TEXTDOMAIN ),
+				'no-feed'      => _x( 'Not on Feed', 'System Tags Defaults', GTHEME_TEXTDOMAIN ),
 			),
 
 			// EDITOR
