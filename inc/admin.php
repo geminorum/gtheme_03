@@ -8,7 +8,7 @@ class gThemeAdmin extends gThemeModuleCore
 	public function setup_actions( $args = array() )
 	{
 		extract( self::atts( array(
-			'set_def_user'          => TRUE,
+			'set_def_user'          => FALSE, // no longer using this!
 			'set_def_user_comments' => TRUE,
 			'default_publish'       => FALSE,
 		), $args ) );
