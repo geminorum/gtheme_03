@@ -11,6 +11,7 @@ class gThemeFilters extends gThemeModuleCore
 			'redirect_canonical' => FALSE,
 			'default_editor'     => FALSE,
 			'disable_autoembed'  => TRUE,
+			'overwrite_author'   => TRUE,
 		), $args ) );
 
 
@@ -74,6 +75,9 @@ class gThemeFilters extends gThemeModuleCore
 
 			// to remove wp recent comments widget styles
 			add_filter( 'show_recent_comments_widget_style', '__return_false' );
+
+			if ( $overwrite_author )
+				add_filter( 'the_author', array( $this, 'the_author' ), 15 );
 		}
 	}
 
@@ -424,6 +428,23 @@ class gThemeFilters extends gThemeModuleCore
 	{
 		$out['number'] = TRUE;
 		return $out;
+	}
+
+	// not in admin
+	public function the_author( $display_name )
+	{
+		$default_user = gThemeOptions::getOption( 'default_user', 0 );
+
+		if ( is_feed() )
+			return $default_user ? get_the_author_meta( 'display_name', $default_user ) : NULL;
+
+		if ( $meta_author = gThemeEditorial::author( array( 'echo' => FALSE ) ) )
+			return $meta_author;
+
+		if ( $default_user )
+			return get_the_author_meta( 'display_name', $default_user );
+
+		return $display_name;
 	}
 }
 
