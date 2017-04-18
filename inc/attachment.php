@@ -6,6 +6,9 @@ class gThemeAttachment extends gThemeModuleCore
 	// used in caption shortcode
 	public static function normalizeCaption( $caption, $before = '', $after = '', $default = '' )
 	{
+		if ( ! $caption )
+			return $default;
+
 		if ( $caption = trim( str_ireplace( '&nbsp;', ' ', $caption ) ) ) {
 
 			$caption = gThemeL10N::str( $caption );
