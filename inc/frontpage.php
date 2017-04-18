@@ -9,9 +9,12 @@ class gThemeFrontPage extends gThemeModuleCore
 		global $gtheme_front_page_displayed;
 
 		if ( empty( $gtheme_front_page_displayed ) )
-			return array();
+			$gtheme_front_page_displayed = array();
 
-		return $gtheme_front_page_displayed;
+		if ( is_singular() )
+			$gtheme_front_page_displayed[] = get_the_ID();
+
+		return array_unique( $gtheme_front_page_displayed, SORT_NUMERIC );
 	}
 
 	// ANCESTOR : gtheme_add_displayed()
@@ -26,5 +29,7 @@ class gThemeFrontPage extends gThemeModuleCore
 			$post_id = get_the_ID();
 
 		$gtheme_front_page_displayed[] = $post_id;
+
+		return $post_id;
 	}
 }
