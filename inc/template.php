@@ -46,7 +46,7 @@ class gThemeTemplate extends gThemeModuleCore
 		// $template = '<a href="%1$s" title="%3$s" class="%4$s">%2$s</a>';
 		$template = '<a href="%1$s" title="%3$s" class="%4$s" data-html="true" data-toggle="tooltip" data-placement="top">%2$s</a>';
 
-		return vprintf( gThemeOptions::info( 'template_term_link', $template ), array(
+		return vsprintf( gThemeOptions::info( 'template_term_link', $template ), array(
 			esc_url( get_term_link( $term, $taxonomy ) ),
 			esc_html( apply_filters( 'single_term_title', $term->name ) ),
 			esc_attr( $title ),
