@@ -211,7 +211,7 @@ class gThemeNavigation extends gThemeModuleCore
 		} else if ( is_day() ) {
 
 			$template = empty( $args['strings']['day'] ) ? _x( 'Daily Archives for <strong>%s</strong>', 'Navigation Module: Breadcrumbs', GTHEME_TEXTDOMAIN ) : $args['strings']['day'];
-			$crumbs[] = sprintf( $template, get_the_date() );
+			$crumbs[] = sprintf( $template, get_the_date( gThemeOptions::getOption( 'date_format_day', 'j M Y' ) ) );
 
 		} else if ( is_month() ) {
 
