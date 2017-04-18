@@ -175,6 +175,9 @@ class gThemeNavigation extends gThemeModuleCore
 
 		} else if ( is_home() ) {
 
+		} else if ( is_404() ) {
+			$crumbs[] = empty( $args['strings']['404'] ) ? _x( 'Not Found', 'Navigation Module: Breadcrumbs', GTHEME_TEXTDOMAIN ) : $args['strings']['404'];
+
 		} else if ( is_category() ) {
 
 			$template = empty( $args['strings']['category'] ) ? _x( 'Category Archives for <strong>%s</strong>', 'Navigation Module: Breadcrumbs', GTHEME_TEXTDOMAIN ) : $args['strings']['category'];
