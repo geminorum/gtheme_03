@@ -474,33 +474,26 @@ class gThemeModuleCore extends gThemeBaseCore
 		return $selector;
 	}
 
-	public static function getTerms( $taxonomy = 'category', $post_id = FALSE, $object = FALSE, $key = 'term_id' )
+	public static function getTerms( $taxonomy = 'category', $post = FALSE, $object = FALSE, $key = 'term_id', $extra = array() )
 	{
-		$the_terms = array();
+		if ( FALSE !== $post )
+			$terms = get_the_terms( $post, $taxonomy );
 
-		if ( FALSE === $post_id ) {
-			$terms = get_terms( $taxonomy, array(
-				'hide_empty' => FALSE,
-				'orderby'    => 'name',
-				'order'      => 'ASC'
-			) );
-		} else {
-			$terms = get_the_terms( $post_id, $taxonomy );
-		}
+		else
+			$terms = get_terms( array_merge( array(
+				'taxonomy'               => $taxonomy,
+				'hide_empty'             => FALSE,
+				'orderby'                => 'name',
+				'order'                  => 'ASC',
+				'update_term_meta_cache' => FALSE,
+			), $extra ) );
 
-		if ( is_wp_error( $terms ) || FALSE === $terms )
-			return $the_terms;
+		if ( ! $terms || is_wp_error( $terms ) )
+			return array();
 
-		$the_list = wp_list_pluck( $terms, $key );
-		$terms    = array_combine( $the_list, $terms );
+		$list = wp_list_pluck( $terms, $key );
 
-		if ( $object )
-			return $terms;
-
-		foreach ( $terms as $term )
-			$the_terms[] = $term->term_id;
-
-		return $the_terms;
+		return $object ? array_combine( $list, $terms ) : $list;
 	}
 
 	// HELPER
