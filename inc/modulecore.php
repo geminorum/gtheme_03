@@ -405,7 +405,7 @@ class gThemeModuleCore extends gThemeBaseCore
 					'show_option_none' => __( '&mdash; Select Page &mdash;', GTHEME_TEXTDOMAIN ),
 					'sort_column'      => 'menu_order',
 					'sort_order'       => 'asc',
-					'post_status'      => 'publish,private,draft',
+					'post_status'      => array( 'publish', 'future', 'draft' ),
 				));
 
 			break;

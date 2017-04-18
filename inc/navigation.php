@@ -168,7 +168,6 @@ class gThemeNavigation extends gThemeModuleCore
 				( 'home' == $args['home'] ? gThemeOptions::info( 'blog_name' ) : $args['home'] ).'</a>';
 
 		$crumbs   = apply_filters( 'gtheme_breadcrumb_after_home', $crumbs, $args );
-
 		$template = empty( $args['strings']['archive'] ) ? _x( 'Site Archives', 'Navigation Module: Breadcrumbs', GTHEME_TEXTDOMAIN ) : $args['strings']['archive'];
 
 		if ( is_front_page() ) {

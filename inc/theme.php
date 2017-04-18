@@ -99,13 +99,6 @@ class gThemeTheme extends gThemeModuleCore
 		// completely remove the version number from pages and feeds
 		add_filter( 'the_generator', '__return_null', 99 );
 
-		foreach ( array(
-			'rsd_link',
-			'wlwmanifest_link',
-			array( 'QMT_Hooks', 'wp_head' ), // remove query-multiple-taxonomies styles
-			) as $func ) remove_action( 'wp_head', $func );
-
-
 		remove_filter( 'comment_text', 'make_clickable', 9 );
 		remove_filter( 'comment_text', 'capital_P_dangit', 31 );
 		foreach ( array( 'the_content', 'the_title', 'wp_title' ) as $filter )

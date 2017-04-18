@@ -68,7 +68,8 @@ class gThemeWrap extends gThemeModuleCore
 	//////////////////////////////////////////////////////////////////////
 	// SEE : https://make.wordpress.org/core/2014/10/29/title-tags-in-4-1/
 	// SEE : https://core.trac.wordpress.org/ticket/18548
-	// FIXME: DEPRECATED use in: head.php
+	// FIXME: DEPRECATED
+	// USED IN: head.php
 	public static function html_title( $sep = ' &raquo; ', $display = TRUE, $seplocation = '' )
 	{
 		echo "\t".'<title>';

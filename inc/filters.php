@@ -220,13 +220,9 @@ class gThemeFilters extends gThemeModuleCore
 				$classes[] = 'first';
 
 			$classes[] = $this->current_post_class;
+
 			$this->current_post_class = ( 'odd' == $this->current_post_class ) ? 'even' : 'odd';
 		}
-
-		// since WP 4.2.0 Custom taxonomy classes added automatically
-		// note: 'category-' not 'cat-'
-		// foreach ( get_the_category() as $category )
-		//    $classes[] = 'cat-'.$category->slug;
 
 		return $classes;
 	}
