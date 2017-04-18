@@ -84,24 +84,31 @@ class gThemeBootstrap_Walker_NavBar extends Walker_Nav_Menu
 	{
 		$indent = ( $depth ) ? str_repeat( "\t", $depth ) : '';
 
-		if ( 0 == strcasecmp( $item->attr_title, 'divider' )
-			|| 0 == strcasecmp( $item->title, 'divider' ) ) {
-			$output .= $indent.'<li role="presentation" class="divider">';
+		// sep on dropdown
+		if ( 0 == strcasecmp( $item->xfn, 'divider' ) ) {
+			$output .= $indent.'<li role="separator" class="divider">';
 
-		} else if ( 1 === $depth && 0 == strcasecmp( $item->attr_title, 'header' ) ) {
+		} else if ( 1 === $depth && 0 == strcasecmp( $item->xfn, 'header' ) ) {
 			$output .= $indent.'<li role="presentation" class="dropdown-header">'.esc_attr( $item->title );
 
-		} else if ( 0 == strcasecmp( $item->attr_title, 'disabled' ) ) {
+		} else if ( 0 == strcasecmp( $item->xfn, 'disabled' ) ) {
 			$output .= $indent.'<li role="presentation" class="disabled"><a href="#">'.esc_attr( $item->title ).'</a>';
 
-		} else if ( 1 === $depth && 0 == strcasecmp( $item->attr_title, 'yamm' ) ) {
-			$output .= $indent.'<li><div class="yamm-content">';
+		} else if ( 0 === $depth && 0 == strcasecmp( $item->xfn, 'yamm' ) ) {
+
+			// https://github.com/geedmo/yamm3
+			// CAUTION: #navbar must have .yamm
+			$output .= $indent.'<li class="dropdown yamm-fw '
+					.( empty( $item->classes ) ? '' : esc_attr( join( ' ', (array) $item->classes ) ) ).'">'
+					.'<a href="#" class="dropdown-toggle" data-toggle="dropdown">'.esc_attr( $item->title ).'</a>'
+					.'<ul class="dropdown-menu"><li>'
+					.'<div class="yamm-content">';
 
 			ob_start();
-				get_template_part( 'menu', esc_attr( $item->title ) );
+				get_template_part( 'menu', esc_attr( $item->attr_title ) );
+			$output .= ob_get_clean();
 
-			$output .= ob_get_flush();
-			$output .= '</div>';
+			$output .= '</div></li></ul>';
 
 		} else {
 
