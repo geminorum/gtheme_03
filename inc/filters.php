@@ -180,7 +180,7 @@ class gThemeFilters extends gThemeModuleCore
 			$classes[] = 'ltr';
 
 		if ( is_page() )
-			$classes[] = sanitize_html_class( 'slug-'.gThemeContent::slug() );
+			$classes[] = sanitize_html_class( 'slug-'.get_post()->post_name );
 
 		if ( is_single() )
 			foreach ( get_the_category() as $category )
