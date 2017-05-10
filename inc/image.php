@@ -48,23 +48,8 @@ class gThemeImage extends gThemeModuleCore
 			self::registerImageSize( $name, $size );
 	}
 
-	// FIXME: DEPRECATED
-	// this must be wp core feature!
-	// core duplication with post_type : add_image_size()
-	public static function addImageSize( $name, $width = 0, $height = 0, $crop = FALSE, $post_type = array( 'post' ) )
-	{
-		global $_wp_additional_image_sizes;
-
-		$_wp_additional_image_sizes[ $name ] = array(
-			'width'     => absint( $width ),
-			'height'    => absint( $height ),
-			'crop'      => $crop,
-			'post_type' => $post_type,
-		);
-
-		self::__dep( 'gThemeImage::registerImageSize()' );
-	}
-
+	// core dup with posttype
+	// @REF: `add_image_size()`
 	public static function registerImageSize( $name, $atts = array() )
 	{
 		global $_wp_additional_image_sizes;
@@ -222,7 +207,7 @@ class gThemeImage extends gThemeModuleCore
 
 	public function tags_attachment_fields_to_edit( $fields, $post )
 	{
-		if ( ! $post_id = @ absint( $_REQUEST['post_id'] ) )
+		if ( ! $post_id = absint( @$_REQUEST['post_id'] ) )
 			return $fields;
 
 		$post_type = get_post_type( $post_id );
@@ -287,11 +272,13 @@ class gThemeImage extends gThemeModuleCore
 
 	public function terms_attachment_fields_to_edit( $form_fields, $post )
 	{
-		if ( ! $parent_id = @ absint( $_REQUEST['post_id'] ) ) {
+		if ( empty( $_REQUEST['post_id'] ) ) {
 			if ( empty ( $post->post_parent ) )
 				return $form_fields;
 			else
 				$parent_id = $post->post_parent;
+		} else {
+			$parent_id = absint( $_REQUEST['post_id'] );
 		}
 
 		$post_type = get_post_type( $parent_id );

@@ -81,7 +81,7 @@ class gThemeOptions extends gThemeModuleCore
 			'pages_pre_text' => _x( '[ This page is being completed ]', 'Options: Page Pre-Text', GTHEME_TEXTDOMAIN ),
 
 			// PRIMARY TERMS API
-			'primary_terms_legend' => FALSE,
+			'primary_terms_legend'   => FALSE,
 			'primary_terms_taxonomy' => 'category',
 			'primary_terms_defaults' => array(),
 

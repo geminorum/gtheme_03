@@ -169,8 +169,7 @@ class gThemeContent extends gThemeModuleCore
 	{
 		if ( self::isRestricted() ) {
 
-			global $more;
-			$more = 0;
+			$GLOBALS['more'] = 0;
 
 			the_content( FALSE );
 
@@ -195,8 +194,7 @@ class gThemeContent extends gThemeModuleCore
 	// @REF: https://developer.wordpress.org/reference/functions/the_content/#comment-338
 	public static function teaser( $before = '<div class="entry-teaser">', $after = '</div>', $link = NULL, $edit = NULL )
 	{
-		global $more;
-		$more = 0;
+		$GLOBALS['more'] = 0;
 
 		if ( is_null( $edit ) )
 			$edit = gThemeOptions::info( 'read_more_edit', FALSE );
@@ -246,12 +244,10 @@ class gThemeContent extends gThemeModuleCore
 	// ANCESTOR: gtheme_the_excerpt()
 	public static function excerpt( $atts = 'itemprop="description" ', $b = '<div class="entry-summary">', $a = '</div>', $only = FALSE, $excerpt_length = FALSE )
 	{
-		if ( post_password_required() )
+		if ( ! $post = get_post() )
 			return;
 
-		$post = get_post();
-
-		if ( ! $post )
+		if ( post_password_required() )
 			return;
 
 		if ( $only && empty( $post->post_excerpt ) )

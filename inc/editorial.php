@@ -10,7 +10,7 @@ class gThemeEditorial extends gThemeModuleCore
 		), $args ) );
 
 		if ( $word_wrap )
-			add_filter( 'gmeta_meta', array( $this, 'gmeta_meta' ), 12, 2 );
+			add_filter( 'gmeta_meta', array( $this, 'gmeta_meta' ), 12, 2 ); // FIXME: DEPRICATED on editorial meta
 	}
 
 	public function gmeta_meta( $meta, $field )
@@ -164,6 +164,7 @@ class gThemeEditorial extends gThemeModuleCore
 		return \geminorum\gEditorial\Templates\Book::cover( $atts );
 	}
 
+	// FIXME: use `gNetwork()`
 	public static function refList( $atts = array() )
 	{
 		global $gNetwork;

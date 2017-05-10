@@ -40,13 +40,15 @@ class gThemeMenu extends gThemeModuleCore
 		return $args;
 	}
 
-	public static function nav( $location = 'primary', $args = array(), $b = '', $a = '' )
+	public static function nav( $location = 'primary', $atts = array(), $before = '', $after = '' )
 	{
-		$args['location'] = $location;
-		$args['echo']     = FALSE;
-		$menu = wp_nav_menu( self::args( $args ) );
-		if ( $menu )
-			echo $b.$menu.$a;
+		$args = array_merge( array(
+			'location' => $location,
+			'echo'     => FALSE,
+		), $atts );
+
+		if ( $menu = wp_nav_menu( self::args( $args ) ) )
+			echo $before.$menu.$after;
 	}
 
 	public static function args( $atts = array() )
