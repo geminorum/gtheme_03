@@ -21,51 +21,52 @@ class gThemeEditorial extends gThemeModuleCore
 		return $meta;
 	}
 
-	// FIXME: add theme classes / before / after : is's a shortcode!!
 	public static function series( $atts = array() )
 	{
-		if ( class_exists( 'gEditorialSeriesTemplates' ) ) {
-			echo gEditorialSeriesTemplates::shortcode_series( $atts );
-		} else {
+		if ( ! function_exists( 'gEditorial' ) )
 			return FALSE;
-		}
+
+		if ( ! gEditorial()->enabled( 'series' ) )
+			return FALSE;
+
+		echo gEditorial()->series->series_shortcode( $atts );
 	}
 
 	public static function label( $atts = array() )
 	{
-		if ( ! is_callable( array( 'gEditorialMetaTemplates', 'metaLabel' ) ) )
+		if ( ! is_callable( array( 'geminorum\\gEditorial\\Templates\\Meta', 'metaLabel' ) ) )
 			return FALSE;
 
-		return gEditorialMetaTemplates::metaLabel( $atts );
+		return \geminorum\gEditorial\Templates\Meta::metaLabel( $atts );
 	}
 
 	public static function source( $atts = array() )
 	{
-		if ( ! is_callable( array( 'gEditorialMetaTemplates', 'metaLink' ) ) )
+		if ( ! is_callable( array( 'geminorum\\gEditorial\\Templates\\Meta', 'metaLink' ) ) )
 			return FALSE;
 
-		return gEditorialMetaTemplates::metaLink( $atts );
+		return \geminorum\gEditorial\Templates\Meta::metaLink( $atts );
 	}
 
 	public static function author( $atts = array() )
 	{
-		if ( ! is_callable( array( 'gEditorialMetaTemplates', 'metaAuthor' ) ) )
+		if ( ! is_callable( array( 'geminorum\\gEditorial\\Templates\\Meta', 'metaAuthor' ) ) )
 			return FALSE;
 
-		return gEditorialMetaTemplates::metaAuthor( $atts );
+		return \geminorum\gEditorial\Templates\Meta::metaAuthor( $atts );
 	}
 
 	public static function lead( $atts = array() )
 	{
-		if ( ! is_callable( array( 'gEditorialMetaTemplates', 'metaLead' ) ) )
+		if ( ! is_callable( array( 'geminorum\\gEditorial\\Templates\\Meta', 'metaLead' ) ) )
 			return FALSE;
 
-		return gEditorialMetaTemplates::metaLead( $atts );
+		return \geminorum\gEditorial\Templates\Meta::metaLead( $atts );
 	}
 
 	public static function meta( $field, $atts = array() )
 	{
-		if ( ! is_callable( array( 'gEditorialMetaTemplates', 'getMetaField' ) ) )
+		if ( ! is_callable( array( 'geminorum\\gEditorial\\Templates\\Meta', 'getMetaField' ) ) )
 			return FALSE;
 
 		$args = self::atts( array(
@@ -73,7 +74,7 @@ class gThemeEditorial extends gThemeModuleCore
 			'filter' => FALSE,
 		), $atts );
 
-		if ( ! $html = gEditorialMetaTemplates::getMetaField( $field, $args ) )
+		if ( ! $html = \geminorum\gEditorial\Templates\Meta::getMetaField( $field, $args ) )
 			return FALSE;
 
 		$args = self::atts( array(
@@ -94,34 +95,6 @@ class gThemeEditorial extends gThemeModuleCore
 		return TRUE;
 	}
 
-	// FIXME: DROP THIS
-	public static function meta_OLD( $field, $atts = array() )
-	{
-		if ( class_exists( 'gEditorialMetaTemplates' ) ) {
-
-			$args = self::atts( array(
-				'before'  => '',
-				'after'   => '',
-				'filter'  => FALSE,
-				'post_id' => NULL,
-				'echo'    => TRUE,
-			), $atts );
-
-			$atts['echo'] = FALSE;
-			$html = gEditorialMetaTemplates::meta( $field, $args['before'], $args['after'], $args['filter'], $args['post_id'], $atts );
-
-			if ( $html ) {
-				if ( ! $args['echo'] )
-					return $html;
-
-				echo $html;
-				return TRUE;
-			}
-		}
-
-		return FALSE;
-	}
-
 	public static function issueRowCallback( $post, $args )
 	{
 		ob_start();
@@ -136,7 +109,7 @@ class gThemeEditorial extends gThemeModuleCore
 
 	public static function issuePosts( $atts = array() )
 	{
-		if ( class_exists( 'gEditorialMagazineTemplates' ) ) {
+		if ( class_exists( 'geminorum\\gEditorial\\Templates\\Magazine' ) ) {
 
 			$args = self::atts( array(
 				'before' => '',
@@ -145,7 +118,7 @@ class gThemeEditorial extends gThemeModuleCore
 				'echo'   => TRUE,
 			), $atts );
 
-			$html = gEditorialMagazineTemplates::issue_shortcode( $args );
+			$html = \geminorum\gEditorial\Templates\Magazine::issue_shortcode( $args );
 
 			if ( $html ) {
 				if ( ! $args['echo'] )
@@ -159,71 +132,36 @@ class gThemeEditorial extends gThemeModuleCore
 		return FALSE;
 	}
 
-	public static function issueCover( $atts = array() )
+	public static function issue( $atts = array() )
 	{
-		if ( ! is_callable( array( 'gEditorialMagazineTemplates', 'issueCover' ) ) )
+		if ( ! is_callable( array( 'geminorum\\gEditorial\\Templates\\Magazine', 'theIssue' ) ) )
 			return FALSE;
 
-		return gEditorialMagazineTemplates::issueCover( $atts );
+		return \geminorum\gEditorial\Templates\Magazine::theIssue( $atts );
 	}
 
-	// FIXME: DROP THIS
-	public static function issueCover_OLD( $atts = array() )
+	public static function issueMeta( $field, $atts = array() )
 	{
-		if ( class_exists( 'gEditorialMagazineTemplates' ) ) {
+		if ( ! is_callable( array( 'geminorum\\gEditorial\\Templates\\Magazine', 'theIssueMeta' ) ) )
+			return FALSE;
 
-			$args = self::atts( array(
-				'before' => '',
-				'after'  => '',
-				'id'     => 'issue',
-				'size'   => 'raw',
-				'link'   => 'parent',
-				'echo'   => TRUE,
-			), $atts );
-
-			$atts['echo'] = FALSE;
-			$atts['id'] = $args['id'];
-			$html = gEditorialMagazineTemplates::issue_cover( $args['before'], $args['after'], $args['size'], $args['link'], $atts );
-
-			if ( $html ) {
-				if ( ! $args['echo'] )
-					return $html;
-
-				echo $html;
-				return TRUE;
-			}
-		}
-
-		return FALSE;
+		return \geminorum\gEditorial\Templates\Magazine::theIssueMeta( $field, $atts );
 	}
 
-	// FIXME: DROP THIS
-	// ANCESTOR: gmeta_lead()
-	public static function lead_OLD( $atts = array() )
+	public static function issueCover( $atts = array() )
 	{
-		if ( class_exists( 'gEditorialMetaTemplates' ) ) {
+		if ( ! is_callable( array( 'geminorum\\gEditorial\\Templates\\Magazine', 'cover' ) ) )
+			return FALSE;
 
-			$args = self::atts( array(
-				'before'  => '',
-				'after'   => '',
-				'filter'  => FALSE,
-				'post_id' => NULL,
-				'echo'    => TRUE,
-			), $atts );
+		return \geminorum\gEditorial\Templates\Magazine::cover( $atts );
+	}
 
-			$atts['echo'] = FALSE;
-			$html = gEditorialMetaTemplates::gmeta_lead( $args['before'], $args['after'], $args['filter'], $atts );
+	public static function bookCover( $atts = array() )
+	{
+		if ( ! is_callable( array( 'geminorum\\gEditorial\\Templates\\Book', 'cover' ) ) )
+			return FALSE;
 
-			if ( $html ) {
-				if ( ! $args['echo'] )
-					return $html;
-
-				echo $html;
-				return TRUE;
-			}
-		}
-
-		return FALSE;
+		return \geminorum\gEditorial\Templates\Book::cover( $atts );
 	}
 
 	public static function refList( $atts = array() )
