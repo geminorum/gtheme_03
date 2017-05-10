@@ -15,12 +15,13 @@ class gThemeTerms extends gThemeModuleCore
 
 		if ( $system_tags ) {
 			add_action( 'init', array( $this, 'register_taxonomies' ) );
-			add_filter( 'post_class', array( $this, 'post_class' ), 10, 3 );
 
-			add_filter( 'geditorial_tweaks_strings', array( $this, 'tweaks_strings' ) );
-
-			if ( is_admin() )
+			if ( is_admin() ) {
 				add_action( 'load-edit-tags.php', array( $this, 'load_edit_tags' ) );
+				add_filter( 'geditorial_tweaks_taxonomy_info', array( $this, 'tweaks_taxonomy_info' ), 10, 3 );
+			} else {
+				add_filter( 'post_class', array( $this, 'post_class' ), 10, 3 );
+			}
 		}
 
 		if ( $p2p )
@@ -198,19 +199,16 @@ class gThemeTerms extends gThemeModuleCore
 		return $classes;
 	}
 
-	public function tweaks_strings( $strings )
+	public function tweaks_taxonomy_info( $info, $object, $post_type )
 	{
-		$new = array(
-			'taxonomies' => array(
-				GTHEME_SYSTEMTAGS => array(
-					'column'     => 'taxonomy-'.GTHEME_SYSTEMTAGS,
-					'dashicon'   => 'admin-generic',
-					'title_attr' => _x( 'System Tags', 'System Tags Label: menu_name', GTHEME_TEXTDOMAIN ),
-				),
-			),
-		);
+		if ( GTHEME_SYSTEMTAGS != $object->name )
+			return $info;
 
-		return self::recursiveParseArgs( $new, $strings );
+		return array(
+			'icon'  => 'admin-generic',
+			'title' => _x( 'System Tags', 'System Tag Tax Labels: Menu Name', GTHEME_TEXTDOMAIN ),
+			'edit'  => NULL,
+		);
 	}
 
 	public function load_edit_tags()
