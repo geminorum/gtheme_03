@@ -3,6 +3,87 @@
 class gThemeHTML extends gThemeBaseCore
 {
 
+	public static function rtl()
+	{
+		return function_exists( 'is_rtl' ) ? is_rtl() : FALSE;
+	}
+
+	public static function link( $html, $link = '#', $target_blank = FALSE )
+	{
+		return self::tag( 'a', array( 'href' => $link, 'class' => '-link', 'target' => ( $target_blank ? '_blank' : FALSE ) ), $html );
+	}
+
+	public static function mailto( $email, $title = NULL )
+	{
+		return '<a class="-mailto" href="mailto:'.trim( $email ).'">'.( $title ? $title : trim( $email ) ).'</a>';
+	}
+
+	public static function scroll( $html, $to )
+	{
+		return '<a class="scroll" href="#'.$to.'">'.$html.'</a>';
+	}
+
+	public static function img( $src, $class = '', $alt = '' )
+	{
+		return '<img src="'.$src.'" class="'.$class.'" alt="'.$alt.'" />';
+	}
+
+	public static function h2( $html, $class = FALSE )
+	{
+		echo self::tag( 'h2', array( 'class' => $class ), $html );
+	}
+
+	public static function h3( $html, $class = FALSE )
+	{
+		echo self::tag( 'h3', array( 'class' => $class ), $html );
+	}
+
+	public static function desc( $html, $block = TRUE, $class = '' )
+	{
+		if ( $html ) echo $block ? '<p class="description -description '.$class.'">'.$html.'</p>' : '<span class="description -description '.$class.'">'.$html.'</span>';
+	}
+
+	public static function wrap( $html, $class = '', $block = TRUE )
+	{
+		return $block ? '<div class="-wrap '.$class.'">'.$html.'</div>' : '<span class="-wrap '.$class.'">'.$html.'</span>';
+	}
+
+	public static function inputHidden( $name, $value = '' )
+	{
+		echo '<input type="hidden" name="'.self::escapeAttr( $name ).'" value="'.self::escapeAttr( $value ).'" />';
+	}
+
+	// @REF: https://gist.github.com/eric1234/5802030
+	// useful when you want to pass on a complex data structure via a form
+	public static function inputHiddenArray( $array, $prefix = '' )
+	{
+		if ( (bool) count( array_filter( array_keys( $array ), 'is_string' ) ) ) {
+
+			foreach ( $array as $key => $value ) {
+				$name = empty( $prefix ) ? $key : $prefix.'['.$key.']';
+
+				if ( is_array( $value ) )
+					self::inputHiddenArray( $value, $name );
+				else
+					self::inputHidden( $name, $value );
+			}
+
+		} else {
+
+			foreach( $array as $item ) {
+				if ( is_array( $item ) )
+					self::inputHiddenArray( $item, $prefix.'[]' );
+				else
+					self::inputHidden( $prefix.'[]', $item );
+			}
+		}
+	}
+
+	public static function joined( $items, $before = '', $after = '', $sep = '|' )
+	{
+		return count( $items ) ? ( $before.join( $sep, $items ).$after ) : '';
+	}
+
 	public static function tag( $tag, $atts = array(), $content = FALSE, $sep = '' )
 	{
 		$tag = self::sanitizeTag( $tag );
@@ -25,13 +106,13 @@ class gThemeHTML extends gThemeBaseCore
 	{
 		$classes = array();
 
-		foreach( func_get_args() as $arg )
+		foreach ( func_get_args() as $arg )
 
 			if ( is_array( $arg ) )
-				$classes += $arg;
+				$classes = array_merge( $classes, $arg );
 
 			else if ( $arg )
-				$classes += explode( ' ', $arg );
+				$classes = array_merge( $classes, explode( ' ', $arg ) );
 
 		return array_unique( array_filter( $classes, 'trim' ) );
 	}
@@ -114,6 +195,16 @@ class gThemeHTML extends gThemeBaseCore
 		return $html.'>';
 	}
 
+	// like WP core but without filter
+	// @SOURCE: `esc_attr()`
+	public static function escapeAttr( $text )
+	{
+		$safe_text = wp_check_invalid_utf8( $text );
+		$safe_text = _wp_specialchars( $safe_text, ENT_QUOTES );
+
+		return $safe_text;
+	}
+
 	public static function escapeURL( $url )
 	{
 		return esc_url( $url );
@@ -143,6 +234,19 @@ class gThemeHTML extends gThemeBaseCore
 	public static function sanitizePhoneNumber( $number )
 	{
 		return self::escapeURL( 'tel:'.str_replace( array( '(', ')', '-', '.', '|', ' ' ), '', $number ) );
+	}
+
+	public static function getAtts( $string, $expecting = array() )
+	{
+		foreach ( $expecting as $attr => $default ) {
+
+			preg_match( "#".$attr."=\"(.*?)\"#s", $string, $matches );
+
+			if ( isset( $matches[1] ) )
+				$expecting[$attr] = trim( $matches[1] );
+		}
+
+		return $expecting;
 	}
 
 	public static function linkStyleSheet( $url, $version = NULL, $media = 'all' )
@@ -195,10 +299,13 @@ class gThemeHTML extends gThemeBaseCore
 
 	public static function tableCode( $array, $reverse = FALSE, $caption = FALSE )
 	{
+		if ( ! $array )
+			return;
+
 		if ( $reverse )
-			$row = '<tr><td class="-val"><code>%1$s</code></td><td class="-var">%2$s</td></tr>';
+			$row = '<tr><td class="-val"><code>%1$s</code></td><td class="-var" valign="top">%2$s</td></tr>';
 		else
-			$row = '<tr><td class="-var">%1$s</td><td class="-val"><code>%2$s</code></td></tr>';
+			$row = '<tr><td class="-var" valign="top">%1$s</td><td class="-val"><code>%2$s</code></td></tr>';
 
 		echo '<table class="base-table-code'.( $reverse ? ' -reverse' : '' ).'">';
 
@@ -207,9 +314,96 @@ class gThemeHTML extends gThemeBaseCore
 
 		echo '<tbody>';
 
-		foreach ( (array) $array as $key => $val )
+		foreach ( (array) $array as $key => $val ) {
+
+			if ( is_null( $val ) )
+				$val = 'NULL';
+
+			else if ( is_bool( $val ) )
+				$val = $val ? 'TRUE' : 'FALSE';
+
+			else if ( is_array( $val ) || is_object( $val ) )
+				$val = json_encode( $val );
+
+			else if ( empty( $val ) )
+				$val = 'EMPTY';
+
+			else
+				$val = nl2br( $val );
+
 			printf( $row, $key, $val );
+		}
 
 		echo '</tbody></table>';
+	}
+
+	public static function getDashicon( $icon = 'wordpress-alt', $tag = 'span', $title = FALSE )
+	{
+		return self::tag( $tag, array(
+			'title' => $title,
+			'class' => array(
+				'dashicons',
+				'dashicons-'.$icon,
+			),
+		), NULL );
+	}
+
+	public static function dropdown( $list, $atts = array() )
+	{
+		$args = self::atts( array(
+			'id'         => '',
+			'name'       => '',
+			'none_title' => NULL,
+			'none_value' => 0,
+			'class'      => FALSE,
+			'selected'   => 0,
+			'disabled'   => FALSE,
+			'dir'        => FALSE,
+			'prop'       => FALSE,
+			'value'      => FALSE,
+			'exclude'    => array(),
+		), $atts );
+
+		$html = '';
+
+		if ( FALSE === $list ) // alow hiding
+			return $html;
+
+		if ( ! is_null( $args['none_title'] ) )
+			$html .= self::tag( 'option', array(
+				'value'    => $args['none_value'],
+				'selected' => $args['selected'] == $args['none_value'],
+			), $args['none_title'] );
+
+		foreach ( $list as $offset => $value ) {
+
+			if ( $args['value'] )
+				$key = is_object( $value ) ? $value->{$args['value']} : $value[$args['value']];
+
+			else
+				$key = $offset;
+
+			if ( in_array( $key, (array) $args['exclude'] ) )
+				continue;
+
+			if ( $args['prop'] )
+				$title = is_object( $value ) ? $value->{$args['prop']} : $value[$args['prop']];
+
+			else
+				$title = $value;
+
+			$html .= self::tag( 'option', array(
+				'value'    => $key,
+				'selected' => $args['selected'] == $key,
+			), $title );
+		}
+
+		return self::tag( 'select', array(
+			'name'     => $args['name'],
+			'id'       => $args['id'],
+			'class'    => $args['class'],
+			'disabled' => $args['disabled'],
+			'dir'      => $args['dir'],
+		), $html );
 	}
 }

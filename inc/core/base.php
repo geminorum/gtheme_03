@@ -67,7 +67,8 @@ class gThemeBaseCore
 
 	public static function order( $default = 'desc', $key = 'order' )
 	{
-		return self::req( $key, $default );
+		$req = strtoupper( self::req( $key, $default ) );
+		return ( 'ASC' === $req || 'DESC' === $req ) ? $req : $default;
 	}
 
 	// ANCESTOR : shortcode_atts()
