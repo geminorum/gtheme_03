@@ -326,4 +326,37 @@ class gThemeTerms extends gThemeModuleCore
 			}
 		echo '</div>';
 	}
+
+	public static function linkPrimary( $before = '', $after = '', $post = NULL, $title = '' )
+	{
+		if ( ! $post = get_post( $post ) )
+			return FALSE;
+
+		$taxonomy  = gThemeOptions::info( 'primary_terms_taxonomy', 'category' );
+		$primaries = gThemeOptions::getOption( 'terms', array() );
+
+		if ( ! count( $primaries ) )
+			return FALSE;
+
+		$terms = get_terms( array(
+			'object_ids'             => array( $post->ID ),
+			'taxonomy'               => array( $taxonomy ),
+			'include'                => $primaries,
+			'number'                 => 1,
+			'update_term_meta_cache' => FALSE,
+		) );
+
+		if ( ! count( $terms ) )
+			return FALSE;
+
+		echo $before;
+			echo '<a href="'
+				.get_term_link( $terms[0], $terms[0]->taxonomy )
+				.'" data-toggle="tooltip" title="'.$title.'">'
+					.esc_html( $terms[0]->name )
+				.'</a>';
+		echo $after;
+
+		return TRUE;
+	}
 }
