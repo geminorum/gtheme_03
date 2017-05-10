@@ -269,107 +269,102 @@ class gThemeContent extends gThemeModuleCore
 		echo $b.$excerpt.$a;
 	}
 
-	public static function slug()
+	public static function actions( $before = '<span class="post-action %s">', $after = '</span>', $list = TRUE, $icon = NULL )
 	{
-		global $post;
-		return get_post( $post )->post_name;
-	}
-
-	public static function actions( $before = '<span class="post-action %s">', $after = '</span>', $action_list = TRUE, $icons = 'def' )
-	{
-		if ( TRUE === $action_list )
+		if ( TRUE === $list )
 			$actions = gThemeOptions::info( 'post_actions', array() );
 
-		else if ( is_array( $action_list ) )
-			$actions = $action_list;
+		else if ( is_array( $list ) )
+			$actions = $list;
 
 		else
 			$actions = array();
 
-		if ( 'def' === $icons )
-			$icons = gThemeOptions::info( 'post_actions_icons', FALSE );
+		if ( si_null( $icon ) )
+			$icon = gThemeOptions::info( 'post_actions_icons', FALSE );
 
-		do_action( 'gtheme_action_links_before', $before, $after, $actions, $icons );
+		do_action( 'gtheme_action_links_before', $before, $after, $actions, $icon );
 
 		foreach ( $actions as $action ) {
 
 			if ( is_array( $action ) ) {
 
 				if ( is_callable( $action ) )
-					call_user_func_array( $action, array( $before, $after, $icons ) );
+					call_user_func_array( $action, array( $before, $after, $icon ) );
 
 			} else {
 
-				self::do_action( $action, $before, $after, $icons );
+				self::do_action( $action, $before, $after, $icon );
 			}
 		}
 
-		do_action( 'gtheme_action_links', $before, $after, $actions, $icons );
+		do_action( 'gtheme_action_links', $before, $after, $actions, $icon );
 	}
 
-	public static function do_action( $action, $before, $after, $icons = FALSE )
+	public static function do_action( $action, $before, $after, $icon = FALSE )
 	{
 		switch ( $action ) {
 
-			case 'textsize_buttons' :
-			case 'textsize_buttons_nosep' :
+			case 'textsize_buttons':
+			case 'textsize_buttons_nosep':
 
 				self::text_size_buttons(
 					sprintf( $before, 'textsize-buttons hidden-print' ), $after,
 					( 'textsize_buttons_nosep' == $action ? FALSE : 'def' ),
-					( $icons ? '<div class="genericon genericon-zoom"></div>' : 'def' ),
-					( $icons ? '<div class="genericon genericon-unzoom"></div>' : 'def' )
+					( $icon ? self::getDashicon( 'zoom' ) : 'def' ),
+					( $icon ? self::getDashicon( 'unzoom' ) : 'def' )
 				);
 
 			break;
-			case 'textjustify_buttons' :
-			case 'textjustify_buttons_nosep' :
+			case 'textjustify_buttons':
+			case 'textjustify_buttons_nosep':
 
 				self::justify_buttons(
 					sprintf( $before, 'textjustify-buttons hidden-print' ), $after,
 					( 'textjustify_buttons_nosep' == $action ? FALSE : 'def' ),
-					( $icons ? '<div class="genericon genericon-minimize"></div>' : 'def' ),
-					( $icons ? '<div class="genericon genericon-previous"></div>' : 'def' )
+					( $icon ? self::getDashicon( 'minimize' ) : 'def' ),
+					( $icon ? self::getDashicon( 'previous' ) : 'def' )
 				);
 
 			break;
-			case 'printfriendly' :
+			case 'printfriendly':
 
 				self::printfriendly(
 					sprintf( $before, 'printfriendly post-print-link hidden-print' ), $after,
-					( $icons ? '<div class="genericon genericon-print"></div>' : __( 'Print Version', GTHEME_TEXTDOMAIN ) )
+					( $icon ? self::getDashicon( 'print' ) : _x( 'Print Version', 'Modules: Content: Action', GTHEME_TEXTDOMAIN ) )
 				);
 
 			break;
-			case 'a2a_dd' :
-			case 'addtoany' :
+			case 'a2a_dd':
+			case 'addtoany':
 
 				self::addtoany(
 					sprintf( $before, 'addtoany post-share-link' ), $after,
-					( $icons ? '<div class="genericon genericon-share"></div>' : __( 'Share This', GTHEME_TEXTDOMAIN ) )
+					( $icon ? self::getDashicon( 'share' ) : _x( 'Share This', 'Modules: Content: Action', GTHEME_TEXTDOMAIN ) )
 				);
 
 			break;
-			case 'addthis' :
+			case 'addthis':
 
 				self::addthis(
 					sprintf( $before, 'addthis post-share-link' ), $after,
-					( $icons ? '<div class="genericon genericon-share"></div>' : __( 'Share This', GTHEME_TEXTDOMAIN ) )
+					( $icon ? self::getDashicon( 'share' ) : _x( 'Share This', 'Modules: Content: Action', GTHEME_TEXTDOMAIN ) )
 				);
 
 			break;
-			case 'shortlink' :
+			case 'shortlink':
 
-				the_shortlink(
-					( $icons ? '<div class="genericon genericon-link"></div>' : __( 'Short Link', GTHEME_TEXTDOMAIN ) ),
-					self::title_attr( FALSE, NULL, '%s' ),
-					sprintf( $before, 'post-short-link' ),
-					$after
+				self::shortlink(
+					( $icon ? self::getDashicon( 'link' ) : _x( 'Short Link', 'Modules: Content: Action', GTHEME_TEXTDOMAIN ) ),
+					NULL,
+					sprintf( $before, '-action -shortlink' ),
+					$after,
+					self::title_attr( FALSE, NULL, FALSE )
 				);
 
 			break;
-			case 'comments_link' :
-			case 'comments_link_feed' :
+			case 'comments_link':
+			case 'comments_link_feed':
 
 				if ( comments_open() ) {
 					printf( $before, 'comments-link' );
@@ -391,22 +386,22 @@ class gThemeContent extends gThemeModuleCore
 						$class = ''; // hastip
 					}
 
-					if ( $icons )
-						printf( '<a href="%2$s" class="%1$s"><div class="genericon genericon-comment"></div></a>', $class, $link  );
+					if ( $icon )
+						printf( '<a href="%2$s" class="%1$s">%3$s</a>', $class, $link, self::getDashicon( 'comment' ) );
 					else
 						comments_number(
-							sprintf( __( '<a href="%3$s" class="%1$s">Your Comment</a>', GTHEME_TEXTDOMAIN ), $class, '', $link ),
-							sprintf( __( '<a href="%3$s" class="%1$s">One Comment</a>', GTHEME_TEXTDOMAIN ), $class, '', $link ),
-							sprintf( __( '<a href="%3$s" class="%1$s">%2$s Comments</a>', GTHEME_TEXTDOMAIN ), $class, '%', $link )
+							sprintf( _x( '<a href="%3$s" class="%1$s">Your Comment</a>', 'Modules: Content: Action', GTHEME_TEXTDOMAIN ), $class, '', $link ),
+							sprintf( _x( '<a href="%3$s" class="%1$s">One Comment</a>', 'Modules: Content: Action', GTHEME_TEXTDOMAIN ), $class, '', $link ),
+							sprintf( _x( '<a href="%3$s" class="%1$s">%2$s Comments</a>', 'Modules: Content: Action', GTHEME_TEXTDOMAIN ), $class, '%', $link )
 						);
 
 					if ( 'comments_link_feed' == $action ) {
-						if ( $icons )
-							printf( '<a href="%2$s" class="%1$s"><div class="genericon genericon-feed"></div></a>', 'comments-link-rss', get_post_comments_feed_link() );
+						if ( $icon )
+							printf( '<a href="%2$s" class="%1$s">%3$s</a>', 'comments-link-rss', get_post_comments_feed_link(), self::getDashicon( 'feed' ) );
 						else
-							printf( __( ' <small><small>(<a href="%1$s" title="%2$s" class="%3$s"><abbr title="Really Simple Syndication">RSS</abbr></a>)</small></small>', GTHEME_TEXTDOMAIN ),
+							printf( _x( ' <small><small>(<a href="%1$s" title="%2$s" class="%3$s"><abbr title="Really Simple Syndication">RSS</abbr></a>)</small></small>', 'Modules: Content: Action', GTHEME_TEXTDOMAIN ),
 								get_post_comments_feed_link(),
-								__( 'Feed for this post\'s comments', GTHEME_TEXTDOMAIN ),
+								_x( 'Feed for this post\'s comments', 'Modules: Content: Action', GTHEME_TEXTDOMAIN ),
 								'comments-link-rss'
 							);
 					}
@@ -414,16 +409,16 @@ class gThemeContent extends gThemeModuleCore
 				}
 
 			break;
-			case 'edit_post_link' :
+			case 'edit_post_link':
 
 				edit_post_link(
-					( $icons ? '<div class="genericon genericon-edit"></div>' : __( 'Edit', GTHEME_TEXTDOMAIN ) ),
+					( $icon ? self::getDashicon( 'edit' ) : _x( 'Edit', 'Modules: Content: Action', GTHEME_TEXTDOMAIN ) ),
 					sprintf( $before, 'post-edit-link post-edit-link-li' ),
 					$after
 				);
 
 			break;
-			case 'tag_list' :
+			case 'tag_list':
 
 				if ( is_object_in_taxonomy( get_post_type(), 'post_tag' ) )
 					the_tags(
@@ -434,7 +429,7 @@ class gThemeContent extends gThemeModuleCore
 					);
 
 			break;
-			case 'cat_list' :
+			case 'cat_list':
 
 				if ( is_object_in_taxonomy( get_post_type(), 'category' ) ) {
 					echo sprintf( $before, 'cat-links' )
@@ -444,14 +439,38 @@ class gThemeContent extends gThemeModuleCore
 				}
 
 			break;
-			case 'the_date' :
+			case 'the_date':
 
 				gThemeDate::date( array(
 					'before' => sprintf( $before, 'the-date' ),
 					'after'  => $after,
-					'text'   => $icons ? '<div class="genericon genericon-edit"></div>' : NULL,
+					'text'   => $icons ? self::getDashicon( 'edit' ) : NULL,
 				) );
 		}
+	}
+
+	public static function getDashicon( $icon = 'edit', $tag = 'div', $title = FALSE )
+	{
+		return gThemeHTML::getDashicon();
+	}
+
+	public static function shortlink( $text, $post = NULL, $before = '', $after = '', $title = NULL )
+	{
+		if ( ! $post = get_post() )
+			return;
+
+		if ( ! $shortlink = wp_get_shortlink( $post->ID ) )
+			return;
+
+		echo $before.gThemeHTML::tag( 'a', array(
+			'href'  => $shortlink,
+			'title' => $title ? $title : FALSE,
+			'rel'   => 'shortlink',
+			'data' => array(
+				'toggle' => 'tooltip',
+				'id'     => $post->ID,
+			),
+		), $text ).$after;
 	}
 
 	// ALSO SEE : http://wp.tutsplus.com/tutorials/theme-development/creating-a-wordpress-post-text-size-changer-using-jquery/
@@ -559,7 +578,7 @@ class gThemeContent extends gThemeModuleCore
 		);
 
 		echo $b;
-		printf( '<a href="%1$s" rel="nofollow" title="%3$s">%2$s</a>',
+		printf( '<a href="%1$s" rel="nofollow" title="%3$s" data-toggle="tooltip">%2$s</a>',
 			add_query_arg( $query_args, 'http://www.addtoany.com/share_save' ),
 			( $text ? $text : __( 'Share This', GTHEME_TEXTDOMAIN ) ),
 			__( 'Share This with your friends.', GTHEME_TEXTDOMAIN )
