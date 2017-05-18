@@ -276,7 +276,7 @@ class gThemeContent extends gThemeModuleCore
 		else
 			$actions = array();
 
-		if ( si_null( $icon ) )
+		if ( is_null( $icon ) )
 			$icon = gThemeOptions::info( 'post_actions_icons', FALSE );
 
 		do_action( 'gtheme_action_links_before', $before, $after, $actions, $icon );
@@ -440,7 +440,7 @@ class gThemeContent extends gThemeModuleCore
 				gThemeDate::date( array(
 					'before' => sprintf( $before, 'the-date' ),
 					'after'  => $after,
-					'text'   => $icons ? self::getDashicon( 'edit' ) : NULL,
+					'text'   => $icon ? self::getDashicon( 'edit' ) : NULL,
 				) );
 		}
 	}
