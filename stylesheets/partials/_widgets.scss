@@ -3,65 +3,72 @@
 
 .gtheme-widget {
 
-	.gtheme-widget-title {
-		font-size:$font-size-h4;
-		color:$gray-dark;
-	}
+  .gtheme-widget-title {
+    font-size: $font-size-h4;
+    color: $gray-dark;
+  }
 
-	ul, ol {
-		padding:0;
-		padding-right:$theme-grid-gutter / 4;
-		li {
-			list-style: none;
-			padding:0;
-			margin-bottom: $theme-grid-gutter / 4;
-		}
-	}
+  ul, ol {
+    padding: 0;
+    padding-right: $theme-grid-gutter / 4;
 
-	&.widget_calendar {
+    li {
+      list-style: none;
+      padding: 0;
+      margin-bottom: $theme-grid-gutter / 4;
+    }
+  }
 
-		table {
-			margin-top:$theme-grid-gutter / 2;
+  &.widget_calendar {
 
-			width: 100%;
+    table {
 
-			a {
-				font-weight: 600;
-				&:hover {
-					color: $gray !important;
-					text-decoration:none;
-				}
-			}
+      margin-top: $theme-grid-gutter / 2;
+      width: 100%;
 
-			caption {
-				color: $gray-dark;
-				padding:$padding-base-vertical $padding-base-horizontal;
-				text-align:center;
-			}
+      a {
+        font-weight: 600;
+        &:hover {
+          color: $gray !important;
+          text-decoration:none;
+        }
+      }
 
-			thead {
-				background: $table-bg-accent;
-				-webkit-box-shadow: 0 1px 0 #ddd;
-						box-shadow: inset 0 -1px 0 #ddd;
-			}
+      // @REF: http://stackoverflow.com/a/8948741/4864081
+      td > a {
+        display: block;
+        height: 100%;
+        width: 100%;
+      }
 
-			th {
-				font-weight: 600;
-			}
+      caption {
+        color: $gray-dark;
+        padding: $padding-base-vertical $padding-base-horizontal;
+        text-align:center;
+      }
 
-			th, td {
-				padding: 3px 0;
-				text-align: center;
-				border: 1px solid $table-border-color;
-			}
+      thead {
+        background: $table-bg-accent;
+        box-shadow: inset 0 -1px 0 #ddd;
+      }
 
-			td:hover {
-				background: $table-bg-hover;
-			}
+      th {
+        font-weight: 600;
+      }
 
-			.pad {
-				padding: 0!important;
-			}
-		}
-	}
+      th, td {
+        padding: 3px 0;
+        text-align: center;
+        border: 1px solid $table-border-color;
+      }
+
+      td:hover {
+        background: $table-bg-hover;
+      }
+
+      .-pad, .pad {
+        padding: 0 !important;
+      }
+    }
+  }
 }

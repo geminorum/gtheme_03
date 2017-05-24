@@ -1,29 +1,186 @@
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
-/// gTheme Default Font Stuff --------------------------------------------------
+/// gTheme Default: Font Stuff -------------------------------------------------
 
 // SEE: [SASS @font-face mixin](https://gist.github.com/jonathantneal/d0460e5c2d5d7f9bc5e6)
 
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+/// Native Fonts
 
+@mixin theme-fonts-core-native() {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+}
+
+@mixin theme-fonts-core-code() {
+  font-family: Consolas, Monaco, monospace;
+}
 
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
-// FIXME: DRAFT: not used yet
 
-@mixin theme-fonts-fontface($style-name, $file, $family) {
+@mixin _theme-fonts-fontface($name, $path, $weight: normal) {
+  @at-root {
+    @font-face {
+      font-family: "#{$name}";
+      font-weight: #{$weight};
+      src: url($path + '.eot');
+      src: url($path + '.eot?#iefix') format('embedded-opentype'),
+          // url($path + '.woff2') format('woff2'),
+          url($path + '.woff') format('woff'),
+          url($path + '.ttf') format('truetype');
+    }
+  }
+}
 
-	$filepath: "fonts/" + $family + "/" + $file;
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 
-	@font-face {
-		font-family: "#{$style-name}";
-		src: url($filepath + ".eot");
-		src: url($filepath + ".eot?#iefix") format('embedded-opentype'),
-			 url($filepath + ".woff") format('woff'),
-			 url($filepath + ".ttf")  format('truetype'),
-			 url($filepath + ".svg#" + $style-name + "") format('svg');
-	}
+@mixin theme-fonts-Vazir-CDN() {
+
+  $font-family-base: "Vazir", "Tahoma", "Iranian Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif !global;
+
+  $name: "Vazir";
+  $ver: "v8.2.1";
+  $weight: "normal";
+
+  $base: "https://cdn.rawgit.com";
+  $repo: "rastikerdar/vazir-font";
+  $file: "dist/Vazir";
+  $path: $base + "/" + $repo + "/" + $ver + "/" + $file;
+
+  @include _theme-fonts-fontface($name, $path, $weight);
+}
+
+@mixin theme-fonts-Vazir-Bold-CDN() {
+
+  $font-family-head: "Vazir", "Arial", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", "Helvetica", sans-serif !global;
+
+  $name: "Vazir";
+  $ver: "v8.2.1";
+  $weight: "bold";
+
+  $base: "https://cdn.rawgit.com";
+  $repo: "rastikerdar/vazir-font";
+  $file: "dist/Vazir-Bold";
+  $path: $base + "/" + $repo + "/" + $ver + "/" + $file;
+
+  @include _theme-fonts-fontface($name, $path, $weight);
+}
+
+@mixin theme-fonts-Vazir-Light-CDN() {
+
+  $font-family-light: "Vazir", "Arial", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", "Helvetica", sans-serif !global;
+
+  $name: "Vazir";
+  $ver: "v8.2.1";
+  $weight: "300";
+
+  $base: "https://cdn.rawgit.com";
+  $repo: "rastikerdar/vazir-font";
+  $file: "dist/Vazir-Light";
+  $path: $base + "/" + $repo + "/" + $ver + "/" + $file;
+
+  @include _theme-fonts-fontface($name, $path, $weight);
+}
+
+@mixin theme-fonts-Vazir-Code-CDN() {
+
+  $font-family-code: "Vazir Code", "monospaced" !global;
+
+  $name: "Vazir Code";
+  $ver: "v1.0.3";
+  $weight: "normal";
+
+  $base: "https://cdn.rawgit.com";
+  $repo: "rastikerdar/vazir-code-font";
+  $file: "dist/Vazir-Code";
+  $path: $base + "/" + $repo + "/" + $ver + "/" + $file;
+
+  @include _theme-fonts-fontface($name, $path, $weight);
+}
+
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+/// Samim
+// https://github.com/rastikerdar/samim-font
+// http://rastikerdar.github.io/samim-font/
+
+@mixin theme-fonts-Samim-CDN() {
+
+  $font-family-base: "Samim", "Tahoma", "Iranian Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif !global;
+
+  $name: "Samim";
+  $ver: "v1.0.2";
+  $weight: "normal";
+
+  $base: "https://cdn.rawgit.com";
+  $repo: "rastikerdar/samim-font";
+  $file: "dist/Samim";
+  $path: $base + "/" + $repo + "/" + $ver + "/" + $file;
+
+  @include _theme-fonts-fontface($name, $path, $weight);
+}
+
+@mixin theme-fonts-Samim-Bold-CDN() {
+
+  $font-family-head: "Samim", "Arial", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", "Helvetica", sans-serif !global;
+
+  $name: "Samim";
+  $ver: "v1.0.2";
+  $weight: "bold";
+
+  $base: "https://cdn.rawgit.com";
+  $repo: "rastikerdar/samim-font";
+  $file: "dist/Samim-Bold";
+  $path: $base + "/" + $repo + "/" + $ver + "/" + $file;
+
+  @include _theme-fonts-fontface($name, $path, $weight);
+}
+
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+/// Gandom
+// https://github.com/rastikerdar/gandom-font
+// http://rastikerdar.github.io/gandom-font/
+
+@mixin theme-fonts-Gandom-CDN() {
+
+  $font-family-base: "Gandom", "Tahoma", "Iranian Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif !global;
+
+  $name: "Gandom";
+  $ver: "v0.5.1";
+  $weight: "normal";
+
+  $base: "https://cdn.rawgit.com";
+  $repo: "rastikerdar/gandom-font";
+  $file: "dist/Gandom";
+  $path: $base + "/" + $repo + "/" + $ver + "/" + $file;
+
+  @include _theme-fonts-fontface($name, $path, $weight);
+}
+
+// !! Gandom has no bold version
+@mixin theme-fonts-Gandom-Bold-CDN() {
+
+  $font-family-head: "Gandom", "Arial", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", "Helvetica", sans-serif !global;
+
+  $name: "Gandom";
+  $ver: "v0.5.1";
+  $weight: "bold";
+
+  $base: "https://cdn.rawgit.com";
+  $repo: "rastikerdar/gandom-font";
+  $file: "dist/Gandom-Bold";
+  $path: $base + "/" + $repo + "/" + $ver + "/" + $file;
+
+  @include _theme-fonts-fontface($name, $path, $weight);
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -35,41 +192,41 @@
 
 @mixin theme-fonts-DroidArabicNaskh($base: "../../gtheme_03/fonts") {
 
-	$name: "Droid Arabic Naskh";
-	$folder: "droidarabicnaskh";
-	$file: "DroidNaskh-Regular";
-	$path: $base + "/" + $folder + "/" + $file;
+  $name: "Droid Arabic Naskh";
+  $folder: "droidarabicnaskh";
+  $file: "DroidNaskh-Regular";
+  $path: $base + "/" + $folder + "/" + $file;
 
-	@at-root {
-		@font-face {
-			font-family: "#{$name}";
-			font-style: normal;
-			font-weight: 400;
-			src: url($path + '.eot');
-			src: url($path + '.eot?#iefix') format('embedded-opentype'),
-				 url($path + '.woff2') format('woff2'),
-				 url($path + '.woff') format('woff'),
-				 url($path + '.ttf') format('truetype');
-		}
-	}
+  @at-root {
+    @font-face {
+      font-family: "#{$name}";
+      font-style: normal;
+      font-weight: 400;
+      src: url($path + '.eot');
+      src: url($path + '.eot?#iefix') format('embedded-opentype'),
+         url($path + '.woff2') format('woff2'),
+         url($path + '.woff') format('woff'),
+         url($path + '.ttf') format('truetype');
+    }
+  }
 
-	$name: "Droid Arabic Naskh";
-	$folder: "droidarabicnaskh";
-	$file: "DroidNaskh-Bold";
-	$path: $base + "/" + $folder + "/" + $file;
+  $name: "Droid Arabic Naskh";
+  $folder: "droidarabicnaskh";
+  $file: "DroidNaskh-Bold";
+  $path: $base + "/" + $folder + "/" + $file;
 
-	@at-root {
-		@font-face {
-			font-family: "#{$name}";
-			font-style: normal;
-			font-weight: 700;
-			src: url($path + '.eot');
-			src: url($path + '.eot?#iefix') format('embedded-opentype'),
-				 url($path + '.woff2') format('woff2'),
-				 url($path + '.woff') format('woff'),
-				 url($path + '.ttf') format('truetype');
-		}
-	}
+  @at-root {
+    @font-face {
+      font-family: "#{$name}";
+      font-style: normal;
+      font-weight: 700;
+      src: url($path + '.eot');
+      src: url($path + '.eot?#iefix') format('embedded-opentype'),
+         url($path + '.woff2') format('woff2'),
+         url($path + '.woff') format('woff'),
+         url($path + '.ttf') format('truetype');
+    }
+  }
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -81,41 +238,41 @@
 
 @mixin theme-fonts-NotoNaskhArabic($base: "../../gtheme_03/fonts") {
 
-	$name: "Noto Naskh Arabic";
-	$folder: "notonaskharabic";
-	$file: "NotoNaskhArabic-Regular";
-	$path: $base + "/" + $folder + "/" + $file;
+  $name: "Noto Naskh Arabic";
+  $folder: "notonaskharabic";
+  $file: "NotoNaskhArabic-Regular";
+  $path: $base + "/" + $folder + "/" + $file;
 
-	@at-root {
-		@font-face {
-			font-family: "#{$name}";
-			font-style: normal;
-			font-weight: 400;
-			src: url($path + '.eot');
-			src: url($path + '.eot?#iefix') format('embedded-opentype'),
-				 url($path + '.woff2') format('woff2'),
-				 url($path + '.woff') format('woff'),
-				 url($path + '.ttf') format('truetype');
-		}
-	}
+  @at-root {
+    @font-face {
+      font-family: "#{$name}";
+      font-style: normal;
+      font-weight: 400;
+      src: url($path + '.eot');
+      src: url($path + '.eot?#iefix') format('embedded-opentype'),
+         url($path + '.woff2') format('woff2'),
+         url($path + '.woff') format('woff'),
+         url($path + '.ttf') format('truetype');
+    }
+  }
 
-	$name: "Noto Naskh Arabic";
-	$folder: "notonaskharabic";
-	$file: "NotoNaskhArabic-Bold";
-	$path: $base + "/" + $folder + "/" + $file;
+  $name: "Noto Naskh Arabic";
+  $folder: "notonaskharabic";
+  $file: "NotoNaskhArabic-Bold";
+  $path: $base + "/" + $folder + "/" + $file;
 
-	@at-root {
-		@font-face {
-			font-family: "#{$name}";
-			font-style: normal;
-			font-weight: 700;
-			src: url($path + '.eot');
-			src: url($path + '.eot?#iefix') format('embedded-opentype'),
-				 url($path + '.woff2') format('woff2'),
-				 url($path + '.woff') format('woff'),
-				 url($path + '.ttf') format('truetype');
-		}
-	}
+  @at-root {
+    @font-face {
+      font-family: "#{$name}";
+      font-style: normal;
+      font-weight: 700;
+      src: url($path + '.eot');
+      src: url($path + '.eot?#iefix') format('embedded-opentype'),
+         url($path + '.woff2') format('woff2'),
+         url($path + '.woff') format('woff'),
+         url($path + '.ttf') format('truetype');
+    }
+  }
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -126,41 +283,41 @@
 
 @mixin theme-fonts-DroidArabicKufi($base: "../../gtheme_03/fonts") {
 
-	$name: "Droid Arabic Kufi";
-	$folder: "droidarabickufi";
-	$file: "DroidKufi-Regular";
-	$path: $base + "/" + $folder + "/" + $file;
+  $name: "Droid Arabic Kufi";
+  $folder: "droidarabickufi";
+  $file: "DroidKufi-Regular";
+  $path: $base + "/" + $folder + "/" + $file;
 
-	@at-root {
-		@font-face {
-			font-family: "#{$name}";
-			font-style: normal;
-			font-weight: 400;
-			src: url($path + '.eot');
-			src: url($path + '.eot?#iefix') format('embedded-opentype'),
-				 url($path + '.woff2') format('woff2'),
-				 url($path + '.woff') format('woff'),
-				 url($path + '.ttf') format('truetype');
-		}
-	}
+  @at-root {
+    @font-face {
+      font-family: "#{$name}";
+      font-style: normal;
+      font-weight: 400;
+      src: url($path + '.eot');
+      src: url($path + '.eot?#iefix') format('embedded-opentype'),
+         url($path + '.woff2') format('woff2'),
+         url($path + '.woff') format('woff'),
+         url($path + '.ttf') format('truetype');
+    }
+  }
 
-	$name: "Droid Arabic Kufi";
-	$folder: "droidarabickufi";
-	$file: "DroidKufi-Bold";
-	$path: $base + "/" + $folder + "/" + $file;
+  $name: "Droid Arabic Kufi";
+  $folder: "droidarabickufi";
+  $file: "DroidKufi-Bold";
+  $path: $base + "/" + $folder + "/" + $file;
 
-	@at-root {
-		@font-face {
-			font-family: "#{$name}";
-			font-style: normal;
-			font-weight: 700;
-			src: url($path + '.eot');
-			src: url($path + '.eot?#iefix') format('embedded-opentype'),
-				 url($path + '.woff2') format('woff2'),
-				 url($path + '.woff') format('woff'),
-				 url($path + '.ttf') format('truetype');
-		}
-	}
+  @at-root {
+    @font-face {
+      font-family: "#{$name}";
+      font-style: normal;
+      font-weight: 700;
+      src: url($path + '.eot');
+      src: url($path + '.eot?#iefix') format('embedded-opentype'),
+         url($path + '.woff2') format('woff2'),
+         url($path + '.woff') format('woff'),
+         url($path + '.ttf') format('truetype');
+    }
+  }
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -172,21 +329,21 @@
 
 @mixin theme-fonts-WeblogmaYekan($base: "../../gtheme_03/fonts") {
 
-	$name: "Weblogma Yekan";
-	$folder: "weblogmayekan";
-	$file: "WeblogmaYekan";
-	$path: $base + "/" + $folder + "/" + $file;
+  $name: "Weblogma Yekan";
+  $folder: "weblogmayekan";
+  $file: "WeblogmaYekan";
+  $path: $base + "/" + $folder + "/" + $file;
 
-	@at-root {
-		@font-face {
-			font-family: "#{$name}";
-			font-style: normal;
-			font-weight: 400;
-			src: url($path + '.eot');
-			src: url($path + '.eot?#iefix') format('embedded-opentype'),
-				//  url($path + '.woff2') format('woff2'),
-				 url($path + '.woff') format('woff'),
-				 url($path + '.ttf') format('truetype');
-		}
-	}
+  @at-root {
+    @font-face {
+      font-family: "#{$name}";
+      font-style: normal;
+      font-weight: 400;
+      src: url($path + '.eot');
+      src: url($path + '.eot?#iefix') format('embedded-opentype'),
+        //  url($path + '.woff2') format('woff2'),
+         url($path + '.woff') format('woff'),
+         url($path + '.ttf') format('truetype');
+    }
+  }
 }
