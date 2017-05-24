@@ -115,9 +115,9 @@ class gThemeBootstrap_Walker_NavBar extends Walker_Nav_Menu
 			$class_names = $value = '';
 
 			$classes = empty( $item->classes ) ? array() : (array) $item->classes;
-			$classes[] = 'menu-item-' . $item->ID;
+			// $classes[] = 'menu-item-'.$item->ID;
 
-			$class_names = join( ' ', apply_filters( 'nav_menu_css_class', array_filter( $classes ), $item, $args ) );
+			$class_names = join( ' ', apply_filters( 'nav_menu_css_class', array_filter( $classes ), $item, $args, $depth ) );
 
 			if ( $args->has_children )
 				$class_names .= ' dropdown';
@@ -127,7 +127,7 @@ class gThemeBootstrap_Walker_NavBar extends Walker_Nav_Menu
 
 			$class_names = $class_names ? ' class="' . esc_attr( $class_names ) . '"' : '';
 
-			$id = apply_filters( 'nav_menu_item_id', 'menu-item-'. $item->ID, $item, $args );
+			$id = apply_filters( 'nav_menu_item_id', 'menu-item-'.$item->ID, $item, $args, $depth );
 			$id = $id ? ' id="' . esc_attr( $id ) . '"' : '';
 
 			$output .= $indent . '<li' . $id . $value . $class_names .'>';
@@ -147,7 +147,7 @@ class gThemeBootstrap_Walker_NavBar extends Walker_Nav_Menu
 				$atts['href'] = ! empty( $item->url ) ? $item->url : '';
 			}
 
-			$atts = apply_filters( 'nav_menu_link_attributes', $atts, $item, $args );
+			$atts = apply_filters( 'nav_menu_link_attributes', $atts, $item, $args, $depth );
 
 			$attributes = '';
 			foreach ( $atts as $attr => $value ) {
@@ -156,6 +156,9 @@ class gThemeBootstrap_Walker_NavBar extends Walker_Nav_Menu
 					$attributes .= ' ' . $attr . '="' . $value . '"';
 				}
 			}
+
+			$title = apply_filters( 'the_title', $item->title, $item->ID );
+			$title = apply_filters( 'nav_menu_item_title', $title, $item, $args, $depth );
 
 			$item_output = $args->before;
 
@@ -171,7 +174,7 @@ class gThemeBootstrap_Walker_NavBar extends Walker_Nav_Menu
 			else
 				$item_output .= '<a'. $attributes .'>';
 
-			$item_output .= $args->link_before . apply_filters( 'the_title', $item->title, $item->ID ) . $args->link_after;
+			$item_output .= $args->link_before.$title.$args->link_after;
 			$item_output .= ( $args->has_children && 0 === $depth ) ? ' <span class="caret"></span></a>' : '</a>';
 			$item_output .= $args->after;
 
