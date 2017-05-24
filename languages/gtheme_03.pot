@@ -61,11 +61,11 @@ msgstr ""
 msgid "<strong>The default avatar is overrided by the active theme.</strong>"
 msgstr ""
 
-#: inc/attachment.php:56
+#: inc/attachment.php:59
 msgid "Download Attachment"
 msgstr ""
 
-#: inc/attachment.php:91
+#: inc/attachment.php:94
 msgctxt "Module: Attachment: Backlink Template"
 msgid "&larr; Back to &ldquo;%s&rdquo;"
 msgstr ""
@@ -253,59 +253,76 @@ msgctxt "Content: Title Attr"
 msgid "Short link for &ndash;%s&ndash;"
 msgstr ""
 
-#: inc/content.php:340, inc/content.php:526
+#: inc/content.php:330
+msgctxt "Modules: Content: Action"
 msgid "Print Version"
 msgstr ""
 
-#: inc/content.php:349, inc/content.php:357, inc/content.php:564
+#: inc/content.php:339, inc/content.php:347
+msgctxt "Modules: Content: Action"
 msgid "Share This"
 msgstr ""
 
-#: inc/content.php:364
+#: inc/content.php:354
+msgctxt "Modules: Content: Action"
 msgid "Short Link"
 msgstr ""
 
-#: inc/content.php:398
+#: inc/content.php:389
+msgctxt "Modules: Content: Action"
 msgid "<a href=\"%3$s\" class=\"%1$s\">Your Comment</a>"
 msgstr ""
 
-#: inc/content.php:399
+#: inc/content.php:390
+msgctxt "Modules: Content: Action"
 msgid "<a href=\"%3$s\" class=\"%1$s\">One Comment</a>"
 msgstr ""
 
-#: inc/content.php:400
+#: inc/content.php:391
+msgctxt "Modules: Content: Action"
 msgid "<a href=\"%3$s\" class=\"%1$s\">%2$s Comments</a>"
 msgstr ""
 
-#: inc/content.php:407
+#: inc/content.php:398
+msgctxt "Modules: Content: Action"
 msgid " <small><small>(<a href=\"%1$s\" title=\"%2$s\" class=\"%3$s\"><abbr title=\"Really Simple Syndication\">RSS</abbr></a>)</small></small>"
 msgstr ""
 
-#: inc/content.php:409
+#: inc/content.php:400
+msgctxt "Modules: Content: Action"
 msgid "Feed for this post's comments"
 msgstr ""
 
-#: inc/content.php:420
+#: inc/content.php:411
+msgctxt "Modules: Content: Action"
 msgid "Edit"
 msgstr ""
 
-#: inc/content.php:462
+#: inc/content.php:477
 msgid "Increase font size"
 msgstr ""
 
-#: inc/content.php:472
+#: inc/content.php:487
 msgid "Decrease font size"
 msgstr ""
 
-#: inc/content.php:483
+#: inc/content.php:498
 msgid "Justify paragraphs"
 msgstr ""
 
-#: inc/content.php:490
+#: inc/content.php:505
 msgid "Un-justify paragraphs"
 msgstr ""
 
-#: inc/content.php:565
+#: inc/content.php:541
+msgid "Print Version"
+msgstr ""
+
+#: inc/content.php:579
+msgid "Share This"
+msgstr ""
+
+#: inc/content.php:580
 msgid "Share This with your friends."
 msgstr ""
 
@@ -334,28 +351,28 @@ msgctxt "Counts Module: Tab Title"
 msgid "Counts"
 msgstr ""
 
-#: inc/filters.php:255
+#: inc/filters.php:251
 msgid "Page %s"
 msgstr ""
 
-#: inc/image.php:73
+#: inc/image.php:58
 msgid "Undefined Image Size"
 msgstr ""
 
-#: inc/image.php:239
+#: inc/image.php:224
 msgctxt "Image Module: Media Tag Checkbox Label"
 msgid "%1$s <small>(%2$s&times;%3$s)</small>"
 msgstr ""
 
-#: inc/image.php:254
+#: inc/image.php:239
 msgid "Media Tags"
 msgstr ""
 
-#: inc/image.php:313
+#: inc/image.php:300
 msgid "&mdash; Select a Term &mdash;"
 msgstr ""
 
-#: inc/image.php:323
+#: inc/image.php:310
 msgid "Assign for"
 msgstr ""
 
@@ -416,7 +433,7 @@ msgstr ""
 msgid "Error: settings type undefined."
 msgstr ""
 
-#: inc/modulecore.php:537
+#: inc/modulecore.php:530
 msgid ", "
 msgstr ""
 
@@ -455,67 +472,72 @@ msgctxt "Navigation Module: Breadcrumbs"
 msgid "Page <strong>%s</strong> of %s"
 msgstr ""
 
-#: inc/navigation.php:172
+#: inc/navigation.php:171
 msgctxt "Navigation Module: Breadcrumbs"
 msgid "Site Archives"
 msgstr ""
 
-#: inc/navigation.php:180
+#: inc/navigation.php:178
+msgctxt "Navigation Module: Breadcrumbs"
+msgid "Not Found"
+msgstr ""
+
+#: inc/navigation.php:182
 msgctxt "Navigation Module: Breadcrumbs"
 msgid "Category Archives for <strong>%s</strong>"
 msgstr ""
 
-#: inc/navigation.php:185
+#: inc/navigation.php:187
 msgctxt "Navigation Module: Breadcrumbs"
 msgid "Tag Archives for <strong>%s</strong>"
 msgstr ""
 
-#: inc/navigation.php:190
+#: inc/navigation.php:192
 msgctxt "Navigation Module: Breadcrumbs"
 msgid "Archives for <strong>%s</strong>"
 msgstr ""
 
-#: inc/navigation.php:199
+#: inc/navigation.php:201
 msgctxt "Navigation Module: Breadcrumbs"
 msgid "Author Archives for <strong>%s</strong>"
 msgstr ""
 
-#: inc/navigation.php:205
+#: inc/navigation.php:207
 msgctxt "Navigation Module: Breadcrumbs"
 msgid "Search Results for <strong>%s</strong>"
 msgstr ""
 
-#: inc/navigation.php:210
+#: inc/navigation.php:212
 msgctxt "Navigation Module: Breadcrumbs"
 msgid "Daily Archives for <strong>%s</strong>"
 msgstr ""
 
-#: inc/navigation.php:215
+#: inc/navigation.php:217
 msgctxt "Navigation Module: Breadcrumbs"
 msgid "Monthly Archives for <strong>%s</strong>"
 msgstr ""
 
-#: inc/navigation.php:220
+#: inc/navigation.php:222
 msgctxt "Navigation Module: Breadcrumbs"
 msgid "Yearly Archives for <strong>%s</strong>"
 msgstr ""
 
-#: inc/navigation.php:231
+#: inc/navigation.php:233
 msgctxt "Navigation Module: Breadcrumbs"
 msgid "Page <strong>%s</strong>"
 msgstr ""
 
-#: inc/navigation.php:269
+#: inc/navigation.php:271
 msgctxt "Navigation Module"
 msgid "Page"
 msgstr ""
 
-#: inc/navigation.php:291
+#: inc/navigation.php:293
 msgctxt "Navigation Module"
 msgid "Newer Posts"
 msgstr ""
 
-#: inc/navigation.php:292
+#: inc/navigation.php:294
 msgctxt "Navigation Module"
 msgid "Older Posts"
 msgstr ""
@@ -728,6 +750,16 @@ msgstr ""
 #: inc/options.php:257
 msgctxt "Banner Groups"
 msgid "Second"
+msgstr ""
+
+#: inc/options.php:267
+msgctxt "Options: Defaults: Date Format: Byline"
+msgid "j M Y"
+msgstr ""
+
+#: inc/options.php:268
+msgctxt "Options: Defaults: Date Format: Day"
+msgid "j M Y"
 msgstr ""
 
 #: inc/pages.php:23
@@ -1086,117 +1118,112 @@ msgctxt "Sidebar Module: Widget Description"
 msgid "Display the current term info based on the query"
 msgstr ""
 
-#: inc/terms.php:37, inc/terms.php:106
+#: inc/terms.php:38, inc/terms.php:107
 msgctxt "Terms Module"
 msgid "Primary Terms"
 msgstr ""
 
-#: inc/terms.php:140
+#: inc/terms.php:141
 msgctxt "Terms Module"
 msgid "Create Default Primary Terms"
 msgstr ""
 
-#: inc/terms.php:154
+#: inc/terms.php:155
 msgctxt "System Tag Tax Labels: Name"
 msgid "System Tags"
 msgstr ""
 
-#: inc/terms.php:155
+#: inc/terms.php:156, inc/terms.php:209
 msgctxt "System Tag Tax Labels: Menu Name"
 msgid "System Tags"
 msgstr ""
 
-#: inc/terms.php:156
+#: inc/terms.php:157
 msgctxt "System Tag Tax Labels: Singular Name"
 msgid "System Tag"
 msgstr ""
 
-#: inc/terms.php:157
+#: inc/terms.php:158
 msgctxt "System Tag Tax Labels"
 msgid "Search System Tags"
 msgstr ""
 
-#: inc/terms.php:158
+#: inc/terms.php:159
 msgctxt "System Tag Tax Labels"
 msgid "All System Tags"
 msgstr ""
 
-#: inc/terms.php:159
+#: inc/terms.php:160
 msgctxt "System Tag Tax Labels"
 msgid "Parent System Tag"
 msgstr ""
 
-#: inc/terms.php:160
+#: inc/terms.php:161
 msgctxt "System Tag Tax Labels"
 msgid "Parent System Tag:"
 msgstr ""
 
-#: inc/terms.php:161
+#: inc/terms.php:162
 msgctxt "System Tag Tax Labels"
 msgid "Edit System Tag"
 msgstr ""
 
-#: inc/terms.php:162
+#: inc/terms.php:163
 msgctxt "System Tag Tax Labels"
 msgid "View System Tag"
 msgstr ""
 
-#: inc/terms.php:163
+#: inc/terms.php:164
 msgctxt "System Tag Tax Labels"
 msgid "Update System Tag"
 msgstr ""
 
-#: inc/terms.php:164
+#: inc/terms.php:165
 msgctxt "System Tag Tax Labels"
 msgid "Add New System Tag"
 msgstr ""
 
-#: inc/terms.php:165
+#: inc/terms.php:166
 msgctxt "System Tag Tax Labels"
 msgid "New System Tag Name"
 msgstr ""
 
-#: inc/terms.php:166
+#: inc/terms.php:167
 msgctxt "System Tag Tax Labels"
 msgid "No system tags found."
 msgstr ""
 
-#: inc/terms.php:167
+#: inc/terms.php:168
 msgctxt "System Tag Tax Labels"
 msgid "No system tags"
 msgstr ""
 
-#: inc/terms.php:168
+#: inc/terms.php:169
 msgctxt "System Tag Tax Labels"
 msgid "System Tags list navigation"
 msgstr ""
 
-#: inc/terms.php:169
+#: inc/terms.php:170
 msgctxt "System Tag Tax Labels"
 msgid "System Tags list"
 msgstr ""
 
-#: inc/terms.php:208
-msgctxt "System Tags Label: menu_name"
-msgid "System Tags"
-msgstr ""
-
-#: inc/terms.php:253
+#: inc/terms.php:251
 msgctxt "Terms Module"
 msgid "Install Default System Tags"
 msgstr ""
 
-#: inc/terms.php:258
+#: inc/terms.php:256
 msgctxt "Terms Module"
 msgid "Error while adding default system tags."
 msgstr ""
 
-#: inc/terms.php:260
+#: inc/terms.php:258
 msgctxt "Terms Module"
 msgid "Default system tags added."
 msgstr ""
 
-#: inc/terms.php:276
+#: inc/terms.php:274
 msgid "Connected Posts"
 msgstr ""
 
