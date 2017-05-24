@@ -307,8 +307,8 @@ class gThemeContent extends gThemeModuleCore
 				self::text_size_buttons(
 					sprintf( $before, 'textsize-buttons hidden-print' ), $after,
 					( 'textsize_buttons_nosep' == $action ? FALSE : 'def' ),
-					( $icon ? self::getDashicon( 'zoom' ) : 'def' ),
-					( $icon ? self::getDashicon( 'unzoom' ) : 'def' )
+					( $icon ? self::getGenericon( 'zoom' ) : 'def' ),
+					( $icon ? self::getGenericon( 'unzoom' ) : 'def' )
 				);
 
 			break;
@@ -318,8 +318,8 @@ class gThemeContent extends gThemeModuleCore
 				self::justify_buttons(
 					sprintf( $before, 'textjustify-buttons hidden-print' ), $after,
 					( 'textjustify_buttons_nosep' == $action ? FALSE : 'def' ),
-					( $icon ? self::getDashicon( 'minimize' ) : 'def' ),
-					( $icon ? self::getDashicon( 'previous' ) : 'def' )
+					( $icon ? self::getGenericon( 'minimize' ) : 'def' ),
+					( $icon ? self::getGenericon( 'previous' ) : 'def' )
 				);
 
 			break;
@@ -327,7 +327,7 @@ class gThemeContent extends gThemeModuleCore
 
 				self::printfriendly(
 					sprintf( $before, 'printfriendly post-print-link hidden-print' ), $after,
-					( $icon ? self::getDashicon( 'print' ) : _x( 'Print Version', 'Modules: Content: Action', GTHEME_TEXTDOMAIN ) )
+					( $icon ? self::getGenericon( 'print' ) : _x( 'Print Version', 'Modules: Content: Action', GTHEME_TEXTDOMAIN ) )
 				);
 
 			break;
@@ -336,7 +336,7 @@ class gThemeContent extends gThemeModuleCore
 
 				self::addtoany(
 					sprintf( $before, 'addtoany post-share-link' ), $after,
-					( $icon ? self::getDashicon( 'share' ) : _x( 'Share This', 'Modules: Content: Action', GTHEME_TEXTDOMAIN ) )
+					( $icon ? self::getGenericon( 'share' ) : _x( 'Share This', 'Modules: Content: Action', GTHEME_TEXTDOMAIN ) )
 				);
 
 			break;
@@ -344,14 +344,14 @@ class gThemeContent extends gThemeModuleCore
 
 				self::addthis(
 					sprintf( $before, 'addthis post-share-link' ), $after,
-					( $icon ? self::getDashicon( 'share' ) : _x( 'Share This', 'Modules: Content: Action', GTHEME_TEXTDOMAIN ) )
+					( $icon ? self::getGenericon( 'share' ) : _x( 'Share This', 'Modules: Content: Action', GTHEME_TEXTDOMAIN ) )
 				);
 
 			break;
 			case 'shortlink':
 
 				self::shortlink(
-					( $icon ? self::getDashicon( 'link' ) : _x( 'Short Link', 'Modules: Content: Action', GTHEME_TEXTDOMAIN ) ),
+					( $icon ? self::getGenericon( 'link' ) : _x( 'Short Link', 'Modules: Content: Action', GTHEME_TEXTDOMAIN ) ),
 					NULL,
 					sprintf( $before, '-action -shortlink' ),
 					$after,
@@ -383,7 +383,7 @@ class gThemeContent extends gThemeModuleCore
 					}
 
 					if ( $icon )
-						printf( '<a href="%2$s" class="%1$s">%3$s</a>', $class, $link, self::getDashicon( 'comment' ) );
+						printf( '<a href="%2$s" class="%1$s">%3$s</a>', $class, $link, self::getGenericon( 'comment' ) );
 					else
 						comments_number(
 							sprintf( _x( '<a href="%3$s" class="%1$s">Your Comment</a>', 'Modules: Content: Action', GTHEME_TEXTDOMAIN ), $class, '', $link ),
@@ -393,7 +393,7 @@ class gThemeContent extends gThemeModuleCore
 
 					if ( 'comments_link_feed' == $action ) {
 						if ( $icon )
-							printf( '<a href="%2$s" class="%1$s">%3$s</a>', 'comments-link-rss', get_post_comments_feed_link(), self::getDashicon( 'feed' ) );
+							printf( '<a href="%2$s" class="%1$s">%3$s</a>', 'comments-link-rss', get_post_comments_feed_link(), self::getGenericon( 'feed' ) );
 						else
 							printf( _x( ' <small><small>(<a href="%1$s" title="%2$s" class="%3$s"><abbr title="Really Simple Syndication">RSS</abbr></a>)</small></small>', 'Modules: Content: Action', GTHEME_TEXTDOMAIN ),
 								get_post_comments_feed_link(),
@@ -408,7 +408,7 @@ class gThemeContent extends gThemeModuleCore
 			case 'edit_post_link':
 
 				edit_post_link(
-					( $icon ? self::getDashicon( 'edit' ) : _x( 'Edit', 'Modules: Content: Action', GTHEME_TEXTDOMAIN ) ),
+					( $icon ? self::getGenericon( 'edit' ) : _x( 'Edit', 'Modules: Content: Action', GTHEME_TEXTDOMAIN ) ),
 					sprintf( $before, 'post-edit-link post-edit-link-li' ),
 					$after
 				);
@@ -440,14 +440,14 @@ class gThemeContent extends gThemeModuleCore
 				gThemeDate::date( array(
 					'before' => sprintf( $before, 'the-date' ),
 					'after'  => $after,
-					'text'   => $icon ? self::getDashicon( 'edit' ) : NULL,
+					'text'   => $icon ? self::getGenericon( 'edit' ) : NULL,
 				) );
 		}
 	}
 
-	public static function getDashicon( $icon = 'edit', $tag = 'div', $title = FALSE )
+	public static function getGenericon( $icon = 'edit', $tag = 'div' )
 	{
-		return gThemeHTML::getDashicon();
+		return '<'.$tag.' class="genericon genericon-'.$icon.'"></'.$tag.'>';
 	}
 
 	public static function shortlink( $text, $post = NULL, $before = '', $after = '', $title = NULL )
