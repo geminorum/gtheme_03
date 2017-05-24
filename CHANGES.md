@@ -1,3 +1,20 @@
+### 3.14.6
+* root: new template for full with page, supporting posts & pages
+* assets/styles: minify html updated
+* main/modulecore: get terms updated
+* module/attachment: check for no caption first
+* module/bootstrap: support for mega menu with template part
+* module/bootstrap: filter changes for nav menu walker
+* module/content: post actions revised
+* module/editorial: comp with gEditorial v3.10.0
+* module/frontpage: current post in the must excludes
+* module/filters: using get post for slug as body css class
+* module/navigation: 404 in breadcrumb
+* module/options: default date formats
+* module/tamplate: correct func for term link
+* module/terms: comp with new geditorial tweaks
+* module/terms: new link primary term helper
+
 ### 3.14.5
 * module/admin: not setting the default author by default
 * module/attachment: apply typography filters on captions
