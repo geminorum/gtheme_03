@@ -547,28 +547,47 @@ class gThemeContent extends gThemeModuleCore
 		?><script type="text/javascript">(function(){var e=document.createElement('script');e.type='text/javascript';e.src='//cdn.printfriendly.com/printfriendly.js';document.getElementsByTagName('head')[0].appendChild(e);})();</script><?php
 	}
 
-	// @REF: http://www.addtoany.com/buttons/for/website
+	// @REF: https://www.addtoany.com/buttons/customize/
 	public static function addtoany( $before = '', $after = '', $text = NULL )
 	{
+		$premalink = get_permalink();
+
 		$query = array(
-			'linkurl'  => urlencode( get_permalink() ),
+			'linkurl'  => urlencode( $premalink ),
 			'linkname' => self::title_attr( FALSE, NULL, '%s' ),
 		);
 
 		echo $before;
-		printf( '<a class="a2a_dd" href="%1$s" rel="nofollow">%2$s</a>',
+		printf( '<a class="a2a_dd" href="%1$s" rel="nofollow" data-a2a-url="%3$s" data-a2a-title="%4$s">%2$s</a>',
 			add_query_arg( $query, 'http://www.addtoany.com/share_save' ),
-			( $text ? $text : __( 'Share This', GTHEME_TEXTDOMAIN ) )
+			( $text ? $text : __( 'Share This', GTHEME_TEXTDOMAIN ) ),
+			$premalink,
+			esc_attr( $query['linkname'] )
 		);
 		echo $after;
 
+		if ( $twitter = gThemeOptions::info( 'twitter_site', FALSE ) )
+			$twitter_template = '${title} ${link} by @'.$twitter;
+		else
+			$twitter_template = '${title} ${link}';
+
 		?><script type="text/javascript">
 var a2a_config = a2a_config || {};
-a2a_config.linkname = '<?php echo esc_js( esc_url_raw( $query['linkurl'] ) ); ?>';
-a2a_config.linkurl = '<?php echo esc_js( $query['linkname'] ); ?>';
-a2a_config.onclick = 1;
+a2a_config.linkname  = '<?php echo esc_js( $query['linkname'] ); ?>';
+a2a_config.linkurl = '<?php echo esc_js( esc_url_raw( $premalink ) ); ?>';
+a2a_config.onclick = true;
 a2a_config.locale = "fa";
-</script><script async src="https://static.addtoany.com/menu/page.js"></script><?php
+a2a_config.prioritize = ["email", "twitter", "facebook", "evernote", "tumblr", "wordpress", "blogger_post", "google_gmail", "hotmail", "read_it_later", "linkedin"];
+a2a_config.templates = {
+	twitter: '<?php echo $twitter_template; ?>',
+	email: {
+		subject: "Check this out: ${title}",
+		body: "Click the link:\n${link}"
+	}
+};
+if(typeof(ga)!='undefined'){a2a_config.track_links = 'ga';}
+(function(){var a=document.createElement('script');a.type='text/javascript';a.async=true;a.src='//static.addtoany.com/menu/page.js';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(a,s);})();
+</script><?php
 	}
 
 	// FIXME: DRAFT / NOT TESTED
