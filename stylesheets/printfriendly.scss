@@ -1,0 +1,25 @@
+@import 'modules/all';
+@import 'partials/base';
+
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+// @REF: https://support.printfriendly.com/button/developer-questions/custom-css-styles/
+
+#printfriendly {
+
+  // changes font family and size
+  font-family: Tahoma;
+  font-size: 14px;
+
+  // aligns images to the left
+  img {
+    float: left;
+    margin-top: 12px;
+    margin-right: 12px;
+  }
+
+  #pf-src {
+    // display: none; // hides the Page Title and Source URL
+  }
+}

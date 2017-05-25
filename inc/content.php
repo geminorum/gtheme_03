@@ -509,57 +509,42 @@ class gThemeContent extends gThemeModuleCore
 		echo $a;
 	}
 
-	// http://www.printfriendly.com/button
-	public static function printfriendly( $b = '', $a = '', $text = NULL, $footer = TRUE, $analytics = TRUE )
+	// @REF: https://support.printfriendly.com/button/developer-questions/custom-css-styles/
+	public static function printfriendly( $before = '', $after = '', $text = NULL, $footer = TRUE, $analytics = TRUE )
 	{
 		if ( $footer && is_singular() )
 			add_action( 'wp_footer', array( __CLASS__, 'printfriendly_footer' ) );
 
 		$query_args = array(
-			'url' => urlencode( get_permalink() ),
-			// 'headerImageUrl' => '',
-			// 'headerTagline' => '',
-			'pfCustomCSS'       => urlencode( GTHEME_URL.'/css/printfriendly_01.css' ),
-			'imageDisplayStyle' => gThemeUtilities::isRTL( 'left', 'right' ), //'block',
+			'url'               => urlencode( get_permalink() ),
+			'CustomCSS'         => urlencode( GTHEME_URL.'/css/printfriendly.css' ),
+			'imageDisplayStyle' => gThemeUtilities::isRTL( 'left', 'right' ), // 'block',
+			// 'headerImageUrl'    => '',
+			// 'headerTagline'     => '',
 			// 'disableClickToDel' => '',
-			// 'disablePDF' => '',
-			// 'disablePrint' => '',
-			// 'disableEmail' => '',
-			// 'hideImages' => '',
+			// 'disablePDF'        => '',
+			// 'disablePrint'      => '',
+			// 'disableEmail'      => '',
+			// 'hideImages'        => '',
 		);
 
-
-		$onclick = 'onclick="window.print(); return false;"';
-		$title_var = "NULL";
-		$analytics_code = "if(typeof(_gaq) != 'undefined') { _gaq.push(['_trackEvent','PRINTFRIENDLY', 'print', '".$title_var."']);}";
 		if ( $analytics )
-			$onclick = 'onclick="window.print();'.$analytics_code.' return false;"';
+			$onclick = 'onclick="window.print();'."if(typeof(ga)!='undefined'){ga('send','event','PrintFriendly');}".'return false;"';
+		else
+			$onclick = 'onclick="window.print();return false;"';
 
-		echo $b;
+		echo $before;
 		printf( '<a href="%1$s" rel="nofollow" %3$s>%2$s</a>',
-			add_query_arg( $query_args, 'http://www.printfriendly.com/print' ),
+			add_query_arg( $query_args, 'https://www.printfriendly.com/print' ),
 			( $text ? $text : __( 'Print Version', GTHEME_TEXTDOMAIN ) ),
 			$onclick
 		);
-		echo $a;
+		echo $after;
 	}
 
-	// prints the PrintFriendly JavaScript, in the footer, and loads it asynchronously.
 	public static function printfriendly_footer()
 	{
-		?><script type="text/javascript">
-		  (function() {
-			var e = document.createElement('script');
-				e.type="text/javascript";
-			if('https:' == document.location.protocol) {
-			  js='https://pf-cdn.printfriendly.com/ssl/main.js';
-			}else{
-			  js='http://cdn.printfriendly.com/printfriendly.js';
-			}
-			e.src = js;
-			document.getElementsByTagName('head')[0].appendChild(e);
-			})();
-	  </script><?php
+		?><script type="text/javascript">(function(){var e=document.createElement('script');e.type='text/javascript';e.src='//cdn.printfriendly.com/printfriendly.js';document.getElementsByTagName('head')[0].appendChild(e);})();</script><?php
 	}
 
 	// http://www.addtoany.com/buttons/for/website
