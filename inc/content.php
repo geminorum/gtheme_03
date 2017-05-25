@@ -547,36 +547,29 @@ class gThemeContent extends gThemeModuleCore
 		?><script type="text/javascript">(function(){var e=document.createElement('script');e.type='text/javascript';e.src='//cdn.printfriendly.com/printfriendly.js';document.getElementsByTagName('head')[0].appendChild(e);})();</script><?php
 	}
 
-	// http://www.addtoany.com/buttons/for/website
-	public static function addtoany( $b = '', $a = '', $text = NULL, $footer = TRUE )
+	// @REF: http://www.addtoany.com/buttons/for/website
+	public static function addtoany( $before = '', $after = '', $text = NULL )
 	{
-		if ( $footer && is_singular() )
-			add_action( 'wp_footer', array( __CLASS__, 'addtoany_footer' ), 5 );
-
-		$query_args = array(
+		$query = array(
 			'linkurl'  => urlencode( get_permalink() ),
 			'linkname' => self::title_attr( FALSE, NULL, '%s' ),
 		);
 
-		echo $b;
-		printf( '<a href="%1$s" rel="nofollow" title="%3$s" data-toggle="tooltip">%2$s</a>',
-			add_query_arg( $query_args, 'http://www.addtoany.com/share_save' ),
+		echo $before;
+		printf( '<a class="a2a_dd" href="%1$s" rel="nofollow" title="%3$s" data-toggle="tooltip">%2$s</a>',
+			add_query_arg( $query, 'http://www.addtoany.com/share_save' ),
 			( $text ? $text : __( 'Share This', GTHEME_TEXTDOMAIN ) ),
 			__( 'Share This with your friends.', GTHEME_TEXTDOMAIN )
 		);
-		echo $a;
-	}
+		echo $after;
 
-	public static function addtoany_footer()
-	{
 		?><script type="text/javascript">
 var a2a_config = a2a_config || {};
-a2a_config.linkname = '<?php echo esc_js( esc_url_raw( get_permalink() ) ); ?>';
-a2a_config.linkurl = '<?php echo esc_js( self::title_attr( FALSE, NULL, '%s' ) ); ?>';
+a2a_config.linkname = '<?php echo esc_js( esc_url_raw( $query['linkurl'] ) ); ?>';
+a2a_config.linkurl = '<?php echo esc_js( $query['linkname'] ); ?>';
 a2a_config.onclick = 1;
 a2a_config.locale = "fa";
-</script>
-<script type="text/javascript" src="//static.addtoany.com/menu/page.js"></script><?php
+</script><script async src="https://static.addtoany.com/menu/page.js"></script><?php
 	}
 
 	// FIXME: DRAFT / NOT TESTED
