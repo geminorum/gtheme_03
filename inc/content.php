@@ -556,10 +556,9 @@ class gThemeContent extends gThemeModuleCore
 		);
 
 		echo $before;
-		printf( '<a class="a2a_dd" href="%1$s" rel="nofollow" title="%3$s" data-toggle="tooltip">%2$s</a>',
+		printf( '<a class="a2a_dd" href="%1$s" rel="nofollow">%2$s</a>',
 			add_query_arg( $query, 'http://www.addtoany.com/share_save' ),
-			( $text ? $text : __( 'Share This', GTHEME_TEXTDOMAIN ) ),
-			__( 'Share This with your friends.', GTHEME_TEXTDOMAIN )
+			( $text ? $text : __( 'Share This', GTHEME_TEXTDOMAIN ) )
 		);
 		echo $after;
 
