@@ -577,7 +577,7 @@ a2a_config.linkname  = '<?php echo esc_js( $query['linkname'] ); ?>';
 a2a_config.linkurl = '<?php echo esc_js( esc_url_raw( $premalink ) ); ?>';
 a2a_config.onclick = true;
 a2a_config.locale = "fa";
-a2a_config.prioritize = ["email", "twitter", "facebook", "evernote", "tumblr", "wordpress", "blogger_post", "google_gmail", "hotmail", "read_it_later", "linkedin"];
+a2a_config.prioritize = ["email", "twitter", "facebook", "evernote", "tumblr", "wordpress", "blogger_post", "read_it_later", "linkedin"];
 a2a_config.templates = {
 	twitter: "<?php echo $twitter_template; ?>",
 	email: {
