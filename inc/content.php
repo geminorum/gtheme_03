@@ -536,7 +536,7 @@ class gThemeContent extends gThemeModuleCore
 		echo $before;
 		printf( '<a href="%1$s" rel="nofollow" %3$s>%2$s</a>',
 			add_query_arg( $query_args, 'https://www.printfriendly.com/print' ),
-			( $text ? $text : __( 'Print Version', GTHEME_TEXTDOMAIN ) ),
+			( $text ? $text : _x( 'Print Version', 'Modules: Content: PrintFriendly', GTHEME_TEXTDOMAIN ) ),
 			$onclick
 		);
 		echo $after;
@@ -560,7 +560,7 @@ class gThemeContent extends gThemeModuleCore
 		echo $before;
 		printf( '<a class="a2a_dd" href="%1$s" rel="nofollow" data-a2a-url="%3$s" data-a2a-title="%4$s">%2$s</a>',
 			add_query_arg( $query, 'http://www.addtoany.com/share_save' ),
-			( $text ? $text : __( 'Share This', GTHEME_TEXTDOMAIN ) ),
+			( $text ? $text : _x( 'Share This', 'Modules: Content: Addtoany', GTHEME_TEXTDOMAIN ) ),
 			$premalink,
 			esc_attr( $query['linkname'] )
 		);
@@ -579,10 +579,10 @@ a2a_config.onclick = true;
 a2a_config.locale = "fa";
 a2a_config.prioritize = ["email", "twitter", "facebook", "evernote", "tumblr", "wordpress", "blogger_post", "google_gmail", "hotmail", "read_it_later", "linkedin"];
 a2a_config.templates = {
-	twitter: '<?php echo $twitter_template; ?>',
+	twitter: "<?php echo $twitter_template; ?>",
 	email: {
-		subject: "Check this out: ${title}",
-		body: "Click the link:\n${link}"
+		subject: "<?php echo esc_js( sprintf( _x( 'Check this out %s', 'Modules: Content: Addtoany', GTHEME_TEXTDOMAIN ), '${title}' ) ); ?>",
+		body: "<?php echo esc_js( sprintf( _x( "Click the link:\n%s", 'Modules: Content: Addtoany', GTHEME_TEXTDOMAIN ), '${link}' ) ); ?>"
 	}
 };
 if(typeof(ga)!='undefined'){a2a_config.track_links = 'ga';}
