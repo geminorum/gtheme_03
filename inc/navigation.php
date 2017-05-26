@@ -187,6 +187,11 @@ class gThemeNavigation extends gThemeModuleCore
 			$template = empty( $args['strings']['tag'] ) ? _x( 'Tag Archives for <strong>%s</strong>', 'Navigation Module: Breadcrumbs', GTHEME_TEXTDOMAIN ) : $args['strings']['tag'];
 			$crumbs[] = sprintf( $template, single_term_title( '', FALSE ) );
 
+		} else if ( is_tax( 'people' ) ) {
+
+			$template = empty( $args['strings']['people'] ) ? _x( 'People Archives for <strong>%s</strong>', 'Navigation Module: Breadcrumbs', GTHEME_TEXTDOMAIN ) : $args['strings']['people'];
+			$crumbs[] = sprintf( $template, single_term_title( '', FALSE ) );
+
 		} else if ( is_tax() ) {
 
 			$template = empty( $args['strings']['tax'] ) ? _x( 'Archives for <strong>%s</strong>', 'Navigation Module: Breadcrumbs', GTHEME_TEXTDOMAIN ) : $args['strings']['tax'];
