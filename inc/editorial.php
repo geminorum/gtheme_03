@@ -32,6 +32,28 @@ class gThemeEditorial extends gThemeModuleCore
 		echo gEditorial()->series->series_shortcode( $atts );
 	}
 
+	public static function siteModified( $atts = array() )
+	{
+		if ( ! function_exists( 'gEditorial' ) )
+			return FALSE;
+
+		if ( ! gEditorial()->enabled( 'modified' ) )
+			return FALSE;
+
+		echo gEditorial()->modified->site_modified_shortcode( $atts );
+	}
+
+	public static function postModified( $atts = array() )
+	{
+		if ( ! function_exists( 'gEditorial' ) )
+			return FALSE;
+
+		if ( ! gEditorial()->enabled( 'modified' ) )
+			return FALSE;
+
+		echo gEditorial()->modified->post_modified_shortcode( $atts );
+	}
+
 	public static function label( $atts = array() )
 	{
 		if ( ! is_callable( array( 'geminorum\\gEditorial\\Templates\\Meta', 'metaLabel' ) ) )
