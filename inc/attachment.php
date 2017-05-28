@@ -39,9 +39,6 @@ class gThemeAttachment extends gThemeModuleCore
 		echo $args['before'].$html.$args['after'];
 	}
 
-	// FIXME: DRAFT / WORKING
-	// OLD: gtheme_attachment()
-	// SEE: prepend_attachment()
 	public static function image( $atts = array() )
 	{
 		$args = self::atts( array(
@@ -67,6 +64,57 @@ class gThemeAttachment extends gThemeModuleCore
 
 		if ( $html )
 			echo $args['before'].$html.$args['after'];
+	}
+
+	// @REF: `prepend_attachment()`
+	public static function media( $atts = array() )
+	{
+		$args = self::atts( array(
+			'before' => '<div class="entry-attachment entry-attachment-media">',
+			'after'  => '</div>',
+			'id'     => NULL,
+			'echo'   => TRUE,
+			'extra'  => array(),
+		), $atts );
+
+		$post = get_post( $args['id'] );
+
+		if ( ! $post )
+			return FALSE;
+
+		if ( wp_attachment_is( 'video', $post ) ) {
+
+			$meta = wp_get_attachment_metadata( $post->ID );
+
+			$shortcode = array(
+				'src' => wp_get_attachment_url( $post->ID ),
+			);
+
+			if ( ! empty( $meta['width'] )
+				&& ! empty( $meta['height'] ) ) {
+				$shortcode['width'] = (int) $meta['width'];
+				$shortcode['height'] = (int) $meta['height'];
+			}
+
+			if ( $thumbnail_id = get_post_thumbnail_id( $post ) )
+				$shortcode['poster'] = wp_get_attachment_url( $thumbnail_id );
+
+			$html = wp_video_shortcode( array_merge( $shortcode, $args['extra'] ) );
+
+		} else if ( wp_attachment_is( 'audio', $post ) ) {
+
+			$html = wp_audio_shortcode( array_merge( array(
+				'src' => wp_get_attachment_url( $post->ID ),
+			), $args['extra'] ) );
+
+		} else {
+			return FALSE;
+		}
+
+		if ( ! $args['echo'] )
+			return $args['before'].$html.$args['after'];
+
+		echo $args['before'].$html.$args['after'];
 	}
 
 	public static function backlink( $atts = array() )
