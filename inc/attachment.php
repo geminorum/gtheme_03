@@ -102,6 +102,10 @@ class gThemeAttachment extends gThemeModuleCore
 			), $args['extra'] ) );
 
 		} else {
+
+			// FALLBACK
+			self::download( array( 'id' => $args['id'], 'class' => '-attachment' ) );
+
 			return FALSE;
 		}
 
@@ -109,6 +113,8 @@ class gThemeAttachment extends gThemeModuleCore
 			return $args['before'].$html.$args['after'];
 
 		echo $args['before'].$html.$args['after'];
+
+		return TRUE;
 	}
 
 	public static function backlink( $atts = array() )
