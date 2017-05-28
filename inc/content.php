@@ -406,6 +406,7 @@ class gThemeContent extends gThemeModuleCore
 
 			break;
 			case 'edit_post_link':
+			case 'edit':
 
 				edit_post_link(
 					( $icon ? self::getGenericon( 'edit' ) : _x( 'Edit', 'Modules: Content: Action', GTHEME_TEXTDOMAIN ) ),
@@ -414,7 +415,7 @@ class gThemeContent extends gThemeModuleCore
 				);
 
 			break;
-			case 'tag_list':
+			case 'tag_list': // DEPRICATED
 
 				if ( is_object_in_taxonomy( get_post_type(), 'post_tag' ) )
 					the_tags(
@@ -425,22 +426,47 @@ class gThemeContent extends gThemeModuleCore
 					);
 
 			break;
-			case 'cat_list':
+			case 'tags':
 
-				if ( is_object_in_taxonomy( get_post_type(), 'category' ) ) {
+				if ( is_object_in_taxonomy( get_post_type(), 'post_tag' ) )
+					gThemeTerms::theList( 'post_tag', sprintf( $before, 'tag-term' ), $after );
+
+			break;
+			case 'cat_list': // DEPRICATED
+
+				if ( is_object_in_taxonomy( get_post_type(), 'category' ) )
 					echo sprintf( $before, 'cat-links' )
 						.gThemeOptions::info( 'before_cat_list', '' )
 						.get_the_category_list( gThemeUtilities::sanitize_sep( 'def', 'term_sep' ) )
 						.$after;
-				}
+
+			break;
+			case 'categories':
+
+				if ( is_object_in_taxonomy( get_post_type(), 'category' ) )
+					gThemeTerms::theList( 'category', sprintf( $before, 'category-term' ), $after );
+
+			break;
+			case 'primary_term':
+
+				gThemeTerms::linkPrimary( sprintf( $before, 'primary-term' ), $after );
 
 			break;
 			case 'the_date':
+			case 'date':
 
 				gThemeDate::date( array(
 					'before' => sprintf( $before, 'the-date' ),
 					'after'  => $after,
 					'text'   => $icon ? self::getGenericon( 'edit' ) : NULL,
+				) );
+
+			break;
+			case 'editorial_label':
+
+				gThemeEditorial::label( array(
+					'before' => sprintf( $before, 'entry-label' ),
+					'after'  => $after,
 				) );
 		}
 	}
