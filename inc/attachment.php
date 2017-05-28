@@ -124,7 +124,7 @@ class gThemeAttachment extends gThemeModuleCore
 
 		$html = gThemeHTML::tag( 'a', array(
 			'href'     => wp_get_attachment_url( $post->ID ),
-			'download' => basename( get_attached_file( $post->ID ) ),
+			'download' => gThemeOptions::info( 'attachment_download_prefix', '' ).basename( get_attached_file( $post->ID ) ),
 			'title'    => is_null( $args['title'] ) ? get_the_title( $post ) : $args['title'],
 			'class'    => '-download '.( is_null( $args['class'] ) ? 'btn btn-default' : $args['class'] ),
 			'rel'      => 'attachment',

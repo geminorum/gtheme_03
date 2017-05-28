@@ -116,8 +116,6 @@ class gThemeOptions extends gThemeModuleCore
 			// 'read_more_title' => 'Continue reading &ldquo;%s&rdquo; &hellip;',
 			// 'read_more_edit'  => FALSE,
 
-
-
 			'rtl'    => is_rtl(),
 			'locale' => get_locale(),
 
@@ -266,6 +264,9 @@ class gThemeOptions extends gThemeModuleCore
 			// DATE FORMATS
 			'date_format_byline' => _x( 'j M Y', 'Options: Defaults: Date Format: Byline', GTHEME_TEXTDOMAIN ), // used on post by line
 			'date_format_day'    => _x( 'j M Y', 'Options: Defaults: Date Format: Day', GTHEME_TEXTDOMAIN ), // day navigation
+
+			// ATTACHMENT
+			'attachment_download_prefix' => '', // EXAMPLE: 'example.com-'
 		);
 
 		if ( FALSE === $option )
