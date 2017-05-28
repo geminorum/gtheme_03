@@ -22,4 +22,9 @@
   #pf-src {
     // display: none; // hides the Page Title and Source URL
   }
+
+  p.copyright,
+  #pf-date {
+    direction: rtl;
+  }
 }
