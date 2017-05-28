@@ -1,9 +1,10 @@
 <?php defined( 'ABSPATH' ) or die( 'Restricted access' );
 
-gThemeContent::wrapOpen( 'image' );
+gThemeContent::wrapOpen( 'attachment' );
 
-	gThemeAttachment::media();
-	gThemeAttachment::download();
+	if ( gThemeAttachment::media() )
+		gThemeAttachment::download();
+
 	gThemeAttachment::caption();
 	gThemeAttachment::backlink();
 
