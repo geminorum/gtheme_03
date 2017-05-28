@@ -1,3 +1,15 @@
+### 3.14.7
+* module/content: entry actions now list by default
+* module/content: more entry actions
+* module/content: print-friendly revised
+* module/content: add-to-any revised
+* module/editorial: support for modified module
+* module/menu: class based on location
+* module/navigation: people archive crumb
+* module/terms: list helper
+* module/terms: has helper
+* root/content-image: default template
+
 ### 3.14.6
 * root: new template for full with page, supporting posts & pages
 * assets/styles: minify html updated
