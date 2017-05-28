@@ -64,7 +64,7 @@ class gThemeMenu extends gThemeModuleCore
 		);
 
 		$args['menu']       = $args['theme_location'];
-		$args['menu_class'] = $args['theme_location'].' '.( isset( $atts['class'] ) ? $atts['class'] : 'clearfix' );
+		$args['menu_class'] = 'menu-'.$args['theme_location'].' '.( isset( $atts['class'] ) ? $atts['class'] : 'clearfix' );
 
 		if ( isset( $atts['walker'] ) )
 			$args['walker'] = new $atts['walker'];
