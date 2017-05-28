@@ -175,6 +175,7 @@ class gThemeOptions extends gThemeModuleCore
 				'latest'       => _x( 'Latest', 'System Tags Defaults', GTHEME_TEXTDOMAIN ),
 				'tile'         => _x( 'Tile', 'System Tags Defaults', GTHEME_TEXTDOMAIN ),
 				'full-article' => _x( 'Full Article', 'System Tags Defaults', GTHEME_TEXTDOMAIN ),
+				'poster'       => _x( 'Poster Entry', 'System Tags Defaults', GTHEME_TEXTDOMAIN ),
 				'no-front'     => _x( 'Not on FrontPage', 'System Tags Defaults', GTHEME_TEXTDOMAIN ),
 				'no-feed'      => _x( 'Not on Feed', 'System Tags Defaults', GTHEME_TEXTDOMAIN ),
 			),
@@ -231,7 +232,6 @@ class gThemeOptions extends gThemeModuleCore
 			),
 
 			// 'js_tooltipsy'    => FALSE, // enables tooltipsy
-			'before_tag_list' => '', // string before tag list
 
 			'wpautop_with_br' => FALSE, // set TRUE to disable extra br removing
 			'adjacent_empty'  => '[&hellip;]', // next/prev link, if empty post title
