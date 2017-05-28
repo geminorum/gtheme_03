@@ -327,6 +327,11 @@ class gThemeTerms extends gThemeModuleCore
 		echo '</div>';
 	}
 
+	public static function has( $term = '', $post = NULL, $taxonomy = GTHEME_SYSTEMTAGS )
+	{
+		return has_term( $term, $taxonomy, $post );
+	}
+
 	public static function linkPrimary( $before = '', $after = '', $post = NULL, $title = '' )
 	{
 		if ( ! $post = get_post( $post ) )
