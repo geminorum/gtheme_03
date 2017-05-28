@@ -124,16 +124,13 @@ class gThemeComments extends gThemeModuleCore
 
 	public static function title( $class = 'comments-title', $tag = 'h3' )
 	{
-		$commnets_number = get_comments_number();
+		$comments = get_comments_number();
+		$template = _nx( 'One thought on &ldquo;%2$s&rdquo;', '%1$s thoughts on &ldquo;%2$s&rdquo;', $comments, 'Comments Title', GTHEME_TEXTDOMAIN );
+		$title    = sprintf( $template, number_format_i18n( $comments ), '<span>'.get_the_title().'</span>' );
+
 		echo gThemeUtilities::html( $tag, array(
 			'class' => $class,
-		), sprintf( _nx(
-			'One thought on &ldquo;%2$s&rdquo;',
-			'%1$s thoughts on &ldquo;%2$s&rdquo;',
-			$commnets_number, 'Comments Title', GTHEME_TEXTDOMAIN ),
-				number_format_i18n( $commnets_number ),
-				'<span>'.get_the_title().'</span>'
-		) );
+		), $title );
 	}
 
 	public static function feed( $class = 'comments-feed' )
