@@ -3,12 +3,20 @@
 gThemeContent::wrapOpen( 'index' );
 
 	gThemeImage::image( array( 'tag' => 'single' ) );
-	gThemeContent::header( array( 'context' => 'index', ) );
 
-	if ( is_singular() ) {
+	if ( gThemeTerms::has( 'poster' ) ) {
+
+		// NO HEADER
+		// NO CONTENT
+
+	} else if ( is_singular() ) {
+
+		gThemeContent::header( array( 'context' => 'index' ) );
 		gThemeContent::content();
-		
+
 	} else {
+
+		gThemeContent::header( array( 'context' => 'index' ) );
 		gThemeContent::excerpt();
 	}
 
