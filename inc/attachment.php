@@ -21,8 +21,6 @@ class gThemeAttachment extends gThemeModuleCore
 		return $default;
 	}
 
-	// FIXME: DRAFT
-	// SEE: https://core.trac.wordpress.org/changeset/37915
 	public static function caption( $atts = array() )
 	{
 		$args = self::atts( array(
@@ -30,24 +28,15 @@ class gThemeAttachment extends gThemeModuleCore
 			'after'  => '</div>',
 			'id'     => NULL,
 			'echo'   => TRUE,
-			'length' => NULL, // trim chars
 		), $atts );
 
-		$post = get_post( $args['id'] );
-
-		if ( ! $post )
-			return;
-
-		if ( empty( $post->post_excerpt ) )
-			return;
-
-		// $html = $args['before'].apply_filters( 'the_excerpt', $post->post_excerpt ). $args['after'];
-		$html = $args['before'].$post->post_excerpt.$args['after'];
+		if ( ! $html = wp_get_attachment_caption( $args['id'] ) )
+			return FALSE;
 
 		if ( ! $args['echo'] )
-			return $html;
+			return $args['before'].$html.$args['after'];
 
-		echo $html;
+		echo $args['before'].$html.$args['after'];
 	}
 
 	// FIXME: DRAFT / WORKING
