@@ -293,37 +293,47 @@ msgctxt "Modules: Content: Action"
 msgid "Feed for this post's comments"
 msgstr ""
 
-#: inc/content.php:411
+#: inc/content.php:412
 msgctxt "Modules: Content: Action"
 msgid "Edit"
 msgstr ""
 
-#: inc/content.php:477
+#: inc/content.php:503
 msgid "Increase font size"
 msgstr ""
 
-#: inc/content.php:487
+#: inc/content.php:513
 msgid "Decrease font size"
 msgstr ""
 
-#: inc/content.php:498
+#: inc/content.php:524
 msgid "Justify paragraphs"
 msgstr ""
 
-#: inc/content.php:505
+#: inc/content.php:531
 msgid "Un-justify paragraphs"
 msgstr ""
 
-#: inc/content.php:541
+#: inc/content.php:565
+msgctxt "Modules: Content: PrintFriendly"
 msgid "Print Version"
 msgstr ""
 
-#: inc/content.php:579
+#: inc/content.php:589
+msgctxt "Modules: Content: Addtoany"
 msgid "Share This"
 msgstr ""
 
-#: inc/content.php:580
-msgid "Share This with your friends."
+#: inc/content.php:610
+msgctxt "Modules: Content: Addtoany"
+msgid "Check this out %s"
+msgstr ""
+
+#: inc/content.php:611
+msgctxt "Modules: Content: Addtoany"
+msgid ""
+"Click the link:\n"
+"%s"
 msgstr ""
 
 #: inc/counts.php:24
@@ -494,50 +504,55 @@ msgstr ""
 
 #: inc/navigation.php:192
 msgctxt "Navigation Module: Breadcrumbs"
+msgid "People Archives for <strong>%s</strong>"
+msgstr ""
+
+#: inc/navigation.php:197
+msgctxt "Navigation Module: Breadcrumbs"
 msgid "Archives for <strong>%s</strong>"
 msgstr ""
 
-#: inc/navigation.php:201
+#: inc/navigation.php:206
 msgctxt "Navigation Module: Breadcrumbs"
 msgid "Author Archives for <strong>%s</strong>"
 msgstr ""
 
-#: inc/navigation.php:207
+#: inc/navigation.php:212
 msgctxt "Navigation Module: Breadcrumbs"
 msgid "Search Results for <strong>%s</strong>"
 msgstr ""
 
-#: inc/navigation.php:212
+#: inc/navigation.php:217
 msgctxt "Navigation Module: Breadcrumbs"
 msgid "Daily Archives for <strong>%s</strong>"
 msgstr ""
 
-#: inc/navigation.php:217
+#: inc/navigation.php:222
 msgctxt "Navigation Module: Breadcrumbs"
 msgid "Monthly Archives for <strong>%s</strong>"
 msgstr ""
 
-#: inc/navigation.php:222
+#: inc/navigation.php:227
 msgctxt "Navigation Module: Breadcrumbs"
 msgid "Yearly Archives for <strong>%s</strong>"
 msgstr ""
 
-#: inc/navigation.php:233
+#: inc/navigation.php:238
 msgctxt "Navigation Module: Breadcrumbs"
 msgid "Page <strong>%s</strong>"
 msgstr ""
 
-#: inc/navigation.php:271
+#: inc/navigation.php:276
 msgctxt "Navigation Module"
 msgid "Page"
 msgstr ""
 
-#: inc/navigation.php:293
+#: inc/navigation.php:298
 msgctxt "Navigation Module"
 msgid "Newer Posts"
 msgstr ""
 
-#: inc/navigation.php:294
+#: inc/navigation.php:299
 msgctxt "Navigation Module"
 msgid "Older Posts"
 msgstr ""
@@ -704,40 +719,45 @@ msgstr ""
 
 #: inc/options.php:178
 msgctxt "System Tags Defaults"
-msgid "Not on FrontPage"
+msgid "Poster Entry"
 msgstr ""
 
 #: inc/options.php:179
 msgctxt "System Tags Defaults"
+msgid "Not on FrontPage"
+msgstr ""
+
+#: inc/options.php:180
+msgctxt "System Tags Defaults"
 msgid "Not on Feed"
 msgstr ""
 
-#: inc/options.php:183
+#: inc/options.php:184
 msgctxt "Editor Default Content"
 msgid "[content not available yet]"
 msgstr ""
 
-#: inc/options.php:188
+#: inc/options.php:189
 msgctxt "Editor Custom Class"
 msgid "Blockquote"
 msgstr ""
 
-#: inc/options.php:193
+#: inc/options.php:194
 msgctxt "Editor Custom Class"
 msgid "Unordered List"
 msgstr ""
 
-#: inc/options.php:198
+#: inc/options.php:199
 msgctxt "Editor Custom Class"
 msgid "Ordered List"
 msgstr ""
 
-#: inc/options.php:203
+#: inc/options.php:204
 msgctxt "Editor Custom Class"
 msgid "Note"
 msgstr ""
 
-#: inc/options.php:208
+#: inc/options.php:209
 msgctxt "Editor Custom Class"
 msgid "Source"
 msgstr ""
