@@ -104,7 +104,10 @@ class gThemeAttachment extends gThemeModuleCore
 		} else {
 
 			// FALLBACK
-			self::download( array( 'id' => $args['id'], 'class' => '-attachment' ) );
+			self::download( array(
+				'id'     => $args['id'],
+				'before' => '<div class="entry-download -fallback">',
+			) );
 
 			return FALSE;
 		}
