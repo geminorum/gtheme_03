@@ -543,7 +543,7 @@ class gThemeContent extends gThemeModuleCore
 
 		$query_args = array(
 			'url'               => urlencode( get_permalink() ),
-			'pfCustomCSS'         => urlencode( GTHEME_URL.'/css/printfriendly.css' ),
+			'pfCustomCSS'       => urlencode( GTHEME_URL.'/css/printfriendly.css&ver='.GTHEME_VERSION ),
 			'imageDisplayStyle' => gThemeUtilities::isRTL( 'left', 'right' ), // 'block',
 			// 'headerImageUrl'    => '',
 			// 'headerTagline'     => '',
