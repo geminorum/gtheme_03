@@ -39,31 +39,11 @@ class gThemeAttachment extends gThemeModuleCore
 		echo $args['before'].$html.$args['after'];
 	}
 
+	// FIXME: DEPRICATED: USE: `gThemeAttachment::media()`
 	public static function image( $atts = array() )
 	{
-		$args = self::atts( array(
-			'before' => '<div class="entry-attachment entry-attachment-image">',
-			'after'  => '</div>',
-			'id'     => NULL,
-			'tag'    => 'big',
-			'echo'   => TRUE,
-		), $atts );
-
-		$post = get_post( $args['id'] );
-
-		if ( ! $post )
-			return FALSE;
-
-		if ( ! wp_attachment_is_image( $post ) )
-			return FALSE;
-
-		$html = wp_get_attachment_image( $post->ID, $args['tag'] );
-
-		if ( ! $args['echo'] )
-			return $html ? $args['before'].$html.$args['after'] : FALSE;
-
-		if ( $html )
-			echo $args['before'].$html.$args['after'];
+		self::__dep( 'gThemeAttachment::media()' );
+		return self::media( $atts );
 	}
 
 	// @REF: `prepend_attachment()`
@@ -73,6 +53,8 @@ class gThemeAttachment extends gThemeModuleCore
 			'before' => '<div class="entry-attachment entry-attachment-media">',
 			'after'  => '</div>',
 			'id'     => NULL,
+			'tag'    => 'big',
+			'cover'  => TRUE, // audio cover
 			'echo'   => TRUE,
 			'extra'  => array(),
 		), $atts );
@@ -82,7 +64,13 @@ class gThemeAttachment extends gThemeModuleCore
 		if ( ! $post )
 			return FALSE;
 
-		if ( wp_attachment_is( 'video', $post ) ) {
+		$html = '';
+
+		if ( wp_attachment_is( 'image', $post ) ) {
+
+			$html = wp_get_attachment_image( $post->ID, $args['tag'] );
+
+		} else if ( wp_attachment_is( 'video', $post ) ) {
 
 			$meta = wp_get_attachment_metadata( $post->ID );
 
@@ -103,7 +91,13 @@ class gThemeAttachment extends gThemeModuleCore
 
 		} else if ( wp_attachment_is( 'audio', $post ) ) {
 
-			$html = wp_audio_shortcode( array_merge( array(
+			if ( $thumbnail_id = get_post_thumbnail_id( $post ) )
+				$html = wp_get_attachment_image( $thumbnail_id, $args['tag'] );
+
+			if ( $html )
+				$html = '<div class="attachment-cover">'.$html.'</div>';
+
+			$html .= wp_audio_shortcode( array_merge( array(
 				'src' => wp_get_attachment_url( $post->ID ),
 			), $args['extra'] ) );
 
