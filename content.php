@@ -18,6 +18,13 @@ gThemeContent::wrapOpen( 'index' );
 
 		gThemeContent::header( array( 'context' => 'index' ) );
 		gThemeContent::excerpt();
+		gThemeContent::footer( array(
+			'context' => 'index',
+			'actions' => array(
+				'categories',
+				'date',
+			),
+		) );
 	}
 
 gThemeContent::wrapClose();
