@@ -28,7 +28,7 @@ class gThemeAttachment extends gThemeModuleCore
 		$args = self::atts( array(
 			'before' => '<div class="entry-summary entry-caption">',
 			'after'  => '</div>',
-			'id'     => get_the_ID(),
+			'id'     => NULL,
 			'echo'   => TRUE,
 			'length' => NULL, // trim chars
 		), $atts );
@@ -58,15 +58,20 @@ class gThemeAttachment extends gThemeModuleCore
 		$args = self::atts( array(
 			'before' => '<div class="entry-attachment entry-attachment-image">',
 			'after'  => '</div>',
-			'id'     => get_the_ID(),
+			'id'     => NULL,
 			'tag'    => 'big',
 			'echo'   => TRUE,
 		), $atts );
 
-		if ( ! wp_attachment_is_image( $args['id'] ) )
+		$post = get_post( $args['id'] );
+
+		if ( ! $post )
 			return FALSE;
 
-		$html = wp_get_attachment_image( $args['id'], $args['tag'] );
+		if ( ! wp_attachment_is_image( $post ) )
+			return FALSE;
+
+		$html = wp_get_attachment_image( $post->ID, $args['tag'] );
 
 		if ( ! $args['echo'] )
 			return $html ? $args['before'].$html.$args['after'] : FALSE;
@@ -80,7 +85,7 @@ class gThemeAttachment extends gThemeModuleCore
 		$args = self::atts( array(
 			'before'   => '<div class="entry-backlink">',
 			'after'    => '</div>',
-			'id'       => get_the_ID(),
+			'id'       => NULL,
 			'template' => _x( '&larr; Back to &ldquo;%s&rdquo;', 'Module: Attachment: Backlink Template', GTHEME_TEXTDOMAIN ),
 			'empty'    => _x( '&larr; Back', 'Module: Attachment: Backlink Empty Title', GTHEME_TEXTDOMAIN ),
 			'echo'     => TRUE,
