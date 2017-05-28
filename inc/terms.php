@@ -359,4 +359,23 @@ class gThemeTerms extends gThemeModuleCore
 
 		return TRUE;
 	}
+
+	public static function theList( $taxonomy, $before = '', $after = '', $post = NULL, $title = '' )
+	{
+		$terms = get_the_terms( $post, $taxonomy );
+
+		if ( is_wp_error( $terms ) )
+			return FALSE;
+
+		if ( ! $terms )
+			return FALSE;
+
+		foreach ( $terms as $term )
+			echo $before.gThemeHTML::tag( 'a', array(
+				'href'  => get_term_link( $term, $taxonomy ),
+				'class' => array( 'taxonomy-'.$taxonomy, 'term-'.$term->slug ),
+			), esc_html( sanitize_term_field( 'name', $term->name, $term->term_id, $term->taxonomy, 'display' ) ) ).$after;
+
+		return TRUE;
+	}
 }
