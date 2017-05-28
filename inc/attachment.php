@@ -92,6 +92,7 @@ class gThemeAttachment extends gThemeModuleCore
 			'after'    => '</div>',
 			'id'       => get_the_ID(),
 			'template' => _x( '&larr; Back to &ldquo;%s&rdquo;', 'Module: Attachment: Backlink Template', GTHEME_TEXTDOMAIN ),
+			'empty'    => _x( '&larr; Back', 'Module: Attachment: Backlink Empty Title', GTHEME_TEXTDOMAIN ),
 			'echo'     => TRUE,
 		), $atts );
 
@@ -103,8 +104,16 @@ class gThemeAttachment extends gThemeModuleCore
 		if ( empty( $post->post_parent ) )
 			return FALSE;
 
-		$html = '<a href="'.get_permalink( $post->post_parent ).'" class="-backlink">'
-			.sprintf( $args['template'], get_the_title( $post->post_parent ) ).'</a>';
+		if ( $title = get_the_title( $post->post_parent ) )
+			$html = sprintf( $args['template'], $title );
+
+		else
+			$html = $args['empty'];
+
+		$html = gThemeHTML::tag( 'a', array(
+			'href'  => get_permalink( $post->post_parent ),
+			'class' => '-backlink',
+		), $html );
 
 		if ( ! $args['echo'] )
 			return $args['before'].$html.$args['after'];
