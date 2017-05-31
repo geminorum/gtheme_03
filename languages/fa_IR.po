@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: gTheme 3 v3.14.7\n"
+"Project-Id-Version: gTheme 3 v3.14.8\n"
 "Report-Msgid-Bugs-To: https://github.com/geminorum/gtheme_03/issues\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2017-05-28 08:24+0430\n"
+"PO-Revision-Date: 2017-05-28 12:47+0430\n"
 "Last-Translator: geminorum <contact@geminorum.ir>\n"
 "Language-Team: geminorum <contact@geminorum.ir>\n"
 "Language: fa_IR\n"
@@ -18,7 +18,7 @@ msgstr ""
 "X-Poedit-Bookmarks: 124,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
 
 # @ gtheme
-#: comments.php:34, inc/options.php:162
+#: comments.php:34, inc/options.php:160
 msgid "Comments are closed."
 msgstr "دیدگاه‌ها مسدود است."
 
@@ -82,14 +82,20 @@ msgstr "افزودن گزینه دیگر"
 msgid "<strong>The default avatar is overrided by the active theme.</strong>"
 msgstr "<strong>آواتار پیش‌فرض توسط پوسته فعال تنظیم میشود.</strong>"
 
-#: inc/attachment.php:59
-msgid "Download Attachment"
-msgstr "دریافت پیوست"
-
-#: inc/attachment.php:94
+#: inc/attachment.php:120
 msgctxt "Module: Attachment: Backlink Template"
 msgid "&larr; Back to &ldquo;%s&rdquo;"
 msgstr "&rarr; بازگشت به «%s»"
+
+#: inc/attachment.php:121
+msgctxt "Module: Attachment: Backlink Empty Title"
+msgid "&larr; Back"
+msgstr "&rarr; بازگشت"
+
+#: inc/attachment.php:158
+msgctxt "Module: Attachment: Link"
+msgid "Download Attachment"
+msgstr "دریافت پیوست"
 
 # @ gtheme
 #: inc/banners.php:108
@@ -746,108 +752,108 @@ msgid " / "
 msgstr "\\"
 
 # @ gtheme
-#: inc/options.php:153
+#: inc/options.php:151
 msgid "&copy; All right reserved."
 msgstr "&copy; تمامی حقوق محفوظ است."
 
 # @ gtheme
-#: inc/options.php:163
+#: inc/options.php:161
 msgid "Your comment is awaiting moderation."
 msgstr "دیدگاه شما در انتظار بررسی است."
 
 # @ gtheme
-#: inc/options.php:173
+#: inc/options.php:171
 msgctxt "System Tags Defaults"
 msgid "Dashboard"
 msgstr "پیشخوان"
 
-#: inc/options.php:174
+#: inc/options.php:172
 msgctxt "System Tags Defaults"
 msgid "Featured"
 msgstr "برگزیده"
 
 # @ gtheme
-#: inc/options.php:175
+#: inc/options.php:173
 msgctxt "System Tags Defaults"
 msgid "Latest"
 msgstr "آخرین‌ها"
 
-#: inc/options.php:176
+#: inc/options.php:174
 msgctxt "System Tags Defaults"
 msgid "Tile"
 msgstr "کاشی"
 
-#: inc/options.php:177
+#: inc/options.php:175
 msgctxt "System Tags Defaults"
 msgid "Full Article"
 msgstr "متن کامل"
 
-#: inc/options.php:178
+#: inc/options.php:176
 msgctxt "System Tags Defaults"
 msgid "Poster Entry"
 msgstr "پوستر"
 
-#: inc/options.php:179
+#: inc/options.php:177
 msgctxt "System Tags Defaults"
 msgid "Not on FrontPage"
 msgstr "عدم نمایش در صفحه نخست"
 
-#: inc/options.php:180
+#: inc/options.php:178
 msgctxt "System Tags Defaults"
 msgid "Not on Feed"
 msgstr "عدم نمایش در خوراک"
 
 # @ gtheme
-#: inc/options.php:184
+#: inc/options.php:182
 msgctxt "Editor Default Content"
 msgid "[content not available yet]"
 msgstr "[این صفحه در حال تکمیل است.]"
 
 # @ gtheme
-#: inc/options.php:189
+#: inc/options.php:187
 msgctxt "Editor Custom Class"
 msgid "Blockquote"
 msgstr "نقل‌قول"
 
-#: inc/options.php:194
+#: inc/options.php:192
 msgctxt "Editor Custom Class"
 msgid "Unordered List"
 msgstr "فهرست بدون ترتیب"
 
-#: inc/options.php:199
+#: inc/options.php:197
 msgctxt "Editor Custom Class"
 msgid "Ordered List"
 msgstr "فهرست مرتب‌شده"
 
-#: inc/options.php:204
+#: inc/options.php:202
 msgctxt "Editor Custom Class"
 msgid "Note"
 msgstr "توضیح"
 
 # @ gtheme
-#: inc/options.php:209
+#: inc/options.php:207
 msgctxt "Editor Custom Class"
 msgid "Source"
 msgstr "منبع"
 
 # @ gtheme
-#: inc/options.php:256
+#: inc/options.php:254
 msgctxt "Banner Groups"
 msgid "First"
 msgstr "اول"
 
 # @ gtheme
-#: inc/options.php:257
+#: inc/options.php:255
 msgctxt "Banner Groups"
 msgid "Second"
 msgstr "دوم"
 
-#: inc/options.php:267
+#: inc/options.php:265
 msgctxt "Options: Defaults: Date Format: Byline"
 msgid "j M Y"
 msgstr ""
 
-#: inc/options.php:268
+#: inc/options.php:266
 msgctxt "Options: Defaults: Date Format: Day"
 msgid "j M Y"
 msgstr ""
@@ -1345,6 +1351,12 @@ msgstr "نوشته‌های مرتبط"
 msgctxt "Alert button (screen reader only)"
 msgid "Close"
 msgstr "بستن"
+
+#~ msgid "Full-Width Page"
+#~ msgstr "برگه تمام صفحه"
+
+#~ msgid "Download Attachment"
+#~ msgstr "دریافت پیوست"
 
 # @ gtheme
 #~ msgid "Print Version"
