@@ -1,3 +1,15 @@
+### 3.14.8
+* module/attachment: :new: download helper
+* module/attachment: :new: media helper
+* module/attachment: image helper merged into media
+* module/attachment: back link for no title parent
+* module/attachment: caption using core helper
+* module/attachment: switch to post object for current attachment
+* module/content: version suffix for printfriendly css url
+* root/content: :new: default for attachments
+* root/content: check for poster system tag
+* root/content: footer for non singular
+
 ### 3.14.7
 * module/content: entry actions now list by default
 * module/content: more entry actions
