@@ -21,8 +21,8 @@
 // [Source](http://stackoverflow.com/a/10939797)
 // EXAMPE: @include background-opacity(#333, 0.5);
 @mixin background-opacity($color, $opacity: 0.3) {
-	background: $color; // The Fallback
-	background: rgba($color, $opacity);
+  background: $color; // The Fallback
+  background: rgba($color, $opacity);
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -30,12 +30,12 @@
 ////////////////////////////////////////////////////////////////////////////////
 // EXAMPLE: @include link-colors(white, blue, green, red);
 @mixin link-colors($link: $link-color, $hover: $link-hover-color, $visit: $link-color, $active: $link-hover-color) {
-	& {
-		color: $link;
-		&:hover   { color: $hover;  }
-		&:visited { color: $visit;  }
-		&:active  { color: $active; }
-	}
+  & {
+    color: $link;
+    &:hover   { color: $hover;  }
+    &:visited { color: $visit;  }
+    &:active  { color: $active; }
+  }
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -46,19 +46,19 @@
 // EXAMPLE: @include loop-shadow(10, 30px);
 @mixin loop-shadow($elements, $height) {
 
-	@for $i from 0 to $elements {
+  @for $i from 0 to $elements {
 
-		$red: $i * 10 + 150;
-		$green: ($i * 10 + 150) / 2;
-		$blue: ($i * 10 + 150) / 2;
+    $red: $i * 10 + 150;
+    $green: ($i * 10 + 150) / 2;
+    $blue: ($i * 10 + 150) / 2;
 
-		& div:nth-child(#{$i}) {
-			background: rgb($red, $green, $blue);
-			width: 100%;
-			height: $height;
-			box-shadow: 0 -1px #{($elements - $i) * 2}px rgba(0, 0, 0, 0.7);
-		}
-	}
+    & div:nth-child(#{$i}) {
+      background: rgb($red, $green, $blue);
+      width: 100%;
+      height: $height;
+      box-shadow: 0 -1px #{($elements - $i) * 2}px rgba(0, 0, 0, 0.7);
+    }
+  }
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -70,29 +70,29 @@
 
 @mixin coloring-filter-grayscale($amount: 100%) {
 
-	filter:         gray;
-	-webkit-filter: grayscale($amount);
-	-moz-filter:    grayscale($amount);
-	-o-filter:      grayscale($amount);
-	-ms-filter:     grayscale($amount);
-	filter:         grayscale($amount);
+  filter:         gray;
+  -webkit-filter: grayscale($amount);
+  -moz-filter:    grayscale($amount);
+  -o-filter:      grayscale($amount);
+  -ms-filter:     grayscale($amount);
+  filter:         grayscale($amount);
 
-	// -webkit-backface-visibility: hidden;
-	// -moz-backface-visibility:    hidden;
-	// -ms-backface-visibility:     hidden;
-	// -o-backface-visibility:      hidden;
-	// backface-visibility:         hidden;
+  // -webkit-backface-visibility: hidden;
+  // -moz-backface-visibility:    hidden;
+  // -ms-backface-visibility:     hidden;
+  // -o-backface-visibility:      hidden;
+  // backface-visibility:         hidden;
 
-	transition: all 0.6s ease;
+  transition: all 0.6s ease;
 
-	&:hover {
-		-webkit-filter: grayscale(0%);
-		-moz-filter:    grayscale(0%);
-		-o-filter:      grayscale(0%);
-		-ms-filter:     grayscale(0%);
-		filter:         grayscale(0%);
-		filter:         none;
+  &:hover {
+    -webkit-filter: grayscale(0%);
+    -moz-filter:    grayscale(0%);
+    -o-filter:      grayscale(0%);
+    -ms-filter:     grayscale(0%);
+    filter:         grayscale(0%);
+    filter:         none;
 
-		transition: all 0.3s ease;
-	}
+    transition: all 0.3s ease;
+  }
 }
