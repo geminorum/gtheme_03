@@ -29,9 +29,9 @@
 		if ( $gtheme_comment_navigation )
 			gThemeComments::navigation( 'comment-nav-below' );
 
-	} elseif ( ! comments_open() && ! is_page() && post_type_supports( get_post_type(), 'comments' ) ) {
+	} else if ( ! comments_open() && ! is_page() && post_type_supports( get_post_type(), 'comments' ) ) {
 
-		if ( $closed = gThemeOptions::info( 'comments_closed', __( 'Comments are closed.' , GTHEME_TEXTDOMAIN ) ) )
+		if ( $closed = gThemeOptions::info( 'comments_closed', __( 'Comments are closed.', GTHEME_TEXTDOMAIN ) ) )
 			echo '<p class="no-comments">'.$closed.'</p>';
 	}
 

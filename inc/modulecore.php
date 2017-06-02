@@ -154,7 +154,7 @@ class gThemeModuleCore extends gThemeBaseCore
 	}
 
 	// DEFAULT METHOD: setting sub html
-	public function settings_sub_html( $settings_uri, $sub = 'general' )
+	public function settings_sub_html( $uri, $sub = 'general' )
 	{
 		echo '<form method="post" action="">';
 			settings_fields( 'gtheme_'.$sub );

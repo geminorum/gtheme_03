@@ -44,7 +44,9 @@ class gThemeSettings extends gThemeModuleCore
 	public function admin_menu()
 	{
 		$info = gThemeOptions::info();
-		$hook = add_submenu_page( $this->_settings_parent,
+
+		$hook = add_submenu_page(
+			$this->_settings_parent,
 			$info['settings_title'],
 			$info['menu_title'],
 			$info['settings_access'],
@@ -58,7 +60,7 @@ class gThemeSettings extends gThemeModuleCore
 	public function admin_settings()
 	{
 		$info = gThemeOptions::info();
-		$settings_uri = $this->_settings_uri; // back comp
+		$uri  = $this->_settings_uri; // back comp
 
 		$sub = isset( $_GET['sub'] ) ? trim( $_GET['sub'] ) : 'general';
 		$subs = apply_filters( 'gtheme_settings_subs', array(
@@ -75,7 +77,7 @@ class gThemeSettings extends gThemeModuleCore
 			.' <a href="http://geminorum.ir/wordpress/gtheme_03" class="page-title-action" target="_blank">'
 			.GTHEME_VERSION.'</a></h1>';
 
-			gThemeUtilities::headerNav( $settings_uri, $sub, $subs );
+			gThemeUtilities::headerNav( $uri, $sub, $subs );
 
 			if ( isset( $_GET['message'] ) ) {
 				if ( isset( $messages[$_REQUEST['message']] ) ) {
@@ -88,10 +90,12 @@ class gThemeSettings extends gThemeModuleCore
 
 			if ( file_exists( GTHEME_DIR.'/admin/'.$sub.'.php' ) )
 				require_once( GTHEME_DIR.'/admin/'.$sub.'.php' );
+
 			else if ( file_exists( GTHEME_CHILD_DIR.'/admin/'.$sub.'.php' ) )
 				require_once( GTHEME_CHILD_DIR.'/admin/'.$sub.'.php' );
+
 			else
-				do_action( 'gtheme_settings_sub_'.$sub, $settings_uri, $sub );
+				do_action( 'gtheme_settings_sub_'.$sub, $uri, $sub );
 
 		echo '<div class="clear"></div></div>';
 	}
@@ -102,7 +106,7 @@ class gThemeSettings extends gThemeModuleCore
 		do_action( 'gtheme_settings_load', $sub );
 	}
 
-	public function settings_sub_html( $settings_uri, $sub = 'general' )
+	public function settings_sub_html( $uri, $sub = 'general' )
 	{
 		$defaults = self::defaults();
 		$options  = gThemeOptions::getOptions();

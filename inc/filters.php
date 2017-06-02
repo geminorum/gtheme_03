@@ -203,7 +203,7 @@ class gThemeFilters extends gThemeModuleCore
 
 		$classes[] = 'pf-content'; // print friendly / for : gThemeContent::printfriendly()
 
-		if ( ( is_archive() || is_home() ) ) {
+		if ( ( is_archive() || is_home() || is_front_page() ) ) {
 
 			if ( FALSE !== strpos( $post->post_content, '<!--more-->' ) )
 				$classes[] = 'more';

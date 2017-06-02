@@ -92,7 +92,7 @@ class gThemeTerms extends gThemeModuleCore
 	}
 
 	// FIXME: [Display A Category Checklist In WordPress](https://paulund.co.uk/display-category-checklist-wordpress)
-	public function settings_sub_html( $settings_uri, $sub = 'general' )
+	public function settings_sub_html( $uri, $sub = 'general' )
 	{
 		$legend   = gThemeOptions::info( 'primary_terms_legend', FALSE );
 		$taxonomy = gThemeOptions::info( 'primary_terms_taxonomy', 'category' );
