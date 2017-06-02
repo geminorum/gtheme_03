@@ -99,7 +99,7 @@ class gThemeSocial extends gThemeModuleCore
 					$output = gThemeOptions::info( 'frontpage_title', FALSE );
 
 				else if ( is_single() )
-					$output = get_the_title().gThemeOptions::info( 'title_sep', ' &raquo; ' ).gThemeOptions::info( 'blog_name' );
+					$output = single_post_title( '', FALSE ).gThemeOptions::info( 'title_sep', ' &raquo; ' ).gThemeOptions::info( 'blog_title' );
 
 			break;
 			case 'description':

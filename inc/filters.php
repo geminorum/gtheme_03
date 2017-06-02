@@ -20,16 +20,8 @@ class gThemeFilters extends gThemeModuleCore
 			add_filter( 'body_class', array( $this, 'body_class' ), 10, 2 );
 			add_filter( 'post_class', array( $this, 'post_class' ), 10, 3 );
 
-			if ( function_exists( 'wp_get_document_title' ) ) {
-				add_filter( 'document_title_separator', function( $sep ){
-					return gThemeOptions::info( 'title_sep', $sep );
-				} );
-			} else {
-				add_filter( 'wp_title', array( $this, 'wp_title' ), 5, 3 );
-				add_filter( 'get_wp_title_rss', function( $title ){
-					return empty( $title ) ? $title : $title.trim( gThemeOptions::info( 'title_sep', ' &raquo; ' ) );
-				} );
-			}
+			add_filter( 'document_title_separator', array( $this, 'document_title_separator' ) );
+			add_filter( 'document_title_parts', array( $this, 'document_title_parts' ), 8 );
 
 			add_filter( 'the_excerpt', function( $text ){
 				// return $text.gThemeContent::continueReading( get_edit_post_link() );
@@ -233,29 +225,28 @@ class gThemeFilters extends gThemeModuleCore
 		$this->current_post_class = $class;
 	}
 
-	// FIXME: DEPRECATED as WP v4.4.0
-	public function wp_title( $title, $sep, $seplocation )
+	public function document_title_separator( $sep )
 	{
-		if ( is_feed() )
-			return $title;
+		return gThemeOptions::info( 'title_sep', $sep );
+	}
 
-		if ( empty( $title ) ) {
-			global $page, $paged;
-			$sep = gThemeOptions::info( 'title_sep', ' &raquo; ' );
+	public function document_title_parts( $title )
+	{
+		if ( is_feed() ) {
 
-			$frontpage_title = gThemeOptions::info( 'frontpage_title', FALSE );
-			if ( FALSE === $frontpage_title )
-				$frontpage_title = '';
 
-			if ( 2 <= $paged || 2 <= $page )
-				$frontpage_title .= $sep.sprintf( __( 'Page %s', GTHEME_TEXTDOMAIN ), number_format_i18n( max( $paged, $page ) ) );
+		} else if ( is_front_page() ) {
 
-			return $frontpage_title;
+			if ( $frontpage = gThemeOptions::info( 'frontpage_title', FALSE ) ) {
+				$title['title'] = trim( $frontpage );
+				unset( $title['tagline'] ); // remove default
+			}
+
+		} else {
+
+			if ( $blog = gThemeOptions::info( 'blog_title', FALSE ) )
+				$title['site'] = $blog;
 		}
-
-		// NOTE: sep already added
-		if ( $blog_title = gThemeOptions::info( 'blog_title', FALSE ) )
-			return $title.' '.$blog_title;
 
 		return $title;
 	}

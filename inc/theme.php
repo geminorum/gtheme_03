@@ -7,6 +7,7 @@ class gThemeTheme extends gThemeModuleCore
 	{
 		extract( self::atts( array(
 			'cleanup'      => TRUE,
+			'html_title'   => TRUE,
 			'adminbar'     => TRUE,
 			'wpcf7'        => TRUE,
 			'page_excerpt' => TRUE,
@@ -20,6 +21,9 @@ class gThemeTheme extends gThemeModuleCore
 
 		if ( $cleanup )
 			$this->cleanup();
+
+		if ( $html_title ) // @REF: https://make.wordpress.org/core/?p=11311
+			add_theme_support( 'title-tag' );
 
 		if ( $adminbar ) {
 			add_theme_support( 'admin-bar', array( 'callback' => '__return_false' ) );

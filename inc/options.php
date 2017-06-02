@@ -5,12 +5,14 @@ class gThemeOptions extends gThemeModuleCore
 
 	public static function defaults( $option = FALSE, $default = FALSE )
 	{
+		$blog_name = get_bloginfo( 'name', 'display' );
+
 		$defaults = array(
 			'name'      => 'gtheme',
 			'title'     => _x( 'gTheme', 'Theme Title', GTHEME_TEXTDOMAIN ),
 			'sub_title' => FALSE, //'gTheme Child',
 
-			'blog_name'  => get_bloginfo( 'name', 'display' ),
+			'blog_name'  => $blog_name,
 			'logo_title' => _x( 'Home', 'Logo Title', GTHEME_TEXTDOMAIN ),
 
 			// SETTINGS PAGE
@@ -143,9 +145,9 @@ class gThemeOptions extends gThemeModuleCore
 			'twitter_site'    => FALSE,
 			'googlecse_cx'    => FALSE,
 
-			'blog_title'      => self::getOption( 'blog_title', get_bloginfo( 'name', 'display' ) ), // used on page title other than frontpage
-			'frontpage_title' => self::getOption( 'frontpage_title', get_bloginfo( 'name', 'display' ) ), // set FALSE to disable
-			'frontpage_desc'  => self::getOption( 'frontpage_desc', get_bloginfo( 'description', 'display' ) ), // set FALSE to disable
+			'blog_title'      => self::getOption( 'blog_title', $blog_name ), // used on page title other than frontpage
+			'frontpage_title' => self::getOption( 'frontpage_title', FALSE ), // FALSE to default
+			'frontpage_desc'  => self::getOption( 'frontpage_desc', FALSE ), // FALSE to default
 
 			'default_image_src' => GTHEME_URL.'/images/document-large.png', // FIXME: MUST DEP
 			'copyright'         => self::getOption( 'copyright', __( '&copy; All right reserved.', GTHEME_TEXTDOMAIN ) ),

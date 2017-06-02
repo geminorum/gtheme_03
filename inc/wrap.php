@@ -12,7 +12,6 @@ class gThemeWrap extends gThemeModuleCore
 		if ( $images_404 )
 			add_filter( 'template_include', array( $this, 'template_include_404_images' ), -1 );
 
-		add_action( 'wp_head', array( $this, 'wp_head' ) );
 		add_filter( 'template_include', array( 'gThemeWrap', 'wrap' ), 99 );
 	}
 
@@ -63,29 +62,14 @@ class gThemeWrap extends gThemeModuleCore
 		return locate_template( $templates );
 	}
 
-	//////////////////////////////////////////////////////////////////////
-	//////////////////////////////////////////////////////////////////////
-	//////////////////////////////////////////////////////////////////////
-	// SEE : https://make.wordpress.org/core/2014/10/29/title-tags-in-4-1/
-	// SEE : https://core.trac.wordpress.org/ticket/18548
-	// FIXME: DEPRECATED
-	// USED IN: head.php
-	public static function html_title( $sep = ' &raquo; ', $display = TRUE, $seplocation = '' )
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+
+	// FIXME: DEPRECATED // BACK COMP // USED IN: head.php
+	public static function html_title()
 	{
-		echo "\t".'<title>';
-
-		// NOTE: switched since WP v4.4.0
-		if ( function_exists( 'wp_get_document_title' ) )
-			echo wp_get_document_title();
-		else
-			wp_title( trim( gThemeOptions::info( 'title_sep', $sep ) ), TRUE, ( gThemeUtilities::isRTL() ? 'right' : $seplocation ) );
-
-		echo '</title>'."\n";
-	}
-
-	public function wp_head()
-	{
-		self::html_title();
+		echo "\t".'<title>'.wp_get_document_title().'</title>'."\n";
 	}
 
 	//////////////////////////////////////////////////////////////////////
