@@ -147,7 +147,7 @@ class gThemeOptions extends gThemeModuleCore
 
 			'blog_title'      => self::getOption( 'blog_title', $blog_name ), // used on page title other than frontpage
 			'frontpage_title' => self::getOption( 'frontpage_title', FALSE ), // FALSE to default
-			'frontpage_desc'  => self::getOption( 'frontpage_desc', FALSE ), // FALSE to default
+			'frontpage_desc'  => self::getOption( 'frontpage_desc', get_bloginfo( 'description', 'display' ) ), // FALSE to disable
 
 			'default_image_src' => GTHEME_URL.'/images/document-large.png', // FIXME: MUST DEP
 			'copyright'         => self::getOption( 'copyright', __( '&copy; All right reserved.', GTHEME_TEXTDOMAIN ) ),
