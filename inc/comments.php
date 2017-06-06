@@ -128,7 +128,7 @@ class gThemeComments extends gThemeModuleCore
 		$template = _nx( 'One thought on &ldquo;%2$s&rdquo;', '%1$s thoughts on &ldquo;%2$s&rdquo;', $comments, 'Comments Title', GTHEME_TEXTDOMAIN );
 		$title    = sprintf( $template, number_format_i18n( $comments ), '<span>'.get_the_title().'</span>' );
 
-		echo gThemeUtilities::html( $tag, array(
+		echo gThemeHTML::tag( $tag, array(
 			'class' => $class,
 		), $title );
 	}
@@ -140,12 +140,12 @@ class gThemeComments extends gThemeModuleCore
 		else
 			$icon = '<span class="genericon genericon-feed"></span>';
 
-		$html = gThemeUtilities::html( 'a', array(
+		$html = gThemeHTML::tag( 'a', array(
 			'href'  => get_post_comments_feed_link(),
 			'title' => _x( 'Grab the feed for comments of this post', 'Comments Module', GTHEME_TEXTDOMAIN ),
 		), $icon );
 
-		echo gThemeUtilities::html( 'div', array(
+		echo gThemeHTML::tag( 'div', array(
 			'class' => $class,
 		), $html );
 	}
@@ -253,7 +253,7 @@ class gThemeComments extends gThemeModuleCore
 			$actions['reply'] = $reply;
 
 		if ( $edit = get_edit_comment_link( $comment->comment_ID ) )
-			$actions['edit-link'] = gThemeUtilities::html( 'a', array(
+			$actions['edit-link'] = gThemeHTML::tag( 'a', array(
 				'href'  => $edit,
 				'class' => 'comment-edit-link',
 			), $strings['edit'] );
@@ -305,7 +305,7 @@ class gThemeComments extends gThemeModuleCore
 				.$strings['name']
 				.( $required ? ' <span class="required">'.$strings['required'].'</span>' : '' )
 				.'</label>'
-				.gThemeUtilities::html( 'input', array(
+				.gThemeHTML::tag( 'input', array(
 					'type'               => 'text',
 					'x-autocompletetype' => 'name-full',
 					'aria-required'      => ( $required ? 'true' : false ),
@@ -320,7 +320,7 @@ class gThemeComments extends gThemeModuleCore
 				.$strings['email']
 				.( $required ? ' <span class="required">'.$strings['required'].'</span>' : '' )
 				.'</label>'
-				.gThemeUtilities::html( 'input', array(
+				.gThemeHTML::tag( 'input', array(
 					'type'               => ( $html5 ? 'email' : 'text' ),
 					'x-autocompletetype' => 'email',
 					'aria-required'      => ( $required ? 'true' : false ),
@@ -335,7 +335,7 @@ class gThemeComments extends gThemeModuleCore
 			$fields['url'] = '<div class="form-group comment-form-url"><label for="url">'
 				.$strings['url']
 				.'</label>'
-				.gThemeUtilities::html( 'input', array(
+				.gThemeHTML::tag( 'input', array(
 					'type'  => ( $html5 ? 'url' : 'text' ),
 					'class' => 'form-control comment-field-ltr',
 					'size'  => '30',
@@ -350,7 +350,7 @@ class gThemeComments extends gThemeModuleCore
 
 				'comment_field' => '<div class="form-group comment-form-comment"><label for="comment" class="sr-only">'
 					.$strings['comment'].'</label>'
-					.gThemeUtilities::html( 'textarea', array(
+					.gThemeHTML::tag( 'textarea', array(
 						'aria-required' => 'true',
 						'class'         => 'form-control',
 						'cols'          => '45',

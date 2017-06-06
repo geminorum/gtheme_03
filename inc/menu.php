@@ -142,7 +142,7 @@ class gThemeMenu extends gThemeModuleCore
 
 	public static function menu_el( $item )
 	{
-		$html = gThemeUtilities::html( 'a', array(
+		$html = gThemeHTML::tag( 'a', array(
 			'title'  => ( empty( $item->attr_title ) ? FALSE : $item->attr_title ),
 			'target' => ( empty( $item->target ) ? FALSE : $item->target ),
 			'rel'    => ( empty( $item->xfn ) ? FALSE : $item->xfn ),
@@ -151,7 +151,7 @@ class gThemeMenu extends gThemeModuleCore
 
 		$classes = empty( $item->classes ) ? array() : (array) $item->classes;
 
-		return gThemeUtilities::html( 'li', array(
+		return gThemeHTML::tag( 'li', array(
 			'id'    => apply_filters( 'nav_menu_item_id', 'menu-item-'.$item->ID, $item, array(), 0 ),
 			'class' => apply_filters( 'nav_menu_css_class', array_filter( $classes ), $item, array(), 0 ),
 		), $html );

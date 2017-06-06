@@ -31,7 +31,6 @@ class gThemeSettings extends gThemeModuleCore
 		} else {
 
 			add_action( 'admin_bar_menu', array( $this, 'admin_bar_menu' ), 32 );
-
 		}
 	}
 
@@ -64,8 +63,8 @@ class gThemeSettings extends gThemeModuleCore
 
 		$sub = isset( $_GET['sub'] ) ? trim( $_GET['sub'] ) : 'general';
 		$subs = apply_filters( 'gtheme_settings_subs', array(
-			'overview' => _x( 'Overview', 'Settings Module: Sub Title', GTHEME_TEXTDOMAIN ),
-			'general'  => _x( 'General', 'Settings Module: Sub Title', GTHEME_TEXTDOMAIN ),
+			'overview' => _x( 'Overview', 'Modules: Menu Name', GTHEME_TEXTDOMAIN ),
+			'general'  => _x( 'General', 'Modules: Menu Name', GTHEME_TEXTDOMAIN ),
 		) );
 
 		$messages = apply_filters( 'gtheme_settings_messages', array(
@@ -102,8 +101,7 @@ class gThemeSettings extends gThemeModuleCore
 
 	public function admin_settings_load()
 	{
-		$sub = isset( $_REQUEST['sub'] ) ? $_REQUEST['sub'] : 'general';
-		do_action( 'gtheme_settings_load', $sub );
+		do_action( 'gtheme_settings_load', self::req( 'sub', 'general' ) );
 	}
 
 	public function settings_sub_html( $uri, $sub = 'general' )

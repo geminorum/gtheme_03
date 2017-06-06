@@ -36,38 +36,6 @@ class gThemeModuleCore extends gThemeBaseCore
 		return defined( 'DOING_AJAX' ) && DOING_AJAX;
 	}
 
-	// INTERNAL: used on anything deprecated
-	protected static function __dep( $note = '' )
-	{
-		if ( defined( 'WP_DEBUG_LOG' ) && ! WP_DEBUG_LOG )
-			return;
-
-		$trace = debug_backtrace();
-
-		$log = 'DEP: ';
-
-		if ( isset( $trace[1]['object'] ) )
-			$log .= get_class( $trace[1]['object'] ).'::';
-		else if ( isset( $trace[1]['class'] ) )
-			$log .= $trace[1]['class'].'::';
-
-		$log .= $trace[1]['function'].'()';
-
-		if ( isset( $trace[2]['function'] ) ) {
-			$log .= '|FROM: ';
-			if ( isset( $trace[2]['object'] ) )
-				$log .= get_class( $trace[2]['object'] ).'::';
-			else if ( isset( $trace[2]['class'] ) )
-				$log .= $trace[2]['class'].'::';
-			$log .= $trace[2]['function'].'()';
-		}
-
-		if ( $note )
-			$log .= '|'.$note;
-
-		error_log( $log );
-	}
-
 	// TODO: DRAFT: not tested
 	// http://stackoverflow.com/a/9934684
 	// SEE: http://xdebug.org/docs/install
@@ -241,7 +209,7 @@ class gThemeModuleCore extends gThemeBaseCore
 
 			case 'hidden' :
 
-				echo gThemeUtilities::html( 'input', array(
+				echo gThemeHTML::tag( 'input', array(
 					'type'  => 'hidden',
 					'name'  => $name,
 					'id'    => $id,
@@ -253,17 +221,17 @@ class gThemeModuleCore extends gThemeBaseCore
 			break;
 			case 'enabled' :
 
-				$html .= gThemeUtilities::html( 'option', array(
+				$html .= gThemeHTML::tag( 'option', array(
 					'value'    => '0',
 					'selected' => '0' == $value,
 				), esc_html__( 'Disabled' ) );
 
-				$html .= gThemeUtilities::html( 'option', array(
+				$html .= gThemeHTML::tag( 'option', array(
 					'value'    => '1',
 					'selected' => '1' == $value,
 				), esc_html__( 'Enabled' ) );
 
-				echo gThemeUtilities::html( 'select', array(
+				echo gThemeHTML::tag( 'select', array(
 					'class' => $args['field_class'],
 					'name'  => $name,
 					'id'    => $id,
@@ -275,7 +243,7 @@ class gThemeModuleCore extends gThemeBaseCore
 				if ( ! $args['field_class'] )
 					$args['field_class'] = 'regular-text';
 
-				echo gThemeUtilities::html( 'input', array(
+				echo gThemeHTML::tag( 'input', array(
 					'type'        => 'text',
 					'class'       => $args['field_class'],
 					'name'        => $name,
@@ -294,7 +262,7 @@ class gThemeModuleCore extends gThemeBaseCore
 				if ( ! $args['dir'] )
 					$args['dir'] = 'ltr';
 
-				echo gThemeUtilities::html( 'input', array(
+				echo gThemeHTML::tag( 'input', array(
 					'type'        => 'number',
 					'class'       => $args['field_class'],
 					'name'        => $name,
@@ -315,7 +283,7 @@ class gThemeModuleCore extends gThemeBaseCore
 						if ( in_array( $value_name, $exclude ) )
 							continue;
 
-						$html .= gThemeUtilities::html( 'input', array(
+						$html .= gThemeHTML::tag( 'input', array(
 							'type'    => 'checkbox',
 							'class'   => $args['field_class'],
 							'name'    => $name.'['.$value_name.']',
@@ -325,14 +293,14 @@ class gThemeModuleCore extends gThemeBaseCore
 							'dir'     => $args['dir'],
 						) );
 
-						echo '<p>'.gThemeUtilities::html( 'label', array(
+						echo '<p>'.gThemeHTML::tag( 'label', array(
 							'for' => $id.'-'.$value_name,
 						), $html.'&nbsp;'.esc_html( $value_title ) ).'</p>';
 					}
 
 				} else {
 
-					$html .= gThemeUtilities::html( 'input', array(
+					$html .= gThemeHTML::tag( 'input', array(
 						'type'    => 'checkbox',
 						'class'   => $args['field_class'],
 						'name'    => $name,
@@ -342,7 +310,7 @@ class gThemeModuleCore extends gThemeBaseCore
 						'dir'     => $args['dir'],
 					) );
 
-					echo '<p>'.gThemeUtilities::html( 'label', array(
+					echo '<p>'.gThemeHTML::tag( 'label', array(
 						'for' => $id,
 					), $html.'&nbsp;'.$args['description'] ).'</p>';
 
@@ -359,13 +327,13 @@ class gThemeModuleCore extends gThemeBaseCore
 						if ( in_array( $value_name, $exclude ) )
 							continue;
 
-						$html .= gThemeUtilities::html( 'option', array(
+						$html .= gThemeHTML::tag( 'option', array(
 							'value'    => $value_name,
 							'selected' => $value_name == $value,
 						), esc_html( $value_title ) );
 					}
 
-					echo gThemeUtilities::html( 'select', array(
+					echo gThemeHTML::tag( 'select', array(
 						'class' => $args['field_class'],
 						'name'  => $name,
 						'id'    => $id,
@@ -375,7 +343,7 @@ class gThemeModuleCore extends gThemeBaseCore
 			break;
 			case 'textarea' :
 
-				echo gThemeUtilities::html( 'textarea', array(
+				echo gThemeHTML::tag( 'textarea', array(
 					'rows'        => 5,
 					'cols'        => 45,
 					'name'        => $name,
@@ -422,7 +390,7 @@ class gThemeModuleCore extends gThemeBaseCore
 			break;
 			case 'file' :
 
-				echo gThemeUtilities::html( 'input', array(
+				echo gThemeHTML::tag( 'input', array(
 					'type'     => 'file',
 					'id'       => $id,
 					'name'     => $id,
@@ -455,7 +423,7 @@ class gThemeModuleCore extends gThemeBaseCore
 			echo '&nbsp;'.$args['after'];
 
 		if ( $args['description'] && FALSE !== $args['values'] )
-			echo gThemeUtilities::html( 'p', array(
+			echo gThemeHTML::tag( 'p', array(
 				'class' => 'description',
 			), $args['description'] );
 

@@ -1,7 +1,7 @@
 <form method="post" action="">
 	<h3><?php _e( 'Theme Banner Tiles Settings', GTHEME_TEXTDOMAIN ); ?></h3>
 
-	<?php if ( $banners_legend = gThemeOptions::info( 'banners_legend', false ) ) { ?>
+	<?php if ( $banners_legend = gThemeOptions::info( 'banners_legend' ) ) { ?>
 		<table class="form-table"><tbody><tr valign="top">
 			<th scope="row"><label><?php _e( 'Legend', GTHEME_TEXTDOMAIN ); ?></label></th>
 			<td><?php echo $banners_legend; ?><br />

@@ -46,7 +46,7 @@ class gThemeNavigation extends gThemeModuleCore
 
 		$html .= '</ul>';
 
-		echo gThemeUtilities::html( 'nav', array(
+		echo gThemeHTML::tag( 'nav', array(
 			'role'  => 'navigation',
 			'class' => $classes,
 		), $html );

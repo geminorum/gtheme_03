@@ -68,7 +68,7 @@ class gThemeCounts extends gThemeModuleCore
 		}
 
 		if ( $args['title'] ) {
-			$html = $args['before'].gThemeUtilities::html( 'a', array(
+			$html = $args['before'].gThemeHTML::tag( 'a', array(
 				'href'  => $args['def'],
 				'class' => $args['class'],
 				'title' => $args['attr'],
@@ -86,8 +86,7 @@ class gThemeCounts extends gThemeModuleCore
 
 	public function subs( $subs )
 	{
-		$subs['counts'] = _x( 'Counts', 'Counts Module: Tab Title', GTHEME_TEXTDOMAIN );
-		return $subs;
+		return array_merge( $subs, array( 'counts' => _x( 'Counts', 'Modules: Menu Name', GTHEME_TEXTDOMAIN ) ) );
 	}
 
 	public function settings_sub_html( $uri, $sub = 'general' )

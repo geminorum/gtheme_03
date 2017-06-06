@@ -165,7 +165,7 @@ class gThemeShortCodes extends gThemeModuleCore
 			);
 		}
 
-		return '<div class="theme-gallery-wrap -columns"><div class="gallery-spinner"></div>'.gThemeUtilities::html( 'div', array(
+		return '<div class="theme-gallery-wrap -columns"><div class="gallery-spinner"></div>'.gThemeHTML::tag( 'div', array(
 			'id' => $selector,
 			'class' => array(
 				'gallery',
@@ -399,7 +399,7 @@ class gThemeShortCodes extends gThemeModuleCore
 		if ( ! $args['src'] )
 			return $content;
 
-		$html = gThemeUtilities::html( 'img', array(
+		$html = gThemeHTML::tag( 'img', array(
 			'src'    => GTHEME_CHILD_URL.'/'.$args['dir'].'/'.$args['src'],
 			'alt'    => $args['alt'],
 			'title'  => $args['url'] ? FALSE : $args['title'],
@@ -408,7 +408,7 @@ class gThemeShortCodes extends gThemeModuleCore
 		) );
 
 		if ( $args['url'] )
-			return gThemeUtilities::html( 'a', array(
+			return gThemeHTML::tag( 'a', array(
 				'href'  => $args['url'],
 				'title' => $args['title'],
 			), $html );

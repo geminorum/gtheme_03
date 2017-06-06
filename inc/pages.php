@@ -95,7 +95,7 @@ class gThemePages extends gThemeModuleCore
 		}
 
 		if ( $args['title'] ) {
-			$html = $args['before'].gThemeUtilities::html( 'a', array(
+			$html = $args['before'].gThemeHTML::tag( 'a', array(
 				'href'  => $args['def'],
 				'class' => $args['class'],
 				'title' => $args['attr'],
@@ -113,7 +113,7 @@ class gThemePages extends gThemeModuleCore
 
 	public function subs( $subs )
 	{
-		return array_merge( $subs, array( 'pages' => _x( 'Pages', 'Pages Module: Tab Title', GTHEME_TEXTDOMAIN ) ) );
+		return array_merge( $subs, array( 'pages' => _x( 'Pages', 'Modules: Menu Name', GTHEME_TEXTDOMAIN ) ) );
 	}
 
 	public function settings_sub_html( $uri, $sub = 'general' )

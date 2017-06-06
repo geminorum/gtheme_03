@@ -19,6 +19,64 @@ class gThemeBaseCore
 		die();
 	}
 
+	public static function __log_req()
+	{
+		self::__log( $_REQUEST );
+	}
+
+	// INTERNAL
+	public static function __log( $log )
+	{
+		if ( defined( 'WP_DEBUG_LOG' ) && ! WP_DEBUG_LOG )
+			return;
+
+		if ( is_array( $log ) || is_object( $log ) )
+			error_log( print_r( $log, TRUE ) );
+		else
+			error_log( $log );
+	}
+
+	// INTERNAL: used on anything deprecated
+	protected static function __dep( $note = '', $prefix = 'DEP: ', $offset = 1 )
+	{
+		if ( defined( 'WP_DEBUG_LOG' ) && ! WP_DEBUG_LOG )
+			return;
+
+		$trace = debug_backtrace();
+
+		$log = $prefix;
+
+		if ( isset( $trace[$offset]['object'] ) )
+			$log .= get_class( $trace[$offset]['object'] ).'::';
+		else if ( isset( $trace[$offset]['class'] ) )
+			$log .= $trace[$offset]['class'].'::';
+
+		$log .= $trace[$offset]['function'].'()';
+
+		$offset++;
+
+		if ( isset( $trace[$offset]['function'] ) ) {
+			$log .= '|FROM: ';
+			if ( isset( $trace[$offset]['object'] ) )
+				$log .= get_class( $trace[$offset]['object'] ).'::';
+			else if ( isset( $trace[$offset]['class'] ) )
+				$log .= $trace[$offset]['class'].'::';
+			$log .= $trace[$offset]['function'].'()';
+		}
+
+		if ( $note )
+			$log .= '|'.$note;
+
+		error_log( $log );
+	}
+
+	// INTERNAL: used on anything deprecated : only on dev mode
+	protected static function __dev_dep( $note = '', $prefix = 'DEP: ', $offset = 2 )
+	{
+		if ( self::isDev() )
+			self::__dep( $note, $prefix, $offset );
+	}
+
 	public static function stat( $format = NULL )
 	{
 		if ( is_null( $format ) )
@@ -38,11 +96,6 @@ class gThemeBaseCore
 		$total = number_format( ( microtime( TRUE ) - $timestart ), $precision );
 		if ( $echo ) echo $total;
 		return $total;
-	}
-
-	public static function doNotCache()
-	{
-		defined( 'DONOTCACHEPAGE' ) or define( 'DONOTCACHEPAGE', TRUE );
 	}
 
 	public static function req( $key, $default = '' )
@@ -108,5 +161,67 @@ class gThemeBaseCore
 				$r[$k] = $v;
 
 		return $r;
+	}
+
+	public static function isDebug()
+	{
+		if ( WP_DEBUG && WP_DEBUG_DISPLAY && ! self::isDev() )
+			return TRUE;
+
+		return FALSE;
+	}
+
+	public static function isDev()
+	{
+		if ( defined( 'WP_STAGE' )
+			&& 'development' == constant( 'WP_STAGE' ) )
+				return TRUE;
+
+		return FALSE;
+	}
+
+	public static function isFlush()
+	{
+		if ( isset( $_GET['flush'] ) )
+			return did_action( 'init' ) && current_user_can( 'publish_posts' );
+
+		return FALSE;
+	}
+
+	// @SEE: `wp_doing_ajax()` since 4.7.0
+	public static function isAJAX()
+	{
+		return defined( 'DOING_AJAX' ) && DOING_AJAX;
+	}
+
+	// @SEE: `wp_doing_cron()` since 4.8.0
+	public static function isCRON()
+	{
+		return defined( 'DOING_CRON' ) && DOING_CRON;
+	}
+
+	public static function isCLI()
+	{
+		return defined( 'WP_CLI' ) && WP_CLI;
+	}
+
+	public static function isXMLRPC()
+	{
+		return defined( 'XMLRPC_REQUEST' ) && XMLRPC_REQUEST;
+	}
+
+	public static function isREST()
+	{
+		return defined( 'REST_REQUEST' ) && REST_REQUEST;
+	}
+
+	public static function isIFrame()
+	{
+		return defined( 'IFRAME_REQUEST' ) && IFRAME_REQUEST;
+	}
+
+	public static function doNotCache()
+	{
+		defined( 'DONOTCACHEPAGE' ) or define( 'DONOTCACHEPAGE', TRUE );
 	}
 }

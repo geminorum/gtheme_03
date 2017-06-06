@@ -105,8 +105,7 @@ class gThemeBanners extends gThemeModuleCore
 
 	public function subs( $subs )
 	{
-		$subs['banners'] = __( 'Banners', GTHEME_TEXTDOMAIN );
-		return $subs;
+		return array_merge( $subs, array( 'banners' => _x( 'Banners', 'Modules: Menu Name', GTHEME_TEXTDOMAIN ) ) );
 	}
 
 	public function load( $sub )

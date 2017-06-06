@@ -53,38 +53,6 @@ class gThemeUtilities extends gThemeBaseCore
 		return $default;
 	}
 
-	// debug on production env
-	public static function isDebug()
-	{
-		if ( WP_DEBUG && WP_DEBUG_DISPLAY && ! self::isDev() )
-			return TRUE;
-
-		return FALSE;
-	}
-
-	public static function isDev()
-	{
-		if ( defined( 'GTHEME_DEV_ENVIRONMENT' )
-			&& constant( 'GTHEME_DEV_ENVIRONMENT' ) )
-				return TRUE;
-
-		if ( defined( 'WP_STAGE' )
-			&& 'development' == constant( 'WP_STAGE' ) )
-				return TRUE;
-
-		// TODO: check stage production and debug constant then true
-
-		return FALSE;
-	}
-
-	public static function isFlush()
-	{
-		if ( isset( $_GET['flush'] ) )
-			return did_action( 'init' ) && current_user_can( 'publish_posts' );
-
-		return FALSE;
-	}
-
 	public static function isPrint()
 	{
 		return isset( $_GET['print'] );
@@ -206,6 +174,8 @@ class gThemeUtilities extends gThemeBaseCore
 
 	public static function html( $tag, $atts = array(), $content = FALSE, $sep = '' )
 	{
+		self::__dev_dep();
+
 		$html = self::_tag_open( $tag, $atts, $content );
 
 		if ( FALSE === $content )
@@ -243,7 +213,7 @@ class gThemeUtilities extends gThemeBaseCore
 		else
 			$url = add_query_arg( 'ver', $version, $url );
 
-		echo "\t".self::html( 'link', array(
+		echo "\t".gThemeHTML::tag( 'link', array(
 			'rel' => 'stylesheet',
 			'href' => $url,
 			'type' => 'text/css',
@@ -286,12 +256,12 @@ class gThemeUtilities extends gThemeBaseCore
 		$html = '';
 
 		foreach ( $sub_pages as $page_slug => $sub_page )
-			$html .= self::html( 'a', array(
+			$html .= gThemeHTML::tag( 'a', array(
 				'class' => 'nav-tab '.$class_prefix.$page_slug.( $page_slug == $active ? ' nav-tab-active' : '' ),
-				'href' => add_query_arg( 'sub', $page_slug, $uri ),
+				'href'  => add_query_arg( 'sub', $page_slug, $uri ),
 			), esc_html( $sub_page ) );
 
-		echo self::html( $tag, array(
+		echo gThemeHTML::tag( $tag, array(
 			'class' => 'nav-tab-wrapper',
 		), $html );
 	}
