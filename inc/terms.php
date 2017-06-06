@@ -41,18 +41,17 @@ class gThemeTerms extends gThemeModuleCore
 
 	public function subs( $subs )
 	{
-		$subs['terms'] = _x( 'Primary Terms', 'Terms Module', GTHEME_TEXTDOMAIN );
-		return $subs;
+		return array_merge( $subs, array( 'primaryterms' => _x( 'Primary Terms', 'Modules: Menu Name', GTHEME_TEXTDOMAIN ) ) );
 	}
 
 	public function load( $sub )
 	{
-		if ( 'terms' == $sub ) {
+		if ( 'primaryterms' == $sub ) {
 
 			if ( ! empty( $_POST )
-				&& wp_verify_nonce( $_POST['_gtheme_terms'], 'gtheme-terms' ) ) {
+				&& wp_verify_nonce( @$_POST['_gtheme_primaryterms'], 'gtheme-primaryterms' ) ) {
 
-				if ( ! empty( $_POST['create-default-terms'] ) ) {
+				if ( ! empty( $_POST['create-default-primaryterms'] ) ) {
 
 					$defaults = gThemeOptions::info( 'primary_terms_defaults', array() );
 					$taxonomy = gThemeOptions::info( 'primary_terms_taxonomy', 'category' );
@@ -64,11 +63,11 @@ class gThemeTerms extends gThemeModuleCore
 						exit();
 					}
 
-				} else if ( ! empty( $_POST['gtheme_terms'] ) ) {
+				} else if ( ! empty( $_POST['gtheme_primaryterms'] ) ) {
 
 					$terms = $unordered = array();
 
-					foreach ( $_POST['gtheme_terms'] as $term_id => $term_args ) {
+					foreach ( $_POST['gtheme_primaryterms'] as $term_id => $term_args ) {
 
 						$order = isset( $term_args['order'] ) && trim( $term_args['order'] ) ? intval( $term_args['order'] ) : FALSE;
 
@@ -93,12 +92,12 @@ class gThemeTerms extends gThemeModuleCore
 				}
 			}
 
-			add_action( 'gtheme_settings_sub_terms', array( $this, 'settings_sub_html' ), 10, 2 );
+			add_action( 'gtheme_settings_sub_primaryterms', array( $this, 'settings_sub_html_primaryterms' ), 10, 2 );
 		}
 	}
 
 	// FIXME: [Display A Category Checklist In WordPress](https://paulund.co.uk/display-category-checklist-wordpress)
-	public function settings_sub_html( $uri, $sub = 'general' )
+	public function settings_sub_html_primaryterms( $uri, $sub = 'general' )
 	{
 		$legend   = gThemeOptions::info( 'primary_terms_legend', FALSE );
 		$taxonomy = gThemeOptions::info( 'primary_terms_taxonomy', 'category' );
@@ -114,40 +113,43 @@ class gThemeTerms extends gThemeModuleCore
 
 				foreach ( self::getTerms( $taxonomy, FALSE, TRUE ) as $term ) {
 
-					echo gThemeUtilities::html( 'input', array(
+					echo '<p>'.gThemeHTML::tag( 'input', array(
 						'type'    => 'checkbox',
-						'name'    => 'gtheme_terms['.$term->term_id.'][checked]',
-						'id'      => 'gtheme_terms-'.$term->term_id.'-checked',
+						'name'    => 'gtheme_primaryterms['.$term->term_id.'][checked]',
+						'id'      => 'gtheme_primaryterms-'.$term->term_id.'-checked',
 						'checked' => in_array( intval( $term->term_id ), $options ),
-					) ).' | ';
+					) );
 
 					$order = array_search( $term->term_id, $options );
-					echo gThemeUtilities::html( 'input', array(
-						'type'    => 'text',
-						'size'    => '1',
-						'name'    => 'gtheme_terms['.$term->term_id.'][order]',
-						'id'      => 'gtheme_terms-'.$term->term_id.'-order',
-						'value' => ( FALSE === $order ? '' : $order ),
-					) ).' | ';
 
-					echo gThemeUtilities::html( 'label', array(
-						'for'    => 'gtheme_terms-'.$term->term_id.'-checked',
-					), $term->term_id.' | '
-						.esc_html( $term->name ).' | ('
-						.number_format_i18n( $term->count ).')' );
+					echo ' '.gThemeHTML::tag( 'input', array(
+						'type'         => 'number',
+						'step'         => '1',
+						'autocomplete' => 'off',
+						'class'        => 'small-text',
+						'name'         => 'gtheme_primaryterms['.$term->term_id.'][order]',
+						'id'           => 'gtheme_primaryterms-'.$term->term_id.'-order',
+						'value'        => ( FALSE === $order ? '' : $order ),
+						'style'        => 'vertical-align:middle',
+					) );
 
-					echo '<br />';
+					echo ' '.gThemeHTML::tag( 'label', array(
+						'for'   => 'gtheme_primaryterms-'.$term->term_id.'-checked',
+						'title' => $term->slug,
+					), esc_html( $term->name ).' ('.number_format_i18n( $term->count ).')' );
+
+					echo '</p>';
 				}
 
 				echo '</td></tr>';
 			echo '</table>';
 			echo '<p class="submit">';
 
-				$this->settings_buttons( 'terms', FALSE );
-				echo get_submit_button( _x( 'Create Default Primary Terms', 'Terms Module', GTHEME_TEXTDOMAIN ), 'secondary', 'create-default-terms', FALSE, self::getButtonConfirm() ).'&nbsp;&nbsp;';
+				$this->settings_buttons( 'primaryterms', FALSE );
+				echo get_submit_button( _x( 'Create Default Primary Terms', 'Terms Module', GTHEME_TEXTDOMAIN ), 'secondary', 'create-default-primaryterms', FALSE, self::getButtonConfirm() ).'&nbsp;&nbsp;';
 
 			echo '</p>';
-			wp_nonce_field( 'gtheme-terms', '_gtheme_terms' );
+			wp_nonce_field( 'gtheme-primaryterms', '_gtheme_primaryterms' );
 		echo '</form>';
 	}
 
