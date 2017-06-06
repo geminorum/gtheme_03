@@ -17,8 +17,14 @@ class gThemeTerms extends gThemeModuleCore
 			add_action( 'init', array( $this, 'register_taxonomies' ) );
 
 			if ( is_admin() ) {
+
 				add_action( 'load-edit-tags.php', array( $this, 'load_edit_tags' ) );
 				add_filter( 'geditorial_tweaks_taxonomy_info', array( $this, 'tweaks_taxonomy_info' ), 10, 3 );
+
+				// remote: tax bulk actions with gNetworkTaxonomy
+				add_filter( 'gnetwork_taxonomy_bulk_actions', array( $this, 'taxonomy_bulk_actions' ), 12, 2 );
+				add_filter( 'gnetwork_taxonomy_bulk_callback', array( $this, 'taxonomy_bulk_callback' ), 12, 3 );
+
 			} else {
 				add_filter( 'post_class', array( $this, 'post_class' ), 10, 3 );
 			}
@@ -222,12 +228,12 @@ class gThemeTerms extends gThemeModuleCore
 		}
 	}
 
-	private function system_tags_table_action( $action_name )
+	private function system_tags_table_action( $name )
 	{
-		if ( empty( $_REQUEST[$action_name] ) )
+		if ( empty( $_REQUEST[$name] ) )
 			return FALSE;
 
-		if ( 'install_systemtags' == $_REQUEST[$action_name] ) {
+		if ( 'install_systemtags' == $_REQUEST[$name] ) {
 
 			$defaults = gThemeOptions::info( 'system_tags_defaults', array() );
 			$taxonomy = GTHEME_SYSTEMTAGS;
@@ -241,27 +247,84 @@ class gThemeTerms extends gThemeModuleCore
 
 		$action = self::insertDefaults( $taxonomy, $defaults ) ? 'added_'.$taxonomy : $action = 'error_'.$taxonomy;
 
-		wp_redirect( add_query_arg( $action_name, $action ) );
+		wp_redirect( add_query_arg( $name, $action ) );
 		exit;
 	}
 
 	public function after_system_tags_table( $taxonomy )
 	{
-		$action_name = 'gtheme_action';
-		$title       = _x( 'Install Default System Tags', 'Terms Module', GTHEME_TEXTDOMAIN );
-		$action      = add_query_arg( $action_name, 'install_systemtags' );
+		$name   = 'gtheme_action';
+		$title  = _x( 'Install Default System Tags', 'Terms Module', GTHEME_TEXTDOMAIN );
+		$action = add_query_arg( $name, 'install_systemtags' );
 
-		if ( isset( $_GET[$action_name] ) ) {
-			if ( 'error_systemtags' == $_GET[$action_name] ) {
+		if ( isset( $_GET[$name] ) ) {
+
+			if ( 'error_systemtags' == $_GET[$name] )
 				$title = _x( 'Error while adding default system tags.', 'Terms Module', GTHEME_TEXTDOMAIN );
-			} else if ( 'added_systemtags' == $_GET[$action_name] ) {
+
+			else if ( 'added_systemtags' == $_GET[$name] )
 				$title = _x( 'Default system tags added.', 'Terms Module', GTHEME_TEXTDOMAIN );
-			}
 		}
 
 		echo '<div class="form-field"><p>';
 			echo '<a href="'.esc_url( $action ).'" class="button">'.$title.'</a>';
 		echo '</p></div>';
+	}
+
+	public function taxonomy_bulk_actions( $actions, $taxonomy )
+	{
+		if ( $taxonomy != GTHEME_SYSTEMTAGS )
+			return $actions;
+
+		return array_merge( $actions, array( 'empty_lastmonth' => _x( 'Empty Before Last Month', 'Terms Module', GTHEME_TEXTDOMAIN ) ) );
+	}
+
+	public function taxonomy_bulk_callback( $callback, $action, $taxonomy )
+	{
+
+		if ( $taxonomy == GTHEME_SYSTEMTAGS && 'empty_lastmonth' == $action )
+			return array( $this, 'bulk_empty_lastmonth' );
+
+		return $callback;
+	}
+
+	public function bulk_empty_lastmonth( $term_ids, $taxonomy )
+	{
+		if ( $taxonomy != GTHEME_SYSTEMTAGS )
+			return FALSE;
+
+		$cpt = gThemeOptions::info( 'system_tags_cpt', array( 'post' ) );
+
+		$args = array(
+			'fields'         => 'ids',
+			'post_type'      => $cpt,
+			'posts_per_page' => -1,
+			'post_status'    => 'publish',
+			'tax_query'      => array( array(
+				'taxonomy' => $taxonomy,
+				'terms'    => array_filter( $term_ids, 'intval' ),
+				// 'operator' => 'EXISTS',
+			) ),
+			'date_query' => array(
+				'column' => 'post_date_gmt',
+				'before' => '30 days ago',
+			),
+			'suppress_filters'       => TRUE,
+			'no_found_rows'          => TRUE,
+			'update_post_term_cache' => FALSE,
+			'update_post_meta_cache' => FALSE,
+		);
+
+		$query = new \WP_Query;
+		$posts = $query->query( $args );
+		$count = 0;
+
+		foreach ( $posts as $post )
+			foreach ( $term_ids as $term_id )
+				if ( TRUE === wp_remove_object_terms( $post, intval( $term_id ), $taxonomy ) )
+					$count++;
+
+		return $count;
 	}
 
 	public function p2p_init()
