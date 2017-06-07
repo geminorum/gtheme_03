@@ -55,6 +55,11 @@ class gThemeTheme extends gThemeModuleCore
 					'image',
 			) ) );
 
+		else
+			add_action( 'init', function(){
+				remove_post_type_support( 'post', 'post-formats' );
+			} );
+
 		if ( $html5 )
 			add_theme_support( 'html5',
 				gThemeOptions::info( 'support_html5', array(
