@@ -159,27 +159,17 @@ class gThemeFilters extends gThemeModuleCore
 		if ( $extra = gThemeOptions::getOption( 'body_class_extra', FALSE ) )
 			$classes[] = sanitize_html_class( $extra );
 
-		if ( ! empty( $pagenow ) )
-			$classes[] = sanitize_html_class( 'page-'.str_ireplace( '.php', '', $pagenow ) );
+		if ( ! empty( $pagenow ) && 'index.php' !== $pagenow )
+			$classes[] = sanitize_html_class( 'pagenow-'.str_ireplace( '.php', '', $pagenow ) );
 
 		if ( gThemeUtilities::isDev() )
 			$classes[] = 'stage-development';
-
-		if ( gThemeUtilities::isDebug() )
-			$classes[] = 'wp-debug';
 
 		if ( ! gThemeUtilities::isRTL() )
 			$classes[] = 'ltr';
 
 		if ( is_page() )
 			$classes[] = sanitize_html_class( 'slug-'.get_post()->post_name );
-
-		if ( is_single() )
-			foreach ( get_the_category() as $category )
-			   $classes[] = 'cat-'.$category->slug;
-
-		if ( is_singular() )
-			$classes[] = $post->post_type.'-'.$post->post_name;
 
 		$uri = explode( '/', $_SERVER['REQUEST_URI'] );
 		if ( isset( $uri[1] ) ) {
@@ -188,9 +178,9 @@ class gThemeFilters extends gThemeModuleCore
 				$classes[] = 'uri-'.$uri_string;
 		}
 
-		foreach ( $gtheme_info['sidebars'] as $sidebar_name => $sidebar_title )
-			if ( is_active_sidebar( $sidebar_name ) )
-				$classes[] = 'sidebar-'.$sidebar_name;
+		// foreach ( $gtheme_info['sidebars'] as $sidebar_name => $sidebar_title )
+		// 	if ( is_active_sidebar( $sidebar_name ) )
+		// 		$classes[] = 'sidebar-'.$sidebar_name;
 
 		return $classes;
 	}
@@ -199,6 +189,9 @@ class gThemeFilters extends gThemeModuleCore
 
 	public function post_class( $classes, $class, $post_ID )
 	{
+		if ( is_embed() )
+			return $classes;
+
 		global $wp_query, $post;
 
 		$classes[] = 'pf-content'; // print friendly / for : gThemeContent::printfriendly()

@@ -13,7 +13,7 @@ class gThemeContent extends gThemeModuleCore
 
 		$post_id = get_the_ID();
 
-		echo '<'.$tag.( $post_id ? ' id="post-'.$post_id.'"' : '' ).' class="'.join( ' ', get_post_class( $classes, $post_id ) ).'">';
+		echo '<'.$tag.( $post_id ? ' id="post-'.$post_id.'"' : '' ).' class="'.join( ' ', self::getPostClass( $classes, $post_id ) ).'">';
 	}
 
 	public static function wrapClose( $tag = 'article' )
@@ -103,6 +103,33 @@ class gThemeContent extends gThemeModuleCore
 		the_date( 'Y/j/m' );
 
 		echo $after;
+	}
+
+	// core duplicate for performance reasons
+	// @REF: `get_post_class()`
+	public static function getPostClass( $class = '', $post_id = NULL )
+	{
+		$post = get_post( $post_id );
+
+		$classes = $class ? array_map(
+			array( 'gThemeHTML', 'sanitizeClass' ),
+			gThemeHTML::attrClass( $class ) ) : array();
+
+		if ( ! $post )
+			return $classes;
+
+		$classes[] = gThemeHTML::sanitizeClass( 'type-'.$post->post_type );
+
+		if ( post_password_required( $post->ID ) )
+			$classes[] = 'post-password-required';
+
+		else if ( ! empty( $post->post_password ) )
+			$classes[] = 'post-password-protected';
+
+		$classes[] = 'hentry';
+
+		// core default filter
+		return array_unique( apply_filters( 'post_class', $classes, $class, $post->ID ) );
 	}
 
 	// FIXME: DEPRECATED
