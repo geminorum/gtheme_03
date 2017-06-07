@@ -33,6 +33,7 @@ final class gThemeCore
 			'wrap'       => 'gThemeWrap',
 			'filters'    => 'gThemeFilters',
 			'content'    => 'gThemeContent',
+			'embed'      => 'gThemeEmbed',
 			'feed'       => 'gThemeFeed',
 			'image'      => 'gThemeImage',
 			'social'     => 'gThemeSocial',
