@@ -159,24 +159,7 @@ class gThemeTerms extends gThemeModuleCore
 		$cap = gThemeOptions::info( 'settings_access', 'edit_theme_options' );
 
 		register_taxonomy( GTHEME_SYSTEMTAGS, $cpt, array(
-			'labels' => array(
-				'name'              => _x( 'System Tags', 'System Tag Tax Labels: Name', GTHEME_TEXTDOMAIN ),
-				'menu_name'         => _x( 'System Tags', 'System Tag Tax Labels: Menu Name', GTHEME_TEXTDOMAIN ),
-				'singular_name'     => _x( 'System Tag', 'System Tag Tax Labels: Singular Name', GTHEME_TEXTDOMAIN ),
-				'search_items'      => _x( 'Search System Tags', 'System Tag Tax Labels', GTHEME_TEXTDOMAIN ),
-				'all_items'         => _x( 'All System Tags', 'System Tag Tax Labels', GTHEME_TEXTDOMAIN ),
-				'parent_item'       => _x( 'Parent System Tag', 'System Tag Tax Labels', GTHEME_TEXTDOMAIN ),
-				'parent_item_colon' => _x( 'Parent System Tag:', 'System Tag Tax Labels', GTHEME_TEXTDOMAIN ),
-				'edit_item'         => _x( 'Edit System Tag', 'System Tag Tax Labels', GTHEME_TEXTDOMAIN ),
-				'view_item'         => _x( 'View System Tag', 'System Tag Tax Labels', GTHEME_TEXTDOMAIN ),
-				'update_item'       => _x( 'Update System Tag', 'System Tag Tax Labels', GTHEME_TEXTDOMAIN ),
-				'add_new_item'      => _x( 'Add New System Tag', 'System Tag Tax Labels', GTHEME_TEXTDOMAIN ),
-				'new_item_name'     => _x( 'New System Tag Name', 'System Tag Tax Labels', GTHEME_TEXTDOMAIN ),
-				'not_found'         => _x( 'No system tags found.', 'System Tag Tax Labels', GTHEME_TEXTDOMAIN ),
-				'no_terms'          => _x( 'No system tags', 'System Tag Tax Labels', GTHEME_TEXTDOMAIN ),
-				'pagination'        => _x( 'System Tags list navigation', 'System Tag Tax Labels', GTHEME_TEXTDOMAIN ),
-				'list'              => _x( 'System Tags list', 'System Tag Tax Labels', GTHEME_TEXTDOMAIN ),
-			),
+			'labels'                => $this->get_systemtags_labels(),
 			'public'                => FALSE,
 			'show_in_nav_menus'     => FALSE,
 			'show_ui'               => TRUE,
@@ -193,6 +176,31 @@ class gThemeTerms extends gThemeModuleCore
 				'assign_terms' => 'edit_posts',
 			)
 		) );
+	}
+
+	private function get_systemtags_labels()
+	{
+		if ( ! current_user_can( 'edit_posts' ) )
+			return array();
+
+		return array(
+			'name'              => _x( 'System Tags', 'System Tag Tax Labels: Name', GTHEME_TEXTDOMAIN ),
+			'menu_name'         => _x( 'System Tags', 'System Tag Tax Labels: Menu Name', GTHEME_TEXTDOMAIN ),
+			'singular_name'     => _x( 'System Tag', 'System Tag Tax Labels: Singular Name', GTHEME_TEXTDOMAIN ),
+			'search_items'      => _x( 'Search System Tags', 'System Tag Tax Labels', GTHEME_TEXTDOMAIN ),
+			'all_items'         => _x( 'All System Tags', 'System Tag Tax Labels', GTHEME_TEXTDOMAIN ),
+			'parent_item'       => _x( 'Parent System Tag', 'System Tag Tax Labels', GTHEME_TEXTDOMAIN ),
+			'parent_item_colon' => _x( 'Parent System Tag:', 'System Tag Tax Labels', GTHEME_TEXTDOMAIN ),
+			'edit_item'         => _x( 'Edit System Tag', 'System Tag Tax Labels', GTHEME_TEXTDOMAIN ),
+			'view_item'         => _x( 'View System Tag', 'System Tag Tax Labels', GTHEME_TEXTDOMAIN ),
+			'update_item'       => _x( 'Update System Tag', 'System Tag Tax Labels', GTHEME_TEXTDOMAIN ),
+			'add_new_item'      => _x( 'Add New System Tag', 'System Tag Tax Labels', GTHEME_TEXTDOMAIN ),
+			'new_item_name'     => _x( 'New System Tag Name', 'System Tag Tax Labels', GTHEME_TEXTDOMAIN ),
+			'not_found'         => _x( 'No system tags found.', 'System Tag Tax Labels', GTHEME_TEXTDOMAIN ),
+			'no_terms'          => _x( 'No system tags', 'System Tag Tax Labels', GTHEME_TEXTDOMAIN ),
+			'pagination'        => _x( 'System Tags list navigation', 'System Tag Tax Labels', GTHEME_TEXTDOMAIN ),
+			'list'              => _x( 'System Tags list', 'System Tag Tax Labels', GTHEME_TEXTDOMAIN ),
+		);
 	}
 
 	// system tags to post_classess
