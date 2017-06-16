@@ -112,7 +112,7 @@ class gThemeHTML extends gThemeBaseCore
 				$classes = array_merge( $classes, $arg );
 
 			else if ( $arg )
-				$classes = array_merge( $classes, explode( ' ', $arg ) );
+				$classes = array_merge( $classes, preg_split( '#\s+#', $arg ) );
 
 		return array_unique( array_filter( $classes, 'trim' ) );
 	}

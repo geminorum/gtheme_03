@@ -34,4 +34,18 @@ class gThemeEmbed extends gThemeModuleCore
 	{
 		// FIXME
 	}
+
+	// NOT USED YET
+	// @REF: `WP_Embed::delete_oembed_caches()`
+	public static function has( $post = NULL )
+	{
+		if ( ! $post = get_post( $post ) )
+			return FALSE;
+
+		foreach ( get_post_custom_keys( $post->ID ) as $key )
+			if ( '_oembed_' == substr( $key, 0, 8 ) )
+				return TRUE;
+
+		return FALSE;
+	}
 }

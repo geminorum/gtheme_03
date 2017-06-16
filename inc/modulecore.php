@@ -442,10 +442,13 @@ class gThemeModuleCore extends gThemeBaseCore
 		return $selector;
 	}
 
-	public static function getTerms( $taxonomy = 'category', $post = FALSE, $object = FALSE, $key = 'term_id', $extra = array() )
+	public static function getTerms( $taxonomy = 'category', $object_id = FALSE, $object = FALSE, $key = 'term_id', $extra = array() )
 	{
-		if ( FALSE !== $post )
-			$terms = get_the_terms( $post, $taxonomy );
+		if ( is_null( $object_id ) )
+			$terms = wp_get_object_terms( get_post()->ID, $taxonomy, $extra );
+
+		else if ( FALSE !== $object_id )
+			$terms = wp_get_object_terms( $object_id, $taxonomy, $extra );
 
 		else
 			$terms = get_terms( array_merge( array(

@@ -28,6 +28,7 @@
   gulp.task('pot', function() {
 
     return gulp.src([
+      'style.css',
       './**/*.php',
       '!./assets/**',
       '!./css/**',
