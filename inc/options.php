@@ -152,6 +152,9 @@ class gThemeOptions extends gThemeModuleCore
 			'default_image_src' => GTHEME_URL.'/images/document-large.png', // FIXME: MUST DEP
 			'copyright'         => self::getOption( 'copyright', __( '&copy; All right reserved.', GTHEME_TEXTDOMAIN ) ),
 
+			// 'default_content_width' => 455, // setting global content_width // FALSE to default
+			// 'full_content_width' => 455, // setting global content_width on fullwidthpage.php // FALSE to default
+
 			// COMMENTS
 			'comments_disable_types' => array( 'attachment' ),
 			'comment_callback'       => array( 'gThemeComments', 'comment_callback' ), // null to use wp core

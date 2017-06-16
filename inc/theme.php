@@ -6,17 +6,18 @@ class gThemeTheme extends gThemeModuleCore
 	public function setup_actions( $args = array() )
 	{
 		extract( self::atts( array(
-			'cleanup'      => TRUE,
-			'html_title'   => TRUE,
-			'adminbar'     => TRUE,
-			'wpcf7'        => TRUE,
-			'page_excerpt' => TRUE,
-			'feed_links'   => TRUE,
-			'post_formats' => FALSE,
-			'html5'        => TRUE,
-			'js'           => TRUE,
-			'hooks'        => TRUE,
-			'buddypress'   => TRUE,
+			'cleanup'       => TRUE,
+			'html_title'    => TRUE,
+			'adminbar'      => TRUE,
+			'wpcf7'         => TRUE,
+			'page_excerpt'  => TRUE,
+			'content_width' => TRUE,
+			'feed_links'    => TRUE,
+			'post_formats'  => FALSE,
+			'html5'         => TRUE,
+			'js'            => TRUE,
+			'hooks'         => TRUE,
+			'buddypress'    => TRUE,
 		), $args ) );
 
 		if ( $cleanup )
@@ -35,6 +36,17 @@ class gThemeTheme extends gThemeModuleCore
 
 		if ( $page_excerpt )
 			add_post_type_support( 'page', 'excerpt' );
+
+		if ( $content_width ) { // @SEE: https://core.trac.wordpress.org/ticket/21256
+
+			$this->set_content_width( gThemeOptions::info( 'default_content_width', FALSE ) );
+
+			if ( gThemeOptions::info( 'full_content_width', FALSE ) )
+				add_action( 'template_redirect', function(){
+					if ( is_page_template( 'fullwidthpage.php' ) )
+						$GLOBALS['content_width'] = gThemeOptions::info( 'full_content_width' );
+				} );
+		}
 
 		if ( $feed_links )
 			add_theme_support( 'automatic-feed-links' );
@@ -112,6 +124,19 @@ class gThemeTheme extends gThemeModuleCore
 		remove_filter( 'comment_text', 'capital_P_dangit', 31 );
 		foreach ( array( 'the_content', 'the_title', 'wp_title' ) as $filter )
 			remove_filter( $filter, 'capital_P_dangit', 11 );
+	}
+
+	public function set_content_width( $width )
+	{
+		global $content_width;
+
+		if ( ! $width )
+			return FALSE;
+
+		if ( ! empty( $content_width ) )
+			return FALSE;
+
+		return $content_width = intval( $width );
 	}
 
 	public function template_redirect_remove_styles()
