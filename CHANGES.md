@@ -1,3 +1,16 @@
+### 3.14.9
+* module/cache: default ttl up to 12 hours
+* module/content: body/post css classes revised
+* module/embed: :new: initial support
+* module/filters: document title parts
+* module/settings: new admin title class in 4.8
+* module/terms: :new: empty before last month as bulk action on system tags
+* module/terms: primary terms ui revised
+* module/terms: tax labels for user with cap only
+* module/theme: remove post formats support from posts
+* module/theme: global content width setting
+* root/homepage: :new: template
+
 ### 3.14.8
 * module/attachment: :new: download helper
 * module/attachment: :new: media helper
