@@ -14,7 +14,7 @@ $gtheme_constants = array(
 
 	'GTHEME_SYSTEMTAGS'        => 'system_tags',
 	'GTHEME_FRAGMENTCACHE'     => 'gtheme',
-	'GTHEME_CACHETTL'          => 3600,
+	'GTHEME_CACHETTL'          => 60 * 60 * 12, // 12 hours
 	'GTHEME_IMAGES_META'       => '_gtheme_images',
 	'GTHEME_IMAGES_TERMS_META' => '_gtheme_images_terms',
 
