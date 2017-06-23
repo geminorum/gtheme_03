@@ -256,12 +256,13 @@ class gThemeWidget extends WP_Widget
 
 	public function __construct()
 	{
-		$args = gThemeModuleCore::atts( array(
-			'name'  => FALSE,
-			'class' => '',
-			'title' => '',
-			'desc'  => '',
-			'flush' => array(),
+		$args = gThemeBaseCore::atts( array(
+			'name'    => FALSE,
+			'class'   => '',
+			'title'   => '',
+			'desc'    => '',
+			'control' => array(),
+			'flush'   => array(),
 		), $this->setup() );
 
 		if ( ! $args['name'] )
@@ -270,7 +271,7 @@ class gThemeWidget extends WP_Widget
 		parent::__construct( 'gtheme_'.$args['name'], $args['title'], array(
 			'description' => $args['desc'],
 			'classname'   => '{GTHEME_WIDGET_CLASSNAME}'.'widget-gtheme-'.$args['class'],
-		) );
+		), $args['control'] );
 
 		$this->alt_option_name = 'widget_gtheme_'.$args['name'];
 
