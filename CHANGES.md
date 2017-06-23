@@ -1,3 +1,14 @@
+### 3.14.10
+* core/wordpress: :new: core class
+* module/sidebar: switch to transient
+* module/sidebar: fallback for widget title helper
+* module/sidebar: hide if empty desc for the term widget
+* module/sidebar: fewer checks for the term widget
+* module/sidebar: passing control optins into parent class
+* module/sidebar: form taxonomy list based on posttype
+* module/sidebar: strings revised
+* module/sidebar: removed old alloption deletion
+
 ### 3.14.9
 * module/cache: default ttl up to 12 hours
 * module/content: body/post css classes revised
