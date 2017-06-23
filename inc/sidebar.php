@@ -444,15 +444,16 @@ class gThemeWidget extends WP_Widget
 		), __( 'PostType:', GTHEME_TEXTDOMAIN ).$html ).'</p>';
 	}
 
-	public function form_taxonomy( $instance, $default = 'post_tag', $field = 'taxonomy' )
+	public function form_taxonomy( $instance, $default = 'post_tag', $field = 'taxonomy', $post_type_field = 'post_type', $post_type_default = 'post' )
 	{
-		$html = '';
-		$tax = isset( $instance[$field] ) ? $instance[$field] : $default;
+		$html      = '';
+		$post_type = isset( $instance[$post_type_field] ) ? $instance[$post_type_field] : $post_type_default;
+		$taxonomy  = isset( $instance[$field] ) ? $instance[$field] : $default;
 
-		foreach ( gThemeModuleCore::getTaxonomies( TRUE ) as $name => $title )
+		foreach ( gThemeWordPress::getTaxonomies( 0, array(), $post_type ) as $name => $title )
 			$html .= gThemeHTML::tag( 'option', array(
 				'value'    => $name,
-				'selected' => $tax == $name,
+				'selected' => $taxonomy == $name,
 			), $title );
 
 		$html = gThemeHTML::tag( 'select', array(
