@@ -634,22 +634,15 @@ class gThemeWidgetTermPosts extends gThemeWidget
 		);
 	}
 
-	public function widget( $args, $instance )
-	{
-		$term_id = isset( $instance['term_id'] ) ? $instance['term_id'] : FALSE;
-
-		if ( ! $term_id )
-			return;
-
-		$this->widget_cache( $args, $instance, '_'.$term_id );
-	}
-
 	public function widget_html( $args, $instance )
 	{
 		$context   = isset( $instance['context'] ) ? $instance['context'] : 'recent';
 		$term_id   = isset( $instance['term_id'] ) ? $instance['term_id'] : FALSE;
 		$taxonomy  = isset( $instance['taxonomy'] ) ? $instance['taxonomy'] : 'post_tag';
 		$post_type = isset( $instance['post_type'] ) ? $instance['post_type'] : 'post';
+
+		if ( ! $term_id )
+			return FALSE;
 
 		if ( empty( $instance['number'] ) || ! $number = absint( $instance['number'] ) )
 			$number = 10;
