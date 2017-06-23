@@ -735,10 +735,6 @@ class gThemeWidgetTermPosts extends gThemeWidget
 
 		$this->flush_widget_cache();
 
-		$alloptions = wp_cache_get( 'alloptions', 'options' );
-		if ( isset( $alloptions[$this->alt_option_name] ) )
-			delete_option( $this->alt_option_name );
-
 		return $instance;
 	}
 
@@ -851,10 +847,6 @@ class gThemeWidgetRelatedPosts extends gThemeWidget
 
 		$this->flush_widget_cache();
 
-		$alloptions = wp_cache_get( 'alloptions', 'options' );
-		if ( isset( $alloptions[$this->alt_option_name] ) )
-			delete_option( $this->alt_option_name );
-
 		return $instance;
 	}
 
@@ -942,10 +934,6 @@ class gThemeWidgetRecentPosts extends gThemeWidget
 		$instance['class']      = strip_tags( $new_instance['class'] );
 
 		$this->flush_widget_cache();
-
-		$alloptions = wp_cache_get( 'alloptions', 'options' );
-		if ( isset( $alloptions[$this->alt_option_name] ) )
-			delete_option( $this->alt_option_name );
 
 		return $instance;
 	}
@@ -1041,11 +1029,8 @@ class gThemeWidgetRecentComments extends gThemeWidget
 		$instance['class']       = strip_tags( $new_instance['class'] );
 		$instance['number']      = (int) $new_instance['number'];
 		$instance['avatar_size'] = (int) $new_instance['avatar_size'];
-		$this->flush_widget_cache();
 
-		$alloptions = wp_cache_get( 'alloptions', 'options' );
-		if ( isset( $alloptions[$this->alt_option_name] ) )
-			delete_option( $this->alt_option_name );
+		$this->flush_widget_cache();
 
 		return $instance;
 	}
@@ -1244,10 +1229,6 @@ class gThemeWidgetTheTerm extends gThemeWidget
 		$instance['hide_no_desc'] = (bool) $new_instance['hide_no_desc'];
 
 		$this->flush_widget_cache();
-
-		$alloptions = wp_cache_get( 'alloptions', 'options' );
-		if ( isset( $alloptions[$this->alt_option_name] ) )
-			delete_option( $this->alt_option_name );
 
 		return $instance;
 	}
