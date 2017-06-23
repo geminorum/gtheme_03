@@ -356,7 +356,7 @@ class gThemeWidget extends WP_Widget
 
 		if ( $title && isset( $instance['title_link'] ) && $instance['title_link'] )
 			$title = gThemeHTML::tag( 'a', array(
-				'href' => esc_url( $instance['title_link'] ),
+				'href' => $instance['title_link'],
 			), $title );
 
 		if ( ! $title )
@@ -387,7 +387,7 @@ class gThemeWidget extends WP_Widget
 
 		echo '<p>'. gThemeHTML::tag( 'label', array(
 			'for' => $this->get_field_id( $field ),
-		), __( 'Number of posts to show:', GTHEME_TEXTDOMAIN ).' '.$html ).'</p>';
+		), _x( 'Number of posts to show:', 'Widget: Setting', GTHEME_TEXTDOMAIN ).' '.$html ).'</p>';
 	}
 
 	public function form_context( $instance, $default = '', $field = 'context' )
@@ -403,7 +403,7 @@ class gThemeWidget extends WP_Widget
 
 		echo '<p>'. gThemeHTML::tag( 'label', array(
 			'for' => $this->get_field_id( $field ),
-		), __( 'Context:', GTHEME_TEXTDOMAIN ).$html ).'</p>';
+		), _x( 'Context:', 'Widget: Setting', GTHEME_TEXTDOMAIN ).$html ).'</p>';
 	}
 
 	public function form_class( $instance, $default = '', $field = 'class' )
@@ -419,7 +419,7 @@ class gThemeWidget extends WP_Widget
 
 		echo '<p>'. gThemeHTML::tag( 'label', array(
 			'for' => $this->get_field_id( $field ),
-		), __( 'Class:', GTHEME_TEXTDOMAIN ).$html ).'</p>';
+		), _x( 'CSS Class:', 'Widget: Setting', GTHEME_TEXTDOMAIN ).$html ).'</p>';
 	}
 
 	public function form_post_type( $instance, $default = 'post', $field = 'post_type' )
@@ -441,7 +441,7 @@ class gThemeWidget extends WP_Widget
 
 		echo '<p>'. gThemeHTML::tag( 'label', array(
 			'for' => $this->get_field_id( $field ),
-		), __( 'PostType:', GTHEME_TEXTDOMAIN ).$html ).'</p>';
+		), _x( 'PostType:', 'Widget: Setting', GTHEME_TEXTDOMAIN ).$html ).'</p>';
 	}
 
 	public function form_taxonomy( $instance, $default = 'post_tag', $field = 'taxonomy', $post_type_field = 'post_type', $post_type_default = 'post' )
@@ -464,7 +464,7 @@ class gThemeWidget extends WP_Widget
 
 		echo '<p>'. gThemeHTML::tag( 'label', array(
 			'for' => $this->get_field_id( $field ),
-		), __( 'Taxonomy:', GTHEME_TEXTDOMAIN ).$html ).'</p>';
+		), _x( 'Taxonomy:', 'Widget: Setting', GTHEME_TEXTDOMAIN ).$html ).'</p>';
 	}
 
 	public function form_title( $instance, $default = '', $field = 'title' )
@@ -479,7 +479,7 @@ class gThemeWidget extends WP_Widget
 
 		echo '<p>'. gThemeHTML::tag( 'label', array(
 			'for' => $this->get_field_id( $field ),
-		), __( 'Title:', GTHEME_TEXTDOMAIN ).$html ).'</p>';
+		), _x( 'Title:', 'Widget: Setting', GTHEME_TEXTDOMAIN ).$html ).'</p>';
 	}
 
 	public function form_title_link( $instance, $default = '', $field = 'title_link' )
@@ -495,7 +495,7 @@ class gThemeWidget extends WP_Widget
 
 		echo '<p>'. gThemeHTML::tag( 'label', array(
 			'for' => $this->get_field_id( $field ),
-		), __( 'Title Link:', GTHEME_TEXTDOMAIN ).$html ).'</p>';
+		), _x( 'Title Link:', 'Widget: Setting', GTHEME_TEXTDOMAIN ).$html ).'</p>';
 	}
 
 	public function form_avatar_size( $instance, $default = '32', $field = 'avatar_size' )
@@ -510,7 +510,7 @@ class gThemeWidget extends WP_Widget
 
 		echo '<p>'. gThemeHTML::tag( 'label', array(
 			'for' => $this->get_field_id( $field ),
-		), __( 'Avatar Size:', GTHEME_TEXTDOMAIN ).$html ).'</p>';
+		), _x( 'Avatar Size:', 'Widget: Setting', GTHEME_TEXTDOMAIN ).$html ).'</p>';
 	}
 
 	public function form_image_size( $instance, $default = 'thumbnail', $field = 'image_size', $post_type = 'post' )
@@ -540,17 +540,17 @@ class gThemeWidget extends WP_Widget
 
 			echo '<p>'. gThemeHTML::tag( 'label', array(
 				'for' => $this->get_field_id( $field ),
-			), __( 'Image Size:', GTHEME_TEXTDOMAIN ).$html ).'</p>';
+			), _x( 'Image Size:', 'Widget: Setting', GTHEME_TEXTDOMAIN ).$html ).'</p>';
 
 		} else {
-			echo '<p>'.__( 'No Image Size Available!', GTHEME_TEXTDOMAIN ).'</p>';
+			echo '<p>'._x( 'No Image Size Available!', 'Widget: Setting', GTHEME_TEXTDOMAIN ).'</p>';
 		}
 	}
 
 	public function form_checkbox( $instance, $default = FALSE, $field = 'checked', $label = NULL )
 	{
 		if ( is_null( $label ) )
-			$label = __( 'Checked:', GTHEME_TEXTDOMAIN );
+			$label = _x( 'Checked', 'Widget: Setting', GTHEME_TEXTDOMAIN );
 
 		$html = gThemeHTML::tag( 'input', array(
 			'type'    => 'checkbox',
@@ -570,7 +570,7 @@ class gThemeWidget extends WP_Widget
 		$post_id  = isset( $instance[$field] ) ? $instance[$field] : $default;
 
 		if ( is_null( $label ) )
-			$label = __( 'Page:', GTHEME_TEXTDOMAIN );
+			$label = _x( 'Page:', 'Widget: Setting', GTHEME_TEXTDOMAIN );
 
 		$html = wp_dropdown_pages( array(
 			'post_type'        => $post_type,
@@ -612,7 +612,7 @@ class gThemeWidget extends WP_Widget
 
 		echo '<p>'. gThemeHTML::tag( 'label', array(
 			'for' => $this->get_field_id( $field ),
-		), __( 'Term:', GTHEME_TEXTDOMAIN ).$html ).'</p>';
+		), _x( 'Term:', 'Widget: Setting', GTHEME_TEXTDOMAIN ).$html ).'</p>';
 	}
 }
 
@@ -624,8 +624,8 @@ class gThemeWidgetTermPosts extends gThemeWidget
 		return array(
 			'name'  => 'term_posts',
 			'class' => 'term-posts',
-			'title' => __( 'gTheme: Term Posts', GTHEME_TEXTDOMAIN ),
-			'desc'  => __( 'Customized term posts.', GTHEME_TEXTDOMAIN ),
+			'title' => _x( 'Theme: Term Posts', 'Widget: Title', GTHEME_TEXTDOMAIN ),
+			'desc'  => _x( 'Displays the latest posts from a single term.', 'Widget: Description', GTHEME_TEXTDOMAIN ),
 			'flush' => array(
 				'save_post',
 				'deleted_post',
@@ -676,17 +676,20 @@ class gThemeWidgetTermPosts extends gThemeWidget
 		$row_query = new \WP_Query( $query_args );
 
 		if ( $row_query->have_posts() ) {
-			$this->before_widget( $args, $instance );
 
+			$this->before_widget( $args, $instance );
 			$this->widget_title( $args, $instance );
 			echo '<div class="theme-list-wrap term-posts"><ul>';
+
 			while ( $row_query->have_posts() ) {
 				$row_query->the_post();
 				if ( trim( get_the_title() ) ) {
 					echo '<li>'; get_template_part( 'row', $context ); echo '</li>';
 				}
 			}
+
 			wp_reset_postdata();
+
 			echo '</ul></div>';
 			$this->after_widget( $args, $instance );
 
@@ -721,9 +724,9 @@ class gThemeWidgetTermPosts extends gThemeWidget
 	{
 		$this->form_title( $instance );
 		$this->form_title_link( $instance );
-		$this->form_term_id( $instance );
-		$this->form_taxonomy( $instance );
 		$this->form_post_type( $instance );
+		$this->form_taxonomy( $instance );
+		$this->form_term_id( $instance );
 		$this->form_context( $instance, 'recent' );
 		$this->form_class( $instance );
 		$this->form_number( $instance, '5' );
@@ -738,8 +741,8 @@ class gThemeWidgetRelatedPosts extends gThemeWidget
 		return array(
 			'name'  => 'related_posts',
 			'class' => 'related-posts',
-			'title' => __( 'gTheme: Related Posts', GTHEME_TEXTDOMAIN ),
-			'desc'  => __( 'Customized related posts.', GTHEME_TEXTDOMAIN ),
+			'title' => _x( 'Theme: Related Posts', 'Widget: Title', GTHEME_TEXTDOMAIN ),
+			'desc'  => _x( 'Displays the related posts based on terms in a taxonomy.', 'Widget: Description', GTHEME_TEXTDOMAIN ),
 			'flush' => array(
 				'save_post',
 				'deleted_post',
@@ -837,8 +840,8 @@ class gThemeWidgetRelatedPosts extends gThemeWidget
 	{
 		$this->form_title( $instance );
 		$this->form_title_link( $instance );
-		$this->form_taxonomy( $instance );
 		$this->form_post_type( $instance );
+		$this->form_taxonomy( $instance );
 		$this->form_context( $instance, 'related' );
 		$this->form_class( $instance );
 		$this->form_number( $instance, '5' );
@@ -853,8 +856,8 @@ class gThemeWidgetRecentPosts extends gThemeWidget
 		return array(
 			'name'  => 'recent_posts',
 			'class' => 'recent-posts',
-			'title' => __( 'gTheme: Recent Posts', GTHEME_TEXTDOMAIN ),
-			'desc'  => __( 'Customized most recent posts.', GTHEME_TEXTDOMAIN ),
+			'title' => _x( 'Theme: Recent Posts', 'Widget: Title', GTHEME_TEXTDOMAIN ),
+			'desc'  => _x( 'Displays the most recent posts.', 'Widget: Description', GTHEME_TEXTDOMAIN ),
 			'flush' => array(
 				'save_post',
 				'deleted_post',
@@ -944,8 +947,8 @@ class gThemeWidgetRecentComments extends gThemeWidget
 		return array(
 			'name'  => 'recent_comments',
 			'class' => 'recent-comments',
-			'title' => __( 'gTheme: Recent Comments', GTHEME_TEXTDOMAIN ),
-			'desc'  => __( 'Customized most recent comments.', GTHEME_TEXTDOMAIN ),
+			'title' => _x( 'Theme: Recent Comments', 'Widget: Title', GTHEME_TEXTDOMAIN ),
+			'desc'  => _x( 'Displays the most recent comments.', 'Widget: Description', GTHEME_TEXTDOMAIN ),
 			'flush' => array(
 				'comment_post',
 				'edit_comment',
@@ -1043,8 +1046,8 @@ class gThemeWidgetSearch extends gThemeWidget
 		return array(
 			'name'  => 'search',
 			'class' => 'search',
-			'title' => __( 'gTheme: Search', GTHEME_TEXTDOMAIN ),
-			'desc'  => __( 'Selectable search form', GTHEME_TEXTDOMAIN ),
+			'title' => _x( 'Theme: Search', 'Widget: Title', GTHEME_TEXTDOMAIN ),
+			'desc'  => _x( 'Displays search form.', 'Widget: Description', GTHEME_TEXTDOMAIN ),
 		);
 	}
 
@@ -1075,8 +1078,8 @@ class gThemeWidgetTemplatePart extends gThemeWidget
 		return array(
 			'name'  => 'template_part',
 			'class' => 'template-part',
-			'title' => __( 'gTheme: Template Part', GTHEME_TEXTDOMAIN ),
-			'desc'  => __( 'Include selected template part into sidebars', GTHEME_TEXTDOMAIN ),
+			'title' => _x( 'Theme: Template Part', 'Widget: Title', GTHEME_TEXTDOMAIN ),
+			'desc'  => _x( 'Include selected template part into sidebars.', 'Widget: Description', GTHEME_TEXTDOMAIN ),
 		);
 	}
 
@@ -1107,8 +1110,8 @@ class gThemeWidgetChildren extends gThemeWidget
 		return array(
 			'name'  => 'children',
 			'class' => 'children',
-			'title' => __( 'gTheme: Children', GTHEME_TEXTDOMAIN ),
-			'desc'  => __( 'List of current post children', GTHEME_TEXTDOMAIN ),
+			'title' => _x( 'Theme: Children', 'Widget: Title', GTHEME_TEXTDOMAIN ),
+			'desc'  => _x( 'Displays the list of current post\'s children.', 'Widget: Description', GTHEME_TEXTDOMAIN ),
 		);
 	}
 
@@ -1143,8 +1146,8 @@ class gThemeWidgetSiblings extends gThemeWidget
 		return array(
 			'name'  => 'siblings',
 			'class' => 'siblings',
-			'title' => __( 'gTheme: Siblings', GTHEME_TEXTDOMAIN ),
-			'desc'  => __( 'List of current post siblings', GTHEME_TEXTDOMAIN ),
+			'title' => _x( 'Theme: Siblings', 'Widget: Title', GTHEME_TEXTDOMAIN ),
+			'desc'  => _x( 'Displays the list of current post\'s siblings.', 'Widget: Description', GTHEME_TEXTDOMAIN ),
 		);
 	}
 
@@ -1179,8 +1182,8 @@ class gThemeWidgetTheTerm extends gThemeWidget
 		return array(
 			'name'  => 'the_term',
 			'class' => 'the-term',
-			'title' => _x( 'gTheme: The Term', 'Sidebar Module: Widget: Title', GTHEME_TEXTDOMAIN ),
-			'desc'  => _x( 'Display the current term info based on the query', 'Sidebar Module: Widget Description', GTHEME_TEXTDOMAIN ),
+			'title' => _x( 'Theme: The Term', 'Widget: Title', GTHEME_TEXTDOMAIN ),
+			'desc'  => _x( 'Displays the current term info based on the query.', 'Widget: Description', GTHEME_TEXTDOMAIN ),
 		);
 	}
 
