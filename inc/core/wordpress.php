@@ -3,6 +3,68 @@
 class gThemeWordPress extends gThemeBaseCore
 {
 
+	public static function isDebug()
+	{
+		if ( WP_DEBUG && WP_DEBUG_DISPLAY && ! self::isDev() )
+			return TRUE;
+
+		return FALSE;
+	}
+
+	public static function isDev()
+	{
+		if ( defined( 'WP_STAGE' )
+			&& 'development' == constant( 'WP_STAGE' ) )
+				return TRUE;
+
+		return FALSE;
+	}
+
+	public static function isFlush()
+	{
+		if ( isset( $_GET['flush'] ) )
+			return did_action( 'init' ) && current_user_can( 'publish_posts' );
+
+		return FALSE;
+	}
+
+	// @SEE: `wp_doing_ajax()` since 4.7.0
+	public static function isAJAX()
+	{
+		return defined( 'DOING_AJAX' ) && DOING_AJAX;
+	}
+
+	// @SEE: `wp_doing_cron()` since 4.8.0
+	public static function isCRON()
+	{
+		return defined( 'DOING_CRON' ) && DOING_CRON;
+	}
+
+	public static function isCLI()
+	{
+		return defined( 'WP_CLI' ) && WP_CLI;
+	}
+
+	public static function isXMLRPC()
+	{
+		return defined( 'XMLRPC_REQUEST' ) && XMLRPC_REQUEST;
+	}
+
+	public static function isREST()
+	{
+		return defined( 'REST_REQUEST' ) && REST_REQUEST;
+	}
+
+	public static function isIFrame()
+	{
+		return defined( 'IFRAME_REQUEST' ) && IFRAME_REQUEST;
+	}
+
+	public static function doNotCache()
+	{
+		defined( 'DONOTCACHEPAGE' ) or define( 'DONOTCACHEPAGE', TRUE );
+	}
+
 	public static function getPostTypes( $mod = 0, $args = array( 'public' => TRUE ) )
 	{
 		$list = array();

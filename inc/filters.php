@@ -84,7 +84,7 @@ class gThemeFilters extends gThemeModuleCore
 			'ver' => GTHEME_CHILD_VERSION,
 		);
 
-		if ( gThemeUtilities::isDev() )
+		if ( gThemeWordPress::isDev() )
 			$args['debug'] = '';
 
 		if ( ! gThemeUtilities::isRTL() )
@@ -92,7 +92,7 @@ class gThemeFilters extends gThemeModuleCore
 
 		gThemeUtilities::linkStyleSheet( self::getStyle(), $args, 'all' );
 
-		if ( gThemeUtilities::isDev() && ! gThemeUtilities::isPrint() )
+		if ( gThemeWordPress::isDev() && ! gThemeUtilities::isPrint() )
 			gThemeUtilities::linkStyleSheet( GTHEME_URL.'/css/dev.css', GTHEME_VERSION, 'all' );
 
 		if ( is_singular() )
@@ -162,7 +162,7 @@ class gThemeFilters extends gThemeModuleCore
 		if ( ! empty( $pagenow ) && 'index.php' !== $pagenow )
 			$classes[] = sanitize_html_class( 'pagenow-'.str_ireplace( '.php', '', $pagenow ) );
 
-		if ( gThemeUtilities::isDev() )
+		if ( gThemeWordPress::isDev() )
 			$classes[] = 'stage-development';
 
 		if ( ! gThemeUtilities::isRTL() )

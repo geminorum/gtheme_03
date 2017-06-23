@@ -52,7 +52,7 @@ class gThemeAdmin extends gThemeModuleCore
 	// force default user on admin comment replies by super admins
 	public function preprocess_comment( $commentdata )
 	{
-		if ( self::isAJAX() ) {
+		if ( gThemeWordPress::isAJAX() ) {
 
 			if ( is_admin() && current_user_can( 'manage_network' ) ) {
 

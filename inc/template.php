@@ -98,7 +98,7 @@ class gThemeTemplate extends gThemeModuleCore
 
 		$default = gThemeOptions::info( 'default_avatar_src', FALSE );
 
-		if ( self::isDev() && $default )
+		if ( gThemeWordPress::isDev() && $default )
 			echo gThemeHTML::tag( 'img', array(
 				'src'   => $default,
 				'alt'   => 'avatar',

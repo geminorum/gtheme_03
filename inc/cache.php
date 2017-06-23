@@ -30,7 +30,7 @@ class gThemeFragmentCache extends gThemeBaseCore
 		$this->site      = is_multisite() && $site;
 		$this->ob        = FALSE;
 
-		if ( gThemeUtilities::isFlush() )
+		if ( gThemeWordPress::isFlush() )
 			$this->__flush();
 	}
 
@@ -56,10 +56,10 @@ class gThemeFragmentCache extends gThemeBaseCore
 
 	public function output()
 	{
-		if ( gThemeUtilities::isDev() )
+		if ( gThemeWordPress::isDev() )
 			return FALSE;
 
-		if ( gThemeUtilities::isFlush() ) {
+		if ( gThemeWordPress::isFlush() ) {
 			$output = '';
 
 		} else {
@@ -84,7 +84,7 @@ class gThemeFragmentCache extends gThemeBaseCore
 
 	public function store( $notice = 'manage_network' )
 	{
-		if ( gThemeUtilities::isDev() )
+		if ( gThemeWordPress::isDev() )
 			return;
 
 		$output = ob_get_flush();
@@ -101,13 +101,13 @@ class gThemeFragmentCache extends gThemeBaseCore
 			wp_cache_add( $this->key, $output, GTHEME_FRAGMENTCACHE, $this->ttl );
 		}
 
-		if ( $notice && current_user_can( $notice ) && ! gThemeUtilities::isDev() )
+		if ( $notice && current_user_can( $notice ) && ! gThemeWordPress::isDev() )
 			gThemeUtilities::notice( __( 'Refreshed!', GTHEME_TEXTDOMAIN ) );
 	}
 
 	public function discard()
 	{
-		if ( gThemeUtilities::isDev() )
+		if ( gThemeWordPress::isDev() )
 			return;
 
 		if ( $this->ob )

@@ -199,7 +199,7 @@ class gThemeImage extends gThemeModuleCore
 			if ( $size['i'] && in_array( $post_type ,$size['p'] ) )
 				$new_size_names[$name] = $size['n'];
 
-		// if ( gThemeUtilities::isDev() )
+		// if ( gThemeWordPress::isDev() )
 		// 	error_log( print_r( compact( 'post_type', 'new_size_names', 'size_names' ), TRUE ) );
 
 		return $new_size_names + $size_names;
@@ -596,7 +596,7 @@ class gThemeImage extends gThemeModuleCore
 			return '';
 
 		return '<div class="gtheme-image-holder holder-image-'
-			.$tag.( gThemeUtilities::isDev() ? ' isdev ' : ' ' )
+			.$tag.( gThemeWordPress::isDev() ? ' isdev ' : ' ' )
 			.$extra_class
 			.'"></div>';
 	}

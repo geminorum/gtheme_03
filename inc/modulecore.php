@@ -11,7 +11,7 @@ class gThemeModuleCore extends gThemeBaseCore
 
 	public function __construct( $args = array() )
 	{
-		if ( ! $this->ajax && self::isAJAX() )
+		if ( ! $this->ajax && gThemeWordPress::isAJAX() )
 			throw new Exception( 'Not on AJAX Calls!' );
 
 		if ( wp_installing() )
@@ -29,11 +29,6 @@ class gThemeModuleCore extends gThemeBaseCore
 			remove_shortcode( $shortcode );
 			add_shortcode( $shortcode, array( $this, $method ) );
 		}
-	}
-
-	public static function isAJAX()
-	{
-		return defined( 'DOING_AJAX' ) && DOING_AJAX;
 	}
 
 	// TODO: DRAFT: not tested
