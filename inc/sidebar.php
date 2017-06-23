@@ -301,6 +301,35 @@ class gThemeWidget extends WP_Widget
 
 	public function widget_cache( $args, $instance, $prefix = '' )
 	{
+		if ( $this->is_preview() )
+			return $this->widget_html( $args, $instance );
+
+		if ( gThemeWordPress::isFlush() )
+			delete_transient( $this->alt_option_name );
+
+		if ( FALSE === ( $cache = get_transient( $this->alt_option_name ) ) )
+			$cache = array();
+
+		if ( ! isset( $args['widget_id'] ) )
+			$args['widget_id'] = $this->id;
+
+		if ( isset( $cache[$args['widget_id'].$prefix] ) )
+			return print $cache[$args['widget_id'].$prefix];
+
+		ob_start();
+
+		if ( $this->widget_html( $args, $instance ) )
+			$cache[$args['widget_id'].$prefix] = ob_get_flush();
+
+		else
+			return ob_end_flush();
+
+		set_transient( $this->alt_option_name, $cache, GTHEME_CACHETTL );
+	}
+
+	// FIXME: DROP THIS
+	public function widget_cache_OLD( $args, $instance, $prefix = '' )
+	{
 		$cache = $this->is_preview() ? array() : wp_cache_get( $this->alt_option_name, 'widget' );
 
 		if ( ! isset( $args['widget_id'] ) )
