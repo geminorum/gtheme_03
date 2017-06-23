@@ -1191,20 +1191,45 @@ class gThemeWidgetTheTerm extends gThemeWidget
 		if ( ! ( is_tax() || is_tag() || is_category() ) )
 			return;
 
+		if ( ! $term = get_queried_object() )
+			return;
+
+		$desc = get_term_field( 'description', $term->term_id, $term->taxonomy );
+
+		if ( ! $desc && ! empty( $instance['hide_no_desc'] ) )
+			return;
+
 		$this->before_widget( $args, $instance );
-
-		$term  = get_queried_object();
-		$title = single_term_title( '', FALSE );
-		$desc  = get_term_field( 'description', $term->term_id, $term->taxonomy );
-
-		if ( $title )
-			echo $args['before_title'].$title.$args['after_title'];
+		$this->widget_title( $args, $instance, $term->name );
 
 		if ( $desc )
-			echo wpautop( $desc, FALSE );
+			echo wpautop( gThemeUtilities::wordWrap( $desc ), FALSE );
 
 		$this->after_widget( $args, $instance );
 	}
 
-	// option: title only if desc
+	public function update( $new_instance, $old_instance )
+	{
+		$instance                 = $old_instance;
+		$instance['title']        = strip_tags( $new_instance['title'] );
+		$instance['title_link']   = strip_tags( $new_instance['title_link'] );
+		$instance['class']        = strip_tags( $new_instance['class'] );
+		$instance['hide_no_desc'] = (bool) $new_instance['hide_no_desc'];
+
+		$this->flush_widget_cache();
+
+		$alloptions = wp_cache_get( 'alloptions', 'options' );
+		if ( isset( $alloptions[$this->alt_option_name] ) )
+			delete_option( $this->alt_option_name );
+
+		return $instance;
+	}
+
+	public function form( $instance )
+	{
+		$this->form_title( $instance );
+		$this->form_title_link( $instance );
+		$this->form_class( $instance );
+		$this->form_checkbox( $instance, TRUE, 'hide_no_desc', _x( 'Hide if no Description', 'Widget: Setting', GTHEME_TEXTDOMAIN ) );
+	}
 }
