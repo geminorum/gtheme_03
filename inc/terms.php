@@ -111,7 +111,7 @@ class gThemeTerms extends gThemeModuleCore
 			echo '<table class="form-table">';
 				echo '<tr><th scope="row">'._x( 'Primary Terms', 'Terms Module', GTHEME_TEXTDOMAIN ).'</th><td>';
 
-				foreach ( self::getTerms( $taxonomy, FALSE, TRUE ) as $term ) {
+				foreach ( gThemeWordPress::getTerms( $taxonomy, FALSE, TRUE ) as $term ) {
 
 					echo '<p>'.gThemeHTML::tag( 'input', array(
 						'type'    => 'checkbox',
@@ -364,8 +364,8 @@ class gThemeTerms extends gThemeModuleCore
 	// FIXME: DEPRECATED
 	public static function get( $taxonomy = 'category', $post_id = FALSE, $object = FALSE, $key = 'term_id' )
 	{
-		self::__dep( 'gThemeTerms::getTerms()' );
-		return self::getTerms( $taxonomy, $post_id, $object, $key );
+		self::__dep( 'gThemeWordPress::getTerms()' );
+		return gThemeWordPress::getTerms( $taxonomy, $post_id, $object, $key );
 	}
 
 	// callback for meta box for choose only tax

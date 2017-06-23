@@ -427,7 +427,7 @@ class gThemeWidget extends WP_Widget
 		$html = '';
 		$type = isset( $instance[$field] ) ? $instance[$field] : $default;
 
-		foreach ( gThemeModuleCore::getPostTypes() as $name => $title )
+		foreach ( gThemeWordPress::getPostTypes() as $name => $title )
 			$html .= gThemeHTML::tag( 'option', array(
 				'value'    => $name,
 				'selected' => $type == $name,

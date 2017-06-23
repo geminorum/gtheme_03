@@ -19,8 +19,9 @@ final class gThemeCore
 	private function setup_globals()
 	{
 		$modules = array(
-			'core/base' => '',
-			'core/html' => '',
+			'core/base'      => '',
+			'core/html'      => '',
+			'core/wordpress' => '',
 
 			'constants'  => '',
 			'utilities'  => '',
