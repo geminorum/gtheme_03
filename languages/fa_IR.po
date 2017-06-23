@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: gTheme 3 v3.14.9\n"
+"Project-Id-Version: gTheme 3\n"
 "Report-Msgid-Bugs-To: https://github.com/geminorum/gtheme_03/issues\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2017-06-16 14:45+0430\n"
+"PO-Revision-Date: 2017-06-24 02:57+0430\n"
 "Last-Translator: geminorum <contact@geminorum.ir>\n"
 "Language-Team: geminorum <contact@geminorum.ir>\n"
 "Language: fa_IR\n"
@@ -53,10 +53,10 @@ msgstr "برگه جست‌وجوی پیشرفته"
 
 #: style.css:1
 msgid "gTheme 3"
-msgstr "جی‌تم ۳"
+msgstr "پوسته ۳"
 
 #: style.css:4
-msgid "3.14.9"
+msgid "3.14.10"
 msgstr ""
 
 #: style.css:5
@@ -136,7 +136,7 @@ msgstr "دریافت پیوست"
 #: inc/banners.php:108
 msgctxt "Modules: Menu Name"
 msgid "Banners"
-msgstr ""
+msgstr "بنرها"
 
 #: inc/bootstrap.php:17
 msgid "Toggle navigation"
@@ -154,7 +154,7 @@ msgstr "تازه‌شد!"
 #: inc/comments.php:88
 msgctxt "Comments Module"
 msgid "(This topic will automatically close in %s. )"
-msgstr "(در %s آینده، دیدگاه‌های این نوشته به صورت خودکار بسته خواهد شد.)"
+msgstr "(دیدگاه‌های این نوشته به صورت خودکار در %s آینده، بسته خواهد شد.)"
 
 #: inc/comments.php:99
 msgctxt "Comments Module"
@@ -170,7 +170,7 @@ msgstr "راه‌بری در کامنت‌ها"
 #: inc/comments.php:111
 msgctxt "Comments Module"
 msgid "&rarr; Older Comments"
-msgstr " &rarr; دیدگاه‌های کهنه‌تر"
+msgstr "&rarr; دیدگاه‌های کهنه‌تر"
 
 #: inc/comments.php:112
 msgctxt "Comments Module"
@@ -441,7 +441,7 @@ msgstr "تعداد آخرین نوشته‌ها"
 #: inc/counts.php:89
 msgctxt "Modules: Menu Name"
 msgid "Counts"
-msgstr ""
+msgstr "شمارها"
 
 #: inc/image.php:58
 msgid "Undefined Image Size"
@@ -508,31 +508,27 @@ msgid "Layouts for %s"
 msgstr ""
 
 # @ gtheme
-#: inc/modulecore.php:112, inc/sidebar.php:579, inc/sidebar.php:597
+#: inc/modulecore.php:107, inc/sidebar.php:610, inc/sidebar.php:628
 msgid "&mdash; Select &mdash;"
 msgstr "&mdash; انتخاب کنید &mdash;"
 
-#: inc/modulecore.php:140
+#: inc/modulecore.php:135
 msgctxt "Module Core"
 msgid "Save Changes"
 msgstr "ذخیره تغییرات"
 
-#: inc/modulecore.php:152
+#: inc/modulecore.php:147
 msgctxt "Module Core"
 msgid "Are you sure? This operation can not be undone."
 msgstr "مطمئنید؟ این دستور قابل بازگشت نیست."
 
-#: inc/modulecore.php:373
+#: inc/modulecore.php:368
 msgid "&mdash; Select Page &mdash;"
 msgstr "&mdash; انتخاب کنید &mdash;"
 
-#: inc/modulecore.php:419
+#: inc/modulecore.php:414
 msgid "Error: settings type undefined."
 msgstr "خطا: این نوع تعریف نشده است."
-
-#: inc/modulecore.php:501
-msgid ", "
-msgstr "،"
 
 # @ gtheme
 #: inc/navigation.php:21
@@ -987,7 +983,7 @@ msgstr ""
 #: inc/pages.php:116
 msgctxt "Modules: Menu Name"
 msgid "Pages"
-msgstr ""
+msgstr "صفحه‌ها"
 
 #: inc/pages.php:125
 msgctxt "Pages Module: Form Title"
@@ -1043,12 +1039,12 @@ msgstr "جست‌وجو"
 #: inc/settings.php:66
 msgctxt "Modules: Menu Name"
 msgid "Overview"
-msgstr ""
+msgstr "در یک نگاه"
 
 #: inc/settings.php:67
 msgctxt "Modules: Menu Name"
 msgid "General"
-msgstr ""
+msgstr "همگانی"
 
 #: inc/settings.php:71
 msgctxt "Settings Module"
@@ -1134,148 +1130,170 @@ msgctxt "Tab Shortcode Title"
 msgid "Untitled"
 msgstr "بدون عنوان"
 
-# @ gtheme
-#: inc/sidebar.php:389
+#: inc/sidebar.php:419
+msgctxt "Widget: Setting"
 msgid "Number of posts to show:"
 msgstr "تعداد نوشته‌هایی که نمایش داده می‌شود:"
 
-# @ gtheme
-#: inc/sidebar.php:405
+#: inc/sidebar.php:435
+msgctxt "Widget: Setting"
 msgid "Context:"
 msgstr "زمینه:"
 
-#: inc/sidebar.php:421
-msgid "Class:"
+#: inc/sidebar.php:451
+msgctxt "Widget: Setting"
+msgid "CSS Class:"
 msgstr "کلاس:"
 
-#: inc/sidebar.php:443
+#: inc/sidebar.php:473
+msgctxt "Widget: Setting"
 msgid "PostType:"
-msgstr "نوع نوشته:"
+msgstr "نوع‌نوشته:"
 
-#: inc/sidebar.php:465
+#: inc/sidebar.php:496
+msgctxt "Widget: Setting"
 msgid "Taxonomy:"
 msgstr "رده‌بندی:"
 
-# @ gtheme
-#: inc/sidebar.php:480
+#: inc/sidebar.php:511
+msgctxt "Widget: Setting"
 msgid "Title:"
 msgstr "عنوان:"
 
-#: inc/sidebar.php:496
+#: inc/sidebar.php:527
+msgctxt "Widget: Setting"
 msgid "Title Link:"
 msgstr "پیوند عنوان:"
 
-#: inc/sidebar.php:511
+#: inc/sidebar.php:542
+msgctxt "Widget: Setting"
 msgid "Avatar Size:"
 msgstr "اندازه آواتار:"
 
-#: inc/sidebar.php:541
+#: inc/sidebar.php:572
+msgctxt "Widget: Setting"
 msgid "Image Size:"
 msgstr "اندازه تصویر:"
 
-#: inc/sidebar.php:544
+#: inc/sidebar.php:575
+msgctxt "Widget: Setting"
 msgid "No Image Size Available!"
 msgstr "اندازه‌ای برای تصاویر وجود ندارد!"
 
-#: inc/sidebar.php:551
-msgid "Checked:"
+#: inc/sidebar.php:582
+msgctxt "Widget: Setting"
+msgid "Checked"
 msgstr "منتخب:"
 
-#: inc/sidebar.php:571
+#: inc/sidebar.php:602
+msgctxt "Widget: Setting"
 msgid "Page:"
 msgstr "برگه:"
 
-#: inc/sidebar.php:613
+#: inc/sidebar.php:644
+msgctxt "Widget: Setting"
 msgid "Term:"
 msgstr "رده:"
 
-#: inc/sidebar.php:625
-msgid "gTheme: Term Posts"
+#: inc/sidebar.php:656
+msgctxt "Widget: Title"
+msgid "Theme: Term Posts"
 msgstr "پوسته: نوشته‌های رده"
 
-#: inc/sidebar.php:626
-msgid "Customized term posts."
+#: inc/sidebar.php:657
+msgctxt "Widget: Description"
+msgid "Displays the latest posts from a single term."
 msgstr ""
 
-#: inc/sidebar.php:739
-msgid "gTheme: Related Posts"
+#: inc/sidebar.php:762
+msgctxt "Widget: Title"
+msgid "Theme: Related Posts"
 msgstr "پوسته: نوشته‌های مرتبط"
 
-#: inc/sidebar.php:740
-msgid "Customized related posts."
+#: inc/sidebar.php:763
+msgctxt "Widget: Description"
+msgid "Displays the related posts based on terms in a taxonomy."
 msgstr ""
 
-# @ gtheme
-#: inc/sidebar.php:854
-msgid "gTheme: Recent Posts"
+#: inc/sidebar.php:873
+msgctxt "Widget: Title"
+msgid "Theme: Recent Posts"
 msgstr "پوسته: آخرین نوشته‌ها"
 
-# @ gtheme
-#: inc/sidebar.php:855
-msgid "Customized most recent posts."
+#: inc/sidebar.php:874
+msgctxt "Widget: Description"
+msgid "Displays the most recent posts."
 msgstr ""
 
-#: inc/sidebar.php:945
-msgid "gTheme: Recent Comments"
+#: inc/sidebar.php:960
+msgctxt "Widget: Title"
+msgid "Theme: Recent Comments"
 msgstr "پوسته: آخرین دیدگاه‌ها"
 
-#: inc/sidebar.php:946
-msgid "Customized most recent comments."
+#: inc/sidebar.php:961
+msgctxt "Widget: Description"
+msgid "Displays the most recent comments."
 msgstr ""
 
-# @ gtheme
-#: inc/sidebar.php:1044
-msgid "gTheme: Search"
+#: inc/sidebar.php:1056
+msgctxt "Widget: Title"
+msgid "Theme: Search"
 msgstr "پوسته: جست‌وجو"
 
-# @ gtheme
-#: inc/sidebar.php:1045
-msgid "Selectable search form"
+#: inc/sidebar.php:1057
+msgctxt "Widget: Description"
+msgid "Displays search form."
 msgstr ""
 
-#: inc/sidebar.php:1076
-msgid "gTheme: Template Part"
+#: inc/sidebar.php:1088
+msgctxt "Widget: Title"
+msgid "Theme: Template Part"
 msgstr "پوسته: قطعه‌ای از پوسته"
 
-# @ gtheme
-#: inc/sidebar.php:1077
-msgid "Include selected template part into sidebars"
+#: inc/sidebar.php:1089
+msgctxt "Widget: Description"
+msgid "Include selected template part into sidebars."
 msgstr ""
 
-# @ gtheme
-#: inc/sidebar.php:1108
-msgid "gTheme: Children"
+#: inc/sidebar.php:1120
+msgctxt "Widget: Title"
+msgid "Theme: Children"
 msgstr "پوسته: فرزندان"
 
-# @ gtheme
-#: inc/sidebar.php:1109
-msgid "List of current post children"
-msgstr "فهرست فرزندان نوشته کنونی"
+#: inc/sidebar.php:1121
+msgctxt "Widget: Description"
+msgid "Displays the list of current post's children."
+msgstr ""
 
-# @ gtheme
-#: inc/sidebar.php:1144
-msgid "gTheme: Siblings"
+#: inc/sidebar.php:1156
+msgctxt "Widget: Title"
+msgid "Theme: Siblings"
 msgstr "پوسته: هم‌نیاکان"
 
-# @ gtheme
-#: inc/sidebar.php:1145
-msgid "List of current post siblings"
-msgstr "فهرست هم‌نیاکان نوشته کنونی"
+#: inc/sidebar.php:1157
+msgctxt "Widget: Description"
+msgid "Displays the list of current post's siblings."
+msgstr ""
 
-#: inc/sidebar.php:1180
-msgctxt "Sidebar Module: Widget: Title"
-msgid "gTheme: The Term"
+#: inc/sidebar.php:1192
+msgctxt "Widget: Title"
+msgid "Theme: The Term"
 msgstr "پوسته: رده"
 
-#: inc/sidebar.php:1181
-msgctxt "Sidebar Module: Widget Description"
-msgid "Display the current term info based on the query"
-msgstr "نمایش اطلاعات مربوط به ردهٔ فعال"
+#: inc/sidebar.php:1193
+msgctxt "Widget: Description"
+msgid "Displays the current term info based on the query."
+msgstr ""
+
+#: inc/sidebar.php:1241
+msgctxt "Widget: Setting"
+msgid "Hide if no Description"
+msgstr "بدون توضیحات پنهان شود"
 
 #: inc/terms.php:44
 msgctxt "Modules: Menu Name"
 msgid "Primary Terms"
-msgstr ""
+msgstr "رده‌های اصلی"
 
 #: inc/terms.php:112
 msgctxt "Terms Module"
@@ -1397,6 +1415,95 @@ msgstr "نوشته‌های مرتبط"
 msgctxt "Alert button (screen reader only)"
 msgid "Close"
 msgstr "بستن"
+
+#~ msgid ", "
+#~ msgstr "،"
+
+# @ gtheme
+#~ msgid "Number of posts to show:"
+#~ msgstr "تعداد نوشته‌هایی که نمایش داده می‌شود:"
+
+# @ gtheme
+#~ msgid "Context:"
+#~ msgstr "زمینه:"
+
+#~ msgid "Class:"
+#~ msgstr "کلاس:"
+
+#~ msgid "PostType:"
+#~ msgstr "نوع نوشته:"
+
+#~ msgid "Taxonomy:"
+#~ msgstr "رده‌بندی:"
+
+# @ gtheme
+#~ msgid "Title:"
+#~ msgstr "عنوان:"
+
+#~ msgid "Title Link:"
+#~ msgstr "پیوند عنوان:"
+
+#~ msgid "Avatar Size:"
+#~ msgstr "اندازه آواتار:"
+
+#~ msgid "Image Size:"
+#~ msgstr "اندازه تصویر:"
+
+#~ msgid "No Image Size Available!"
+#~ msgstr "اندازه‌ای برای تصاویر وجود ندارد!"
+
+#~ msgid "Checked:"
+#~ msgstr "منتخب:"
+
+#~ msgid "Page:"
+#~ msgstr "برگه:"
+
+#~ msgid "Term:"
+#~ msgstr "رده:"
+
+#~ msgid "Theme: Term Posts"
+#~ msgstr "پوسته: نوشته‌های رده"
+
+#~ msgid "Theme: Related Posts"
+#~ msgstr "پوسته: نوشته‌های مرتبط"
+
+# @ gtheme
+#~ msgid "Theme: Recent Posts"
+#~ msgstr "پوسته: آخرین نوشته‌ها"
+
+#~ msgid "Theme: Recent Comments"
+#~ msgstr "پوسته: آخرین دیدگاه‌ها"
+
+# @ gtheme
+#~ msgid "Theme: Search"
+#~ msgstr "پوسته: جست‌وجو"
+
+#~ msgid "Theme: Template Part"
+#~ msgstr "پوسته: قطعه‌ای از پوسته"
+
+# @ gtheme
+#~ msgid "Theme: Children"
+#~ msgstr "پوسته: فرزندان"
+
+# @ gtheme
+#~ msgid "List of current post children"
+#~ msgstr "فهرست فرزندان نوشته کنونی"
+
+# @ gtheme
+#~ msgid "Theme: Siblings"
+#~ msgstr "پوسته: هم‌نیاکان"
+
+# @ gtheme
+#~ msgid "List of current post siblings"
+#~ msgstr "فهرست هم‌نیاکان نوشته کنونی"
+
+#~ msgctxt "Sidebar Module: Widget: Title"
+#~ msgid "Theme: The Term"
+#~ msgstr "پوسته: رده"
+
+#~ msgctxt "Sidebar Module: Widget Description"
+#~ msgid "Display the current term info based on the query"
+#~ msgstr "نمایش اطلاعات مربوط به ردهٔ فعال"
 
 # @ gtheme
 #~ msgid "Banners"

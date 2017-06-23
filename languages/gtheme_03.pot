@@ -46,7 +46,7 @@ msgid "gTheme 3"
 msgstr ""
 
 #: style.css:4
-msgid "3.14.9"
+msgid "3.14.10"
 msgstr ""
 
 #: style.css:5
@@ -465,30 +465,26 @@ msgctxt "Layouts Module: Tab Title"
 msgid "Layouts for %s"
 msgstr ""
 
-#: inc/modulecore.php:112, inc/sidebar.php:579, inc/sidebar.php:597
+#: inc/modulecore.php:107, inc/sidebar.php:610, inc/sidebar.php:628
 msgid "&mdash; Select &mdash;"
 msgstr ""
 
-#: inc/modulecore.php:140
+#: inc/modulecore.php:135
 msgctxt "Module Core"
 msgid "Save Changes"
 msgstr ""
 
-#: inc/modulecore.php:152
+#: inc/modulecore.php:147
 msgctxt "Module Core"
 msgid "Are you sure? This operation can not be undone."
 msgstr ""
 
-#: inc/modulecore.php:373
+#: inc/modulecore.php:368
 msgid "&mdash; Select Page &mdash;"
 msgstr ""
 
-#: inc/modulecore.php:419
+#: inc/modulecore.php:414
 msgid "Error: settings type undefined."
-msgstr ""
-
-#: inc/modulecore.php:501
-msgid ", "
 msgstr ""
 
 #: inc/navigation.php:21
@@ -1056,130 +1052,164 @@ msgctxt "Tab Shortcode Title"
 msgid "Untitled"
 msgstr ""
 
-#: inc/sidebar.php:389
+#: inc/sidebar.php:419
+msgctxt "Widget: Setting"
 msgid "Number of posts to show:"
 msgstr ""
 
-#: inc/sidebar.php:405
+#: inc/sidebar.php:435
+msgctxt "Widget: Setting"
 msgid "Context:"
 msgstr ""
 
-#: inc/sidebar.php:421
-msgid "Class:"
+#: inc/sidebar.php:451
+msgctxt "Widget: Setting"
+msgid "CSS Class:"
 msgstr ""
 
-#: inc/sidebar.php:443
+#: inc/sidebar.php:473
+msgctxt "Widget: Setting"
 msgid "PostType:"
 msgstr ""
 
-#: inc/sidebar.php:465
+#: inc/sidebar.php:496
+msgctxt "Widget: Setting"
 msgid "Taxonomy:"
 msgstr ""
 
-#: inc/sidebar.php:480
+#: inc/sidebar.php:511
+msgctxt "Widget: Setting"
 msgid "Title:"
 msgstr ""
 
-#: inc/sidebar.php:496
+#: inc/sidebar.php:527
+msgctxt "Widget: Setting"
 msgid "Title Link:"
 msgstr ""
 
-#: inc/sidebar.php:511
+#: inc/sidebar.php:542
+msgctxt "Widget: Setting"
 msgid "Avatar Size:"
 msgstr ""
 
-#: inc/sidebar.php:541
+#: inc/sidebar.php:572
+msgctxt "Widget: Setting"
 msgid "Image Size:"
 msgstr ""
 
-#: inc/sidebar.php:544
+#: inc/sidebar.php:575
+msgctxt "Widget: Setting"
 msgid "No Image Size Available!"
 msgstr ""
 
-#: inc/sidebar.php:551
-msgid "Checked:"
+#: inc/sidebar.php:582
+msgctxt "Widget: Setting"
+msgid "Checked"
 msgstr ""
 
-#: inc/sidebar.php:571
+#: inc/sidebar.php:602
+msgctxt "Widget: Setting"
 msgid "Page:"
 msgstr ""
 
-#: inc/sidebar.php:613
+#: inc/sidebar.php:644
+msgctxt "Widget: Setting"
 msgid "Term:"
 msgstr ""
 
-#: inc/sidebar.php:625
-msgid "gTheme: Term Posts"
+#: inc/sidebar.php:656
+msgctxt "Widget: Title"
+msgid "Theme: Term Posts"
 msgstr ""
 
-#: inc/sidebar.php:626
-msgid "Customized term posts."
+#: inc/sidebar.php:657
+msgctxt "Widget: Description"
+msgid "Displays the latest posts from a single term."
 msgstr ""
 
-#: inc/sidebar.php:739
-msgid "gTheme: Related Posts"
+#: inc/sidebar.php:762
+msgctxt "Widget: Title"
+msgid "Theme: Related Posts"
 msgstr ""
 
-#: inc/sidebar.php:740
-msgid "Customized related posts."
+#: inc/sidebar.php:763
+msgctxt "Widget: Description"
+msgid "Displays the related posts based on terms in a taxonomy."
 msgstr ""
 
-#: inc/sidebar.php:854
-msgid "gTheme: Recent Posts"
+#: inc/sidebar.php:873
+msgctxt "Widget: Title"
+msgid "Theme: Recent Posts"
 msgstr ""
 
-#: inc/sidebar.php:855
-msgid "Customized most recent posts."
+#: inc/sidebar.php:874
+msgctxt "Widget: Description"
+msgid "Displays the most recent posts."
 msgstr ""
 
-#: inc/sidebar.php:945
-msgid "gTheme: Recent Comments"
+#: inc/sidebar.php:960
+msgctxt "Widget: Title"
+msgid "Theme: Recent Comments"
 msgstr ""
 
-#: inc/sidebar.php:946
-msgid "Customized most recent comments."
+#: inc/sidebar.php:961
+msgctxt "Widget: Description"
+msgid "Displays the most recent comments."
 msgstr ""
 
-#: inc/sidebar.php:1044
-msgid "gTheme: Search"
+#: inc/sidebar.php:1056
+msgctxt "Widget: Title"
+msgid "Theme: Search"
 msgstr ""
 
-#: inc/sidebar.php:1045
-msgid "Selectable search form"
+#: inc/sidebar.php:1057
+msgctxt "Widget: Description"
+msgid "Displays search form."
 msgstr ""
 
-#: inc/sidebar.php:1076
-msgid "gTheme: Template Part"
+#: inc/sidebar.php:1088
+msgctxt "Widget: Title"
+msgid "Theme: Template Part"
 msgstr ""
 
-#: inc/sidebar.php:1077
-msgid "Include selected template part into sidebars"
+#: inc/sidebar.php:1089
+msgctxt "Widget: Description"
+msgid "Include selected template part into sidebars."
 msgstr ""
 
-#: inc/sidebar.php:1108
-msgid "gTheme: Children"
+#: inc/sidebar.php:1120
+msgctxt "Widget: Title"
+msgid "Theme: Children"
 msgstr ""
 
-#: inc/sidebar.php:1109
-msgid "List of current post children"
+#: inc/sidebar.php:1121
+msgctxt "Widget: Description"
+msgid "Displays the list of current post's children."
 msgstr ""
 
-#: inc/sidebar.php:1144
-msgid "gTheme: Siblings"
+#: inc/sidebar.php:1156
+msgctxt "Widget: Title"
+msgid "Theme: Siblings"
 msgstr ""
 
-#: inc/sidebar.php:1145
-msgid "List of current post siblings"
+#: inc/sidebar.php:1157
+msgctxt "Widget: Description"
+msgid "Displays the list of current post's siblings."
 msgstr ""
 
-#: inc/sidebar.php:1180
-msgctxt "Sidebar Module: Widget: Title"
-msgid "gTheme: The Term"
+#: inc/sidebar.php:1192
+msgctxt "Widget: Title"
+msgid "Theme: The Term"
 msgstr ""
 
-#: inc/sidebar.php:1181
-msgctxt "Sidebar Module: Widget Description"
-msgid "Display the current term info based on the query"
+#: inc/sidebar.php:1193
+msgctxt "Widget: Description"
+msgid "Displays the current term info based on the query."
+msgstr ""
+
+#: inc/sidebar.php:1241
+msgctxt "Widget: Setting"
+msgid "Hide if no Description"
 msgstr ""
 
 #: inc/terms.php:44
