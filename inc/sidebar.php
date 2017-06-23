@@ -345,10 +345,10 @@ class gThemeWidget extends WP_Widget
 		echo $args['after_widget'];
 	}
 
-	public function widget_title( $args, $instance, $echo = TRUE )
+	public function widget_title( $args, $instance, $default = '', $echo = TRUE )
 	{
 		$title = apply_filters( 'widget_title',
-			empty( $instance['title'] ) ? '' : $instance['title'],
+			empty( $instance['title'] ) ? $default : $instance['title'],
 			$instance,
 			$this->id_base
 		);
