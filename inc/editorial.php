@@ -117,7 +117,7 @@ class gThemeEditorial extends gThemeModuleCore
 		return TRUE;
 	}
 
-	public static function issueRowCallback( $post, $args )
+	public static function issueRowCallback( $post, $args, $term )
 	{
 		ob_start();
 			echo '<li>';
@@ -131,27 +131,18 @@ class gThemeEditorial extends gThemeModuleCore
 
 	public static function issuePosts( $atts = array() )
 	{
-		if ( class_exists( 'geminorum\\gEditorial\\Templates\\Magazine' ) ) {
+		if ( ! function_exists( 'gEditorial' ) )
+			return FALSE;
 
-			$args = self::atts( array(
-				'before' => '',
-				'after'  => '',
-				'cb'     => array( __CLASS__, 'issueRowCallback' ),
-				'echo'   => TRUE,
-			), $atts );
+		if ( ! gEditorial()->enabled( 'magazine' ) )
+			return FALSE;
 
-			$html = \geminorum\gEditorial\Templates\Magazine::issue_shortcode( $args );
+		if ( ! array_key_exists( 'item_cb', $atts ) )
+			$atts['item_cb'] = array( __CLASS__, 'issueRowCallback' );
 
-			if ( $html ) {
-				if ( ! $args['echo'] )
-					return $args['before'].$html.$args['after'];
+		echo gEditorial()->magazine->issue_shortcode( $atts );
 
-				echo $args['before'].$html.$args['after'];
-				return TRUE;
-			}
-		}
-
-		return FALSE;
+		return TRUE;
 	}
 
 	public static function issue( $atts = array() )
