@@ -95,13 +95,13 @@ class gThemeCounts extends gThemeModuleCore
 		$options  = gThemeOptions::getOption( 'counts', array() );
 
 		echo '<form method="post" action="">';
-			// echo '<h3>'.__( 'General Settings', GTHEME_TEXTDOMAIN ).'</h3>';
+			echo '<h3>'._x( 'Item Counts', 'Modules: Counts', GTHEME_TEXTDOMAIN ).'</h3>';
 			echo '<table class="form-table">';
 
 				foreach ( $defaults as $count => $default ) {
 					$this->do_settings_field( array(
 						'title'   => $default['title'],
-						'values'   => isset( $default['type'] ) ? $default['type'] : 'page',
+						'values'  => isset( $default['type'] ) ? $default['type'] : 'page',
 						'type'    => 'number',
 						'field'   => $count,
 						'default' => ( isset( $options[$count] ) ? $options[$count] : $defaults[$count]['def'] ),
@@ -121,24 +121,21 @@ class gThemeCounts extends gThemeModuleCore
 	{
 		if ( 'counts' == $sub ) {
 
-			if ( ! empty( $_POST )
-				&& wp_verify_nonce( $_POST['_gtheme_counts'], 'gtheme-counts' ) ) {
+			if ( ! empty( $_POST ) && wp_verify_nonce( $_POST['_gtheme_counts'], 'gtheme-counts' ) ) {
 
-					$options = gThemeOptions::getOption( 'counts', array() );
+				$options = gThemeOptions::getOption( 'counts', array() );
 
-					foreach ( gThemeOptions::info( 'counts', array() ) as $option => $default )
+				foreach ( gThemeOptions::info( 'counts', array() ) as $option => $default )
 
-						if ( isset( $_POST['gtheme_counts'][$option] )
-							&& trim( $_POST['gtheme_counts'][$option] ) )
-								$options[$option] = $_POST['gtheme_counts'][$option];
+					if ( isset( $_POST['gtheme_counts'][$option] ) )
+						$options[$option] = trim( $_POST['gtheme_counts'][$option] );
+					else
+						unset( $options[$option] );
 
-						else
-							unset( $options[$option] );
+				$result = gThemeOptions::update_option( 'counts', $options );
 
-					$result = gThemeOptions::update_option( 'counts', $options );
-
-					wp_redirect( add_query_arg( array( 'message' => ( $result ? 'updated' : 'error' ) ), wp_get_referer() ) );
-					exit();
+				wp_redirect( add_query_arg( array( 'message' => ( $result ? 'updated' : 'error' ) ), wp_get_referer() ) );
+				exit();
 			}
 
 			add_action( 'gtheme_settings_sub_counts', array( $this, 'settings_sub_html' ), 10, 2 );
