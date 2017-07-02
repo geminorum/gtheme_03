@@ -125,13 +125,15 @@ class gThemeEditorial extends gThemeModuleCore
 
 	public static function issueRowCallback( $post, $args, $term )
 	{
+		$GLOBALS['post'] = $post;
+		setup_postdata( $post );
+
 		ob_start();
-			echo '<li>';
 
-				// NOTE: the shortcode will setup postdata already
-				get_template_part( 'row', 'issue' );
+		echo '<li>';
+			get_template_part( 'row', 'issue' );
+		echo '</li>';
 
-			echo '</li>';
 		return ob_get_clean();
 	}
 
