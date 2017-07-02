@@ -125,7 +125,7 @@ class gThemeEditorial extends gThemeModuleCore
 
 	public static function issueRowCallback( $post, $args, $term )
 	{
-		$GLOBALS['post'] = $post;
+		$GLOBALS['post'] = $post; // REF: https://developer.wordpress.org/?p=2837#comment-874
 		setup_postdata( $post );
 
 		ob_start();
@@ -149,6 +149,8 @@ class gThemeEditorial extends gThemeModuleCore
 			$atts['item_cb'] = array( __CLASS__, 'issueRowCallback' );
 
 		echo gEditorial()->magazine->issue_shortcode( $atts );
+
+		wp_reset_postdata(); // since callback used setup post data
 
 		return TRUE;
 	}
