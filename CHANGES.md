@@ -1,3 +1,9 @@
+### 3.14.11
+* module/counts: saving zeros
+* module/editorial: upgrade meta source helper
+* module/editorial: upgrade issue posts helper
+* module/image: support editorial tweaks admin thumb column
+
 ### 3.14.10
 * core/wordpress: :new: core class
 * module/sidebar: switch to transient
