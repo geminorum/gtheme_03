@@ -40,12 +40,42 @@ class gThemeImage extends gThemeModuleCore
 		// image for terms on admin media editor
 		add_filter( 'attachment_fields_to_edit', array( $this, 'terms_attachment_fields_to_edit' ), 9, 2 );
 		add_filter( 'attachment_fields_to_save', array( $this, 'terms_attachment_fields_to_save' ), 9, 2 );
+
+		if ( is_admin() ) {
+			add_filter( 'geditorial_tweaks_column_thumb', array( $this, 'tweaks_column_thumb' ), 12, 3 );
+		}
 	}
 
 	public function init()
 	{
 		foreach ( gThemeOptions::info( 'images', array() ) as $name => $size )
 			self::registerImageSize( $name, $size );
+	}
+
+	public function tweaks_column_thumb( $html, $post_id, $size )
+	{
+		if ( ! $post = get_post( $post_id ) )
+			return $html;
+
+		if ( 'post' != $post->post_type )
+			return $html;
+
+		$size = gThemeOptions::info( 'thumbnail_image_size', $size );
+
+		if ( ! $post_thumbnail_id = self::id( $size, $post_id ) )
+			return $html;
+
+		if ( ! $post_thumbnail_img = wp_get_attachment_image_src( $post_thumbnail_id, $size ) )
+			return $html;
+
+		$image = gThemeHTML::tag( 'img', array( 'src' => $post_thumbnail_img[0] ) );
+
+		return gThemeHTML::tag( 'a', array(
+			'href'   => wp_get_attachment_url( $post_thumbnail_id ),
+			'title'  => get_the_title( $post_thumbnail_id ),
+			'class'  => 'thickbox',
+			'target' => '_blank',
+		), $image );
 	}
 
 	// core dup with posttype

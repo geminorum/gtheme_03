@@ -70,6 +70,8 @@ class gThemeOptions extends gThemeModuleCore
 					TRUE, TRUE
 				),
 			),
+			// 'thumbnail_image_size' => 'single',
+			'enclosure_image_size' => 'single',
 
 			// 'jpeg_quality'          => 82, // quality of JPEG images uploaded to WP
 			// 'wp_editor_set_quality' => 82, // quality of JPEG images edited within WP
@@ -123,7 +125,6 @@ class gThemeOptions extends gThemeModuleCore
 
 			// FIXME: make ltr compatible
 			// FEEDS
-			'enclosure_image_size' => 'single',
 			'feed_str_replace' => array(
 				'<p>'                            => '<p style="direction:rtl;font-family:tahoma;line-height:22px;font-size:14px !important;">',
 				'<p style="text-align: right;">' => '<p style="direction:rtl;font-family:tahoma;line-height:22px;font-size:14px !important;">',
