@@ -30,6 +30,8 @@ class gThemeEditorial extends gThemeModuleCore
 			return FALSE;
 
 		echo gEditorial()->series->series_shortcode( $atts );
+
+		return TRUE;
 	}
 
 	public static function siteModified( $atts = array() )
@@ -41,6 +43,8 @@ class gThemeEditorial extends gThemeModuleCore
 			return FALSE;
 
 		echo gEditorial()->modified->site_modified_shortcode( $atts );
+
+		return TRUE;
 	}
 
 	public static function postModified( $atts = array() )
@@ -52,6 +56,8 @@ class gThemeEditorial extends gThemeModuleCore
 			return FALSE;
 
 		echo gEditorial()->modified->post_modified_shortcode( $atts );
+
+		return TRUE;
 	}
 
 	public static function label( $atts = array() )

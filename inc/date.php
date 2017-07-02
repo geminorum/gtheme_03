@@ -4,7 +4,7 @@ class gThemeDate extends gThemeModuleCore
 {
 
 	// FIXME: UNFINISHED
-	//ANCESTOR: gtheme_the_date()
+	// ANCESTOR: gtheme_the_date()
 	public static function date( $atts = array() )
 	{
 		$post_id  = get_the_ID();
@@ -84,5 +84,31 @@ class gThemeDate extends gThemeModuleCore
 		if ( class_exists( 'gPersianDateDate' ) )
 			echo gPersianDateDate::toHijri( $format );
 			// echo gPersianDateDate::to( $format );
+	}
+
+	// FIXME: DRAFT: WORKING
+	public static function doubleArchive()
+	{
+		if ( ! class_exists( 'gPersianDateArchives' ) )
+			return;
+
+		echo gPersianDateArchives::getCompact( array(
+			'post_type'   => array( 'post', 'reshare', 'issue' ),
+			'link_anchor' => TRUE,
+		));
+
+		echo gPersianDateArchives::getClean(array(
+			'post_type'     => array( 'post', 'reshare', 'issue' ),
+			'comment_count' => TRUE,
+			'row_context'   => 'latest',
+			// 'css_class'     => 'entry-after after-latest after-rows',
+		));
+
+
+		// echo '<ul>';
+		// gPersianDateArchives::get( array(
+			// 'type' => 'daily',
+		// ));
+		// echo '</ul>';
 	}
 }

@@ -145,9 +145,7 @@ class gThemeComments extends gThemeModuleCore
 			'title' => _x( 'Grab the feed for comments of this post', 'Comments Module', GTHEME_TEXTDOMAIN ),
 		), $icon );
 
-		echo gThemeHTML::tag( 'div', array(
-			'class' => $class,
-		), $html );
+		echo gThemeHTML::wrap( $html, $class );
 	}
 
 	// When this is enabled, new comments on a post will not refresh the cached static files.
@@ -165,12 +163,12 @@ class gThemeComments extends gThemeModuleCore
 	{
 		switch ( $comment->comment_type ) {
 
-			case 'pingback' :
-			case 'trackback' :
-				break;
+			case 'pingback':
+			case 'trackback':
+			break;
 
-			case 'comment' :
-			default :
+			case 'comment':
+			// default:
 
 				$avatar = get_option( 'show_avatars' );
 
