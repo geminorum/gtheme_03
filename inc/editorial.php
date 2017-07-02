@@ -64,10 +64,10 @@ class gThemeEditorial extends gThemeModuleCore
 
 	public static function source( $atts = array() )
 	{
-		if ( ! is_callable( array( 'geminorum\\gEditorial\\Templates\\Meta', 'metaLink' ) ) )
+		if ( ! is_callable( array( 'geminorum\\gEditorial\\Templates\\Meta', 'metaSource' ) ) )
 			return FALSE;
 
-		return \geminorum\gEditorial\Templates\Meta::metaLink( $atts );
+		return \geminorum\gEditorial\Templates\Meta::metaSource( $atts );
 	}
 
 	public static function author( $atts = array() )
