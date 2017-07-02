@@ -13,7 +13,7 @@ msgstr ""
 msgid "Archives Page"
 msgstr ""
 
-#: comments.php:34, inc/options.php:165
+#: comments.php:34, inc/options.php:166
 msgid "Comments are closed."
 msgstr ""
 
@@ -46,7 +46,7 @@ msgid "gTheme 3"
 msgstr ""
 
 #: style.css:4
-msgid "3.14.10"
+msgid "3.14.11"
 msgstr ""
 
 #: style.css:5
@@ -166,97 +166,97 @@ msgctxt "Comments Module"
 msgid "Grab the feed for comments of this post"
 msgstr ""
 
-#: inc/comments.php:158
+#: inc/comments.php:156
 msgctxt "Comments Module"
 msgid "Sorry, The site is locked down. Updates will appear shortly"
 msgstr ""
 
-#: inc/comments.php:213
+#: inc/comments.php:211
 msgctxt "Comments Module"
 msgid "Your comment is awaiting moderation."
 msgstr ""
 
-#: inc/comments.php:223
+#: inc/comments.php:221
 msgctxt "1: date, 2: time"
 msgid "%1$s at %2$s"
 msgstr ""
 
-#: inc/comments.php:235
+#: inc/comments.php:233
 msgctxt "Comments Module: Action String"
 msgid "Reply"
 msgstr ""
 
-#: inc/comments.php:236
+#: inc/comments.php:234
 msgctxt "Comments Module: Action String"
 msgid "Reply to %s"
 msgstr ""
 
-#: inc/comments.php:237
+#: inc/comments.php:235
 msgctxt "Comments Module: Action String"
 msgid "Log in to Reply"
 msgstr ""
 
-#: inc/comments.php:238
+#: inc/comments.php:236
 msgctxt "Comments Module: Action String"
 msgid "Edit This"
 msgstr ""
 
-#: inc/comments.php:287
+#: inc/comments.php:285
 msgctxt "Comments Module: Comment Form String"
 msgid "(Required)"
 msgstr ""
 
-#: inc/comments.php:288
+#: inc/comments.php:286
 msgctxt "Comments Module: Comment Form String"
 msgid "Name"
 msgstr ""
 
-#: inc/comments.php:289
+#: inc/comments.php:287
 msgctxt "Comments Module: Comment Form String"
 msgid "Email"
 msgstr ""
 
-#: inc/comments.php:290
+#: inc/comments.php:288
 msgctxt "Comments Module: Comment Form String"
 msgid "Website"
 msgstr ""
 
-#: inc/comments.php:291
+#: inc/comments.php:289
 msgctxt "Comments Module: Comment Form String"
 msgid "Comment"
 msgstr ""
 
-#: inc/comments.php:293
+#: inc/comments.php:291
 msgctxt "Comments Module: Comment Form String"
 msgid "You must be <a href=\"%s\">logged in</a> to post a comment."
 msgstr ""
 
-#: inc/comments.php:294
+#: inc/comments.php:292
 msgctxt "Comments Module: Comment Form String"
 msgid "<a href=\"%1$s\" aria-label=\"%2$s\">Logged in as %3$s</a>. <a href=\"%4$s\">Log out?</a>"
 msgstr ""
 
-#: inc/comments.php:295
+#: inc/comments.php:293
 msgctxt "Comments Module: Comment Form String"
 msgid "Logged in as %s. Edit your profile."
 msgstr ""
 
-#: inc/comments.php:296
+#: inc/comments.php:294
 msgctxt "Comments Module: Comment Form String"
 msgid "Leave a Reply"
 msgstr ""
 
-#: inc/comments.php:297
+#: inc/comments.php:295
 msgctxt "Comments Module: Comment Form String"
 msgid "Leave a Reply to %s"
 msgstr ""
 
-#: inc/comments.php:298
+#: inc/comments.php:296
 msgctxt "Comments Module: Comment Form String"
 msgid "Cancel reply"
 msgstr ""
 
-#: inc/comments.php:299
+#: inc/comments.php:297
 msgctxt "Comments Module: Comment Form String"
 msgid "Post Comment"
 msgstr ""
@@ -404,24 +404,29 @@ msgctxt "Modules: Menu Name"
 msgid "Counts"
 msgstr ""
 
-#: inc/image.php:58
+#: inc/counts.php:98
+msgctxt "Modules: Counts"
+msgid "Item Counts"
+msgstr ""
+
+#: inc/image.php:88
 msgid "Undefined Image Size"
 msgstr ""
 
-#: inc/image.php:224
+#: inc/image.php:254
 msgctxt "Image Module: Media Tag Checkbox Label"
 msgid "%1$s <small>(%2$s&times;%3$s)</small>"
 msgstr ""
 
-#: inc/image.php:239
+#: inc/image.php:269
 msgid "Media Tags"
 msgstr ""
 
-#: inc/image.php:300
+#: inc/image.php:330
 msgid "&mdash; Select a Term &mdash;"
 msgstr ""
 
-#: inc/image.php:310
+#: inc/image.php:340
 msgid "Assign for"
 msgstr ""
 
@@ -654,170 +659,170 @@ msgctxt "Media Tag Titles"
 msgid "Single"
 msgstr ""
 
-#: inc/options.php:83
+#: inc/options.php:85
 msgctxt "Options: Page Pre-Text"
 msgid "[ This page is being completed ]"
 msgstr ""
 
-#: inc/options.php:90
+#: inc/options.php:92
 msgctxt "Options: Separator: Default"
 msgid " "
 msgstr ""
 
-#: inc/options.php:91
+#: inc/options.php:93
 msgctxt "Options: Separator: Title"
 msgid " &raquo; "
 msgstr ""
 
-#: inc/options.php:92
+#: inc/options.php:94
 msgctxt "Options: Separator: Nav"
 msgid " &laquo; "
 msgstr ""
 
-#: inc/options.php:93
+#: inc/options.php:95
 msgctxt "Options: Separator: Byline"
 msgid " | "
 msgstr ""
 
-#: inc/options.php:94
+#: inc/options.php:96
 msgctxt "Options: Separator: Term"
 msgid ", "
 msgstr ""
 
-#: inc/options.php:95
+#: inc/options.php:97
 msgctxt "Options: Separator: Feed"
 msgid "; "
 msgstr ""
 
-#: inc/options.php:96
+#: inc/options.php:98
 msgctxt "Options: Separator: Comment Action"
 msgid " | "
 msgstr ""
 
-#: inc/options.php:98
+#: inc/options.php:100
 msgctxt "Options: Text Size Increase"
 msgid "[ A+ ]"
 msgstr ""
 
-#: inc/options.php:99
+#: inc/options.php:101
 msgctxt "Options: Text Size Decrease"
 msgid "[ A- ]"
 msgstr ""
 
-#: inc/options.php:100
+#: inc/options.php:102
 msgctxt "Options: Text Size Sep"
 msgid " / "
 msgstr ""
 
-#: inc/options.php:102
+#: inc/options.php:104
 msgctxt "Options: Text Justify"
 msgid "[ Ju ]"
 msgstr ""
 
-#: inc/options.php:103
+#: inc/options.php:105
 msgctxt "Options: Text Unjustify"
 msgid "[ uJ ]"
 msgstr ""
 
-#: inc/options.php:104
+#: inc/options.php:106
 msgctxt "Options: Text Justify Sep"
 msgid " / "
 msgstr ""
 
-#: inc/options.php:153
+#: inc/options.php:154
 msgid "&copy; All right reserved."
 msgstr ""
 
-#: inc/options.php:166
+#: inc/options.php:167
 msgid "Your comment is awaiting moderation."
-msgstr ""
-
-#: inc/options.php:176
-msgctxt "System Tags Defaults"
-msgid "Dashboard"
 msgstr ""
 
 #: inc/options.php:177
 msgctxt "System Tags Defaults"
-msgid "Featured"
+msgid "Dashboard"
 msgstr ""
 
 #: inc/options.php:178
 msgctxt "System Tags Defaults"
-msgid "Latest"
+msgid "Featured"
 msgstr ""
 
 #: inc/options.php:179
 msgctxt "System Tags Defaults"
-msgid "Tile"
+msgid "Latest"
 msgstr ""
 
 #: inc/options.php:180
 msgctxt "System Tags Defaults"
-msgid "Full Article"
+msgid "Tile"
 msgstr ""
 
 #: inc/options.php:181
 msgctxt "System Tags Defaults"
-msgid "Poster Entry"
+msgid "Full Article"
 msgstr ""
 
 #: inc/options.php:182
 msgctxt "System Tags Defaults"
-msgid "Not on FrontPage"
+msgid "Poster Entry"
 msgstr ""
 
 #: inc/options.php:183
 msgctxt "System Tags Defaults"
+msgid "Not on FrontPage"
+msgstr ""
+
+#: inc/options.php:184
+msgctxt "System Tags Defaults"
 msgid "Not on Feed"
 msgstr ""
 
-#: inc/options.php:187
+#: inc/options.php:188
 msgctxt "Editor Default Content"
 msgid "[content not available yet]"
 msgstr ""
 
-#: inc/options.php:192
+#: inc/options.php:193
 msgctxt "Editor Custom Class"
 msgid "Blockquote"
 msgstr ""
 
-#: inc/options.php:197
+#: inc/options.php:198
 msgctxt "Editor Custom Class"
 msgid "Unordered List"
 msgstr ""
 
-#: inc/options.php:202
+#: inc/options.php:203
 msgctxt "Editor Custom Class"
 msgid "Ordered List"
 msgstr ""
 
-#: inc/options.php:207
+#: inc/options.php:208
 msgctxt "Editor Custom Class"
 msgid "Note"
 msgstr ""
 
-#: inc/options.php:212
+#: inc/options.php:213
 msgctxt "Editor Custom Class"
 msgid "Source"
 msgstr ""
 
-#: inc/options.php:259
+#: inc/options.php:260
 msgctxt "Banner Groups"
 msgid "First"
 msgstr ""
 
-#: inc/options.php:260
+#: inc/options.php:261
 msgctxt "Banner Groups"
 msgid "Second"
 msgstr ""
 
-#: inc/options.php:270
+#: inc/options.php:271
 msgctxt "Options: Defaults: Date Format: Byline"
 msgid "j M Y"
 msgstr ""
 
-#: inc/options.php:271
+#: inc/options.php:272
 msgctxt "Options: Defaults: Date Format: Day"
 msgid "j M Y"
 msgstr ""
