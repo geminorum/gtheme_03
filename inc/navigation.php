@@ -92,9 +92,8 @@ class gThemeNavigation extends gThemeModuleCore
 			'context'    => NULL,
 		), $atts );
 
-		if ( FALSE !== $args['home'] )
-			$crumbs[] = '<a href="'.esc_url( home_url( '/' ) ).'" rel="home" title="">'. // TODO: add title
-				( 'home' == $args['home'] ? gThemeOptions::info( 'blog_name' ) : $args['home'] ).'</a>'; // TODO: use theme home override
+		if ( $home = self::getCrumbHome( $args['home'] ) )
+			$crumbs += $home;
 
 		$crumbs = apply_filters( 'gtheme_breadcrumb_after_home', $crumbs, $args );
 
@@ -163,9 +162,8 @@ class gThemeNavigation extends gThemeModuleCore
 			'context' => NULL,
 		), $atts );
 
-		if ( FALSE !== $args['home'] )
-			$crumbs[] = '<a href="'.esc_url( home_url( '/' ) ).'" rel="home" title="">'. // TODO: add title
-				( 'home' == $args['home'] ? gThemeOptions::info( 'blog_name' ) : $args['home'] ).'</a>';
+		if ( $home = self::getCrumbHome( $args['home'] ) )
+			$crumbs += $home;
 
 		$crumbs   = apply_filters( 'gtheme_breadcrumb_after_home', $crumbs, $args );
 		$template = empty( $args['strings']['archive'] ) ? _x( 'Site Archives', 'Navigation Module: Breadcrumbs', GTHEME_TEXTDOMAIN ) : $args['strings']['archive'];
@@ -256,6 +254,35 @@ class gThemeNavigation extends gThemeModuleCore
 	{
 		self::__dep( 'gThemeNavigation::breadcrumbArchive()' );
 		self::breadcrumbArchive( $atts );
+	}
+
+	public static function getCrumbHome( $home = 'home', $title = NULL )
+	{
+		if ( FALSE === $home )
+			return FALSE;
+
+		$crumbs = array();
+
+		if ( is_null( $title ) )
+			$title = gThemeOptions::info( 'logo_title', '' );
+
+		if ( 'home' == $home ) {
+			$crumbs[] = '<a href="'.esc_url( home_url( '/' ) ).'" rel="home" title="'.esc_attr( $title ).'">'.gThemeOptions::info( 'blog_title' ).'</a>';
+
+		} else if ( 'network' == $home ) {
+
+			if ( is_main_site() ) {
+				$crumbs[] = '<a href="'.esc_url( home_url( '/' ) ).'" rel="home" title="'.esc_attr( $title ).'">'.gThemeOptions::info( 'blog_title' ).'</a>';
+			} else {
+				$crumbs[] = '<a href="'.esc_url( gThemeUtilities::home() ).'" title="'.esc_attr( $title ).'">'.gThemeOptions::info( 'blog_name' ).'</a>';
+				$crumbs[] = '<a href="'.esc_url( home_url( '/' ) ).'" rel="home" title="'.esc_attr( gThemeOptions::getOption( 'frontpage_desc', '' ) ).'">'.gThemeOptions::info( 'blog_title' ).'</a>';
+			}
+
+		} else {
+			$crumbs[] = '<a href="'.esc_url( gThemeUtilities::home() ).'" rel="home" title="'.esc_attr( $title ).'">'.$home.'</a>';
+		}
+
+		return $crumbs;
 	}
 
 	// FIXME: DRAFT
