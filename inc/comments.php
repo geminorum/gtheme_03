@@ -168,6 +168,7 @@ class gThemeComments extends gThemeModuleCore
 			break;
 
 			case 'comment':
+			case '':
 			// default:
 
 				$avatar = get_option( 'show_avatars' );
