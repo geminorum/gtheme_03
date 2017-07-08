@@ -1206,13 +1206,17 @@ class gThemeWidgetTheTerm extends gThemeWidget
 		if ( ! $term = get_queried_object() )
 			return;
 
-		$desc = get_term_field( 'description', $term->term_id, $term->taxonomy );
+		$desc  = get_term_field( 'description', $term->term_id, $term->taxonomy );
+		$image = ! empty( $instance['meta_image'] ) ? gThemeImage::termImage( array( 'term_id' => $term->term_id ) ) : FALSE;
 
-		if ( ! $desc && ! empty( $instance['hide_no_desc'] ) )
+		if ( ! $desc && ! $image && ! empty( $instance['hide_no_desc'] ) )
 			return;
 
 		$this->before_widget( $args, $instance );
 		$this->widget_title( $args, $instance, $term->name );
+
+		if ( $image )
+			echo $image;
 
 		if ( $desc )
 			echo wpautop( gThemeUtilities::wordWrap( $desc ), FALSE );
@@ -1226,6 +1230,7 @@ class gThemeWidgetTheTerm extends gThemeWidget
 		$instance['title']        = strip_tags( $new_instance['title'] );
 		$instance['title_link']   = strip_tags( $new_instance['title_link'] );
 		$instance['class']        = strip_tags( $new_instance['class'] );
+		$instance['meta_image']   = (bool) $new_instance['meta_image'];
 		$instance['hide_no_desc'] = (bool) $new_instance['hide_no_desc'];
 
 		$this->flush_widget_cache();
@@ -1238,6 +1243,7 @@ class gThemeWidgetTheTerm extends gThemeWidget
 		$this->form_title( $instance );
 		$this->form_title_link( $instance );
 		$this->form_class( $instance );
+		$this->form_checkbox( $instance, TRUE, 'meta_image', _x( 'Display Meta Image', 'Widget: Setting', GTHEME_TEXTDOMAIN ) );
 		$this->form_checkbox( $instance, TRUE, 'hide_no_desc', _x( 'Hide if no Description', 'Widget: Setting', GTHEME_TEXTDOMAIN ) );
 	}
 }
