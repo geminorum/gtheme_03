@@ -83,11 +83,19 @@ class gThemeSocial extends gThemeModuleCore
 			break;
 			case 'image':
 
+				$size   = gThemeOptions::info( 'meta_image_size', 'single' );
 				$output = gThemeOptions::info( 'default_image_src', FALSE );
 
 				if ( is_single() )
 					$output = gThemeImage::get_image( array(
-						'tag'   => gThemeOptions::info( 'meta_image_size', 'single' ),
+						'tag'   => $size,
+						'url'   => TRUE,
+						'empty' => $output,
+					) );
+
+				else if ( is_tax() || is_tag() || is_category() )
+					$output = gThemeImage::termImage( array(
+						'tag'   => $size,
 						'url'   => TRUE,
 						'empty' => $output,
 					) );
@@ -100,6 +108,9 @@ class gThemeSocial extends gThemeModuleCore
 
 				else if ( is_single() )
 					$output = single_post_title( '', FALSE ).gThemeOptions::info( 'title_sep', ' &raquo; ' ).gThemeOptions::info( 'blog_title' );
+
+				else if ( is_tax() || is_tag() || is_category() )
+					$output = single_term_title( '', FALSE ).gThemeOptions::info( 'title_sep', ' &raquo; ' ).gThemeOptions::info( 'blog_title' );
 
 			break;
 			case 'description':
