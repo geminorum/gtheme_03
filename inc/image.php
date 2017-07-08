@@ -635,4 +635,35 @@ class gThemeImage extends gThemeModuleCore
 	{
 		return '<img class="'.gThemeOptions::info( 'image-class', 'the-img img-responsive' ).'" data-src="holder.js/'.$width.'x'.$height.'">';
 	}
+
+	// FIXME: working draft
+	public static function termImage( $atts = array() )
+	{
+		$args = self::atts( array(
+			'tag'     => 'raw',
+			'term_id' => get_queried_object_id(),
+			'url'     => FALSE,
+			'empty'   => '',
+		), $atts );
+
+		if ( ! $args['term_id'] )
+			return $args['empty'];
+
+		if ( ! $attach_id = get_term_meta( $args['term_id'], 'image', TRUE ) )
+			return $args['empty'];
+
+		$image = wp_get_attachment_image_src( $attach_id, $args['tag'] );
+
+		if ( empty( $image[0] ) )
+			return $args['empty'];
+
+		if ( $args['url'] )
+			return $image[0];
+
+		return gThemeHTML::tag( 'img', array(
+			'src'   => $image[0],
+			'alt'   => '',
+			'class' => gThemeOptions::info( 'image-class', 'the-img img-responsive' ),
+		) );
+	}
 }
