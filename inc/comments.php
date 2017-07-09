@@ -85,7 +85,7 @@ class gThemeComments extends gThemeModuleCore
 					 + get_option( 'close_comments_days_old' )
 					 * DAY_IN_SECONDS;
 
-			printf( _x( '(This topic will automatically close in %s. )', 'Comments Module', GTHEME_TEXTDOMAIN ), human_time_diff( $expires ) );
+			printf( _x( '(This topic will automatically close in %s. )', 'Comments Module', GTHEME_TEXTDOMAIN ), human_time_diff( $expires, current_time( 'timestamp' ) ) );
 		}
 	}
 
