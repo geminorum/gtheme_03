@@ -7,9 +7,9 @@
 
 // removes the .form-control outline
 @mixin theme-forms-focus-reset($border-color: $input-border-focus) {
-	&:focus {
-		// border-color: $border-color;
-		outline: none;
-		box-shadow: none;
-	}
+  &:focus {
+    // border-color: $border-color;
+    outline: none;
+    box-shadow: none;
+  }
 }

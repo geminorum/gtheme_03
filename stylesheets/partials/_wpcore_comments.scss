@@ -3,69 +3,69 @@
 
 .comment-list {
 
-	.reply {
-		a {}
-	}
+  .reply {
+    a {}
+  }
 
-	.alt {}
-	.odd {}
-	.even {}
-	.thread-alt {}
-	.thread-odd {}
-	.thread-even {}
-	li {
-		ul.children {
+  .alt {}
+  .odd {}
+  .even {}
+  .thread-alt {}
+  .thread-odd {}
+  .thread-even {}
+  li {
+    ul.children {
 
-			.alt {}
-			.odd {}
-			.even {}
-		}
-	}
+      .alt {}
+      .odd {}
+      .even {}
+    }
+  }
 
-	.vcard {
-		cite.fn {}
-		span.says {}
-		img.photo {}
-		img.avatar {}
-		cite.fn a.url {}
-	}
+  .vcard {
+    cite.fn {}
+    span.says {}
+    img.photo {}
+    img.avatar {}
+    cite.fn a.url {}
+  }
 
-	.comment-meta {
-		a {}
-	}
-	.commentmetadata {
-		a {}
-	}
+  .comment-meta {
+    a {}
+  }
+  .commentmetadata {
+    a {}
+  }
 
-	.parent {}
-	.comment {}
-	.children {}
-	.pingback {}
-	.bypostauthor {}
-	.comment-author {}
-	.comment-author-admin {}
+  .parent {}
+  .comment {}
+  .children {}
+  .pingback {}
+  .bypostauthor {}
+  .comment-author {}
+  .comment-author-admin {}
 
-	li {
-		p {
+  li {
+    p {
 
-		}
-		ul {
-			&.children {
-				li {
-					&.alt {}
-					&.byuser {}
-					&.comment {}
-					// &.depth-{id} {}
-					&.bypostauthor {}
-					&.comment-author-admin {}
-				}
-			}
-		}
-	}
+    }
+    ul {
+      &.children {
+        li {
+          &.alt {}
+          &.byuser {}
+          &.comment {}
+          // &.depth-{id} {}
+          &.bypostauthor {}
+          &.comment-author-admin {}
+        }
+      }
+    }
+  }
 }
 
 #cancel-comment-reply {
-	a {}
+  a {}
 }
 
 

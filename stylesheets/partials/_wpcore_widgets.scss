@@ -4,7 +4,7 @@
 .widget {}
 
 .textwidget {
-	p {}
+  p {}
 }
 .widget_text {}
 
@@ -13,128 +13,128 @@
 .screen-reader-text {}
 
 .widget_meta {
-	ul {
-		li {
-			a {
+  ul {
+    li {
+      a {
 
-			}
-		}
-	}
+      }
+    }
+  }
 }
 
 .widget_links {
-	ul {
-		li {
-			a {
+  ul {
+    li {
+      a {
 
-			}
-			&:after {
+      }
+      &:after {
 
-			}
-			&:before {
+      }
+      &:before {
 
-			}
-		}
-	}
+      }
+    }
+  }
 }
 
 .widget_archive {
-	ul {
-		li {
-			a {
+  ul {
+    li {
+      a {
 
-			}
-		}
-	}
-	select {
+      }
+    }
+  }
+  select {
 
-	}
-	option {
+  }
+  option {
 
-	}
+  }
 }
 
 .widget_pages {
-	ul {
-		li {
-			a {
+  ul {
+    li {
+      a {
 
-			}
-		}
-	}
+      }
+    }
+  }
 }
 
 .widget_tag_cloud {
-	a {
-		&:after {
+  a {
+    &:after {
 
-		}
-		&:before {
+    }
+    &:before {
 
-		}
-	}
+    }
+  }
 }
 
 .widget_calendar {
 
-	#calendar_wrap {
-		th {}
-		td {}
-	}
-	#wp-calendar {
-		tr td {}
-		caption {}
-		a {}
-		#today {}
-		#prev {
-			a {}
-		}
-		#next {
-			a {}
-		}
-	}
+  #calendar_wrap {
+    th {}
+    td {}
+  }
+  #wp-calendar {
+    tr td {}
+    caption {}
+    a {}
+    #today {}
+    #prev {
+      a {}
+    }
+    #next {
+      a {}
+    }
+  }
 }
 
 .widget_categories {
-	ul {
-		li {
-			a {
+  ul {
+    li {
+      a {
 
-			}
-		}
-		ul.children {
+      }
+    }
+    ul.children {
 
-		}
-	}
-	a {}
-	select{}
-	select#cat {}
-	select.postform {}
-	option {}
+    }
+  }
+  a {}
+  select{}
+  select#cat {}
+  select.postform {}
+  option {}
 
-	.level-0 {}
-	.level-1 {}
-	.level-2 {}
-	.level-3 {}
+  .level-0 {}
+  .level-1 {}
+  .level-2 {}
+  .level-3 {}
 }
 
 
 .recentcomments {}
 #recentcomments {
-	li {
-		a {
+  li {
+    a {
 
-		}
-	}
+    }
+  }
 }
 .widget_recent_comments {}
 
 .widget_recent_entries {
-	ul {
-		li {
-			a {
+  ul {
+    li {
+      a {
 
-			}
-		}
-	}
+      }
+    }
+  }
 }

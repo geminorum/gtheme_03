@@ -1,52 +1,52 @@
 
 html .mceContentBody.rtl {
 
-	direction:rtl;
-	unicode-bidi: embed;
-	float:right;
-	// max-width:600px;
-	max-width:448px;
+  direction:rtl;
+  unicode-bidi: embed;
+  float:right;
+  // max-width:600px;
+  max-width:448px;
 
-	* {
-		color:inherit;
-		font-style:inherit;
-		font-weight:inherit;
+  * {
+    color:inherit;
+    font-style:inherit;
+    font-weight:inherit;
 
-		font-size: 14px;
-		line-height:24px;
-		font-family: tahoma, "Iranian Sans", verdana, serif;
-	}
+    font-size: 14px;
+    line-height:24px;
+    font-family: tahoma, "Iranian Sans", verdana, serif;
+  }
 
-	h1,
-	h2,
-	h3,
-	h4,
-	h5,
-	h6 {
-		font-family:arial, sans-serif;
-	}
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family:arial, sans-serif;
+  }
 
-	ul,
-	ol {
-		margin:0 2.5em 1.625em 0;
-	}
+  ul,
+  ol {
+    margin:0 2.5em 1.625em 0;
+  }
 
-	table {
-		text-align: right;
-	}
+  table {
+    text-align: right;
+  }
 
-	blockquote {
-		font-style: bold;
-	}
+  blockquote {
+    font-style: bold;
+  }
 
-	strong {
-		font-weight: bold;
-	}
+  strong {
+    font-weight: bold;
+  }
 
-	cite,
-	em,
-	i
-	{
-		font-style:italic;
-	}
+  cite,
+  em,
+  i
+  {
+    font-style:italic;
+  }
 }

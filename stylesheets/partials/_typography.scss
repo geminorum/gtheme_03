@@ -6,19 +6,19 @@
 // Hyphenation
 // For definite cross browser support:
 @mixin theme-typography-wordbreak() {
-	-ms-word-break: break-all;
-	word-break: break-all;
+  -ms-word-break: break-all;
+  word-break: break-all;
 
-	// Non standard for webkit
-	word-break: break-word;
+  // Non standard for webkit
+  word-break: break-word;
 
-	-webkit-hyphens: auto;
-	-moz-hyphens: auto;
-	hyphens: auto;
+  -webkit-hyphens: auto;
+  -moz-hyphens: auto;
+  hyphens: auto;
 
-	-webkit-hyphenate-before: 2;
-	-webkit-hyphenate-after: 3;
-	hyphenate-lines: 3;
+  -webkit-hyphenate-before: 2;
+  -webkit-hyphenate-after: 3;
+  hyphenate-lines: 3;
 }
 
 // Adjusting font sizes for fallback fonts
@@ -28,22 +28,22 @@
 // font fallback occurs. It does this by adjusting the font-size so that the x-height
 // is the same regardless of the font used.
 @mixin theme-typography-adjust() {
-	font-size-adjust: auto;
+  font-size-adjust: auto;
 }
 
 // Default paragraph styles
 @mixin theme-default-paragraph(){
-	// font-size: $font-size-large;
+  // font-size: $font-size-large;
 
-	// line-height: $headings-line-height * 1.2;
-	// line-height: $line-height-large;
-	// line-height:   $theme-grid-gutter;
-	// line-height: $line-height-base * 1.1;
+  // line-height: $headings-line-height * 1.2;
+  // line-height: $line-height-large;
+  // line-height:   $theme-grid-gutter;
+  // line-height: $line-height-base * 1.1;
 
-	// margin-bottom: $theme-grid-gutter;
-	// color: $gray-darker;
+  // margin-bottom: $theme-grid-gutter;
+  // color: $gray-darker;
 
-	// text-align:justify;
-	// @include theme-typography-wordbreak();
-	// @include theme-typography-adjust();
+  // text-align:justify;
+  // @include theme-typography-wordbreak();
+  // @include theme-typography-adjust();
 }
