@@ -53,23 +53,7 @@ class gThemeOptions extends gThemeModuleCore
 			),
 
 			// MEDIA TAGS
-			'images' => array(	// n-name, w-width, h-height, c-crop, d-description, p-for posts, t-media tag, i-insert
-				'raw' => gThemeOptions::register_image(
-					_x( 'Raw', 'Media Tag Titles', GTHEME_TEXTDOMAIN ),
-					9999, 9999, 0,
-					TRUE, TRUE
-				),
-				'big' => gThemeOptions::register_image(
-					_x( 'Big', 'Media Tag Titles', GTHEME_TEXTDOMAIN ),
-					1280, 720, 0,
-					TRUE, TRUE
-				),
-				'single' => gThemeOptions::register_image(
-					_x( 'Single', 'Media Tag Titles', GTHEME_TEXTDOMAIN ),
-					1000, 1000, 0,
-					TRUE, TRUE
-				),
-			),
+			'images' => array(), // gThemeOptions::getDefaultImages()
 			'thumbnail_image_size' => 'single',
 			'enclosure_image_size' => 'single',
 
@@ -282,6 +266,45 @@ class gThemeOptions extends gThemeModuleCore
 			return $defaults[$option];
 
 		return $default;
+	}
+
+	public static function getDefaultImages( $extra = array() )
+	{
+		return array_merge( array(
+			'raw' => self::registerImage( array(
+				'name'        => _x( 'Raw', 'Media Tag Titles', GTHEME_TEXTDOMAIN ),
+				'description' => '',
+				'width'       => 9999,
+				'height'      => 9999,
+				'crop'        => 0,
+				'post_type'   => TRUE,
+				'taxonomy'    => TRUE,
+				'tag'         => TRUE,
+				'insert'      => FALSE,
+			) ),
+			'big' => self::registerImage( array(
+				'name'        => _x( 'Big', 'Media Tag Titles', GTHEME_TEXTDOMAIN ),
+				'description' => '',
+				'width'       => 1280,
+				'height'      => 720,
+				'crop'        => 0,
+				'post_type'   => TRUE,
+				'taxonomy'    => TRUE,
+				'tag'         => TRUE,
+				'insert'      => TRUE,
+			) ),
+			'single' => self::registerImage( array(
+				'name'        => _x( 'Single', 'Media Tag Titles', GTHEME_TEXTDOMAIN ),
+				'description' => '',
+				'width'       => 1000,
+				'height'      => 1000,
+				'crop'        => 0,
+				'post_type'   => TRUE,
+				'taxonomy'    => TRUE,
+				'tag'         => TRUE,
+				'insert'      => TRUE,
+			) ),
+		), $extra );
 	}
 
 	public static function registerImage( $atts = array() )
