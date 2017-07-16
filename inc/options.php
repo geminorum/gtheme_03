@@ -70,7 +70,7 @@ class gThemeOptions extends gThemeModuleCore
 					TRUE, TRUE
 				),
 			),
-			// 'thumbnail_image_size' => 'single',
+			'thumbnail_image_size' => 'single',
 			'enclosure_image_size' => 'single',
 
 			// 'jpeg_quality'          => 82, // quality of JPEG images uploaded to WP
@@ -284,17 +284,47 @@ class gThemeOptions extends gThemeModuleCore
 		return $default;
 	}
 
+	public static function registerImage( $atts = array() )
+	{
+		$args = self::atts( array(
+			'name'        => __( 'Untitled' ),
+			'description' => '',
+			'width'       => 0,
+			'height'      => 9999,
+			'crop'        => FALSE,
+			'post_type'   => array( 'post' ),
+			'taxonomy'    => FALSE, // support for terms
+			'tag'         => TRUE, // media tag
+			'insert'      => FALSE, // insert in post
+		), $atts );
+
+		return array(
+			'n' => $args['name'],
+			'd' => $args['description'],
+			'w' => $args['width'],
+			'h' => $args['height'],
+			'c' => $args['crop'],
+			'p' => $args['post_type'],
+			't' => $args['taxonomy'],
+			's' => $args['tag'],
+			'i' => $args['insert'],
+		);
+	}
+
+	// FIXME: DEPRICATED
 	public static function register_image( $n, $w, $h = 9999, $c = 0, $t = TRUE, $i = FALSE, $p = array( 'post' ), $d = '' )
 	{
+		self::__dep( 'gThemeOptions::registerImage()' );
 		return array(
 			'n' => $n, // name (title)
+			'd' => $d, // description
 			'w' => $w, // width
 			'h' => $h, // height
 			'c' => $c, // crop
-			't' => $t, // media tag
+			's' => $t, // media tag
 			'i' => $i, // insert in post
 			'p' => $p, // post_type
-			'd' => $d, // description
+			't' => FALSE, // taxonomy
 		);
 	}
 

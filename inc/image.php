@@ -13,7 +13,7 @@ class gThemeImage extends gThemeModuleCore
 		), $args ) );
 
 		add_action( 'init', array( $this, 'init' ) );
-		add_filter( 'intermediate_image_sizes_advanced', array( $this, 'intermediate_image_sizes_advanced' ) );
+		add_filter( 'intermediate_image_sizes_advanced', array( $this, 'intermediate_image_sizes_advanced' ), 8, 2 );
 
 		add_filter( 'get_image_tag_class', array( $this, 'get_image_tag_class' ), 10, 4 );
 		add_filter( 'wp_get_attachment_image_attributes', array( $this, 'wp_get_attachment_image_attributes' ), 10, 2 );
@@ -78,18 +78,19 @@ class gThemeImage extends gThemeModuleCore
 		), $image );
 	}
 
-	// core dup with posttype
+	// core dup with posttype/taxonomy/title
 	// @REF: `add_image_size()`
 	public static function registerImageSize( $name, $atts = array() )
 	{
 		global $_wp_additional_image_sizes;
 
 		$args = self::atts( array(
-			'n' => __( 'Undefined Image Size', GTHEME_TEXTDOMAIN ),
+			'n' => __( 'Untitled' ),
 			'w' => 0,
 			'h' => 0,
 			'c' => 0,
-			'p' => array( 'post' ),
+			'p' => array( 'post' ), // posttype: TRUE: all/array: posttypes/FALSE: none
+			't' => FALSE, // taxonomy: TRUE: all/array: taxes/FALSE: none
 		), $atts );
 
 		$_wp_additional_image_sizes[$name] = array(
@@ -97,11 +98,12 @@ class gThemeImage extends gThemeModuleCore
 			'height'    => absint( $args['h'] ),
 			'crop'      => $args['c'],
 			'post_type' => $args['p'],
+			'taxonomy'  => $args['t'],
 			'title'     => $args['n'],
 		);
 	}
 
-	public function intermediate_image_sizes_advanced( $sizes )
+	public function intermediate_image_sizes_advanced( $sizes, $metadata )
 	{
 		// removing standard image sizes
 		unset(
@@ -226,7 +228,7 @@ class gThemeImage extends gThemeModuleCore
 		$new_size_names = array();
 
 		foreach ( gThemeOptions::info( 'images', array() ) as $name => $size )
-			if ( $size['i'] && in_array( $post_type ,$size['p'] ) )
+			if ( $size['i'] && ( TRUE === $size['p'] || in_array( $post_type, $size['p'] ) ) )
 				$new_size_names[$name] = $size['n'];
 
 		// if ( gThemeWordPress::isDev() )
@@ -247,7 +249,7 @@ class gThemeImage extends gThemeModuleCore
 		$gtheme_images = (array) gThemeOptions::info( 'images', array() );
 
 		foreach ( $gtheme_images as $name => $size ) {
-			if ( $size['t'] && in_array( $post_type ,$size['p'] ) ) {
+			if ( $size['s'] && ( TRUE === $size['p'] || in_array( $post_type, $size['p'] ) ) ) {
 
 				$id      = 'attachments-'.$post->ID.'-gtheme-size-'.$name;
 				$checked = ( isset( $images[$name] ) && $images[$name] == $post->ID ) ? ' checked="checked"' : '';
@@ -663,7 +665,7 @@ class gThemeImage extends gThemeModuleCore
 		return gThemeHTML::tag( 'img', array(
 			'src'   => $image[0],
 			'alt'   => '',
-			'class' => gThemeOptions::info( 'image-class', 'the-img img-responsive' ),
+			'class' => gThemeOptions::info( 'image-class', 'the-img img-responsive' ).' -featured',
 		) );
 	}
 }
