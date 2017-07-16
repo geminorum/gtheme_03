@@ -202,7 +202,7 @@ class gThemeModuleCore extends gThemeBaseCore
 
 		switch ( $args['type'] ) {
 
-			case 'hidden' :
+			case 'hidden':
 
 				echo gThemeHTML::tag( 'input', array(
 					'type'  => 'hidden',
@@ -214,7 +214,7 @@ class gThemeModuleCore extends gThemeBaseCore
 				$args['description'] = FALSE;
 
 			break;
-			case 'enabled' :
+			case 'enabled':
 
 				$html .= gThemeHTML::tag( 'option', array(
 					'value'    => '0',
@@ -233,7 +233,7 @@ class gThemeModuleCore extends gThemeBaseCore
 				), $html );
 
 			break;
-			case 'text' :
+			case 'text':
 
 				if ( ! $args['field_class'] )
 					$args['field_class'] = 'regular-text';
@@ -249,7 +249,7 @@ class gThemeModuleCore extends gThemeBaseCore
 				) );
 
 			break;
-			case 'number' :
+			case 'number':
 
 				if ( ! $args['field_class'] )
 					$args['field_class'] = 'small-text';
@@ -270,7 +270,7 @@ class gThemeModuleCore extends gThemeBaseCore
 				) );
 
 			break;
-			case 'checkbox' :
+			case 'checkbox':
 
 				if ( count( $args['values'] ) ) {
 					foreach ( $args['values'] as $value_name => $value_title ) {
@@ -313,7 +313,7 @@ class gThemeModuleCore extends gThemeBaseCore
 				}
 
 			break;
-			case 'select' :
+			case 'select':
 
 				if ( FALSE !== $args['values'] ) {
 
@@ -336,7 +336,7 @@ class gThemeModuleCore extends gThemeBaseCore
 				}
 
 			break;
-			case 'textarea' :
+			case 'textarea':
 
 				echo gThemeHTML::tag( 'textarea', array(
 					'rows'        => 5,
@@ -345,15 +345,14 @@ class gThemeModuleCore extends gThemeBaseCore
 					'id'          => $id,
 					'placeholder' => $args['placeholder'],
 					'class'       => array(
-						'large-text',
+						'regular-text',
 						// 'textarea-autosize',
 						$args['field_class'],
 					),
-				// ), esc_textarea( $value ) );
 				), $value );
 
 			break;
-			case 'page' :
+			case 'page':
 
 				if ( ! $args['values'] )
 					$args['values'] = 'page';
@@ -369,10 +368,10 @@ class gThemeModuleCore extends gThemeBaseCore
 					'sort_column'      => 'menu_order',
 					'sort_order'       => 'asc',
 					'post_status'      => array( 'publish', 'future', 'draft' ),
-				));
+				) );
 
 			break;
-			case 'button' :
+			case 'button':
 
 				echo get_submit_button(
 					$value,
@@ -383,7 +382,7 @@ class gThemeModuleCore extends gThemeBaseCore
 				);
 
 			break;
-			case 'file' :
+			case 'file':
 
 				echo gThemeHTML::tag( 'input', array(
 					'type'     => 'file',
@@ -396,7 +395,7 @@ class gThemeModuleCore extends gThemeBaseCore
 				) );
 
 			break;
-			case 'custom' :
+			case 'custom':
 
 				if ( ! is_array( $args['values'] ) )
 					echo $args['values'];
@@ -404,12 +403,12 @@ class gThemeModuleCore extends gThemeBaseCore
 					echo $value;
 
 			break;
-			case 'debug' :
+			case 'debug':
 
 				self::dump( $this->options );
 
 			break;
-			default :
+			default:
 
 				_e( 'Error: settings type undefined.', GTHEME_TEXTDOMAIN );
 		}
