@@ -88,6 +88,7 @@ class gThemeUtilities extends gThemeBaseCore
 		return gThemeOptions::info( 'home_url_override', esc_url( home_url( '/' ) ) );
 	}
 
+	// FIXME: must be depricated
 	public static function sanitize_sep( $sep = 'def', $context = 'default_sep', $def = ' ' )
 	{
 		if ( 'def' == $sep )

@@ -40,6 +40,15 @@ class gThemeMenu extends gThemeModuleCore
 		return $args;
 	}
 
+	public static function defaults( $extra = array() )
+	{
+		return array_merge( array(
+			'primary'   => _x( 'Primary Navigation', 'Modules: Menu: Defaults', GTHEME_TEXTDOMAIN ),
+			'secondary' => _x( 'Secondary Navigation', 'Modules: Menu: Defaults', GTHEME_TEXTDOMAIN ),
+			'tertiary'  => _x( 'Tertiary Navigation', 'Modules: Menu: Defaults', GTHEME_TEXTDOMAIN ),
+		), $extra );
+	}
+
 	public static function nav( $location = 'primary', $atts = array(), $before = '', $after = '' )
 	{
 		$args = array_merge( array(
@@ -75,8 +84,10 @@ class gThemeMenu extends gThemeModuleCore
 	public function wp_nav_menu_container_allowedtags( $tags )
 	{
 		$new_tags = (array) gThemeOptions::info( 'nav_menu_allowedtags', array( 'p' ) );
+
 		if ( count( $new_tags ) )
 			$tags = array_merge( $tags, $new_tags );
+
 		return $tags;
 	}
 

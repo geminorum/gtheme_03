@@ -15,6 +15,14 @@ class gThemeBanners extends gThemeModuleCore
 		}
 	}
 
+	public static function defaults( $extra = array() )
+	{
+		return array_merge( array(
+			'first'  => _x( 'First', 'Banner Groups', GTHEME_TEXTDOMAIN ),
+			'second' => _x( 'Second', 'Banner Groups', GTHEME_TEXTDOMAIN ),
+		), $extra );
+	}
+
 	public static function banner( $group, $order = 0, $atts = array() )
 	{
 		$banner = self::get( $group, $order );
@@ -111,12 +119,12 @@ class gThemeBanners extends gThemeModuleCore
 	public function load( $sub )
 	{
 		if ( 'banners' == $sub ) {
-			if ( ! empty( $_POST )
-				&& wp_verify_nonce( $_POST['_gtheme_banners'], 'gtheme-banners' ) ) {
 
-				$banner_groups = gThemeOptions::info( 'banner_groups', array() );
-				$old = gThemeOptions::getOption( 'banners', array() );
-				$new = array();
+			if ( ! empty( $_POST ) && wp_verify_nonce( $_POST['_gtheme_banners'], 'gtheme-banners' ) ) {
+
+				$banners = gThemeOptions::info( 'banner_groups', self::defaults() );
+				$old     = gThemeOptions::getOption( 'banners', array() );
+				$new     = array();
 
 				$titles = $_POST['gtheme-banners-title'];
 				$groups = $_POST['gtheme-banners-group'];
@@ -135,7 +143,7 @@ class gThemeBanners extends gThemeModuleCore
 						else
 							$new[$i]['title'] = '';
 
-						if ( array_key_exists( $groups[$i], $banner_groups ) )
+						if ( array_key_exists( $groups[$i], $banners ) )
 							$new[$i]['group'] = $groups[$i];
 						else
 							$new[$i]['group'] = '';
@@ -168,8 +176,10 @@ class gThemeBanners extends gThemeModuleCore
 
 				if ( ! empty( $new ) && $new != $old )
 					$result = gThemeOptions::update_option( 'banners', $new );
+
 				else if ( empty( $new ) && $old )
 					$result = gThemeOptions::delete_option( 'banners' );
+
 				else
 					$result = FALSE;
 

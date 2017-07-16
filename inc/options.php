@@ -16,13 +16,13 @@ class gThemeOptions extends gThemeModuleCore
 			'logo_title' => _x( 'Home', 'Logo Title', GTHEME_TEXTDOMAIN ),
 
 			// SETTINGS PAGE
-			'menu_title'     => _x( 'Theme Settings', 'Admin Menu Title', GTHEME_TEXTDOMAIN ),
-			'settings_title' => _x( 'gTheme Settings', 'Admin Settings Page Title', GTHEME_TEXTDOMAIN ),
-			'settings_page'  => 'gtheme-theme',
+			// 'settings_title' => _x( 'gTheme Settings', 'Admin Settings Page Title', GTHEME_TEXTDOMAIN ),
+			// 'menu_title'     => _x( 'Theme Settings', 'Admin Menu Title', GTHEME_TEXTDOMAIN ),
+			// 'settings_page'  => 'gtheme-theme',
 
 			// ACCESSES
-			'settings_access' => 'edit_theme_options',
-			'editor_access'   => 'edit_others_posts',
+			// 'settings_access' => 'edit_theme_options',
+			'editor_access'   => 'edit_others_posts', // FIXME: WTF
 
 			// INTEGRATION WITH OTHER PLUGINS
 			'supports' => array( // 3th party plugin supports
@@ -39,21 +39,14 @@ class gThemeOptions extends gThemeModuleCore
 			'module_args' => array(),
 
 			// NAVIGATION & MENUS
-			'register_nav_menus' => array(
-				'primary'   => __( 'Primary Navigation', GTHEME_TEXTDOMAIN ),
-				'secondary' => __( 'Secondary Navigation', GTHEME_TEXTDOMAIN ),
-				'tertiary'  => __( 'Tertiary Navigation', GTHEME_TEXTDOMAIN ),
-			),
-			'nav_menu_allowedtags' => array( 'p' ),
+			// 'register_nav_menus' => gThemeMenu::defaults(),
+			// 'nav_menu_allowedtags' => array( 'p' ),
 
 			// SIDEBARS
-			'sidebars' => array(
-				'side-index'    => _x( 'Index: Side', 'Sidebar Titles', GTHEME_TEXTDOMAIN ),
-				'side-singular' => _x( 'Singular: Side', 'Sidebar Titles', GTHEME_TEXTDOMAIN ),
-			),
+			// 'sidebars' => gThemeSideBar::defaults(),
 
 			// MEDIA TAGS
-			'images' => array(), // gThemeOptions::getDefaultImages()
+			// 'images' => gThemeOptions::getDefaultImages(),
 			'thumbnail_image_size' => 'single',
 			'enclosure_image_size' => 'single',
 
@@ -61,17 +54,17 @@ class gThemeOptions extends gThemeModuleCore
 			// 'wp_editor_set_quality' => 82, // quality of JPEG images edited within WP
 
 			// COUNTS API
-			'counts' => gThemeCounts::defaults(),  // NOTE: use gThemeCounts::defaults( array( -extra / override -) )
+			// 'counts' => gThemeCounts::defaults(),
 
 			// PAGES API
-			'pages_list'     => gThemePages::defaults(), // NOTE: use gThemePages::defaults( array( -extra / override -) )
-			'pages_pre_map'  => gThemePages::defaultPages(), // NOTE: use gThemePages::defaultPages( array( -extra / override -) )
-			'pages_pre_text' => _x( '[ This page is being completed ]', 'Options: Page Pre-Text', GTHEME_TEXTDOMAIN ),
+			// 'pages_list'     => gThemePages::defaults(),
+			// 'pages_pre_map'  => gThemePages::defaultPages(),
+			// 'pages_pre_text' => _x( '[ This page is being completed ]', 'Options: Page Pre-Text', GTHEME_TEXTDOMAIN ),
 
 			// PRIMARY TERMS API
-			'primary_terms_legend'   => FALSE,
-			'primary_terms_taxonomy' => 'category',
-			'primary_terms_defaults' => array(),
+			// 'primary_terms_legend'   => FALSE,
+			// 'primary_terms_taxonomy' => 'category',
+			// 'primary_terms_defaults' => array(),
 
 			'default_sep'        => _x( ' ', 'Options: Separator: Default', GTHEME_TEXTDOMAIN ),
 			'title_sep'          => _x( ' &raquo; ', 'Options: Separator: Title', GTHEME_TEXTDOMAIN ),
@@ -107,22 +100,8 @@ class gThemeOptions extends gThemeModuleCore
 			'rtl'    => is_rtl(),
 			'locale' => get_locale(),
 
-			// FIXME: make ltr compatible
 			// FEEDS
-			'feed_str_replace' => array(
-				'<p>'                            => '<p style="direction:rtl;font-family:tahoma;line-height:22px;font-size:14px !important;">',
-				'<p style="text-align: right;">' => '<p style="direction:rtl;font-family:tahoma;line-height:22px;font-size:14px !important;">',
-				'<blockquote>'                   => '<blockquote style="direction:rtl;float:left;width:45%;maegin:20px 20px 20px 0;font-family:tahoma;line-height:22px;font-weight:bold;font-size:14px !important;">',
-				'class="alignleft"'              => 'style="float:left;margin-right:15px;"',
-				'class="alignright"'             => 'style="float:right;margin-left:15px;"',
-				'class="aligncenter"'            => 'style="margin-left:auto;margin-right:auto;text-align:center;"',
-				'<h3>'                           => '<h3 style="font-family:arial,verdana,sans-serif !important;font-weight:bold;">',
-				'<h4>'                           => '<h4 style="font-family:arial,verdana,sans-serif !important;font-weight:bold;">',
-				'<h5>'                           => '<h5 style="font-family:arial,verdana,sans-serif !important;font-weight:bold;">',
-				'<h6>'                           => '<h6 style="font-family:arial,verdana,sans-serif !important;font-weight:bold;">',
-				'<div class="lead">'             => '<div style="color:#ccc;">',
-				'<div class="label">'            => '<div style="float:left;color:#333;">',
-			),
+			// 'feed_str_replace' => gThemeFeed::defaultReplace(),
 
 			// SEO
 			'meta_image_size' => 'single',
@@ -147,8 +126,8 @@ class gThemeOptions extends gThemeModuleCore
 			// 'comment_form_strings'   => array(),
 			// 'comment_nav_strings'    => array(),
 			// 'comment_action_strings' => array(),
-			'comments_closed'        => __( 'Comments are closed.', GTHEME_TEXTDOMAIN ), // set FALSE to hide the text
-			'comment_awaiting'       => __( 'Your comment is awaiting moderation.', GTHEME_TEXTDOMAIN ), // set FALSE to hide the text
+			// 'comments_closed'        => __( 'Comments are closed.', GTHEME_TEXTDOMAIN ), // set FALSE to hide the text
+			// 'comment_awaiting'       => __( 'Your comment is awaiting moderation.', GTHEME_TEXTDOMAIN ), // set FALSE to hide the text
 
 			// AVATARS
 			'comment_avatar_size' => 75, // wp core is 32
@@ -157,48 +136,13 @@ class gThemeOptions extends gThemeModuleCore
 			// SYSTEM TAGS
 			'system_tags_cpt'      => array( 'post' ),
 			'system_tags_excludes' => array( 'no-front', 'no-feed' ),
-			'system_tags_defaults' => array(
-				'dashboard'    => _x( 'Dashboard', 'System Tags Defaults', GTHEME_TEXTDOMAIN ),
-				'featured'     => _x( 'Featured', 'System Tags Defaults', GTHEME_TEXTDOMAIN ),
-				'latest'       => _x( 'Latest', 'System Tags Defaults', GTHEME_TEXTDOMAIN ),
-				'tile'         => _x( 'Tile', 'System Tags Defaults', GTHEME_TEXTDOMAIN ),
-				'full-article' => _x( 'Full Article', 'System Tags Defaults', GTHEME_TEXTDOMAIN ),
-				'poster'       => _x( 'Poster Entry', 'System Tags Defaults', GTHEME_TEXTDOMAIN ),
-				'no-front'     => _x( 'Not on FrontPage', 'System Tags Defaults', GTHEME_TEXTDOMAIN ),
-				'no-feed'      => _x( 'Not on Feed', 'System Tags Defaults', GTHEME_TEXTDOMAIN ),
-			),
+			// 'system_tags_defaults' => gThemeTerms::defaults(),
 
 			// EDITOR
-			'default_content'   => _x( '[content not available yet]', 'Editor Default Content', GTHEME_TEXTDOMAIN ),
-			'mce_buttons'       => array(), // 'superscript', 'subscript'
-			'mce_buttons_2'     => array( 'styleselect' ),
-			'mce_style_formats' => array(
-				array(
-					'title'   => _x( 'Blockquote', 'Editor Custom Class', GTHEME_TEXTDOMAIN ),
-					'block'   => 'blockquote',
-					'classes' => 'entry-quote',
-				),
-				array(
-					'title'    => _x( 'Unordered List', 'Editor Custom Class', GTHEME_TEXTDOMAIN ),
-					'selector' => 'ul', // http://wordpress.stackexchange.com/a/85071
-					'classes'  => 'entry-list',
-				),
-				array(
-					'title'    => _x( 'Ordered List', 'Editor Custom Class', GTHEME_TEXTDOMAIN ),
-					'selector' => 'ol',
-					'classes'  => 'entry-list',
-				),
-				array(
-					'title'   => _x( 'Note', 'Editor Custom Class', GTHEME_TEXTDOMAIN ),
-					'block'   => 'p',
-					'classes' => 'entry-note',
-				),
-				array(
-					'title'   => _x( 'Source', 'Editor Custom Class', GTHEME_TEXTDOMAIN ),
-					'block'   => 'p',
-					'classes' => 'entry-source',
-				),
-			),
+			// 'default_content'   => _x( '[content not available yet]', 'Editor Default Content', GTHEME_TEXTDOMAIN ),
+			// 'mce_buttons'       => array(), // 'superscript', 'subscript'
+			// 'mce_buttons_2'     => array( 'styleselect' ),
+			// 'mce_style_formats' => gThemeEditor::defaultFormats(),
 
 			'settings_legend' => FALSE, // html content to appear after settings
 			// FIXME: DEPRECATED: use PAGES API
@@ -239,11 +183,8 @@ class gThemeOptions extends gThemeModuleCore
 			),
 
 			// BANNERS API
-			'banners_legend' => FALSE, // html before admin banners page
-			'banner_groups'  => array(
-				'first'  => _x( 'First', 'Banner Groups', GTHEME_TEXTDOMAIN ),
-				'second' => _x( 'Second', 'Banner Groups', GTHEME_TEXTDOMAIN ),
-			),
+			// 'banners_legend' => FALSE, // html before admin banners page
+			// 'banner_groups'  => gThemeBanners::defaults(),
 
 			// TEMPLATES
 			// 'template_logo'        => '<a class="navbar-brand no-outline" href="%1$s" title="%3$s" rel="home"><h1 class="text-hide main-logo">%2$s</h1></a>',
@@ -256,7 +197,7 @@ class gThemeOptions extends gThemeModuleCore
 			'date_format_day'    => _x( 'j M Y', 'Options: Defaults: Date Format: Day', GTHEME_TEXTDOMAIN ), // day navigation
 
 			// ATTACHMENT
-			'attachment_download_prefix' => '', // EXAMPLE: 'example.com-'
+			// 'attachment_download_prefix' => '', // EXAMPLE: 'example.com-'
 		);
 
 		if ( FALSE === $option )

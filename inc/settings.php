@@ -42,14 +42,12 @@ class gThemeSettings extends gThemeModuleCore
 
 	public function admin_menu()
 	{
-		$info = gThemeOptions::info();
-
 		$hook = add_submenu_page(
 			$this->_settings_parent,
-			$info['settings_title'],
-			$info['menu_title'],
-			$info['settings_access'],
-			$info['settings_page'],
+			gThemeOptions::info( 'settings_title', _x( 'gTheme Settings', 'Admin Settings Page Title', GTHEME_TEXTDOMAIN ) ),
+			gThemeOptions::info( 'menu_title', _x( 'Theme Settings', 'Admin Menu Title', GTHEME_TEXTDOMAIN ) ),
+			gThemeOptions::info( 'settings_access', 'edit_theme_options' ),
+			gThemeOptions::info( 'settings_page', 'gtheme-theme' ),
 			array( $this, 'admin_settings' )
 		);
 
@@ -58,7 +56,6 @@ class gThemeSettings extends gThemeModuleCore
 
 	public function admin_settings()
 	{
-		$info = gThemeOptions::info();
 		$uri  = $this->_settings_uri; // back comp
 
 		$sub = isset( $_GET['sub'] ) ? trim( $_GET['sub'] ) : 'general';
@@ -72,7 +69,8 @@ class gThemeSettings extends gThemeModuleCore
 			'updated' => self::updated( _x( 'Settings updated.', 'Settings Module', GTHEME_TEXTDOMAIN ) ),
 		) );
 
-		echo '<div class="wrap"><h1 class="wp-heading-inline settings-title">'.$info['settings_title']
+		echo '<div class="wrap"><h1 class="wp-heading-inline settings-title">'.
+			gThemeOptions::info( 'settings_title', _x( 'gTheme Settings', 'Admin Settings Page Title', GTHEME_TEXTDOMAIN ) )
 			.'</h1> <a href="http://geminorum.ir/wordpress/gtheme_03" class="page-title-action settings-title-action" target="_blank">'
 			.GTHEME_VERSION.'</a><hr class="wp-header-end">';
 

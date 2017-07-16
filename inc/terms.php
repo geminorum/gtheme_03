@@ -203,6 +203,21 @@ class gThemeTerms extends gThemeModuleCore
 		);
 	}
 
+	public static function defaults( $extra = array() )
+	{
+		return array_merge( array(
+			'dashboard'    => _x( 'Dashboard', 'System Tags Defaults', GTHEME_TEXTDOMAIN ),
+			'featured'     => _x( 'Featured', 'System Tags Defaults', GTHEME_TEXTDOMAIN ),
+			'latest'       => _x( 'Latest', 'System Tags Defaults', GTHEME_TEXTDOMAIN ),
+			'tile'         => _x( 'Tile', 'System Tags Defaults', GTHEME_TEXTDOMAIN ),
+			'full-article' => _x( 'Full Article', 'System Tags Defaults', GTHEME_TEXTDOMAIN ),
+			'poster'       => _x( 'Poster Entry', 'System Tags Defaults', GTHEME_TEXTDOMAIN ),
+			'no-front'     => _x( 'Not on FrontPage', 'System Tags Defaults', GTHEME_TEXTDOMAIN ),
+			'no-feed'      => _x( 'Not on Feed', 'System Tags Defaults', GTHEME_TEXTDOMAIN ),
+		), $extra );
+	}
+
+
 	// system tags to post_classess
 	public function post_class( $classes, $class, $post_ID )
 	{
@@ -245,7 +260,7 @@ class gThemeTerms extends gThemeModuleCore
 
 		if ( 'install_systemtags' == $_REQUEST[$name] ) {
 
-			$defaults = gThemeOptions::info( 'system_tags_defaults', array() );
+			$defaults = gThemeOptions::info( 'system_tags_defaults', self::defaults() );
 			$taxonomy = GTHEME_SYSTEMTAGS;
 
 		} else {

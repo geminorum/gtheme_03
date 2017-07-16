@@ -79,7 +79,7 @@ class gThemeEditor extends gThemeModuleCore
 	// SEE : http://www.tinymce.com/tryit/custom_formats.php
 	public function tiny_mce_before_init( $settings )
 	{
-		$style_formats = gThemeOptions::info( 'mce_style_formats', array() );
+		$style_formats = gThemeOptions::info( 'mce_style_formats', self::defaultFormats() );
 
 		if ( count( $style_formats ) ) {
 			$style_formats = wp_json_encode( $style_formats );
@@ -93,8 +93,40 @@ class gThemeEditor extends gThemeModuleCore
 		return $settings;
 	}
 
+	public static function defaultFormats( $extra = array() )
+	{
+		return array_merge( array(
+			array(
+				'title'   => _x( 'Blockquote', 'Editor Custom Class', GTHEME_TEXTDOMAIN ),
+				'block'   => 'blockquote',
+				'classes' => 'entry-quote',
+			),
+			array(
+				'title'    => _x( 'Unordered List', 'Editor Custom Class', GTHEME_TEXTDOMAIN ),
+				'selector' => 'ul', // http://wordpress.stackexchange.com/a/85071
+				'classes'  => 'entry-list',
+			),
+			array(
+				'title'    => _x( 'Ordered List', 'Editor Custom Class', GTHEME_TEXTDOMAIN ),
+				'selector' => 'ol',
+				'classes'  => 'entry-list',
+			),
+			array(
+				'title'   => _x( 'Note', 'Editor Custom Class', GTHEME_TEXTDOMAIN ),
+				'block'   => 'p',
+				'classes' => 'entry-note',
+			),
+			array(
+				'title'   => _x( 'Source', 'Editor Custom Class', GTHEME_TEXTDOMAIN ),
+				'block'   => 'p',
+				'classes' => 'entry-source',
+			),
+		), $extra );
+	}
+
 	public function default_content( $post_content, $post )
 	{
-		return gThemeOptions::info( 'default_content', $post_content );
+		$default = gThemeOptions::info( 'default_content', _x( '[content not available yet]', 'Editor Default Content', GTHEME_TEXTDOMAIN ) );
+		return is_null( $default ) ? $post_content : $default;
 	}
 }

@@ -194,7 +194,7 @@ class gThemePages extends gThemeModuleCore
 				} else if ( ! empty( $_POST['create-default-pages'] ) ) {
 
 					$map   = gThemeOptions::info( 'pages_pre_map', array() );
-					$text  = gThemeOptions::info( 'pages_pre_text', '' );
+					$text  = gThemeOptions::info( 'pages_pre_text', _x( '[ This page is being completed ]', 'Options: Page Pre-Text', GTHEME_TEXTDOMAIN ) );
 					$user  = gThemeOptions::getOption( 'default_user', 0 );
 					$count = 0;
 
