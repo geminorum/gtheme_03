@@ -1,3 +1,14 @@
+### 3.15.0
+* module/editorial: setup post data for issue row callback
+* module/editorial: reset post data for issue row callback
+* module/comments: :warning: fixed disappearing comments!
+* module/comments: :warning: current time for human time diff
+* module/navigation: :new: network home as first crumb
+* module/image: :new: support for taxonomy image sizes
+* module/image: :new: term image helper
+* module/social: :new: support title/image for terms
+* module/sidebar: :new: term image on term widget
+
 ### 3.14.11
 * module/counts: saving zeros
 * module/editorial: upgrade meta source helper
