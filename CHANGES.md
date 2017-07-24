@@ -1,3 +1,6 @@
+### 3.15.1
+* module/options: :wrench: de-centering options
+
 ### 3.15.0
 * module/editorial: setup post data for issue row callback
 * module/editorial: reset post data for issue row callback
