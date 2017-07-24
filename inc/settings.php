@@ -197,8 +197,6 @@ class gThemeSettings extends gThemeModuleCore
 		if ( ! is_admin_bar_showing() || ! is_user_logged_in() )
 			return;
 
-		$info = gThemeOptions::info();
-
 		if ( current_user_can( 'customize' ) ) {
 			$wp_admin_bar->remove_node( 'customize' );
 			remove_action( 'wp_before_admin_bar_render', 'wp_customize_support_script' );
@@ -222,8 +220,7 @@ class gThemeSettings extends gThemeModuleCore
 				'href'   => admin_url( 'edit.php' ),
 			) );
 
-		if ( ! current_user_can( 'edit_theme_options' )
-			|| ! current_user_can( $info['settings_access'] ) )
+		if ( ! current_user_can( gThemeOptions::info( 'settings_access', 'edit_theme_options' ) ) )
 			return;
 
 		$wp_admin_bar->remove_node( 'themes' );
@@ -231,10 +228,10 @@ class gThemeSettings extends gThemeModuleCore
 		$wp_admin_bar->add_node( array(
 			'parent' => 'appearance',
 			'id'     => 'gtheme',
-			'title'  => $info['menu_title'],
+			'title'  => gThemeOptions::info( 'menu_title', _x( 'Theme Settings', 'Admin Menu Title', GTHEME_TEXTDOMAIN ) ),
 			'href'   => admin_url( $this->_settings_uri ),
 			'meta'   => array(
-				'title' => $info['settings_title'],
+				'title' => gThemeOptions::info( 'settings_title', _x( 'gTheme Settings', 'Admin Settings Page Title', GTHEME_TEXTDOMAIN ) ),
 			),
 		) );
 
