@@ -1,5 +1,5 @@
 {
-  "name": "gTheme_03",
+  "name": "gtheme_03",
   "version": "3.15.1",
   "description": "Theme Framework for WordPress",
   "license": "GPL-3+",
@@ -19,22 +19,23 @@
   "main": "gulpfile.js",
   "dependencies": {},
   "devDependencies": {
+    "del": "^3.0.0",
     "gulp": "github:gulpjs/gulp#4.0",
+    "gulp-bump": "^2.7.0",
+    "gulp-checktextdomain": "^1.1.1",
     "gulp-cssnano": "^2.1.2",
     "gulp-exclude-gitignore": "^1.1.1",
+    "gulp-github-release": "^1.2.1",
+    "gulp-load-plugins": "^1.5.0",
     "gulp-sass": "^3.1.0",
-    "gulp-smushit": "^1.2.0",
     "gulp-sourcemaps": "^2.6.0",
-    "gulp-wp-pot": "^2.0.6"
+    "gulp-util": "^3.0.8",
+    "gulp-wp-pot": "^2.0.6",
+    "js-yaml": "^3.9.0",
+    "parse-changelog": "^1.0.2",
+    "prettyjson": "^1.2.1",
+    "xtend": "^4.0.1"
   },
   "readme": "ERROR: No README data found!",
-  "private": true,
-  "_pot": {
-    "package": "gTheme",
-    "domain": "GTHEME_TEXTDOMAIN",
-    "metadataFile": "style.css",
-    "bugReport": "https://github.com/geminorum/gtheme_03/issues",
-    "commentKeyword": "translators:",
-    "headers": false
-  }
+  "private": true
 }

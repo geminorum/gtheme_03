@@ -1,81 +1,86 @@
 (function() {
-  'use strict';
-
-  // https://www.npmjs.com/package/gulp-iconfont
 
   var
     gulp = require('gulp'),
-    sass = require('gulp-sass'), // https://github.com/dlmanning/gulp-sass
-    nano = require('gulp-cssnano'), // https://github.com/ben-eb/gulp-cssnano
-    sourcemaps = require('gulp-sourcemaps'),
-    smushit = require('gulp-smushit'), // https://github.com/heldr/gulp-smushit
-    excludeGitignore = require('gulp-exclude-gitignore'), // https://github.com/sboudrias/gulp-exclude-gitignore
-    wpPot = require('gulp-wp-pot'), // https://github.com/rasmusbe/gulp-wp-pot
-    fs = require('fs');
+    gutil = require('gulp-util'),
+    plugins = require('gulp-load-plugins')(),
+    parseChangelog = require('parse-changelog'),
+    prettyjson = require('prettyjson'),
+    extend = require('xtend'),
+    yaml = require('js-yaml'),
+    del = require('del'),
+    fs = require('fs'),
 
-  var
-    pkg = JSON.parse(fs.readFileSync('./package.json'));
+    pkg = JSON.parse(fs.readFileSync('./package.json')),
+    config = require('./gulpconfig.json'),
 
-  gulp.task('smushit', function() {
+    env = config.env,
+    banner = config.banner.join('\n');
 
-    return gulp.src('./images/raw/**/*.{jpg,png}')
-
-      .pipe(smushit())
-
-      .pipe(gulp.dest('./images'));
-  });
+  try {
+    env = extend(config.env, yaml.safeLoad(fs.readFileSync('./environment.yml', {encoding: 'utf-8'}), {'json': true}));
+  } catch (e) {
+    gutil.log('no environment.yml loaded!');
+  }
 
   gulp.task('pot', function() {
+    return gulp.src(config.input.php)
+    .pipe(plugins.excludeGitignore())
+    .pipe(plugins.wpPot(config.pot))
+    .pipe(gulp.dest(config.output.languages));
+  });
 
-    return gulp.src([
-      'style.css',
-      './**/*.php',
-      '!./assets/**',
-      '!./css/**',
-      '!./fonts/**',
-      '!./images/**',
-      '!./js/**',
-      '!./libs/**',
-      '!./packages/**',
-      '!./stylesheets/**'
-    ])
-
-      .pipe(excludeGitignore())
-
-      .pipe(wpPot(pkg._pot))
-
-      .pipe(gulp.dest('./languages/' + pkg.name + '.pot'));
+  gulp.task('textdomain', function() {
+    return gulp.src(config.input.php)
+      .pipe(plugins.excludeGitignore())
+      .pipe(plugins.checktextdomain(config.textdomain));
   });
 
   gulp.task('sass', function() {
-
-    return gulp.src('./stylesheets/*.scss')
-
-      // .pipe(sourcemaps.init())
-
-      .pipe(sass.sync({
-        includePaths: 'components/bootstrap-sass/assets/stylesheets'
-      }).on('error', sass.logError)).pipe(nano({
-        // http://cssnano.co/optimisations/
+    return gulp.src(config.input.sass)
+      // .pipe(plugins.sourcemaps.init())
+      .pipe(plugins.sass.sync(config.sass).on('error', plugins.sass.logError))
+      .pipe(plugins.cssnano({
         zindex: false,
         discardComments: {
           removeAll: true
         }
       }))
-
-      // .pipe(sourcemaps.write('./maps'))
-
-      .pipe(gulp.dest('./css'));
+      // .pipe(plugins.sourcemaps.write('./maps'))
+      .pipe(gulp.dest(config.output.css));
   });
 
   gulp.task('watch', function() {
-
-    gulp.watch('./stylesheets/**', gulp.series('sass'));
+    gulp.watch(config.input.sass, gulp.series('sass'));
   });
 
-  gulp.task('default', function() {
+  gulp.task('bump:package', function(){
+    return gulp.src('./package.json')
+    .pipe(plugins.bump().on('error', gutil.log))
+    .pipe(gulp.dest('.'));
+  });
 
-    console.log('Hi, I\'m Gulp!');
-    console.log("Sass is:\n" + require('node-sass').info);
+  gulp.task('bump:theme', function(){
+    return gulp.src(config.pot.metadataFile)
+    .pipe(plugins.bump().on('error', gutil.log))
+    .pipe(gulp.dest('.'));
+  });
+
+  gulp.task('bump', gulp.series(
+    'bump:package',
+    'bump:theme',
+    function(done) {
+      gutil.log('Bumped!');
+      done();
+  }));
+
+  gulp.task('default', function(done) {
+    gutil.log('Hi, I\'m Gulp!');
+    gutil.log("Sass is:\n"+require('node-sass').info);
+    gutil.log("\n");
+    console.log(prettyjson.render(pkg));
+    gutil.log("\n");
+    console.log(prettyjson.render(config));
+    done();
   });
 }());
