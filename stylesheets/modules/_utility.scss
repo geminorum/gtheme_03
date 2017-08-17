@@ -7,14 +7,14 @@
 
 // BASED ON BS3 Utilities
 @mixin theme-clearfix() {
-	&:before,
-	&:after {
-		content: " ";
-		display: table;
-	}
-	&:after {
-		clear: both;
-	}
+  &:before,
+  &:after {
+    content: " ";
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -23,36 +23,36 @@
 
 @mixin theme-box-reset() {
 
-	// FIXME: this is testing for: "content-box" removes the html border on iphone5
-	html { box-sizing: content-box; }
-	body { box-sizing: border-box; }
+  // FIXME: this is testing for: "content-box" removes the html border on iphone5
+  html { box-sizing: content-box; }
+  body { box-sizing: border-box; }
 
-	*,
-	*:before,
-	*:after {
-		box-sizing: inherit;
-	}
+  *,
+  *:before,
+  *:after {
+    box-sizing: inherit;
+  }
 }
 
 @mixin theme-box-reset-OLD() {
-	html {
-		box-sizing: border-box;
-	}
+  html {
+    box-sizing: border-box;
+  }
 
-	*,
-	*:before,
-	*:after {
-		box-sizing: inherit;
-	}
+  *,
+  *:before,
+  *:after {
+    box-sizing: inherit;
+  }
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 // FIXME: must add suffix
 
 @mixin theme-gutter-reset() {
-	padding: 0;
-	margin: 0;
-	border: 0;
+  padding: 0;
+  margin: 0;
+  border: 0;
 }
 
 // DEP
@@ -61,15 +61,15 @@
 }
 
 @mixin box-reset() {
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 @mixin body-rtl() {
-	body.rtl & {
-		@content;
-	}
+  body.rtl & {
+    @content;
+  }
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -78,94 +78,94 @@
 /// DEPRECATED MIXINS
 
 %dir_rtl {
-	direction: rtl !important;
+  direction: rtl !important;
 }
 
 // DEPRECATED: use @include theme-clearfix;
 @mixin clearfix() {
-	&:after {
-		content: "";
-		display: table;
-		clear: both;
-	}
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
 }
 
 // DEPRECATED: use @include theme-clearfix;
 @mixin clear-fix() {
-	&:before,
-	&:after {
-		content: " ";
-		display: table;
-	}
-	&:after {
-		clear: both;
-	}
+  &:before,
+  &:after {
+    content: " ";
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
 }
 
 // DEPRICATED: use @include clearfix()
 %clearfix {
-	&:after {
-		content: "";
-		display: table;
-		clear: both;
-	}
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
 }
 
 @mixin mainwrap() {
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	box-sizing: border-box;
-	& *,
-	&:after,
-	& *:after,
-	&:before,
-	& *:before {
-		-webkit-box-sizing: border-box;
-		-moz-box-sizing: border-box;
-		box-sizing: border-box;
-	}
-	padding:0;
-	margin:0;
-	border:0;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  & *,
+  &:after,
+  & *:after,
+  &:before,
+  & *:before {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+  padding:0;
+  margin:0;
+  border:0;
 }
 
 // DEPRICATED: use @include box-reset()
 %box-reset {
-	-webkit-box-sizing:border-box;
-	-moz-box-sizing:border-box;
-	box-sizing:border-box;
+  -webkit-box-sizing:border-box;
+  -moz-box-sizing:border-box;
+  box-sizing:border-box;
 }
 
 // DEPRICATED: use @include mainwrap()
 %main_wrap {
-	@extend %box-reset;
+  @extend %box-reset;
 
-	& *,
-	&:after,
-	& *:after,
-	&:before,
-	& *:before {
-		@extend %box-reset;
-	}
+  & *,
+  &:after,
+  & *:after,
+  &:before,
+  & *:before {
+    @extend %box-reset;
+  }
 
-	padding: 0;
-	margin: 0;
-	border: 0;
+  padding: 0;
+  margin: 0;
+  border: 0;
 }
 
 // MUST DEPRICATED: use @include mainwrap()
 @mixin main-wrap() {
-	@extend %box-reset;
-	& *,
-	&:after,
-	& *:after,
-	&:before,
-	& *:before {
-		@extend %box-reset;
-	}
-	padding: 0;
-	margin: 0;
-	border: 0;
+  @extend %box-reset;
+  & *,
+  &:after,
+  & *:after,
+  &:before,
+  & *:before {
+    @extend %box-reset;
+  }
+  padding: 0;
+  margin: 0;
+  border: 0;
 }
 
 // http://www.stefanwienert.de/blog/2012/05/18/easy-css-vendor-prefix-mixin-for-sass/
@@ -174,9 +174,9 @@
 //p { @include vendor-prefix(hyphens, auto)}
 
 @mixin vendor-prefix($name, $argument) {
-	-webkit-#{$name}: #{$argument};
-	-ms-#{$name}: #{$argument};
-	-moz-#{$name}: #{$argument};
-	-o-#{$name}: #{$argument};
-	#{$name}: #{$argument};
+  -webkit-#{$name}: #{$argument};
+  -ms-#{$name}: #{$argument};
+  -moz-#{$name}: #{$argument};
+  -o-#{$name}: #{$argument};
+  #{$name}: #{$argument};
 }

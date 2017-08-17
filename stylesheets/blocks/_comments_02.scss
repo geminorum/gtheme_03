@@ -6,11 +6,13 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 .comments-area {
+
   .lockdown-notice {
     color: $brand-warning;
   }
 
   .comment-navigation {
+
     &.comment-nav-above {
       margin-top: $theme-grid-gutter;
       padding-bottom: $theme-grid-gutter / 4;
@@ -22,6 +24,7 @@
       padding-top: $theme-grid-gutter / 4;
       border-top: 1px solid $gray-lighter;
     }
+
     // SCREEN-READER-ONLY
     .assistive-text {
       // #h4.assistive-text.sr-only
@@ -31,6 +34,7 @@
       // // font-weight: normal;
       // color: $gray;
     }
+
     // default floats added by : @include theme-floats-navigation();
     .nav-next,
     .nav-previous {
@@ -100,7 +104,10 @@
     }
   }
 }
+
 ////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+
 .comments-area {
   margin-bottom: $theme-grid-gutter / 2;
 
@@ -121,6 +128,15 @@
         color: $gray-darker;
         text-decoration: none;
       }
+    }
+
+    svg {
+      display: inline-block !important;
+      width: $font-size-h5;
+      height: $font-size-h5;
+      stroke-width: 0;
+      stroke: currentColor;
+      fill: currentColor;
     }
   }
 
