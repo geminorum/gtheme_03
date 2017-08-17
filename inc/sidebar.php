@@ -417,8 +417,11 @@ class gThemeWidget extends WP_Widget
 		wp_cache_delete( $this->alt_option_name, 'widget' );
 	}
 
-	public function form_number( $instance, $default = '10', $field = 'number' )
+	public function form_number( $instance, $default = '10', $field = 'number', $label = NULL )
 	{
+		if ( is_null( $label ) )
+			$label = _x( 'Number of posts to show:', 'Widget: Setting', GTHEME_TEXTDOMAIN );
+
 		$html = gThemeHTML::tag( 'input', array(
 			'type'  => 'text',
 			'size'  => 3,
@@ -429,7 +432,7 @@ class gThemeWidget extends WP_Widget
 
 		echo '<p>'. gThemeHTML::tag( 'label', array(
 			'for' => $this->get_field_id( $field ),
-		), _x( 'Number of posts to show:', 'Widget: Setting', GTHEME_TEXTDOMAIN ).' '.$html ).'</p>';
+		), $label.' '.$html ).'</p>';
 	}
 
 	public function form_context( $instance, $default = '', $field = 'context' )
@@ -538,6 +541,44 @@ class gThemeWidget extends WP_Widget
 		echo '<p>'. gThemeHTML::tag( 'label', array(
 			'for' => $this->get_field_id( $field ),
 		), _x( 'Title Link:', 'Widget: Setting', GTHEME_TEXTDOMAIN ).$html ).'</p>';
+	}
+
+	public function form_custom_link( $instance, $default = '', $field = 'custom_link', $label = NULL )
+	{
+		if ( is_null( $label ) )
+			$label = _x( 'Custom Link:', 'Widget: Setting', GTHEME_TEXTDOMAIN );
+
+		$html = gThemeHTML::tag( 'input', array(
+			'type'  => 'url',
+			'class' => 'widefat',
+			'name'  => $this->get_field_name( $field ),
+			'id'    => $this->get_field_id( $field ),
+			'value' => isset( $instance[$field] ) ? $instance[$field] : $default,
+			'dir'   => 'ltr',
+		) );
+
+		echo '<p>'. gThemeHTML::tag( 'label', array(
+			'for' => $this->get_field_id( $field ),
+		), $label.$html ).'</p>';
+	}
+
+	public function form_custom_code( $instance, $default = '', $field = 'custom_code', $label = NULL )
+	{
+		if ( is_null( $label ) )
+			$label = _x( 'Custom Code:', 'Widget: Setting', GTHEME_TEXTDOMAIN );
+
+		$html = gThemeHTML::tag( 'input', array(
+			'type'  => 'text',
+			'class' => [ 'widefat', 'code' ],
+			'name'  => $this->get_field_name( $field ),
+			'id'    => $this->get_field_id( $field ),
+			'value' => isset( $instance[$field] ) ? $instance[$field] : $default,
+			'dir'   => 'ltr',
+		) );
+
+		echo '<p>'. gThemeHTML::tag( 'label', array(
+			'for' => $this->get_field_id( $field ),
+		), $label.$html ).'</p>';
 	}
 
 	public function form_avatar_size( $instance, $default = '32', $field = 'avatar_size' )
