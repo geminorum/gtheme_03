@@ -129,7 +129,7 @@ class gThemeShortCodes extends gThemeModuleCore
 
 		// CAUTION: css must added manually
 		wp_register_script( 'gtheme-imagesloaded', GTHEME_URL.'/js/jquery.imagesloaded.min.js', array( 'jquery' ), '3.0.4', TRUE );
-		wp_enqueue_script( 'gtheme-gallery', GTHEME_URL.'/js/script.gallery.js', array( 'jquery', 'gtheme-imagesloaded' ), GTHEME_VERSION, TRUE );
+		wp_enqueue_script( 'gtheme-gallery', GTHEME_URL.'/js/script.gallery.min.js', array( 'jquery', 'gtheme-imagesloaded' ), GTHEME_VERSION, TRUE );
 
 		$html     = '';
 		$template = gThemeOptions::info( 'gallery_template', $default );
