@@ -169,7 +169,7 @@ class gThemePages extends gThemeModuleCore
 						else
 							$menu = wp_create_nav_menu( $nav );
 
-						foreach( $map as $slug => $title ) {
+						foreach ( $map as $slug => $title ) {
 							if ( $page = get_page_by_path( $slug, OBJECT, 'page' ) ) {
 								$id = wp_update_nav_menu_item( $menu, 0, array(
 									'menu-item-title'     => $title,
@@ -177,10 +177,10 @@ class gThemePages extends gThemeModuleCore
 									'menu-item-object-id' => $page->ID,
 									'menu-item-type'      => 'post_type',
 									'menu-item-status'    => 'publish'
-							   ) );
+								) );
 
-							   if ( ! is_wp_error( $id ) )
-								   $count++;
+								if ( ! is_wp_error( $id ) )
+									$count++;
 							}
 						}
 
@@ -199,7 +199,7 @@ class gThemePages extends gThemeModuleCore
 					$count = 0;
 
 					if ( $map && count( $map ) ) {
-						foreach( $map as $slug => $title ) {
+						foreach ( $map as $slug => $title ) {
 							if ( ! $page = get_page_by_path( $slug, OBJECT, 'page' ) ) {
 								$id = wp_insert_post( array(
 									'post_title'   => $title,

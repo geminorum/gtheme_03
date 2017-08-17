@@ -322,7 +322,7 @@ class gThemeNavigation extends gThemeModuleCore
 
 		$args = array_merge( $defaults, $args );
 
-		if( is_tax() ) {
+		if ( is_tax() ) {
 			$total_items = isset( $query_obj->count ) ? (int) $query_obj->count : 0;
 		} else {
 			$total_items = $wp_query->found_posts;

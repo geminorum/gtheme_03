@@ -305,15 +305,19 @@ class gThemeImage extends gThemeModuleCore
 	public function terms_attachment_fields_to_edit( $form_fields, $post )
 	{
 		if ( empty( $_REQUEST['post_id'] ) ) {
-			if ( empty ( $post->post_parent ) )
+
+			if ( empty( $post->post_parent ) )
 				return $form_fields;
+
 			else
 				$parent_id = $post->post_parent;
+
 		} else {
 			$parent_id = absint( $_REQUEST['post_id'] );
 		}
 
 		$post_type = get_post_type( $parent_id );
+
 		if ( ! in_array( $post_type, gThemeOptions::info( 'support_images_terms', array() ) ) )
 			return $form_fields;
 
@@ -348,8 +352,10 @@ class gThemeImage extends gThemeModuleCore
 	public function terms_attachment_fields_to_save( $post, $attachment )
 	{
 		if ( ! $parent_id = absint( $_REQUEST['post_id'] ) ) {
-			if ( empty ( $post['post_parent'] ) )
+
+			if ( empty( $post['post_parent'] ) )
 				return $post;
+
 			else
 				$parent_id = $post['post_parent'];
 		}
@@ -474,7 +480,7 @@ class gThemeImage extends gThemeModuleCore
 			if ( $id = self::id( $size, $post->ID ) )
 				$thumb_ids[] = $id;
 
-		if ( ! empty ( $thumb_ids ) )
+		if ( ! empty( $thumb_ids ) )
 			_prime_post_caches( $thumb_ids, FALSE, TRUE );
 
 		$wp_query->thumbnails_cached = TRUE;

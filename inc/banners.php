@@ -110,7 +110,7 @@ class gThemeBanners extends gThemeModuleCore
 		if ( ! empty( $banner['url'] ) && 'http://' != $banner['url'] )
 			$html = '<a href="'.$banner['url'].'" title="'.$title.'" class="'.$args['a_class'].'" style="'.$args['a_style'].'">'.$html.'</a>';
 
-		if ( ! empty ( $html ) )
+		if ( ! empty( $html ) )
 			echo $html;
 	}
 

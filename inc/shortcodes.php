@@ -64,7 +64,7 @@ class gThemeShortCodes extends gThemeModuleCore
 
 		$type = isset( $attr['type'] ) ? $attr['type'] : gThemeOptions::info( 'gallery_default_type', 'default' );
 
-		switch( $type ) {
+		switch ( $type ) {
 			case 'columns' : return $this->shortcode_gallery_column( $attr );
 			case 'slider'  : return $this->shortcode_gallery_slider( $attr );
 			default        : return $empty; // TODO : write better default than WP's
