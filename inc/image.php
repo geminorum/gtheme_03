@@ -450,6 +450,9 @@ class gThemeImage extends gThemeModuleCore
 		if ( isset( $images['raw'] ) )
 			return $images['raw'];
 
+		if ( ! gThemeOptions::info( 'post_thumbnail_fallback', TRUE ) )
+			return FALSE;
+
 		// fallback
 		if ( $thumbnail = get_post_thumbnail_id( $post_id ) )
 			return $thumbnail;
