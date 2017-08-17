@@ -87,7 +87,7 @@ class gThemeSocial extends gThemeModuleCore
 				$output = gThemeOptions::info( 'default_image_src', FALSE );
 
 				if ( is_single() )
-					$output = gThemeImage::get_image( array(
+					$output = gThemeImage::getImage( array(
 						'tag'   => $size,
 						'url'   => TRUE,
 						'empty' => $output,

@@ -479,8 +479,14 @@ class gThemeImage extends gThemeModuleCore
 		$wp_query->thumbnails_cached = TRUE;
 	}
 
-	// ANCESTOR : gtheme_get_the_image(), gtheme_get_image_caption()
 	public static function get_image( $atts = array() )
+	{
+		self::__dep( 'gThemeImage::getImage()' );
+		return self::getImage( $atts );
+	}
+
+	// ANCESTOR: `gtheme_get_the_image()`, `gtheme_get_image_caption()`, `get_image()`
+	public static function getImage( $atts = array() )
 	{
 		$args = self::atts( array(
 			'tag'               => 'raw',
@@ -612,7 +618,7 @@ class gThemeImage extends gThemeModuleCore
 			}
 		}
 
-		$html = self::get_image( $args );
+		$html = self::getImage( $args );
 
 		if ( ! $args['echo'] )
 			return $args['before'].$html.$args['after'];
