@@ -390,6 +390,7 @@ class gThemeContent extends gThemeModuleCore
 			case 'comments_link_feed':
 
 				if ( comments_open() ) {
+
 					printf( $before, 'comments-link' );
 
 					// if ( ! post_password_required() && ( comments_open() || '0' != get_comments_number() ) )
@@ -428,6 +429,7 @@ class gThemeContent extends gThemeModuleCore
 								'comments-link-rss'
 							);
 					}
+
 					echo $after;
 				}
 

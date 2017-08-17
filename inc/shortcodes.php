@@ -187,9 +187,6 @@ class gThemeShortCodes extends gThemeModuleCore
 			'include' => '',
 			'exclude' => '',
 			'link'    => '', // 'file', 'none', empty
-
-			//'file_size'  => gThemeOptions::info( 'gallery_file_size', 'big' ),
-			//'nocaption'  => '<span class="genericon genericon-search"></span>',
 		), $atts, $tag );
 
 		$id = intval( $args['id'] );
@@ -249,7 +246,7 @@ class gThemeShortCodes extends gThemeModuleCore
 		return $html;
 	}
 
-	/** SYNTAX:
+	/*** SYNTAX:
 
 	[panels id="" class="" role=""]
 		[panel parent="" id="" title="" title_tag="" context="" expanded=""]...[/panel]
@@ -311,7 +308,7 @@ class gThemeShortCodes extends gThemeModuleCore
 		return $html;
 	}
 
-	/** SYNTAX:
+	/*** SYNTAX:
 
 	[tabs id="" class="" role=""]
 		[tab id="" title="" active=""]...[/tab]

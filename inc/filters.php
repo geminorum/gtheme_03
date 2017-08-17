@@ -92,6 +92,7 @@ class gThemeFilters extends gThemeModuleCore
 
 		gThemeUtilities::linkStyleSheet( self::getStyle(), $args, 'all' );
 
+		// FIXME: also check if Bootstrap
 		if ( gThemeWordPress::isDev() && ! gThemeUtilities::isPrint() )
 			gThemeUtilities::linkStyleSheet( GTHEME_URL.'/css/dev.css', GTHEME_VERSION, 'all' );
 

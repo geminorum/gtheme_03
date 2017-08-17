@@ -124,7 +124,7 @@ class gThemeImage extends gThemeModuleCore
 		if ( empty( $content ) )
 			return $content;
 
-		$document = new DOMDocument();
+		$document = new \DOMDocument();
 		libxml_use_internal_errors( TRUE );
 
 		$content = mb_convert_encoding( $content, 'HTML-ENTITIES', 'UTF-8' );

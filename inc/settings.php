@@ -141,7 +141,7 @@ class gThemeSettings extends gThemeModuleCore
 				'type'    => 'text',
 				'field'   => 'body_class_extra',
 				'default' => ( isset( $options['body_class_extra'] ) ? $options['body_class_extra'] : $defaults['body_class_extra'] ),
-				'desc'    => _x( 'Additional class to append to the body classess. Seperate with single space', 'Settings Module', GTHEME_TEXTDOMAIN ),
+				'desc'    => _x( 'Additional classes to append to the html body tag. Seperate with space.', 'Settings Module', GTHEME_TEXTDOMAIN ),
 				'dir'     => 'ltr',
 			), TRUE );
 

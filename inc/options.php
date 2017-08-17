@@ -152,7 +152,7 @@ class gThemeOptions extends gThemeModuleCore
 			// 'home_url_override' => '', // full escaped url to overrided home page / comment to disable
 			// 'empty_search_query' => '', // string to use on search input form / comment to use default
 
-			'post_actions_icons' => FALSE,
+			// 'post_actions_icons' => FALSE, // NEEDS: genericons css
 			'post_actions' => array( // the order is important!
 				'textsize_buttons', // or 'textsize_buttons_nosep',
 				'textjustify_buttons_nosep', // 'textjustify_buttons', // or ,

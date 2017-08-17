@@ -36,13 +36,12 @@ class gThemeBanners extends gThemeModuleCore
 	public static function group( $group, $atts = array() )
 	{
 		$banners = gThemeOptions::getOption( 'banners', array() );
-		$saved = array();
+		$saved   = array();
 
-		foreach ( $banners as $banner ) {
-			if ( isset( $banner['group'] ) && $group == $banner['group'] ) {
-				$saved[] = $banner;
-			}
-		}
+		foreach ( $banners as $banner )
+			if ( isset( $banner['group'] )
+				&& $group == $banner['group'] )
+					$saved[] = $banner;
 
 		if ( count( $saved ) ) {
 
@@ -55,9 +54,12 @@ class gThemeBanners extends gThemeModuleCore
 			echo $args['before'];
 
 			foreach ( $saved as $banner ) {
+
 				if ( $args['tag'] )
 					echo '<'.$args['tag'].'>';
+
 				self::html( $banner, $atts );
+
 				if ( $args['tag'] )
 					echo '</'.$args['tag'].'>';
 			}
@@ -96,15 +98,16 @@ class gThemeBanners extends gThemeModuleCore
 			'placeholder' => TRUE,
 		), $atts );
 
-		$html = '';
-		$title = isset( $banner['title'] ) && $banner['title'] ? $banner['title'] : '' ;
+		$html  = '';
+		$title = empty( $banner['title'] ) ? '' : $banner['title'];
 
-		if ( isset( $banner['image'] ) && $banner['image'] && 'http://' != $banner['image'] )
+		if ( ! empty( $banner['image'] ) && 'http://' != $banner['image'] )
 			$html .= '<img src="'.$banner['image'].'" alt="'.$title.'" class="'.$args['img_class'].'" style="'.$args['img_style'].'" />';
+
 		else if ( $args['placeholder'] )
 			$html .= '<div style="display:block;width:'.$args['w'].';height:'.$args['h'].';background-color:'.$args['c'].';" ></div>';
 
-		if ( isset( $banner['url'] ) && $banner['url'] && 'http://' != $banner['url'] )
+		if ( ! empty( $banner['url'] ) && 'http://' != $banner['url'] )
 			$html = '<a href="'.$banner['url'].'" title="'.$title.'" class="'.$args['a_class'].'" style="'.$args['a_style'].'">'.$html.'</a>';
 
 		if ( ! empty ( $html ) )

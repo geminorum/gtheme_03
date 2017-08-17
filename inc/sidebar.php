@@ -99,7 +99,7 @@ class gThemeSideBar extends gThemeModuleCore
 			'name'          => $sidebar_title,
 			'before_widget' => '<section id="%1$s" class="widget gtheme-widget widget-'.$sidebar_id.' %2$s">',
 			'after_widget'  => "</section>",
-			'before_title'  => '<h3 class="widget-title gtheme-widget-title widget-'.$sidebar_id.'-title">',
+			'before_title'  => '<h3 class="widget-title widget-'.$sidebar_id.'-title">',
 			'after_title'   => '</h3>',
 		);
 	}
