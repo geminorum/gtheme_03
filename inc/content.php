@@ -498,6 +498,7 @@ class gThemeContent extends gThemeModuleCore
 		}
 	}
 
+	// DEPRECATED: use SVG icons
 	public static function getGenericon( $icon = 'edit', $tag = 'div' )
 	{
 		return '<'.$tag.' class="genericon genericon-'.$icon.'"></'.$tag.'>';
