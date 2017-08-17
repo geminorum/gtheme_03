@@ -65,7 +65,7 @@ class gThemePages extends gThemeModuleCore
 		if ( count( $option_pages ) && isset( $option_pages[$name] ) )
 			return $option_pages[$name];
 
-		$info_pages = gThemeOptions::info( 'pages_list', array() );
+		$info_pages = gThemeOptions::info( 'pages_list', self::defaults() );
 		if ( count( $info_pages ) && isset( $info_pages[$name] ) )
 			if ( $page = get_page_by_path( $name, OBJECT, 'page' ) )
 				return $page->ID;
@@ -118,7 +118,7 @@ class gThemePages extends gThemeModuleCore
 
 	public function settings_sub_html( $uri, $sub = 'general' )
 	{
-		$defaults = gThemeOptions::info( 'pages_list', array() );
+		$defaults = gThemeOptions::info( 'pages_list', self::defaults() );
 		$options  = gThemeOptions::getOption( 'pages', array() );
 
 		echo '<form method="post" action="">';
