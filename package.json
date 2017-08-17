@@ -22,7 +22,7 @@
     "del": "^3.0.0",
     "gulp": "github:gulpjs/gulp#4.0",
     "gulp-bump": "^2.7.0",
-    "gulp-checktextdomain": "^1.1.1",
+    "gulp-checktextdomain": "^2.0.0",
     "gulp-cssnano": "^2.1.2",
     "gulp-exclude-gitignore": "^1.1.1",
     "gulp-github-release": "^1.2.1",

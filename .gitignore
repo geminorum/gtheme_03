@@ -16,10 +16,10 @@
 /vendor
 /node_modules
 
-/x-local-*
-
+package-lock.json
 composer.lock
 npm-debug.log
+.tinypng-sigs
 
 environment.yml
 .ftpconfig

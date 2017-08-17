@@ -42,6 +42,7 @@
     "team": "geminorum <contact@geminorum.ir>"
   },
   "textdomain": {
+    "force": true,
     "text_domain": "GTHEME_TEXTDOMAIN",
     "keywords": [
       "__:1,2d",
