@@ -39,7 +39,7 @@ class gThemeCounts extends gThemeModuleCore
 		if ( count( $option_counts ) && isset( $option_counts[$name] ) )
 			return $option_counts[$name];
 
-		$info_counts = gThemeOptions::info( 'counts', array() );
+		$info_counts = gThemeOptions::info( 'counts', self::defaults() );
 		if ( count( $info_counts ) && isset( $info_counts[$name] )  )
 			return $info_counts[$name]['def'];
 
@@ -91,7 +91,7 @@ class gThemeCounts extends gThemeModuleCore
 
 	public function settings_sub_html( $uri, $sub = 'general' )
 	{
-		$defaults = gThemeOptions::info( 'counts', array() );
+		$defaults = gThemeOptions::info( 'counts', self::defaults() );
 		$options  = gThemeOptions::getOption( 'counts', array() );
 
 		echo '<form method="post" action="">';
