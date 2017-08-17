@@ -5,7 +5,7 @@ class gThemeSocial extends gThemeModuleCore
 
 	public function setup_actions( $args = array() )
 	{
-		add_action( 'wp_head', array( $this, 'wp_head' ) );
+		add_action( 'wp_head', array( $this, 'wp_head' ), 9999 );
 	}
 
 	// @REF: [The Open Graph protocol](http://ogp.me/)
