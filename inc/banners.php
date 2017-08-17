@@ -186,6 +186,144 @@ class gThemeBanners extends gThemeModuleCore
 				wp_redirect( add_query_arg( array( 'message' => ( $result ? 'updated' : 'error' ) ), wp_get_referer() ) );
 				exit();
 			}
+
+			add_action( 'gtheme_settings_sub_banners', array( $this, 'settings_sub_html' ), 10, 2 );
 		}
+	}
+
+	public function settings_sub_html( $uri, $sub = 'general' )
+	{
+		$legend  = gThemeOptions::info( 'banners_legend' );
+		$groups  = gThemeOptions::info( 'banner_groups', gThemeBanners::defaults() );
+		$banners = gThemeOptions::getOption( 'banners', array() );
+
+		echo '<form method="post" action="">';
+			echo '<h3>'._x( 'Custom Banners', 'Modules: Banners', GTHEME_TEXTDOMAIN ).'</h3>';
+
+			if ( $legend ) {
+				echo '<table class="form-table"><tbody><tr valign="top">';
+				echo '<th scope="row"><label>'._x( 'Legend', 'Modules: Banners', GTHEME_TEXTDOMAIN );
+				echo '</label></th><td>'.$legend;
+					gThemeHTML::desc( _x( 'Your theme extra information', 'Modules: Banners', GTHEME_TEXTDOMAIN ) );
+				echo '</td></tr></tbody></table>';
+			}
+
+			echo '<table id="repeatable-fieldset-one" width="100%"><thead><tr>';
+				echo '<th width="10%">'._x( 'Group', 'Modules: Banners', GTHEME_TEXTDOMAIN ).'</th>';
+				echo '<th width="5%">'._x( 'Ord.', 'Modules: Banners', GTHEME_TEXTDOMAIN ).'</th>';
+				echo '<th>'._x( 'Title', 'Modules: Banners', GTHEME_TEXTDOMAIN ).'</th>';
+				echo '<th width="20%">'._x( 'URL', 'Modules: Banners', GTHEME_TEXTDOMAIN ).'</th>';
+				echo '<th width="20%">'._x( 'Image', 'Modules: Banners', GTHEME_TEXTDOMAIN ).'</th>';
+				echo '<th style="width:30px;"></th>';
+			echo '</tr></thead><tbody>';
+
+			foreach ( $banners as $banner ) {
+
+				echo '<tr>';
+
+				echo '<td>'.gThemeHTML::dropdown( $groups, array(
+						'name'     => 'gtheme-banners-group[]',
+						'class'    => 'widefat',
+						'selected' => $banner['group'],
+					) ).'</td>';
+
+				echo '<td>'.gThemeHTML::tag( 'input', array(
+					'name'  => 'gtheme-banners-order[]',
+					'type'  => 'number',
+					'class' => 'widefat',
+					'value' => empty( $banner['order'] ) ? '' : $banner['order'],
+				) ).'</td>';
+
+				echo '<td>'.gThemeHTML::tag( 'input', array(
+					'name'  => 'gtheme-banners-title[]',
+					'type'  => 'text',
+					'class' => 'widefat',
+					'value' => empty( $banner['title'] ) ? '' : $banner['title'],
+				) ).'</td>';
+
+				echo '<td>'.gThemeHTML::tag( 'input', array(
+					'name'  => 'gtheme-banners-url[]',
+					'type'  => 'url',
+					'class' => 'widefat',
+					'value' => empty( $banner['url'] ) ? '' : $banner['url'],
+					'dir'   => 'ltr',
+				) ).'</td>';
+
+				echo '<td>'.gThemeHTML::tag( 'input', array(
+					'name'  => 'gtheme-banners-image[]',
+					'type'  => 'url',
+					'class' => 'widefat',
+					'value' => empty( $banner['image'] ) ? '' : $banner['image'],
+					'dir'   => 'ltr',
+				) ).'</td>';
+
+				echo '<td><a class="button remove-row" href="#" style="padding:2px 2px 0 2px"><span class="dashicons dashicons-trash"></span></a></td></tr>';
+			}
+
+			echo '<tr class="empty-row screen-reader-text">';
+
+			echo '<td>'.gThemeHTML::dropdown( $groups, array(
+					'name'     => 'gtheme-banners-group[]',
+					'class'    => 'widefat',
+					'selected' => 'none',
+				) ).'</td>';
+
+			echo '<td>'.gThemeHTML::tag( 'input', array(
+				'name'  => 'gtheme-banners-order[]',
+				'type'  => 'number',
+				'class' => 'widefat',
+				'value' => '',
+			) ).'</td>';
+
+			echo '<td>'.gThemeHTML::tag( 'input', array(
+				'name'  => 'gtheme-banners-title[]',
+				'type'  => 'text',
+				'class' => 'widefat',
+				'value' => '',
+			) ).'</td>';
+
+			echo '<td>'.gThemeHTML::tag( 'input', array(
+				'name'  => 'gtheme-banners-url[]',
+				'type'  => 'url',
+				'class' => 'widefat',
+				'value' => '',
+				'dir'   => 'ltr',
+			) ).'</td>';
+
+			echo '<td>'.gThemeHTML::tag( 'input', array(
+				'name'  => 'gtheme-banners-image[]',
+				'type'  => 'url',
+				'class' => 'widefat',
+				'value' => '',
+				'dir'   => 'ltr',
+			) ).'</td>';
+
+			echo '<td><a class="button remove-row" href="#" style="padding:2px 2px 0 2px"><span class="dashicons dashicons-trash"></span></a></td></tr>';
+
+		echo '</tbody></table>';
+
+		echo '<p class="submit"><a id="add-row" class="button" href="#">'._x( 'Add Another', 'Modules: Banners', GTHEME_TEXTDOMAIN ).'</a>&nbsp;&nbsp;';
+		echo '<input type="submit" class="button-primary" name="submitform" value="&nbsp;&nbsp;'._x( 'Save', 'Modules: Banners', GTHEME_TEXTDOMAIN ).'&nbsp;&nbsp;" /></p>';
+
+		wp_nonce_field( 'gtheme-banners', '_gtheme_banners' );
+
+	echo '</form>';
+
+	?><script type="text/javascript">
+jQuery(document).ready(function($){
+	$('#add-row').on('click', function(){
+		var row = $('.empty-row.screen-reader-text').clone(true);
+		row.removeClass( 'empty-row screen-reader-text' );
+		row.insertBefore( '#repeatable-fieldset-one tbody>tr:last' );
+		return false;
+	});
+
+	$('.remove-row').on('click', function(){
+		$(this).parents('tr').remove();
+		return false;
+	});
+});
+</script><?php
+
 	}
 }
