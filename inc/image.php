@@ -8,17 +8,27 @@ class gThemeImage extends gThemeModuleCore
 	public function setup_actions( $args = array() )
 	{
 		extract( self::atts( array(
-			'responsive_class'            => FALSE,
-			'gnetwork_media_object_sizes' => TRUE,
+			'core_post_thumbnails'   => FALSE, // enables WordPress core thumbnail for posts
+			'image_size_tags'        => TRUE, // registers theme's image sizes
+			'image_attachment_tags'  => TRUE, // displays ui for theme's image sizes
+			'image_attachment_terms' => FALSE, // image for terms on admin media editor
+			'responsive_class'       => FALSE, // extracts and appends css class into content images
+			'media_object_sizes'     => TRUE, // tells gnetwork to not generate default image sizes
 		), $args ) );
 
-		add_action( 'init', array( $this, 'init' ) );
-		add_filter( 'intermediate_image_sizes_advanced', array( $this, 'intermediate_image_sizes_advanced' ), 8, 2 );
+		if ( $core_post_thumbnails )
+			add_theme_support( 'post-thumbnails', gThemeOptions::info( 'core_post_thumbnails', array( 'post' ) ) );
+
+		if ( $image_size_tags ) {
+			add_action( 'init', array( $this, 'init' ) );
+			add_filter( 'intermediate_image_sizes_advanced', array( $this, 'intermediate_image_sizes_advanced' ), 8, 2 );
+			add_filter( 'image_size_names_choose', array( $this, 'image_size_names_choose' ) );
+		}
 
 		add_filter( 'get_image_tag_class', array( $this, 'get_image_tag_class' ), 10, 4 );
 		add_filter( 'wp_get_attachment_image_attributes', array( $this, 'wp_get_attachment_image_attributes' ), 10, 2 );
 
-		if ( $gnetwork_media_object_sizes )
+		if ( $media_object_sizes )
 			add_filter( 'gnetwork_media_object_sizes', '__return_true' );
 
 		if ( $responsive_class )
@@ -33,16 +43,20 @@ class gThemeImage extends gThemeModuleCore
 		add_filter( 'jpeg_quality', array( $this, 'jpeg_quality' ), 10, 2 );
 		add_filter( 'wp_editor_set_quality', array( $this, 'wp_editor_set_quality' ), 10, 2 );
 
-		add_filter( 'image_size_names_choose', array( $this, 'image_size_names_choose' ) );
-		add_filter( 'attachment_fields_to_edit', array( $this, 'tags_attachment_fields_to_edit' ), 10, 2 );
-		add_filter( 'attachment_fields_to_save', array( $this, 'tags_attachment_fields_to_save' ), 10, 2 );
+		if ( $image_attachment_tags ) {
+			add_filter( 'attachment_fields_to_edit', array( $this, 'tags_attachment_fields_to_edit' ), 10, 2 );
+			add_filter( 'attachment_fields_to_save', array( $this, 'tags_attachment_fields_to_save' ), 10, 2 );
+		}
 
-		// image for terms on admin media editor
-		add_filter( 'attachment_fields_to_edit', array( $this, 'terms_attachment_fields_to_edit' ), 9, 2 );
-		add_filter( 'attachment_fields_to_save', array( $this, 'terms_attachment_fields_to_save' ), 9, 2 );
+		if ( $image_attachment_terms ) {
+			add_filter( 'attachment_fields_to_edit', array( $this, 'terms_attachment_fields_to_edit' ), 9, 2 );
+			add_filter( 'attachment_fields_to_save', array( $this, 'terms_attachment_fields_to_save' ), 9, 2 );
+		}
 
 		if ( is_admin() ) {
-			add_filter( 'geditorial_tweaks_column_thumb', array( $this, 'tweaks_column_thumb' ), 12, 3 );
+
+			if ( $image_attachment_tags )
+				add_filter( 'geditorial_tweaks_column_thumb', array( $this, 'tweaks_column_thumb' ), 12, 3 );
 		}
 	}
 
@@ -207,34 +221,45 @@ class gThemeImage extends gThemeModuleCore
 	// filters the sizes on admin insert media page
 	public function image_size_names_choose( $size_names )
 	{
-		if ( isset( $_REQUEST['post_id'] ) && $post_id = absint( $_REQUEST['post_id'] ) ) {
-			$post = get_post( $post_id );
-			$post_type = $post->post_type;
+		$sizes = gThemeOptions::info( 'images', array() );
 
-		} else if ( isset( $_REQUEST['post'] ) && $post_id = absint( $_REQUEST['post'] ) ) {
-			$post = get_post( $post_id );
-			$post_type = $post->post_type;
+		if ( empty( $sizes ) )
+			return $size_names;
+
+		if ( isset( $_REQUEST['post_id'] )
+			&& $post_id = absint( $_REQUEST['post_id'] ) ) {
+
+			$post_type = get_post( $post_id )->post_type;
+
+		} else if ( isset( $_REQUEST['post'] )
+			&& $post_id = absint( $_REQUEST['post'] ) ) {
+
+			$post_type = get_post( $post_id )->post_type;
 
 		} else if ( isset( $_REQUEST['post_type'] ) ) {
+
 			$post_type = $_REQUEST['post_type'];
 
 		} else if ( $current = self::getCurrentPostType() ) {
+
 			$post_type = $current;
 
 		} else {
-			$post_type = 'post';
+
+			// $post_type = 'post';
+			return $size_names; // bailing
 		}
 
-		$new_size_names = array();
+		$new_sizes = array();
 
-		foreach ( gThemeOptions::info( 'images', array() ) as $name => $size )
+		foreach ( $sizes as $name => $size )
 			if ( $size['i'] && ( TRUE === $size['p'] || in_array( $post_type, $size['p'] ) ) )
-				$new_size_names[$name] = $size['n'];
+				$new_sizes[$name] = $size['n'];
 
 		// if ( gThemeWordPress::isDev() )
-		// 	error_log( print_r( compact( 'post_type', 'new_size_names', 'size_names' ), TRUE ) );
+		// 	error_log( print_r( compact( 'post_type', 'new_sizes', 'size_names' ), TRUE ) );
 
-		return $new_size_names + $size_names;
+		return array_merge( $size_names, $new_sizes );
 	}
 
 	public function tags_attachment_fields_to_edit( $fields, $post )
@@ -242,13 +267,18 @@ class gThemeImage extends gThemeModuleCore
 		if ( ! $post_id = absint( @$_REQUEST['post_id'] ) )
 			return $fields;
 
+		$sizes = gThemeOptions::info( 'images', array() );
+
+		if ( empty( $sizes ) )
+			return $fields;
+
 		$post_type = get_post_type( $post_id );
-		$images = self::getMetaImages( $post_id, TRUE );
+		$images    = self::getMetaImages( $post_id, TRUE );
 
 		$html = $checked = '';
-		$gtheme_images = (array) gThemeOptions::info( 'images', array() );
 
-		foreach ( $gtheme_images as $name => $size ) {
+		foreach ( $sizes as $name => $size ) {
+
 			if ( $size['s'] && ( TRUE === $size['p'] || in_array( $post_type, $size['p'] ) ) ) {
 
 				$id      = 'attachments-'.$post->ID.'-gtheme-size-'.$name;
@@ -273,6 +303,7 @@ class gThemeImage extends gThemeModuleCore
 				'html'  => $html,
 			);
 		}
+
 		return $fields;
 	}
 
@@ -285,15 +316,19 @@ class gThemeImage extends gThemeModuleCore
 		if ( ! $post_id = absint( $_REQUEST['post_id'] ) )
 			return $post;
 
+		$sizes = gThemeOptions::info( 'images', array() );
+
+		if ( empty( $sizes ) )
+			return $post;
+
 		$images = $striped = array();
-		$sizes = (array) gThemeOptions::info( 'images', array() );
-		$saved_images = self::getMetaImages( $post_id );
+		$saved  = self::getMetaImages( $post_id );
 
 		foreach ( $sizes as $name => $size )
 			if ( isset( $_REQUEST['gtheme_size_'.$name] ) && $name == $_REQUEST['gtheme_size_'.$name] )
 				$images[$name] = $post['ID'];
 
-		foreach ( $saved_images as $saved_size => $saved_id )
+		foreach ( $saved as $saved_size => $saved_id )
 			if ( $post['ID'] != $saved_id )
 				$striped[$saved_size] = $saved_id;
 
