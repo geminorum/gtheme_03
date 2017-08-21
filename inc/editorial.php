@@ -34,6 +34,32 @@ class gThemeEditorial extends gThemeModuleCore
 		return TRUE;
 	}
 
+	public static function postLikeButton( $atts = array() )
+	{
+		if ( ! function_exists( 'gEditorial' ) )
+			return FALSE;
+
+		if ( ! gEditorial()->enabled( 'like' ) )
+			return FALSE;
+
+		$args = self::atts( array(
+			'before' => '',
+			'after'  => '',
+			'echo'   => TRUE,
+		), $atts );
+
+		if ( ! $html = gEditorial()->like->get_button() )
+			return FALSE;
+
+		$html = $args['before'].$html.$args['after'];
+
+		if ( ! $args['echo'] )
+			return $html;
+
+		echo $html;
+		return TRUE;
+	}
+
 	public static function siteModified( $atts = array() )
 	{
 		if ( ! function_exists( 'gEditorial' ) )
