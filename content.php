@@ -1,23 +1,29 @@
 <?php defined( 'ABSPATH' ) or die( 'Restricted access' );
 
-gThemeContent::wrapOpen( 'index' );
+	if ( is_singular() ) {
 
-	gThemeImage::image( array( 'tag' => 'single' ) );
+		gThemeContent::wrapOpen( 'singular' );
+		gThemeImage::image( array( 'tag' => 'single' ) );
 
-	if ( gThemeTerms::has( 'poster' ) ) {
+		if ( gThemeTerms::has( 'poster' ) ) {
 
-		// NO HEADER
-		// NO CONTENT
+			// NO HEADER
+			// NO CONTENT
 
-	} else if ( is_singular() ) {
+		} else {
 
-		gThemeContent::header( array( 'context' => 'index' ) );
-		gThemeContent::content();
+			gThemeContent::header( array( 'context' => 'singular' ) );
+			gThemeContent::content();
+		}
 
 	} else {
 
+		gThemeContent::wrapOpen( 'index' );
+		gThemeImage::image( array( 'tag' => 'single' ) );
+
 		gThemeContent::header( array( 'context' => 'index' ) );
 		gThemeContent::excerpt();
+
 		gThemeContent::footer( array(
 			'context' => 'index',
 			'actions' => array(
