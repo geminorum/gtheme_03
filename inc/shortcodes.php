@@ -18,7 +18,7 @@ class gThemeShortCodes extends gThemeModuleCore
 			add_filter( 'img_caption_shortcode', array( $this, 'img_caption_shortcode' ), 10, 3 );
 
 		if ( $gallery_override )
-			add_filter( 'post_gallery', array( $this, 'post_gallery' ), 10, 2 );
+			add_filter( 'post_gallery', array( $this, 'post_gallery' ), 10, 3 );
 	}
 
 	public function init()
@@ -57,7 +57,7 @@ class gThemeShortCodes extends gThemeModuleCore
 		), do_shortcode( $content ).$caption );
 	}
 
-	public function post_gallery( $empty, $attr )
+	public function post_gallery( $empty, $attr, $instance )
 	{
 		if ( is_feed() )
 			return $empty;
