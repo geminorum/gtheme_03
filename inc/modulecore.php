@@ -3,8 +3,11 @@
 class gThemeModuleCore extends gThemeBaseCore
 {
 
-	protected $option_base = 'gtheme';
-	protected $option_key  = '';
+	protected $base = 'gtheme';
+	protected $key  = NULL;
+
+	// protected $option_base = 'gtheme'; // DEPRICATED
+	// protected $option_key  = ''; // DEPRICATED
 	protected $ajax        = FALSE;
 	protected $args        = array();
 	protected $counter     = 0;
@@ -31,17 +34,105 @@ class gThemeModuleCore extends gThemeBaseCore
 		}
 	}
 
-	// TODO: DRAFT: not tested
-	// http://stackoverflow.com/a/9934684
-	// SEE: http://xdebug.org/docs/install
-	protected function __callee()
+	protected function action( $hook, $args = 1, $priority = 10, $suffix = FALSE )
 	{
-		return sprintf("callee() called @ %s: %s from %s::%s",
-			xdebug_call_file(),
-			xdebug_call_line(),
-			xdebug_call_class(),
-			xdebug_call_function()
-		);
+		if ( $method = self::sanitize_hook( ( $suffix ? $hook.'_'.$suffix : $hook ) ) )
+			add_action( $hook, [ $this, $method ], $priority, $args );
+	}
+
+	protected function filter( $hook, $args = 1, $priority = 10, $suffix = FALSE )
+	{
+		if ( $method = self::sanitize_hook( ( $suffix ? $hook.'_'.$suffix : $hook ) ) )
+			add_filter( $hook, [ $this, $method ], $priority, $args );
+	}
+
+	protected static function sanitize_hook( $hook )
+	{
+		return trim( str_ireplace( [ '-', '.' ], '_', $hook ) );
+	}
+
+	protected function hook()
+	{
+		$suffix = '';
+
+		foreach ( func_get_args() as $arg )
+			$suffix .= '_'.$arg;
+
+		return $this->base.'_'.$this->key.$suffix;
+	}
+
+	protected function classs()
+	{
+		$suffix = '';
+
+		foreach ( func_get_args() as $arg )
+			$suffix .= '-'.$arg;
+
+		return $this->base.'-'.$this->key.$suffix;
+	}
+
+	protected function hash()
+	{
+		$suffix = '';
+
+		foreach ( func_get_args() as $arg )
+			$suffix .= maybe_serialize( $arg );
+
+		return md5( $this->base.$this->key.$suffix );
+	}
+
+	protected function hashwithsalt()
+	{
+		$suffix = '';
+
+		foreach ( func_get_args() as $arg )
+			$suffix .= maybe_serialize( $arg );
+
+		return wp_hash( $this->base.$this->key.$suffix );
+	}
+
+	protected function actions()
+	{
+		$args = func_get_args();
+
+		if ( count( $args ) < 1 )
+			return FALSE;
+
+		$args[0] = $this->hook( $args[0] );
+
+		call_user_func_array( 'do_action', $args );
+
+		return has_action( $args[0] );
+	}
+
+	protected function filters()
+	{
+		$args = func_get_args();
+
+		if ( count( $args ) < 2 )
+			return FALSE;
+
+		$args[0] = $this->hook( $args[0] );
+
+		return call_user_func_array( 'apply_filters', $args );
+	}
+
+	// USAGE: add_filter( 'body_class', self::__array_append( 'foo' ) );
+	protected static function __array_append( $item )
+	{
+		return function( $array ) use ( $item ) {
+			$array[] = $item;
+			return $array;
+		};
+	}
+
+	// USAGE: add_filter( 'shortcode_atts_gallery', self::__array_set( 'columns', 4 ) );
+	protected static function __array_set( $key, $value )
+	{
+		return function( $array ) use ( $key, $value ) {
+			$array[$key] = $value;
+			return $array;
+		};
 	}
 
 	// HELPER: wrapper for current_user_can()
@@ -171,7 +262,7 @@ class gThemeModuleCore extends gThemeBaseCore
 			'after'        => '', // html to print after field
 			'field_class'  => '', // formally just class!
 			'class'        => '', // now used on wrapper
-			'option_group' => $this->option_key,
+			'option_group' => $this->key,
 			'network'      => NULL, // FIXME: WTF?
 			'disabled'     => FALSE,
 			'name_attr'    => FALSE, // override
@@ -192,8 +283,8 @@ class gThemeModuleCore extends gThemeBaseCore
 			return;
 
 		$html    = '';
-		$name    = $args['name_attr'] ? $args['name_attr'] : $this->option_base.'_'.$args['option_group'].'['.esc_attr( $args['field'] ).']';
-		$id      = $args['id_attr'] ? $args['id_attr'] : $this->option_base.'-'.$args['option_group'].'-'.esc_attr( $args['field'] );
+		$name    = $args['name_attr'] ? $args['name_attr'] : $this->base.'_'.$args['option_group'].'['.esc_attr( $args['field'] ).']';
+		$id      = $args['id_attr'] ? $args['id_attr'] : $this->base.'-'.$args['option_group'].'-'.esc_attr( $args['field'] );
 		$value   = isset( $this->options[$args['field']] ) ? $this->options[$args['field']] : $args['default'];
 		$exclude = $args['exclude'] && ! is_array( $args['exclude'] ) ? array_filter( explode( ',', $args['exclude'] ) ) : array();
 

@@ -3,7 +3,7 @@
 class gThemeSettings extends gThemeModuleCore
 {
 
-	protected $option_key = 'settings';
+	protected $key = 'settings';
 
 	public function setup_actions( $args = array() )
 	{

@@ -3,7 +3,7 @@
 class gThemePages extends gThemeModuleCore
 {
 
-	protected $option_key = 'pages';
+	protected $key = 'pages';
 
 	public function setup_actions( $args = array() )
 	{
