@@ -3,6 +3,31 @@
 class gThemeWordPress extends gThemeBaseCore
 {
 
+	public static function mustRegisterUI( $check_admin = TRUE )
+	{
+		if ( self::isAJAX()
+			|| self::isCLI()
+			|| self::isCRON()
+			|| self::isXMLRPC()
+			|| self::isREST()
+			|| self::isIFrame() )
+				return FALSE;
+
+		if ( $check_admin && ! is_admin() )
+			return FALSE;
+
+		return TRUE;
+	}
+
+	// @REF: `vars.php`
+	public static function pageNow()
+	{
+		if ( preg_match( '#([^/]+\.php)([?/].*?)?$#i', $_SERVER['PHP_SELF'], $matches ) )
+			return strtolower( $matches[1] );
+
+		return 'index.php';
+	}
+
 	public static function isDebug()
 	{
 		if ( WP_DEBUG && WP_DEBUG_DISPLAY && ! self::isDev() )

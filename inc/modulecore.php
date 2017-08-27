@@ -14,7 +14,7 @@ class gThemeModuleCore extends gThemeBaseCore
 		if ( ! $this->ajax && gThemeWordPress::isAJAX() )
 			throw new Exception( 'Not on AJAX Calls!' );
 
-		if ( wp_installing() )
+		if ( wp_installing() && 'wp-activate.php' !== gThemeWordPress::pageNow() )
 			throw new Exception( 'Not while WP is Installing!' );
 
 		$this->args = $args;
