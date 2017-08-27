@@ -1,5 +1,6 @@
 (function($) {
-	$('body').append('<div id="zoom"><a class="close"></a><a href="#previous" class="previous"></a><a href="#next" class="next"></a><div class="content loading"></div></div>');
+	var body = $('body');
+	body.append('<div id="zoom"><a class="close"></a><a href="#previous" class="previous"></a><a href="#next" class="next"></a><div class="content loading"></div></div>');
 
 	var zoom = $('#zoom').hide(),
 	    zoomContent = $('#zoom .content'),
@@ -8,7 +9,7 @@
 	    openedImage = null,
 	    windowWidth = $(window).width(),
 	    windowHeight = $(window).height();
-		
+
 	function open(event) {
 		if (event) {
 			event.preventDefault();
@@ -18,7 +19,6 @@
 		if (!src) {
 			return;
 		}
-		var image = $(new Image()).hide();
 		$('#zoom .previous, #zoom .next').show();
 		if (link.hasClass('zoom')) {
 			$('#zoom .previous, #zoom .next').hide();
@@ -26,13 +26,15 @@
 		if (!zoomedIn) {
 			zoomedIn = true;
 			zoom.show();
-			$('body').addClass('zoomed');
+			body.addClass('zoomed');
 		}
-		zoomContent.html(image).delay(500).addClass('loading');
+		var image = $(new Image()).hide().css({width: 'auto'});
+		body.append(image);
+		zoomContent.html('').delay(500).addClass('loading');
 		zoomContent.prepend(overlay);
 		image.load(render).attr('src', src);
 		openedImage = link;
-		
+
 		function render() {
 			var image = $(this),
 			    borderWidth = parseInt(zoomContent.css('borderLeftWidth')),
@@ -60,17 +62,18 @@
 				height: image.height(),
 				marginTop: -(image.height() / 2) - borderWidth,
 				marginLeft: -(image.width() / 2) - borderWidth
-			}, 200, function() {
+			}, 100, function() {
 				show(image);
 			});
 
 			function show(image) {
+				zoomContent.html(image);
 				image.show();
 				zoomContent.removeClass('loading');
 			}
 		}
 	}
-	
+
 	function openPrevious() {
 		var prev = openedImage.parent('div').prev();
 		if (prev.length == 0) {
@@ -78,7 +81,7 @@
 		}
 		prev.find('a').trigger('click');
 	}
-	
+
 	function openNext() {
 		var next = openedImage.parent('div').next();
 		if (next.length == 0) {
@@ -86,7 +89,7 @@
 		}
 		next.children('a').trigger('click');
 	}
-		
+
 	function close(event) {
 		if (event) {
 			event.preventDefault();
@@ -94,15 +97,15 @@
 		zoomedIn = false;
 		openedImage = null;
 		zoom.hide();
-		$('body').removeClass('zoomed');
+		body.removeClass('zoomed');
 		zoomContent.empty();
 	}
-	
+
 	function changeImageDimensions() {
 		windowWidth = $(window).width();
 		windowHeight = $(window).height();
 	}
-	
+
 	(function bindNavigation() {
 		zoom.on('click', function(event) {
 			event.preventDefault();
@@ -110,7 +113,7 @@
 				close();
 			}
 		});
-		
+
 		$('#zoom .close').on('click', close);
 		$('#zoom .previous').on('click', openPrevious);
 		$('#zoom .next').on('click', openNext);

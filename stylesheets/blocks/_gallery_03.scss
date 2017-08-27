@@ -1,0 +1,214 @@
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+/// gTheme Blocks: Gallery 03 - 20170821
+////////////////////////////////////////////////////////////////////////////////
+
+// default WP markup
+// @REF: https://clicknathan.com/web-design/css-for-all-available-wordpress-gallery-columns/
+// FIXME: it's RTL ONLY
+.entry-content .gallery {
+
+  @include mainwrap();
+
+  // width: 100%;
+  margin: 0 auto $theme-grid-gutter / 2;
+
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+  figure {max-width: 100%; height: auto; margin:1em 0;}
+  // p img.alignright, p img.alignleft {margin-top:0;}
+
+  figcaption {
+    text-align: center;
+  }
+
+  figure img {max-width:100%; height:auto; margin:0 auto; display:block;}
+  figure { float: right; margin:0 0 1em 2%;}
+  &.gallery-columns-1 figure {width:100%; margin:0 0 1em 0; float:none;}
+
+  &.gallery-columns-3 figure {width:32%;}
+  &.gallery-columns-3 figure:nth-of-type(3n+3) {margin-left:0;}
+  &.gallery-columns-3 figure:nth-of-type(3n+4) {clear:right;}
+
+  &.gallery-columns-2 figure {width:49%;}
+  &.gallery-columns-2 figure:nth-of-type(even) {margin-left:0;}
+  &.gallery-columns-2 figure:nth-of-type(odd) {clear:right;}
+
+  &.gallery-columns-4 figure {width:23.25%;}
+  &.gallery-columns-4 figure:nth-of-type(4n+4) {margin-left:0;}
+  &.gallery-columns-4 figure:nth-of-type(4n+5) {clear:right;}
+
+  &.gallery-columns-5 figure {width:18%;}
+  &.gallery-columns-5 figure:nth-of-type(5n+5) {margin-left:0;}
+  &.gallery-columns-5 figure:nth-of-type(5n+6) {clear:right;}
+
+  &.gallery-columns-6 figure {width:14.2%;}
+  &.gallery-columns-6 figure:nth-of-type(6n+6) {margin-left:0;}
+  &.gallery-columns-6 figure:nth-of-type(6n+7) {clear:right;}
+
+  &.gallery-columns-7 figure {width:12%;}
+  &.gallery-columns-7 figure:nth-of-type(7n+7) {margin-left:0;}
+  &.gallery-columns-7 figure:nth-of-type(7n+8) {clear:right;}
+
+  &.gallery-columns-8 figure {width:10.2%;}
+  &.gallery-columns-8 figure:nth-of-type(8n+8) {margin-left:0;}
+  &.gallery-columns-8 figure:nth-of-type(8n+9) {clear:right;}
+
+  &.gallery-columns-9 figure {width:8.85%;}
+  &.gallery-columns-9 figure:nth-of-type(9n+9) {margin-left:0;}
+  &.gallery-columns-9 figure:nth-of-type(9n+10) {clear:right;}
+}
+
+.theme-gallery-wrap {
+
+  &.-flex {}
+
+  &.-columns {
+
+    .-icon {
+      display: inline-block;
+      width: 1em;
+      height: 1em;
+      stroke-width: 0;
+      stroke: currentColor;
+      fill: currentColor;
+    }
+
+    .-gallery-spinner {
+      @include theme-animation-spinner($gray); // FIXME: use default theme color vars
+    }
+
+    .-gallery {
+
+      // until the gallery images are loaded
+      opacity: 0;
+
+      @include vendor-prefix(column-gap, 0);
+
+      .-gallery-img {
+
+        width: 100%;
+        position: relative;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+
+        img {
+          width: 100%;
+          display: block;
+          padding: 0;
+          margin: 0;
+          background: transparent;
+          border-radius: 0;
+          border: none;
+          border-width: 0;
+        }
+
+        figcaption {
+          background: rgba($gray-darker, 0.5);
+          position: absolute;
+          width: 100%;
+          height: 100%;
+
+          .-description {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+
+            p {
+              color: $gray-lighter;
+              text-align: left;
+              position: absolute;
+              width: 100%;
+              bottom: 0;
+              padding: 0 0 10px 15px;
+              margin: 0;
+
+              @include body-rtl() {
+                text-align: right;
+                padding: 0 15px 10px 0;
+              }
+            }
+          }
+        }
+
+        &.left {
+          figcaption {
+            top: 0;
+            left: -100%;
+          }
+        }
+        &.right {
+          figcaption {
+            top: 0;
+            right: -100%;
+          }
+        }
+        &.top {
+          figcaption {
+            top: -100%;
+          }
+        }
+        &.bottom {
+          figcaption {
+            bottom: -100%;
+          }
+        }
+        &.animated {
+          figcaption {
+            -webkit-transition: 0.3s ease-out;
+            transition: 0.3s ease-out;
+          }
+        }
+        &.left.animated {
+          figcaption {
+            left: 0;
+          }
+        }
+        &.right.animated {
+          figcaption {
+            right: 0;
+          }
+        }
+        &.top.animated {
+          figcaption {
+            top: 0;
+          }
+        }
+        &.bottom.animated {
+          figcaption {
+            bottom: 0;
+          }
+        }
+      }
+
+      &.-columns-1 { @include vendor-prefix(column-count, 1); }
+      &.-columns-2 { @include vendor-prefix(column-count, 2); }
+      &.-columns-3 { @include vendor-prefix(column-count, 3); }
+      &.-columns-4 { @include vendor-prefix(column-count, 4); }
+      &.-columns-5 { @include vendor-prefix(column-count, 5); }
+      &.-columns-6 { @include vendor-prefix(column-count, 6); }
+
+      @media (max-width: $screen-sm) {
+        &.-columns-1,
+        &.-columns-2,
+        &.-columns-3,
+        &.-columns-4,
+        &.-columns-5,
+        &.-columns-6 {
+          @include vendor-prefix(column-count, 1);
+        }
+      }
+    }
+  }
+
+  &.-default {}
+}
+
+@mixin theme-gallery-flex() {}

@@ -2,15 +2,15 @@ jQuery(document).ready(function($) {
 
   var lastDirection;
 
-  $('.gallery').imagesLoaded(function() {
-    $('.gallery-spinner').fadeOut(500, function() {
-      $('.gallery').animate({
+  $('.-gallery').imagesLoaded(function() {
+    $('.-gallery-spinner').fadeOut(500, function() {
+      $('.-gallery').animate({
         'opacity': '1'
       }, 500);
     });
   });
 
-  $('.gallery-img').bind('mouseenter', function(e) {
+  $('.-gallery-img').bind('mouseenter', function(e) {
 
     var img = this;
     lastDirection = getDir($(this), e);
@@ -22,7 +22,7 @@ jQuery(document).ready(function($) {
     }, 1);
   });
 
-  $('.gallery-img').bind('mouseleave', function(e) {
+  $('.-gallery-img').bind('mouseleave', function(e) {
     $(this).removeClass(lastDirection).removeClass('animated');
   });
 });
