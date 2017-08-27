@@ -272,14 +272,14 @@ class gThemeImage extends gThemeModuleCore
 		if ( empty( $sizes ) )
 			return $fields;
 
-		$post_type = get_post_type( $post_id );
-		$images    = self::getMetaImages( $post_id, TRUE );
+		$posttype = get_post_type( $post_id );
+		$images   = self::getMetaImages( $post_id );
 
 		$html = $checked = '';
 
 		foreach ( $sizes as $name => $size ) {
 
-			if ( $size['s'] && ( TRUE === $size['p'] || in_array( $post_type, $size['p'] ) ) ) {
+			if ( $size['s'] && ( TRUE === $size['p'] || in_array( $posttype, $size['p'] ) ) ) {
 
 				$id      = 'attachments-'.$post->ID.'-gtheme-size-'.$name;
 				$checked = ( isset( $images[$name] ) && $images[$name] == $post->ID ) ? ' checked="checked"' : '';
@@ -653,6 +653,7 @@ class gThemeImage extends gThemeModuleCore
 			'post_id'         => NULL,
 			'link'            => 'parent',
 			'attr'            => '',
+			'check_single'    => TRUE, // checks if post has `hide-image-single` system tag
 			'empty'           => self::holder( ( isset( $atts['tag'] ) ? $atts['tag'] : 'raw' ), ( isset( $atts['class'] ) ? $atts['class'] : 'gtheme-image' ) ),
 			'url'             => FALSE,
 			'caption'         => FALSE,
@@ -663,6 +664,9 @@ class gThemeImage extends gThemeModuleCore
 			'after'           => '</div>',
 			'context'         => NULL,
 		), $atts );
+
+		if ( $args['check_single'] && is_singular() && gThemeTerms::has( 'hide-image-single', $args['post_id'] ) )
+			return '';
 
 		if ( $args['class'] ) {
 			if ( $args['attr'] ) {
