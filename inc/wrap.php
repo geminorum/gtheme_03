@@ -43,21 +43,21 @@ class gThemeWrap extends gThemeModuleCore
 	// https://gist.github.com/1209013
 
 	static $main_template; // stores the full path to the main template file
-	static $base; // stores the base name of the template file; e.g. 'page' for 'page.php' etc.
+	static $base_template; // stores the base name of the template file; e.g. 'page' for 'page.php' etc.
 
 	public static function wrap( $template )
 	{
 		self::$main_template = $template;
 
-		self::$base = substr( basename( self::$main_template ), 0, -4 );
+		self::$base_template = substr( basename( self::$main_template ), 0, -4 );
 
-		if ( 'index' == self::$base )
-			self::$base = FALSE;
+		if ( 'index' == self::$base_template )
+			self::$base_template = FALSE;
 
 		$templates = array( 'base.php' );
 
-		if ( self::$base )
-			array_unshift( $templates, sprintf( 'base-%s.php', self::$base ) );
+		if ( self::$base_template )
+			array_unshift( $templates, sprintf( 'base-%s.php', self::$base_template ) );
 
 		return locate_template( $templates );
 	}
@@ -132,5 +132,5 @@ function gtheme_template_path() {
 }
 
 function gtheme_template_base() {
-	return gThemeWrap::$base;
+	return gThemeWrap::$base_template;
 }
