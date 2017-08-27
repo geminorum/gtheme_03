@@ -195,7 +195,7 @@ class gThemeComments extends gThemeModuleCore
 						echo '</div>';
 
 						self::awaiting( $comment );
-						self::actions( $comment, $args, $depth );
+						self::commentActions( $comment, $args, $depth );
 
 					echo '</div><div class=" clearfix"></div>';
 			break;
@@ -223,7 +223,7 @@ class gThemeComments extends gThemeModuleCore
 		echo '</time></a>';
 	}
 
-	public static function actions( $comment, $args, $depth, $class = 'media-actions comment-actions' )
+	public static function commentActions( $comment, $args, $depth, $class = 'media-actions comment-actions' )
 	{
 		$actions = array();
 
