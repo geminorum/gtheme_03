@@ -8,7 +8,6 @@ class gThemeMenu extends gThemeModuleCore
 		extract( self::atts( array(
 			'register_nav' => TRUE,
 			'allowedtags'  => FALSE,
-			'css_classes'  => FALSE,
 		), $args ) );
 
 		if ( $register_nav )
@@ -17,12 +16,8 @@ class gThemeMenu extends gThemeModuleCore
 		if ( $allowedtags )
 			add_filter( 'wp_nav_menu_container_allowedtags', array( $this, 'wp_nav_menu_container_allowedtags' ) );
 
-		if ( $css_classes )
+		if ( ! is_admin() )
 			add_filter( 'nav_menu_css_class', array( $this, 'nav_menu_css_class' ), 10, 4 );
-
-		if ( ! is_admin() ) {
-			// add_filter( 'wp_nav_menu_args', array( $this, 'wp_nav_menu_args' ) );
-		}
 	}
 
 	public function init()
@@ -30,14 +25,6 @@ class gThemeMenu extends gThemeModuleCore
 		$menus = gThemeOptions::info( 'register_nav_menus', array() );
 		if ( $menus && count( $menus ) )
 			register_nav_menus( $menus );
-	}
-
-	public function wp_nav_menu_args( $args )
-	{
-		if ( 'menu' == $args['menu_class'] )
-			$args['menu_class'] = 'list-unstyled menu';
-
-		return $args;
 	}
 
 	public static function defaults( $extra = array() )
@@ -56,8 +43,23 @@ class gThemeMenu extends gThemeModuleCore
 			'echo'     => FALSE,
 		), $atts );
 
-		if ( $menu = wp_nav_menu( self::args( $args ) ) )
-			echo $before.$menu.$after;
+		$key = GTHEME_FRAGMENTCACHE.'_'.md5( maybe_serialize( $args ) );
+
+		if ( gThemeWordPress::isFlush() )
+			delete_transient( $key );
+
+		if ( FALSE === ( $menu = get_transient( $key ) ) ) {
+
+			if ( ! $menu = wp_nav_menu( self::args( $args ) ) )
+				return '';
+
+			set_transient( $key, $menu, GTHEME_CACHETTL );
+		}
+
+		if ( ! $args['echo'] )
+			return $before.$menu.$after;
+
+		echo $before.$menu.$after;
 	}
 
 	public static function args( $atts = array() )
@@ -93,6 +95,9 @@ class gThemeMenu extends gThemeModuleCore
 
 	public function nav_menu_css_class( $classes, $item, $args, $depth = 0 )
 	{
+		// we cache menus, so no active item!
+		$classes = array_diff( $classes, array( 'current-menu-item' ) );
+
 		if ( ! isset( $args->menu_class ) || empty( $args->menu_class ) )
 			return $classes;
 
@@ -137,7 +142,6 @@ class gThemeMenu extends gThemeModuleCore
 
 				else if ( $parent == $menu->menu_item_parent )
 					$secondary .= self::menu_el( $menu );
-
 			}
 
 			if ( $primary ) {
