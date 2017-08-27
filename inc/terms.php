@@ -9,7 +9,7 @@ class gThemeTerms extends gThemeModuleCore
 	{
 		extract( self::atts( array(
 			'system_tags' => FALSE,
-			'p2p'         => FALSE,
+			'p2p'         => FALSE, // DEPRICATED: use gEditorial Connected
 			'admin'       => FALSE,
 		), $args ) );
 

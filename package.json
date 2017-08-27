@@ -31,7 +31,7 @@
     "gulp-sourcemaps": "^2.6.0",
     "gulp-util": "^3.0.8",
     "gulp-wp-pot": "^2.0.6",
-    "js-yaml": "^3.9.0",
+    "js-yaml": "^3.9.1",
     "parse-changelog": "^1.0.2",
     "prettyjson": "^1.2.1",
     "xtend": "^4.0.1"
