@@ -235,12 +235,14 @@ class gThemeSettings extends gThemeModuleCore
 			),
 		) );
 
-		if ( gThemeWordPress::isDev() )
-			$wp_admin_bar->add_node( array(
-				'id'     => 'gtheme-template-base',
-				'title'  => esc_html( gtheme_template_base() ),
-				'parent' => 'top-secondary',
-				'href'   => FALSE,
-			) );
+		if ( ! gThemeWordPress::isDev() )
+			return;
+
+		$wp_admin_bar->add_node( array(
+			'id'     => 'gtheme-template-base',
+			'title'  => gtheme_template_base() ? esc_html( gtheme_template_base() ) : '[EMPTY]',
+			'parent' => 'top-secondary',
+			'href'   => FALSE,
+		) );
 	}
 }
