@@ -44,6 +44,7 @@ class gThemeSideBar extends gThemeModuleCore
 	public static function widgets()
 	{
 		return apply_filters( 'gtheme_widgets', array(
+			'gThemeWidgetCustomHTML',
 			'gThemeWidgetSearch',
 			'gThemeWidgetTermPosts',
 			'gThemeWidgetRelatedPosts',
@@ -267,6 +268,9 @@ class gThemeSideBar extends gThemeModuleCore
 class gThemeWidget extends WP_Widget
 {
 
+	const BASE   = 'gtheme';
+	const MODULE = FALSE;
+
 	public function __construct()
 	{
 		$args = gThemeBaseCore::atts( array(
@@ -281,12 +285,12 @@ class gThemeWidget extends WP_Widget
 		if ( ! $args['name'] )
 			return FALSE;
 
-		parent::__construct( 'gtheme_'.$args['name'], $args['title'], array(
+		parent::__construct( self::BASE.'_'.$args['name'], $args['title'], array(
 			'description' => $args['desc'],
-			'classname'   => '{GTHEME_WIDGET_CLASSNAME}'.'widget-gtheme-'.$args['class'],
+			'classname'   => '{GTHEME_WIDGET_CLASSNAME}'.'widget-'.self::BASE.'-'.$args['class'],
 		), $args['control'] );
 
-		$this->alt_option_name = 'widget_gtheme_'.$args['name'];
+		$this->alt_option_name = 'widget_'.self::BASE.'_'.$args['name'];
 
 		foreach ( $args['flush'] as $action )
 			add_action( $action, array( $this, 'flush_widget_cache' ) );
@@ -307,6 +311,7 @@ class gThemeWidget extends WP_Widget
 		);
 	}
 
+	// override this to bypass caching
 	public function widget( $args, $instance )
 	{
 		$this->widget_cache( $args, $instance );
@@ -367,6 +372,11 @@ class gThemeWidget extends WP_Widget
 		}
 	}
 
+	public function widget_html( $args, $instance )
+	{
+		return FALSE;
+	}
+
 	public function before_widget( $args, $instance, $echo = TRUE )
 	{
 		$classes = isset( $instance['context'] ) && $instance['context'] ? 'context-'.sanitize_html_class( $instance['context'], 'general' ).' ' : '';
@@ -414,7 +424,52 @@ class gThemeWidget extends WP_Widget
 
 	public function flush_widget_cache()
 	{
-		wp_cache_delete( $this->alt_option_name, 'widget' );
+		// wp_cache_delete( $this->alt_option_name, 'widget' );
+		delete_transient( $this->alt_option_name );
+	}
+
+	public function before_form( $instance, $echo = TRUE )
+	{
+		$classes = [ self::BASE.'-admin-wrap-widgetform' ];
+
+		if ( self::MODULE )
+			$classes[] = '-'.self::MODULE;
+
+		$html = '<div class="'.join( ' ', $classes ).'">';
+
+		if ( ! $echo )
+			return $html;
+
+		echo $html;
+	}
+
+	public function after_form( $instance, $echo = TRUE )
+	{
+		$html = '</div>';
+
+		if ( ! $echo )
+			return $html;
+
+		echo $html;
+	}
+
+	public function form_content( $instance, $default = '', $field = 'content', $label = NULL )
+	{
+		if ( is_null( $label ) )
+			$label = _x( 'Custom HTML:', 'Widget: Setting', GTHEME_TEXTDOMAIN );
+
+		echo '<p>'.gThemeHTML::tag( 'label', array(
+			'for' => $this->get_field_id( $field ),
+		), $label );
+
+		echo gThemeHTML::tag( 'textarea', array(
+			'rows'  => '3',
+			'name'  => $this->get_field_name( $field ),
+			'id'    => $this->get_field_id( $field ),
+			'class' => 'widefat code textarea-autosize',
+		), isset( $instance[$field] ) ? $instance[$field] : $default );
+
+		echo '</p>';
 	}
 
 	public function form_number( $instance, $default = '10', $field = 'number', $label = NULL )
@@ -423,14 +478,14 @@ class gThemeWidget extends WP_Widget
 			$label = _x( 'Number of posts to show:', 'Widget: Setting', GTHEME_TEXTDOMAIN );
 
 		$html = gThemeHTML::tag( 'input', array(
-			'type'  => 'text',
+			'type'  => 'number',
 			'size'  => 3,
 			'name'  => $this->get_field_name( $field ),
 			'id'    => $this->get_field_id( $field ),
 			'value' => isset( $instance[$field] ) ? $instance[$field] : $default,
 		) );
 
-		echo '<p>'. gThemeHTML::tag( 'label', array(
+		echo '<p>'.gThemeHTML::tag( 'label', array(
 			'for' => $this->get_field_id( $field ),
 		), $label.' '.$html ).'</p>';
 	}
@@ -446,7 +501,7 @@ class gThemeWidget extends WP_Widget
 			'dir'   => 'ltr',
 		) );
 
-		echo '<p>'. gThemeHTML::tag( 'label', array(
+		echo '<p>'.gThemeHTML::tag( 'label', array(
 			'for' => $this->get_field_id( $field ),
 		), _x( 'Context:', 'Widget: Setting', GTHEME_TEXTDOMAIN ).$html ).'</p>';
 	}
@@ -462,7 +517,7 @@ class gThemeWidget extends WP_Widget
 			'dir'   => 'ltr',
 		) );
 
-		echo '<p>'. gThemeHTML::tag( 'label', array(
+		echo '<p>'.gThemeHTML::tag( 'label', array(
 			'for' => $this->get_field_id( $field ),
 		), _x( 'CSS Class:', 'Widget: Setting', GTHEME_TEXTDOMAIN ).$html ).'</p>';
 	}
@@ -484,7 +539,7 @@ class gThemeWidget extends WP_Widget
 			'id'    => $this->get_field_id( $field ),
 		), $html );
 
-		echo '<p>'. gThemeHTML::tag( 'label', array(
+		echo '<p>'.gThemeHTML::tag( 'label', array(
 			'for' => $this->get_field_id( $field ),
 		), _x( 'PostType:', 'Widget: Setting', GTHEME_TEXTDOMAIN ).$html ).'</p>';
 	}
@@ -507,7 +562,7 @@ class gThemeWidget extends WP_Widget
 			'id'    => $this->get_field_id( $field ),
 		), $html );
 
-		echo '<p>'. gThemeHTML::tag( 'label', array(
+		echo '<p>'.gThemeHTML::tag( 'label', array(
 			'for' => $this->get_field_id( $field ),
 		), _x( 'Taxonomy:', 'Widget: Setting', GTHEME_TEXTDOMAIN ).$html ).'</p>';
 	}
@@ -522,7 +577,7 @@ class gThemeWidget extends WP_Widget
 			'value' => isset( $instance[$field] ) ? $instance[$field] : $default,
 		) );
 
-		echo '<p>'. gThemeHTML::tag( 'label', array(
+		echo '<p>'.gThemeHTML::tag( 'label', array(
 			'for' => $this->get_field_id( $field ),
 		), _x( 'Title:', 'Widget: Setting', GTHEME_TEXTDOMAIN ).$html ).'</p>';
 	}
@@ -538,7 +593,7 @@ class gThemeWidget extends WP_Widget
 			'dir'   => 'ltr',
 		) );
 
-		echo '<p>'. gThemeHTML::tag( 'label', array(
+		echo '<p>'.gThemeHTML::tag( 'label', array(
 			'for' => $this->get_field_id( $field ),
 		), _x( 'Title Link:', 'Widget: Setting', GTHEME_TEXTDOMAIN ).$html ).'</p>';
 	}
@@ -557,7 +612,7 @@ class gThemeWidget extends WP_Widget
 			'dir'   => 'ltr',
 		) );
 
-		echo '<p>'. gThemeHTML::tag( 'label', array(
+		echo '<p>'.gThemeHTML::tag( 'label', array(
 			'for' => $this->get_field_id( $field ),
 		), $label.$html ).'</p>';
 	}
@@ -576,7 +631,7 @@ class gThemeWidget extends WP_Widget
 			'dir'   => 'ltr',
 		) );
 
-		echo '<p>'. gThemeHTML::tag( 'label', array(
+		echo '<p>'.gThemeHTML::tag( 'label', array(
 			'for' => $this->get_field_id( $field ),
 		), $label.$html ).'</p>';
 	}
@@ -591,7 +646,7 @@ class gThemeWidget extends WP_Widget
 			'value' => isset( $instance[$field] ) ? $instance[$field] : $default,
 		) );
 
-		echo '<p>'. gThemeHTML::tag( 'label', array(
+		echo '<p>'.gThemeHTML::tag( 'label', array(
 			'for' => $this->get_field_id( $field ),
 		), _x( 'Avatar Size:', 'Widget: Setting', GTHEME_TEXTDOMAIN ).$html ).'</p>';
 	}
@@ -621,7 +676,7 @@ class gThemeWidget extends WP_Widget
 				'id'    => $this->get_field_id( $field ),
 			), $html );
 
-			echo '<p>'. gThemeHTML::tag( 'label', array(
+			echo '<p>'.gThemeHTML::tag( 'label', array(
 				'for' => $this->get_field_id( $field ),
 			), _x( 'Image Size:', 'Widget: Setting', GTHEME_TEXTDOMAIN ).$html ).'</p>';
 
@@ -670,7 +725,7 @@ class gThemeWidget extends WP_Widget
 		if ( ! $html )
 			$html = '<br /><code>N/A</code>';
 
-		echo '<p>'. gThemeHTML::tag( 'label', array(
+		echo '<p>'.gThemeHTML::tag( 'label', array(
 			'for' => $this->get_field_id( $field ),
 		), $label.$html ).'</p>';
 	}
@@ -697,7 +752,7 @@ class gThemeWidget extends WP_Widget
 			'id'    => $this->get_field_id( $field ),
 		), $html );
 
-		echo '<p>'. gThemeHTML::tag( 'label', array(
+		echo '<p>'.gThemeHTML::tag( 'label', array(
 			'for' => $this->get_field_id( $field ),
 		), _x( 'Term:', 'Widget: Setting', GTHEME_TEXTDOMAIN ).$html ).'</p>';
 	}
@@ -798,6 +853,8 @@ class gThemeWidgetTermPosts extends gThemeWidget
 
 	public function form( $instance )
 	{
+		$this->before_form( $instance );
+
 		$this->form_title( $instance );
 		$this->form_title_link( $instance );
 		$this->form_post_type( $instance );
@@ -806,6 +863,8 @@ class gThemeWidgetTermPosts extends gThemeWidget
 		$this->form_context( $instance, 'recent' );
 		$this->form_class( $instance );
 		$this->form_number( $instance, '5' );
+
+		$this->after_form( $instance );
 	}
 }
 
@@ -910,6 +969,8 @@ class gThemeWidgetRelatedPosts extends gThemeWidget
 
 	public function form( $instance )
 	{
+		$this->before_form( $instance );
+
 		$this->form_title( $instance );
 		$this->form_title_link( $instance );
 		$this->form_post_type( $instance );
@@ -917,6 +978,8 @@ class gThemeWidgetRelatedPosts extends gThemeWidget
 		$this->form_context( $instance, 'related' );
 		$this->form_class( $instance );
 		$this->form_number( $instance, '5' );
+
+		$this->after_form( $instance );
 	}
 }
 
@@ -998,12 +1061,16 @@ class gThemeWidgetRecentPosts extends gThemeWidget
 
 	public function form( $instance )
 	{
+		$this->before_form( $instance );
+
 		$this->form_title( $instance );
 		$this->form_title_link( $instance );
 		$this->form_post_type( $instance );
 		$this->form_context( $instance, 'recent' );
 		$this->form_class( $instance );
 		$this->form_number( $instance, '5' );
+
+		$this->after_form( $instance );
 	}
 }
 
@@ -1095,11 +1162,15 @@ class gThemeWidgetRecentComments extends gThemeWidget
 
 	public function form( $instance )
 	{
+		$this->before_form( $instance );
+
 		$this->form_title( $instance );
 		$this->form_title_link( $instance );
 		$this->form_avatar_size( $instance );
 		$this->form_number( $instance, '5' );
 		$this->form_class( $instance );
+
+		$this->after_form( $instance );
 	}
 }
 
@@ -1128,10 +1199,14 @@ class gThemeWidgetSearch extends gThemeWidget
 
 	public function form( $instance )
 	{
+		$this->before_form( $instance );
+
 		$this->form_title( $instance );
 		$this->form_title_link( $instance );
 		$this->form_context( $instance );
 		$this->form_class( $instance );
+
+		$this->after_form( $instance );
 	}
 }
 
@@ -1160,10 +1235,14 @@ class gThemeWidgetTemplatePart extends gThemeWidget
 
 	public function form( $instance )
 	{
+		$this->before_form( $instance );
+
 		$this->form_title( $instance );
 		$this->form_title_link( $instance );
 		$this->form_context( $instance );
 		$this->form_class( $instance );
+
+		$this->after_form( $instance );
 	}
 }
 
@@ -1196,10 +1275,14 @@ class gThemeWidgetChildren extends gThemeWidget
 
 	public function form( $instance )
 	{
+		$this->before_form( $instance );
+
 		$this->form_title( $instance );
 		$this->form_title_link( $instance );
 		$this->form_post_type( $instance, 'page' );
 		$this->form_class( $instance );
+
+		$this->after_form( $instance );
 	}
 }
 
@@ -1232,10 +1315,14 @@ class gThemeWidgetSiblings extends gThemeWidget
 
 	public function form( $instance )
 	{
+		$this->before_form( $instance );
+
 		$this->form_title( $instance );
 		$this->form_title_link( $instance );
 		$this->form_post_type( $instance, 'page' );
 		$this->form_class( $instance );
+
+		$this->after_form( $instance );
 	}
 }
 
@@ -1298,10 +1385,113 @@ class gThemeWidgetTheTerm extends gThemeWidget
 
 	public function form( $instance )
 	{
+		$this->before_form( $instance );
+
 		$this->form_title( $instance );
 		$this->form_title_link( $instance );
 		$this->form_class( $instance );
+
 		$this->form_checkbox( $instance, TRUE, 'meta_image', _x( 'Display Meta Image', 'Widget: Setting', GTHEME_TEXTDOMAIN ) );
 		$this->form_checkbox( $instance, TRUE, 'hide_no_desc', _x( 'Hide if no Description', 'Widget: Setting', GTHEME_TEXTDOMAIN ) );
+
+		$this->after_form( $instance );
+	}
+}
+
+class gThemeWidgetCustomHTML extends gThemeWidget
+{
+
+	protected function setup()
+	{
+		return array(
+			'name'  => 'custom_html',
+			'class' => 'custom-html',
+			'title' => _x( 'Theme: Custom HTML', 'Widget: Title', GTHEME_TEXTDOMAIN ),
+			'desc'  => _x( 'Displays arbitrary HTML code with support for shortcodes and embeds.', 'Widget: Description', GTHEME_TEXTDOMAIN ),
+		);
+	}
+
+	public function widget_html( $args, $instance )
+	{
+		global $wp_embed;
+
+		if ( ! $content = trim( $instance['content'] ) )
+			return FALSE;
+
+		if ( ! empty( $instance['embeds'] ) ) {
+			$content = $wp_embed->run_shortcode( $content );
+			$content = $wp_embed->autoembed( $content );
+		}
+
+		if ( ! empty( $instance['shortcodes'] ) )
+			$content = do_shortcode( $content );
+
+		if ( ! empty( $instance['legacy'] ) )
+			$content = apply_filters( 'widget_text', $content, $instance, $this );
+
+		if ( ! empty( $instance['filters'] ) )
+			$content = apply_filters( 'widget_custom_html_content', $content, $instance, $this );
+
+		if ( ! $content )
+			return FALSE;
+
+		if ( ! empty( $instance['autop'] ) )
+			$content = wpautop( $content );
+
+		$this->before_widget( $args, $instance );
+		$this->widget_title( $args, $instance );
+		echo '<div class="textwidget custom-html-widget">';
+			echo $content;
+		echo '</div>';
+		$this->after_widget( $args, $instance );
+
+		return TRUE;
+	}
+
+	public function update( $new, $old )
+	{
+		$instance = $old;
+
+		$instance['title']      = strip_tags( $new['title'] );
+		$instance['title_link'] = strip_tags( $new['title_link'] );
+		$instance['class']      = strip_tags( $new['class'] );
+
+		if ( current_user_can( 'unfiltered_html' ) )
+			$instance['content'] = $new['content'];
+		else
+			$instance['content'] = wp_kses_post( $new['content'] );
+
+		$instance['embeds']     = (bool) $new['embeds'];
+		$instance['shortcodes'] = (bool) $new['shortcodes'];
+		$instance['filters']    = (bool) $new['filters'];
+		$instance['legacy']     = (bool) $new['legacy'];
+		$instance['autop']      = (bool) $new['autop'];
+
+		$this->flush_widget_cache();
+
+		return $instance;
+	}
+
+	public function form( $instance )
+	{
+		$this->before_form( $instance );
+
+		$this->form_title( $instance );
+		$this->form_title_link( $instance );
+		$this->form_class( $instance );
+
+		$this->form_content( $instance );
+
+		echo '<div class="-group">';
+
+		$this->form_checkbox( $instance, FALSE, 'embeds', _x( 'Process Embeds', 'Widget: Setting', GTHEME_TEXTDOMAIN ) );
+		$this->form_checkbox( $instance, FALSE, 'shortcodes', _x( 'Process Shortcodes', 'Widget: Setting', GTHEME_TEXTDOMAIN ) );
+		$this->form_checkbox( $instance, FALSE, 'filters', _x( 'Process Filters', 'Widget: Setting', GTHEME_TEXTDOMAIN ) );
+		$this->form_checkbox( $instance, FALSE, 'legacy', _x( 'Process Filters (Legacy)', 'Widget: Setting', GTHEME_TEXTDOMAIN ) );
+		$this->form_checkbox( $instance, FALSE, 'autop', _x( 'Automatic Paragraphs', 'Widget: Setting', GTHEME_TEXTDOMAIN ) );
+
+		echo '</div>';
+
+		$this->after_form( $instance );
 	}
 }
