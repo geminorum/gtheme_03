@@ -243,6 +243,7 @@ class gThemeSettings extends gThemeModuleCore
 			'title'  => gtheme_template_base() ? esc_html( gtheme_template_base() ) : '[EMPTY]',
 			'parent' => 'top-secondary',
 			'href'   => FALSE,
+			'meta'   => array( 'title' => _x( 'Theme Template Base', 'Modules: Settings', GTHEME_TEXTDOMAIN ) ),
 		) );
 	}
 }
