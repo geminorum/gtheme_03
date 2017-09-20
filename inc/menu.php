@@ -40,7 +40,6 @@ class gThemeMenu extends gThemeModuleCore
 	{
 		$args = array_merge( array(
 			'location' => $location,
-			'echo'     => FALSE,
 		), $atts );
 
 		$key = GTHEME_FRAGMENTCACHE.'_'.md5( maybe_serialize( $args ) );
@@ -50,13 +49,15 @@ class gThemeMenu extends gThemeModuleCore
 
 		if ( FALSE === ( $menu = get_transient( $key ) ) ) {
 
+			$args['echo'] = FALSE;
+
 			if ( ! $menu = wp_nav_menu( self::args( $args ) ) )
 				return '';
 
 			set_transient( $key, $menu, GTHEME_CACHETTL );
 		}
 
-		if ( ! $args['echo'] )
+		if ( isset( $atts['echo'] ) && ! $atts['echo'] )
 			return $before.$menu.$after;
 
 		echo $before.$menu.$after;
