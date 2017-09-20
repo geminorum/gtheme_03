@@ -24,8 +24,7 @@ class gThemeFilters extends gThemeModuleCore
 			add_filter( 'document_title_parts', array( $this, 'document_title_parts' ), 8 );
 
 			add_filter( 'the_excerpt', function( $text ){
-				// return $text.gThemeContent::continueReading( get_edit_post_link() );
-				return $text.gThemeContent::continueReading();
+				return $text ? $text.gThemeContent::continueReading() : $text;
 			}, 5 );
 
 			// FALSE by default, we don't use this filter anyway
