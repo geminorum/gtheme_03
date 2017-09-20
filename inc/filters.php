@@ -28,13 +28,13 @@ class gThemeFilters extends gThemeModuleCore
 				return $text.gThemeContent::continueReading();
 			}, 5 );
 
-			add_filter( 'excerpt_length', function( $length ){
-				return gThemeOptions::info( 'excerpt_length', 40 );
-			} );
+			// FALSE by default, we don't use this filter anyway
+			if ( $length = gThemeOptions::info( 'excerpt_length', FALSE ) )
+				add_filter( 'excerpt_length', function( $first ) use( $length ) {
+					return $length;
+				} );
 
-			add_filter( 'excerpt_more', function( $more ){
-				return gThemeOptions::info( 'excerpt_more', ' &hellip;' );
-			} );
+			add_filter( 'excerpt_more', array( $this, 'excerpt_more' ) );
 
 			if ( gThemeOptions::info( 'trim_excerpt_characters', FALSE ) ) {
 				remove_filter( 'get_the_excerpt', 'wp_trim_excerpt' );
@@ -245,40 +245,56 @@ class gThemeFilters extends gThemeModuleCore
 		return $title;
 	}
 
-	// Originally from : http://wordpress.org/plugins/character-count-excerpt/
-	public function get_the_excerpt( $text, $excerpt_length = FALSE )
+	public function excerpt_more( $more )
 	{
-		if ( FALSE === $excerpt_length )
-			$excerpt_length = gThemeOptions::info( 'trim_excerpt_characters', 300 );
+		$custom = gThemeOptions::info( 'excerpt_more', ' &hellip;' );
 
-		if ( FALSE === $excerpt_length )
+		if ( TRUE === $custom )
+			return gThemeContent::continueReading();
+
+		if ( FALSE === $custom )
+			return '';
+
+		return $custom;
+	}
+
+	// @SOURCE: http://wordpress.org/plugins/character-count-excerpt/
+	public function get_the_excerpt( $text, $length = FALSE )
+	{
+		if ( FALSE === $length )
+			$length = gThemeOptions::info( 'trim_excerpt_characters', 300 );
+
+		if ( FALSE === $length )
 			return wp_trim_excerpt( $text );
 
-		$raw_excerpt = $text;
+		$raw = $text;
 
 		if ( '' == $text ) {
-			$text = get_the_content('');
+
+			$text = get_the_content( '' );
 			$text = strip_shortcodes( $text );
 			$text = apply_filters( 'the_content', $text );
 			$text = str_replace( ']]>', ']]&gt;', $text );
 			$text = strip_tags( $text );
 
-			if ( strlen( $text ) > $excerpt_length ) {
-				$excerpt_more = apply_filters( 'excerpt_more', ' '.'[...]' );
-				$text = substr( $text, 0, $excerpt_length + 1 );
+			if ( strlen( $text ) > $length ) {
+
+				$more = apply_filters( 'excerpt_more', ' '.'[&hellip;]' );
+				$text = substr( $text, 0, $length + 1 );
 
 				$words = preg_split( "/[\n\r\t ]+/", $text, -1, PREG_SPLIT_NO_EMPTY );
 
 				// if the last character is not a white space, we remove the cut off last word
-				preg_match( "/[\n\r\t ]+/", $text, $lastchar, 0, $excerpt_length );
-				if ( empty( $lastchar ) ) array_pop( $words );
+				preg_match( "/[\n\r\t ]+/", $text, $last, 0, $length );
 
-				$text = implode(' ', $words);
-				$text = $text . $excerpt_more;
+				if ( empty( $last ) )
+					array_pop( $words );
+
+				$text = implode( ' ', $words ).$more;
 			}
 		}
 
-		return apply_filters( 'wp_trim_excerpt', $text, $raw_excerpt );
+		return apply_filters( 'wp_trim_excerpt', $text, $raw );
 	}
 
 	public function the_content( $content )

@@ -33,13 +33,13 @@ class gThemeTemplate extends gThemeModuleCore
 			$term = get_term( $term, $taxonomy );
 
 		if ( ! is_null( $title ) ) {
+
 			$title = $term->name;
+
 			if ( $term->description )
-				// $title .= ' :: '.strip_tags( wp_trim_words(
-				$title .= ' :: '.( wp_trim_words(
-					$term->description,
-					gThemeOptions::info( 'excerpt_length', 40 ),
-					gThemeOptions::info( 'excerpt_more', ' &hellip;' )
+				$title .= ' :: '.( wp_trim_words( $term->description,
+					apply_filters( 'excerpt_length', 55 ),
+					apply_filters( 'excerpt_more', ' &hellip;' )
 				) );
 		}
 

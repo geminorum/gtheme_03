@@ -84,7 +84,7 @@ class gThemeOptions extends gThemeModuleCore
 			'text_justify_sep' => _x( ' / ', 'Options: Text Justify Sep', GTHEME_TEXTDOMAIN ),
 
 			'excerpt_length'          => 40,
-			'excerpt_more'            => ' &hellip;',
+			'excerpt_more'            => ' &hellip;', // FALSE: empty / TRUE: continueReading()
 			'trim_excerpt_characters' => FALSE, // set this to desired characters count. like : 300
 
 			// commented to use default
