@@ -157,7 +157,7 @@ class gThemeFilters extends gThemeModuleCore
 			$classes[] = 'navbar-fixed';
 
 		if ( $extra = gThemeOptions::getOption( 'body_class_extra', FALSE ) )
-			$classes[] = sanitize_html_class( $extra );
+			$classes = array_merge( $classes, array_map( 'sanitize_html_class', explode( ' ', $extra ) ) );
 
 		if ( ! empty( $pagenow ) && 'index.php' !== $pagenow )
 			$classes[] = sanitize_html_class( 'pagenow-'.str_ireplace( '.php', '', $pagenow ) );
