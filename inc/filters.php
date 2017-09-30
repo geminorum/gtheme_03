@@ -55,9 +55,6 @@ class gThemeFilters extends gThemeModuleCore
 			if ( $default_editor )
 				add_filter( 'wp_default_editor', array( $this, 'wp_default_editor' ) );
 
-			// gNetwork Cite Shortcode: [reflist]
-			add_filter( 'shortcode_atts_reflist', array( $this, 'shortcode_atts_reflist' ), 10, 3 );
-
 			// https://gist.github.com/ocean90/3796628
 			// disables the auto-embeds function in WordPress 3.5
 			if ( $disable_autoembed )
@@ -416,13 +413,6 @@ class gThemeFilters extends gThemeModuleCore
 	public function wp_default_editor( $r )
 	{
 		return gThemeOptions::info( 'default_editor', 'html' );
-	}
-
-	// gNetwork
-	public function shortcode_atts_reflist( $out, $pairs, $atts )
-	{
-		$out['number'] = TRUE;
-		return $out;
 	}
 
 	// not in admin

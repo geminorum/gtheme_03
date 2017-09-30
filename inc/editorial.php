@@ -213,46 +213,17 @@ class gThemeEditorial extends gThemeModuleCore
 		return \geminorum\gEditorial\Templates\Book::cover( $atts );
 	}
 
-	// FIXME: use `gNetwork()`
 	public static function refList( $atts = array() )
 	{
-		global $gNetwork;
+		if ( ! function_exists( 'gNetwork' ) )
+			return FALSE;
 
-		if ( ! is_object( $gNetwork )
-			|| ! isset( $gNetwork->shortcodes ) )
-				return;
+		if ( ! gNetwork()->module( 'shortcodes' ) )
+			return FALSE;
 
-		if ( ! method_exists( $gNetwork->shortcodes, 'shortcode_reflist' ) )
-			return;
+		echo gNetwork()->shortcodes->shortcode_reflist( array_merge( $atts, array( 'context' => 'single' ) ), NULL, 'reflist' );
 
-		$args = self::atts( array(
-			'context'      => 'single',
-			'number'       => TRUE,
-			'after_number' => '. ',
-			'back'         => '[^]', //'[&#8617;]', // TODO: add theme option for this
-		), $atts );
-
-		$html = $gNetwork->shortcodes->shortcode_reflist( $args, NULL, 'reflist' );
-
-		if ( $html ) {
-
-			$args = self::atts( array(
-				'before' => '',
-				'after'  => '',
-				'echo'   => TRUE,
-				'title'  => '',
-			), $atts );
-
-			$html = $args['before'].$args['title'].$html.$args['after'];
-
-			if ( ! $args['echo'] )
-				return $html;
-
-			echo $html;
-			return TRUE;
-		}
-
-		return FALSE;
+		return TRUE;
 	}
 
 	public static function reshareSource( $atts = array() )
