@@ -7,83 +7,91 @@
 
 .navbar-collapse,
 .form-control {
-	box-shadow: none;
+  box-shadow: none;
 }
 
 .form-control {
 
-	@include theme-forms-focus-reset();
+  @include theme-forms-focus-reset();
 
-	.comment-form & {
-		// padding: $padding-large-vertical $padding-large-horizontal;
-		padding: $padding-large-horizontal $padding-large-horizontal $padding-large-vertical;
-		height: auto;
-	}
+  .comment-form & {
+    // padding: $padding-large-vertical $padding-large-horizontal;
+    padding: $padding-large-horizontal $padding-large-horizontal $padding-large-vertical;
+    height: auto;
+  }
 
-	// input[type="text"]&,
-	// input[type="search"]& {
-	// 	line-height: initial;
-	// }
+  // input[type="text"]&,
+  // input[type="search"]& {
+  // 	line-height: initial;
+  // }
 
-	// FIXME: move this to forms
-	// &:-webkit-autofill{
-	// 	background: gray;
-	// 	 -webkit-box-shadow: 0 0 0px 1000px white inset;
-	// }
+  // FIXME: move this to forms
+  // &:-webkit-autofill{
+  // 	background: gray;
+  // 	 -webkit-box-shadow: 0 0 0px 1000px white inset;
+  // }
 
-	// -webkit-text-fill-color: yellow !important;
+  // -webkit-text-fill-color: yellow !important;
 
-	// http://stackoverflow.com/a/29350537/4864081
-	// &:-webkit-autofill,
-	// &:-webkit-autofill:hover,
-	// &:-webkit-autofill:focus,
-	// &:-webkit-autofill:active {
-	// 	transition: background-color 5000s ease-in-out 0s;
-	// }
+  // http://stackoverflow.com/a/29350537/4864081
+  // &:-webkit-autofill,
+  // &:-webkit-autofill:hover,
+  // &:-webkit-autofill:focus,
+  // &:-webkit-autofill:active {
+  // 	transition: background-color 5000s ease-in-out 0s;
+  // }
 
-	// http://stackoverflow.com/a/29044088/4864081
-	// @each $prefix in -webkit, -moz {
-		// @include with-prefix($prefix) {
-			// @each $element in input, textarea, select {
-				// #{$element}:#{$prefix}-autofill {
-					// @include single-box-shadow(0, 0, 0, 1000px, $white, inset);
-				// }
-			// }
-		// }
-	// }
+  // http://stackoverflow.com/a/29044088/4864081
+  // @each $prefix in -webkit, -moz {
+    // @include with-prefix($prefix) {
+      // @each $element in input, textarea, select {
+        // #{$element}:#{$prefix}-autofill {
+          // @include single-box-shadow(0, 0, 0, 1000px, $white, inset);
+        // }
+      // }
+    // }
+  // }
 }
 
 label {
-	font-weight: normal;
-	margin: 0 2px 2px 2px;
+  font-weight: normal;
+  margin: 0 2px 2px 2px;
+}
+
+.checkbox-inline input[type=checkbox],
+.checkbox input[type=checkbox],
+.radio-inline input[type=radio],
+.radio input[type=radio] {
+  margin-left: auto;
+  margin-right: -20px;
 }
 
 .btn {
-  padding-bottom: 4px;
+  // padding-bottom: 4px;
 }
 
 .pager {
 
-	li {
-		> a,
-		> span {
-			padding: ( $padding-small-vertical * 1.4 ) $padding-base-horizontal ( $padding-small-vertical * 0.6 ); // FIXME: make this a mixin
-		}
+  li {
+    > a,
+    > span {
+      padding: ( $padding-small-vertical * 1.4 ) $padding-base-horizontal ( $padding-small-vertical * 0.6 ); // FIXME: make this a mixin
+    }
 
-		> a > span {
-			vertical-align: middle;
-		}
-	}
+    > a > span {
+      vertical-align: middle;
+    }
+  }
 }
 
 .tooltip {
-	line-height: initial;
+  line-height: initial;
 }
 
 @media print {
-	a[href]:after {
-		content:none;
-	}
+  a[href]:after {
+    content:none;
+  }
 }
 
 ////////////////////////////////////////////////////////////////////////////////
