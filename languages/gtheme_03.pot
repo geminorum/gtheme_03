@@ -6,6 +6,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language-Team: geminorum <contact@geminorum.ir>\n"
 "Report-Msgid-Bugs-To: https://github.com/geminorum/gtheme_03/issues\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
@@ -13,7 +14,7 @@ msgstr ""
 msgid "Archives Page"
 msgstr ""
 
-#: comments.php:34, inc/options.php:166
+#: comments.php:34
 msgid "Comments are closed."
 msgstr ""
 
@@ -23,6 +24,11 @@ msgstr ""
 
 #: content-404.php:7
 msgid "Oops! That page can&rsquo;t be found."
+msgstr ""
+
+#: end.php:17
+msgctxt "Root: End: Before Site Modified"
+msgid "Last updated on"
 msgstr ""
 
 #: fullwidthpage.php:6
@@ -46,51 +52,11 @@ msgid "gTheme 3"
 msgstr ""
 
 #: style.css:4
-msgid "3.14.11"
+msgid "3.16.0"
 msgstr ""
 
 #: style.css:5
 msgid "geminorum"
-msgstr ""
-
-#: admin/banners.php:2
-msgid "Theme Banner Tiles Settings"
-msgstr ""
-
-#: admin/banners.php:6
-msgid "Legend"
-msgstr ""
-
-#: admin/banners.php:8
-msgid "Your theme extra information"
-msgstr ""
-
-#: admin/banners.php:15
-msgid "Group"
-msgstr ""
-
-#: admin/banners.php:16
-msgid "Ord."
-msgstr ""
-
-#: admin/banners.php:17
-msgid "Title"
-msgstr ""
-
-#: admin/banners.php:18
-msgid "URL"
-msgstr ""
-
-#: admin/banners.php:19
-msgid "Image"
-msgstr ""
-
-#: admin/banners.php:40, admin/banners.php:54, admin/banners.php:67
-msgid "Remove"
-msgstr ""
-
-#: admin/banners.php:73
-msgid "Add Another"
 msgstr ""
 
 #: inc/admin.php:87
@@ -112,16 +78,76 @@ msgctxt "Module: Attachment: Link"
 msgid "Download Attachment"
 msgstr ""
 
-#: inc/banners.php:108
+#: inc/banners.php:21
+msgctxt "Banner Groups"
+msgid "First"
+msgstr ""
+
+#: inc/banners.php:22
+msgctxt "Banner Groups"
+msgid "Second"
+msgstr ""
+
+#: inc/banners.php:119
 msgctxt "Modules: Menu Name"
 msgid "Banners"
+msgstr ""
+
+#: inc/banners.php:204
+msgctxt "Modules: Banners"
+msgid "Custom Banners"
+msgstr ""
+
+#: inc/banners.php:208
+msgctxt "Modules: Banners"
+msgid "Legend"
+msgstr ""
+
+#: inc/banners.php:210
+msgctxt "Modules: Banners"
+msgid "Your theme extra information"
+msgstr ""
+
+#: inc/banners.php:215
+msgctxt "Modules: Banners"
+msgid "Group"
+msgstr ""
+
+#: inc/banners.php:216
+msgctxt "Modules: Banners"
+msgid "Ord."
+msgstr ""
+
+#: inc/banners.php:217
+msgctxt "Modules: Banners"
+msgid "Title"
+msgstr ""
+
+#: inc/banners.php:218
+msgctxt "Modules: Banners"
+msgid "URL"
+msgstr ""
+
+#: inc/banners.php:219
+msgctxt "Modules: Banners"
+msgid "Image"
+msgstr ""
+
+#: inc/banners.php:308
+msgctxt "Modules: Banners"
+msgid "Add Another"
+msgstr ""
+
+#: inc/banners.php:309
+msgctxt "Modules: Banners"
+msgid "Save"
 msgstr ""
 
 #: inc/bootstrap.php:17
 msgid "Toggle navigation"
 msgstr ""
 
-#: inc/bootstrap.php:61
+#: inc/bootstrap.php:62
 msgid "Search &hellip;"
 msgstr ""
 
@@ -161,102 +187,102 @@ msgid_plural "%1$s thoughts on &ldquo;%2$s&rdquo;"
 msgstr[0] ""
 msgstr[1] ""
 
-#: inc/comments.php:145
+#: inc/comments.php:142
 msgctxt "Comments Module"
 msgid "Grab the feed for comments of this post"
 msgstr ""
 
-#: inc/comments.php:156
+#: inc/comments.php:153
 msgctxt "Comments Module"
 msgid "Sorry, The site is locked down. Updates will appear shortly"
 msgstr ""
 
-#: inc/comments.php:211
+#: inc/comments.php:209
 msgctxt "Comments Module"
 msgid "Your comment is awaiting moderation."
 msgstr ""
 
-#: inc/comments.php:221
+#: inc/comments.php:219
 msgctxt "1: date, 2: time"
 msgid "%1$s at %2$s"
 msgstr ""
 
-#: inc/comments.php:233
+#: inc/comments.php:231
 msgctxt "Comments Module: Action String"
 msgid "Reply"
 msgstr ""
 
-#: inc/comments.php:234
+#: inc/comments.php:232
 msgctxt "Comments Module: Action String"
 msgid "Reply to %s"
 msgstr ""
 
-#: inc/comments.php:235
+#: inc/comments.php:233
 msgctxt "Comments Module: Action String"
 msgid "Log in to Reply"
 msgstr ""
 
-#: inc/comments.php:236
+#: inc/comments.php:234
 msgctxt "Comments Module: Action String"
 msgid "Edit This"
 msgstr ""
 
-#: inc/comments.php:285
+#: inc/comments.php:283
 msgctxt "Comments Module: Comment Form String"
 msgid "(Required)"
 msgstr ""
 
-#: inc/comments.php:286
+#: inc/comments.php:284
 msgctxt "Comments Module: Comment Form String"
 msgid "Name"
 msgstr ""
 
-#: inc/comments.php:287
+#: inc/comments.php:285
 msgctxt "Comments Module: Comment Form String"
 msgid "Email"
 msgstr ""
 
-#: inc/comments.php:288
+#: inc/comments.php:286
 msgctxt "Comments Module: Comment Form String"
 msgid "Website"
 msgstr ""
 
-#: inc/comments.php:289
+#: inc/comments.php:287
 msgctxt "Comments Module: Comment Form String"
 msgid "Comment"
 msgstr ""
 
-#: inc/comments.php:291
+#: inc/comments.php:289
 msgctxt "Comments Module: Comment Form String"
 msgid "You must be <a href=\"%s\">logged in</a> to post a comment."
 msgstr ""
 
-#: inc/comments.php:292
+#: inc/comments.php:290
 msgctxt "Comments Module: Comment Form String"
 msgid "<a href=\"%1$s\" aria-label=\"%2$s\">Logged in as %3$s</a>. <a href=\"%4$s\">Log out?</a>"
 msgstr ""
 
-#: inc/comments.php:293
+#: inc/comments.php:291
 msgctxt "Comments Module: Comment Form String"
 msgid "Logged in as %s. Edit your profile."
 msgstr ""
 
-#: inc/comments.php:294
+#: inc/comments.php:292
 msgctxt "Comments Module: Comment Form String"
 msgid "Leave a Reply"
 msgstr ""
 
-#: inc/comments.php:295
+#: inc/comments.php:293
 msgctxt "Comments Module: Comment Form String"
 msgid "Leave a Reply to %s"
 msgstr ""
 
-#: inc/comments.php:296
+#: inc/comments.php:294
 msgctxt "Comments Module: Comment Form String"
 msgid "Cancel reply"
 msgstr ""
 
-#: inc/comments.php:297
+#: inc/comments.php:295
 msgctxt "Comments Module: Comment Form String"
 msgid "Post Comment"
 msgstr ""
@@ -311,68 +337,68 @@ msgctxt "Modules: Content: Action"
 msgid "Short Link"
 msgstr ""
 
-#: inc/content.php:416
+#: inc/content.php:417
 msgctxt "Modules: Content: Action"
 msgid "<a href=\"%3$s\" class=\"%1$s\">Your Comment</a>"
 msgstr ""
 
-#: inc/content.php:417
+#: inc/content.php:418
 msgctxt "Modules: Content: Action"
 msgid "<a href=\"%3$s\" class=\"%1$s\">One Comment</a>"
 msgstr ""
 
-#: inc/content.php:418
+#: inc/content.php:419
 msgctxt "Modules: Content: Action"
 msgid "<a href=\"%3$s\" class=\"%1$s\">%2$s Comments</a>"
 msgstr ""
 
-#: inc/content.php:425
+#: inc/content.php:426
 msgctxt "Modules: Content: Action"
 msgid " <small><small>(<a href=\"%1$s\" title=\"%2$s\" class=\"%3$s\"><abbr title=\"Really Simple Syndication\">RSS</abbr></a>)</small></small>"
 msgstr ""
 
-#: inc/content.php:427
+#: inc/content.php:428
 msgctxt "Modules: Content: Action"
 msgid "Feed for this post's comments"
 msgstr ""
 
-#: inc/content.php:439
+#: inc/content.php:441
 msgctxt "Modules: Content: Action"
 msgid "Edit"
 msgstr ""
 
-#: inc/content.php:530
+#: inc/content.php:533
 msgid "Increase font size"
 msgstr ""
 
-#: inc/content.php:540
+#: inc/content.php:543
 msgid "Decrease font size"
 msgstr ""
 
-#: inc/content.php:551
+#: inc/content.php:554
 msgid "Justify paragraphs"
 msgstr ""
 
-#: inc/content.php:558
+#: inc/content.php:561
 msgid "Un-justify paragraphs"
 msgstr ""
 
-#: inc/content.php:592
+#: inc/content.php:595
 msgctxt "Modules: Content: PrintFriendly"
 msgid "Print Version"
 msgstr ""
 
-#: inc/content.php:616
+#: inc/content.php:619
 msgctxt "Modules: Content: Addtoany"
 msgid "Share This"
 msgstr ""
 
-#: inc/content.php:637
+#: inc/content.php:640
 msgctxt "Modules: Content: Addtoany"
 msgid "Check this out %s"
 msgstr ""
 
-#: inc/content.php:638
+#: inc/content.php:641
 msgctxt "Modules: Content: Addtoany"
 msgid ""
 "Click the link:\n"
@@ -409,24 +435,50 @@ msgctxt "Modules: Counts"
 msgid "Item Counts"
 msgstr ""
 
-#: inc/image.php:88
-msgid "Undefined Image Size"
+#: inc/editor.php:100
+msgctxt "Editor Custom Class"
+msgid "Blockquote"
 msgstr ""
 
-#: inc/image.php:254
+#: inc/editor.php:105
+msgctxt "Editor Custom Class"
+msgid "Unordered List"
+msgstr ""
+
+#: inc/editor.php:110
+msgctxt "Editor Custom Class"
+msgid "Ordered List"
+msgstr ""
+
+#: inc/editor.php:115
+msgctxt "Editor Custom Class"
+msgid "Note"
+msgstr ""
+
+#: inc/editor.php:120
+msgctxt "Editor Custom Class"
+msgid "Source"
+msgstr ""
+
+#: inc/editor.php:129
+msgctxt "Editor Default Content"
+msgid "[content not available yet]"
+msgstr ""
+
+#: inc/image.php:288
 msgctxt "Image Module: Media Tag Checkbox Label"
 msgid "%1$s <small>(%2$s&times;%3$s)</small>"
 msgstr ""
 
-#: inc/image.php:269
+#: inc/image.php:303
 msgid "Media Tags"
 msgstr ""
 
-#: inc/image.php:330
+#: inc/image.php:373
 msgid "&mdash; Select a Term &mdash;"
 msgstr ""
 
-#: inc/image.php:340
+#: inc/image.php:383
 msgid "Assign for"
 msgstr ""
 
@@ -470,136 +522,151 @@ msgctxt "Layouts Module: Tab Title"
 msgid "Layouts for %s"
 msgstr ""
 
-#: inc/modulecore.php:107, inc/sidebar.php:610, inc/sidebar.php:628
+#: inc/menu.php:33
+msgctxt "Modules: Menu: Defaults"
+msgid "Primary Navigation"
+msgstr ""
+
+#: inc/menu.php:34
+msgctxt "Modules: Menu: Defaults"
+msgid "Secondary Navigation"
+msgstr ""
+
+#: inc/menu.php:35
+msgctxt "Modules: Menu: Defaults"
+msgid "Tertiary Navigation"
+msgstr ""
+
+#: inc/modulecore.php:198, inc/sidebar.php:720, inc/sidebar.php:741
 msgid "&mdash; Select &mdash;"
 msgstr ""
 
-#: inc/modulecore.php:135
+#: inc/modulecore.php:226
 msgctxt "Module Core"
 msgid "Save Changes"
 msgstr ""
 
-#: inc/modulecore.php:147
+#: inc/modulecore.php:238
 msgctxt "Module Core"
 msgid "Are you sure? This operation can not be undone."
 msgstr ""
 
-#: inc/modulecore.php:368
+#: inc/modulecore.php:458
 msgid "&mdash; Select Page &mdash;"
 msgstr ""
 
-#: inc/modulecore.php:414
+#: inc/modulecore.php:504
 msgid "Error: settings type undefined."
 msgstr ""
 
-#: inc/navigation.php:21
-msgctxt "Post Navigation"
+#: inc/navigation.php:20
+msgctxt "Modules: Navigation: Post Navigation: Previous"
 msgid "<span aria-hidden=\"true\">&larr;</span> Older"
 msgstr ""
 
-#: inc/navigation.php:22
-msgctxt "Post Navigation"
+#: inc/navigation.php:21
+msgctxt "Modules: Navigation: Post Navigation: Next"
 msgid "Newer <span aria-hidden=\"true\">&rarr;</span>"
 msgstr ""
 
 #: inc/navigation.php:26
-msgctxt "Index Navigation"
-msgid "<span aria-hidden=\"true\">&larr;</span> Older"
+msgctxt "Modules: Navigation: Screen Reader Title"
+msgid "Post Navigation"
 msgstr ""
 
-#: inc/navigation.php:27
-msgctxt "Index Navigation"
-msgid "Newer <span aria-hidden=\"true\">&rarr;</span>"
-msgstr ""
-
-#: inc/navigation.php:37
-msgctxt "Navigation Title (Screen Reader Only)"
+#: inc/navigation.php:34
+msgctxt "Modules: Navigation: Screen Reader Title"
 msgid "Posts Navigation"
 msgstr ""
 
-#: inc/navigation.php:113
-msgctxt "Navigation Module: Breadcrumbs"
+#: inc/navigation.php:74
+msgctxt "Modules: Navigation: Pagination: Previous"
+msgid "<span aria-hidden=\"true\">&larr;</span>"
+msgstr ""
+
+#: inc/navigation.php:75
+msgctxt "Modules: Navigation: Pagination: Next"
+msgid "<span aria-hidden=\"true\">&rarr;</span>"
+msgstr ""
+
+#: inc/navigation.php:89
+msgctxt "Modules: Navigation: Screen Reader Title"
+msgid "Navigation"
+msgstr ""
+
+#: inc/navigation.php:151
+msgctxt "Modules: Navigation: Breadcrumbs"
 msgid "(Preview)"
 msgstr ""
 
-#: inc/navigation.php:118
-msgctxt "Navigation Module: Breadcrumbs"
+#: inc/navigation.php:156
+msgctxt "Modules: Navigation: Breadcrumbs"
 msgid "Page <strong>%s</strong> of %s"
 msgstr ""
 
-#: inc/navigation.php:171
-msgctxt "Navigation Module: Breadcrumbs"
-msgid "Site Archives"
-msgstr ""
-
-#: inc/navigation.php:178
-msgctxt "Navigation Module: Breadcrumbs"
-msgid "Not Found"
-msgstr ""
-
-#: inc/navigation.php:182
-msgctxt "Navigation Module: Breadcrumbs"
-msgid "Category Archives for <strong>%s</strong>"
-msgstr ""
-
-#: inc/navigation.php:187
-msgctxt "Navigation Module: Breadcrumbs"
-msgid "Tag Archives for <strong>%s</strong>"
-msgstr ""
-
-#: inc/navigation.php:192
-msgctxt "Navigation Module: Breadcrumbs"
-msgid "People Archives for <strong>%s</strong>"
-msgstr ""
-
-#: inc/navigation.php:197
-msgctxt "Navigation Module: Breadcrumbs"
-msgid "Archives for <strong>%s</strong>"
-msgstr ""
-
-#: inc/navigation.php:206
-msgctxt "Navigation Module: Breadcrumbs"
-msgid "Author Archives for <strong>%s</strong>"
-msgstr ""
-
-#: inc/navigation.php:212
-msgctxt "Navigation Module: Breadcrumbs"
-msgid "Search Results for <strong>%s</strong>"
-msgstr ""
-
-#: inc/navigation.php:217
-msgctxt "Navigation Module: Breadcrumbs"
-msgid "Daily Archives for <strong>%s</strong>"
-msgstr ""
-
-#: inc/navigation.php:222
-msgctxt "Navigation Module: Breadcrumbs"
-msgid "Monthly Archives for <strong>%s</strong>"
-msgstr ""
-
-#: inc/navigation.php:227
-msgctxt "Navigation Module: Breadcrumbs"
-msgid "Yearly Archives for <strong>%s</strong>"
-msgstr ""
-
-#: inc/navigation.php:238
-msgctxt "Navigation Module: Breadcrumbs"
+#: inc/navigation.php:209
+msgctxt "Modules: Navigation: Breadcrumbs"
 msgid "Page <strong>%s</strong>"
 msgstr ""
 
-#: inc/navigation.php:276
-msgctxt "Navigation Module"
-msgid "Page"
+#: inc/navigation.php:269
+msgctxt "Modules: Navigation: Breadcrumbs"
+msgid "Not Found"
 msgstr ""
 
-#: inc/navigation.php:298
-msgctxt "Navigation Module"
-msgid "Newer Posts"
+#: inc/navigation.php:274
+msgctxt "Modules: Navigation: Breadcrumbs"
+msgid "Category Archives for <strong>%s</strong>"
 msgstr ""
 
-#: inc/navigation.php:299
-msgctxt "Navigation Module"
-msgid "Older Posts"
+#: inc/navigation.php:280
+msgctxt "Modules: Navigation: Breadcrumbs"
+msgid "Tag Archives for <strong>%s</strong>"
+msgstr ""
+
+#: inc/navigation.php:286
+msgctxt "Modules: Navigation: Breadcrumbs"
+msgid "People Archives for <strong>%s</strong>"
+msgstr ""
+
+#: inc/navigation.php:292
+msgctxt "Modules: Navigation: Breadcrumbs"
+msgid "Archives for <strong>%s</strong>"
+msgstr ""
+
+#: inc/navigation.php:301
+msgctxt "Modules: Navigation: Breadcrumbs"
+msgid "%s Archives for <strong>%s</strong>"
+msgstr ""
+
+#: inc/navigation.php:315
+msgctxt "Modules: Navigation: Breadcrumbs"
+msgid "Author Archives for <strong>%s</strong>"
+msgstr ""
+
+#: inc/navigation.php:322
+msgctxt "Modules: Navigation: Breadcrumbs"
+msgid "Search Results for <strong>%s</strong>"
+msgstr ""
+
+#: inc/navigation.php:328
+msgctxt "Modules: Navigation: Breadcrumbs"
+msgid "Daily Archives for <strong>%s</strong>"
+msgstr ""
+
+#: inc/navigation.php:334
+msgctxt "Modules: Navigation: Breadcrumbs"
+msgid "Monthly Archives for <strong>%s</strong>"
+msgstr ""
+
+#: inc/navigation.php:340
+msgctxt "Modules: Navigation: Breadcrumbs"
+msgid "Yearly Archives for <strong>%s</strong>"
+msgstr ""
+
+#: inc/navigation.php:345
+msgctxt "Modules: Navigation: Breadcrumbs"
+msgid "Archives"
 msgstr ""
 
 #: inc/options.php:12
@@ -612,219 +679,98 @@ msgctxt "Logo Title"
 msgid "Home"
 msgstr ""
 
-#: inc/options.php:19
-msgctxt "Admin Menu Title"
-msgid "Theme Settings"
-msgstr ""
-
-#: inc/options.php:20
-msgctxt "Admin Settings Page Title"
-msgid "gTheme Settings"
-msgstr ""
-
-#: inc/options.php:43
-msgid "Primary Navigation"
-msgstr ""
-
-#: inc/options.php:44
-msgid "Secondary Navigation"
-msgstr ""
-
-#: inc/options.php:45
-msgid "Tertiary Navigation"
-msgstr ""
-
-#: inc/options.php:51
-msgctxt "Sidebar Titles"
-msgid "Index: Side"
-msgstr ""
-
-#: inc/options.php:52
-msgctxt "Sidebar Titles"
-msgid "Singular: Side"
-msgstr ""
-
-#: inc/options.php:58
-msgctxt "Media Tag Titles"
-msgid "Raw"
-msgstr ""
-
-#: inc/options.php:63
-msgctxt "Media Tag Titles"
-msgid "Big"
-msgstr ""
-
-#: inc/options.php:68
-msgctxt "Media Tag Titles"
-msgid "Single"
-msgstr ""
-
-#: inc/options.php:85
-msgctxt "Options: Page Pre-Text"
-msgid "[ This page is being completed ]"
-msgstr ""
-
-#: inc/options.php:92
+#: inc/options.php:70
 msgctxt "Options: Separator: Default"
 msgid " "
 msgstr ""
 
-#: inc/options.php:93
+#: inc/options.php:71
 msgctxt "Options: Separator: Title"
 msgid " &raquo; "
 msgstr ""
 
-#: inc/options.php:94
+#: inc/options.php:72
 msgctxt "Options: Separator: Nav"
 msgid " &laquo; "
 msgstr ""
 
-#: inc/options.php:95
+#: inc/options.php:73
 msgctxt "Options: Separator: Byline"
 msgid " | "
 msgstr ""
 
-#: inc/options.php:96
+#: inc/options.php:74
 msgctxt "Options: Separator: Term"
 msgid ", "
 msgstr ""
 
-#: inc/options.php:97
+#: inc/options.php:75
 msgctxt "Options: Separator: Feed"
 msgid "; "
 msgstr ""
 
-#: inc/options.php:98
+#: inc/options.php:76
 msgctxt "Options: Separator: Comment Action"
 msgid " | "
 msgstr ""
 
-#: inc/options.php:100
+#: inc/options.php:78
 msgctxt "Options: Text Size Increase"
 msgid "[ A+ ]"
 msgstr ""
 
-#: inc/options.php:101
+#: inc/options.php:79
 msgctxt "Options: Text Size Decrease"
 msgid "[ A- ]"
 msgstr ""
 
-#: inc/options.php:102
+#: inc/options.php:80
 msgctxt "Options: Text Size Sep"
 msgid " / "
 msgstr ""
 
-#: inc/options.php:104
+#: inc/options.php:82
 msgctxt "Options: Text Justify"
 msgid "[ Ju ]"
 msgstr ""
 
-#: inc/options.php:105
+#: inc/options.php:83
 msgctxt "Options: Text Unjustify"
 msgid "[ uJ ]"
 msgstr ""
 
-#: inc/options.php:106
+#: inc/options.php:84
 msgctxt "Options: Text Justify Sep"
 msgid " / "
 msgstr ""
 
-#: inc/options.php:154
+#: inc/options.php:118
 msgid "&copy; All right reserved."
 msgstr ""
 
-#: inc/options.php:167
-msgid "Your comment is awaiting moderation."
-msgstr ""
-
-#: inc/options.php:177
-msgctxt "System Tags Defaults"
-msgid "Dashboard"
-msgstr ""
-
-#: inc/options.php:178
-msgctxt "System Tags Defaults"
-msgid "Featured"
-msgstr ""
-
-#: inc/options.php:179
-msgctxt "System Tags Defaults"
-msgid "Latest"
-msgstr ""
-
-#: inc/options.php:180
-msgctxt "System Tags Defaults"
-msgid "Tile"
-msgstr ""
-
-#: inc/options.php:181
-msgctxt "System Tags Defaults"
-msgid "Full Article"
-msgstr ""
-
-#: inc/options.php:182
-msgctxt "System Tags Defaults"
-msgid "Poster Entry"
-msgstr ""
-
-#: inc/options.php:183
-msgctxt "System Tags Defaults"
-msgid "Not on FrontPage"
-msgstr ""
-
-#: inc/options.php:184
-msgctxt "System Tags Defaults"
-msgid "Not on Feed"
-msgstr ""
-
-#: inc/options.php:188
-msgctxt "Editor Default Content"
-msgid "[content not available yet]"
-msgstr ""
-
-#: inc/options.php:193
-msgctxt "Editor Custom Class"
-msgid "Blockquote"
-msgstr ""
-
-#: inc/options.php:198
-msgctxt "Editor Custom Class"
-msgid "Unordered List"
-msgstr ""
-
-#: inc/options.php:203
-msgctxt "Editor Custom Class"
-msgid "Ordered List"
-msgstr ""
-
-#: inc/options.php:208
-msgctxt "Editor Custom Class"
-msgid "Note"
-msgstr ""
-
-#: inc/options.php:213
-msgctxt "Editor Custom Class"
-msgid "Source"
-msgstr ""
-
-#: inc/options.php:260
-msgctxt "Banner Groups"
-msgid "First"
-msgstr ""
-
-#: inc/options.php:261
-msgctxt "Banner Groups"
-msgid "Second"
-msgstr ""
-
-#: inc/options.php:271
+#: inc/options.php:197
 msgctxt "Options: Defaults: Date Format: Byline"
 msgid "j M Y"
 msgstr ""
 
-#: inc/options.php:272
+#: inc/options.php:198
 msgctxt "Options: Defaults: Date Format: Day"
 msgid "j M Y"
+msgstr ""
+
+#: inc/options.php:217
+msgctxt "Media Tag Titles"
+msgid "Raw"
+msgstr ""
+
+#: inc/options.php:228
+msgctxt "Media Tag Titles"
+msgid "Big"
+msgstr ""
+
+#: inc/options.php:239
+msgctxt "Media Tag Titles"
+msgid "Single"
 msgstr ""
 
 #: inc/pages.php:23
@@ -937,6 +883,11 @@ msgctxt "Pages Module"
 msgid "Create Default Menus"
 msgstr ""
 
+#: inc/pages.php:197
+msgctxt "Options: Page Pre-Text"
+msgid "[ This page is being completed ]"
+msgstr ""
+
 #: inc/search.php:37, inc/search.php:42
 msgctxt "label"
 msgid "Search for:"
@@ -967,254 +918,334 @@ msgctxt "buddypress: submit button"
 msgid "Search"
 msgstr ""
 
-#: inc/settings.php:66
+#: inc/settings.php:47, inc/settings.php:73, inc/settings.php:234
+msgctxt "Admin Settings Page Title"
+msgid "gTheme Settings"
+msgstr ""
+
+#: inc/settings.php:48, inc/settings.php:231
+msgctxt "Admin Menu Title"
+msgid "Theme Settings"
+msgstr ""
+
+#: inc/settings.php:63
 msgctxt "Modules: Menu Name"
 msgid "Overview"
 msgstr ""
 
-#: inc/settings.php:67
+#: inc/settings.php:64
 msgctxt "Modules: Menu Name"
 msgid "General"
 msgstr ""
 
-#: inc/settings.php:71
+#: inc/settings.php:68
 msgctxt "Settings Module"
 msgid "Settings not updated."
 msgstr ""
 
-#: inc/settings.php:72
+#: inc/settings.php:69
 msgctxt "Settings Module"
 msgid "Settings updated."
 msgstr ""
 
-#: inc/settings.php:113
+#: inc/settings.php:111
 msgctxt "Settings Module"
 msgid "General Settings"
 msgstr ""
 
-#: inc/settings.php:117
+#: inc/settings.php:115
 msgctxt "Settings Module"
 msgid "Site User"
 msgstr ""
 
-#: inc/settings.php:122
+#: inc/settings.php:120
 msgctxt "Settings Module"
 msgid "Site default user. For hiding the editoris!"
 msgstr ""
 
-#: inc/settings.php:126
+#: inc/settings.php:124
 msgctxt "Settings Module"
 msgid "FrontPage Title"
 msgstr ""
 
-#: inc/settings.php:130
+#: inc/settings.php:128
 msgctxt "Settings Module"
 msgid "The title used on frontpage. Blank to use the build-in text."
 msgstr ""
 
-#: inc/settings.php:134
+#: inc/settings.php:132
 msgctxt "Settings Module"
 msgid "FrontPage Description"
 msgstr ""
 
-#: inc/settings.php:138
+#: inc/settings.php:136
 msgctxt "Settings Module"
 msgid "The description meta tag used on frontpage. Blank to use the build-in text."
 msgstr ""
 
-#: inc/settings.php:142
+#: inc/settings.php:140
 msgctxt "Settings Module"
 msgid "Extra Body Class"
 msgstr ""
 
-#: inc/settings.php:146
+#: inc/settings.php:144
 msgctxt "Settings Module"
-msgid "Additional class to append to the body classess. Seperate with single space"
+msgid "Additional classes to append to the html body tag. Seperate with space."
 msgstr ""
 
-#: inc/settings.php:152
+#: inc/settings.php:150
 msgctxt "Settings Module"
 msgid "Legend"
 msgstr ""
 
-#: inc/settings.php:215
+#: inc/settings.php:211
 msgctxt "Settings Module"
 msgid "Flush"
 msgstr ""
 
-#: inc/settings.php:223
+#: inc/settings.php:219
 msgctxt "Settings Module"
 msgid "All Posts"
 msgstr ""
 
-#: inc/shortcodes.php:295
+#: inc/settings.php:246
+msgctxt "Modules: Settings"
+msgid "Theme Template Base"
+msgstr ""
+
+#: inc/shortcodes.php:294
 msgctxt "Panel Shortcode Title"
 msgid "Untitled"
 msgstr ""
 
-#: inc/shortcodes.php:370
+#: inc/shortcodes.php:369
 msgctxt "Tab Shortcode Title"
 msgid "Untitled"
 msgstr ""
 
-#: inc/sidebar.php:419
+#: inc/sidebar.php:25
+msgctxt "Modules: Sidebar: Defaults"
+msgid "Index: Side"
+msgstr ""
+
+#: inc/sidebar.php:26
+msgctxt "Modules: Sidebar: Defaults"
+msgid "Singular: Side"
+msgstr ""
+
+#: inc/sidebar.php:459
+msgctxt "Widget: Setting"
+msgid "Custom HTML:"
+msgstr ""
+
+#: inc/sidebar.php:478
 msgctxt "Widget: Setting"
 msgid "Number of posts to show:"
 msgstr ""
 
-#: inc/sidebar.php:435
+#: inc/sidebar.php:506
 msgctxt "Widget: Setting"
 msgid "Context:"
 msgstr ""
 
-#: inc/sidebar.php:451
+#: inc/sidebar.php:522
 msgctxt "Widget: Setting"
 msgid "CSS Class:"
 msgstr ""
 
-#: inc/sidebar.php:473
+#: inc/sidebar.php:544
 msgctxt "Widget: Setting"
 msgid "PostType:"
 msgstr ""
 
-#: inc/sidebar.php:496
+#: inc/sidebar.php:567
 msgctxt "Widget: Setting"
 msgid "Taxonomy:"
 msgstr ""
 
-#: inc/sidebar.php:511
+#: inc/sidebar.php:582
 msgctxt "Widget: Setting"
 msgid "Title:"
 msgstr ""
 
-#: inc/sidebar.php:527
+#: inc/sidebar.php:598
 msgctxt "Widget: Setting"
 msgid "Title Link:"
 msgstr ""
 
-#: inc/sidebar.php:542
+#: inc/sidebar.php:604
+msgctxt "Widget: Setting"
+msgid "Custom Link:"
+msgstr ""
+
+#: inc/sidebar.php:623
+msgctxt "Widget: Setting"
+msgid "Custom Code:"
+msgstr ""
+
+#: inc/sidebar.php:651
 msgctxt "Widget: Setting"
 msgid "Avatar Size:"
 msgstr ""
 
-#: inc/sidebar.php:572
+#: inc/sidebar.php:681
 msgctxt "Widget: Setting"
 msgid "Image Size:"
 msgstr ""
 
-#: inc/sidebar.php:575
+#: inc/sidebar.php:684
 msgctxt "Widget: Setting"
 msgid "No Image Size Available!"
 msgstr ""
 
-#: inc/sidebar.php:582
+#: inc/sidebar.php:691
 msgctxt "Widget: Setting"
 msgid "Checked"
 msgstr ""
 
-#: inc/sidebar.php:602
+#: inc/sidebar.php:712
 msgctxt "Widget: Setting"
 msgid "Page:"
 msgstr ""
 
-#: inc/sidebar.php:644
+#: inc/sidebar.php:757
 msgctxt "Widget: Setting"
 msgid "Term:"
 msgstr ""
 
-#: inc/sidebar.php:656
+#: inc/sidebar.php:769
 msgctxt "Widget: Title"
 msgid "Theme: Term Posts"
 msgstr ""
 
-#: inc/sidebar.php:657
+#: inc/sidebar.php:770
 msgctxt "Widget: Description"
 msgid "Displays the latest posts from a single term."
 msgstr ""
 
-#: inc/sidebar.php:762
+#: inc/sidebar.php:879
 msgctxt "Widget: Title"
 msgid "Theme: Related Posts"
 msgstr ""
 
-#: inc/sidebar.php:763
+#: inc/sidebar.php:880
 msgctxt "Widget: Description"
 msgid "Displays the related posts based on terms in a taxonomy."
 msgstr ""
 
-#: inc/sidebar.php:873
+#: inc/sidebar.php:994
 msgctxt "Widget: Title"
 msgid "Theme: Recent Posts"
 msgstr ""
 
-#: inc/sidebar.php:874
+#: inc/sidebar.php:995
 msgctxt "Widget: Description"
 msgid "Displays the most recent posts."
 msgstr ""
 
-#: inc/sidebar.php:960
+#: inc/sidebar.php:1085
 msgctxt "Widget: Title"
 msgid "Theme: Recent Comments"
 msgstr ""
 
-#: inc/sidebar.php:961
+#: inc/sidebar.php:1086
 msgctxt "Widget: Description"
 msgid "Displays the most recent comments."
 msgstr ""
 
-#: inc/sidebar.php:1056
+#: inc/sidebar.php:1185
 msgctxt "Widget: Title"
 msgid "Theme: Search"
 msgstr ""
 
-#: inc/sidebar.php:1057
+#: inc/sidebar.php:1186
 msgctxt "Widget: Description"
 msgid "Displays search form."
 msgstr ""
 
-#: inc/sidebar.php:1088
+#: inc/sidebar.php:1221
 msgctxt "Widget: Title"
 msgid "Theme: Template Part"
 msgstr ""
 
-#: inc/sidebar.php:1089
+#: inc/sidebar.php:1222
 msgctxt "Widget: Description"
 msgid "Include selected template part into sidebars."
 msgstr ""
 
-#: inc/sidebar.php:1120
+#: inc/sidebar.php:1257
 msgctxt "Widget: Title"
 msgid "Theme: Children"
 msgstr ""
 
-#: inc/sidebar.php:1121
+#: inc/sidebar.php:1258
 msgctxt "Widget: Description"
 msgid "Displays the list of current post's children."
 msgstr ""
 
-#: inc/sidebar.php:1156
+#: inc/sidebar.php:1297
 msgctxt "Widget: Title"
 msgid "Theme: Siblings"
 msgstr ""
 
-#: inc/sidebar.php:1157
+#: inc/sidebar.php:1298
 msgctxt "Widget: Description"
 msgid "Displays the list of current post's siblings."
 msgstr ""
 
-#: inc/sidebar.php:1192
+#: inc/sidebar.php:1337
 msgctxt "Widget: Title"
 msgid "Theme: The Term"
 msgstr ""
 
-#: inc/sidebar.php:1193
+#: inc/sidebar.php:1338
 msgctxt "Widget: Description"
 msgid "Displays the current term info based on the query."
 msgstr ""
 
-#: inc/sidebar.php:1241
+#: inc/sidebar.php:1394
+msgctxt "Widget: Setting"
+msgid "Display Meta Image"
+msgstr ""
+
+#: inc/sidebar.php:1395
 msgctxt "Widget: Setting"
 msgid "Hide if no Description"
+msgstr ""
+
+#: inc/sidebar.php:1409
+msgctxt "Widget: Title"
+msgid "Theme: Custom HTML"
+msgstr ""
+
+#: inc/sidebar.php:1410
+msgctxt "Widget: Description"
+msgid "Displays arbitrary HTML code with support for shortcodes and embeds."
+msgstr ""
+
+#: inc/sidebar.php:1487
+msgctxt "Widget: Setting"
+msgid "Process Embeds"
+msgstr ""
+
+#: inc/sidebar.php:1488
+msgctxt "Widget: Setting"
+msgid "Process Shortcodes"
+msgstr ""
+
+#: inc/sidebar.php:1489
+msgctxt "Widget: Setting"
+msgid "Process Filters"
+msgstr ""
+
+#: inc/sidebar.php:1490
+msgctxt "Widget: Setting"
+msgid "Process Filters (Legacy)"
+msgstr ""
+
+#: inc/sidebar.php:1491
+msgctxt "Widget: Setting"
+msgid "Automatic Paragraphs"
 msgstr ""
 
 #: inc/terms.php:44
@@ -1237,7 +1268,7 @@ msgctxt "System Tag Tax Labels: Name"
 msgid "System Tags"
 msgstr ""
 
-#: inc/terms.php:188, inc/terms.php:225
+#: inc/terms.php:188, inc/terms.php:241
 msgctxt "System Tag Tax Labels: Menu Name"
 msgid "System Tags"
 msgstr ""
@@ -1312,31 +1343,76 @@ msgctxt "System Tag Tax Labels"
 msgid "System Tags list"
 msgstr ""
 
-#: inc/terms.php:267
+#: inc/terms.php:209
+msgctxt "System Tags Defaults"
+msgid "Dashboard"
+msgstr ""
+
+#: inc/terms.php:210
+msgctxt "System Tags Defaults"
+msgid "Featured"
+msgstr ""
+
+#: inc/terms.php:211
+msgctxt "System Tags Defaults"
+msgid "Latest"
+msgstr ""
+
+#: inc/terms.php:212
+msgctxt "System Tags Defaults"
+msgid "Tile"
+msgstr ""
+
+#: inc/terms.php:213
+msgctxt "System Tags Defaults"
+msgid "Full Article"
+msgstr ""
+
+#: inc/terms.php:214
+msgctxt "System Tags Defaults"
+msgid "Poster Entry"
+msgstr ""
+
+#: inc/terms.php:215
+msgctxt "System Tags Defaults"
+msgid "Hide Single Image"
+msgstr ""
+
+#: inc/terms.php:216
+msgctxt "System Tags Defaults"
+msgid "Not on FrontPage"
+msgstr ""
+
+#: inc/terms.php:217
+msgctxt "System Tags Defaults"
+msgid "Not on Feed"
+msgstr ""
+
+#: inc/terms.php:283
 msgctxt "Terms Module"
 msgid "Install Default System Tags"
 msgstr ""
 
-#: inc/terms.php:273
+#: inc/terms.php:289
 msgctxt "Terms Module"
 msgid "Error while adding default system tags."
 msgstr ""
 
-#: inc/terms.php:276
+#: inc/terms.php:292
 msgctxt "Terms Module"
 msgid "Default system tags added."
 msgstr ""
 
-#: inc/terms.php:289
+#: inc/terms.php:305
 msgctxt "Terms Module"
 msgid "Empty Before Last Month"
 msgstr ""
 
-#: inc/terms.php:347
+#: inc/terms.php:363
 msgid "Connected Posts"
 msgstr ""
 
-#: inc/utilities.php:242
+#: inc/utilities.php:243
 msgctxt "Alert button (screen reader only)"
 msgid "Close"
 msgstr ""
