@@ -1,3 +1,35 @@
+### 3.16.0
+* root: new generic template parts
+* root: header/footer for signup/activate pages
+* root/content: correct context for singular wraps
+* module/core: more default core methods
+* module/core: load modules on activate page
+* module/banners: moved tab html into module class
+* module/content: deprecate use of genericons
+* module/content: method renamed to avoid confilict
+* module/comments: method renamed to avoid confilict
+* module/counts: using defaults by default!
+* module/editorial: :new: wrapper for like button
+* module/editorial: reflist upgrade
+* module/filters: cleanup excerpt more
+* module/filters: skip empty excerpt link
+* module/filter: handling multiple classes on body
+* module/image: disable post thumbnail fallback
+* module/image: get image revised
+* module/image: more control over tags and ui
+* module/image: check system tags for `hide-image-single`
+* module/menu: caching menus
+* module/navigation: almost rewrite!
+* module/pages: using defaults by default!
+* module/settings: correct current url for flush
+* module/social: delay open graph tags
+* module/shortcodes: gallery scripts revised
+* module/shortcodes: extra arg for post gallery filter
+* module/sidebar: :new: widget: custom html
+* module/sidebar: more form helpers
+* module/shortcodes: using minified gallery script
+* module/wrap: static renamed to avoid confilict
+
 ### 3.15.1
 * module/options: :wrench: de-centering options
 
