@@ -165,12 +165,12 @@ class gThemeSideBar extends gThemeModuleCore
 
 		// Don't try to set a widget if it hasn't been registered
 		if ( ! self::widget_exists( $id_base ) ) {
-			return new WP_Error( 'widget_does_not_exist', 'Widget does not exist' );
+			return new \WP_Error( 'widget_does_not_exist', 'Widget does not exist' );
 		}
 
 		$sidebars = wp_get_sidebars_widgets();
-		if ( ! isset( $sidebars[ $sidebar_id ] ) ) {
-			return new WP_Error( 'sidebar_does_not_exist', 'Sidebar does not exist' );
+		if ( ! isset( $sidebars[$sidebar_id] ) ) {
+			return new \WP_Error( 'sidebar_does_not_exist', 'Sidebar does not exist' );
 		}
 
 		$sidebar = (array) $sidebars[ $sidebar_id ];
@@ -285,24 +285,24 @@ class gThemeWidget extends WP_Widget
 		if ( ! $args['name'] )
 			return FALSE;
 
-		parent::__construct( self::BASE.'_'.$args['name'], $args['title'], array(
+		parent::__construct( static::BASE.'_'.$args['name'], $args['title'], array(
 			'description' => $args['desc'],
-			'classname'   => '{GTHEME_WIDGET_CLASSNAME}'.'widget-'.self::BASE.'-'.$args['class'],
+			'classname'   => '{GTHEME_WIDGET_CLASSNAME}'.'widget-'.static::BASE.'-'.$args['class'],
 		), $args['control'] );
 
-		$this->alt_option_name = 'widget_'.self::BASE.'_'.$args['name'];
+		$this->alt_option_name = 'widget_'.static::BASE.'_'.$args['name'];
 
 		foreach ( $args['flush'] as $action )
 			add_action( $action, array( $this, 'flush_widget_cache' ) );
 	}
 
-	protected function setup()
+	public static function setup()
 	{
 		return array(
-			'name' => '',
+			'name'  => '',
 			'class' => '',
 			'title' => '',
-			'desc' => '',
+			'desc'  => '',
 			'flush' => array(
 				'save_post',
 				'deleted_post',
@@ -380,7 +380,7 @@ class gThemeWidget extends WP_Widget
 	public function before_widget( $args, $instance, $echo = TRUE )
 	{
 		$classes = isset( $instance['context'] ) && $instance['context'] ? 'context-'.sanitize_html_class( $instance['context'], 'general' ).' ' : '';
-		$classes .= isset( $instance['class'] ) && $instance['class'] ? $instance['class'].' ' : '';
+		$classes.= isset( $instance['class'] ) && $instance['class'] ? $instance['class'].' ' : '';
 
 		$html = preg_replace( '%{GTHEME_WIDGET_CLASSNAME}%', $classes, $args['before_widget'] );
 
@@ -430,7 +430,7 @@ class gThemeWidget extends WP_Widget
 
 	public function before_form( $instance, $echo = TRUE )
 	{
-		$classes = [ self::BASE.'-admin-wrap-widgetform' ];
+		$classes = [ static::BASE.'-admin-wrap-widgetform' ];
 
 		if ( self::MODULE )
 			$classes[] = '-'.self::MODULE;
@@ -624,11 +624,29 @@ class gThemeWidget extends WP_Widget
 
 		$html = gThemeHTML::tag( 'input', array(
 			'type'  => 'text',
-			'class' => [ 'widefat', 'code' ],
+			'class' => array( 'widefat', 'code' ),
 			'name'  => $this->get_field_name( $field ),
 			'id'    => $this->get_field_id( $field ),
 			'value' => isset( $instance[$field] ) ? $instance[$field] : $default,
 			'dir'   => 'ltr',
+		) );
+
+		echo '<p>'.gThemeHTML::tag( 'label', array(
+			'for' => $this->get_field_id( $field ),
+		), $label.$html ).'</p>';
+	}
+
+	public function form_custom_empty( $instance, $default = '', $field = 'empty', $label = NULL )
+	{
+		if ( is_null( $label ) )
+			$label = _x( 'Empty Message:', 'Widget: Setting', GTHEME_TEXTDOMAIN );
+
+		$html = gThemeHTML::tag( 'input', array(
+			'type'  => 'text',
+			'class' => array( 'widefat', 'code' ),
+			'name'  => $this->get_field_name( $field ),
+			'id'    => $this->get_field_id( $field ),
+			'value' => isset( $instance[$field] ) ? $instance[$field] : $default,
 		) );
 
 		echo '<p>'.gThemeHTML::tag( 'label', array(
@@ -761,7 +779,7 @@ class gThemeWidget extends WP_Widget
 class gThemeWidgetTermPosts extends gThemeWidget
 {
 
-	protected function setup()
+	public static function setup()
 	{
 		return array(
 			'name'  => 'term_posts',
@@ -871,7 +889,7 @@ class gThemeWidgetTermPosts extends gThemeWidget
 class gThemeWidgetRelatedPosts extends gThemeWidget
 {
 
-	protected function setup()
+	public static function setup()
 	{
 		return array(
 			'name'  => 'related_posts',
@@ -986,7 +1004,7 @@ class gThemeWidgetRelatedPosts extends gThemeWidget
 class gThemeWidgetRecentPosts extends gThemeWidget
 {
 
-	protected function setup()
+	public static function setup()
 	{
 		return array(
 			'name'  => 'recent_posts',
@@ -1077,7 +1095,7 @@ class gThemeWidgetRecentPosts extends gThemeWidget
 class gThemeWidgetRecentComments extends gThemeWidget
 {
 
-	protected function setup()
+	public static function setup()
 	{
 		return array(
 			'name'  => 'recent_comments',
@@ -1177,7 +1195,7 @@ class gThemeWidgetRecentComments extends gThemeWidget
 class gThemeWidgetSearch extends gThemeWidget
 {
 
-	protected function setup()
+	public static function setup()
 	{
 		return array(
 			'name'  => 'search',
@@ -1213,7 +1231,7 @@ class gThemeWidgetSearch extends gThemeWidget
 class gThemeWidgetTemplatePart extends gThemeWidget
 {
 
-	protected function setup()
+	public static function setup()
 	{
 		return array(
 			'name'  => 'template_part',
@@ -1249,7 +1267,7 @@ class gThemeWidgetTemplatePart extends gThemeWidget
 class gThemeWidgetChildren extends gThemeWidget
 {
 
-	protected function setup()
+	public static function setup()
 	{
 		return array(
 			'name'  => 'children',
@@ -1289,7 +1307,7 @@ class gThemeWidgetChildren extends gThemeWidget
 class gThemeWidgetSiblings extends gThemeWidget
 {
 
-	protected function setup()
+	public static function setup()
 	{
 		return array(
 			'name'  => 'siblings',
@@ -1329,7 +1347,7 @@ class gThemeWidgetSiblings extends gThemeWidget
 class gThemeWidgetTheTerm extends gThemeWidget
 {
 
-	protected function setup()
+	public static function setup()
 	{
 		return array(
 			'name'  => 'the_term',
@@ -1401,7 +1419,7 @@ class gThemeWidgetTheTerm extends gThemeWidget
 class gThemeWidgetCustomHTML extends gThemeWidget
 {
 
-	protected function setup()
+	public static function setup()
 	{
 		return array(
 			'name'  => 'custom_html',
