@@ -111,6 +111,16 @@ class gThemeSettings extends gThemeModuleCore
 			echo '<h3>'._x( 'General Settings', 'Settings Module', GTHEME_TEXTDOMAIN ).'</h3>';
 			echo '<table class="form-table">';
 
+			if ( $theme_groups = gThemeOptions::info( 'theme_groups', FALSE ) )
+				$this->do_settings_field( array(
+					'title'   => _x( 'Theme Group', 'Settings Module', GTHEME_TEXTDOMAIN ),
+					'type'    => 'select',
+					'field'   => 'theme_group',
+					'values'  => $theme_groups,
+					'default' => ( isset( $options['theme_group'] ) ? $options['theme_group'] : $defaults['theme_group'] ),
+					'desc'    => _x( 'Current site\'s theme group.', 'Settings Module', GTHEME_TEXTDOMAIN ),
+				), TRUE );
+
 			$this->do_settings_field( array(
 				'title'   => _x( 'Site User', 'Settings Module', GTHEME_TEXTDOMAIN ),
 				'type'    => 'select',
@@ -185,6 +195,7 @@ class gThemeSettings extends gThemeModuleCore
 	public static function defaults()
 	{
 		return array(
+			'theme_group'      => 'main',
 			'default_user'     => 0,
 			'frontpage_title'  => '',
 			'frontpage_desc'   => '',

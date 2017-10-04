@@ -36,6 +36,8 @@ class gThemeOptions extends gThemeModuleCore
 				'zoom'                      => TRUE,
 			),
 
+			'theme_groups' => FALSE, // array( 'main' => 'Main' ),
+
 			'module_args' => array(),
 
 			// NAVIGATION & MENUS
@@ -177,7 +179,6 @@ class gThemeOptions extends gThemeModuleCore
 			'default_editor'       => 'html', // set default editor of post edit screen to html for each user // needs module arg // Either 'tinymce', or 'html', or 'test'
 
 			'additional_body_class' => FALSE, // body class just in case!
-			'child_group_class'     => FALSE, // body class for goruping the child theme on a network!
 			'css_font_stack'        => array( // list of font-faces to check after page load via FontDetect
 				'Arial',
 				'Tahoma',
@@ -382,6 +383,14 @@ class gThemeOptions extends gThemeModuleCore
 			return $gtheme_info[$info];
 
 		return $default;
+	}
+
+	public static function getGroup( $fallback = 'main' )
+	{
+		if ( $group = self::getOption( 'theme_group', FALSE ) )
+			return $group;
+
+		return $fallback;
 	}
 
 	// FIXME: DEPRECATED: use gThemeCounts::get()

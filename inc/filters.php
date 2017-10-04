@@ -147,14 +147,13 @@ class gThemeFilters extends gThemeModuleCore
 		if ( $gtheme_info['additional_body_class'] )
 			$classes[] = $gtheme_info['additional_body_class'];
 
-		if ( $gtheme_info['child_group_class'] )
-			$classes[] = $gtheme_info['child_group_class'];
-
-		if ( gThemeOptions::info( 'bootstrap_navbar_fixed', FALSE ) )
-			$classes[] = 'navbar-fixed';
+		$classes[] = 'theme-group-'.gThemeOptions::getGroup();
 
 		if ( $extra = gThemeOptions::getOption( 'body_class_extra', FALSE ) )
 			$classes = array_merge( $classes, array_map( 'sanitize_html_class', explode( ' ', $extra ) ) );
+
+		if ( gThemeOptions::info( 'bootstrap_navbar_fixed', FALSE ) )
+			$classes[] = 'navbar-fixed';
 
 		if ( ! empty( $pagenow ) && 'index.php' !== $pagenow )
 			$classes[] = sanitize_html_class( 'pagenow-'.str_ireplace( '.php', '', $pagenow ) );
