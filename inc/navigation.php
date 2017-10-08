@@ -20,7 +20,7 @@ class gThemeNavigation extends gThemeModuleCore
 		$prev_text = _x( '<span aria-hidden="true">&larr;</span> Older', 'Modules: Navigation: Post Navigation: Previous', GTHEME_TEXTDOMAIN );
 		$next_text = _x( 'Newer <span aria-hidden="true">&rarr;</span>', 'Modules: Navigation: Post Navigation: Next', GTHEME_TEXTDOMAIN );
 
-		if ( is_single() ) {
+		if ( is_singular() ) {
 
 			$classes[] = 'post-navigation';
 			$title = _x( 'Post Navigation', 'Modules: Navigation: Screen Reader Title', GTHEME_TEXTDOMAIN );
