@@ -45,7 +45,7 @@ class gThemeEditor extends gThemeModuleCore
 	public function mce_css( $url )
 	{
 		if ( ! empty( $url ) )
-			$url .= ',';
+			$url.= ',';
 
 		return $url.self::style_url();
 	}

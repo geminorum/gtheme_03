@@ -10,7 +10,7 @@ class gThemeOptions extends gThemeModuleCore
 		$defaults = array(
 			'name'      => 'gtheme',
 			'title'     => _x( 'gTheme', 'Theme Title', GTHEME_TEXTDOMAIN ),
-			'sub_title' => FALSE, //'gTheme Child',
+			'sub_title' => FALSE, // 'gTheme Child',
 
 			'blog_name'  => $blog_name,
 			'logo_title' => _x( 'Home', 'Logo Title', GTHEME_TEXTDOMAIN ),
@@ -179,10 +179,9 @@ class gThemeOptions extends gThemeModuleCore
 			'default_editor'       => 'html', // set default editor of post edit screen to html for each user // needs module arg // Either 'tinymce', or 'html', or 'test'
 
 			'additional_body_class' => FALSE, // body class just in case!
-			'css_font_stack'        => array( // list of font-faces to check after page load via FontDetect
-				'Arial',
-				'Tahoma',
-			),
+
+			// list of font-faces to check after page load via FontDetect
+			// 'css_font_stack' => array( 'Arial', 'Tahoma' ),
 
 			// BANNERS API
 			// 'banners_legend' => FALSE, // html before admin banners page

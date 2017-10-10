@@ -34,6 +34,7 @@ class gThemeBootstrap extends gThemeModuleCore
 		echo '</div>';
 	}
 
+	// FIXME: add cache / problem with yamm
 	public static function navbarNav( $location = 'primary', $wrap = 'navbar', $class = '' )
 	{
 		$menu = wp_nav_menu( array(
@@ -77,7 +78,7 @@ class gThemeBootstrap_Walker_NavBar extends Walker_Nav_Menu
 	public function start_lvl( &$output, $depth = 0, $args = array() )
 	{
 		$indent = str_repeat( "\t", $depth );
-		$output .= "\n$indent<ul role=\"menu\" class=\" dropdown-menu\">\n";
+		$output.= "\n$indent<ul role=\"menu\" class=\" dropdown-menu\">\n";
 	}
 
 	public function start_el( &$output, $item, $depth = 0, $args = array(), $id = 0 )
@@ -86,74 +87,70 @@ class gThemeBootstrap_Walker_NavBar extends Walker_Nav_Menu
 
 		// sep on dropdown
 		if ( 0 == strcasecmp( $item->xfn, 'divider' ) ) {
-			$output .= $indent.'<li role="separator" class="divider">';
+			$output.= $indent.'<li role="separator" class="divider">';
 
-		} else if ( 1 === $depth && 0 == strcasecmp( $item->xfn, 'header' ) ) {
-			$output .= $indent.'<li role="presentation" class="dropdown-header">'.esc_attr( $item->title );
+		} else if ( 1 === $depth && 0 === strcasecmp( $item->xfn, 'header' ) ) {
+			$output.= $indent.'<li role="presentation" class="dropdown-header">'.esc_attr( $item->title );
 
-		} else if ( 0 == strcasecmp( $item->xfn, 'disabled' ) ) {
-			$output .= $indent.'<li role="presentation" class="disabled"><a href="#">'.esc_attr( $item->title ).'</a>';
+		} else if ( 0 === strcasecmp( $item->xfn, 'disabled' ) ) {
+			$output.= $indent.'<li role="presentation" class="disabled"><a href="#">'.esc_attr( $item->title ).'</a>';
 
-		} else if ( 0 === $depth && 0 == strcasecmp( $item->xfn, 'yamm' ) ) {
+		} else if ( 0 === $depth && 0 === strcasecmp( $item->xfn, 'yamm' ) ) {
 
 			// https://github.com/geedmo/yamm3
 			// CAUTION: #navbar must have .yamm
-			$output .= $indent.'<li class="dropdown yamm-fw '
+			$output.= $indent.'<li class="dropdown yamm-fw '
 					.( empty( $item->classes ) ? '' : esc_attr( join( ' ', (array) $item->classes ) ) ).'">'
-					.'<a href="#" class="dropdown-toggle" data-toggle="dropdown">'.esc_attr( $item->title ).'</a>'
+					.'<a href="'.esc_url( $item->url ).'" class="dropdown-toggle" data-toggle="dropdown">'.esc_attr( $item->title ).'</a>'
 					.'<ul class="dropdown-menu"><li>'
 					.'<div class="yamm-content">';
 
 			ob_start();
 				get_template_part( 'menu', esc_attr( $item->attr_title ) );
-			$output .= ob_get_clean();
+			$output.= ob_get_clean();
 
-			$output .= '</div></li></ul>';
+			$output.= '</div></li></ul>';
 
 		} else {
 
-			$class_names = $value = '';
+			$class = $value = $attributes = '';
 
 			$classes = empty( $item->classes ) ? array() : (array) $item->classes;
 			// $classes[] = 'menu-item-'.$item->ID;
 
-			$class_names = join( ' ', apply_filters( 'nav_menu_css_class', array_filter( $classes ), $item, $args, $depth ) );
+			$class = join( ' ', apply_filters( 'nav_menu_css_class', array_filter( $classes ), $item, $args, $depth ) );
 
 			if ( $args->has_children )
-				$class_names .= ' dropdown';
+				$class.= ' dropdown';
 
 			if ( in_array( 'current-menu-item', $classes ) )
-				$class_names .= ' active';
+				$class.= ' active';
 
-			$class_names = $class_names ? ' class="' . esc_attr( $class_names ) . '"' : '';
+			$class = $class ? ' class="'.esc_attr( $class ).'"' : '';
 
 			$id = apply_filters( 'nav_menu_item_id', 'menu-item-'.$item->ID, $item, $args, $depth );
-			$id = $id ? ' id="' . esc_attr( $id ) . '"' : '';
+			$id = $id ? ' id="'.esc_attr( $id ).'"' : '';
 
-			$output .= $indent . '<li' . $id . $value . $class_names .'>';
+			$output.= $indent.'<li'.$id.$value.$class.'>';
 
 			$atts = array();
-			$atts['title']  = ! empty( $item->title )	? $item->title	: '';
-			$atts['target'] = ! empty( $item->target )	? $item->target	: '';
-			$atts['rel']    = ! empty( $item->xfn )		? $item->xfn	: '';
+			$atts['title']  = ! empty( $item->title )  ? $item->title  : '';
+			$atts['target'] = ! empty( $item->target ) ? $item->target : '';
+			$atts['rel']    = ! empty( $item->xfn )    ? $item->xfn	   : '';
+			$atts['href']   = ! empty( $item->url )    ? $item->url    : '#';
 
-			// If item has_children add atts to a.
 			if ( $args->has_children && $depth === 0 ) {
-				$atts['href']   		= '#';
-				$atts['data-toggle']	= 'dropdown';
-				$atts['class']			= 'dropdown-toggle';
-				$atts['aria-haspopup']	= 'true';
-			} else {
-				$atts['href'] = ! empty( $item->url ) ? $item->url : '';
+				$atts['data-toggle']   = 'dropdown';
+				$atts['class']         = 'dropdown-toggle';
+				$atts['aria-haspopup'] = 'true';
 			}
 
 			$atts = apply_filters( 'nav_menu_link_attributes', $atts, $item, $args, $depth );
 
-			$attributes = '';
 			foreach ( $atts as $attr => $value ) {
 				if ( ! empty( $value ) ) {
 					$value = ( 'href' === $attr ) ? esc_url( $value ) : esc_attr( $value );
-					$attributes .= ' ' . $attr . '="' . $value . '"';
+					$attributes.= ' '.$attr.'="'.$value.'"';
 				}
 			}
 
@@ -170,15 +167,15 @@ class gThemeBootstrap_Walker_NavBar extends Walker_Nav_Menu
 			 * property is NOT null we apply it as the class name for the glyphicon.
 			 */
 			if ( ! empty( $item->attr_title ) )
-				$item_output .= '<a'. $attributes .'><span class="glyphicon '.esc_attr( $item->attr_title ).'"></span>&nbsp;';
+				$item_output.= '<a'.$attributes.'><span class="glyphicon '.esc_attr( $item->attr_title ).'"></span>&nbsp;';
 			else
-				$item_output .= '<a'. $attributes .'>';
+				$item_output.= '<a'.$attributes.'>';
 
-			$item_output .= $args->link_before.$title.$args->link_after;
-			$item_output .= ( $args->has_children && 0 === $depth ) ? ' <span class="caret"></span></a>' : '</a>';
-			$item_output .= $args->after;
+			$item_output.= $args->link_before.$title.$args->link_after;
+			$item_output.= ( $args->has_children && 0 === $depth ) ? ' <span class="caret"></span></a>' : '</a>';
+			$item_output.= $args->after;
 
-			$output .= apply_filters( 'walker_nav_menu_start_el', $item_output, $item, $depth, $args );
+			$output.= apply_filters( 'walker_nav_menu_start_el', $item_output, $item, $depth, $args );
 		}
 	}
 
@@ -202,7 +199,8 @@ class gThemeBootstrap_Walker_NavBar extends Walker_Nav_Menu
 	 * @param string $output Passed by reference. Used to append additional content.
 	 * @return null Null on failure with no changes to parameters.
 	 */
-	public function display_element( $element, &$children_elements, $max_depth, $depth, $args, &$output ) {
+	public function display_element( $element, &$children_elements, $max_depth, $depth, $args, &$output )
+	{
 		if ( ! $element )
 			return;
 
@@ -226,7 +224,8 @@ class gThemeBootstrap_Walker_NavBar extends Walker_Nav_Menu
 	 * @param array $args passed from the wp_nav_menu function.
 	 *
 	 */
-	public static function fallback( $args ) {
+	public static function fallback( $args )
+	{
 		if ( current_user_can( 'manage_options' ) ) {
 
 			extract( $args );
@@ -234,31 +233,31 @@ class gThemeBootstrap_Walker_NavBar extends Walker_Nav_Menu
 			$fb_output = null;
 
 			if ( $container ) {
-				$fb_output = '<' . $container;
+				$fb_output = '<'.$container;
 
 				if ( $container_id )
-					$fb_output .= ' id="' . $container_id . '"';
+					$fb_output.= ' id="'.$container_id.'"';
 
 				if ( $container_class )
-					$fb_output .= ' class="' . $container_class . '"';
+					$fb_output.= ' class="'.$container_class.'"';
 
-				$fb_output .= '>';
+				$fb_output.= '>';
 			}
 
-			$fb_output .= '<ul';
+			$fb_output.= '<ul';
 
 			if ( $menu_id )
-				$fb_output .= ' id="' . $menu_id . '"';
+				$fb_output.= ' id="'.$menu_id.'"';
 
 			if ( $menu_class )
-				$fb_output .= ' class="' . $menu_class . '"';
+				$fb_output.= ' class="'.$menu_class.'"';
 
-			$fb_output .= '>';
-			$fb_output .= '<li><a href="' . admin_url( 'nav-menus.php' ) . '">Add a menu</a></li>';
-			$fb_output .= '</ul>';
+			$fb_output.= '>';
+			$fb_output.= '<li><a href="'.admin_url( 'nav-menus.php' ).'">Add a menu</a></li>';
+			$fb_output.= '</ul>';
 
 			if ( $container )
-				$fb_output .= '</' . $container . '>';
+				$fb_output.= '</'.$container.'>';
 
 			echo $fb_output;
 		}

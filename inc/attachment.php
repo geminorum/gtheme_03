@@ -97,7 +97,7 @@ class gThemeAttachment extends gThemeModuleCore
 			if ( $html )
 				$html = '<div class="attachment-cover">'.$html.'</div>';
 
-			$html .= wp_audio_shortcode( array_merge( array(
+			$html.= wp_audio_shortcode( array_merge( array(
 				'src' => wp_get_attachment_url( $post->ID ),
 			), $args['extra'] ) );
 

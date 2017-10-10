@@ -156,7 +156,7 @@ class gThemeShortCodes extends gThemeModuleCore
 				$caption = $args['nocaption'];
 			}
 
-			$html .= sprintf( $template,
+			$html.= sprintf( $template,
 				wp_get_attachment_image( $id, $args['size'], false, $attr ),
 				$url,
 				$caption,
@@ -168,7 +168,7 @@ class gThemeShortCodes extends gThemeModuleCore
 		$icons = '<svg style="position: absolute; width: 0; height: 0; overflow: hidden" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><symbol id="icon-magnifier" viewBox="0 0 32 32"><title>magnifier</title><path d="M29.156 29.961l-0.709 0.709c-0.785 0.784-2.055 0.784-2.838 0l-5.676-5.674c-0.656-0.658-0.729-1.644-0.281-2.412l-3.104-3.102c-1.669 1.238-3.728 1.979-5.965 1.979-5.54 0-10.031-4.491-10.031-10.031s4.491-10.032 10.031-10.032c5.541 0 10.031 4.491 10.031 10.032 0 2.579-0.98 4.923-2.58 6.7l3.035 3.035c0.768-0.447 1.754-0.375 2.41 0.283l5.676 5.674c0.784 0.785 0.784 2.056 0.001 2.839zM18.088 11.389c0-4.155-3.369-7.523-7.524-7.523s-7.524 3.367-7.524 7.523 3.368 7.523 7.523 7.523 7.525-3.368 7.525-7.523z"></path></symbol></defs></svg>';
 
 		return '<div class="theme-gallery-wrap -columns"><div class="-gallery-spinner"></div>'.gThemeHTML::tag( 'div', array(
-			'id' => $selector,
+			'id'    => $selector,
 			'class' => array(
 				'-gallery',
 				'-columns-'.$args['columns'],
@@ -190,6 +190,7 @@ class gThemeShortCodes extends gThemeModuleCore
 		), $atts, $tag );
 
 		$id = intval( $args['id'] );
+
 		$posts_args = array(
 			'post_status'    => 'inherit',
 			'post_type'      => 'attachment',
@@ -199,15 +200,21 @@ class gThemeShortCodes extends gThemeModuleCore
 		);
 
 		if ( ! empty( $args['include'] ) ) {
+
 			$attachments = array();
 			$posts_args['include'] = $args['include'];
+
 			foreach ( get_posts( $posts_args ) as $key => $val )
 				$attachments[$val->ID] = $val;
+
 		} else if ( ! empty( $args['exclude'] ) ) {
+
 			$posts_args['post_parent'] = $id;
 			$posts_args['exclude']     = $args['exclude'];
 			$attachments = get_children( $posts_args );
+
 		} else {
+
 			$posts_args['post_parent'] = $id;
 			$attachments = get_children( $posts_args );
 		}
@@ -215,13 +222,16 @@ class gThemeShortCodes extends gThemeModuleCore
 		if ( empty( $attachments ) )
 			return '';
 
-		$attr = '';
 		$selector = $this->selector( 'slider-gallery-' );
+
+		$attr = '';
 		$html = '<div class="theme-gallery-wrap -flex"><div class="flexslider" id="'.$selector.'"><ul class="slides">';
 
 		foreach ( $attachments as $id => $attachment ) {
-			$html .= '<li>'.wp_get_attachment_image( $id, $args['size'], false, $attr );
-			$html .= gThemeAttachment::caption( array(
+
+			$html.= '<li>'.wp_get_attachment_image( $id, $args['size'], false, $attr );
+
+			$html.= gThemeAttachment::caption( array(
 				'before' => '<div class="flex-caption">',
 				'after'  => '</div>',
 				'id'     => $id,
@@ -229,8 +239,9 @@ class gThemeShortCodes extends gThemeModuleCore
 			) ).'</li>';
 		}
 
-		$html .= '</ul></div></div>';
-		$html .= '<script type="text/javascript">
+		$html.= '</ul></div></div>';
+
+		$html.= '<script type="text/javascript">
 /* <![CDATA[ */
 			jQuery(document).ready(function($){
 				$("#'.$selector.'").flexslider({
@@ -273,9 +284,9 @@ class gThemeShortCodes extends gThemeModuleCore
 
 		$this->panel_parent = $args['id'];
 
-		$html  = '<div class="panel-group '.$args['class'].'" id="'.$args['id'].'" role="'.$args['role'].'" aria-multiselectable="true">';
-		$html .= do_shortcode( $content );
-		$html .= '</div>';
+		$html = '<div class="panel-group '.$args['class'].'" id="'.$args['id'].'" role="'.$args['role'].'" aria-multiselectable="true">';
+		$html.= do_shortcode( $content );
+		$html.= '</div>';
 
 		$this->panel_parent = FALSE;
 		$this->panel_group_count++;
@@ -297,12 +308,12 @@ class gThemeShortCodes extends gThemeModuleCore
 			'expanded'  => FALSE,
 		), $atts, $tag );
 
-		$html  = '<div class="panel panel-'.$args['context'].'">';
-		$html .= '<div class="panel-heading" role="tab" id="'.$args['id'].'-wrap">';
-		$html .= '<'.$args['title_tag'].' class="panel-title"><a data-toggle="collapse" data-parent="#'.$args['parent'].'" href="#'.$args['id'].'" aria-expanded="'.( $args['expanded'] ? 'true' : 'false').'" aria-controls="'.$args['id'].'">';
-		$html .= $args['title'].'</a></'.$args['title_tag'].'></div>';
-		$html .= '<div id="'.$args['id'].'" class="panel-collapse collapse'.( $args['expanded'] ? ' in' : '' ).'" role="tabpanel" aria-labelledby="'.$args['id'].'-wrap">';
-		$html .= '<div class="panel-body">'.$content.'</div></div></div>';
+		$html = '<div class="panel panel-'.$args['context'].'">';
+		$html.= '<div class="panel-heading" role="tab" id="'.$args['id'].'-wrap">';
+		$html.= '<'.$args['title_tag'].' class="panel-title"><a data-toggle="collapse" data-parent="#'.$args['parent'].'" href="#'.$args['id'].'" aria-expanded="'.( $args['expanded'] ? 'true' : 'false').'" aria-controls="'.$args['id'].'">';
+		$html.= $args['title'].'</a></'.$args['title_tag'].'></div>';
+		$html.= '<div id="'.$args['id'].'" class="panel-collapse collapse'.( $args['expanded'] ? ' in' : '' ).'" role="tabpanel" aria-labelledby="'.$args['id'].'-wrap">';
+		$html.= '<div class="panel-body">'.$content.'</div></div></div>';
 
 		$this->panel_count++;
 		return $html;
@@ -338,20 +349,20 @@ class gThemeShortCodes extends gThemeModuleCore
 		if ( ! count( $this->tabs_nav ) )
 			return $content;
 
-		$html  = '<div class="'.$args['class'].'" id="'.$args['id'];
-		$html .= '" role="'.$args['role'].'">';
-		$html .= '<ul class="nav nav-tabs" role="tablist">';
+		$html = '<div class="'.$args['class'].'" id="'.$args['id'];
+		$html.= '" role="'.$args['role'].'">';
+		$html.= '<ul class="nav nav-tabs" role="tablist">';
 
 		foreach ( $this->tabs_nav as $id => $title ) {
-			$html .= '<li role="presentation"';
-			$html .= ( $id == $this->tabs_active ? ' class="active"' : '' ).'>';
-			$html .= '<a href="#'.$id.'" aria-controls="'.$id;
-			$html .= '" role="tab" data-toggle="tab">'.$title.'</a></li>';
+			$html.= '<li role="presentation"';
+			$html.= ( $id == $this->tabs_active ? ' class="active"' : '' ).'>';
+			$html.= '<a href="#'.$id.'" aria-controls="'.$id;
+			$html.= '" role="tab" data-toggle="tab">'.$title.'</a></li>';
 		}
 
-		$html .= '</ul><div class="tab-content">';
-		$html .= $tabs;
-		$html .= '</div></div>';
+		$html.= '</ul><div class="tab-content">';
+		$html.= $tabs;
+		$html.= '</div></div>';
 
 		$this->tabs_nav = array();
 		$this->tabs_count++;
@@ -376,9 +387,9 @@ class gThemeShortCodes extends gThemeModuleCore
 
 		$this->tabs_nav[$args['id']] = $args['title'];
 
-		$html  = '<div role="tabpanel" class="tab-pane tab-'.$args['context'];
-		$html .= ( $args['active'] ? ' active' : '' ).'" id="'.$args['id'].'">';
-		$html .= $content.'</div>';
+		$html = '<div role="tabpanel" class="tab-pane tab-'.$args['context'];
+		$html.= ( $args['active'] ? ' active' : '' ).'" id="'.$args['id'].'">';
+		$html.= $content.'</div>';
 
 		return $html;
 	}
@@ -459,7 +470,9 @@ class gThemeShortCodes extends gThemeModuleCore
 			return $content;
 
 		if ( is_null( $args['parent'] ) ) {
+
 			$object = get_queried_object();
+
 			if ( $object && isset( $object->post_parent ) )
 				$args['parent'] = $object->post_parent;
 		}
@@ -521,7 +534,7 @@ class gTheme_Walker_Page extends Walker_Page
 			$page->post_title = sprintf( __( '#%d (no title)' ), $page->ID );
 
 		if ( isset( $args['excerpt'] ) && $args['excerpt'] && ! empty( $page->post_excerpt ) ) {
-			$output .= sprintf(
+			$output.= sprintf(
 				'<a class="%s" href="%s"><h4 class="list-group-item-heading">%s</h4><p class="list-group-item-text">%s</p></a>',
 				$css_classes,
 				get_permalink( $page->ID ),
@@ -530,7 +543,7 @@ class gTheme_Walker_Page extends Walker_Page
 			);
 
 		} else {
-			$output .= sprintf(
+			$output.= sprintf(
 				'<a class="%s" href="%s">%s</a>',
 				$css_classes,
 				get_permalink( $page->ID ),
@@ -547,13 +560,13 @@ class gTheme_Walker_Page extends Walker_Page
 			}
 
 			$date_format = empty( $args['date_format'] ) ? '' : $args['date_format'];
-			$output .= " " . mysql2date( $date_format, $time );
+			$output.= " ".mysql2date( $date_format, $time );
 		}
 		*/
 	}
 
 	public function end_el( &$output, $page, $depth = 0, $args = array() )
 	{
-		$output .= "\n";
+		$output.= "\n";
 	}
 }

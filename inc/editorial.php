@@ -151,7 +151,8 @@ class gThemeEditorial extends gThemeModuleCore
 
 	public static function issueRowCallback( $post, $args, $term )
 	{
-		$GLOBALS['post'] = $post; // REF: https://developer.wordpress.org/?p=2837#comment-874
+		// @REF: https://developer.wordpress.org/?p=2837#comment-874
+		$GLOBALS['post'] = $post;
 		setup_postdata( $post );
 
 		ob_start();

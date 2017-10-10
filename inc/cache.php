@@ -102,7 +102,7 @@ class gThemeFragmentCache extends gThemeBaseCore
 		}
 
 		if ( $notice && current_user_can( $notice ) && ! gThemeWordPress::isDev() )
-			gThemeUtilities::notice( __( 'Refreshed!', GTHEME_TEXTDOMAIN ) );
+			gThemeHTML::notice( __( 'Refreshed!', GTHEME_TEXTDOMAIN ) );
 	}
 
 	public function discard()

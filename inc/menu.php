@@ -126,7 +126,7 @@ class gThemeMenu extends gThemeModuleCore
 				$sorted_menu_items[$menu_item->menu_order] = $menu_item;
 
 			$primary = $secondary = '';
-			$parent = $current = '-1';
+			$parent  = $current = '-1';
 
 			foreach ( $sorted_menu_items as $menu ) {
 				if ( TRUE == $menu->current )
@@ -136,13 +136,13 @@ class gThemeMenu extends gThemeModuleCore
 					$parent = $menu->ID;
 
 				if ( '0' == $menu->menu_item_parent )
-					$primary .= self::menu_el( $menu );
+					$primary.= self::menu_el( $menu );
 
 				if ( $current == $menu->menu_item_parent )
-					$secondary .= self::menu_el( $menu );
+					$secondary.= self::menu_el( $menu );
 
 				else if ( $parent == $menu->menu_item_parent )
-					$secondary .= self::menu_el( $menu );
+					$secondary.= self::menu_el( $menu );
 			}
 
 			if ( $primary ) {

@@ -373,10 +373,10 @@ class gThemeFilters extends gThemeModuleCore
 					continue;
 				}
 
-				// Found a '<p>'
+				// found a '<p>'
 				if ( '<' == $content_array[$i-1] )
 					$k = $i-2;
-				// Found a '</p>'
+				// found a '</p>'
 				else
 					$k = $i+3;
 

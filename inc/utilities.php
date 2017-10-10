@@ -13,7 +13,7 @@ class gThemeUtilities extends gThemeBaseCore
 			$arr = explode( ' ', trim( $text ) );
 
 			if ( count( $arr ) >= $min ) {
-				$arr[count( $arr ) - 2] .= '&nbsp;'.$arr[count( $arr ) - 1];
+				$arr[count( $arr ) - 2].= '&nbsp;'.$arr[count( $arr ) - 1];
 				array_pop( $arr );
 				$return = implode( ' ', $arr );
 			}
@@ -131,95 +131,9 @@ class gThemeUtilities extends gThemeBaseCore
 		}
 	}
 
-	private static function _tag_open( $tag, $atts, $content = TRUE )
+	public static function linkStyleSheet( $url, $version = GTHEME_CHILD_VERSION, $media = FALSE )
 	{
-		$html = '<'.$tag;
-		foreach ( $atts as $key => $att ) {
-
-			if ( is_array( $att ) && count( $att ) )
-				$att = implode( ' ', array_unique( array_filter( $att ) ) );
-
-			if ( 'selected' == $key )
-				$att = ( $att ? 'selected' : FALSE );
-
-			if ( 'checked' == $key )
-				$att = ( $att ? 'checked' : FALSE );
-
-			if ( 'readonly' == $key )
-				$att = ( $att ? 'readonly' : FALSE );
-
-			if ( 'disabled' == $key )
-				$att = ( $att ? 'disabled' : FALSE );
-
-			if ( FALSE === $att )
-				continue;
-
-			if ( 'class' == $key )
-				// $att = self::sanitize_class( $att, FALSE );
-				$att = $att;
-			else if ( 'href' == $key || 'src' == $key )
-				$att = esc_url( $att );
-			// else if ( 'input' == $tag && 'value' == $key )
-			// 	$att = $att;
-			else
-				$att = esc_attr( $att );
-
-			$html .= ' '.$key.'="'.trim( $att ).'"';
-		}
-
-		if ( FALSE === $content )
-			return $html.' />';
-
-		return $html.'>';
-	}
-
-	public static function html( $tag, $atts = array(), $content = FALSE, $sep = '' )
-	{
-		self::__dev_dep();
-
-		$html = self::_tag_open( $tag, $atts, $content );
-
-		if ( FALSE === $content )
-			return $html.$sep;
-
-		if ( is_null( $content ) )
-			return $html.'</'.$tag.'>'.$sep;
-
-		return $html.$content.'</'.$tag.'>'.$sep;
-	}
-
-	// WordPress core duplicate of : sanitize_html_class()
-	public static function sanitize_class( $class, $fallback = '' )
-	{
-		$sanitized = preg_replace( '|%[a-fA-F0-9][a-fA-F0-9]|', '', $class ); // Strip out any % encoded octets
-		$sanitized = preg_replace( '/[^A-Za-z0-9_-]/', '', $sanitized ); // Limit to A-Z,a-z,0-9,_,-
-
-		if ( '' == $sanitized )
-			$sanitized = $fallback;
-
-		return $sanitized;
-	}
-
-	// FIXME: DEPRECATED: use gThemeUtilities::linkStyleSheet()
-	public static function link_stylesheet( $url, $attr = 'media="all"' )
-	{
-		self::__dep( 'gThemeUtilities::linkStyleSheet()' );
-		echo "\t".'<link rel="stylesheet" href="'.esc_url( $url ).'" type="text/css" '.$attr.' />'."\n";
-	}
-
-	public static function linkStyleSheet( $url, $version = GTHEME_VERSION, $media = FALSE )
-	{
-		if ( is_array( $version ) )
-			$url = add_query_arg( $version, $url );
-		else
-			$url = add_query_arg( 'ver', $version, $url );
-
-		echo "\t".gThemeHTML::tag( 'link', array(
-			'rel' => 'stylesheet',
-			'href' => $url,
-			'type' => 'text/css',
-			'media' => $media,
-		) )."\n";
+		gThemeHTML::linkStyleSheet( $url, $version, $media );
 	}
 
 	// http://stackoverflow.com/a/9241873
@@ -247,24 +161,6 @@ class gThemeUtilities extends gThemeBaseCore
 		if ( ! $echo )
 			return $html;
 		echo $html;
-	}
-
-	public static function headerNav( $uri = '', $active = '', $sub_pages = array(), $class_prefix = 'nav-tab-', $tag = 'h3' )
-	{
-		if ( ! count( $sub_pages ) )
-			return;
-
-		$html = '';
-
-		foreach ( $sub_pages as $page_slug => $sub_page )
-			$html .= gThemeHTML::tag( 'a', array(
-				'class' => 'nav-tab '.$class_prefix.$page_slug.( $page_slug == $active ? ' nav-tab-active' : '' ),
-				'href'  => add_query_arg( 'sub', $page_slug, $uri ),
-			), esc_html( $sub_page ) );
-
-		echo gThemeHTML::tag( $tag, array(
-			'class' => 'nav-tab-wrapper',
-		), $html );
 	}
 
 	// @SOURCE: http://stackoverflow.com/a/8891890/4864081

@@ -135,13 +135,13 @@ class gThemeHTML extends gThemeBaseCore
 					foreach ( $att as $data_key => $data_val ) {
 
 						if ( is_array( $data_val ) )
-							$html .= ' data-'.$data_key.'=\''.wp_json_encode( $data_val ).'\'';
+							$html.= ' data-'.$data_key.'=\''.wp_json_encode( $data_val ).'\'';
 
 						else if ( FALSE === $data_val )
 							continue;
 
 						else
-							$html .= ' data-'.$data_key.'="'.esc_attr( $data_val ).'"';
+							$html.= ' data-'.$data_key.'="'.esc_attr( $data_val ).'"';
 					}
 
 					continue;
@@ -186,7 +186,7 @@ class gThemeHTML extends gThemeBaseCore
 			else
 				$att = esc_attr( $att );
 
-			$html .= ' '.$key.'="'.trim( $att ).'"';
+			$html.= ' '.$key.'="'.trim( $att ).'"';
 		}
 
 		if ( FALSE === $content )
@@ -263,6 +263,24 @@ class gThemeHTML extends gThemeBaseCore
 			'type'  => 'text/css',
 			'media' => $media,
 		) )."\n";
+	}
+
+	public static function headerNav( $uri = '', $active = '', $subs = array(), $prefix = 'nav-tab-', $tag = 'h3' )
+	{
+		if ( ! count( $subs ) )
+			return;
+
+		$html = '';
+
+		foreach ( $subs as $slug => $page )
+			$html .= self::tag( 'a', array(
+				'class' => 'nav-tab '.$prefix.$slug.( $slug == $active ? ' nav-tab-active' : '' ),
+				'href'  => add_query_arg( 'sub', $slug, $uri ),
+			), $page );
+
+		echo self::tag( $tag, array(
+			'class' => 'nav-tab-wrapper',
+		), $html );
 	}
 
 	// @REF: https://codex.wordpress.org/Plugin_API/Action_Reference/admin_notices
@@ -370,7 +388,7 @@ class gThemeHTML extends gThemeBaseCore
 			return $html;
 
 		if ( ! is_null( $args['none_title'] ) )
-			$html .= self::tag( 'option', array(
+			$html.= self::tag( 'option', array(
 				'value'    => $args['none_value'],
 				'selected' => $args['selected'] == $args['none_value'],
 			), $args['none_title'] );
@@ -392,7 +410,7 @@ class gThemeHTML extends gThemeBaseCore
 			else
 				$title = $value;
 
-			$html .= self::tag( 'option', array(
+			$html.= self::tag( 'option', array(
 				'value'    => $key,
 				'selected' => $args['selected'] == $key,
 			), $title );

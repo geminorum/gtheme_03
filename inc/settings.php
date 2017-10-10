@@ -74,14 +74,16 @@ class gThemeSettings extends gThemeModuleCore
 			.'</h1> <a href="http://geminorum.ir/wordpress/gtheme_03" class="page-title-action settings-title-action" target="_blank">'
 			.GTHEME_VERSION.'</a><hr class="wp-header-end">';
 
-			gThemeUtilities::headerNav( $uri, $sub, $subs );
+			gThemeHTML::headerNav( $uri, $sub, $subs );
 
 			if ( isset( $_GET['message'] ) ) {
-				if ( isset( $messages[$_REQUEST['message']] ) ) {
+
+				if ( isset( $messages[$_REQUEST['message']] ) )
 					echo $messages[$_REQUEST['message']];
-				} else {
-					gThemeUtilities::notice( $_REQUEST['message'], 'error fade' );
-				}
+
+				else
+					gThemeHTML::notice( $_REQUEST['message'], 'error fade' );
+
 				$_SERVER['REQUEST_URI'] = remove_query_arg( array( 'message' ), $_SERVER['REQUEST_URI'] );
 			}
 

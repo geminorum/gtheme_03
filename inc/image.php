@@ -105,6 +105,7 @@ class gThemeImage extends gThemeModuleCore
 			'c' => 0,
 			'p' => array( 'post' ), // posttype: TRUE: all/array: posttypes/FALSE: none
 			't' => FALSE, // taxonomy: TRUE: all/array: taxes/FALSE: none
+			'f' => empty( $atts['s'] ) ? FALSE : $atts['s'], // featured
 		), $atts );
 
 		$_wp_additional_image_sizes[$name] = array(
@@ -114,6 +115,7 @@ class gThemeImage extends gThemeModuleCore
 			'post_type' => $args['p'],
 			'taxonomy'  => $args['t'],
 			'title'     => $args['n'],
+			'thumbnail' => $args['f'],
 		);
 	}
 
@@ -286,7 +288,7 @@ class gThemeImage extends gThemeModuleCore
 				$label   = sprintf( _x( '%1$s <small>(%2$s&times;%3$s)</small>', 'Image Module: Media Tag Checkbox Label', GTHEME_TEXTDOMAIN ),
 					$size['n'], number_format_i18n( $size['h'] ), number_format_i18n( $size['w'] ) );
 
-				$html .= '<li><label for="'.$id.'"><input style="width:10px;vertical-align:bottom;"'
+				$html.= '<li><label for="'.$id.'"><input style="width:10px;vertical-align:bottom;"'
 					.' type="checkbox" value="'.$name.'" id="'.$id.'" name="gtheme_size_'.$name
 					.'" '.$checked.' />'.$label.'</label></li>';
 			}

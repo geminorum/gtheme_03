@@ -56,7 +56,7 @@ class gThemeModuleCore extends gThemeBaseCore
 		$suffix = '';
 
 		foreach ( func_get_args() as $arg )
-			$suffix .= '_'.$arg;
+			$suffix.= '_'.$arg;
 
 		return $this->base.'_'.$this->key.$suffix;
 	}
@@ -66,7 +66,7 @@ class gThemeModuleCore extends gThemeBaseCore
 		$suffix = '';
 
 		foreach ( func_get_args() as $arg )
-			$suffix .= '-'.$arg;
+			$suffix.= '-'.$arg;
 
 		return $this->base.'-'.$this->key.$suffix;
 	}
@@ -76,7 +76,7 @@ class gThemeModuleCore extends gThemeBaseCore
 		$suffix = '';
 
 		foreach ( func_get_args() as $arg )
-			$suffix .= maybe_serialize( $arg );
+			$suffix.= maybe_serialize( $arg );
 
 		return md5( $this->base.$this->key.$suffix );
 	}
@@ -86,7 +86,7 @@ class gThemeModuleCore extends gThemeBaseCore
 		$suffix = '';
 
 		foreach ( func_get_args() as $arg )
-			$suffix .= maybe_serialize( $arg );
+			$suffix.= maybe_serialize( $arg );
 
 		return wp_hash( $this->base.$this->key.$suffix );
 	}
@@ -307,12 +307,12 @@ class gThemeModuleCore extends gThemeBaseCore
 			break;
 			case 'enabled':
 
-				$html .= gThemeHTML::tag( 'option', array(
+				$html.= gThemeHTML::tag( 'option', array(
 					'value'    => '0',
 					'selected' => '0' == $value,
 				), esc_html__( 'Disabled' ) );
 
-				$html .= gThemeHTML::tag( 'option', array(
+				$html.= gThemeHTML::tag( 'option', array(
 					'value'    => '1',
 					'selected' => '1' == $value,
 				), esc_html__( 'Enabled' ) );
@@ -369,7 +369,7 @@ class gThemeModuleCore extends gThemeBaseCore
 						if ( in_array( $value_name, $exclude ) )
 							continue;
 
-						$html .= gThemeHTML::tag( 'input', array(
+						$html.= gThemeHTML::tag( 'input', array(
 							'type'    => 'checkbox',
 							'class'   => $args['field_class'],
 							'name'    => $name.'['.$value_name.']',
@@ -386,7 +386,7 @@ class gThemeModuleCore extends gThemeBaseCore
 
 				} else {
 
-					$html .= gThemeHTML::tag( 'input', array(
+					$html.= gThemeHTML::tag( 'input', array(
 						'type'    => 'checkbox',
 						'class'   => $args['field_class'],
 						'name'    => $name,
@@ -413,7 +413,7 @@ class gThemeModuleCore extends gThemeBaseCore
 						if ( in_array( $value_name, $exclude ) )
 							continue;
 
-						$html .= gThemeHTML::tag( 'option', array(
+						$html.= gThemeHTML::tag( 'option', array(
 							'value'    => $value_name,
 							'selected' => $value_name == $value,
 						), esc_html( $value_title ) );

@@ -528,7 +528,7 @@ class gThemeWidget extends WP_Widget
 		$type = isset( $instance[$field] ) ? $instance[$field] : $default;
 
 		foreach ( gThemeWordPress::getPostTypes() as $name => $title )
-			$html .= gThemeHTML::tag( 'option', array(
+			$html.= gThemeHTML::tag( 'option', array(
 				'value'    => $name,
 				'selected' => $type == $name,
 			), $title );
@@ -551,7 +551,7 @@ class gThemeWidget extends WP_Widget
 		$taxonomy  = isset( $instance[$field] ) ? $instance[$field] : $default;
 
 		foreach ( gThemeWordPress::getTaxonomies( 0, array(), $post_type ) as $name => $title )
-			$html .= gThemeHTML::tag( 'option', array(
+			$html.= gThemeHTML::tag( 'option', array(
 				'value'    => $name,
 				'selected' => $taxonomy == $name,
 			), $title );
@@ -683,7 +683,7 @@ class gThemeWidget extends WP_Widget
 			$html     = '';
 
 			foreach ( $sizes as $size => $title )
-				$html .= gThemeHTML::tag( 'option', array(
+				$html.= gThemeHTML::tag( 'option', array(
 					'value'    => $size,
 					'selected' => $selected == $size,
 				), $title );
@@ -759,7 +759,7 @@ class gThemeWidget extends WP_Widget
 		), __( '&mdash; Select &mdash;', GTHEME_TEXTDOMAIN ) );
 
 		foreach ( get_terms( $taxonomy, array( 'hide_empty' => FALSE ) ) as $term )
-			$html .= gThemeHTML::tag( 'option', array(
+			$html.= gThemeHTML::tag( 'option', array(
 				'value'    => $term->term_id,
 				'selected' => $term_id == $term->term_id,
 			), $term->name );

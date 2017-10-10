@@ -45,15 +45,15 @@ class gThemeNavigation extends gThemeModuleCore
 			return;
 
 		$html = sprintf( '<h2 class="sr-only screen-reader-text">%s</h2>', $title );
-		$html .= '<ul class="pager nav-links">';
+		$html.= '<ul class="pager nav-links">';
 
 		if ( $prev )
-			$html .= sprintf( '<li class="previous nav-previous">%1$s</li>', $prev );
+			$html.= sprintf( '<li class="previous nav-previous">%1$s</li>', $prev );
 
 		if ( $next )
-			$html .= sprintf( '<li class="next nav-next">%1$s</li>', $next );
+			$html.= sprintf( '<li class="next nav-next">%1$s</li>', $next );
 
-		$html .= '</ul>';
+		$html.= '</ul>';
 
 		echo gThemeHTML::tag( 'nav', array(
 			'role'  => 'navigation',
@@ -120,6 +120,8 @@ class gThemeNavigation extends gThemeModuleCore
 	// bootstrap 3 compatible markup
 	public static function breadcrumbSingle( $atts = array() )
 	{
+		global $page, $numpages;
+
 		$args = self::atts( array(
 			'home'       => FALSE, // 'home' // 'network' // 'custom string'
 			'home_title' => NULL,
@@ -146,14 +148,16 @@ class gThemeNavigation extends gThemeModuleCore
 		}
 
 		if ( is_singular() ) {
+
 			$single_html = '';
+
 			if ( is_preview() )
-				$single_html .= _x( '(Preview)', 'Modules: Navigation: Breadcrumbs', GTHEME_TEXTDOMAIN );
+				$single_html.= _x( '(Preview)', 'Modules: Navigation: Breadcrumbs', GTHEME_TEXTDOMAIN );
 
 			if ( $args['page_is'] && in_the_loop() ) { // CAUTION : must be in the loop after the_post()
-				global $page, $numpages;
+
 				if ( ! empty( $page ) && 1 != $numpages ) //&& $page > 1 )
-					$single_html .= sprintf( _x( 'Page <strong>%s</strong> of %s', 'Modules: Navigation: Breadcrumbs', GTHEME_TEXTDOMAIN ),
+					$single_html.= sprintf( _x( 'Page <strong>%s</strong> of %s', 'Modules: Navigation: Breadcrumbs', GTHEME_TEXTDOMAIN ),
 						number_format_i18n( $page ),
 						number_format_i18n( $numpages ) );
 			}

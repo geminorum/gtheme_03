@@ -108,10 +108,10 @@ class gThemeBanners extends gThemeModuleCore
 		$title = empty( $banner['title'] ) ? '' : $banner['title'];
 
 		if ( ! empty( $banner['image'] ) && 'http://' != $banner['image'] )
-			$html .= '<img src="'.$banner['image'].'" alt="'.$title.'" class="'.$args['img_class'].'" style="'.$args['img_style'].'" />';
+			$html.= '<img src="'.$banner['image'].'" alt="'.$title.'" class="'.$args['img_class'].'" style="'.$args['img_style'].'" />';
 
 		else if ( $args['placeholder'] )
-			$html .= '<div style="display:block;width:'.$args['w'].';height:'.$args['h'].';background-color:'.$args['c'].';" ></div>';
+			$html.= '<div style="display:block;width:'.$args['w'].';height:'.$args['h'].';background-color:'.$args['c'].';" ></div>';
 
 		if ( ! empty( $banner['url'] ) && 'http://' != $banner['url'] )
 			$html = '<a href="'.$banner['url'].'" title="'.$title.'" class="'.$args['a_class'].'" style="'.$args['a_style'].'">'.$html.'</a>';

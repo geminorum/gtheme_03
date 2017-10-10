@@ -76,10 +76,10 @@ class gThemeFeed extends gThemeModuleCore
 			if ( $title = get_the_title_rss() ) echo '<h2>'.$title.'</h2>';
 			gThemeEditorial::meta( 'sub-title', array( 'before' => '<h4>', 'after' => '</h4>' ) );
 			gThemeEditorial::author( array( 'before' => '<h4>', 'after' => '</h4>' ) );
-		$header .= ob_get_clean();
+		$header.= ob_get_clean();
 
-		$header .= gThemeOptions::info( 'feed_content_header_after', '' );
-		$footer .= gThemeOptions::info( 'feed_content_footer_after', '' );
+		$header.= gThemeOptions::info( 'feed_content_header_after', '' );
+		$footer.= gThemeOptions::info( 'feed_content_footer_after', '' );
 
 		$lead = gThemeEditorial::lead( array(
 			'before' => '<div class="lead">',
@@ -88,7 +88,7 @@ class gThemeFeed extends gThemeModuleCore
 		) );
 
 		if ( $lead )
-			$header .= $lead;
+			$header.= $lead;
 
 		$replaces = gThemeOptions::info( 'feed_str_replace', self::defaultReplace() );
 
