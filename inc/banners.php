@@ -46,9 +46,11 @@ class gThemeBanners extends gThemeModuleCore
 		if ( count( $saved ) ) {
 
 			$args = self::atts( array(
-				'before' => '',
-				'after'  => '',
-				'tag'    => 'li',
+				'before'    => '',
+				'after'     => '',
+				'tag'       => 'li',
+				'tag_start' => '',
+				'tag_end'   => '',
 			), $atts );
 
 			echo $args['before'];
@@ -58,7 +60,11 @@ class gThemeBanners extends gThemeModuleCore
 				if ( $args['tag'] )
 					echo '<'.$args['tag'].'>';
 
+				echo $args['tag_start'];
+
 				self::html( $banner, $atts );
+
+				echo $args['tag_end'];
 
 				if ( $args['tag'] )
 					echo '</'.$args['tag'].'>';
