@@ -7,3 +7,5 @@ gThemeContent::header( array(
 	'title_tag' => 'h3',
 	'meta_tag'  => 'h5',
 ) );
+
+gThemeContent::byline( NULL, '<div class="entry-byline">', '</div>' );

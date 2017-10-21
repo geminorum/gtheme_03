@@ -94,6 +94,53 @@ class gThemeContent extends gThemeModuleCore
 		echo $after;
 	}
 
+	public static function byline( $post = NULL, $before = '', $after = '', $echo = TRUE, $fallback = NULL )
+	{
+		if ( ! $post = get_post( $post ) )
+			return '';
+
+		$args = array( 'id' => $post->ID, 'echo' => FALSE, 'context' => 'single' );
+
+		if ( gThemeOptions::supports( 'gpeople', TRUE )
+			&& class_exists( 'gPeopleRemoteTemplate' ) ) {
+
+			if ( $html = \gPeopleRemoteTemplate::post_byline( $post, $args ) ) {
+
+				if ( $echo )
+					echo $before.$html.$after;
+
+				return $before.$html.$after;
+			}
+		}
+
+		if ( gThemeOptions::supports( 'geditorial-meta', TRUE ) ) {
+
+			if ( $html = gThemeEditorial::author( $args ) ) {
+
+				if ( $echo )
+					echo $before.$html.$after;
+
+				return $before.$html.$after;
+			}
+		}
+
+		if ( is_null( $fallback ) )
+			$fallback = gThemeOptions::info( 'byline_fallback', TRUE );
+
+		if ( ! $fallback )
+			return '';
+
+		if ( $html = gThemeTemplate::author( $post, FALSE ) ) {
+
+			if ( $echo )
+				echo $before.$html.$after;
+
+			return $before.$html.$after;
+		}
+
+		return '';
+	}
+
 	// FIXME: WORKING DRAFT
 	// SEE: gThemeDate::date()
 	public static function date( $before = '<div class="entry-date">', $after = '</div>' )

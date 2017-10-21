@@ -13,6 +13,7 @@
 		} else {
 
 			gThemeContent::header( array( 'context' => 'singular' ) );
+			gThemeContent::byline( NULL, '<div class="entry-byline">', '</div>' );
 			gThemeContent::content();
 		}
 
@@ -22,6 +23,7 @@
 		gThemeImage::image( array( 'tag' => 'single' ) );
 
 		gThemeContent::header( array( 'context' => 'index' ) );
+		gThemeContent::byline( NULL, '<div class="entry-byline">', '</div>' );
 		gThemeContent::excerpt();
 
 		gThemeContent::footer( array(

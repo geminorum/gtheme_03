@@ -26,6 +26,30 @@ class gThemeTemplate extends gThemeModuleCore
 		echo $logo;
 	}
 
+	// only for wp users
+	// @SEE: `gThemeContent::byline()`
+	// @REF: `get_the_author_posts_link()`
+	public static function author( $post = NULL, $echo = TRUE )
+	{
+		if ( ! $post = get_post( $post ) )
+			return '';
+
+		if ( $post->post_author == gThemeOptions::getOption( 'default_user', 0 ) )
+			return '';
+
+		if ( ! $user = get_userdata( $post->post_author ) )
+			return '';
+
+		$template     = gThemeOptions::getOption( 'template_author_link', '<a href="%1$s" title="%2$s" rel="author">%3$s</a>' );
+		$display_name = get_the_author_meta( 'display_name', $user->ID ); // applying gMember filter
+
+		return vprintf( $template, array(
+			esc_url( get_author_posts_url( $user->ID, $user->user_nicename ) ),
+			esc_attr( sprintf( _x( 'Posts by %s', 'Modules: Template: Author', GTHEME_TEXTDOMAIN ), $display_name ) ),
+			$display_name,
+		) );
+	}
+
 	// ANCESTOR : gtheme_get_term_link_tag()
 	public static function term_link( $term, $taxonomy, $title = NULL )
 	{

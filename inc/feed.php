@@ -75,7 +75,7 @@ class gThemeFeed extends gThemeModuleCore
 			gThemeEditorial::meta( 'over-title', array( 'before' => '<h4>', 'after' => '</h4>' ) );
 			if ( $title = get_the_title_rss() ) echo '<h2>'.$title.'</h2>';
 			gThemeEditorial::meta( 'sub-title', array( 'before' => '<h4>', 'after' => '</h4>' ) );
-			gThemeEditorial::author( array( 'before' => '<h4>', 'after' => '</h4>' ) );
+			gThemeContent::byline( NULL, '<h4>', '</h4>' );
 		$header.= ob_get_clean();
 
 		$header.= gThemeOptions::info( 'feed_content_header_after', '' );
