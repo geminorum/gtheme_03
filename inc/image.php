@@ -1,4 +1,4 @@
-<?php defined( 'ABSPATH' ) or die( 'Restricted access' );
+<?php defined( 'ABSPATH' ) or die( header( 'HTTP/1.0 403 Forbidden' ) );
 
 class gThemeImage extends gThemeModuleCore
 {
@@ -14,6 +14,7 @@ class gThemeImage extends gThemeModuleCore
 			'image_attachment_terms' => FALSE, // image for terms on admin media editor
 			'responsive_class'       => FALSE, // extracts and appends css class into content images
 			'media_object_sizes'     => TRUE, // tells gnetwork to not generate default image sizes
+			'no_images_srcset_sizes' => TRUE, // removes core filter for srcset/sizes
 		), $args ) );
 
 		if ( $core_post_thumbnails )
@@ -52,6 +53,9 @@ class gThemeImage extends gThemeModuleCore
 			add_filter( 'attachment_fields_to_edit', array( $this, 'terms_attachment_fields_to_edit' ), 9, 2 );
 			add_filter( 'attachment_fields_to_save', array( $this, 'terms_attachment_fields_to_save' ), 9, 2 );
 		}
+
+		if ( $no_images_srcset_sizes )
+			remove_filter( 'the_content', 'wp_make_content_images_responsive' );
 
 		if ( is_admin() ) {
 

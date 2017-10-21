@@ -1,4 +1,4 @@
-<?php defined( 'ABSPATH' ) or die( 'Restricted access' );
+<?php defined( 'ABSPATH' ) or die( header( 'HTTP/1.0 403 Forbidden' ) );
 
 class gThemeSocial extends gThemeModuleCore
 {
@@ -50,7 +50,7 @@ class gThemeSocial extends gThemeModuleCore
 			echo "\t".'<link href="'.esc_url( $publisher ).'" rel="publisher" />'."\n";
 
 		if ( $twitter = gThemeOptions::info( 'twitter_site', FALSE ) )
-			echo "\t".'<meta name="twitter:site" content="@'.$twitter.'" />'."\n";
+			echo "\t".'<meta name="twitter:site" content="'.gThemeMisc::getTwitter( $twitter ).'" />'."\n";
 
 		self::author();
 	}
@@ -83,8 +83,11 @@ class gThemeSocial extends gThemeModuleCore
 			break;
 			case 'image':
 
-				$size   = gThemeOptions::info( 'meta_image_size', 'single' );
-				$output = gThemeOptions::info( 'default_image_src', FALSE );
+				$size  = gThemeOptions::info( 'meta_image_size', 'single' );
+				$image = gThemeOptions::info( 'meta_image_all', TRUE );
+
+				if ( $image || is_home() || is_front_page() )
+					$output = gThemeOptions::info( 'default_image_src', FALSE );
 
 				if ( is_singular() )
 					$output = gThemeImage::getImage( array(
@@ -137,21 +140,19 @@ class gThemeSocial extends gThemeModuleCore
 
 	public static function author()
 	{
-		if ( is_singular() ) {
+		if ( ! is_singular() )
+			return;
 
-			$the_post = get_queried_object();
-			if ( ! $the_post )
-				return;
+		if ( ! $post = get_queried_object() )
+			return;
 
-			if ( $the_post->post_author == gThemeOptions::getOption( 'default_user', 0 ) )
-				return;
+		if ( $post->post_author == gThemeOptions::getOption( 'default_user', 0 ) )
+			return;
 
-			if ( $plus = get_user_meta( $the_post->post_author, 'googleplus', TRUE ) )
-				echo "\t".'<link href="'.esc_url( untrailingslashit( $plus ).'?rel=author' ).'" rel="author" />'."\n";
+		if ( $plus = get_user_meta( $post->post_author, 'googleplus', TRUE ) )
+			echo '<link href="'.esc_url( untrailingslashit( $plus ).'?rel=author' ).'" rel="author" />'."\n";
 
-			// FIXME: use gtheme_sanitize_twitter() to display
-			if ( $twitter = get_user_meta( $the_post->post_author, 'twitter', TRUE ) )
-				echo "\t".'<meta name="twitter:creator" content="@'.$twitter.'" />'."\n";
-		}
+		if ( $twitter = get_user_meta( $post->post_author, 'twitter', TRUE ) )
+			echo '<meta name="twitter:creator" content="'.gThemeMisc::getTwitter( $twitter ).'" />'."\n";
 	}
 }

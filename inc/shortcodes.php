@@ -1,4 +1,4 @@
-<?php defined( 'ABSPATH' ) or die( 'Restricted access' );
+<?php defined( 'ABSPATH' ) or die( header( 'HTTP/1.0 403 Forbidden' ) );
 
 class gThemeShortCodes extends gThemeModuleCore
 {
@@ -116,9 +116,13 @@ class gThemeShortCodes extends gThemeModuleCore
 			return '';
 
 		if ( 'none' == $args['link'] ) {
+
 			$default = '<figure class="-gallery-img">%1$s<figcaption><div class="-description"><p>%3$s</p></div></figcaption></figure>';
+
 		} else {
+
 			$default = '<div class="-wrap"><figure class="-gallery-img">%1$s<figcaption><a href="%2$s" title="%4$s" id="%5$s"><div class="-description"><p>%3$s</p></div></a></figcaption></figure></div>';
+
 			if ( gThemeOptions::supports( 'zoom', TRUE ) ) {
 				$args['link'] = 'file';
 
@@ -128,8 +132,9 @@ class gThemeShortCodes extends gThemeModuleCore
 		}
 
 		// CAUTION: css must added manually
-		wp_register_script( 'gtheme-imagesloaded', GTHEME_URL.'/js/jquery.imagesloaded.min.js', array( 'jquery' ), '3.0.4', TRUE );
-		wp_enqueue_script( 'gtheme-gallery', GTHEME_URL.'/js/script.gallery.min.js', array( 'jquery', 'gtheme-imagesloaded' ), GTHEME_VERSION, TRUE );
+		// wp_register_script( 'gtheme-imagesloaded', GTHEME_URL.'/js/jquery.imagesloaded.min.js', array( 'jquery' ), '3.0.4', TRUE );
+		// wp_enqueue_script( 'gtheme-gallery', GTHEME_URL.'/js/script.gallery.min.js', array( 'jquery', 'gtheme-imagesloaded' ), GTHEME_VERSION, TRUE );
+		wp_enqueue_script( 'gtheme-gallery', GTHEME_URL.'/js/script.gallery.min.js', array( 'jquery', 'imagesloaded' ), GTHEME_VERSION, TRUE );
 
 		$html     = '';
 		$template = gThemeOptions::info( 'gallery_template', $default );

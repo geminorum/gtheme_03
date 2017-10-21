@@ -1,4 +1,4 @@
-<?php defined( 'ABSPATH' ) or die( 'Restricted access' );
+<?php defined( 'ABSPATH' ) or die( header( 'HTTP/1.0 403 Forbidden' ) );
 
 class gThemeSideBar extends gThemeModuleCore
 {
@@ -814,13 +814,14 @@ class gThemeWidgetTermPosts extends gThemeWidget
 				'terms'    => array( $term_id ),
 				'operator' => 'IN',
 			) ),
-			'posts_per_page'         => $number,
-			'post_type'              => $post_type,
-			'post_status'            => 'publish',
+			'posts_per_page' => $number,
+			'post_type'      => $post_type,
+			'post_status'    => 'publish',
+
 			'ignore_sticky_posts'    => TRUE,
-			'no_found_rows'          => TRUE, // counts posts, remove if pagination required
-			'update_post_term_cache' => FALSE, // grabs terms, remove if terms required (category, tag...)
-			'update_post_meta_cache' => FALSE, // grabs post meta, remove if post meta required
+			'no_found_rows'          => TRUE,
+			'update_post_term_cache' => FALSE,
+			'update_post_meta_cache' => FALSE,
 		);
 
 		if ( is_singular() )
@@ -852,17 +853,19 @@ class gThemeWidgetTermPosts extends gThemeWidget
 		return FALSE;
 	}
 
-	public function update( $new_instance, $old_instance )
+	public function update( $new, $old )
 	{
-		$instance               = $old_instance;
-		$instance['title']      = strip_tags( $new_instance['title'] );
-		$instance['title_link'] = strip_tags( $new_instance['title_link'] );
-		$instance['term_id']    = strip_tags( $new_instance['term_id'] );
-		$instance['taxonomy']   = strip_tags( $new_instance['taxonomy'] );
-		$instance['post_type']  = strip_tags( $new_instance['post_type'] );
-		$instance['number']     = intval( $new_instance['number'] );
-		$instance['context']    = strip_tags( $new_instance['context'] );
-		$instance['class']      = strip_tags( $new_instance['class'] );
+		$instance = $old;
+
+		$instance['title']      = strip_tags( $new['title'] );
+		$instance['title_link'] = strip_tags( $new['title_link'] );
+		$instance['term_id']    = strip_tags( $new['term_id'] );
+		$instance['taxonomy']   = strip_tags( $new['taxonomy'] );
+		$instance['post_type']  = strip_tags( $new['post_type'] );
+		$instance['context']    = strip_tags( $new['context'] );
+		$instance['class']      = strip_tags( $new['class'] );
+
+		$instance['number'] = (int) $new['number'];
 
 		$this->flush_widget_cache();
 
@@ -935,18 +938,18 @@ class gThemeWidgetRelatedPosts extends gThemeWidget
 			'tax_query' => array( array(
 				'taxonomy' => $taxonomy,
 				'field'    => 'id',
-				// 'terms'    => array_filter( array_values( $terms ), 'intval' ),
 				'terms'    => $terms,
 				'operator' => 'IN',
 			) ),
-			'post_type'              => $post_type,
-			'post__not_in'           => array( $post->ID ),
-			'posts_per_page'         => $number,
-			'post_status'            => 'publish',
+			'post_type'      => $post_type,
+			'post__not_in'   => array( $post->ID ),
+			'posts_per_page' => $number,
+			'post_status'    => 'publish',
+
 			'ignore_sticky_posts'    => TRUE,
-			'no_found_rows'          => TRUE, // counts posts, remove if pagination required
-			'update_post_term_cache' => FALSE, // grabs terms, remove if terms required (category, tag...)
-			'update_post_meta_cache' => FALSE, // grabs post meta, remove if post meta required
+			'no_found_rows'          => TRUE,
+			'update_post_term_cache' => FALSE,
+			'update_post_meta_cache' => FALSE,
 		) );
 
 		if ( $row_query->have_posts() ) {
@@ -969,16 +972,18 @@ class gThemeWidgetRelatedPosts extends gThemeWidget
 		return FALSE;
 	}
 
-	public function update( $new_instance, $old_instance )
+	public function update( $new, $old )
 	{
-		$instance               = $old_instance;
-		$instance['title']      = strip_tags( $new_instance['title'] );
-		$instance['title_link'] = strip_tags( $new_instance['title_link'] );
-		$instance['number']     = intval( $new_instance['number'] );
-		$instance['context']    = strip_tags( $new_instance['context'] );
-		$instance['class']      = strip_tags( $new_instance['class'] );
-		$instance['post_type']  = strip_tags( $new_instance['post_type'] );
-		$instance['taxonomy']   = strip_tags( $new_instance['taxonomy'] );
+		$instance = $old;
+
+		$instance['title']      = strip_tags( $new['title'] );
+		$instance['title_link'] = strip_tags( $new['title_link'] );
+		$instance['context']    = strip_tags( $new['context'] );
+		$instance['class']      = strip_tags( $new['class'] );
+		$instance['post_type']  = strip_tags( $new['post_type'] );
+		$instance['taxonomy']   = strip_tags( $new['taxonomy'] );
+
+		$instance['number'] = (int) $new['number'];
 
 		$this->flush_widget_cache();
 
@@ -1028,13 +1033,14 @@ class gThemeWidgetRecentPosts extends gThemeWidget
 			$number = 10;
 
 		$query_args = array(
-			'posts_per_page'         => $number,
-			'post_type'              => $post_type,
-			'post_status'            => 'publish',
+			'posts_per_page' => $number,
+			'post_type'      => $post_type,
+			'post_status'    => 'publish',
+
 			'ignore_sticky_posts'    => TRUE,
-			'no_found_rows'          => TRUE, // counts posts, remove if pagination required
-			'update_post_term_cache' => FALSE, // grabs terms, remove if terms required (category, tag...)
-			'update_post_meta_cache' => FALSE, // grabs post meta, remove if post meta required
+			'no_found_rows'          => TRUE,
+			'update_post_term_cache' => FALSE,
+			'update_post_meta_cache' => FALSE,
 		);
 
 		if ( is_singular() )
@@ -1062,15 +1068,17 @@ class gThemeWidgetRecentPosts extends gThemeWidget
 		return FALSE;
 	}
 
-	public function update( $new_instance, $old_instance )
+	public function update( $new, $old )
 	{
-		$instance               = $old_instance;
-		$instance['title']      = strip_tags( $new_instance['title'] );
-		$instance['title_link'] = strip_tags( $new_instance['title_link'] );
-		$instance['post_type']  = strip_tags( $new_instance['post_type'] );
-		$instance['number']     = intval( $new_instance['number'] );
-		$instance['context']    = strip_tags( $new_instance['context'] );
-		$instance['class']      = strip_tags( $new_instance['class'] );
+		$instance = $old;
+
+		$instance['title']      = strip_tags( $new['title'] );
+		$instance['title_link'] = strip_tags( $new['title_link'] );
+		$instance['post_type']  = strip_tags( $new['post_type'] );
+		$instance['context']    = strip_tags( $new['context'] );
+		$instance['class']      = strip_tags( $new['class'] );
+
+		$instance['number'] = (int) $new['number'];
 
 		$this->flush_widget_cache();
 
@@ -1127,7 +1135,8 @@ class gThemeWidgetRecentComments extends gThemeWidget
 			$callback = gThemeOptions::info( 'recent_comment_callback', array( $this, 'comment_callback' ) );
 			$avatar_size = empty( $instance['avatar_size'] ) ? 32 : absint( $instance['avatar_size'] );
 
-			// Prime cache for associated posts. (Prime post term cache if we need it for permalinks.)
+			// prime cache for associated posts
+			// prime post term cache if we need it for permalinks
 			$post_ids = array_unique( wp_list_pluck( $comments, 'comment_post_ID' ) );
 			_prime_post_caches( $post_ids, strpos( get_option( 'permalink_structure' ), '%category%' ), false );
 
@@ -1154,7 +1163,7 @@ class gThemeWidgetRecentComments extends gThemeWidget
 	{
 		$content = gThemeL10N::str( wp_strip_all_tags( $comment->comment_content, TRUE ) );
 
-		return sprintf( '<span class="comment-author-link">%1$s</span>: <a class="comment-post-link" href="%2$s" data-toggle="tooltip" data-placement="bottom" title="%3$s on %4$s">%5$s</a>',
+		return sprintf( '<span class="comment-author-link">%1$s</span>: <a class="comment-post-link" href="%2$s" data-toggle="tooltip" data-placement="bottom" title="%3$s: %4$s">%5$s</a>',
 			// get_comment_author_link(),
 			gThemeL10N::str( get_comment_author( $comment->comment_ID ) ),
 			esc_url( get_comment_link( $comment->comment_ID ) ),
@@ -1164,14 +1173,16 @@ class gThemeWidgetRecentComments extends gThemeWidget
 		);
 	}
 
-	public function update( $new_instance, $old_instance )
+	public function update( $new, $old )
 	{
-		$instance                = $old_instance;
-		$instance['title']       = strip_tags( $new_instance['title'] );
-		$instance['title_link']  = strip_tags( $new_instance['title_link'] );
-		$instance['class']       = strip_tags( $new_instance['class'] );
-		$instance['number']      = (int) $new_instance['number'];
-		$instance['avatar_size'] = (int) $new_instance['avatar_size'];
+		$instance = $old;
+
+		$instance['title']      = strip_tags( $new['title'] );
+		$instance['title_link'] = strip_tags( $new['title_link'] );
+		$instance['class']      = strip_tags( $new['class'] );
+
+		$instance['number']      = (int) $new['number'];
+		$instance['avatar_size'] = (int) $new['avatar_size'];
 
 		$this->flush_widget_cache();
 
@@ -1387,14 +1398,16 @@ class gThemeWidgetTheTerm extends gThemeWidget
 		$this->after_widget( $args, $instance );
 	}
 
-	public function update( $new_instance, $old_instance )
+	public function update( $new, $old )
 	{
-		$instance                 = $old_instance;
-		$instance['title']        = strip_tags( $new_instance['title'] );
-		$instance['title_link']   = strip_tags( $new_instance['title_link'] );
-		$instance['class']        = strip_tags( $new_instance['class'] );
-		$instance['meta_image']   = (bool) $new_instance['meta_image'];
-		$instance['hide_no_desc'] = (bool) $new_instance['hide_no_desc'];
+		$instance = $old;
+
+		$instance['title']      = strip_tags( $new['title'] );
+		$instance['title_link'] = strip_tags( $new['title_link'] );
+		$instance['class']      = strip_tags( $new['class'] );
+
+		$instance['meta_image']   = isset( $new['meta_image'] );
+		$instance['hide_no_desc'] = isset( $new['hide_no_desc'] );
 
 		$this->flush_widget_cache();
 
@@ -1479,11 +1492,11 @@ class gThemeWidgetCustomHTML extends gThemeWidget
 		else
 			$instance['content'] = wp_kses_post( $new['content'] );
 
-		$instance['embeds']     = (bool) $new['embeds'];
-		$instance['shortcodes'] = (bool) $new['shortcodes'];
-		$instance['filters']    = (bool) $new['filters'];
-		$instance['legacy']     = (bool) $new['legacy'];
-		$instance['autop']      = (bool) $new['autop'];
+		$instance['embeds']     = isset( $new['embeds'] );
+		$instance['shortcodes'] = isset( $new['shortcodes'] );
+		$instance['filters']    = isset( $new['filters'] );
+		$instance['legacy']     = isset( $new['legacy'] );
+		$instance['autop']      = isset( $new['autop'] );
 
 		$this->flush_widget_cache();
 

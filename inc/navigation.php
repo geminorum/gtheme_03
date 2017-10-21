@@ -1,4 +1,4 @@
-<?php defined( 'ABSPATH' ) or die( 'Restricted access' );
+<?php defined( 'ABSPATH' ) or die( header( 'HTTP/1.0 403 Forbidden' ) );
 
 class gThemeNavigation extends gThemeModuleCore
 {
@@ -73,20 +73,24 @@ class gThemeNavigation extends gThemeModuleCore
 		$args = array_merge( self::atts( array(
 			'prev_text' => _x( '<span aria-hidden="true">&larr;</span>', 'Modules: Navigation: Pagination: Previous', GTHEME_TEXTDOMAIN ),
 			'next_text' => _x( '<span aria-hidden="true">&rarr;</span>', 'Modules: Navigation: Pagination: Next', GTHEME_TEXTDOMAIN ),
+			'end_size'  => 1, // how many numbers on either the start and the end list edges / default 1
+			'mid_size'  => 4, // how many numbers to either side of the current pages / default 2
 		), $atts ), array(
-			'type'     => 'array',
-			'format'   => '?paged=%#%',
-			'base'     => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
-			'current'  => max( 1, get_query_var( 'paged' ) ),
-			'total'    => $wp_query->max_num_pages,
-			'mid_size' => 8,
+			'type'    => 'array',
+			'format'  => '?paged=%#%',
+			'base'    => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
+			'current' => max( 1, get_query_var( 'paged' ) ),
+			'total'   => $wp_query->max_num_pages,
 		) );
 
 		if ( ! $links = paginate_links( $args ) )
 			return;
 
 		echo '<nav>';
-			printf( '<h2 class="sr-only screen-reader-text">%s</h2>', _x( 'Navigation', 'Modules: Navigation: Screen Reader Title', GTHEME_TEXTDOMAIN ) );
+
+			printf( '<h2 class="sr-only screen-reader-text">%s</h2>',
+				_x( 'Navigation', 'Modules: Navigation: Screen Reader Title', GTHEME_TEXTDOMAIN ) );
+
 			echo '<ul class="pagination">';
 
 			foreach ( $links as $link )

@@ -1,4 +1,4 @@
-<?php defined( 'ABSPATH' ) or die( 'Restricted access' );
+<?php defined( 'ABSPATH' ) or die( header( 'HTTP/1.0 403 Forbidden' ) );
 
 class gThemeContent extends gThemeModuleCore
 {
@@ -623,7 +623,7 @@ class gThemeContent extends gThemeModuleCore
 		echo $after;
 
 		if ( $twitter = gThemeOptions::info( 'twitter_site', FALSE ) )
-			$twitter_template = '${title} ${link} by @'.$twitter;
+			$twitter_template = '${title} ${link} '.gThemeMisc::getTwitter( $twitter );
 		else
 			$twitter_template = '${title} ${link}';
 

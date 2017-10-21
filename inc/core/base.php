@@ -1,4 +1,4 @@
-<?php defined( 'ABSPATH' ) or die( 'Restricted access' );
+<?php defined( 'ABSPATH' ) or die( header( 'HTTP/1.0 403 Forbidden' ) );
 
 class gThemeBaseCore
 {
@@ -25,15 +25,18 @@ class gThemeBaseCore
 	}
 
 	// INTERNAL
-	public static function __log( $log )
+	public static function __log()
 	{
 		if ( defined( 'WP_DEBUG_LOG' ) && ! WP_DEBUG_LOG )
 			return;
 
-		if ( is_array( $log ) || is_object( $log ) )
-			error_log( print_r( $log, TRUE ) );
-		else
-			error_log( $log );
+		foreach ( func_get_args() as $data )
+
+			if ( is_array( $data ) || is_object( $data ) )
+				error_log( print_r( $data, TRUE ) );
+
+			else
+				error_log( $data );
 	}
 
 	// INTERNAL: used on anything deprecated

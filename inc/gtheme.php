@@ -1,4 +1,4 @@
-<?php defined( 'ABSPATH' ) or die( 'Restricted access' );
+<?php defined( 'ABSPATH' ) or die( header( 'HTTP/1.0 403 Forbidden' ) );
 
 final class gThemeCore
 {
@@ -21,6 +21,8 @@ final class gThemeCore
 		$modules = array(
 			'core/base'      => '',
 			'core/html'      => '',
+			'core/misc'      => '',
+			'core/text'      => '',
 			'core/wordpress' => '',
 
 			'constants'  => '',

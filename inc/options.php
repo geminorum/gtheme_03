@@ -1,4 +1,4 @@
-<?php defined( 'ABSPATH' ) or die( 'Restricted access' );
+<?php defined( 'ABSPATH' ) or die( header( 'HTTP/1.0 403 Forbidden' ) );
 
 class gThemeOptions extends gThemeModuleCore
 {
@@ -25,15 +25,12 @@ class gThemeOptions extends gThemeModuleCore
 			'editor_access'   => 'edit_others_posts', // FIXME: WTF
 
 			// INTEGRATION WITH OTHER PLUGINS
-			'supports' => array( // 3th party plugin supports
-				'gmeta'                     => FALSE,
-				'geditorial-meta'           => FALSE,
-				'gshop'                     => FALSE,
-				'gpeople'                   => FALSE,
-				'gpersiandate'              => TRUE,
-				'gbook'                     => FALSE,
-				'query-multiple-taxonomies' => FALSE,
-				'zoom'                      => TRUE,
+			'supports' => array(
+				'gpersiandate'    => defined( 'GPERSIANDATE_VERSION' ),
+				'geditorial-meta' => defined( 'GEDITORIAL_VERSION' ),
+				'gpeople'         => defined( 'GPEOPLE_VERSION' ),
+				'gshop'           => defined( 'GSHOP_VERSION' ),
+				'zoom'            => TRUE,
 			),
 
 			'theme_groups' => FALSE, // array( 'main' => 'Main' ),
@@ -74,6 +71,7 @@ class gThemeOptions extends gThemeModuleCore
 			'nav_sep'            => _x( ' &laquo; ', 'Options: Separator: Nav', GTHEME_TEXTDOMAIN ),
 			'byline_sep'         => _x( ' | ', 'Options: Separator: Byline', GTHEME_TEXTDOMAIN ),
 			'term_sep'           => _x( ', ', 'Options: Separator: Term', GTHEME_TEXTDOMAIN ),
+			'embed_sep'          => _x( '; ', 'Options: Separator: Embed', GTHEME_TEXTDOMAIN ),
 			'feed_sep'           => _x( '; ', 'Options: Separator: Feed', GTHEME_TEXTDOMAIN ),
 			'comment_action_sep' => _x( ' | ', 'Options: Separator: Comment Action', GTHEME_TEXTDOMAIN ),
 
@@ -106,11 +104,15 @@ class gThemeOptions extends gThemeModuleCore
 			// FEEDS
 			// 'feed_str_replace' => gThemeFeed::defaultReplace(),
 
+			// EMBED
+			// 'embed_image_size' => 'single',
+
 			// SEO
-			'meta_image_size' => 'single',
-			'rel_publisher'   => FALSE,
-			'twitter_site'    => FALSE,
-			'googlecse_cx'    => FALSE,
+			// 'meta_image_size' => 'single',
+			// 'meta_image_all'  => TRUE, // display fallback image for all pages
+			// 'rel_publisher'   => FALSE,
+			// 'twitter_site'    => FALSE,
+			// 'googlecse_cx'    => FALSE,
 
 			'blog_title'      => self::getOption( 'blog_title', $blog_name ), // used on page title other than frontpage
 			'frontpage_title' => self::getOption( 'frontpage_title', FALSE ), // FALSE to default
@@ -179,6 +181,8 @@ class gThemeOptions extends gThemeModuleCore
 			'default_editor'       => 'html', // set default editor of post edit screen to html for each user // needs module arg // Either 'tinymce', or 'html', or 'test'
 
 			'additional_body_class' => FALSE, // body class just in case!
+
+			// 'byline_fallback' => TRUE, // if FALSE hides wp users
 
 			// list of font-faces to check after page load via FontDetect
 			// 'css_font_stack' => array( 'Arial', 'Tahoma' ),
@@ -399,19 +403,15 @@ class gThemeOptions extends gThemeModuleCore
 		return gThemeCounts::get( $name, $def );
 	}
 
-	public static function supports( $plugins, $if_not_set = FALSE )
+	public static function supports( $plugins, $fallback = FALSE )
 	{
 		$supports = self::info( 'supports', array() );
 
-		if ( is_array( $plugins ) )
-			foreach ( $plugins as $plugin )
-				if ( isset( $supports[$plugin] ) )
-					return $supports[$plugin];
+		foreach ( (array) $plugins as $plugin )
+			if ( isset( $supports[$plugin] ) )
+				return $supports[$plugin];
 
-		if ( isset( $supports[$plugins] ) )
-			return $supports[$plugins];
-
-		return $if_not_set;
+		return $fallback;
 	}
 
 	public static function user_can( $role = 'editor' )
