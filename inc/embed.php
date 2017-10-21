@@ -6,8 +6,9 @@ class gThemeEmbed extends gThemeModuleCore
 	public function setup_actions( $args = array() )
 	{
 		extract( self::atts( array(
-			'site_title'   => TRUE,
-			'content_meta' => FALSE,
+			'site_title'    => TRUE,
+			'content_meta'  => FALSE,
+			'response_data' => TRUE,
 		), $args ) );
 
 		if ( $site_title )
@@ -15,6 +16,9 @@ class gThemeEmbed extends gThemeModuleCore
 
 		if ( $content_meta )
 			add_action( 'embed_content_meta', array( $this, 'embed_content_meta' ) );
+
+		if ( $content_meta )
+			add_filter( 'oembed_response_data', array( $this, 'oembed_response_data' ), 11, 4 );
 	}
 
 	public function embed_site_title_html( $site_title )
@@ -33,6 +37,29 @@ class gThemeEmbed extends gThemeModuleCore
 	public function embed_content_meta()
 	{
 		// FIXME
+	}
+
+	public function oembed_response_data( $data, $post, $width, $height )
+	{
+		$data['provider_name'] = gThemeOptions::info( 'frontpage_title', get_bloginfo( 'name' ) );
+
+		$data['title'] = gThemeContent::getHeader( $post->post_title, gThemeUtilities::sanitize_sep( 'def', 'embed_sep', '; ' ), FALSE );
+
+		$data['author_name'] = strip_tags( gThemeContent::byline( $post, '', '', FALSE ) );
+		$data['author_url']  = $data['provider_url']; // FIXME: WTF?!
+
+		if ( $thumbnail_id = gThemeImage::id( gThemeOptions::info( 'embed_image_size', 'single' ), $post->ID ) ) {
+
+			list( $thumbnail_url, $thumbnail_width, $thumbnail_height ) = wp_get_attachment_image_src( $thumbnail_id, array( $width, 99999 ) );
+			$data['thumbnail_url']    = $thumbnail_url;
+			$data['thumbnail_width']  = $thumbnail_width;
+			$data['thumbnail_height'] = $thumbnail_height;
+
+		} else {
+			unset( $data['thumbnail_url'], $data['thumbnail_width'], $data['thumbnail_height'] );
+		}
+
+		return $data;
 	}
 
 	// NOT USED YET
