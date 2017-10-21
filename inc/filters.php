@@ -296,35 +296,22 @@ class gThemeFilters extends gThemeModuleCore
 
 	public function the_content( $content )
 	{
-		// remove empty paragraph tags, and remove broken paragraph tags from around block level elements.
-		// based on : https://github.com/ninnypants/remove-empty-p
-		// by : ninnypants
-		if ( gThemeOptions::info( 'content_remove_empty_p', TRUE ) ) {
+		if ( gThemeOptions::info( 'restricted_content', FALSE ) ) {
 
-			// clean up p tags around block elements
-			$content = preg_replace( array(
-				'#<p>\s*<(div|aside|section|article|header|footer)#',
-				'#</(div|aside|section|article|header|footer)>\s*</p>#',
-				'#</(div|aside|section|article|header|footer)>\s*<br ?/?>#',
-				'#<(div|aside|section|article|header|footer)(.*?)>\s*</p>#',
-				'#<p>\s*</(div|aside|section|article|header|footer)#',
-			), array(
-				'<$1',
-				'</$1>',
-				'</$1>',
-				'<$1$2>',
-				'</$1',
-			), $content );
-
-			$content = preg_replace('#<p>(\s|&nbsp;)*+(<br\s*/*>)*(\s|&nbsp;)*</p>#i', '', $content );
+			// FIXME: now only for rest-api
+			if ( gThemeWordPress::isREST() && gThemeContent::isRestricted() ) {
+				$GLOBALS['more'] = 0;
+				$content = get_the_content( FALSE );
+			}
 		}
 
-		// http://css-tricks.com/snippets/wordpress/remove-paragraph-tags-from-around-images/
-		if ( gThemeOptions::info( 'content_remove_image_p', TRUE ) )
-			$content = preg_replace( '/<p>\s*(<a .*>)?\s*(<img .* \/>)\s*(<\/a>)?\s*<\/p>/iU', '\1\2\3', $content );
+		// removes empty paragraph tags
+		if ( gThemeOptions::info( 'content_remove_empty_p', TRUE ) )
+			$content = gThemeText::noEmptyP( $content );
 
-		// http://bavotasan.com/2009/removing-images-from-a-wordpress-post/
-		// preg_replace( '/<img[^>]+./','', $content );
+		// removes paragraph around images
+		if ( gThemeOptions::info( 'content_remove_image_p', TRUE ) )
+			$content = gThemeText::noImageP( $content );
 
 		return $content;
 	}
