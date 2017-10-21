@@ -115,6 +115,8 @@ class gThemeTheme extends gThemeModuleCore
 			'app_head',
 			) as $action ) remove_action( $action, 'the_generator' );
 
+		remove_action( 'wp_head', 'locale_stylesheet' );
+		remove_action( 'embed_head', 'locale_stylesheet', 30 );
 		remove_action( 'wp_head', 'wp_generator' );
 
 		// completely remove the version number from pages and feeds
