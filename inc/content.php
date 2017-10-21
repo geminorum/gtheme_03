@@ -730,6 +730,31 @@ addthis_config.services_custom = [
 <script type="text/javascript" src="//static.addtoany.com/menu/page.js"></script><?php
 	}
 
+	// for embed/twitter-feed
+	public static function getHeader( $title, $sep, $byline = TRUE )
+	{
+		ob_start();
+
+			gThemeEditorial::label( array(
+				'after'       => ': ',
+				'image'       => FALSE,
+				'link'        => FALSE,
+				'description' => FALSE,
+			) );
+
+			gThemeEditorial::meta( 'over-title', array( 'after' => $sep ) );
+
+			if ( $title )
+				echo $title;
+
+			gThemeEditorial::meta( 'sub-title', array( 'before' => $sep ) );
+
+			if ( $byline )
+				echo strip_tags( self::byline( NULL, ' — ', '', FALSE ) );
+
+		return trim( str_ireplace( '&nbsp;', ' ', ob_get_clean() ) );
+	}
+
 	// ANCESTOR : gtheme_post_header()
 	public static function header( $atts = array() )
 	{
