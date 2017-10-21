@@ -1,3 +1,13 @@
+### 3.16.1
+* module/content: :new: byline helper
+* module/content: simple header for embed/twitter feed
+* module/feed: better handling restricted
+* module/filters: :new: handling restricted on rest
+* module/embed: :new: overwrite response data
+* module/options: :new: theme group ui
+* module/sidebar: widget core updated
+* module/banners: tag start/end for group items
+
 ### 3.16.0
 * root: new generic template parts
 * root: header/footer for signup/activate pages
