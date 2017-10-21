@@ -7,7 +7,6 @@ class gThemeFeed extends gThemeModuleCore
 	{
 		extract( self::atts( array(
 			'prepare'    => TRUE,
-			'restricted' => FALSE,
 			'exclude'    => TRUE,
 			'enclosures' => TRUE, // adding post image as rss enclosure
 			'paged'      => FALSE,
@@ -15,9 +14,6 @@ class gThemeFeed extends gThemeModuleCore
 
 		if ( $prepare )
 			add_filter( 'the_content_feed', array( $this, 'the_content_feed' ), 12, 2 );
-
-		if ( $restricted )
-			add_filter( 'the_content_feed', array( $this, 'the_content_feed_restricted' ), 1, 2 );
 
 		if ( $exclude && ! is_admin() )
 			add_filter( 'pre_get_posts', array( $this, 'pre_get_posts' ), 12 );
@@ -49,6 +45,21 @@ class gThemeFeed extends gThemeModuleCore
 			// /feed?for=list
 
 			return '';
+		}
+
+		if ( gThemeOptions::info( 'restricted_content', FALSE ) ) {
+
+			$GLOBALS['more'] = 0;
+			$content = get_the_content( FALSE );
+
+			// // manually apply `the_content` default filters to avoid infinity!
+			// $content = wptexturize( $content );
+			// $content = wpautop( $content );
+			// $content = shortcode_unautop( $content );
+			// $content = do_shortcode( $content );
+
+			$content = apply_filters( 'the_content', $content );
+			$content = str_replace( ']]>', ']]&gt;', $content );
 		}
 
 		$header = gThemeOptions::info( 'feed_content_header_before', '' );
@@ -113,13 +124,6 @@ class gThemeFeed extends gThemeModuleCore
 			'<div class="lead">'             => '<div style="color:#ccc;">',
 			'<div class="label">'            => '<div style="float:left;color:#333;">',
 		), $extra );
-	}
-
-	public function the_content_feed_restricted( $content, $feed_type )
-	{
-		$GLOBALS['more'] = 0;
-
-		return str_replace( ']]>', ']]&gt;', apply_filters( 'the_content', get_the_content( FALSE ) ) );
 	}
 
 	public function pre_get_posts( &$query )
