@@ -36,14 +36,15 @@ dd {
   margin-right: 0;
   margin-left: initial;
 }
-@media (min-width: 768px) {
+@media (min-width: $screen-sm) {
   .dl-horizontal dt {
     float: right;
     clear: right;
     text-align: left;
   }
   .dl-horizontal dd {
-    margin-right: 180px;
+    // margin-right: 180px;
+    margin-right: $dl-horizontal-offset;
     margin-left: 0;
   }
 }

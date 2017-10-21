@@ -140,7 +140,7 @@ dd {
   margin-left: initial;
 }
 
-@media(min-width: 768px) {
+@media(min-width: $screen-sm) {
 
   .dl-horizontal {
     dt {
@@ -149,7 +149,8 @@ dd {
       text-align: left;
     }
     dd {
-      margin-right: 180px;
+      // margin-right: 180px;
+      margin-right: $dl-horizontal-offset;
       margin-left: 0;
     }
   }
@@ -308,6 +309,7 @@ dd {
       margin-left: -15px;
       margin-right: auto;
     }
+
     &.flip {
       float: left !important;
       margin-left: -15px;
@@ -333,13 +335,16 @@ dd {
       margin-right: auto;
     }
   }
+
   .form-horizontal .control-label {
     text-align: left;
   }
+
   .nav-tabs-justified > li > a {
     // Instead of the line below you could use @include border-radius($radius, $vertical-radius)
     border-radius: 4px 4px 0 0;
   }
+
   .navbar > {
     .container .navbar-brand {
       margin-right: -15px;

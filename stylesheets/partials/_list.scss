@@ -22,10 +22,8 @@
 
 @mixin theme-list-before() {
   list-style: none;
-  padding:0;
-  &:before {
-
-  }
+  padding: 0;
+  &:before {}
 }
 
 @mixin theme-list-wrap() {
