@@ -1387,7 +1387,7 @@ class gThemeWidgetTheTerm extends gThemeWidget
 			return;
 
 		$this->before_widget( $args, $instance );
-		$this->widget_title( $args, $instance, $term->name );
+		$this->widget_title( $args, $instance, sanitize_term_field( 'name', $term->name, $term->term_id, $term->taxonomy, 'display' ) );
 
 		if ( $image )
 			echo $image;
