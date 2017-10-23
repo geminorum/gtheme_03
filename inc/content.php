@@ -99,6 +99,9 @@ class gThemeContent extends gThemeModuleCore
 		if ( ! $post = get_post( $post ) )
 			return '';
 
+		if ( 'page' == $post->post_type )
+			return '';
+
 		$args = array( 'id' => $post->ID, 'echo' => FALSE, 'context' => 'single' );
 
 		if ( gThemeOptions::supports( 'gpeople', TRUE )
