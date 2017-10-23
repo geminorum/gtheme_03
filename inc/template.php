@@ -43,7 +43,7 @@ class gThemeTemplate extends gThemeModuleCore
 		$template     = gThemeOptions::getOption( 'template_author_link', '<a href="%1$s" title="%2$s" rel="author">%3$s</a>' );
 		$display_name = get_the_author_meta( 'display_name', $user->ID ); // applying gMember filter
 
-		return vprintf( $template, array(
+		return vsprintf( $template, array(
 			esc_url( get_author_posts_url( $user->ID, $user->user_nicename ) ),
 			esc_attr( sprintf( _x( 'Posts by %s', 'Modules: Template: Author', GTHEME_TEXTDOMAIN ), $display_name ) ),
 			$display_name,
