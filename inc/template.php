@@ -56,9 +56,11 @@ class gThemeTemplate extends gThemeModuleCore
 		if ( ! is_object( $term ) )
 			$term = get_term( $term, $taxonomy );
 
+		$name = sanitize_term_field( 'name', $term->name, $term->term_id, $term->taxonomy, 'display' );
+
 		if ( ! is_null( $title ) ) {
 
-			$title = $term->name;
+			$title = $name;
 
 			if ( $term->description )
 				$title.= ' :: '.( wp_trim_words( $term->description,
@@ -72,7 +74,7 @@ class gThemeTemplate extends gThemeModuleCore
 
 		return vsprintf( gThemeOptions::info( 'template_term_link', $template ), array(
 			esc_url( get_term_link( $term, $taxonomy ) ),
-			esc_html( apply_filters( 'single_term_title', $term->name ) ),
+			esc_html( apply_filters( 'single_term_title', $name ) ),
 			esc_attr( $title ),
 			'term-link term-'.$taxonomy.'-link',
 		) );
