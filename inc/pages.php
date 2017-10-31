@@ -78,6 +78,7 @@ class gThemePages extends gThemeModuleCore
 		$args = self::atts( array(
 			'title'   => NULL,
 			'attr'    => FALSE,
+			'url'     => FALSE,
 			'def'     => '#',
 			'class'   => FALSE,
 			'before'  => '',
@@ -87,14 +88,17 @@ class gThemePages extends gThemeModuleCore
 			'rel'     => FALSE,
 		), $atts );
 
-		if ( $page = self::get( $name, 0 ) ) {
+		if ( $args['url'] )
+			$args['def'] = $args['url'];
+
+		else if ( $page = self::get( $name, 0 ) )
 			$args['def'] = get_permalink( $page );
 
-			if ( ! $args['title'] )
-				$args['title'] = get_the_title( $page );
-		}
+		if ( is_null( $args['title'] ) && $page )
+			$args['title'] = get_the_title( $page );
 
 		if ( $args['title'] ) {
+
 			$html = $args['before'].gThemeHTML::tag( 'a', array(
 				'href'  => $args['def'],
 				'class' => $args['class'],
