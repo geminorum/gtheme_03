@@ -256,7 +256,7 @@ class gThemeComments extends gThemeModuleCore
 
 		$actions = apply_filters( 'gtheme_comment_actions', $actions, $comment, $args, $depth );
 
-		if ( ! count( $actions ) )
+		if ( empty( $actions ) )
 			return;
 
 		echo '<ul class="list-inline '.$class.'">';

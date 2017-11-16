@@ -85,7 +85,7 @@ class gThemeFragmentCache extends gThemeBaseCore
 	public function store( $notice = 'manage_network' )
 	{
 		if ( gThemeWordPress::isDev() )
-			return;
+			return TRUE;
 
 		$output = ob_get_flush();
 
@@ -103,15 +103,19 @@ class gThemeFragmentCache extends gThemeBaseCore
 
 		if ( $notice && current_user_can( $notice ) && ! gThemeWordPress::isDev() )
 			gThemeHTML::notice( __( 'Refreshed!', GTHEME_TEXTDOMAIN ) );
+
+		return TRUE;
 	}
 
 	public function discard()
 	{
 		if ( gThemeWordPress::isDev() )
-			return;
+			return FALSE;
 
 		if ( $this->ob )
-			$output = ob_get_flush();
+			ob_get_flush();
+
+		return FALSE;
 	}
 
 	// DEPRECATED

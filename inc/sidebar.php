@@ -78,10 +78,10 @@ class gThemeSideBar extends gThemeModuleCore
 
 		$sidebars = apply_filters( 'gtheme_sidebars', gThemeOptions::info( 'sidebars', self::defaults() ) );
 
-		if ( ! count( $sidebars ) )
+		if ( empty( $sidebars ) )
 			return;
 
-		$sidebar_args_func = gThemeOptions::info( 'sidebar_args_func', array( __CLASS__, 'args' ) );
+		$sidebar_args_func = gThemeOptions::info( 'sidebar_args_func', array( __CLASS__, 'parseArgs' ) );
 
 		foreach ( $sidebars as $sidebar_id => $sidebar_title ) {
 			$args = array( 'id' => $sidebar_id );
@@ -93,7 +93,7 @@ class gThemeSideBar extends gThemeModuleCore
 		}
 	}
 
-	public static function args( $sidebar_id, $sidebar_title )
+	public static function parseArgs( $sidebar_id, $sidebar_title )
 	{
 		return array(
 			'id'            => $sidebar_id,
@@ -931,7 +931,8 @@ class gThemeWidgetRelatedPosts extends gThemeWidget
 			$number = 10;
 
 		$terms = wp_get_object_terms( $post->ID, $taxonomy, array( 'fields' => 'ids' ) );
-		if ( is_wp_error( $terms ) || ! count( $terms ) )
+
+		if ( is_wp_error( $terms ) || empty( $terms ) )
 			return;
 
 		$row_query = new \WP_Query( array(

@@ -165,7 +165,7 @@ class gThemeImage extends gThemeModuleCore
 
 	public function wp_get_attachment_image_attributes( $attr, $attachment )
 	{
-		unset( $attr['title'] );
+		// unset( $attr['title'] ); // removed from core
 		$attr['class'] = $attr['class'].' '.gThemeOptions::info( 'image-class', 'the-img img-responsive' );
 		return $attr;
 	}
@@ -527,6 +527,7 @@ class gThemeImage extends gThemeModuleCore
 		$wp_query->thumbnails_cached = TRUE;
 	}
 
+	// FIXME: DEPRECATED
 	public static function get_image( $atts = array() )
 	{
 		self::__dep( 'gThemeImage::getImage()' );

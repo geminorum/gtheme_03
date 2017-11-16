@@ -3,6 +3,32 @@
 class gThemeUtilities extends gThemeBaseCore
 {
 
+	public static function prepTitle( $text )
+	{
+		if ( ! $text )
+			return '';
+
+		$text = apply_filters( 'the_title', $text, 0 );
+		$text = apply_filters( 'string_format_i18n', $text );
+		$text = apply_filters( 'gnetwork_typography', $text );
+
+		return trim( $text );
+	}
+
+	public static function prepDescription( $text, $shortcode = TRUE )
+	{
+		if ( ! $text )
+			return '';
+
+		if ( $shortcode )
+			$text = do_shortcode( $text, TRUE );
+
+		$text = apply_filters( 'html_format_i18n', $text );
+		$text = apply_filters( 'gnetwork_typography', $text );
+
+		return wpautop( $text );
+	}
+
 	// @REF: http://davidwalsh.name/word-wrap-mootools-php
 	// @REF: https://css-tricks.com/preventing-widows-in-post-titles/
 	public static function wordWrap( $text, $min = 2 )

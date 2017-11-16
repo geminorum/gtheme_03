@@ -131,16 +131,39 @@ class gThemeBaseCore
 		return ( 'ASC' === $req || 'DESC' === $req ) ? $req : $default;
 	}
 
-	// ANCESTOR : shortcode_atts()
+	// @REF: `shortcode_atts()`
 	public static function atts( $pairs, $atts )
 	{
 		$atts = (array) $atts;
 		$out  = array();
 
-		foreach ( $pairs as $name => $default )
-			$out[$name] = array_key_exists( $name, $atts ) ? $atts[$name] : $default;
+		foreach ( $pairs as $name => $default ) {
+			if ( array_key_exists( $name, $atts ) )
+				$out[$name] = $atts[$name];
+			else
+				$out[$name] = $default;
+		}
 
 		return $out;
+	}
+
+	// @REF: `wp_parse_args()`
+	public static function args( $args, $defaults = '' )
+	{
+		if ( is_object( $args ) )
+			$r = get_object_vars( $args );
+
+		else if ( is_array( $args ) )
+			$r = &$args;
+
+		else
+			// wp_parse_str( $args, $r );
+			parse_str( $args, $r );
+
+		if ( is_array( $defaults ) )
+			return array_merge( $defaults, $r );
+
+		return $r;
 	}
 
 	/**

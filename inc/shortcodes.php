@@ -351,7 +351,7 @@ class gThemeShortCodes extends gThemeModuleCore
 
 		$tabs = do_shortcode( trim( $content, '<br />'."\n" ) );
 
-		if ( ! count( $this->tabs_nav ) )
+		if ( empty( $this->tabs_nav ) )
 			return $content;
 
 		$html = '<div class="'.$args['class'].'" id="'.$args['id'];
@@ -543,8 +543,8 @@ class gTheme_Walker_Page extends Walker_Page
 				'<a class="%s" href="%s"><h4 class="list-group-item-heading">%s</h4><p class="list-group-item-text">%s</p></a>',
 				$css_classes,
 				get_permalink( $page->ID ),
-				apply_filters( 'the_title', $page->post_title, $page->ID ),
-				$page->post_excerpt
+				apply_filters( 'the_title', $page->post_title, $page->ID ), // FIXME: use `prepTitle`
+				$page->post_excerpt // FIXME: use `prepDescription`
 			);
 
 		} else {
@@ -552,7 +552,7 @@ class gTheme_Walker_Page extends Walker_Page
 				'<a class="%s" href="%s">%s</a>',
 				$css_classes,
 				get_permalink( $page->ID ),
-				apply_filters( 'the_title', $page->post_title, $page->ID )
+				apply_filters( 'the_title', $page->post_title, $page->ID ) // FIXME: use `prepTitle`
 			);
 		}
 

@@ -280,7 +280,7 @@ class gThemeOptions extends gThemeModuleCore
 		);
 	}
 
-	// FIXME: DEPRICATED
+	// FIXME: DEPRECATED
 	public static function register_image( $n, $w, $h = 9999, $c = 0, $t = TRUE, $i = FALSE, $p = array( 'post' ), $d = '' )
 	{
 		self::__dep( 'gThemeOptions::registerImage()' );

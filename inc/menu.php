@@ -51,7 +51,7 @@ class gThemeMenu extends gThemeModuleCore
 
 			$args['echo'] = FALSE;
 
-			if ( ! $menu = wp_nav_menu( self::args( $args ) ) )
+			if ( ! $menu = wp_nav_menu( self::parseArgs( $args ) ) )
 				return '';
 
 			set_transient( $key, $menu, GTHEME_CACHETTL );
@@ -63,7 +63,7 @@ class gThemeMenu extends gThemeModuleCore
 		echo $before.$menu.$after;
 	}
 
-	public static function args( $atts = array() )
+	public static function parseArgs( $atts = array() )
 	{
 		$args = array(
 			'fallback_cb'    => '__return_null',

@@ -177,10 +177,18 @@ class gThemeWordPress extends gThemeBaseCore
 		return $list;
 	}
 
-	public static function getTerms( $taxonomy = 'category', $object_id = FALSE, $object = FALSE, $key = 'term_id', $extra = array() )
+	public static function getTerms( $taxonomy = 'category', $object_id = FALSE, $object = FALSE, $key = 'term_id', $extra = array(), $post_object = TRUE )
 	{
-		if ( is_null( $object_id ) )
+		// using cached terms, only for posts, when no extra args provided
+		if ( is_null( $object_id ) && empty( $extra ) )
+			$terms = get_the_terms( get_post(), $taxonomy );
+
+		else if ( is_null( $object_id ) )
 			$terms = wp_get_object_terms( get_post()->ID, $taxonomy, $extra );
+
+		// using cached terms, only for posts, when no extra args provided
+		else if ( FALSE !== $object_id && empty( $extra ) && $post_object )
+			$terms = get_the_terms( $object_id, $taxonomy );
 
 		else if ( FALSE !== $object_id )
 			$terms = wp_get_object_terms( $object_id, $taxonomy, $extra );

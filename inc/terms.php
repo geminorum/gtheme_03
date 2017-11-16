@@ -9,7 +9,7 @@ class gThemeTerms extends gThemeModuleCore
 	{
 		extract( self::atts( array(
 			'system_tags' => FALSE,
-			'p2p'         => FALSE, // DEPRICATED: use gEditorial Connected
+			'p2p'         => FALSE, // DEPRECATED: use gEditorial Connected
 			'admin'       => FALSE,
 		), $args ) );
 
@@ -268,7 +268,7 @@ class gThemeTerms extends gThemeModuleCore
 			return FALSE;
 		}
 
-		if ( ! count( $defaults ) )
+		if ( empty( $defaults ) )
 			return FALSE;
 
 		$action = self::insertDefaults( $taxonomy, $defaults ) ? 'added_'.$taxonomy : $action = 'error_'.$taxonomy;
@@ -429,7 +429,7 @@ class gThemeTerms extends gThemeModuleCore
 		$taxonomy  = gThemeOptions::info( 'primary_terms_taxonomy', 'category' );
 		$primaries = gThemeOptions::getOption( 'terms', array() );
 
-		if ( ! count( $primaries ) )
+		if ( empty( $primaries ) )
 			return FALSE;
 
 		$terms = get_terms( array(
@@ -440,7 +440,7 @@ class gThemeTerms extends gThemeModuleCore
 			'update_term_meta_cache' => FALSE,
 		) );
 
-		if ( ! count( $terms ) )
+		if ( empty( $terms ) )
 			return FALSE;
 
 		echo $before;

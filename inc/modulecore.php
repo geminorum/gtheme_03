@@ -6,8 +6,8 @@ class gThemeModuleCore extends gThemeBaseCore
 	protected $base = 'gtheme';
 	protected $key  = NULL;
 
-	// protected $option_base = 'gtheme'; // DEPRICATED
-	// protected $option_key  = ''; // DEPRICATED
+	// protected $option_base = 'gtheme'; // DEPRECATED
+	// protected $option_key  = ''; // DEPRECATED
 	protected $ajax        = FALSE;
 	protected $args        = array();
 	protected $counter     = 0;

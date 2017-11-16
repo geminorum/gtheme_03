@@ -10,7 +10,7 @@ class gThemeEditorial extends gThemeModuleCore
 		), $args ) );
 
 		if ( $word_wrap )
-			add_filter( 'gmeta_meta', array( $this, 'gmeta_meta' ), 12, 2 ); // FIXME: DEPRICATED on editorial meta
+			add_filter( 'gmeta_meta', array( $this, 'gmeta_meta' ), 12, 2 ); // FIXME: DEPRECATED on editorial meta
 	}
 
 	public function gmeta_meta( $meta, $field )

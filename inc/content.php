@@ -116,6 +116,8 @@ class gThemeContent extends gThemeModuleCore
 			}
 		}
 
+		// FIXME: check posttype: video: featured people
+
 		if ( gThemeOptions::supports( 'geditorial-meta', TRUE ) ) {
 
 			if ( $html = gThemeEditorial::author( $args ) ) {
@@ -494,7 +496,7 @@ class gThemeContent extends gThemeModuleCore
 				);
 
 			break;
-			case 'tag_list': // DEPRICATED
+			case 'tag_list': // DEPRECATED
 
 				if ( is_object_in_taxonomy( get_post_type(), 'post_tag' ) )
 					the_tags(
@@ -511,7 +513,7 @@ class gThemeContent extends gThemeModuleCore
 					gThemeTerms::theList( 'post_tag', sprintf( $before, 'tag-term' ), $after );
 
 			break;
-			case 'cat_list': // DEPRICATED
+			case 'cat_list': // DEPRECATED
 
 				if ( is_object_in_taxonomy( get_post_type(), 'category' ) )
 					echo sprintf( $before, 'cat-links' )

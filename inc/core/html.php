@@ -127,7 +127,7 @@ class gThemeHTML extends gThemeBaseCore
 
 			if ( is_array( $att ) ) {
 
-				if ( ! count( $att ) )
+				if ( empty( $att ) )
 					continue;
 
 				if ( 'data' == $key ) {
@@ -267,7 +267,7 @@ class gThemeHTML extends gThemeBaseCore
 
 	public static function headerNav( $uri = '', $active = '', $subs = array(), $prefix = 'nav-tab-', $tag = 'h3' )
 	{
-		if ( ! count( $subs ) )
+		if ( empty( $subs ) )
 			return;
 
 		$html = '';

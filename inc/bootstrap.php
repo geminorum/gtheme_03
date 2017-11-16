@@ -154,7 +154,7 @@ class gThemeBootstrap_Walker_NavBar extends Walker_Nav_Menu
 				}
 			}
 
-			$title = apply_filters( 'the_title', $item->title, $item->ID );
+			$title = apply_filters( 'the_title', $item->title, $item->ID ); // FIXME: use `prepTitle`
 			$title = apply_filters( 'nav_menu_item_title', $title, $item, $args, $depth );
 
 			$item_output = $args->before;
