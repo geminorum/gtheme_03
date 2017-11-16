@@ -146,7 +146,7 @@ class gThemeFeed extends gThemeModuleCore
 	{
 		if ( $size = gThemeOptions::info( 'enclosure_image_size', 'single' ) ) {
 
-			if ( $id = gThemeImage::id( $size ) ) {
+			if ( $id = gThemeImage::getThumbID( $size ) ) {
 
 				if ( $image = wp_get_attachment_image_src( $id, $size ) ) {
 

@@ -68,7 +68,7 @@ class gThemeAttachment extends gThemeModuleCore
 
 		if ( wp_attachment_is( 'image', $post ) ) {
 
-			$html = wp_get_attachment_image( $post->ID, $args['tag'] );
+			$html = gThemeImage::getImageHTML( $post->ID, $args['tag'] );
 
 		} else if ( wp_attachment_is( 'video', $post ) ) {
 
@@ -92,7 +92,7 @@ class gThemeAttachment extends gThemeModuleCore
 		} else if ( wp_attachment_is( 'audio', $post ) ) {
 
 			if ( $thumbnail_id = get_post_thumbnail_id( $post ) )
-				$html = wp_get_attachment_image( $thumbnail_id, $args['tag'] );
+				$html = gThemeImage::getImageHTML( $thumbnail_id, $args['tag'] );
 
 			if ( $html )
 				$html = '<div class="attachment-cover">'.$html.'</div>';

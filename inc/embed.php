@@ -48,7 +48,7 @@ class gThemeEmbed extends gThemeModuleCore
 		$data['author_name'] = strip_tags( gThemeContent::byline( $post, '', '', FALSE ) );
 		$data['author_url']  = $data['provider_url']; // FIXME: WTF?!
 
-		if ( $thumbnail_id = gThemeImage::id( gThemeOptions::info( 'embed_image_size', 'single' ), $post->ID ) ) {
+		if ( $thumbnail_id = gThemeImage::getThumbID( gThemeOptions::info( 'embed_image_size', 'single' ), $post->ID ) ) {
 
 			list( $thumbnail_url, $thumbnail_width, $thumbnail_height ) = wp_get_attachment_image_src( $thumbnail_id, array( $width, 99999 ) );
 			$data['thumbnail_url']    = $thumbnail_url;

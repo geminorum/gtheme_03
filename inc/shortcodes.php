@@ -162,7 +162,7 @@ class gThemeShortCodes extends gThemeModuleCore
 			}
 
 			$html.= sprintf( $template,
-				wp_get_attachment_image( $id, $args['size'], false, $attr ),
+				gThemeImage::getImageHTML( $id, $args['size'], $attr ),
 				$url,
 				$caption,
 				$title,
@@ -234,7 +234,7 @@ class gThemeShortCodes extends gThemeModuleCore
 
 		foreach ( $attachments as $id => $attachment ) {
 
-			$html.= '<li>'.wp_get_attachment_image( $id, $args['size'], false, $attr );
+			$html.= '<li>'.gThemeImage::getImageHTML( $id, $args['size'], $attr );
 
 			$html.= gThemeAttachment::caption( array(
 				'before' => '<div class="flex-caption">',
