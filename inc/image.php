@@ -678,18 +678,20 @@ class gThemeImage extends gThemeModuleCore
 	// ANCESTOR : gtheme_image(), gtheme_image_caption()
 	public static function image( $atts = array() )
 	{
+		$default_class = gThemeOptions::info( 'image-class', 'the-img img-responsive' );
+
 		$args = self::atts( array(
 			'tag'             => 'raw',
 			'post_id'         => NULL,
 			'link'            => 'parent',
 			'attr'            => '',
 			'check_single'    => TRUE, // checks if post has `hide-image-single` system tag
-			'empty'           => self::holder( ( isset( $atts['tag'] ) ? $atts['tag'] : 'raw' ), ( isset( $atts['class'] ) ? $atts['class'] : 'gtheme-image' ) ),
+			'empty'           => self::holder( ( isset( $atts['tag'] ) ? $atts['tag'] : 'raw' ), ( isset( $atts['class'] ) ? $atts['class'] : $default_class ) ),
 			'url'             => FALSE,
 			'caption'         => FALSE,
 			'default_caption' => '',
 			'echo'            => TRUE,
-			'class'           => 'gtheme-image',
+			'class'           => $default_class,
 			'before'          => '<div class="entry-image'.( isset( $atts['tag'] ) ? ' image-'.$atts['tag'] : '' ).'">',
 			'after'           => '</div>',
 			'context'         => NULL,
@@ -700,7 +702,10 @@ class gThemeImage extends gThemeModuleCore
 
 		if ( $args['class'] ) {
 			if ( $args['attr'] ) {
-				$args['attr'] = wp_parse_args( $attr, array() ); // FIXME: MAYBE WE HAVE PROBLEM!
+
+				if ( ! is_array( $args['attr'] ) )
+					$args['attr'] = wp_parse_args( $args['attr'], array() ); // FIXME: MAYBE WE HAVE PROBLEM!
+
 				$args['attr']['class'] = $args['class'];
 			} else {
 				$args['attr'] = array( 'class' => $args['class'] );
