@@ -33,7 +33,7 @@
 
   // -webkit-text-fill-color: yellow !important;
 
-  // http://stackoverflow.com/a/29350537/4864081
+  // http://stackoverflow.com/a/29350537
   // &:-webkit-autofill,
   // &:-webkit-autofill:hover,
   // &:-webkit-autofill:focus,
@@ -41,7 +41,7 @@
   // 	transition: background-color 5000s ease-in-out 0s;
   // }
 
-  // http://stackoverflow.com/a/29044088/4864081
+  // http://stackoverflow.com/a/29044088
   // @each $prefix in -webkit, -moz {
     // @include with-prefix($prefix) {
       // @each $element in input, textarea, select {

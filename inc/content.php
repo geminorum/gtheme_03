@@ -71,7 +71,7 @@ class gThemeContent extends gThemeModuleCore
 			the_content( self::continueReading( ( $edit ? get_edit_post_link() : '' ) ) );
 
 		if ( gThemeOptions::info( 'copy_disabled', FALSE ) )
-			echo '<div class="copy-disabled"></div>'; // http://stackoverflow.com/a/23337329/4864081
+			echo '<div class="copy-disabled"></div>'; // http://stackoverflow.com/a/23337329
 
 		echo $after;
 	}
