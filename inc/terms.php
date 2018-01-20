@@ -394,21 +394,20 @@ class gThemeTerms extends gThemeModuleCore
 			'edit_url' => NULL,
 		), empty( $box['args'] ) ? array() : $box['args'] );
 
-		$tax_name = esc_attr( $args['taxonomy'] );
-		$taxonomy = get_taxonomy( $args['taxonomy'] );
-
+		$tax  = esc_attr( $args['taxonomy'] );
 		$html = wp_terms_checklist( $post->ID, array(
-			'taxonomy'      => $tax_name,
+			'taxonomy'      => $tax,
 			'checked_ontop' => FALSE,
 			'echo'          => FALSE,
 		) );
 
-		echo '<div id="taxonomy-'.$tax_name.'" class="geditorial-admin-wrap-metabox choose-tax">';
+		echo '<div id="taxonomy-'.$tax.'" class="geditorial-admin-wrap-metabox choose-tax">';
 			if ( $html ) {
 				echo '<div class="field-wrap-list"><ul>'.$html.'</ul></div>';
 				// allows for an empty term set to be sent. 0 is an invalid Term ID and will be ignored by empty() checks.
-				echo '<input type="hidden" name="tax_input['.$tax_name.'][]" value="0" />';
+				echo '<input type="hidden" name="tax_input['.$tax.'][]" value="0" />';
 			} else {
+				$taxonomy = get_taxonomy( $args['taxonomy'] );
 				echo '<div class="field-wrap field-wrap-empty">';
 					echo '<span>'.$taxonomy->labels->not_found.'</span>';
 				echo '</div>';

@@ -122,9 +122,11 @@ class gThemeFilters extends gThemeModuleCore
 
 ?><script>
 	var cb = function() {
-		var l = document.createElement('link'); l.rel = 'stylesheet';
+		var l = document.createElement('link');
+		var h = document.getElementsByTagName('head')[0];
+		l.rel = 'stylesheet';
 		l.href = '<?php echo $css; ?>';
-		var h = document.getElementsByTagName('head')[0]; h.parentNode.insertBefore(l, h);
+		h.parentNode.insertBefore(l, h);
 	};
 	var raf = requestAnimationFrame || mozRequestAnimationFrame ||
 		webkitRequestAnimationFrame || msRequestAnimationFrame;

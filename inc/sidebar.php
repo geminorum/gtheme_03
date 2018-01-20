@@ -933,7 +933,7 @@ class gThemeWidgetRelatedPosts extends gThemeWidget
 		$terms = wp_get_object_terms( $post->ID, $taxonomy, array( 'fields' => 'ids' ) );
 
 		if ( is_wp_error( $terms ) || empty( $terms ) )
-			return;
+			return TRUE;
 
 		$row_query = new \WP_Query( array(
 			'tax_query' => array( array(
