@@ -1,34 +1,33 @@
-jQuery(document).ready(function($) {
+/* global jQuery */
 
+jQuery(function ($) {
   var lastDirection;
 
-  $('.-gallery').imagesLoaded(function() {
-    $('.-gallery-spinner').fadeOut(500, function() {
+  $('.-gallery').imagesLoaded(function () {
+    $('.-gallery-spinner').fadeOut(500, function () {
       $('.-gallery').animate({
         'opacity': '1'
       }, 500);
     });
   });
 
-  $('.-gallery-img').bind('mouseenter', function(e) {
-
+  $('.-gallery-img').bind('mouseenter', function (e) {
     var img = this;
     lastDirection = getDir($(this), e);
 
     $(img).addClass(lastDirection);
 
-    setTimeout(function() {
+    setTimeout(function () {
       $(img).addClass('animated');
     }, 1);
   });
 
-  $('.-gallery-img').bind('mouseleave', function(e) {
+  $('.-gallery-img').bind('mouseleave', function (e) {
     $(this).removeClass(lastDirection).removeClass('animated');
   });
 });
 
-var getDir = function(elem, e) {
-
+var getDir = function (elem, e) {
   // the width and height of the current div
   var w = elem.width();
   var h = elem.height();
