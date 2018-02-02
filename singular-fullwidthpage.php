@@ -1,9 +1,10 @@
 <?php defined( 'ABSPATH' ) or die( header( 'HTTP/1.0 403 Forbidden' ) );
 
-echo '<div class="container -main -singular"><div class="row">';
-echo '<div class="col-sm-8 wrap-content" id="content">';
+echo '<div class="container -main -singular -fullwidthpage"><div class="row">';
 
-	gThemeNavigation::breadcrumbSingle( array( 'home' => 'home' ) );
+	// gThemeNavigation::breadcrumbSingle( array( 'home' => 'home' ) );
+
+echo '<div class="col-sm-12 wrap-content" id="content">';
 
 	if ( have_posts() ) {
 
@@ -21,6 +22,6 @@ echo '<div class="col-sm-8 wrap-content" id="content">';
 
 echo '</div>';
 
-	get_sidebar( 'singular' );
+	// get_sidebar( 'singular' );
 
 echo '</div></div>';

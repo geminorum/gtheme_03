@@ -83,6 +83,8 @@ class gThemeOptions extends gThemeModuleCore
 			'text_unjustify'   => _x( '[ uJ ]', 'Options: Text Unjustify', GTHEME_TEXTDOMAIN ),
 			'text_justify_sep' => _x( ' / ', 'Options: Text Justify Sep', GTHEME_TEXTDOMAIN ),
 
+			'reflist_title' => sprintf( '<h4 class="-title" id="footnotes">%s</h4>', _x( 'Footnotes', 'Options: Reflist Title', GTHEME_TEXTDOMAIN ) ),
+
 			'excerpt_length'          => 40,
 			'excerpt_more'            => ' &hellip;', // FALSE: empty / TRUE: continueReading()
 			'trim_excerpt_characters' => FALSE, // set this to desired characters count. like : 300

@@ -11,28 +11,17 @@
 			// NO CONTENT
 
 		} else {
-
-			gThemeContent::header( array( 'context' => 'singular' ) );
-			gThemeContent::byline( NULL, '<div class="entry-byline">', '</div>' );
-			gThemeContent::content();
+			get_template_part( 'partials/entry', 'singular' );
 		}
+
+		gThemeComments::template( '<div class="wrap-comments">', '</div>' );
 
 	} else {
 
 		gThemeContent::wrapOpen( 'index' );
 		gThemeImage::image( array( 'tag' => 'single' ) );
 
-		gThemeContent::header( array( 'context' => 'index' ) );
-		gThemeContent::byline( NULL, '<div class="entry-byline">', '</div>' );
-		gThemeContent::excerpt();
-
-		gThemeContent::footer( array(
-			'context' => 'index',
-			'actions' => array(
-				'categories',
-				'date',
-			),
-		) );
+		get_template_part( 'partials/entry', 'index' );
 	}
 
 gThemeContent::wrapClose();
