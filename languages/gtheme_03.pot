@@ -1,4 +1,4 @@
-# Copyright (C) 2017 gTheme
+# Copyright (C) 2018 gTheme
 # This file is distributed under the same license as the gTheme package.
 msgid ""
 msgstr ""
@@ -26,11 +26,6 @@ msgstr ""
 msgid "Oops! That page can&rsquo;t be found."
 msgstr ""
 
-#: end.php:17
-msgctxt "Root: End: Before Site Modified"
-msgid "Last updated on"
-msgstr ""
-
 #: fullwidthpage.php:6
 msgid "Full-Width Page"
 msgstr ""
@@ -52,7 +47,7 @@ msgid "gTheme 3"
 msgstr ""
 
 #: style.css:4
-msgid "3.16.0"
+msgid "3.16.2"
 msgstr ""
 
 #: style.css:5
@@ -292,113 +287,113 @@ msgctxt "Content: Not Found Message"
 msgid "It looks like nothing was found at this location. Maybe try one of the links below or a search?"
 msgstr ""
 
-#: inc/content.php:200
+#: inc/content.php:205
 msgctxt "Content: Read More Edit"
 msgid "Edit"
 msgstr ""
 
-#: inc/content.php:201
+#: inc/content.php:206
 msgctxt "Content: Read More Edit Title"
 msgid "Jump to edit page"
 msgstr ""
 
-#: inc/content.php:205
+#: inc/content.php:210
 msgctxt "Content: Read More Text"
 msgid "Read more&nbsp;<span class=\"excerpt-link-hellip\">&hellip;</span>"
 msgstr ""
 
-#: inc/content.php:206
+#: inc/content.php:211
 msgctxt "Content: Read More Title"
 msgid "Continue reading &ldquo;%s&rdquo; &hellip;"
 msgstr ""
 
-#: inc/content.php:221
+#: inc/content.php:226
 msgctxt "Content: Title Attr"
 msgid "Permanent link to &ndash;%s&ndash;"
 msgstr ""
 
-#: inc/content.php:224
+#: inc/content.php:229
 msgctxt "Content: Title Attr"
 msgid "Short link for &ndash;%s&ndash;"
 msgstr ""
 
-#: inc/content.php:404
+#: inc/content.php:409
 msgctxt "Modules: Content: Action"
 msgid "Print Version"
 msgstr ""
 
-#: inc/content.php:413, inc/content.php:421
+#: inc/content.php:418, inc/content.php:426
 msgctxt "Modules: Content: Action"
 msgid "Share This"
 msgstr ""
 
-#: inc/content.php:428
+#: inc/content.php:433
 msgctxt "Modules: Content: Action"
 msgid "Short Link"
 msgstr ""
 
-#: inc/content.php:464
+#: inc/content.php:469
 msgctxt "Modules: Content: Action"
 msgid "<a href=\"%3$s\" class=\"%1$s\">Your Comment</a>"
 msgstr ""
 
-#: inc/content.php:465
+#: inc/content.php:470
 msgctxt "Modules: Content: Action"
 msgid "<a href=\"%3$s\" class=\"%1$s\">One Comment</a>"
 msgstr ""
 
-#: inc/content.php:466
+#: inc/content.php:471
 msgctxt "Modules: Content: Action"
 msgid "<a href=\"%3$s\" class=\"%1$s\">%2$s Comments</a>"
 msgstr ""
 
-#: inc/content.php:473
+#: inc/content.php:478
 msgctxt "Modules: Content: Action"
 msgid " <small><small>(<a href=\"%1$s\" title=\"%2$s\" class=\"%3$s\"><abbr title=\"Really Simple Syndication\">RSS</abbr></a>)</small></small>"
 msgstr ""
 
-#: inc/content.php:475
+#: inc/content.php:480
 msgctxt "Modules: Content: Action"
 msgid "Feed for this post's comments"
 msgstr ""
 
-#: inc/content.php:488
+#: inc/content.php:493
 msgctxt "Modules: Content: Action"
 msgid "Edit"
 msgstr ""
 
-#: inc/content.php:580
+#: inc/content.php:585
 msgid "Increase font size"
 msgstr ""
 
-#: inc/content.php:590
+#: inc/content.php:595
 msgid "Decrease font size"
 msgstr ""
 
-#: inc/content.php:601
+#: inc/content.php:611
 msgid "Justify paragraphs"
 msgstr ""
 
-#: inc/content.php:608
+#: inc/content.php:618
 msgid "Un-justify paragraphs"
 msgstr ""
 
-#: inc/content.php:642
+#: inc/content.php:678
 msgctxt "Modules: Content: PrintFriendly"
 msgid "Print Version"
 msgstr ""
 
-#: inc/content.php:666
+#: inc/content.php:702
 msgctxt "Modules: Content: Addtoany"
 msgid "Share This"
 msgstr ""
 
-#: inc/content.php:687
+#: inc/content.php:723
 msgctxt "Modules: Content: Addtoany"
 msgid "Check this out %s"
 msgstr ""
 
-#: inc/content.php:688
+#: inc/content.php:724
 msgctxt "Modules: Content: Addtoany"
 msgid ""
 "Click the link:\n"
@@ -749,31 +744,36 @@ msgctxt "Options: Text Justify Sep"
 msgid " / "
 msgstr ""
 
-#: inc/options.php:122
+#: inc/options.php:86
+msgctxt "Options: Reflist Title"
+msgid "Footnotes"
+msgstr ""
+
+#: inc/options.php:124
 msgid "&copy; All right reserved."
 msgstr ""
 
-#: inc/options.php:201
+#: inc/options.php:203
 msgctxt "Options: Defaults: Date Format: Byline"
 msgid "j M Y"
 msgstr ""
 
-#: inc/options.php:202
+#: inc/options.php:204
 msgctxt "Options: Defaults: Date Format: Day"
 msgid "j M Y"
 msgstr ""
 
-#: inc/options.php:221
+#: inc/options.php:223
 msgctxt "Media Tag Titles"
 msgid "Raw"
 msgstr ""
 
-#: inc/options.php:232
+#: inc/options.php:234
 msgctxt "Media Tag Titles"
 msgid "Big"
 msgstr ""
 
-#: inc/options.php:243
+#: inc/options.php:245
 msgctxt "Media Tag Titles"
 msgid "Single"
 msgstr ""
@@ -868,27 +868,27 @@ msgctxt "Pages Module"
 msgid "Select a page for this site's social profiles"
 msgstr ""
 
-#: inc/pages.php:116
+#: inc/pages.php:120
 msgctxt "Modules: Menu Name"
 msgid "Pages"
 msgstr ""
 
-#: inc/pages.php:125
+#: inc/pages.php:129
 msgctxt "Pages Module: Form Title"
 msgid "Site Page Settings"
 msgstr ""
 
-#: inc/pages.php:143
+#: inc/pages.php:147
 msgctxt "Pages Module"
 msgid "Create Default Pages"
 msgstr ""
 
-#: inc/pages.php:144
+#: inc/pages.php:148
 msgctxt "Pages Module"
 msgid "Create Default Menus"
 msgstr ""
 
-#: inc/pages.php:197
+#: inc/pages.php:201
 msgctxt "Options: Page Pre-Text"
 msgid "[ This page is being completed ]"
 msgstr ""
@@ -1153,117 +1153,117 @@ msgctxt "Widget: Description"
 msgid "Displays the related posts based on terms in a taxonomy."
 msgstr ""
 
-#: inc/sidebar.php:1017
+#: inc/sidebar.php:1018
 msgctxt "Widget: Title"
 msgid "Theme: Recent Posts"
 msgstr ""
 
-#: inc/sidebar.php:1018
+#: inc/sidebar.php:1019
 msgctxt "Widget: Description"
 msgid "Displays the most recent posts."
 msgstr ""
 
-#: inc/sidebar.php:1111
+#: inc/sidebar.php:1112
 msgctxt "Widget: Title"
 msgid "Theme: Recent Comments"
 msgstr ""
 
-#: inc/sidebar.php:1112
+#: inc/sidebar.php:1113
 msgctxt "Widget: Description"
 msgid "Displays the most recent comments."
 msgstr ""
 
-#: inc/sidebar.php:1214
+#: inc/sidebar.php:1215
 msgctxt "Widget: Title"
 msgid "Theme: Search"
 msgstr ""
 
-#: inc/sidebar.php:1215
+#: inc/sidebar.php:1216
 msgctxt "Widget: Description"
 msgid "Displays search form."
 msgstr ""
 
-#: inc/sidebar.php:1250
+#: inc/sidebar.php:1251
 msgctxt "Widget: Title"
 msgid "Theme: Template Part"
 msgstr ""
 
-#: inc/sidebar.php:1251
+#: inc/sidebar.php:1252
 msgctxt "Widget: Description"
 msgid "Include selected template part into sidebars."
 msgstr ""
 
-#: inc/sidebar.php:1286
+#: inc/sidebar.php:1287
 msgctxt "Widget: Title"
 msgid "Theme: Children"
 msgstr ""
 
-#: inc/sidebar.php:1287
+#: inc/sidebar.php:1288
 msgctxt "Widget: Description"
 msgid "Displays the list of current post's children."
 msgstr ""
 
-#: inc/sidebar.php:1326
+#: inc/sidebar.php:1327
 msgctxt "Widget: Title"
 msgid "Theme: Siblings"
 msgstr ""
 
-#: inc/sidebar.php:1327
+#: inc/sidebar.php:1328
 msgctxt "Widget: Description"
 msgid "Displays the list of current post's siblings."
 msgstr ""
 
-#: inc/sidebar.php:1366
+#: inc/sidebar.php:1367
 msgctxt "Widget: Title"
 msgid "Theme: The Term"
 msgstr ""
 
-#: inc/sidebar.php:1367
+#: inc/sidebar.php:1368
 msgctxt "Widget: Description"
 msgid "Displays the current term info based on the query."
 msgstr ""
 
-#: inc/sidebar.php:1425
+#: inc/sidebar.php:1426
 msgctxt "Widget: Setting"
 msgid "Display Meta Image"
 msgstr ""
 
-#: inc/sidebar.php:1426
+#: inc/sidebar.php:1427
 msgctxt "Widget: Setting"
 msgid "Hide if no Description"
 msgstr ""
 
-#: inc/sidebar.php:1440
+#: inc/sidebar.php:1441
 msgctxt "Widget: Title"
 msgid "Theme: Custom HTML"
 msgstr ""
 
-#: inc/sidebar.php:1441
+#: inc/sidebar.php:1442
 msgctxt "Widget: Description"
 msgid "Displays arbitrary HTML code with support for shortcodes and embeds."
 msgstr ""
 
-#: inc/sidebar.php:1518
+#: inc/sidebar.php:1519
 msgctxt "Widget: Setting"
 msgid "Process Embeds"
 msgstr ""
 
-#: inc/sidebar.php:1519
+#: inc/sidebar.php:1520
 msgctxt "Widget: Setting"
 msgid "Process Shortcodes"
 msgstr ""
 
-#: inc/sidebar.php:1520
+#: inc/sidebar.php:1521
 msgctxt "Widget: Setting"
 msgid "Process Filters"
 msgstr ""
 
-#: inc/sidebar.php:1521
+#: inc/sidebar.php:1522
 msgctxt "Widget: Setting"
 msgid "Process Filters (Legacy)"
 msgstr ""
 
-#: inc/sidebar.php:1522
+#: inc/sidebar.php:1523
 msgctxt "Widget: Setting"
 msgid "Automatic Paragraphs"
 msgstr ""
@@ -1437,7 +1437,12 @@ msgstr ""
 msgid "Connected Posts"
 msgstr ""
 
-#: inc/utilities.php:157
+#: inc/utilities.php:189
 msgctxt "Alert button (screen reader only)"
 msgid "Close"
+msgstr ""
+
+#: partials/end.php:14
+msgctxt "Root: End: Before Site Modified"
+msgid "Last updated on"
 msgstr ""
