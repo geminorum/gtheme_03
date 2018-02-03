@@ -1,3 +1,14 @@
+### 3.16.2
+* root: breaking templates into partials
+* module/content: bypass byline on pages
+* module/pages: custom url for link helper
+* module/image: refactoring image methods
+* module/image: passing default class on image method
+* module/sidebar: sanitize term name before display
+* module/theme: removing core's auto locale styles
+* module/theme: skipping singular script
+* module/template: sanitize term name before display
+
 ### 3.16.1
 * module/content: :new: byline helper
 * module/content: simple header for embed/twitter feed
