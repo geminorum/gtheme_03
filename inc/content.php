@@ -599,8 +599,13 @@ class gThemeContent extends gThemeModuleCore
 		echo $a;
 	}
 
-	public static function justify_buttons( $b = '', $a = '', $sep = 'def', $justify = 'def', $unjustify = 'def' )
+	public static function justify_buttons( $b = '', $a = '', $sep = 'def', $justify = 'def', $unjustify = 'def', $footer = TRUE )
 	{
+		if ( $footer && is_singular() ) {
+			wp_enqueue_script( 'jquery' );
+			add_action( 'wp_footer', array( __CLASS__, 'justify_buttons_footer' ), 99 );
+		}
+
 		echo $b;
 
 		echo '<a id="text-justify" class="text-justify-button hidden" href="#" title="'.__( 'Justify paragraphs', GTHEME_TEXTDOMAIN ).'">';
@@ -615,6 +620,32 @@ class gThemeContent extends gThemeModuleCore
 		echo '</a>';
 
 		echo $a;
+	}
+
+	// FIXME: test this!
+	public static function justify_buttons_footer()
+	{
+		?><script type="text/javascript">jQuery(function ($) {
+$('#text-justify, #text-unjustify').removeAttr('href').css('cursor', 'pointer');
+
+$('#text-justify').click(function (e) {
+	e.preventDefault();
+	$('.entry-content p').each(function () {
+		$(this).css('text-align', 'justify');
+	});
+	$('#text-unjustify').fadeIn();
+	$('#text-justify').hide();
+});
+
+$('#text-unjustify').click(function (e) {
+	e.preventDefault();
+	$('body.rtl .entry-content p').each(function () {
+		$(this).css('text-align', 'right');
+	});
+	$('#text-justify').fadeIn();
+	$('#text-unjustify').hide();
+	});
+});</script><?php
 	}
 
 	// @REF: https://support.printfriendly.com/button/developer-questions/custom-css-styles/

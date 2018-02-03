@@ -397,6 +397,8 @@ class gThemeComments extends gThemeModuleCore
 
 			self::form( $post_id, $args, $commenter, $user_identity );
 
+			gThemeUtilities::enqueueAutosize();
+
 		} else {
 
 			do_action( 'comment_form_comments_closed' );
