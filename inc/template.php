@@ -100,10 +100,17 @@ class gThemeTemplate extends gThemeModuleCore
 		return $html;
 	}
 
+	// FIXME: rewrite this
 	// ANCESTOR : gtheme_get_the_categories()
 	public static function the_terms( $sep = 'def', $taxonomy = 'category', $mode = 'both' )
 	{
-		$terms = get_the_terms( get_the_ID(), $taxonomy );
+		if ( ! $post = get_post() )
+			return '';
+
+		if ( ! is_object_in_taxonomy( $post, $taxonomy ) )
+			return '';
+
+		$terms = get_the_terms( $post, $taxonomy );
 
 		if ( FALSE === $terms || is_wp_error( $terms ) )
 			return '';
