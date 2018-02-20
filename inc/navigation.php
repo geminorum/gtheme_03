@@ -182,7 +182,8 @@ class gThemeNavigation extends gThemeModuleCore
 		echo $args['before'].'<ol class="breadcrumb '.$args['class'].'">';
 
 		foreach ( $crumbs as $offset => $crumb )
-			echo '<li'.( ( $count - 1 ) == $offset ? ' class="active"' : '' ).'>'.$crumb.'</li>';
+			if ( $crumb && trim( $crumb ) )
+				echo '<li'.( ( $count - 1 ) == $offset ? ' class="active"' : '' ).'>'.$crumb.'</li>';
 
 		echo '</ol>'.$args['after'];
 	}
@@ -226,7 +227,8 @@ class gThemeNavigation extends gThemeModuleCore
 		echo $args['before'].'<ol class="breadcrumb '.$args['class'].'">';
 
 		foreach ( $crumbs as $offset => $crumb )
-			echo '<li'.( ( $count - 1 ) == $offset ? ' class="active"' : '' ).'>'.$crumb.'</li>';
+			if ( $crumb && trim( $crumb ) )
+				echo '<li'.( ( $count - 1 ) == $offset ? ' class="active"' : '' ).'>'.$crumb.'</li>';
 
 		echo '</ol>'.$args['after'];
 	}
