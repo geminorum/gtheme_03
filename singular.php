@@ -3,7 +3,7 @@
 echo '<div class="container -main -singular"><div class="row">';
 echo '<div class="col-sm-8 wrap-content" id="content">';
 
-	gThemeNavigation::breadcrumbSingle( array( 'home' => 'home' ) );
+	gThemeNavigation::breadcrumb( array( 'home' => 'home' ) );
 
 	if ( have_posts() ) {
 

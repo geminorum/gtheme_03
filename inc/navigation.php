@@ -114,9 +114,10 @@ class gThemeNavigation extends gThemeModuleCore
 	// wrapper wit conditional tags
 	public static function breadcrumb( $atts = array() )
 	{
-		if ( is_singular() )
+		if ( is_singular( gThemeOptions::info( 'breadcrumb_posttypes', array( 'post' ) ) ) )
 			self::breadcrumbSingle( $atts );
-		else
+
+		else if ( is_archive() || is_search() )
 			self::breadcrumbArchive( $atts );
 	}
 
@@ -145,11 +146,8 @@ class gThemeNavigation extends gThemeModuleCore
 		if ( FALSE !== $args['term'] )
 			$crumbs[] = gThemeTemplate::the_terms( FALSE, $args['tax'], $args['term'] );
 
-		if ( FALSE !== $args['label'] && function_exists( 'gmeta_label' ) ) {
-			$label_html = gmeta_label( '', '', FALSE, array( 'echo' => FALSE ) );
-			if ( ! empty( $label_html ) )
-				$crumbs[] = $label_html;
-		}
+		if ( FALSE !== $args['label'] && function_exists( 'gmeta_label' ) )
+			$crumbs[] = gmeta_label( '', '', FALSE, array( 'echo' => FALSE ) );
 
 		if ( is_singular() ) {
 
@@ -165,6 +163,7 @@ class gThemeNavigation extends gThemeModuleCore
 						number_format_i18n( $page ),
 						number_format_i18n( $numpages ) );
 			}
+
 			if ( ! empty( $single_html ) )
 				$crumbs[] = $single_html;
 		}
@@ -174,7 +173,8 @@ class gThemeNavigation extends gThemeModuleCore
 					.'" title="'.gThemeContent::title_attr( FALSE ).'" rel="bookmark">'
 					.get_the_title().'</a>';
 
-		$count = count( $crumbs );
+		$crumbs = array_filter( $crumbs );
+		$count  = count( $crumbs );
 
 		if ( ! $count )
 			return;
@@ -182,8 +182,7 @@ class gThemeNavigation extends gThemeModuleCore
 		echo $args['before'].'<ol class="breadcrumb '.$args['class'].'">';
 
 		foreach ( $crumbs as $offset => $crumb )
-			if ( $crumb && trim( $crumb ) )
-				echo '<li'.( ( $count - 1 ) == $offset ? ' class="active"' : '' ).'>'.$crumb.'</li>';
+			echo '<li'.( ( $count - 1 ) == $offset ? ' class="active"' : '' ).'>'.$crumb.'</li>';
 
 		echo '</ol>'.$args['after'];
 	}
@@ -219,7 +218,8 @@ class gThemeNavigation extends gThemeModuleCore
 			$crumbs[] = sprintf( $template, number_format_i18n( get_query_var( 'paged' ) ) );
 		}
 
-		$count = count( $crumbs );
+		$crumbs = array_filter( $crumbs );
+		$count  = count( $crumbs );
 
 		if ( ! $count )
 			return;
@@ -227,8 +227,7 @@ class gThemeNavigation extends gThemeModuleCore
 		echo $args['before'].'<ol class="breadcrumb '.$args['class'].'">';
 
 		foreach ( $crumbs as $offset => $crumb )
-			if ( $crumb && trim( $crumb ) )
-				echo '<li'.( ( $count - 1 ) == $offset ? ' class="active"' : '' ).'>'.$crumb.'</li>';
+			echo '<li'.( ( $count - 1 ) == $offset ? ' class="active"' : '' ).'>'.$crumb.'</li>';
 
 		echo '</ol>'.$args['after'];
 	}

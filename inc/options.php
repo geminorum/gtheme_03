@@ -37,9 +37,12 @@ class gThemeOptions extends gThemeModuleCore
 
 			'module_args' => array(),
 
-			// NAVIGATION & MENUS
+			// MENUS
 			// 'register_nav_menus' => gThemeMenu::defaults(),
 			// 'nav_menu_allowedtags' => array( 'p' ),
+
+			// NAVIGATION
+			// 'breadcrumb_posttypes' => array( 'post' ),
 
 			// SIDEBARS
 			// 'sidebars' => gThemeSideBar::defaults(),
