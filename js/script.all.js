@@ -36,7 +36,7 @@ jQuery(function ($) {
     $(this).addClass('error-image').hide();
   });
 
-  $('a[href=#]').click(function (e) {
+  $('a[href="#"]').click(function (e) {
     e.preventDefault();
   });
 
