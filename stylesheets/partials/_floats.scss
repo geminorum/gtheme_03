@@ -42,6 +42,7 @@
         vertical-align: middle;
       }
     }
+
     @include body-rtl() {
       .nav-previous {
         float: right;
@@ -57,6 +58,7 @@
 // DRAFT: not used
 @mixin theme-float-flip-right() {
   float: right;
+
   @include body-rtl() {
     float: left;
   }
@@ -65,6 +67,7 @@
 // DRAFT: not used
 @mixin theme-float-flip-left() {
   float: left;
+
   @include body-rtl() {
     float: right;
   }

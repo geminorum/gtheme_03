@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
-/// gTheme Blocks: Bootstrap RTL 02 - 20151010
+/// gTheme Blocks: Bootstrap RTL 02 - 20151010 ---------------------------------
 // NOTE: must load after bootstrap
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -11,7 +11,6 @@
 }
 
 .form-control {
-
   @include theme-forms-focus-reset();
 
   .comment-form & {
@@ -43,25 +42,25 @@
 
   // http://stackoverflow.com/a/29044088
   // @each $prefix in -webkit, -moz {
-    // @include with-prefix($prefix) {
-      // @each $element in input, textarea, select {
-        // #{$element}:#{$prefix}-autofill {
-          // @include single-box-shadow(0, 0, 0, 1000px, $white, inset);
-        // }
-      // }
-    // }
+  //   @include with-prefix($prefix) {
+  //     @each $element in input, textarea, select {
+  //       #{$element}:#{$prefix}-autofill {
+  //         @include single-box-shadow(0, 0, 0, 1000px, $white, inset);
+  //       }
+  //     }
+  //   }
   // }
 }
 
 label {
   font-weight: normal;
-  margin: 0 2px 2px 2px;
+  margin: 0 2px 2px;
 }
 
-.checkbox-inline input[type=checkbox],
-.checkbox input[type=checkbox],
-.radio-inline input[type=radio],
-.radio input[type=radio] {
+.checkbox-inline input[type="checkbox"],
+.checkbox input[type="checkbox"],
+.radio-inline input[type="radio"],
+.radio input[type="radio"] {
   margin-left: auto;
   margin-right: -20px;
 }
@@ -71,7 +70,6 @@ label {
 }
 
 .pager {
-
   li {
     > a,
     > span {
@@ -90,7 +88,7 @@ label {
 
 @media print {
   a[href]:after {
-    content:none;
+    content: none;
   }
 }
 

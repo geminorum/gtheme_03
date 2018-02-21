@@ -23,7 +23,8 @@
     border: 0;
   }
 
-  ul, ol {
+  ul,
+  ol {
     padding: 0;
     padding-right: $theme-grid-gutter / 4;
 
@@ -35,7 +36,6 @@
   }
 
   &.widget_calendar {
-
     table {
 
       margin-top: $theme-grid-gutter / 2;
@@ -43,9 +43,10 @@
 
       a {
         font-weight: 600;
+
         &:hover {
           color: $gray !important;
-          text-decoration:none;
+          text-decoration: none;
         }
       }
 
@@ -59,7 +60,7 @@
       caption {
         color: $gray-dark;
         padding: $padding-base-vertical $padding-base-horizontal;
-        text-align:center;
+        text-align: center;
       }
 
       thead {
@@ -71,7 +72,8 @@
         font-weight: 600;
       }
 
-      th, td {
+      th,
+      td {
         padding: 3px 0;
         text-align: center;
         border: 1px solid $table-border-color;
@@ -81,7 +83,8 @@
         background: $table-bg-hover;
       }
 
-      .-pad, .pad {
+      .pad,
+      .-pad {
         padding: 0 !important;
       }
     }
