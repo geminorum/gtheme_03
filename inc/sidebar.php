@@ -22,8 +22,9 @@ class gThemeSideBar extends gThemeModuleCore
 	public static function defaults( $extra = array() )
 	{
 		return array_merge( array(
-			'side-index'    => _x( 'Index: Side', 'Modules: Sidebar: Defaults', GTHEME_TEXTDOMAIN ),
-			'side-singular' => _x( 'Singular: Side', 'Modules: Sidebar: Defaults', GTHEME_TEXTDOMAIN ),
+			'side-index'      => _x( 'Index: Side', 'Modules: Sidebar: Defaults', GTHEME_TEXTDOMAIN ),
+			'side-singular'   => _x( 'Singular: Side', 'Modules: Sidebar: Defaults', GTHEME_TEXTDOMAIN ),
+			'side-systempage' => _x( 'System Page: Side', 'Modules: Sidebar: Defaults', GTHEME_TEXTDOMAIN ),
 		), $extra );
 	}
 
