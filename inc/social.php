@@ -7,7 +7,9 @@ class gThemeSocial extends gThemeModuleCore
 	// @SEE: http://scotch.io/quick-tips/all-search-and-social-media-meta-tags-starter-template
 	public static function doHead()
 	{
-		// FIXME: skip on sighnup/activate
+		if ( defined( 'GTHEME_SOCIAL_META_DISABLED' )
+			&& GTHEME_SOCIAL_META_DISABLED )
+				return;
 
 		echo "\t".'<meta property="og:locale" content="'.esc_attr( gThemeOptions::info( 'locale', get_locale() ) ).'" />'."\n";
 		echo "\t".'<meta property="og:site_name" content="'.esc_attr( gThemeOptions::info( 'blog_name' ) ).'" />'."\n";

@@ -18,7 +18,8 @@ $gtheme_constants = array(
 	'GTHEME_IMAGES_META'       => '_gtheme_images',
 	'GTHEME_IMAGES_TERMS_META' => '_gtheme_images_terms',
 
-	// 'GTHEME_WIDGET_THETERM_DISABLED' => FALSE, // will define by them to skip the term info display
+	// 'GTHEME_WIDGET_THETERM_DISABLED' => FALSE, // will define by theme to skip the term info display
+	// 'GTHEME_SOCIAL_META_DISABLED' => FALSE, // will define by theme to skip social meta tags
 
 	'GTHEME_FLUSH' => isset( $_GET['flush'] ), // FIXME: DEPRECATED
 );
