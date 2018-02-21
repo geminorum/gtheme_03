@@ -44,8 +44,8 @@ class gThemeComments extends gThemeModuleCore
 		return $classes;
 	}
 
-	// http://make.wordpress.org/themes/2012/05/08/proposed-wordpress-3-4-guidelines-revisions/
-	// http://wpengineer.com/2358/enqueue-comment-reply-js-the-right-way/
+	// @REF: https://wp.me/p29gdg-eL
+	// @REF: http://wpengineer.com/?p=2358
 	public function comment_form_before()
 	{
 		if ( comments_open() && get_option( 'thread_comments' ) )

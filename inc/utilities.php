@@ -41,6 +41,8 @@ class gThemeUtilities extends gThemeBaseCore
 	{
 		$return = $text;
 
+		// FIXME: must convert back all &nbsp; to space
+
 		if ( strlen( trim( $text ) ) ) {
 			$arr = explode( ' ', trim( $text ) );
 

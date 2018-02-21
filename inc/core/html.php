@@ -273,7 +273,7 @@ class gThemeHTML extends gThemeBaseCore
 		$html = '';
 
 		foreach ( $subs as $slug => $page )
-			$html .= self::tag( 'a', array(
+			$html.= self::tag( 'a', array(
 				'class' => 'nav-tab '.$prefix.$slug.( $slug == $active ? ' nav-tab-active' : '' ),
 				'href'  => add_query_arg( 'sub', $slug, $uri ),
 			), $page );
