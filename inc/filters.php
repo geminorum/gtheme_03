@@ -96,6 +96,8 @@ class gThemeFilters extends gThemeModuleCore
 
 		if ( is_singular() )
 			echo "\t".'<link rel="pingback" href="'.get_bloginfo( 'pingback_url', 'display' ).'" />'."\n";
+
+		gThemeSocial::doHead();
 	}
 
 	public static function getStyle()

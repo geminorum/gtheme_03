@@ -3,15 +3,12 @@
 class gThemeSocial extends gThemeModuleCore
 {
 
-	public function setup_actions( $args = array() )
-	{
-		add_action( 'wp_head', array( $this, 'wp_head' ), 9999 );
-	}
-
 	// @REF: [The Open Graph protocol](http://ogp.me/)
 	// @SEE: http://scotch.io/quick-tips/all-search-and-social-media-meta-tags-starter-template
-	public function wp_head()
+	public static function doHead()
 	{
+		// FIXME: skip on sighnup/activate
+
 		echo "\t".'<meta property="og:locale" content="'.esc_attr( gThemeOptions::info( 'locale', get_locale() ) ).'" />'."\n";
 		echo "\t".'<meta property="og:site_name" content="'.esc_attr( gThemeOptions::info( 'blog_name' ) ).'" />'."\n";
 
