@@ -143,7 +143,7 @@ class gThemeTemplate extends gThemeModuleCore
 	}
 
 	// ANCESTOR : gtheme_copyright()
-	public static function copyright( $b = '<p class="copyright text-muted credit">', $a = '</p>', $p = FALSE )
+	public static function copyright( $before = '<p class="copyright text-muted credit">', $after = '</p>', $p = FALSE )
 	{
 		$copyright = gThemeOptions::info( 'copyright', FALSE );
 
@@ -151,8 +151,21 @@ class gThemeTemplate extends gThemeModuleCore
 			return;
 
 		if ( $p )
-			$copyright = wpautop( gThemeUtilities::wordWrap( $copyright ), FALSE );
+			$copyright = gThemeText::autoP( gThemeUtilities::wordWrap( $copyright ), FALSE );
 
-		echo $b.$copyright.$a;
+		echo $before.$copyright.$after;
+	}
+
+	public static function telephone( $number, $before = '', $after = '', $atts = array() )
+	{
+		echo $before;
+
+		if ( function_exists( 'gNetwork' ) )
+			echo gNetwork()->shortcodes->shortcode_tel( $atts, $number );
+
+		else
+			echo '<a class="-tel" href="tel:'.$number.'">'.apply_filters( 'number_format_i18n', $number ).'‏</a>';
+
+		echo $after;
 	}
 }
