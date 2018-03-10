@@ -33,19 +33,22 @@ class gThemeCounts extends gThemeModuleCore
 		), $extra );
 	}
 
-	public static function get( $name, $def = 0 )
+	public static function get( $name, $default = NULL )
 	{
 		$option_counts = gThemeOptions::getOption( 'counts', array() );
 
 		if ( count( $option_counts ) && isset( $option_counts[$name] ) )
 			return $option_counts[$name];
 
+		if ( ! is_null( $default ) )
+			return $default;
+
 		$info_counts = gThemeOptions::info( 'counts', self::defaults() );
 
 		if ( count( $info_counts ) && isset( $info_counts[$name] )  )
 			return $info_counts[$name]['def'];
 
-		return $def;
+		return 0;
 	}
 
 	public static function link( $name, $atts = array() )
