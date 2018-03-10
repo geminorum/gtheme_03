@@ -1,3 +1,14 @@
+### 3.16.3
+* root/singular: new template for system pages
+* assets/scripts: fixed jquery error
+* module/filters: more tags on theme color
+* module/navigation: breadcrumb support for selected posttypes
+* module/navigation: check for empty crumbs
+* module/social: skip meta tags on signup/activate pages
+* module/social: fewer action calls
+* module/template: check tax suppport for given post
+* module/template: new telephone link helper
+
 ### 3.16.2
 * root: breaking templates into partials
 * module/content: bypass byline on pages
