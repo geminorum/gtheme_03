@@ -21,7 +21,7 @@
   "devDependencies": {
     "del": "^3.0.0",
     "gulp": "github:gulpjs/gulp#4.0",
-    "gulp-bump": "^3.0.0",
+    "gulp-bump": "^3.1.0",
     "gulp-checktextdomain": "^2.1.1",
     "gulp-cssnano": "^2.1.2",
     "gulp-exclude-gitignore": "^1.2.0",
@@ -30,8 +30,8 @@
     "gulp-sass": "^3.1.0",
     "gulp-sourcemaps": "^2.6.4",
     "gulp-util": "^3.0.8",
-    "gulp-wp-pot": "^2.0.7",
-    "js-yaml": "^3.10.0",
+    "gulp-wp-pot": "^2.2.0",
+    "js-yaml": "^3.11.0",
     "parse-changelog": "^1.0.2",
     "prettyjson": "^1.2.1",
     "xtend": "^4.0.1"
