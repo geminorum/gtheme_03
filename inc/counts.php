@@ -36,10 +36,12 @@ class gThemeCounts extends gThemeModuleCore
 	public static function get( $name, $def = 0 )
 	{
 		$option_counts = gThemeOptions::getOption( 'counts', array() );
+
 		if ( count( $option_counts ) && isset( $option_counts[$name] ) )
 			return $option_counts[$name];
 
 		$info_counts = gThemeOptions::info( 'counts', self::defaults() );
+
 		if ( count( $info_counts ) && isset( $info_counts[$name] )  )
 			return $info_counts[$name]['def'];
 
@@ -125,10 +127,11 @@ class gThemeCounts extends gThemeModuleCore
 
 				$options = gThemeOptions::getOption( 'counts', array() );
 
-				foreach ( gThemeOptions::info( 'counts', array() ) as $option => $default )
+				foreach ( gThemeOptions::info( 'counts', self::defaults() ) as $option => $default )
 
 					if ( isset( $_POST['gtheme_counts'][$option] ) )
 						$options[$option] = trim( $_POST['gtheme_counts'][$option] );
+
 					else
 						unset( $options[$option] );
 
