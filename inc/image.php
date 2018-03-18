@@ -583,9 +583,10 @@ class gThemeImage extends gThemeModuleCore
 		list( $src, $width, $height ) = $image;
 
 		$defaults = array(
-			'src'   => $src,
-			'class' => gThemeOptions::info( 'image-class', 'the-img img-responsive' ),
-			'alt'   => trim( strip_tags( get_post_meta( $attachment_id, '_wp_attachment_image_alt', TRUE ) ) ),
+			'src'      => $src,
+			'class'    => gThemeOptions::info( 'image-class', 'the-img img-responsive' ),
+			'alt'      => trim( strip_tags( get_post_meta( $attachment_id, '_wp_attachment_image_alt', TRUE ) ) ),
+			'data-url' => wp_get_attachment_url( $attachment_id ),
 		);
 
 		$attr = self::args( $attr, $defaults );

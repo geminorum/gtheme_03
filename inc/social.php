@@ -67,6 +67,9 @@ class gThemeSocial extends gThemeModuleCore
 				if ( is_home() || is_front_page() )
 					$output = 'website';
 
+				else if ( is_singular( 'page' ) )
+					$output = FALSE;
+
 				else if ( is_singular() )
 					$output = 'article';
 

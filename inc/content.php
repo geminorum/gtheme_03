@@ -800,7 +800,8 @@ addthis_config.services_custom = [
 			'actions'     => FALSE,
 			'action_icon' => 'def',
 			'shortlink'   => FALSE,
-			'wrap_tag'   => 'header',
+			'wrap_tag'    => 'header',
+			'wrap_close'  => TRUE,
 			'title_tag'   => 'h2',
 			'meta_tag'    => 'h4',
 			'title'       => NULL,
@@ -865,7 +866,8 @@ addthis_config.services_custom = [
 			echo '</ul>';
 		}
 
-		echo '</'.$args['wrap_tag'].'>';
+		if ( $args['wrap_close'] )
+			echo '</'.$args['wrap_tag'].'>';
 	}
 
 	public static function footer( $atts = array() )
