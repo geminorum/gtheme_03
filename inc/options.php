@@ -51,6 +51,7 @@ class gThemeOptions extends gThemeModuleCore
 			// 'images' => gThemeOptions::getDefaultImages(),
 			'thumbnail_image_size' => 'single',
 			'enclosure_image_size' => 'single',
+			'amp_image_size'       => 'single',
 			// 'post_thumbnail_fallback' => TRUE,
 
 			// 'jpeg_quality'          => 82, // quality of JPEG images uploaded to WP

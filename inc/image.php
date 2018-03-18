@@ -9,6 +9,7 @@ class gThemeImage extends gThemeModuleCore
 	{
 		extract( self::atts( array(
 			'core_post_thumbnails'   => FALSE, // enables WordPress core thumbnail for posts
+			'amp_post_thumbnails'    => TRUE, // filters amp featured image
 			'image_size_tags'        => TRUE, // registers theme's image sizes
 			'image_attachment_tags'  => TRUE, // displays ui for theme's image sizes
 			'image_attachment_terms' => FALSE, // image for terms on admin media editor
@@ -19,6 +20,9 @@ class gThemeImage extends gThemeModuleCore
 
 		if ( $core_post_thumbnails )
 			add_theme_support( 'post-thumbnails', gThemeOptions::info( 'core_post_thumbnails', array( 'post' ) ) );
+
+		if ( $amp_post_thumbnails && class_exists( 'AMP_Content_Sanitizer' ) )
+			add_filter( 'amp_post_template_data', array( $this, 'amp_post_template_data' ), 99, 2 );
 
 		if ( $image_size_tags ) {
 			add_action( 'init', array( $this, 'init' ) );
@@ -417,6 +421,42 @@ class gThemeImage extends gThemeModuleCore
 		}
 
 		return $post;
+	}
+
+	// @REF: `AMP_Post_Template::build_post_featured_image()`
+	public function amp_post_template_data( $data, $post )
+	{
+		$size = gThemeOptions::info( 'amp_image_size', 'single' );
+
+		if ( ! $featured_id = self::getThumbID( $size, $post->ID ) )
+			return $data;
+
+		$featured_html = self::getImage( [
+			'post_id'           => $post->ID,
+			'post_thumbnail_id' => $featured_id,
+			'empty'             => FALSE,
+			'link'              => FALSE,
+		] );
+
+		if ( ! $featured_html )
+			return $data;
+
+		$featured_image = get_post( $featured_id );
+
+		list( $sanitized_html, $featured_scripts, $featured_styles ) = AMP_Content_Sanitizer::sanitize(
+			$featured_html,
+			[ 'AMP_Img_Sanitizer' => [] ],
+			[ 'content_max_width' => $data['content_max_width'] ]
+		);
+
+		// FIXME: workround for adding: `$featured_scripts`, `$featured_styles`
+
+		$data['featured_image'] = array(
+			'amp_html' => $sanitized_html,
+			'caption'  => $featured_image->post_excerpt,
+		);
+
+		return $data;
 	}
 
 	// wrapper for WP_Image class

@@ -827,7 +827,7 @@ addthis_config.services_custom = [
 		if ( $args['meta'] )
 			$args['meta'] = gThemeOptions::supports( 'geditorial-meta', TRUE );
 
-		echo '<'.$args['wrap_tag'].' class="header-class header-'.$args['context'].' '.$args['prefix'].'-header">';
+		echo '<'.$args['wrap_tag'].' class="header-class header-'.$args['context'].' '.$args['prefix'].'-header amp-wp-article-header">';
 		echo '<div class="titles-class '.$args['prefix'].'-titles">';
 
 		if ( $args['meta'] )
@@ -836,7 +836,7 @@ addthis_config.services_custom = [
 				'after'  => '</'.$args['meta_tag'].'>',
 			) );
 
-		echo '<'.$args['title_tag'].' itemprop="headline" class="title '.$args['prefix'].'-title">';
+		echo '<'.$args['title_tag'].' itemprop="headline" class="title '.$args['prefix'].'-title amp-wp-title">';
 
 		if ( $args['link'] ) {
 			echo '<a itemprop="url" rel="bookmark" href="'.$link.'" title="';
