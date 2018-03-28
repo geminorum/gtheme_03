@@ -286,6 +286,7 @@ class gThemeComments extends gThemeModuleCore
 				'email'    => _x( 'Email', 'Comments Module: Comment Form String', GTHEME_TEXTDOMAIN ),
 				'url'      => _x( 'Website', 'Comments Module: Comment Form String', GTHEME_TEXTDOMAIN ),
 				'comment'  => _x( 'Comment', 'Comments Module: Comment Form String', GTHEME_TEXTDOMAIN ),
+				'cookies'  => _x( 'Save my name, email, and site URL in my browser for next time I post a comment.', 'Comments Module: Comment Form String', GTHEME_TEXTDOMAIN ),
 
 				'must_log_in'        => _x( 'You must be <a href="%s">logged in</a> to post a comment.', 'Comments Module: Comment Form String', GTHEME_TEXTDOMAIN ),
 				'logged_in_as'       => _x( '<a href="%1$s" aria-label="%2$s">Logged in as %3$s</a>. <a href="%4$s">Log out?</a>', 'Comments Module: Comment Form String', GTHEME_TEXTDOMAIN ),
@@ -342,6 +343,15 @@ class gThemeComments extends gThemeModuleCore
 					'value'        => $commenter['comment_author_url'],
 					// 'placeholder'   => $strings['url'], // NOTE: problem with rtl
 				) ).'</div>';
+
+			$fields['cookies'] = '<div class="checkbox comment-form-cookies-consent"><label for="wp-comment-cookies-consent">'
+				.gThemeHTML::tag( 'input', array(
+					'type'    => 'checkbox',
+					'id'      => 'wp-comment-cookies-consent',
+					'name'    => 'wp-comment-cookies-consent',
+					'value'   => 'yes',
+					'checked' => ! empty( $commenter['comment_author_email'] ),
+				) ).$strings['cookies'].'</label></div>';
 
 			$defaults = array(
 				'fields' => apply_filters( 'comment_form_default_fields', $fields ),
