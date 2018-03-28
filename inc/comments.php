@@ -273,11 +273,12 @@ class gThemeComments extends gThemeModuleCore
 				$post_id = get_the_ID();
 
 			$user          = wp_get_current_user();
-			$user_identity = ! empty( $user->ID ) ? $user->display_name : '';
-			$commenter     = wp_get_current_commenter();
-			$permalink     = apply_filters( 'the_permalink', get_permalink( $post_id ) );
-			$required      = get_option( 'require_name_email' );
-			$html5         = current_theme_supports( 'html5', 'comment-form' ) ? true : false;
+			$user_identity = empty( $user->ID ) ? '' : $user->display_name;
+
+			$commenter = wp_get_current_commenter();
+			$permalink = apply_filters( 'the_permalink', get_permalink( $post_id ) );
+			$required  = get_option( 'require_name_email' );
+			$html5     = (bool) current_theme_supports( 'html5', 'comment-form' );
 
 			$strings = gThemeOptions::info( 'comment_form_strings', array(
 				'required' => _x( '(Required)', 'Comments Module: Comment Form String', GTHEME_TEXTDOMAIN ),
@@ -302,14 +303,14 @@ class gThemeComments extends gThemeModuleCore
 				.( $required ? ' <span class="required">'.$strings['required'].'</span>' : '' )
 				.'</label>'
 				.gThemeHTML::tag( 'input', array(
-					'type'               => 'text',
-					'x-autocompletetype' => 'name-full',
-					'aria-required'      => ( $required ? 'true' : false ),
-					'class'              => 'form-control',
-					'size'               => '30',
-					'id'                 => 'author',
-					'name'               => 'author',
-					'value'              => $commenter['comment_author'],
+					'type'         => 'text',
+					'autocomplete' => 'name',
+					'required'     => $required,
+					'class'        => 'form-control',
+					'size'         => '30',
+					'id'           => 'author',
+					'name'         => 'author',
+					'value'        => $commenter['comment_author'],
 				) ).'</div>';
 
 			$fields['email'] = '<div class="form-group comment-form-email"><label for="email">'
@@ -317,14 +318,14 @@ class gThemeComments extends gThemeModuleCore
 				.( $required ? ' <span class="required">'.$strings['required'].'</span>' : '' )
 				.'</label>'
 				.gThemeHTML::tag( 'input', array(
-					'type'               => ( $html5 ? 'email' : 'text' ),
-					'x-autocompletetype' => 'email',
-					'aria-required'      => ( $required ? 'true' : false ),
-					'class'              => 'form-control comment-field-ltr',
-					'size'               => '30',
-					'id'                 => 'email',
-					'name'               => 'email',
-					'value'              => $commenter['comment_author_email'],
+					'type'         => ( $html5 ? 'email' : 'text' ),
+					'autocomplete' => 'email',
+					'required'     => $required,
+					'class'        => 'form-control comment-field-ltr',
+					'size'         => '30',
+					'id'           => 'email',
+					'name'         => 'email',
+					'value'        => $commenter['comment_author_email'],
 					// 'placeholder'        => $strings['email'], // NOTE: problem with rtl
 				) ).'</div>';
 
@@ -332,12 +333,13 @@ class gThemeComments extends gThemeModuleCore
 				.$strings['url']
 				.'</label>'
 				.gThemeHTML::tag( 'input', array(
-					'type'  => ( $html5 ? 'url' : 'text' ),
-					'class' => 'form-control comment-field-ltr',
-					'size'  => '30',
-					'id'    => 'url',
-					'name'  => 'url',
-					'value' => $commenter['comment_author_url'],
+					'type'         => ( $html5 ? 'url' : 'text' ),
+					'autocomplete' => 'url',
+					'class'        => 'form-control comment-field-ltr',
+					'size'         => '30',
+					'id'           => 'url',
+					'name'         => 'url',
+					'value'        => $commenter['comment_author_url'],
 					// 'placeholder'   => $strings['url'], // NOTE: problem with rtl
 				) ).'</div>';
 
@@ -347,13 +349,13 @@ class gThemeComments extends gThemeModuleCore
 				'comment_field' => '<div class="form-group comment-form-comment"><label for="comment" class="sr-only">'
 					.$strings['comment'].'</label>'
 					.gThemeHTML::tag( 'textarea', array(
-						'aria-required' => 'true',
-						'class'         => 'form-control',
-						'cols'          => '45',
-						'rows'          => '4',
-						'id'            => 'comment',
-						'name'          => 'comment',
-						'placeholder'   => $strings['comment'],
+						'required'    => TRUE,
+						'class'       => 'form-control',
+						'cols'        => '45',
+						'rows'        => '4',
+						'id'          => 'comment',
+						'name'        => 'comment',
+						'placeholder' => $strings['comment'],
 					), NULL ).'</div>',
 
 				'must_log_in' => '<p class="must-log-in">'
