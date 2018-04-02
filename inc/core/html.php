@@ -168,6 +168,9 @@ class gThemeHTML extends gThemeBaseCore
 			if ( 'disabled' == $key )
 				$att = ( $att ? 'disabled' : FALSE );
 
+			if ( 'required' == $key )
+				$att = ( $att ? 'required' : FALSE );
+
 			if ( FALSE === $att )
 				continue;
 
