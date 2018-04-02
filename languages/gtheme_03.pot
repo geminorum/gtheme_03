@@ -10,7 +10,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/geminorum/gtheme_03/issues\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: archives.php:6
+#: archives.php:7
 msgid "Archives Page"
 msgstr ""
 
@@ -18,7 +18,7 @@ msgstr ""
 msgid "Comments are closed."
 msgstr ""
 
-#: contact.php:6
+#: contact.php:7
 msgid "Contact Page"
 msgstr ""
 
@@ -26,36 +26,48 @@ msgstr ""
 msgid "Oops! That page can&rsquo;t be found."
 msgstr ""
 
-#: fullwidthpage.php:6
+#: fullwidthpage.php:7
 msgid "Full-Width Page"
 msgstr ""
 
-#: homepage.php:6
+#: homepage.php:7
 msgid "Home Page"
 msgstr ""
 
-#: latest.php:6
+#: latest.php:7
 msgid "Latest Page"
 msgstr ""
 
-#: searchadvanced.php:6
+#: searchadvanced.php:7
 msgid "Search Advanced"
 msgstr ""
 
-#: style.css:1
+#: style.css:2
 msgid "gTheme 3"
 msgstr ""
 
-#: style.css:4
-msgid "3.16.3"
+#: style.css:3
+msgid "https://github.com/geminorum/gtheme_03"
 msgstr ""
 
-#: style.css:5
+#: style.css:4
+msgid "Theme Framwork for WordPress"
+msgstr ""
+
+#: style.css:6
 msgid "geminorum"
 msgstr ""
 
-#: systempage.php:6
+#: style.css:7
+msgid "https://geminorum.ir/"
+msgstr ""
+
+#: systempage.php:7
 msgid "System Page"
+msgstr ""
+
+#: amp/footer.php:6
+msgid "Back to top"
 msgstr ""
 
 #: inc/admin.php:87
@@ -226,62 +238,67 @@ msgctxt "Comments Module: Action String"
 msgid "Edit This"
 msgstr ""
 
-#: inc/comments.php:283
+#: inc/comments.php:284
 msgctxt "Comments Module: Comment Form String"
 msgid "(Required)"
 msgstr ""
 
-#: inc/comments.php:284
+#: inc/comments.php:285
 msgctxt "Comments Module: Comment Form String"
 msgid "Name"
 msgstr ""
 
-#: inc/comments.php:285
+#: inc/comments.php:286
 msgctxt "Comments Module: Comment Form String"
 msgid "Email"
 msgstr ""
 
-#: inc/comments.php:286
+#: inc/comments.php:287
 msgctxt "Comments Module: Comment Form String"
 msgid "Website"
 msgstr ""
 
-#: inc/comments.php:287
+#: inc/comments.php:288
 msgctxt "Comments Module: Comment Form String"
 msgid "Comment"
 msgstr ""
 
 #: inc/comments.php:289
 msgctxt "Comments Module: Comment Form String"
-msgid "You must be <a href=\"%s\">logged in</a> to post a comment."
-msgstr ""
-
-#: inc/comments.php:290
-msgctxt "Comments Module: Comment Form String"
-msgid "<a href=\"%1$s\" aria-label=\"%2$s\">Logged in as %3$s</a>. <a href=\"%4$s\">Log out?</a>"
+msgid "Save my name, email, and site URL in my browser for next time I post a comment."
 msgstr ""
 
 #: inc/comments.php:291
 msgctxt "Comments Module: Comment Form String"
-msgid "Logged in as %s. Edit your profile."
+msgid "You must be <a href=\"%s\">logged in</a> to post a comment."
 msgstr ""
 
 #: inc/comments.php:292
 msgctxt "Comments Module: Comment Form String"
-msgid "Leave a Reply"
+msgid "<a href=\"%1$s\" aria-label=\"%2$s\">Logged in as %3$s</a>. <a href=\"%4$s\">Log out?</a>"
 msgstr ""
 
 #: inc/comments.php:293
 msgctxt "Comments Module: Comment Form String"
-msgid "Leave a Reply to %s"
+msgid "Logged in as %s. Edit your profile."
 msgstr ""
 
 #: inc/comments.php:294
 msgctxt "Comments Module: Comment Form String"
-msgid "Cancel reply"
+msgid "Leave a Reply"
 msgstr ""
 
 #: inc/comments.php:295
+msgctxt "Comments Module: Comment Form String"
+msgid "Leave a Reply to %s"
+msgstr ""
+
+#: inc/comments.php:296
+msgctxt "Comments Module: Comment Form String"
+msgid "Cancel reply"
+msgstr ""
+
+#: inc/comments.php:297
 msgctxt "Comments Module: Comment Form String"
 msgid "Post Comment"
 msgstr ""
@@ -424,12 +441,12 @@ msgctxt "Counts Module"
 msgid "Latest Posts Count"
 msgstr ""
 
-#: inc/counts.php:89
+#: inc/counts.php:94
 msgctxt "Modules: Menu Name"
 msgid "Counts"
 msgstr ""
 
-#: inc/counts.php:98
+#: inc/counts.php:103
 msgctxt "Modules: Counts"
 msgid "Item Counts"
 msgstr ""
@@ -464,20 +481,20 @@ msgctxt "Editor Default Content"
 msgid "[content not available yet]"
 msgstr ""
 
-#: inc/image.php:292
+#: inc/image.php:296
 msgctxt "Image Module: Media Tag Checkbox Label"
 msgid "%1$s <small>(%2$s&times;%3$s)</small>"
 msgstr ""
 
-#: inc/image.php:307
+#: inc/image.php:311
 msgid "Media Tags"
 msgstr ""
 
-#: inc/image.php:377
+#: inc/image.php:381
 msgid "&mdash; Select a Term &mdash;"
 msgstr ""
 
-#: inc/image.php:387
+#: inc/image.php:391
 msgid "Assign for"
 msgstr ""
 
@@ -678,106 +695,106 @@ msgctxt "Logo Title"
 msgid "Home"
 msgstr ""
 
-#: inc/options.php:72
+#: inc/options.php:73
 msgctxt "Options: Separator: Default"
 msgid " "
 msgstr ""
 
-#: inc/options.php:73
+#: inc/options.php:74
 msgctxt "Options: Separator: Title"
 msgid " &raquo; "
 msgstr ""
 
-#: inc/options.php:74
+#: inc/options.php:75
 msgctxt "Options: Separator: Nav"
 msgid " &laquo; "
 msgstr ""
 
-#: inc/options.php:75
+#: inc/options.php:76
 msgctxt "Options: Separator: Byline"
 msgid " | "
 msgstr ""
 
-#: inc/options.php:76
+#: inc/options.php:77
 msgctxt "Options: Separator: Term"
 msgid ", "
 msgstr ""
 
-#: inc/options.php:77
+#: inc/options.php:78
 msgctxt "Options: Separator: Embed"
 msgid "; "
 msgstr ""
 
-#: inc/options.php:78
+#: inc/options.php:79
 msgctxt "Options: Separator: Feed"
 msgid "; "
 msgstr ""
 
-#: inc/options.php:79
+#: inc/options.php:80
 msgctxt "Options: Separator: Comment Action"
 msgid " | "
 msgstr ""
 
-#: inc/options.php:81
+#: inc/options.php:82
 msgctxt "Options: Text Size Increase"
 msgid "[ A+ ]"
 msgstr ""
 
-#: inc/options.php:82
+#: inc/options.php:83
 msgctxt "Options: Text Size Decrease"
 msgid "[ A- ]"
 msgstr ""
 
-#: inc/options.php:83
+#: inc/options.php:84
 msgctxt "Options: Text Size Sep"
 msgid " / "
 msgstr ""
 
-#: inc/options.php:85
+#: inc/options.php:86
 msgctxt "Options: Text Justify"
 msgid "[ Ju ]"
 msgstr ""
 
-#: inc/options.php:86
+#: inc/options.php:87
 msgctxt "Options: Text Unjustify"
 msgid "[ uJ ]"
 msgstr ""
 
-#: inc/options.php:87
+#: inc/options.php:88
 msgctxt "Options: Text Justify Sep"
 msgid " / "
 msgstr ""
 
-#: inc/options.php:89
+#: inc/options.php:90
 msgctxt "Options: Reflist Title"
 msgid "Footnotes"
 msgstr ""
 
-#: inc/options.php:127
+#: inc/options.php:128
 msgid "&copy; All right reserved."
 msgstr ""
 
-#: inc/options.php:206
+#: inc/options.php:207
 msgctxt "Options: Defaults: Date Format: Byline"
 msgid "j M Y"
 msgstr ""
 
-#: inc/options.php:207
+#: inc/options.php:208
 msgctxt "Options: Defaults: Date Format: Day"
 msgid "j M Y"
 msgstr ""
 
-#: inc/options.php:226
+#: inc/options.php:227
 msgctxt "Media Tag Titles"
 msgid "Raw"
 msgstr ""
 
-#: inc/options.php:237
+#: inc/options.php:238
 msgctxt "Media Tag Titles"
 msgid "Big"
 msgstr ""
 
-#: inc/options.php:248
+#: inc/options.php:249
 msgctxt "Media Tag Titles"
 msgid "Single"
 msgstr ""
