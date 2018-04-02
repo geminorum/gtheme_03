@@ -1,3 +1,10 @@
+### 3.16.4
+* module/comments: better autocomplete on cooment form
+* module/comments: cookie confirm on comment form
+* module/content: initial support for amp
+* module/counts: correct defaults upon saving
+* module/counts: default over info priority
+
 ### 3.16.3
 * root/singular: new template for system pages
 * assets/scripts: fixed jquery error
