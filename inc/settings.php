@@ -71,7 +71,7 @@ class gThemeSettings extends gThemeModuleCore
 
 		echo '<div class="wrap"><h1 class="wp-heading-inline settings-title">'.
 			gThemeOptions::info( 'settings_title', _x( 'gTheme Settings', 'Admin Settings Page Title', GTHEME_TEXTDOMAIN ) )
-			.'</h1> <a href="http://geminorum.ir/wordpress/gtheme_03" class="page-title-action settings-title-action" target="_blank">'
+			.'</h1> <a href="https://geminorum.ir/wordpress/gtheme_03" class="page-title-action settings-title-action" target="_blank">'
 			.GTHEME_VERSION.'</a><hr class="wp-header-end">';
 
 			gThemeHTML::headerNav( $uri, $sub, $subs );

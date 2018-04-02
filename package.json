@@ -7,7 +7,7 @@
   "author": {
     "name": "Nasser Rafie",
     "email": "contact@geminorum.ir",
-    "url": "http://geminorum.ir"
+    "url": "https://geminorum.ir"
   },
   "repository": {
     "type": "git",
@@ -34,6 +34,8 @@
     "js-yaml": "^3.11.0",
     "parse-changelog": "^1.0.2",
     "prettyjson": "^1.2.1",
+    "stylelint": "^9.2.0",
+    "stylelint-config-wordpress": "^13.0.0",
     "xtend": "^4.0.1"
   },
   "readme": "ERROR: No README data found!",
