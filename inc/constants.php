@@ -21,6 +21,9 @@ $gtheme_constants = array(
 	// 'GTHEME_WIDGET_THETERM_DISABLED' => FALSE, // will define by theme to skip the term info display
 	// 'GTHEME_SOCIAL_META_DISABLED' => FALSE, // will define by theme to skip social meta tags
 
+	// 'GTHEME_IS_WP_SIGNUP'   => FALSE, // cannot set this early!
+	// 'GTHEME_IS_WP_ACTIVATE' => FALSE, // cannot set this early!
+
 	'GTHEME_FLUSH' => isset( $_GET['flush'] ), // FIXME: DEPRECATED
 );
 

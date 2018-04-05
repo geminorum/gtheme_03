@@ -3,11 +3,15 @@
 class gThemeWrap extends gThemeModuleCore
 {
 
+	// non-admin only
 	public function setup_actions( $args = array() )
 	{
 		extract( self::atts( array(
 			'images_404' => TRUE,
 		), $args ) );
+
+		add_action( 'before_signup_header', array( $this, 'before_signup_header' ) );
+		add_action( 'activate_header', array( $this, 'activate_header' ) );
 
 		if ( $images_404 )
 			add_filter( 'template_include', array( $this, 'template_include_404_images' ), -1 );
@@ -34,6 +38,16 @@ class gThemeWrap extends gThemeModuleCore
 		}
 
 		return $template;
+	}
+
+	public function before_signup_header()
+	{
+		defined( 'GTHEME_IS_WP_SIGNUP' ) or define( 'GTHEME_IS_WP_SIGNUP', TRUE );
+	}
+
+	public function activate_header()
+	{
+		defined( 'GTHEME_IS_WP_ACTIVATE' ) or define( 'GTHEME_IS_WP_ACTIVATE', TRUE );
 	}
 
 ////////////////////////////////////////////////////////////////////////////////

@@ -33,7 +33,6 @@ final class gThemeCore
 			'template'   => 'gThemeTemplate',
 			'options'    => 'gThemeOptions',
 			'theme'      => 'gThemeTheme',
-			'wrap'       => 'gThemeWrap',
 			'filters'    => 'gThemeFilters',
 			'content'    => 'gThemeContent',
 			'embed'      => 'gThemeEmbed',
@@ -62,6 +61,8 @@ final class gThemeCore
 
 		if ( is_admin() ) {
 			$modules['admin'] = 'gThemeAdmin';
+		} else {
+			$modules['wrap'] = 'gThemeWrap';
 		}
 
 		$this->modules = apply_filters( 'gtheme_modules', $modules );
