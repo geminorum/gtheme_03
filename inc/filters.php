@@ -72,21 +72,23 @@ class gThemeFilters extends gThemeModuleCore
 
 	public function wp_head()
 	{
+		$singular = is_singular();
+
 		if ( $viewport = gThemeOptions::info( 'head_viewport', 'width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no' ) )
-			echo "\t".'<meta name="viewport" content="'.$viewport.'" />'."\n";
+			echo '<meta name="viewport" content="'.$viewport.'" />'."\n";
 
 		if ( $theme_color = gThemeOptions::info( 'theme_color' ) ) {
 
 			// @REF: https://generatewp.com/easy-custom-mobile-chrome-address-bar-colors-wordpress/
-			echo "\t".'<meta name="theme-color" content="'.$theme_color.'" />'."\n";
-			echo "\t".'<meta name="msapplication-navbutton-color" content="'.$theme_color.'">'."\n";
-			echo "\t".'<meta name="apple-mobile-web-app-capable" content="yes">'."\n";
-			echo "\t".'<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">'."\n";
+			echo '<meta name="theme-color" content="'.$theme_color.'" />'."\n";
+			echo '<meta name="msapplication-navbutton-color" content="'.$theme_color.'">'."\n";
+			echo '<meta name="apple-mobile-web-app-capable" content="yes">'."\n";
+			echo '<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">'."\n";
 		}
 
-		$args = array(
-			'ver' => GTHEME_CHILD_VERSION,
-		);
+		gThemeSocial::doHead();
+
+		$args = [ 'ver' => GTHEME_CHILD_VERSION ];
 
 		if ( gThemeWordPress::isDev() )
 			$args['debug'] = '';
@@ -94,21 +96,19 @@ class gThemeFilters extends gThemeModuleCore
 		if ( ! gThemeUtilities::isRTL() )
 			$args['ltr'] = '';
 
-		gThemeUtilities::linkStyleSheet( self::getStyle(), $args, 'all' );
+		gThemeUtilities::linkStyleSheet( self::getStyle( $singular ), $args, 'all' );
 
 		// FIXME: also check if Bootstrap
 		// if ( gThemeWordPress::isDev() && ! gThemeUtilities::isPrint() )
 		// 	gThemeUtilities::linkStyleSheet( GTHEME_URL.'/css/dev.css', GTHEME_VERSION, 'all' );
 
-		if ( is_singular() )
-			echo "\t".'<link rel="pingback" href="'.get_bloginfo( 'pingback_url', 'display' ).'" />'."\n";
-
-		gThemeSocial::doHead();
+		if ( $singular )
+			echo '<link rel="pingback" href="'.get_bloginfo( 'pingback_url', 'display' ).'" />'."\n";
 	}
 
-	public static function getStyle()
+	public static function getStyle( $singular = FALSE )
 	{
-		if ( is_singular() && gThemeUtilities::isPrint() )
+		if ( $singular && gThemeUtilities::isPrint() )
 			$css = file_exists( GTHEME_CHILD_DIR.'/print.css' )
 				? GTHEME_CHILD_URL.'/print.css'
 				: GTHEME_URL.'/print.css';
@@ -123,10 +123,10 @@ class gThemeFilters extends gThemeModuleCore
 
 	// FIXME: use this!
 	// @SOURCE: [Optimize CSS Delivery](https://developers.google.com/speed/docs/insights/OptimizeCSSDelivery)
-	public static function asyncStyle( $css = NULL )
+	public static function asyncStyle( $css = NULL, $singular = FALSE )
 	{
 		if ( is_null( $css ) )
-			$css = self::getStyle();
+			$css = self::getStyle( $singular );
 
 ?><script>
 	var cb = function() {
@@ -146,6 +146,7 @@ class gThemeFilters extends gThemeModuleCore
 	public function body_class( $classes, $class )
 	{
 		global $post, $pagenow;
+
 		$gtheme_info = gThemeOptions::info();
 
 		if ( ! is_array( $classes ) )
@@ -180,6 +181,7 @@ class gThemeFilters extends gThemeModuleCore
 			$classes[] = sanitize_html_class( 'slug-'.get_post()->post_name );
 
 		$uri = explode( '/', $_SERVER['REQUEST_URI'] );
+
 		if ( isset( $uri[1] ) ) {
 			$uri_string = htmlentities( trim( strip_tags( $uri[1] ) ) );
 			if ( ! empty( $uri_string ) )

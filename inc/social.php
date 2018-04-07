@@ -11,45 +11,45 @@ class gThemeSocial extends gThemeModuleCore
 			&& GTHEME_SOCIAL_META_DISABLED )
 				return;
 
-		echo "\t".'<meta property="og:locale" content="'.esc_attr( gThemeOptions::info( 'locale', get_locale() ) ).'" />'."\n";
-		echo "\t".'<meta property="og:site_name" content="'.esc_attr( gThemeOptions::info( 'blog_name' ) ).'" />'."\n";
+		echo '<meta property="og:locale" content="'.esc_attr( gThemeOptions::info( 'locale', get_locale() ) ).'" />'."\n";
+		echo '<meta property="og:site_name" content="'.esc_attr( gThemeOptions::info( 'blog_name' ) ).'" />'."\n";
 
 		self::meta( 'type', array(
-			"\t".'<meta property="og:type" content="',
+			'<meta property="og:type" content="',
 		), '" />'."\n" , 'esc_attr' );
 
 		self::meta( 'url', array(
-			"\t".'<meta property="og:url" content="',
-			"\t".'<meta name="twitter:url" content="',
+			'<meta property="og:url" content="',
+			'<meta name="twitter:url" content="',
 		), '" />'."\n" , 'esc_url' );
 
 		$image = self::meta( 'image', array(
-			"\t".'<meta itemprop="image" content="',
-			"\t".'<meta property="og:image" content="',
-			"\t".'<meta name="twitter:image" content="',
-			"\t".'<meta name="thumbnail" content="',
-			"\t".'<link rel="image_src" href="',
+			'<meta itemprop="image" content="',
+			'<meta property="og:image" content="',
+			'<meta name="twitter:image" content="',
+			'<meta name="thumbnail" content="',
+			'<link rel="image_src" href="',
 		), '" />'."\n" , 'esc_url' );
 
 		self::meta( 'title', array(
-			"\t".'<meta itemprop="name" content="',
-			"\t".'<meta property="og:title" content="',
+			'<meta itemprop="name" content="',
+			'<meta property="og:title" content="',
 		), '" />'."\n" , 'esc_attr' );
 
 		self::meta( 'description', array(
-			"\t".'<meta itemprop="description" content="',
-			"\t".'<meta property="og:description" content="',
-			"\t".'<meta name="description" content="',
-			"\t".'<meta name="twitter:description" content="',
+			'<meta itemprop="description" content="',
+			'<meta property="og:description" content="',
+			'<meta name="description" content="',
+			'<meta name="twitter:description" content="',
 		), '" />'."\n" , 'esc_attr' );
 
-		echo "\t".'<meta name="twitter:card" content="'.( $image ? 'summary_large_image' : 'summary' ).'" />'."\n";
+		echo '<meta name="twitter:card" content="'.( $image ? 'summary_large_image' : 'summary' ).'" />'."\n";
 
 		if ( $publisher = gThemeOptions::info( 'rel_publisher', FALSE ) )
-			echo "\t".'<link href="'.esc_url( $publisher ).'" rel="publisher" />'."\n";
+			echo '<link href="'.esc_url( $publisher ).'" rel="publisher" />'."\n";
 
 		if ( $twitter = gThemeOptions::info( 'twitter_site', FALSE ) )
-			echo "\t".'<meta name="twitter:site" content="'.gThemeMisc::getTwitter( $twitter ).'" />'."\n";
+			echo '<meta name="twitter:site" content="'.gThemeMisc::getTwitter( $twitter ).'" />'."\n";
 
 		self::author();
 	}
