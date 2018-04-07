@@ -86,39 +86,30 @@ class gThemeWrap extends gThemeModuleCore
 		echo "\t".'<title>'.wp_get_document_title().'</title>'."\n";
 	}
 
-	// @REF: http://www.paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/
 	// USED IN: head.php
 	public static function htmlOpen( $after = '' )
 	{
-		$attributes = array();
-
-		if ( gThemeOptions::info( 'rtl', FALSE ) )
-			$attributes[] = 'dir="rtl"';
-
-		if ( $lang = get_bloginfo( 'language', 'display' ) )
-			$attributes[] = "lang=\"$lang\"";
-
-		$font_stack = gThemeOptions::info( 'css_font_stack', FALSE );
-		if ( $font_stack && count( $font_stack ) )
-			$attributes[] = 'data-font-stack=\''.wp_json_encode( $font_stack ).'\'';
-
-		$html_attributes = ' '.apply_filters( 'language_attributes', implode( ' ', $attributes ) );
-
-		$classes = array( 'no-js' );
+		$atts    = [];
+		$classes = [ 'no-js' ];
 
 		if ( is_admin_bar_showing() )
 			$classes[] = 'html-admin-bar';
 
-		$html_classes = join( ' ', $classes );
+		if ( gThemeOptions::info( 'rtl', FALSE ) )
+			$atts[] = 'dir="rtl"';
 
-		?><!--[if lt IE 7 ]> <html<?php echo $html_attributes; ?> class="<?php echo $html_classes.' ie ie6 lte9 lte8 lte7'; ?>"> <![endif]-->
-<!--[if IE 7 ]> <html<?php echo $html_attributes; ?> class="<?php echo $html_classes.' ie ie7 lte9 lte8 lte7'; ?>"> <![endif]-->
-<!--[if IE 8 ]> <html<?php echo $html_attributes; ?> class="<?php echo $html_classes.' ie ie8 lte9 lte8'; ?>"> <![endif]-->
-<!--[if IE 9 ]> <html<?php echo $html_attributes; ?> class="<?php echo $html_classes.' ie ie9 lte9'; ?>"> <![endif]-->
-<!--[if gt IE 9]> <html<?php echo $html_attributes; ?> class="<?php echo $html_classes; ?>"> <![endif]-->
-<!--[if !IE]><!--> <html<?php echo $html_attributes; ?> class="<?php echo $html_classes; ?>"> <!--<![endif]--><?php
+		if ( $lang = get_bloginfo( 'language', 'display' ) )
+			$atts[] = "lang=\"$lang\"";
 
-		echo $after."\n";
+		if ( $font_stack = gThemeOptions::info( 'css_font_stack', FALSE ) )
+			$atts[] = 'data-font-stack=\''.wp_json_encode( $font_stack ).'\'';
+
+		if ( count( $atts ) )
+			$atts = ' '.apply_filters( 'language_attributes', implode( ' ', $atts ) );
+		else
+			$atts = '';
+
+		echo '<html'.$atts.' class="'.join( ' ', $classes ).'">'."\n".$after."\n";
 	}
 
 	// USED IN: head.php
