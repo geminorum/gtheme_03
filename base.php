@@ -4,21 +4,21 @@
 	get_header( gtheme_template_base() );
 
 // before
-echo "\n\n".'<!-- START: START -->'."\n\n";
+// echo "\n\n".'<!-- START: START -->'."\n\n";
 	get_template_part( 'start', gtheme_template_base() );
-echo "\n\n".'<!-- START: END -->'."\n\n";
+// echo "\n\n".'<!-- START: END -->'."\n\n";
 
 // template
-echo "\n\n".'<!-- TEMPLATE: START -->'."\n\n";
+// echo "\n\n".'<!-- TEMPLATE: START -->'."\n\n";
 	echo '<div class="wrapper -main">';
 		include gtheme_template_path();
 	echo '</div>';
-echo "\n\n".'<!-- TEMPLATE: END -->'."\n\n";
+// echo "\n\n".'<!-- TEMPLATE: END -->'."\n\n";
 
 // end
-echo "\n\n".'<!-- END: START -->'."\n\n";
+// echo "\n\n".'<!-- END: START -->'."\n\n";
 	get_template_part( 'end', gtheme_template_base() );
-echo "\n\n".'<!-- END: END -->'."\n\n";
+// echo "\n\n".'<!-- END: END -->'."\n\n";
 
 // footer
 	get_footer( gtheme_template_base() );

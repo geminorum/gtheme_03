@@ -112,6 +112,7 @@ class gThemeMenu extends gThemeModuleCore
 	public static function separated( $location, $sep = '' )
 	{
 		$cache = new gThemeFragmentCache( 'gtheme_separated_'.$location );
+
 		if ( ! $cache->output() ) {
 
 			$menu = wp_get_nav_menu_object( $location );
@@ -122,6 +123,7 @@ class gThemeMenu extends gThemeModuleCore
 			_wp_menu_item_classes_by_context( $menu_items );
 
 			$sorted_menu_items = array();
+
 			foreach ( (array) $menu_items as $key => $menu_item )
 				$sorted_menu_items[$menu_item->menu_order] = $menu_item;
 
@@ -129,6 +131,7 @@ class gThemeMenu extends gThemeModuleCore
 			$parent  = $current = '-1';
 
 			foreach ( $sorted_menu_items as $menu ) {
+
 				if ( TRUE == $menu->current )
 					$current = $menu->ID;
 
@@ -146,6 +149,7 @@ class gThemeMenu extends gThemeModuleCore
 			}
 
 			if ( $primary ) {
+
 				echo '<ul class="list-unstyled separated-menu separated-menu-parents">'.$primary.'</ul>';
 
 				if ( $secondary )
@@ -159,10 +163,10 @@ class gThemeMenu extends gThemeModuleCore
 	public static function menu_el( $item )
 	{
 		$html = gThemeHTML::tag( 'a', array(
-			'title'  => ( empty( $item->attr_title ) ? FALSE : $item->attr_title ),
-			'target' => ( empty( $item->target ) ? FALSE : $item->target ),
-			'rel'    => ( empty( $item->xfn ) ? FALSE : $item->xfn ),
-			'href'   => ( empty( $item->url ) ? FALSE : $item->url ),
+			'title'  => empty( $item->attr_title ) ? FALSE : $item->attr_title,
+			'target' => empty( $item->target ) ? FALSE : $item->target,
+			'rel'    => empty( $item->xfn ) ? FALSE : $item->xfn,
+			'href'   => empty( $item->url ) ? FALSE : $item->url,
 		), $item->title );
 
 		$classes = empty( $item->classes ) ? array() : (array) $item->classes;

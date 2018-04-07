@@ -97,8 +97,8 @@ class gThemeFilters extends gThemeModuleCore
 		gThemeUtilities::linkStyleSheet( self::getStyle(), $args, 'all' );
 
 		// FIXME: also check if Bootstrap
-		if ( gThemeWordPress::isDev() && ! gThemeUtilities::isPrint() )
-			gThemeUtilities::linkStyleSheet( GTHEME_URL.'/css/dev.css', GTHEME_VERSION, 'all' );
+		// if ( gThemeWordPress::isDev() && ! gThemeUtilities::isPrint() )
+		// 	gThemeUtilities::linkStyleSheet( GTHEME_URL.'/css/dev.css', GTHEME_VERSION, 'all' );
 
 		if ( is_singular() )
 			echo "\t".'<link rel="pingback" href="'.get_bloginfo( 'pingback_url', 'display' ).'" />'."\n";

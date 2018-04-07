@@ -11,7 +11,7 @@ echo '<article class="amp-wp-article">';
 		'link'   => FALSE,
 	] );
 
-	echo '<div class="amp-wp-article-header" style="margin-top:0;">';
+	echo '<div class="amp-wp-article-header">';
 		$this->load_parts( apply_filters( 'amp_post_article_header_meta', [ 'meta-author', 'meta-time' ] ) );
 	echo '</div>';
 
