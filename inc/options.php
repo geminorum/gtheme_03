@@ -21,8 +21,9 @@ class gThemeOptions extends gThemeModuleCore
 			// 'settings_page'  => 'gtheme-theme',
 
 			// ACCESSES
-			// 'settings_access' => 'edit_theme_options',
-			'editor_access'   => 'edit_others_posts', // FIXME: WTF
+			// 'settings_access'    => 'edit_theme_options',
+			// 'system_tags_access' => 'edit_others_posts',
+			'editor_access'      => 'edit_others_posts', // FIXME: WTF
 
 			// INTEGRATION WITH OTHER PLUGINS
 			'supports' => array(

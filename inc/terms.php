@@ -155,52 +155,54 @@ class gThemeTerms extends gThemeModuleCore
 
 	public function register_taxonomies()
 	{
-		$cpt = gThemeOptions::info( 'system_tags_cpt', array( 'post' ) );
-		$cap = gThemeOptions::info( 'settings_access', 'edit_theme_options' );
+		$posttypes = gThemeOptions::info( 'system_tags_cpt', [ 'post' ] );
+		$manage    = gThemeOptions::info( 'settings_access', 'edit_theme_options' );
+		$assign    = gThemeOptions::info( 'system_tags_access', 'edit_others_posts' );
+		$can       = current_user_can( $assign );
 
-		register_taxonomy( GTHEME_SYSTEMTAGS, $cpt, array(
-			'labels'                => $this->get_systemtags_labels(),
+		register_taxonomy( GTHEME_SYSTEMTAGS, $posttypes, [
+			'labels'                => $can ? $this->get_systemtags_labels() : [],
 			'public'                => FALSE,
-			'show_in_nav_menus'     => FALSE,
 			'show_ui'               => TRUE,
+			'show_in_quick_edit'    => $can,
+			'show_in_nav_menus'     => FALSE,
 			'show_tagcloud'         => FALSE,
 			'hierarchical'          => TRUE,
-			'meta_box_cb'           => array( 'gThemeTerms', 'checklistTerms' ),
-			'update_count_callback' => array( 'gThemeUtilities', 'update_count_callback' ),
+			'meta_box_cb'           => $can ? [ 'gThemeTerms', 'checklistTerms' ] : FALSE,
+			'update_count_callback' => [ 'gThemeUtilities', 'update_count_callback' ],
 			'rewrite'               => FALSE,
 			'query_var'             => FALSE,
-			'capabilities'          => array(
-				'manage_terms' => $cap,
-				'edit_terms'   => $cap,
-				'delete_terms' => $cap,
-				'assign_terms' => 'edit_posts',
-			)
-		) );
+			'show_in_rest'          => FALSE,
+			'capabilities'          => [
+				'manage_terms' => $manage,
+				'edit_terms'   => $manage,
+				'delete_terms' => $manage,
+				'assign_terms' => $assign,
+			],
+		] );
 	}
 
 	private function get_systemtags_labels()
 	{
-		if ( ! current_user_can( 'edit_posts' ) )
-			return array();
-
-		return array(
-			'name'              => _x( 'System Tags', 'System Tag Tax Labels: Name', GTHEME_TEXTDOMAIN ),
-			'menu_name'         => _x( 'System Tags', 'System Tag Tax Labels: Menu Name', GTHEME_TEXTDOMAIN ),
-			'singular_name'     => _x( 'System Tag', 'System Tag Tax Labels: Singular Name', GTHEME_TEXTDOMAIN ),
-			'search_items'      => _x( 'Search System Tags', 'System Tag Tax Labels', GTHEME_TEXTDOMAIN ),
-			'all_items'         => _x( 'All System Tags', 'System Tag Tax Labels', GTHEME_TEXTDOMAIN ),
-			'parent_item'       => _x( 'Parent System Tag', 'System Tag Tax Labels', GTHEME_TEXTDOMAIN ),
-			'parent_item_colon' => _x( 'Parent System Tag:', 'System Tag Tax Labels', GTHEME_TEXTDOMAIN ),
-			'edit_item'         => _x( 'Edit System Tag', 'System Tag Tax Labels', GTHEME_TEXTDOMAIN ),
-			'view_item'         => _x( 'View System Tag', 'System Tag Tax Labels', GTHEME_TEXTDOMAIN ),
-			'update_item'       => _x( 'Update System Tag', 'System Tag Tax Labels', GTHEME_TEXTDOMAIN ),
-			'add_new_item'      => _x( 'Add New System Tag', 'System Tag Tax Labels', GTHEME_TEXTDOMAIN ),
-			'new_item_name'     => _x( 'New System Tag Name', 'System Tag Tax Labels', GTHEME_TEXTDOMAIN ),
-			'not_found'         => _x( 'No system tags found.', 'System Tag Tax Labels', GTHEME_TEXTDOMAIN ),
-			'no_terms'          => _x( 'No system tags', 'System Tag Tax Labels', GTHEME_TEXTDOMAIN ),
-			'pagination'        => _x( 'System Tags list navigation', 'System Tag Tax Labels', GTHEME_TEXTDOMAIN ),
-			'list'              => _x( 'System Tags list', 'System Tag Tax Labels', GTHEME_TEXTDOMAIN ),
-		);
+		return [
+			'name'                  => _x( 'System Tags', 'System Tag Tax Labels: Name', GTHEME_TEXTDOMAIN ),
+			'menu_name'             => _x( 'System Tags', 'System Tag Tax Labels: Menu Name', GTHEME_TEXTDOMAIN ),
+			'singular_name'         => _x( 'System Tag', 'System Tag Tax Labels: Singular Name', GTHEME_TEXTDOMAIN ),
+			'search_items'          => _x( 'Search System Tags', 'System Tag Tax Labels', GTHEME_TEXTDOMAIN ),
+			'all_items'             => _x( 'All System Tags', 'System Tag Tax Labels', GTHEME_TEXTDOMAIN ),
+			'parent_item'           => _x( 'Parent System Tag', 'System Tag Tax Labels', GTHEME_TEXTDOMAIN ),
+			'parent_item_colon'     => _x( 'Parent System Tag:', 'System Tag Tax Labels', GTHEME_TEXTDOMAIN ),
+			'edit_item'             => _x( 'Edit System Tag', 'System Tag Tax Labels', GTHEME_TEXTDOMAIN ),
+			'view_item'             => _x( 'View System Tag', 'System Tag Tax Labels', GTHEME_TEXTDOMAIN ),
+			'update_item'           => _x( 'Update System Tag', 'System Tag Tax Labels', GTHEME_TEXTDOMAIN ),
+			'add_new_item'          => _x( 'Add New System Tag', 'System Tag Tax Labels', GTHEME_TEXTDOMAIN ),
+			'new_item_name'         => _x( 'New System Tag Name', 'System Tag Tax Labels', GTHEME_TEXTDOMAIN ),
+			'not_found'             => _x( 'No system tags found.', 'System Tag Tax Labels', GTHEME_TEXTDOMAIN ),
+			'no_terms'              => _x( 'No system tags', 'System Tag Tax Labels', GTHEME_TEXTDOMAIN ),
+			'items_list_navigation' => _x( 'System Tags list navigation', 'System Tag Tax Labels', GTHEME_TEXTDOMAIN ),
+			'items_list'            => _x( 'System Tags list', 'System Tag Tax Labels', GTHEME_TEXTDOMAIN ),
+			'back_to_items'         => _x( '&larr; Back to System Tags', 'System Tag Tax Labels', GTHEME_TEXTDOMAIN ),
+		];
 	}
 
 	public static function defaults( $extra = array() )
