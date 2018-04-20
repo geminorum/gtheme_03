@@ -170,7 +170,7 @@ class gThemeOptions extends gThemeModuleCore
 				'printfriendly',
 				'a2a_dd',
 				'shortlink',
-				'comments_link_feed', // or 'comments_link',
+				'comments_link', // or 'comments_link_feed',
 				'edit_post_link',
 				//'tag_list',
 			),
@@ -401,6 +401,11 @@ class gThemeOptions extends gThemeModuleCore
 			return $group;
 
 		return $fallback;
+	}
+
+	public static function isGroup( $group )
+	{
+		return $group == self::getGroup();
 	}
 
 	// FIXME: DEPRECATED: use gThemeCounts::get()

@@ -42,11 +42,15 @@ class gThemeWrap extends gThemeModuleCore
 
 	public function before_signup_header()
 	{
+		gThemeWordPress::doNotCache();
+
 		defined( 'GTHEME_IS_WP_SIGNUP' ) or define( 'GTHEME_IS_WP_SIGNUP', TRUE );
 	}
 
 	public function activate_header()
 	{
+		gThemeWordPress::doNotCache();
+
 		defined( 'GTHEME_IS_WP_ACTIVATE' ) or define( 'GTHEME_IS_WP_ACTIVATE', TRUE );
 	}
 
