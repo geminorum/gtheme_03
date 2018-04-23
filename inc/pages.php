@@ -5,77 +5,62 @@ class gThemePages extends gThemeModuleCore
 
 	protected $key = 'pages';
 
-	public function setup_actions( $args = array() )
+	public function setup_actions( $args = [] )
 	{
-		extract( self::atts( array(
+		extract( self::atts( [
 			'admin' => FALSE,
-		), $args ) );
+		], $args ) );
 
 		if ( $admin && is_admin() ) {
-			add_filter( 'gtheme_settings_subs', array( $this, 'subs' ), 5 );
-			add_action( 'gtheme_settings_load', array( $this, 'load' ) );
+			add_filter( 'gtheme_settings_subs', [ $this, 'subs' ], 5 );
+			add_action( 'gtheme_settings_load', [ $this, 'load' ] );
 		}
 	}
 
-	public static function defaultPages( $extra = array() )
+	// FIXME: drop this
+	public static function defaultPages( $extra = [] )
 	{
-		return array_merge( array(
-			'about'    => _x( 'About', 'Pages Module: Default Pages', GTHEME_TEXTDOMAIN ),
-			'contact'  => _x( 'Contact', 'Pages Module: Default Pages', GTHEME_TEXTDOMAIN ),
-			'search'   => _x( 'Search', 'Pages Module: Default Pages', GTHEME_TEXTDOMAIN ),
-			'archives' => _x( 'Archives', 'Pages Module: Default Pages', GTHEME_TEXTDOMAIN ),
-			'latest'   => _x( 'Latest Posts', 'Pages Module: Default Pages', GTHEME_TEXTDOMAIN ),
-			'social'   => _x( 'Social Profiles', 'Pages Module: Default Pages', GTHEME_TEXTDOMAIN ),
-		), $extra );
+		return self::defaults( $extra );
 	}
 
-	public static function defaults( $extra = array() )
+	public static function defaults( $extra = [] )
 	{
-		return array_merge( array(
-			'about' => array(
-				'title' => _x( 'About Page', 'Pages Module', GTHEME_TEXTDOMAIN ),
-				'desc'  => _x( 'Select a page for this site\'s main information', 'Pages Module', GTHEME_TEXTDOMAIN ),
-			),
-			'contact' => array(
-				'title' => _x( 'Contact Page', 'Pages Module', GTHEME_TEXTDOMAIN ),
-				'desc'  => _x( 'Select a page for this site\'s contact details', 'Pages Module', GTHEME_TEXTDOMAIN ),
-			),
-			'search' => array(
-				'title' => _x( 'Search Page', 'Pages Module', GTHEME_TEXTDOMAIN ),
-				'desc'  => _x( 'Select a page for this site\'s advanced search tools', 'Pages Module', GTHEME_TEXTDOMAIN ),
-			),
-			'archives' => array(
-				'title' => _x( 'Archives Page', 'Pages Module', GTHEME_TEXTDOMAIN ),
-				'desc'  => _x( 'Select a page for this site\'s main archives', 'Pages Module', GTHEME_TEXTDOMAIN ),
-			),
-			'latest' => array(
-				'title' => _x( 'Latest Posts Page', 'Pages Module', GTHEME_TEXTDOMAIN ),
-				'desc'  => _x( 'Select a page for this site\'s latest posts list', 'Pages Module', GTHEME_TEXTDOMAIN ),
-			),
-			'social' => array(
-				'title' => _x( 'Social Profiles Page', 'Pages Module', GTHEME_TEXTDOMAIN ),
-				'desc'  => _x( 'Select a page for this site\'s social profiles', 'Pages Module', GTHEME_TEXTDOMAIN ),
-			),
-		), $extra );
+		return array_merge( [
+			'about'        => _x( 'About', 'Pages Module: Default Pages', GTHEME_TEXTDOMAIN ),
+			'contact'      => _x( 'Contact', 'Pages Module: Default Pages', GTHEME_TEXTDOMAIN ),
+			'search'       => _x( 'Search', 'Pages Module: Default Pages', GTHEME_TEXTDOMAIN ),
+			'archives'     => _x( 'Archives', 'Pages Module: Default Pages', GTHEME_TEXTDOMAIN ),
+			'latest'       => _x( 'Latest Posts', 'Pages Module: Default Pages', GTHEME_TEXTDOMAIN ),
+			'social'       => _x( 'Social Profiles', 'Pages Module: Default Pages', GTHEME_TEXTDOMAIN ),
+			'work-with-us' => _x( 'Work with us', 'Pages Module: Default Pages', GTHEME_TEXTDOMAIN ),
+			'advertise'    => _x( 'Advertise here', 'Pages Module: Default Pages', GTHEME_TEXTDOMAIN ),
+			'copyright'    => _x( 'Copyright Policy', 'Pages Module: Default Pages', GTHEME_TEXTDOMAIN ),
+			'terms'        => _x( 'Terms of Use', 'Pages Module: Default Pages', GTHEME_TEXTDOMAIN ),
+			'privacy'      => _x( 'Privacy Policy', 'Pages Module: Default Pages', GTHEME_TEXTDOMAIN ),
+		], $extra );
 	}
 
-	public static function get( $name, $def = 0 )
+	public static function get( $name, $default = 0 )
 	{
-		$option_pages = gThemeOptions::getOption( 'pages', array() );
-		if ( count( $option_pages ) && isset( $option_pages[$name] ) )
-			return $option_pages[$name];
+		$option = gThemeOptions::getOption( 'pages', [] );
 
-		$info_pages = gThemeOptions::info( 'pages_list', self::defaults() );
-		if ( count( $info_pages ) && isset( $info_pages[$name] ) )
-			if ( $page = get_page_by_path( $name, OBJECT, 'page' ) )
-				return $page->ID;
+		if ( ! empty( $option[$name] ) )
+			return $option[$name];
 
-		return $def;
+		$defaults = gThemeOptions::info( 'pages_list', self::defaults() );
+
+		if ( empty( $defaults[$name] ) )
+			return $default;
+
+		if ( $page = get_page_by_path( $name, OBJECT, 'page' ) )
+			return $page->ID;
+
+		return $default;
 	}
 
-	public static function link( $name, $atts = array() )
+	public static function link( $name, $atts = [] )
 	{
-		$args = self::atts( array(
+		$args = self::atts( [
 			'title'   => NULL,
 			'attr'    => FALSE,
 			'url'     => FALSE,
@@ -86,7 +71,7 @@ class gThemePages extends gThemeModuleCore
 			'echo'    => TRUE,
 			'context' => NULL,
 			'rel'     => FALSE,
-		), $atts );
+		], $atts );
 
 		if ( $args['url'] )
 			$args['def'] = $args['url'];
@@ -99,11 +84,11 @@ class gThemePages extends gThemeModuleCore
 
 		if ( $args['title'] ) {
 
-			$html = $args['before'].gThemeHTML::tag( 'a', array(
+			$html = $args['before'].gThemeHTML::tag( 'a', [
 				'href'  => $args['def'],
 				'class' => $args['class'],
 				'title' => $args['attr'],
-			), $args['title'] ).$args['after'];
+			], $args['title'] ).$args['after'];
 
 			if ( ! $args['echo'] )
 				return $html;
@@ -117,28 +102,26 @@ class gThemePages extends gThemeModuleCore
 
 	public function subs( $subs )
 	{
-		return array_merge( $subs, array( 'pages' => _x( 'Pages', 'Modules: Menu Name', GTHEME_TEXTDOMAIN ) ) );
+		return array_merge( $subs, [ 'pages' => _x( 'Pages', 'Modules: Menu Name', GTHEME_TEXTDOMAIN ) ] );
 	}
 
 	public function settings_sub_html( $uri, $sub = 'general' )
 	{
 		$defaults = gThemeOptions::info( 'pages_list', self::defaults() );
-		$options  = gThemeOptions::getOption( 'pages', array() );
+		$options  = gThemeOptions::getOption( 'pages', [] );
 
 		echo '<form method="post" action="">';
 			echo '<h3>'._x( 'Site Page Settings', 'Pages Module: Form Title', GTHEME_TEXTDOMAIN ).'</h3>';
 			echo '<table class="form-table">';
 
-				foreach ( $defaults as $page => $default ) {
-					$this->do_settings_field( array(
-						'title'   => $default['title'],
-						'values'  => isset( $default['type'] ) ? $default['type'] : 'page',
+				foreach ( $defaults as $page => $title )
+					$this->do_settings_field( [
+						'title'   => $title,
 						'type'    => 'page',
 						'field'   => $page,
 						'default' => isset( $options[$page] ) ? $options[$page] : 0,
-						'desc'    => isset( $default['desc'] ) ? $default['desc'] : '',
-					), TRUE );
-				}
+					], TRUE );
+
 
 			echo '</table>';
 			echo '<p class="submit">';
@@ -159,96 +142,96 @@ class gThemePages extends gThemeModuleCore
 			if ( ! empty( $_POST )
 				&& wp_verify_nonce( $_POST['_gtheme_pages'], 'gtheme-pages' ) ) {
 
-
 				if ( ! empty( $_POST['create-default-menus'] ) ) {
 
-					$map   = gThemeOptions::info( 'pages_pre_map', array() );
-					$nav   = gThemeOptions::info( 'pages_nav_menu', 'primary' );
-					$count = 0;
+					$defaults = gThemeOptions::info( 'pages_list', self::defaults() );
+					$nav_menu = gThemeOptions::info( 'pages_nav_menu', 'primary' );
+					$count    = 0;
 
-					if ( $map && count( $map ) ) {
+					if ( $defaults && count( $defaults ) ) {
 
-						if ( $object = wp_get_nav_menu_object( $nav ) )
+						if ( $object = wp_get_nav_menu_object( $nav_menu ) )
 							$menu = $object->term_id;
 						else
-							$menu = wp_create_nav_menu( $nav );
+							$menu = wp_create_nav_menu( $nav_menu );
 
-						foreach ( $map as $slug => $title ) {
-							if ( $page = get_page_by_path( $slug, OBJECT, 'page' ) ) {
-								$id = wp_update_nav_menu_item( $menu, 0, array(
-									'menu-item-title'     => $title,
-									'menu-item-object'    => 'page',
-									'menu-item-object-id' => $page->ID,
-									'menu-item-type'      => 'post_type',
-									'menu-item-status'    => 'publish'
-								) );
+						foreach ( $defaults as $slug => $title ) {
 
-								if ( ! is_wp_error( $id ) )
-									$count++;
-							}
+							if ( ! $page = get_page_by_path( $slug, OBJECT, 'page' ) )
+								continue;
+
+							$id = wp_update_nav_menu_item( $menu, 0, [
+								'menu-item-title'     => $title,
+								'menu-item-object'    => 'page',
+								'menu-item-object-id' => $page->ID,
+								'menu-item-type'      => 'post_type',
+								'menu-item-status'    => 'publish',
+							] );
+
+							if ( ! is_wp_error( $id ) )
+								$count++;
 						}
 
-						wp_redirect( add_query_arg( array(
+						gThemeWordPress::redirectReferer( [
 							'message' => 'created',
 							'count'   => $count,
-						), wp_get_referer() ) );
-						exit();
+						] );
 					}
 
 				} else if ( ! empty( $_POST['create-default-pages'] ) ) {
 
-					$map   = gThemeOptions::info( 'pages_pre_map', array() );
-					$text  = gThemeOptions::info( 'pages_pre_text', _x( '[ This page is being completed ]', 'Options: Page Pre-Text', GTHEME_TEXTDOMAIN ) );
-					$user  = gThemeOptions::getOption( 'default_user', 0 );
-					$count = 0;
+					$defaults = gThemeOptions::info( 'pages_list', self::defaults() );
+					$content  = gThemeOptions::info( 'pages_pre_text', _x( '[ This page is being completed ]', 'Options: Page Pre-Text', GTHEME_TEXTDOMAIN ) );
+					$user     = gThemeOptions::getOption( 'default_user', 0 );
+					$count    = 0;
 
-					if ( $map && count( $map ) ) {
-						foreach ( $map as $slug => $title ) {
-							if ( ! $page = get_page_by_path( $slug, OBJECT, 'page' ) ) {
-								$id = wp_insert_post( array(
-									'post_title'   => $title,
-									'post_name'    => $slug,
-									'post_content' => $text,
-									'post_author'  => $user,
-									'post_status'  => 'publish',
-									'post_type'    => 'page',
-								) );
+					foreach ( (array) $defaults as $slug => $title ) {
 
-								if ( ! is_wp_error( $id ) )
-									$count++;
-							}
-						}
+						// already exits
+						if ( get_page_by_path( $slug, OBJECT, 'page' ) )
+							continue;
 
-						wp_redirect( add_query_arg( array(
-							'message' => 'created',
-							'count'   => $count,
-						), wp_get_referer() ) );
-						exit();
+						$id = wp_insert_post( [
+							'post_title'   => $title,
+							'post_name'    => $slug,
+							'post_content' => $content,
+							'post_author'  => $user,
+							'post_status'  => 'publish',
+							'post_type'    => 'page',
+						] );
+
+						if ( ! is_wp_error( $id ) )
+							$count++;
 					}
+
+					gThemeWordPress::redirectReferer( [
+						'message' => 'created',
+						'count'   => $count,
+					] );
 
 				} else {
 
-					$options = gThemeOptions::getOption( 'pages', array() );
+					$defaults = gThemeOptions::info( 'pages_list', self::defaults() );
+					$options  = gThemeOptions::getOption( 'pages', [] );
 
-					foreach ( gThemeOptions::info( 'pages_list', array() ) as $option => $default )
+					foreach ( $defaults as $slug => $title )
 
-						if ( isset( $_POST['gtheme_pages'][$option] )
-							&& trim( $_POST['gtheme_pages'][$option] ) )
-								$options[$option] = $_POST['gtheme_pages'][$option];
+						if ( isset( $_POST['gtheme_pages'][$slug] )
+							&& trim( $_POST['gtheme_pages'][$slug] ) )
+								$options[$slug] = $_POST['gtheme_pages'][$slug];
 
 						else
-							unset( $options[$option] );
+							unset( $options[$slug] );
 
 					$result = gThemeOptions::update_option( 'pages', $options );
 
-					wp_redirect( add_query_arg( array(
+					gThemeWordPress::redirectReferer( [
 						'message' => ( $result ? 'updated' : 'error' ),
-					), wp_get_referer() ) );
-					exit();
+					] );
 				}
 			}
 
-			add_action( 'gtheme_settings_sub_pages', array( $this, 'settings_sub_html' ), 10, 2 );
+			add_action( 'gtheme_settings_sub_pages', [ $this, 'settings_sub_html' ], 10, 2 );
 		}
 	}
 }

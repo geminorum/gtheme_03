@@ -63,8 +63,8 @@ class gThemeOptions extends gThemeModuleCore
 
 			// PAGES API
 			// 'pages_list'     => gThemePages::defaults(),
-			// 'pages_pre_map'  => gThemePages::defaultPages(),
 			// 'pages_pre_text' => _x( '[ This page is being completed ]', 'Options: Page Pre-Text', GTHEME_TEXTDOMAIN ),
+			// 'pages_nav_menu' => 'primary',
 
 			// PRIMARY TERMS API
 			// 'primary_terms_legend'   => FALSE,
