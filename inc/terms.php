@@ -403,9 +403,9 @@ class gThemeTerms extends gThemeModuleCore
 			'echo'          => FALSE,
 		) );
 
-		echo '<div id="taxonomy-'.$tax.'" class="geditorial-admin-wrap-metabox choose-tax">';
+		echo '<div id="taxonomy-'.$tax.'" class="choose-tax">';
 			if ( $html ) {
-				echo '<div class="field-wrap-list"><ul>'.$html.'</ul></div>';
+				echo '<div class="wp-tab-panel"><ul>'.$html.'</ul></div>';
 				// allows for an empty term set to be sent. 0 is an invalid Term ID and will be ignored by empty() checks.
 				echo '<input type="hidden" name="tax_input['.$tax.'][]" value="0" />';
 			} else {
