@@ -209,4 +209,29 @@ class gThemeWordPress extends gThemeBaseCore
 
 		return $object ? array_combine( $list, $terms ) : $list;
 	}
+
+	public static function redirect( $location = NULL, $status = 302 )
+	{
+		if ( is_null( $location ) )
+			$location = add_query_arg( wp_get_referer() );
+
+		wp_redirect( $location, $status );
+
+		die;
+	}
+
+	public static function redirectReferer( $message = 'updated', $key = 'message' )
+	{
+		if ( is_array( $message ) )
+			$url = add_query_arg( $message, wp_get_referer() );
+		else
+			$url = add_query_arg( $key, $message, wp_get_referer() );
+
+		self::redirect( $url );
+	}
+
+	public static function redirectLogin( $location = '', $status = 302 )
+	{
+		self::redirect( wp_login_url( $location, TRUE ), $status );
+	}
 }
