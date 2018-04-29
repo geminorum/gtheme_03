@@ -180,6 +180,7 @@ class gThemeSettings extends gThemeModuleCore
 				&& wp_verify_nonce( $_POST['_gtheme_settings'], 'gtheme-settings' ) ) {
 
 				$options = gThemeOptions::getOptions();
+
 				foreach ( self::defaults() as $option => $default )
 					if ( isset( $_POST['gtheme_settings'][$option] )
 						&& trim( $_POST['gtheme_settings'][$option] ) )
@@ -188,8 +189,8 @@ class gThemeSettings extends gThemeModuleCore
 						unset( $options[$option] );
 
 				$result = gThemeOptions::updateOptions( $options );
-				wp_redirect( add_query_arg( array( 'message' => ( $result ? 'updated' : 'error' ) ), wp_get_referer() ) );
-				exit();
+
+				gThemeWordPress::redirectReferer( $result ? 'updated' : 'error' );
 			}
 		}
 	}

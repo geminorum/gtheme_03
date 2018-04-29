@@ -140,8 +140,7 @@ class gThemeCounts extends gThemeModuleCore
 
 				$result = gThemeOptions::update_option( 'counts', $options );
 
-				wp_redirect( add_query_arg( array( 'message' => ( $result ? 'updated' : 'error' ) ), wp_get_referer() ) );
-				exit();
+				gThemeWordPress::redirectReferer( $result ? 'updated' : 'error' );
 			}
 
 			add_action( 'gtheme_settings_sub_counts', array( $this, 'settings_sub_html' ), 10, 2 );

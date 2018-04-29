@@ -3,27 +3,27 @@
 class gThemeBanners extends gThemeModuleCore
 {
 
-	public function setup_actions( $args = array() )
+	public function setup_actions( $args = [] )
 	{
-		extract( self::atts( array(
+		extract( self::atts( [
 			'admin' => FALSE,
-		), $args ) );
+		], $args ) );
 
 		if ( $admin && is_admin() ) {
-			add_filter( 'gtheme_settings_subs', array( $this, 'subs' ), 5 );
-			add_action( 'gtheme_settings_load', array( $this, 'load' ) );
+			add_filter( 'gtheme_settings_subs', [ $this, 'subs' ], 5 );
+			add_action( 'gtheme_settings_load', [ $this, 'load' ] );
 		}
 	}
 
-	public static function defaults( $extra = array() )
+	public static function defaults( $extra = [] )
 	{
-		return array_merge( array(
+		return array_merge( [
 			'first'  => _x( 'First', 'Banner Groups', GTHEME_TEXTDOMAIN ),
 			'second' => _x( 'Second', 'Banner Groups', GTHEME_TEXTDOMAIN ),
-		), $extra );
+		], $extra );
 	}
 
-	public static function banner( $group, $order = 0, $atts = array() )
+	public static function banner( $group, $order = 0, $atts = [] )
 	{
 		$banner = self::get( $group, $order );
 
@@ -33,10 +33,10 @@ class gThemeBanners extends gThemeModuleCore
 		self::html( $banner, $atts );
 	}
 
-	public static function group( $group, $atts = array() )
+	public static function group( $group, $atts = [] )
 	{
-		$banners = gThemeOptions::getOption( 'banners', array() );
-		$saved   = array();
+		$banners = gThemeOptions::getOption( 'banners', [] );
+		$saved   = [];
 
 		foreach ( $banners as $banner )
 			if ( isset( $banner['group'] )
@@ -45,13 +45,13 @@ class gThemeBanners extends gThemeModuleCore
 
 		if ( count( $saved ) ) {
 
-			$args = self::atts( array(
+			$args = self::atts( [
 				'before'    => '',
 				'after'     => '',
 				'tag'       => 'li',
 				'tag_start' => '',
 				'tag_end'   => '',
-			), $atts );
+			], $atts );
 
 			echo $args['before'];
 
@@ -77,7 +77,7 @@ class gThemeBanners extends gThemeModuleCore
 	// ANCESTOR: gtheme_get_banner()
 	public static function get( $group, $order = 0 )
 	{
-		$banners = gThemeOptions::getOption( 'banners', array() );
+		$banners = gThemeOptions::getOption( 'banners', [] );
 
 		foreach ( $banners as $banner ) {
 			if ( isset( $banner['group'] ) && $group == $banner['group'] ) {
@@ -91,9 +91,9 @@ class gThemeBanners extends gThemeModuleCore
 	}
 
 	// ANCESTOR: gtheme_banner()
-	public static function html( $banner, $atts = array() )
+	public static function html( $banner, $atts = [] )
 	{
-		$args = self::atts( array(
+		$args = self::atts( [
 			'w'           => 'auto',
 			'h'           => 'auto',
 			'c'           => '#fff',
@@ -102,7 +102,7 @@ class gThemeBanners extends gThemeModuleCore
 			'img_style'   => '',
 			'a_style'     => '',
 			'placeholder' => TRUE,
-		), $atts );
+		], $atts );
 
 		$html  = '';
 		$title = empty( $banner['title'] ) ? '' : $banner['title'];
@@ -122,7 +122,7 @@ class gThemeBanners extends gThemeModuleCore
 
 	public function subs( $subs )
 	{
-		return array_merge( $subs, array( 'banners' => _x( 'Banners', 'Modules: Menu Name', GTHEME_TEXTDOMAIN ) ) );
+		return array_merge( $subs, [ 'banners' => _x( 'Banners', 'Modules: Menu Name', GTHEME_TEXTDOMAIN ) ] );
 	}
 
 	public function load( $sub )
@@ -132,8 +132,8 @@ class gThemeBanners extends gThemeModuleCore
 			if ( ! empty( $_POST ) && wp_verify_nonce( $_POST['_gtheme_banners'], 'gtheme-banners' ) ) {
 
 				$banners = gThemeOptions::info( 'banner_groups', self::defaults() );
-				$old     = gThemeOptions::getOption( 'banners', array() );
-				$new     = array();
+				$old     = gThemeOptions::getOption( 'banners', [] );
+				$new     = [];
 
 				$titles = $_POST['gtheme-banners-title'];
 				$groups = $_POST['gtheme-banners-group'];
@@ -192,11 +192,10 @@ class gThemeBanners extends gThemeModuleCore
 				else
 					$result = FALSE;
 
-				wp_redirect( add_query_arg( array( 'message' => ( $result ? 'updated' : 'error' ) ), wp_get_referer() ) );
-				exit();
+				gThemeWordPress::redirectReferer( $result ? 'updated' : 'error' );
 			}
 
-			add_action( 'gtheme_settings_sub_banners', array( $this, 'settings_sub_html' ), 10, 2 );
+			add_action( 'gtheme_settings_sub_banners', [ $this, 'settings_sub_html' ], 10, 2 );
 		}
 	}
 
@@ -204,7 +203,7 @@ class gThemeBanners extends gThemeModuleCore
 	{
 		$legend  = gThemeOptions::info( 'banners_legend' );
 		$groups  = gThemeOptions::info( 'banner_groups', gThemeBanners::defaults() );
-		$banners = gThemeOptions::getOption( 'banners', array() );
+		$banners = gThemeOptions::getOption( 'banners', [] );
 
 		echo '<form method="post" action="">';
 			echo '<h3>'._x( 'Custom Banners', 'Modules: Banners', GTHEME_TEXTDOMAIN ).'</h3>';
@@ -230,82 +229,82 @@ class gThemeBanners extends gThemeModuleCore
 
 				echo '<tr>';
 
-				echo '<td>'.gThemeHTML::dropdown( $groups, array(
+				echo '<td>'.gThemeHTML::dropdown( $groups, [
 						'name'     => 'gtheme-banners-group[]',
 						'class'    => 'widefat',
 						'selected' => $banner['group'],
-					) ).'</td>';
+					] ).'</td>';
 
-				echo '<td>'.gThemeHTML::tag( 'input', array(
+				echo '<td>'.gThemeHTML::tag( 'input', [
 					'name'  => 'gtheme-banners-order[]',
 					'type'  => 'number',
 					'class' => 'widefat',
 					'value' => empty( $banner['order'] ) ? '' : $banner['order'],
-				) ).'</td>';
+				] ).'</td>';
 
-				echo '<td>'.gThemeHTML::tag( 'input', array(
+				echo '<td>'.gThemeHTML::tag( 'input', [
 					'name'  => 'gtheme-banners-title[]',
 					'type'  => 'text',
 					'class' => 'widefat',
 					'value' => empty( $banner['title'] ) ? '' : $banner['title'],
-				) ).'</td>';
+				] ).'</td>';
 
-				echo '<td>'.gThemeHTML::tag( 'input', array(
+				echo '<td>'.gThemeHTML::tag( 'input', [
 					'name'  => 'gtheme-banners-url[]',
 					'type'  => 'url',
 					'class' => 'widefat',
 					'value' => empty( $banner['url'] ) ? '' : $banner['url'],
 					'dir'   => 'ltr',
-				) ).'</td>';
+				] ).'</td>';
 
-				echo '<td>'.gThemeHTML::tag( 'input', array(
+				echo '<td>'.gThemeHTML::tag( 'input', [
 					'name'  => 'gtheme-banners-image[]',
 					'type'  => 'url',
 					'class' => 'widefat',
 					'value' => empty( $banner['image'] ) ? '' : $banner['image'],
 					'dir'   => 'ltr',
-				) ).'</td>';
+				] ).'</td>';
 
 				echo '<td><a class="button remove-row" href="#" style="padding:2px 2px 0 2px"><span class="dashicons dashicons-trash"></span></a></td></tr>';
 			}
 
 			echo '<tr class="empty-row screen-reader-text">';
 
-			echo '<td>'.gThemeHTML::dropdown( $groups, array(
+			echo '<td>'.gThemeHTML::dropdown( $groups, [
 					'name'     => 'gtheme-banners-group[]',
 					'class'    => 'widefat',
 					'selected' => 'none',
-				) ).'</td>';
+				] ).'</td>';
 
-			echo '<td>'.gThemeHTML::tag( 'input', array(
+			echo '<td>'.gThemeHTML::tag( 'input', [
 				'name'  => 'gtheme-banners-order[]',
 				'type'  => 'number',
 				'class' => 'widefat',
 				'value' => '',
-			) ).'</td>';
+			] ).'</td>';
 
-			echo '<td>'.gThemeHTML::tag( 'input', array(
+			echo '<td>'.gThemeHTML::tag( 'input', [
 				'name'  => 'gtheme-banners-title[]',
 				'type'  => 'text',
 				'class' => 'widefat',
 				'value' => '',
-			) ).'</td>';
+			] ).'</td>';
 
-			echo '<td>'.gThemeHTML::tag( 'input', array(
+			echo '<td>'.gThemeHTML::tag( 'input', [
 				'name'  => 'gtheme-banners-url[]',
 				'type'  => 'url',
 				'class' => 'widefat',
 				'value' => '',
 				'dir'   => 'ltr',
-			) ).'</td>';
+			] ).'</td>';
 
-			echo '<td>'.gThemeHTML::tag( 'input', array(
+			echo '<td>'.gThemeHTML::tag( 'input', [
 				'name'  => 'gtheme-banners-image[]',
 				'type'  => 'url',
 				'class' => 'widefat',
 				'value' => '',
 				'dir'   => 'ltr',
-			) ).'</td>';
+			] ).'</td>';
 
 			echo '<td><a class="button remove-row" href="#" style="padding:2px 2px 0 2px"><span class="dashicons dashicons-trash"></span></a></td></tr>';
 

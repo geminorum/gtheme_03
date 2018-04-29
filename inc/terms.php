@@ -5,43 +5,43 @@ class gThemeTerms extends gThemeModuleCore
 
 	protected $ajax = TRUE;
 
-	public function setup_actions( $args = array() )
+	public function setup_actions( $args = [] )
 	{
-		extract( self::atts( array(
+		extract( self::atts( [
 			'system_tags' => FALSE,
 			'p2p'         => FALSE, // DEPRECATED: use gEditorial Connected
 			'admin'       => FALSE,
-		), $args ) );
+		], $args ) );
 
 		if ( $system_tags ) {
-			add_action( 'init', array( $this, 'register_taxonomies' ) );
+			add_action( 'init', [ $this, 'register_taxonomies' ] );
 
 			if ( is_admin() ) {
 
-				add_action( 'load-edit-tags.php', array( $this, 'load_edit_tags' ) );
-				add_filter( 'geditorial_tweaks_taxonomy_info', array( $this, 'tweaks_taxonomy_info' ), 10, 3 );
+				add_action( 'load-edit-tags.php', [ $this, 'load_edit_tags' ] );
+				add_filter( 'geditorial_tweaks_taxonomy_info', [ $this, 'tweaks_taxonomy_info' ], 10, 3 );
 
 				// remote: tax bulk actions with gNetworkTaxonomy
-				add_filter( 'gnetwork_taxonomy_bulk_actions', array( $this, 'taxonomy_bulk_actions' ), 12, 2 );
-				add_filter( 'gnetwork_taxonomy_bulk_callback', array( $this, 'taxonomy_bulk_callback' ), 12, 3 );
+				add_filter( 'gnetwork_taxonomy_bulk_actions', [ $this, 'taxonomy_bulk_actions' ], 12, 2 );
+				add_filter( 'gnetwork_taxonomy_bulk_callback', [ $this, 'taxonomy_bulk_callback' ], 12, 3 );
 
 			} else {
-				add_filter( 'post_class', array( $this, 'post_class' ), 10, 3 );
+				add_filter( 'post_class', [ $this, 'post_class' ], 10, 3 );
 			}
 		}
 
 		if ( $p2p )
-			add_action( 'p2p_init', array( $this, 'p2p_init' ) );
+			add_action( 'p2p_init', [ $this, 'p2p_init' ] );
 
 		if ( $admin && is_admin() ) {
-			add_filter( 'gtheme_settings_subs', array( $this, 'subs' ), 5 );
-			add_action( 'gtheme_settings_load', array( $this, 'load' ) );
+			add_filter( 'gtheme_settings_subs', [ $this, 'subs' ], 5 );
+			add_action( 'gtheme_settings_load', [ $this, 'load' ] );
 		}
 	}
 
 	public function subs( $subs )
 	{
-		return array_merge( $subs, array( 'primaryterms' => _x( 'Primary Terms', 'Modules: Menu Name', GTHEME_TEXTDOMAIN ) ) );
+		return array_merge( $subs, [ 'primaryterms' => _x( 'Primary Terms', 'Modules: Menu Name', GTHEME_TEXTDOMAIN ) ] );
 	}
 
 	public function load( $sub )
@@ -53,19 +53,19 @@ class gThemeTerms extends gThemeModuleCore
 
 				if ( ! empty( $_POST['create-default-primaryterms'] ) ) {
 
-					$defaults = gThemeOptions::info( 'primary_terms_defaults', array() );
+					$defaults = gThemeOptions::info( 'primary_terms_defaults', [] );
 					$taxonomy = gThemeOptions::info( 'primary_terms_taxonomy', 'category' );
 
 					if ( count( $defaults ) ) {
 
 						$result = self::insertDefaults( $taxonomy, $defaults );
-						wp_redirect( add_query_arg( array( 'message' => ( $result ? 'updated' : 'error' ) ), wp_get_referer() ) );
-						exit();
+
+						gThemeWordPress::redirectReferer( $result ? 'updated' : 'error' );
 					}
 
 				} else if ( ! empty( $_POST['gtheme_primaryterms'] ) ) {
 
-					$terms = $unordered = array();
+					$terms = $unordered = [];
 
 					foreach ( $_POST['gtheme_primaryterms'] as $term_id => $term_args ) {
 
@@ -87,12 +87,12 @@ class gThemeTerms extends gThemeModuleCore
 					ksort( $options, SORT_NUMERIC );
 
 					$result = gThemeOptions::update_option( 'terms', $options );
-					wp_redirect( add_query_arg( array( 'message' => ( $result ? 'updated' : 'error' ) ), wp_get_referer() ) );
-					exit();
+
+					gThemeWordPress::redirectReferer( $result ? 'updated' : 'error' );
 				}
 			}
 
-			add_action( 'gtheme_settings_sub_primaryterms', array( $this, 'settings_sub_html_primaryterms' ), 10, 2 );
+			add_action( 'gtheme_settings_sub_primaryterms', [ $this, 'settings_sub_html_primaryterms' ], 10, 2 );
 		}
 	}
 
@@ -101,7 +101,7 @@ class gThemeTerms extends gThemeModuleCore
 	{
 		$legend   = gThemeOptions::info( 'primary_terms_legend', FALSE );
 		$taxonomy = gThemeOptions::info( 'primary_terms_taxonomy', 'category' );
-		$options  = gThemeOptions::getOption( 'terms', array() );
+		$options  = gThemeOptions::getOption( 'terms', [] );
 
 		echo '<form method="post" action="">';
 
@@ -113,16 +113,16 @@ class gThemeTerms extends gThemeModuleCore
 
 				foreach ( gThemeWordPress::getTerms( $taxonomy, FALSE, TRUE ) as $term ) {
 
-					echo '<p>'.gThemeHTML::tag( 'input', array(
+					echo '<p>'.gThemeHTML::tag( 'input', [
 						'type'    => 'checkbox',
 						'name'    => 'gtheme_primaryterms['.$term->term_id.'][checked]',
 						'id'      => 'gtheme_primaryterms-'.$term->term_id.'-checked',
 						'checked' => in_array( intval( $term->term_id ), $options ),
-					) );
+					] );
 
 					$order = array_search( $term->term_id, $options );
 
-					echo ' '.gThemeHTML::tag( 'input', array(
+					echo ' '.gThemeHTML::tag( 'input', [
 						'type'         => 'number',
 						'step'         => '1',
 						'autocomplete' => 'off',
@@ -131,12 +131,12 @@ class gThemeTerms extends gThemeModuleCore
 						'id'           => 'gtheme_primaryterms-'.$term->term_id.'-order',
 						'value'        => ( FALSE === $order ? '' : $order ),
 						'style'        => 'vertical-align:middle',
-					) );
+					] );
 
-					echo ' '.gThemeHTML::tag( 'label', array(
+					echo ' '.gThemeHTML::tag( 'label', [
 						'for'   => 'gtheme_primaryterms-'.$term->term_id.'-checked',
 						'title' => $term->slug,
-					), esc_html( $term->name ).' ('.number_format_i18n( $term->count ).')' );
+					], esc_html( $term->name ).' ('.number_format_i18n( $term->count ).')' );
 
 					echo '</p>';
 				}
@@ -205,9 +205,9 @@ class gThemeTerms extends gThemeModuleCore
 		];
 	}
 
-	public static function defaults( $extra = array() )
+	public static function defaults( $extra = [] )
 	{
-		return array_merge( array(
+		return array_merge( [
 			'dashboard'         => _x( 'Dashboard', 'System Tags Defaults', GTHEME_TEXTDOMAIN ),
 			'featured'          => _x( 'Featured', 'System Tags Defaults', GTHEME_TEXTDOMAIN ),
 			'latest'            => _x( 'Latest', 'System Tags Defaults', GTHEME_TEXTDOMAIN ),
@@ -217,7 +217,7 @@ class gThemeTerms extends gThemeModuleCore
 			'hide-image-single' => _x( 'Hide Single Image', 'System Tags Defaults', GTHEME_TEXTDOMAIN ),
 			'no-front'          => _x( 'Not on FrontPage', 'System Tags Defaults', GTHEME_TEXTDOMAIN ),
 			'no-feed'           => _x( 'Not on Feed', 'System Tags Defaults', GTHEME_TEXTDOMAIN ),
-		), $extra );
+		], $extra );
 	}
 
 
@@ -238,11 +238,11 @@ class gThemeTerms extends gThemeModuleCore
 		if ( GTHEME_SYSTEMTAGS != $object->name )
 			return $info;
 
-		return array(
+		return [
 			'icon'  => 'admin-generic',
 			'title' => _x( 'System Tags', 'System Tag Tax Labels: Menu Name', GTHEME_TEXTDOMAIN ),
 			'edit'  => NULL,
-		);
+		];
 	}
 
 	public function load_edit_tags()
@@ -252,7 +252,7 @@ class gThemeTerms extends gThemeModuleCore
 
 		if ( GTHEME_SYSTEMTAGS == $_REQUEST['taxonomy'] ) {
 			$this->system_tags_table_action( 'gtheme_action' );
-			add_action( 'after-'.GTHEME_SYSTEMTAGS.'-table', array( $this, 'after_system_tags_table' ) );
+			add_action( 'after-'.GTHEME_SYSTEMTAGS.'-table', [ $this, 'after_system_tags_table' ] );
 		}
 	}
 
@@ -304,14 +304,14 @@ class gThemeTerms extends gThemeModuleCore
 		if ( $taxonomy != GTHEME_SYSTEMTAGS )
 			return $actions;
 
-		return array_merge( $actions, array( 'empty_lastmonth' => _x( 'Empty Before Last Month', 'Terms Module', GTHEME_TEXTDOMAIN ) ) );
+		return array_merge( $actions, [ 'empty_lastmonth' => _x( 'Empty Before Last Month', 'Terms Module', GTHEME_TEXTDOMAIN ) ] );
 	}
 
 	public function taxonomy_bulk_callback( $callback, $action, $taxonomy )
 	{
 
 		if ( $taxonomy == GTHEME_SYSTEMTAGS && 'empty_lastmonth' == $action )
-			return array( $this, 'bulk_empty_lastmonth' );
+			return [ $this, 'bulk_empty_lastmonth' ];
 
 		return $callback;
 	}
@@ -321,27 +321,27 @@ class gThemeTerms extends gThemeModuleCore
 		if ( $taxonomy != GTHEME_SYSTEMTAGS )
 			return FALSE;
 
-		$cpt = gThemeOptions::info( 'system_tags_cpt', array( 'post' ) );
+		$cpt = gThemeOptions::info( 'system_tags_cpt', [ 'post' ] );
 
-		$args = array(
+		$args = [
 			'fields'         => 'ids',
 			'post_type'      => $cpt,
 			'posts_per_page' => -1,
 			'post_status'    => 'publish',
-			'tax_query'      => array( array(
+			'tax_query'      => [ [
 				'taxonomy' => $taxonomy,
 				'terms'    => array_filter( $term_ids, 'intval' ),
 				// 'operator' => 'EXISTS',
-			) ),
-			'date_query' => array(
+			] ],
+			'date_query' => [
 				'column' => 'post_date_gmt',
 				'before' => '30 days ago',
-			),
+			],
 			'suppress_filters'       => TRUE,
 			'no_found_rows'          => TRUE,
 			'update_post_term_cache' => FALSE,
 			'update_post_meta_cache' => FALSE,
-		);
+		];
 
 		$query = new \WP_Query;
 		$posts = $query->query( $args );
@@ -357,13 +357,13 @@ class gThemeTerms extends gThemeModuleCore
 
 	public function p2p_init()
 	{
-		p2p_register_connection_type( array(
+		p2p_register_connection_type( [
 			'name'       => 'posts_to_posts',
 			'from'       => 'post',
 			'to'         => 'post',
 			'reciprocal' => TRUE,
 			'title'      => __( 'Connected Posts', GTHEME_TEXTDOMAIN ),
-		) );
+		] );
 	}
 
 	// helper for settings page
@@ -374,7 +374,7 @@ class gThemeTerms extends gThemeModuleCore
 
 		foreach ( $defaults as $term_slug => $term_name )
 			if ( ! term_exists( $term_slug, $taxonomy ) )
-				wp_insert_term( $term_name, $taxonomy, array( 'slug' => $term_slug ) );
+				wp_insert_term( $term_name, $taxonomy, [ 'slug' => $term_slug ] );
 
 		return TRUE;
 	}
@@ -391,17 +391,17 @@ class gThemeTerms extends gThemeModuleCore
 	// @SOURCE: `post_categories_meta_box()`
 	public static function checklistTerms( $post, $box )
 	{
-		$args = self::atts( array(
+		$args = self::atts( [
 			'taxonomy' => 'category',
 			'edit_url' => NULL,
-		), empty( $box['args'] ) ? array() : $box['args'] );
+		], empty( $box['args'] ) ? [] : $box['args'] );
 
 		$tax  = esc_attr( $args['taxonomy'] );
-		$html = wp_terms_checklist( $post->ID, array(
+		$html = wp_terms_checklist( $post->ID, [
 			'taxonomy'      => $tax,
 			'checked_ontop' => FALSE,
 			'echo'          => FALSE,
-		) );
+		] );
 
 		echo '<div id="taxonomy-'.$tax.'" class="choose-tax">';
 			if ( $html ) {
@@ -428,18 +428,18 @@ class gThemeTerms extends gThemeModuleCore
 			return FALSE;
 
 		$taxonomy  = gThemeOptions::info( 'primary_terms_taxonomy', 'category' );
-		$primaries = gThemeOptions::getOption( 'terms', array() );
+		$primaries = gThemeOptions::getOption( 'terms', [] );
 
 		if ( empty( $primaries ) )
 			return FALSE;
 
-		$terms = get_terms( array(
-			'object_ids'             => array( $post->ID ),
-			'taxonomy'               => array( $taxonomy ),
+		$terms = get_terms( [
+			'object_ids'             => [ $post->ID ],
+			'taxonomy'               => [ $taxonomy ],
 			'include'                => $primaries,
 			'number'                 => 1,
 			'update_term_meta_cache' => FALSE,
-		) );
+		] );
 
 		if ( empty( $terms ) )
 			return FALSE;
@@ -474,10 +474,10 @@ class gThemeTerms extends gThemeModuleCore
 			return FALSE;
 
 		foreach ( $terms as $term )
-			echo $before.gThemeHTML::tag( 'a', array(
+			echo $before.gThemeHTML::tag( 'a', [
 				'href'  => get_term_link( $term, $taxonomy ),
-				'class' => array( 'taxonomy-'.$taxonomy, 'term-'.$term->slug ),
-			), esc_html( sanitize_term_field( 'name', $term->name, $term->term_id, $term->taxonomy, 'display' ) ) ).$after;
+				'class' => [ 'taxonomy-'.$taxonomy, 'term-'.$term->slug ],
+			], esc_html( sanitize_term_field( 'name', $term->name, $term->term_id, $term->taxonomy, 'display' ) ) ).$after;
 
 		return TRUE;
 	}

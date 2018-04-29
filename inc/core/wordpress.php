@@ -215,9 +215,10 @@ class gThemeWordPress extends gThemeBaseCore
 		if ( is_null( $location ) )
 			$location = add_query_arg( wp_get_referer() );
 
-		wp_redirect( $location, $status );
+		if ( wp_redirect( $location, $status ) )
+			exit;
 
-		die;
+		wp_die(); // something's wrong!
 	}
 
 	public static function redirectReferer( $message = 'updated', $key = 'message' )
