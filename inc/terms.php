@@ -422,7 +422,7 @@ class gThemeTerms extends gThemeModuleCore
 		return has_term( $term, $taxonomy, $post );
 	}
 
-	public static function linkPrimary( $before = '', $after = '', $post = NULL, $title = '' )
+	public static function getPrimary( $post = NULL )
 	{
 		if ( ! $post = get_post( $post ) )
 			return FALSE;
@@ -444,11 +444,19 @@ class gThemeTerms extends gThemeModuleCore
 		if ( empty( $terms ) )
 			return FALSE;
 
+		return $terms[0];
+	}
+
+	public static function linkPrimary( $before = '', $after = '', $post = NULL, $title = '' )
+	{
+		if ( ! $primary = self::getPrimary( $post ) )
+			return FALSE;
+
 		echo $before;
 			echo '<a href="'
-				.get_term_link( $terms[0], $terms[0]->taxonomy )
+				.get_term_link( $primary, $primary->taxonomy )
 				.'" data-toggle="tooltip" title="'.$title.'">'
-					.esc_html( $terms[0]->name )
+					.esc_html( $primary->name )
 				.'</a>';
 		echo $after;
 
