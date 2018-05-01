@@ -119,6 +119,7 @@
 
   .comments-feed {
     float: left;
+    margin: 0 5px 5px 0;
 
     a {
       color: $gray-light;
@@ -141,6 +142,7 @@
 
   .comments-title {
     font-size: $font-size-h5;
+    line-height: $line-height-base;
     margin: 0;
   }
 

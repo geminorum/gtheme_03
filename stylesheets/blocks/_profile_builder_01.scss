@@ -1,0 +1,108 @@
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+/// gTheme Blocks: Profile Builder 01 - 2018-02-21
+////////////////////////////////////////////////////////////////////////////////
+
+.wppb-user-forms {
+  ul > li {
+    display: block;
+    clear: both;
+  }
+
+  p.login-username,
+  p.login-password {
+    input {
+      text-align: center;
+      direction: ltr;
+    }
+  }
+
+  p.login-sum {
+    text-align: center;
+
+    label {
+      vertical-align: inherit;
+    }
+
+    input[type="number"] {
+      height: 28px;
+      padding: 0 2px;
+      width: 58px;
+    }
+  }
+}
+
+.wppb-user-forms p.login-username,
+.wppb-user-forms p.login-password,
+// .wppb-user-forms p.login-sum,
+.wppb-form-field {
+  clear: both;
+  display: block;
+
+  // @REF: https://www.sitepoint.com/position-text-labels-on-forms-using-css/
+  label {
+    display: inline-block;
+    float: right;
+    width: 30%;
+    margin-left: 2%;
+    text-align: left;
+  }
+
+  textarea,
+  select,
+  input[type="password"],
+  input[type="email"],
+  input[type="text"] {
+    width: 65%;
+    padding: 2px 4px;
+  }
+}
+
+.wppb-form-field {
+  margin-bottom: 1em !important;
+
+  &.wppb-send-credentials-checkbox label {
+    width: 100%;
+    text-align: right;
+  }
+
+  &.wppb-send-credentials-checkbox label,
+  &.wppb-default-name-heading,
+  &.wppb-default-contact-info-heading,
+  &.wppb-default-about-yourself-heading {
+    margin: 2.5em 0 1.5em !important;
+  }
+}
+
+input#send_credentials_via_email {
+  margin-left: 0.5em;
+}
+
+.wppb-username-email input,
+input.default_field_username,
+input.default_field_email,
+input.default_field_website {
+  direction: ltr;
+}
+
+#wppb_general_top_error_message,
+.wppb-error,
+.wppb-warning {
+  padding: 6px 9px;
+  margin: 0 auto 25px;
+  display: block;
+  width: 100%;
+  // box-sizing: border-box;
+  background: #ffebe8;
+  border: 1px solid #c00;
+  color: #222;
+
+  a {
+    color: #007acc;
+  }
+}
+
+.wppb-required {
+  color: $brand-danger;
+}
