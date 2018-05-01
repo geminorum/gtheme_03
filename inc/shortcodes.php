@@ -127,14 +127,12 @@ class gThemeShortCodes extends gThemeModuleCore
 				$args['link'] = 'file';
 
 				// CAUTION: css must added manually
-				wp_enqueue_script( 'gtheme-zoom', GTHEME_URL.'/libs/zoom.min.js', array( 'jquery' ), '20141123', TRUE );
+				wp_enqueue_script( 'gtheme-zoom', GTHEME_URL.'/js/vendor/jquery.zoom.min.js', [ 'jquery' ], '20141123', TRUE );
 			}
 		}
 
 		// CAUTION: css must added manually
-		// wp_register_script( 'gtheme-imagesloaded', GTHEME_URL.'/js/jquery.imagesloaded.min.js', array( 'jquery' ), '3.0.4', TRUE );
-		// wp_enqueue_script( 'gtheme-gallery', GTHEME_URL.'/js/script.gallery.min.js', array( 'jquery', 'gtheme-imagesloaded' ), GTHEME_VERSION, TRUE );
-		wp_enqueue_script( 'gtheme-gallery', GTHEME_URL.'/js/script.gallery.min.js', array( 'jquery', 'imagesloaded' ), GTHEME_VERSION, TRUE );
+		wp_enqueue_script( 'gtheme-gallery', GTHEME_URL.'/js/script.gallery.min.js', [ 'jquery', 'imagesloaded' ], GTHEME_VERSION, TRUE );
 
 		$html     = '';
 		$template = gThemeOptions::info( 'gallery_template', $default );
@@ -257,7 +255,7 @@ class gThemeShortCodes extends gThemeModuleCore
 /* ]]> */
 		</script>';
 
-		wp_enqueue_script( 'gtheme-flexslider', GTHEME_URL.'/libs/flexslider-rtl/jquery.flexslider-min.js', array( 'jquery' ), '2.2.0', TRUE );
+		wp_enqueue_script( 'gtheme-flexslider', GTHEME_URL.'/js/vendor/jquery.flexslider-rtl.min.js', [ 'jquery' ], '2.2.0', TRUE );
 
 		return $html;
 	}

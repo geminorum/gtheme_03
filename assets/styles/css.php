@@ -3,12 +3,8 @@
 // NOTE: SAMPLE
 
 if ( $ltr ) {
-	
-	$css = array(
 
-		// '../../gtheme_03/libs/flexslider.css',
-		// '../../gtheme_03/libs/zoom.css',
-		// '../packages/flexslider/flexslider.css',
+	$css = array(
 
 		// 'style-ltr.css',
 		'style.css',
@@ -16,14 +12,10 @@ if ( $ltr ) {
 		'../../../plugins/gnetwork/assets/css/front.all.raw.css',
 		'../../../plugins/geditorial/assets/css/front.all.raw.css',
 	);
-	
-} else {
-	
-	$css = array(
 
-		// '../../gtheme_03/libs/flexslider-rtl.css',
-		// '../../gtheme_03/libs/zoom.css',
-		// '../packages/flexslider/flexslider.css',
+} else {
+
+	$css = array(
 
 		'style.css',
 
