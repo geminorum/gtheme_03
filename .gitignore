@@ -1,19 +1,10 @@
 .build
 .idea
-.sass-cache
 .gulp
 .imdone
 .temp
 
-/bin
 /css/maps
-/components
-/packages/jquery
-/packages/bootstrap
-/packages/bootstrap-sass
-/packages/font-awesome
-/packages/anything-slider
-/vendor
 /node_modules
 
 composer.lock
@@ -21,4 +12,5 @@ npm-debug.log
 .tinypng-sigs
 
 environment.yml
+.env
 .ftpconfig

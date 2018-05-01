@@ -1,8 +1,5 @@
 * text eol=lf
 
-*.txt text eol=crlf
-*.css text eol=crlf
-
 *.png binary
 *.jpg binary
 
