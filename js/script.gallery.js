@@ -1,5 +1,3 @@
-/* global jQuery */
-
 jQuery(function ($) {
   var lastDirection;
 
