@@ -26,6 +26,7 @@ class gThemePages extends gThemeModuleCore
 	public static function defaults( $extra = [] )
 	{
 		return array_merge( [
+			'not-found'    => _x( '404: Not Found', 'Pages Module: Default Pages', GTHEME_TEXTDOMAIN ),
 			'about'        => _x( 'About', 'Pages Module: Default Pages', GTHEME_TEXTDOMAIN ),
 			'contact'      => _x( 'Contact', 'Pages Module: Default Pages', GTHEME_TEXTDOMAIN ),
 			'search'       => _x( 'Search', 'Pages Module: Default Pages', GTHEME_TEXTDOMAIN ),
@@ -156,6 +157,9 @@ class gThemePages extends gThemeModuleCore
 							$menu = wp_create_nav_menu( $nav_menu );
 
 						foreach ( $defaults as $slug => $title ) {
+
+							if ( 'not-found' == $slug )
+								continue;
 
 							if ( ! $page = get_page_by_path( $slug, OBJECT, 'page' ) )
 								continue;
