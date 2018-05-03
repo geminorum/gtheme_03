@@ -3,14 +3,14 @@ msgstr ""
 "Project-Id-Version: gTheme 3\n"
 "Report-Msgid-Bugs-To: https://github.com/geminorum/gtheme_03/issues\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2018-04-02 17:26+0430\n"
+"PO-Revision-Date: 2018-05-03 03:29+0430\n"
 "Last-Translator: geminorum <contact@geminorum.ir>\n"
 "Language-Team: geminorum <contact@geminorum.ir>\n"
 "Language: fa_IR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.0.6\n"
+"X-Generator: Poedit 2.0.7\n"
 "X-Textdomain-Support: yes\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -33,7 +33,7 @@ msgstr "برگه ارتباط"
 # @ gtheme
 #: content-404.php:7
 msgid "Oops! That page can&rsquo;t be found."
-msgstr "متأسفیم."
+msgstr "متأسفیم!"
 
 #: fullwidthpage.php:7
 msgid "Full-Width Page"
@@ -116,52 +116,52 @@ msgctxt "Modules: Menu Name"
 msgid "Banners"
 msgstr "بنرها"
 
-#: inc/banners.php:210
+#: inc/banners.php:209
 msgctxt "Modules: Banners"
 msgid "Custom Banners"
 msgstr "بنرهای سفارشی"
 
-#: inc/banners.php:214
+#: inc/banners.php:213
 msgctxt "Modules: Banners"
 msgid "Legend"
 msgstr "توضیحات"
 
-#: inc/banners.php:216
+#: inc/banners.php:215
 msgctxt "Modules: Banners"
 msgid "Your theme extra information"
 msgstr "اطلاعات بیشتر پوسته شما"
 
-#: inc/banners.php:221
+#: inc/banners.php:220
 msgctxt "Modules: Banners"
 msgid "Group"
 msgstr "گروه"
 
-#: inc/banners.php:222
+#: inc/banners.php:221
 msgctxt "Modules: Banners"
 msgid "Ord."
 msgstr "تـ"
 
-#: inc/banners.php:223
+#: inc/banners.php:222
 msgctxt "Modules: Banners"
 msgid "Title"
 msgstr "عنوان"
 
-#: inc/banners.php:224
+#: inc/banners.php:223
 msgctxt "Modules: Banners"
 msgid "URL"
 msgstr "نشانی"
 
-#: inc/banners.php:225
+#: inc/banners.php:224
 msgctxt "Modules: Banners"
 msgid "Image"
 msgstr "تصویر"
 
-#: inc/banners.php:314
+#: inc/banners.php:313
 msgctxt "Modules: Banners"
 msgid "Add Another"
 msgstr "افزودن گزینه دیگر"
 
-#: inc/banners.php:315
+#: inc/banners.php:314
 msgctxt "Modules: Banners"
 msgid "Save"
 msgstr "ذخیره"
@@ -738,225 +738,195 @@ msgctxt "Logo Title"
 msgid "Home"
 msgstr "خانه"
 
-#: inc/options.php:73
+#: inc/options.php:74
 msgctxt "Options: Separator: Default"
 msgid " "
 msgstr ""
 
-#: inc/options.php:74
+#: inc/options.php:75
 msgctxt "Options: Separator: Title"
 msgid " &raquo; "
 msgstr " &laquo; "
 
-#: inc/options.php:75
+#: inc/options.php:76
 msgctxt "Options: Separator: Nav"
 msgid " &laquo; "
 msgstr " &raquo; "
 
-#: inc/options.php:76
+#: inc/options.php:77
 msgctxt "Options: Separator: Byline"
 msgid " | "
 msgstr ""
 
-#: inc/options.php:77
+#: inc/options.php:78
 msgctxt "Options: Separator: Term"
 msgid ", "
 msgstr "، "
 
-#: inc/options.php:78
+#: inc/options.php:79
 msgctxt "Options: Separator: Embed"
 msgid "; "
 msgstr "؛ "
 
-#: inc/options.php:79
+#: inc/options.php:80
 msgctxt "Options: Separator: Feed"
 msgid "; "
 msgstr "؛ "
 
-#: inc/options.php:80
+#: inc/options.php:81
 msgctxt "Options: Separator: Comment Action"
 msgid " | "
 msgstr ""
 
-#: inc/options.php:82
+#: inc/options.php:83
 msgctxt "Options: Text Size Increase"
 msgid "[ A+ ]"
 msgstr "[ الف+ ]"
 
-#: inc/options.php:83
+#: inc/options.php:84
 msgctxt "Options: Text Size Decrease"
 msgid "[ A- ]"
 msgstr "[ الف– ]"
 
-#: inc/options.php:84
+#: inc/options.php:85
 msgctxt "Options: Text Size Sep"
 msgid " / "
 msgstr "\\"
 
-#: inc/options.php:86
+#: inc/options.php:87
 msgctxt "Options: Text Justify"
 msgid "[ Ju ]"
 msgstr "[ همـ ]"
 
-#: inc/options.php:87
+#: inc/options.php:88
 msgctxt "Options: Text Unjustify"
 msgid "[ uJ ]"
 msgstr "[ ناهمـ ]"
 
-#: inc/options.php:88
+#: inc/options.php:89
 msgctxt "Options: Text Justify Sep"
 msgid " / "
 msgstr "\\"
 
-#: inc/options.php:90
+#: inc/options.php:91
 msgctxt "Options: Reflist Title"
 msgid "Footnotes"
 msgstr "پانوشت‌ها"
 
 # @ gtheme
-#: inc/options.php:128
+#: inc/options.php:129
 msgid "&copy; All right reserved."
 msgstr "&copy; تمامی حقوق محفوظ است."
 
-#: inc/options.php:207
+#: inc/options.php:208
 msgctxt "Options: Defaults: Date Format: Byline"
 msgid "j M Y"
 msgstr ""
 
-#: inc/options.php:208
+#: inc/options.php:209
 msgctxt "Options: Defaults: Date Format: Day"
 msgid "j M Y"
 msgstr ""
 
 # @ gtheme
-#: inc/options.php:227
+#: inc/options.php:228
 msgctxt "Media Tag Titles"
 msgid "Raw"
 msgstr "خام"
 
 # @ gtheme
-#: inc/options.php:238
+#: inc/options.php:239
 msgctxt "Media Tag Titles"
 msgid "Big"
 msgstr "بزرگ"
 
 # @ gtheme
-#: inc/options.php:249
+#: inc/options.php:250
 msgctxt "Media Tag Titles"
 msgid "Single"
 msgstr "نوشته"
 
-#: inc/pages.php:23
+#: inc/pages.php:29
+msgctxt "Pages Module: Default Pages"
+msgid "404: Not Found"
+msgstr "۴۰۴: پیدا نشد"
+
+#: inc/pages.php:30
 msgctxt "Pages Module: Default Pages"
 msgid "About"
 msgstr "درباره"
 
-#: inc/pages.php:24
+#: inc/pages.php:31
 msgctxt "Pages Module: Default Pages"
 msgid "Contact"
 msgstr "ارتباط"
 
-#: inc/pages.php:25
+#: inc/pages.php:32
 msgctxt "Pages Module: Default Pages"
 msgid "Search"
 msgstr "جست‌وجو"
 
-#: inc/pages.php:26
+#: inc/pages.php:33
 msgctxt "Pages Module: Default Pages"
 msgid "Archives"
 msgstr "بایگانی"
 
-#: inc/pages.php:27
+#: inc/pages.php:34
 msgctxt "Pages Module: Default Pages"
 msgid "Latest Posts"
 msgstr "آخرین نوشته‌ها"
 
-#: inc/pages.php:28
+#: inc/pages.php:35
 msgctxt "Pages Module: Default Pages"
 msgid "Social Profiles"
 msgstr "شبکه‌های اجتماعی"
 
 #: inc/pages.php:36
-msgctxt "Pages Module"
-msgid "About Page"
-msgstr "برگه درباره"
+msgctxt "Pages Module: Default Pages"
+msgid "Work with us"
+msgstr "با ما همکاری کنید"
 
 #: inc/pages.php:37
-msgctxt "Pages Module"
-msgid "Select a page for this site's main information"
-msgstr ""
+msgctxt "Pages Module: Default Pages"
+msgid "Advertise here"
+msgstr "تبلیغات"
+
+#: inc/pages.php:38
+msgctxt "Pages Module: Default Pages"
+msgid "Copyright Policy"
+msgstr "حق نشر"
+
+#: inc/pages.php:39
+msgctxt "Pages Module: Default Pages"
+msgid "Terms of Use"
+msgstr "قوانین و مقررات"
 
 #: inc/pages.php:40
-msgctxt "Pages Module"
-msgid "Contact Page"
-msgstr "برگه ارتباط"
+msgctxt "Pages Module: Default Pages"
+msgid "Privacy Policy"
+msgstr "حریم خصوصی"
 
-#: inc/pages.php:41
-msgctxt "Pages Module"
-msgid "Select a page for this site's contact details"
-msgstr ""
-
-#: inc/pages.php:44
-msgctxt "Pages Module"
-msgid "Search Page"
-msgstr "برگه جست‌وجو"
-
-#: inc/pages.php:45
-msgctxt "Pages Module"
-msgid "Select a page for this site's advanced search tools"
-msgstr "یک برگه برای نمایش ابزار جست‌وجوی پیشرفته انتخاب کنید"
-
-#: inc/pages.php:48
-msgctxt "Pages Module"
-msgid "Archives Page"
-msgstr "برگه بایگانی"
-
-#: inc/pages.php:49
-msgctxt "Pages Module"
-msgid "Select a page for this site's main archives"
-msgstr ""
-
-#: inc/pages.php:52
-msgctxt "Pages Module"
-msgid "Latest Posts Page"
-msgstr "برگه آخرین نوشته‌ها"
-
-#: inc/pages.php:53
-msgctxt "Pages Module"
-msgid "Select a page for this site's latest posts list"
-msgstr ""
-
-#: inc/pages.php:56
-msgctxt "Pages Module"
-msgid "Social Profiles Page"
-msgstr "برگه نمایه‌های اجتماعی"
-
-#: inc/pages.php:57
-msgctxt "Pages Module"
-msgid "Select a page for this site's social profiles"
-msgstr ""
-
-#: inc/pages.php:120
+#: inc/pages.php:106
 msgctxt "Modules: Menu Name"
 msgid "Pages"
-msgstr "صفحه‌ها"
+msgstr "برگه‌ها"
 
-#: inc/pages.php:129
+#: inc/pages.php:115
 msgctxt "Pages Module: Form Title"
 msgid "Site Page Settings"
 msgstr "تنظیمات برگه‌های سایت"
 
-#: inc/pages.php:147
+#: inc/pages.php:131
 msgctxt "Pages Module"
 msgid "Create Default Pages"
 msgstr "ساختن برگه‌های پیش‌فرض"
 
-#: inc/pages.php:148
+#: inc/pages.php:132
 msgctxt "Pages Module"
 msgid "Create Default Menus"
 msgstr "ساختن فهرست‌های پیش‌فرض"
 
-#: inc/pages.php:201
+#: inc/pages.php:188
 msgctxt "Options: Page Pre-Text"
 msgid "[ This page is being completed ]"
 msgstr "[این صفحه در حال آماده‌سازی است.]"
@@ -998,13 +968,13 @@ msgid "Search"
 msgstr "جست‌وجو"
 
 # @ gtheme
-#: inc/settings.php:47, inc/settings.php:73, inc/settings.php:247
+#: inc/settings.php:47, inc/settings.php:73, inc/settings.php:248
 msgctxt "Admin Settings Page Title"
 msgid "gTheme Settings"
 msgstr "تنظیمات پوسته"
 
 # @ gtheme
-#: inc/settings.php:48, inc/settings.php:244
+#: inc/settings.php:48, inc/settings.php:245
 msgctxt "Admin Menu Title"
 msgid "Theme Settings"
 msgstr "تنظیمات پوسته"
@@ -1090,29 +1060,29 @@ msgctxt "Settings Module"
 msgid "Legend"
 msgstr "توضیحات"
 
-#: inc/settings.php:224
+#: inc/settings.php:225
 msgctxt "Settings Module"
 msgid "Flush"
 msgstr "فلاش"
 
-#: inc/settings.php:232
+#: inc/settings.php:233
 msgctxt "Settings Module"
 msgid "All Posts"
 msgstr "همهٔ نوشته‌ها"
 
-#: inc/settings.php:259
+#: inc/settings.php:260
 msgctxt "Modules: Settings"
 msgid "Theme Template Base"
 msgstr ""
 
 # @ gtheme
-#: inc/shortcodes.php:310
+#: inc/shortcodes.php:308
 msgctxt "Panel Shortcode Title"
 msgid "Untitled"
 msgstr "بدون عنوان"
 
 # @ gtheme
-#: inc/shortcodes.php:385
+#: inc/shortcodes.php:383
 msgctxt "Tab Shortcode Title"
 msgid "Untitled"
 msgstr "بدون عنوان"
@@ -1372,155 +1342,160 @@ msgctxt "Terms Module"
 msgid "Create Default Primary Terms"
 msgstr "نصب رده‌های اصلی پیش‌فرض"
 
-#: inc/terms.php:187
+#: inc/terms.php:188
 msgctxt "System Tag Tax Labels: Name"
 msgid "System Tags"
 msgstr "برچسب‌های راه‌بری"
 
-#: inc/terms.php:188, inc/terms.php:241
+#: inc/terms.php:189, inc/terms.php:243
 msgctxt "System Tag Tax Labels: Menu Name"
 msgid "System Tags"
 msgstr "راه‌بری"
 
-#: inc/terms.php:189
+#: inc/terms.php:190
 msgctxt "System Tag Tax Labels: Singular Name"
 msgid "System Tag"
 msgstr "برچسب راه‌بری"
 
-#: inc/terms.php:190
+#: inc/terms.php:191
 msgctxt "System Tag Tax Labels"
 msgid "Search System Tags"
 msgstr "جست‌وجوی برچسب‌های راه‌بری"
 
-#: inc/terms.php:191
+#: inc/terms.php:192
 msgctxt "System Tag Tax Labels"
 msgid "All System Tags"
 msgstr "همهٔ برچسب‌های راه‌بری"
 
-#: inc/terms.php:192
+#: inc/terms.php:193
 msgctxt "System Tag Tax Labels"
 msgid "Parent System Tag"
 msgstr "برچسب راه‌بری مادر"
 
-#: inc/terms.php:193
+#: inc/terms.php:194
 msgctxt "System Tag Tax Labels"
 msgid "Parent System Tag:"
 msgstr "برچسب راه‌بری مادر:"
 
-#: inc/terms.php:194
+#: inc/terms.php:195
 msgctxt "System Tag Tax Labels"
 msgid "Edit System Tag"
 msgstr "ویرایش برچسب راه‌بری"
 
-#: inc/terms.php:195
+#: inc/terms.php:196
 msgctxt "System Tag Tax Labels"
 msgid "View System Tag"
 msgstr "نمایش برچسب راه‌بری"
 
-#: inc/terms.php:196
+#: inc/terms.php:197
 msgctxt "System Tag Tax Labels"
 msgid "Update System Tag"
 msgstr "به‌روزرسانی برچسب راه‌بری"
 
-#: inc/terms.php:197
+#: inc/terms.php:198
 msgctxt "System Tag Tax Labels"
 msgid "Add New System Tag"
 msgstr "افزودن برچسب راه‌بری تازه"
 
-#: inc/terms.php:198
+#: inc/terms.php:199
 msgctxt "System Tag Tax Labels"
 msgid "New System Tag Name"
 msgstr "عنوان برچسب راه‌بری تازه"
 
-#: inc/terms.php:199
+#: inc/terms.php:200
 msgctxt "System Tag Tax Labels"
 msgid "No system tags found."
 msgstr "برچسب راه‌بری پیدا نشد."
 
-#: inc/terms.php:200
+#: inc/terms.php:201
 msgctxt "System Tag Tax Labels"
 msgid "No system tags"
 msgstr "بدون برچسب راه‌بری"
 
-#: inc/terms.php:201
+#: inc/terms.php:202
 msgctxt "System Tag Tax Labels"
 msgid "System Tags list navigation"
 msgstr "راه‌بری در فهرست برچسب‌های راه‌بری"
 
-#: inc/terms.php:202
+#: inc/terms.php:203
 msgctxt "System Tag Tax Labels"
 msgid "System Tags list"
 msgstr "فهرست برچسب‌های راه‌بری"
 
+#: inc/terms.php:204
+msgctxt "System Tag Tax Labels"
+msgid "&larr; Back to System Tags"
+msgstr ""
+
 # @ gtheme
-#: inc/terms.php:209
+#: inc/terms.php:211
 msgctxt "System Tags Defaults"
 msgid "Dashboard"
 msgstr "پیشخوان"
 
-#: inc/terms.php:210
+#: inc/terms.php:212
 msgctxt "System Tags Defaults"
 msgid "Featured"
 msgstr "برگزیده"
 
 # @ gtheme
-#: inc/terms.php:211
+#: inc/terms.php:213
 msgctxt "System Tags Defaults"
 msgid "Latest"
 msgstr "آخرین‌ها"
 
-#: inc/terms.php:212
+#: inc/terms.php:214
 msgctxt "System Tags Defaults"
 msgid "Tile"
 msgstr "کاشی"
 
-#: inc/terms.php:213
+#: inc/terms.php:215
 msgctxt "System Tags Defaults"
 msgid "Full Article"
 msgstr "متن کامل"
 
-#: inc/terms.php:214
+#: inc/terms.php:216
 msgctxt "System Tags Defaults"
 msgid "Poster Entry"
 msgstr "پوستر"
 
-#: inc/terms.php:215
+#: inc/terms.php:217
 msgctxt "System Tags Defaults"
 msgid "Hide Single Image"
 msgstr "پنهان‌سازی تصویر در صفحه تکی"
 
-#: inc/terms.php:216
+#: inc/terms.php:218
 msgctxt "System Tags Defaults"
 msgid "Not on FrontPage"
 msgstr "عدم نمایش در صفحه نخست"
 
-#: inc/terms.php:217
+#: inc/terms.php:219
 msgctxt "System Tags Defaults"
 msgid "Not on Feed"
 msgstr "عدم نمایش در خوراک"
 
-#: inc/terms.php:283
+#: inc/terms.php:285
 msgctxt "Terms Module"
 msgid "Install Default System Tags"
 msgstr "نصب برچسب‌های راه‌بری پیش‌فرض"
 
-#: inc/terms.php:289
+#: inc/terms.php:291
 msgctxt "Terms Module"
 msgid "Error while adding default system tags."
 msgstr "خطایی هنگام افزودن برچسب‌های راه‌بری پیش‌فرض اتفاق افتاده است."
 
-#: inc/terms.php:292
+#: inc/terms.php:294
 msgctxt "Terms Module"
 msgid "Default system tags added."
 msgstr "برچسب‌های راه‌بری پیش‌فرض افزوده شد."
 
-#: inc/terms.php:305
+#: inc/terms.php:307
 msgctxt "Terms Module"
 msgid "Empty Before Last Month"
 msgstr "خالی کردن قبل از ماه گذشته"
 
 # @ gtheme
-#: inc/terms.php:363
+#: inc/terms.php:365
 msgid "Connected Posts"
 msgstr "نوشته‌های مرتبط"
 
@@ -1534,6 +1509,34 @@ msgstr "بستن"
 msgctxt "Root: End: Before Site Modified"
 msgid "Last updated on"
 msgstr "آخرین به‌روزرسانی در"
+
+#~ msgctxt "Pages Module"
+#~ msgid "About Page"
+#~ msgstr "برگه درباره"
+
+#~ msgctxt "Pages Module"
+#~ msgid "Contact Page"
+#~ msgstr "برگه ارتباط"
+
+#~ msgctxt "Pages Module"
+#~ msgid "Search Page"
+#~ msgstr "برگه جست‌وجو"
+
+#~ msgctxt "Pages Module"
+#~ msgid "Select a page for this site's advanced search tools"
+#~ msgstr "یک برگه برای نمایش ابزار جست‌وجوی پیشرفته انتخاب کنید"
+
+#~ msgctxt "Pages Module"
+#~ msgid "Archives Page"
+#~ msgstr "برگه بایگانی"
+
+#~ msgctxt "Pages Module"
+#~ msgid "Latest Posts Page"
+#~ msgstr "برگه آخرین نوشته‌ها"
+
+#~ msgctxt "Pages Module"
+#~ msgid "Social Profiles Page"
+#~ msgstr "برگه نمایه‌های اجتماعی"
 
 #~ msgctxt "Modules: Navigation: Breadcrumbs"
 #~ msgid "Site Archives"

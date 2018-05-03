@@ -104,52 +104,52 @@ msgctxt "Modules: Menu Name"
 msgid "Banners"
 msgstr ""
 
-#: inc/banners.php:210
+#: inc/banners.php:209
 msgctxt "Modules: Banners"
 msgid "Custom Banners"
 msgstr ""
 
-#: inc/banners.php:214
+#: inc/banners.php:213
 msgctxt "Modules: Banners"
 msgid "Legend"
 msgstr ""
 
-#: inc/banners.php:216
+#: inc/banners.php:215
 msgctxt "Modules: Banners"
 msgid "Your theme extra information"
 msgstr ""
 
-#: inc/banners.php:221
+#: inc/banners.php:220
 msgctxt "Modules: Banners"
 msgid "Group"
 msgstr ""
 
-#: inc/banners.php:222
+#: inc/banners.php:221
 msgctxt "Modules: Banners"
 msgid "Ord."
 msgstr ""
 
-#: inc/banners.php:223
+#: inc/banners.php:222
 msgctxt "Modules: Banners"
 msgid "Title"
 msgstr ""
 
-#: inc/banners.php:224
+#: inc/banners.php:223
 msgctxt "Modules: Banners"
 msgid "URL"
 msgstr ""
 
-#: inc/banners.php:225
+#: inc/banners.php:224
 msgctxt "Modules: Banners"
 msgid "Image"
 msgstr ""
 
-#: inc/banners.php:314
+#: inc/banners.php:313
 msgctxt "Modules: Banners"
 msgid "Add Another"
 msgstr ""
 
-#: inc/banners.php:315
+#: inc/banners.php:314
 msgctxt "Modules: Banners"
 msgid "Save"
 msgstr ""
@@ -695,221 +695,191 @@ msgctxt "Logo Title"
 msgid "Home"
 msgstr ""
 
-#: inc/options.php:73
+#: inc/options.php:74
 msgctxt "Options: Separator: Default"
 msgid " "
 msgstr ""
 
-#: inc/options.php:74
+#: inc/options.php:75
 msgctxt "Options: Separator: Title"
 msgid " &raquo; "
 msgstr ""
 
-#: inc/options.php:75
+#: inc/options.php:76
 msgctxt "Options: Separator: Nav"
 msgid " &laquo; "
 msgstr ""
 
-#: inc/options.php:76
+#: inc/options.php:77
 msgctxt "Options: Separator: Byline"
 msgid " | "
 msgstr ""
 
-#: inc/options.php:77
+#: inc/options.php:78
 msgctxt "Options: Separator: Term"
 msgid ", "
 msgstr ""
 
-#: inc/options.php:78
+#: inc/options.php:79
 msgctxt "Options: Separator: Embed"
 msgid "; "
 msgstr ""
 
-#: inc/options.php:79
+#: inc/options.php:80
 msgctxt "Options: Separator: Feed"
 msgid "; "
 msgstr ""
 
-#: inc/options.php:80
+#: inc/options.php:81
 msgctxt "Options: Separator: Comment Action"
 msgid " | "
 msgstr ""
 
-#: inc/options.php:82
+#: inc/options.php:83
 msgctxt "Options: Text Size Increase"
 msgid "[ A+ ]"
 msgstr ""
 
-#: inc/options.php:83
+#: inc/options.php:84
 msgctxt "Options: Text Size Decrease"
 msgid "[ A- ]"
 msgstr ""
 
-#: inc/options.php:84
+#: inc/options.php:85
 msgctxt "Options: Text Size Sep"
 msgid " / "
 msgstr ""
 
-#: inc/options.php:86
+#: inc/options.php:87
 msgctxt "Options: Text Justify"
 msgid "[ Ju ]"
 msgstr ""
 
-#: inc/options.php:87
+#: inc/options.php:88
 msgctxt "Options: Text Unjustify"
 msgid "[ uJ ]"
 msgstr ""
 
-#: inc/options.php:88
+#: inc/options.php:89
 msgctxt "Options: Text Justify Sep"
 msgid " / "
 msgstr ""
 
-#: inc/options.php:90
+#: inc/options.php:91
 msgctxt "Options: Reflist Title"
 msgid "Footnotes"
 msgstr ""
 
-#: inc/options.php:128
+#: inc/options.php:129
 msgid "&copy; All right reserved."
 msgstr ""
 
-#: inc/options.php:207
+#: inc/options.php:208
 msgctxt "Options: Defaults: Date Format: Byline"
 msgid "j M Y"
 msgstr ""
 
-#: inc/options.php:208
+#: inc/options.php:209
 msgctxt "Options: Defaults: Date Format: Day"
 msgid "j M Y"
 msgstr ""
 
-#: inc/options.php:227
+#: inc/options.php:228
 msgctxt "Media Tag Titles"
 msgid "Raw"
 msgstr ""
 
-#: inc/options.php:238
+#: inc/options.php:239
 msgctxt "Media Tag Titles"
 msgid "Big"
 msgstr ""
 
-#: inc/options.php:249
+#: inc/options.php:250
 msgctxt "Media Tag Titles"
 msgid "Single"
 msgstr ""
 
-#: inc/pages.php:23
+#: inc/pages.php:29
+msgctxt "Pages Module: Default Pages"
+msgid "404: Not Found"
+msgstr ""
+
+#: inc/pages.php:30
 msgctxt "Pages Module: Default Pages"
 msgid "About"
 msgstr ""
 
-#: inc/pages.php:24
+#: inc/pages.php:31
 msgctxt "Pages Module: Default Pages"
 msgid "Contact"
 msgstr ""
 
-#: inc/pages.php:25
+#: inc/pages.php:32
 msgctxt "Pages Module: Default Pages"
 msgid "Search"
 msgstr ""
 
-#: inc/pages.php:26
+#: inc/pages.php:33
 msgctxt "Pages Module: Default Pages"
 msgid "Archives"
 msgstr ""
 
-#: inc/pages.php:27
+#: inc/pages.php:34
 msgctxt "Pages Module: Default Pages"
 msgid "Latest Posts"
 msgstr ""
 
-#: inc/pages.php:28
+#: inc/pages.php:35
 msgctxt "Pages Module: Default Pages"
 msgid "Social Profiles"
 msgstr ""
 
 #: inc/pages.php:36
-msgctxt "Pages Module"
-msgid "About Page"
+msgctxt "Pages Module: Default Pages"
+msgid "Work with us"
 msgstr ""
 
 #: inc/pages.php:37
-msgctxt "Pages Module"
-msgid "Select a page for this site's main information"
+msgctxt "Pages Module: Default Pages"
+msgid "Advertise here"
+msgstr ""
+
+#: inc/pages.php:38
+msgctxt "Pages Module: Default Pages"
+msgid "Copyright Policy"
+msgstr ""
+
+#: inc/pages.php:39
+msgctxt "Pages Module: Default Pages"
+msgid "Terms of Use"
 msgstr ""
 
 #: inc/pages.php:40
-msgctxt "Pages Module"
-msgid "Contact Page"
+msgctxt "Pages Module: Default Pages"
+msgid "Privacy Policy"
 msgstr ""
 
-#: inc/pages.php:41
-msgctxt "Pages Module"
-msgid "Select a page for this site's contact details"
-msgstr ""
-
-#: inc/pages.php:44
-msgctxt "Pages Module"
-msgid "Search Page"
-msgstr ""
-
-#: inc/pages.php:45
-msgctxt "Pages Module"
-msgid "Select a page for this site's advanced search tools"
-msgstr ""
-
-#: inc/pages.php:48
-msgctxt "Pages Module"
-msgid "Archives Page"
-msgstr ""
-
-#: inc/pages.php:49
-msgctxt "Pages Module"
-msgid "Select a page for this site's main archives"
-msgstr ""
-
-#: inc/pages.php:52
-msgctxt "Pages Module"
-msgid "Latest Posts Page"
-msgstr ""
-
-#: inc/pages.php:53
-msgctxt "Pages Module"
-msgid "Select a page for this site's latest posts list"
-msgstr ""
-
-#: inc/pages.php:56
-msgctxt "Pages Module"
-msgid "Social Profiles Page"
-msgstr ""
-
-#: inc/pages.php:57
-msgctxt "Pages Module"
-msgid "Select a page for this site's social profiles"
-msgstr ""
-
-#: inc/pages.php:120
+#: inc/pages.php:106
 msgctxt "Modules: Menu Name"
 msgid "Pages"
 msgstr ""
 
-#: inc/pages.php:129
+#: inc/pages.php:115
 msgctxt "Pages Module: Form Title"
 msgid "Site Page Settings"
 msgstr ""
 
-#: inc/pages.php:147
+#: inc/pages.php:131
 msgctxt "Pages Module"
 msgid "Create Default Pages"
 msgstr ""
 
-#: inc/pages.php:148
+#: inc/pages.php:132
 msgctxt "Pages Module"
 msgid "Create Default Menus"
 msgstr ""
 
-#: inc/pages.php:201
+#: inc/pages.php:188
 msgctxt "Options: Page Pre-Text"
 msgid "[ This page is being completed ]"
 msgstr ""
@@ -944,12 +914,12 @@ msgctxt "buddypress: submit button"
 msgid "Search"
 msgstr ""
 
-#: inc/settings.php:47, inc/settings.php:73, inc/settings.php:247
+#: inc/settings.php:47, inc/settings.php:73, inc/settings.php:248
 msgctxt "Admin Settings Page Title"
 msgid "gTheme Settings"
 msgstr ""
 
-#: inc/settings.php:48, inc/settings.php:244
+#: inc/settings.php:48, inc/settings.php:245
 msgctxt "Admin Menu Title"
 msgid "Theme Settings"
 msgstr ""
@@ -1034,27 +1004,27 @@ msgctxt "Settings Module"
 msgid "Legend"
 msgstr ""
 
-#: inc/settings.php:224
+#: inc/settings.php:225
 msgctxt "Settings Module"
 msgid "Flush"
 msgstr ""
 
-#: inc/settings.php:232
+#: inc/settings.php:233
 msgctxt "Settings Module"
 msgid "All Posts"
 msgstr ""
 
-#: inc/settings.php:259
+#: inc/settings.php:260
 msgctxt "Modules: Settings"
 msgid "Theme Template Base"
 msgstr ""
 
-#: inc/shortcodes.php:310
+#: inc/shortcodes.php:308
 msgctxt "Panel Shortcode Title"
 msgid "Untitled"
 msgstr ""
 
-#: inc/shortcodes.php:385
+#: inc/shortcodes.php:383
 msgctxt "Tab Shortcode Title"
 msgid "Untitled"
 msgstr ""
@@ -1314,152 +1284,157 @@ msgctxt "Terms Module"
 msgid "Create Default Primary Terms"
 msgstr ""
 
-#: inc/terms.php:187
+#: inc/terms.php:188
 msgctxt "System Tag Tax Labels: Name"
 msgid "System Tags"
 msgstr ""
 
-#: inc/terms.php:188, inc/terms.php:241
+#: inc/terms.php:189, inc/terms.php:243
 msgctxt "System Tag Tax Labels: Menu Name"
 msgid "System Tags"
 msgstr ""
 
-#: inc/terms.php:189
+#: inc/terms.php:190
 msgctxt "System Tag Tax Labels: Singular Name"
 msgid "System Tag"
 msgstr ""
 
-#: inc/terms.php:190
+#: inc/terms.php:191
 msgctxt "System Tag Tax Labels"
 msgid "Search System Tags"
 msgstr ""
 
-#: inc/terms.php:191
+#: inc/terms.php:192
 msgctxt "System Tag Tax Labels"
 msgid "All System Tags"
 msgstr ""
 
-#: inc/terms.php:192
+#: inc/terms.php:193
 msgctxt "System Tag Tax Labels"
 msgid "Parent System Tag"
 msgstr ""
 
-#: inc/terms.php:193
+#: inc/terms.php:194
 msgctxt "System Tag Tax Labels"
 msgid "Parent System Tag:"
 msgstr ""
 
-#: inc/terms.php:194
+#: inc/terms.php:195
 msgctxt "System Tag Tax Labels"
 msgid "Edit System Tag"
 msgstr ""
 
-#: inc/terms.php:195
+#: inc/terms.php:196
 msgctxt "System Tag Tax Labels"
 msgid "View System Tag"
 msgstr ""
 
-#: inc/terms.php:196
+#: inc/terms.php:197
 msgctxt "System Tag Tax Labels"
 msgid "Update System Tag"
 msgstr ""
 
-#: inc/terms.php:197
+#: inc/terms.php:198
 msgctxt "System Tag Tax Labels"
 msgid "Add New System Tag"
 msgstr ""
 
-#: inc/terms.php:198
+#: inc/terms.php:199
 msgctxt "System Tag Tax Labels"
 msgid "New System Tag Name"
 msgstr ""
 
-#: inc/terms.php:199
+#: inc/terms.php:200
 msgctxt "System Tag Tax Labels"
 msgid "No system tags found."
 msgstr ""
 
-#: inc/terms.php:200
+#: inc/terms.php:201
 msgctxt "System Tag Tax Labels"
 msgid "No system tags"
 msgstr ""
 
-#: inc/terms.php:201
+#: inc/terms.php:202
 msgctxt "System Tag Tax Labels"
 msgid "System Tags list navigation"
 msgstr ""
 
-#: inc/terms.php:202
+#: inc/terms.php:203
 msgctxt "System Tag Tax Labels"
 msgid "System Tags list"
 msgstr ""
 
-#: inc/terms.php:209
-msgctxt "System Tags Defaults"
-msgid "Dashboard"
-msgstr ""
-
-#: inc/terms.php:210
-msgctxt "System Tags Defaults"
-msgid "Featured"
+#: inc/terms.php:204
+msgctxt "System Tag Tax Labels"
+msgid "&larr; Back to System Tags"
 msgstr ""
 
 #: inc/terms.php:211
 msgctxt "System Tags Defaults"
-msgid "Latest"
+msgid "Dashboard"
 msgstr ""
 
 #: inc/terms.php:212
 msgctxt "System Tags Defaults"
-msgid "Tile"
+msgid "Featured"
 msgstr ""
 
 #: inc/terms.php:213
 msgctxt "System Tags Defaults"
-msgid "Full Article"
+msgid "Latest"
 msgstr ""
 
 #: inc/terms.php:214
 msgctxt "System Tags Defaults"
-msgid "Poster Entry"
+msgid "Tile"
 msgstr ""
 
 #: inc/terms.php:215
 msgctxt "System Tags Defaults"
-msgid "Hide Single Image"
+msgid "Full Article"
 msgstr ""
 
 #: inc/terms.php:216
 msgctxt "System Tags Defaults"
-msgid "Not on FrontPage"
+msgid "Poster Entry"
 msgstr ""
 
 #: inc/terms.php:217
 msgctxt "System Tags Defaults"
+msgid "Hide Single Image"
+msgstr ""
+
+#: inc/terms.php:218
+msgctxt "System Tags Defaults"
+msgid "Not on FrontPage"
+msgstr ""
+
+#: inc/terms.php:219
+msgctxt "System Tags Defaults"
 msgid "Not on Feed"
 msgstr ""
 
-#: inc/terms.php:283
+#: inc/terms.php:285
 msgctxt "Terms Module"
 msgid "Install Default System Tags"
 msgstr ""
 
-#: inc/terms.php:289
+#: inc/terms.php:291
 msgctxt "Terms Module"
 msgid "Error while adding default system tags."
 msgstr ""
 
-#: inc/terms.php:292
+#: inc/terms.php:294
 msgctxt "Terms Module"
 msgid "Default system tags added."
 msgstr ""
 
-#: inc/terms.php:305
+#: inc/terms.php:307
 msgctxt "Terms Module"
 msgid "Empty Before Last Month"
 msgstr ""
 
-#: inc/terms.php:363
+#: inc/terms.php:365
 msgid "Connected Posts"
 msgstr ""
 
