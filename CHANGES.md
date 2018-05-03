@@ -1,3 +1,13 @@
+### 3.16.5
+* module/pages: refactoring
+* module/pages: not found page
+* module/settings: overview page
+* module/terms: assign cap option
+* module/terms: core class for system tag metabox
+* module/terms: split primary helper
+* module/wrap: constants for signup/activate pages
+* module/wrap: drop ie conditionals
+
 ### 3.16.4
 * module/comments: better autocomplete on cooment form
 * module/comments: cookie confirm on comment form
