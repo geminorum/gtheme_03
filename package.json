@@ -30,7 +30,7 @@
     "gulp-load-plugins": "^1.5.0",
     "gulp-sass": "^4.0.1",
     "gulp-sourcemaps": "^2.6.4",
-    "gulp-wp-pot": "^2.2.0",
+    "gulp-wp-pot": "^2.3.0",
     "js-yaml": "^3.11.0",
     "parse-changelog": "^1.0.2",
     "prettyjson": "^1.2.1",
