@@ -5,29 +5,33 @@ class gThemeAdmin extends gThemeModuleCore
 
 	protected $default_user = 0;
 
-	public function setup_actions( $args = array() )
+	public function setup_actions( $args = [] )
 	{
-		extract( self::atts( array(
+		extract( self::atts( [
 			'set_def_user'          => FALSE, // no longer using this!
 			'set_def_user_comments' => TRUE,
 			'default_publish'       => FALSE,
-		), $args ) );
+			'template_title'        => TRUE,
+		], $args ) );
 
 		$this->default_user = gThemeOptions::getOption( 'default_user', 0 );
 
-		add_filter( 'default_avatar_select', array( $this, 'default_avatar_select' ) );
+		add_filter( 'default_avatar_select', [ $this, 'default_avatar_select' ] );
 
 		if ( $this->default_user > 0 ) {
 
 			if ( $set_def_user )
-				add_filter( 'wp_insert_post_data', array( $this, 'wp_insert_post_data' ), 9, 2 );
+				add_filter( 'wp_insert_post_data', [ $this, 'wp_insert_post_data' ], 9, 2 );
 
 			if ( $set_def_user_comments )
-				add_filter( 'preprocess_comment', array( $this, 'preprocess_comment' ) );
+				add_filter( 'preprocess_comment', [ $this, 'preprocess_comment' ] );
 		}
 
 		if ( $default_publish )
-			add_action ( 'admin_menu', array( $this, 'admin_menu' ) );
+			add_action ( 'admin_menu', [ $this, 'admin_menu' ] );
+
+		if ( $template_title )
+			add_filter( 'default_page_template_title', [ $this, 'default_page_template_title' ], 2, 12 );
 	}
 
 	public function wp_insert_post_data( $data, $postarr )
@@ -84,6 +88,12 @@ class gThemeAdmin extends gThemeModuleCore
 	// disable avatar select on admin settings
 	public function default_avatar_select( $avatar_list )
 	{
-		return '<br /><p>'.__( '<strong>The default avatar is overrided by the active theme.</strong>', GTHEME_TEXTDOMAIN ).'</p>';
+		return '<br /><p>'._x( '<strong>The default avatar is overrided by the active theme.</strong>', 'Modules: Admin', GTHEME_TEXTDOMAIN ).'</p>';
+	}
+
+	public static function default_page_template_title( $label, $context )
+	{
+		return gThemeOptions::info( 'default_template_title',
+			_x( 'Default Template', 'Modules: Admin', GTHEME_TEXTDOMAIN ) );
 	}
 }
