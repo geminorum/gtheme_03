@@ -97,7 +97,16 @@ class gThemeMenu extends gThemeModuleCore
 	public function nav_menu_css_class( $classes, $item, $args, $depth = 0 )
 	{
 		// we cache menus, so no active item!
-		$classes = array_diff( $classes, array( 'current-menu-item' ) );
+		$classes = array_diff( $classes, [
+			'menu-item',
+			'menu-item-type-'.$item->type,
+			'menu-item-object-'.$item->object,
+			'page_item',
+			'page-item-'.$item->object_id,
+			'current-menu-item',
+			'current_page_item',
+			'active',
+		] );
 
 		if ( ! isset( $args->menu_class ) || empty( $args->menu_class ) )
 			return $classes;
