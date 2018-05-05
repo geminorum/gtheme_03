@@ -96,6 +96,9 @@ class gThemeFilters extends gThemeModuleCore
 		if ( ! gThemeUtilities::isRTL() )
 			$args['ltr'] = '';
 
+		foreach ( (array) gThemeOptions::info( 'stylesheets', [] ) as $stylesheet )
+			gThemeUtilities::linkStyleSheet( $stylesheet, FALSE );
+
 		gThemeUtilities::linkStyleSheet( self::getStyle( $singular ), $args, 'all' );
 
 		// FIXME: also check if Bootstrap
