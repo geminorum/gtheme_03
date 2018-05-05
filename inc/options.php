@@ -125,7 +125,7 @@ class gThemeOptions extends gThemeModuleCore
 			'frontpage_title' => self::getOption( 'frontpage_title', FALSE ), // FALSE to default
 			'frontpage_desc'  => self::getOption( 'frontpage_desc', get_bloginfo( 'description', 'display' ) ), // FALSE to disable
 
-			'default_image_src' => GTHEME_URL.'/images/document-large.png', // FIXME: MUST DEP
+			// 'default_image_src' => FALSE, // GTHEME_URL.'/images/document-large.png', // FIXME: MUST DEP
 			'copyright'         => self::getOption( 'copyright', __( '&copy; All right reserved.', GTHEME_TEXTDOMAIN ) ),
 
 			// 'default_content_width' => 455, // setting global content_width // FALSE to default
