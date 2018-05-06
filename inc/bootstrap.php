@@ -118,18 +118,18 @@ class gThemeBootstrap_Walker_NavBar extends Walker_Nav_Menu
 			$classes = empty( $item->classes ) ? array() : (array) $item->classes;
 			// $classes[] = 'menu-item-'.$item->ID;
 
-			$class = join( ' ', apply_filters( 'nav_menu_css_class', array_filter( $classes ), $item, $args, $depth ) );
-
 			if ( $args->has_children )
-				$class.= ' dropdown';
+				$classes[] = 'dropdown';
 
 			if ( in_array( 'current-menu-item', $classes ) )
-				$class.= ' active';
+				$classes[] = 'active';
 
+			$class = join( ' ', apply_filters( 'nav_menu_css_class', array_filter( $classes ), $item, $args, $depth ) );
 			$class = $class ? ' class="'.esc_attr( $class ).'"' : '';
 
-			$id = apply_filters( 'nav_menu_item_id', 'menu-item-'.$item->ID, $item, $args, $depth );
-			$id = $id ? ' id="'.esc_attr( $id ).'"' : '';
+			// $id = apply_filters( 'nav_menu_item_id', 'menu-item-'.$item->ID, $item, $args, $depth );
+			// $id = $id ? ' id="'.esc_attr( $id ).'"' : '';
+			$id = '';
 
 			$output.= $indent.'<li'.$id.$value.$class.'>';
 
