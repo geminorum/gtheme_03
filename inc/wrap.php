@@ -44,14 +44,22 @@ class gThemeWrap extends gThemeModuleCore
 	{
 		gThemeWordPress::doNotCache();
 
-		defined( 'GTHEME_IS_WP_SIGNUP' ) or define( 'GTHEME_IS_WP_SIGNUP', TRUE );
+		defined( 'GTHEME_IS_WP_SIGNUP' )
+			or define( 'GTHEME_IS_WP_SIGNUP', TRUE );
+
+		defined( 'GTHEME_SOCIAL_META_DISABLED' )
+			or define( 'GTHEME_SOCIAL_META_DISABLED', TRUE );
 	}
 
 	public function activate_header()
 	{
 		gThemeWordPress::doNotCache();
 
-		defined( 'GTHEME_IS_WP_ACTIVATE' ) or define( 'GTHEME_IS_WP_ACTIVATE', TRUE );
+		defined( 'GTHEME_IS_WP_ACTIVATE' )
+			or define( 'GTHEME_IS_WP_ACTIVATE', TRUE );
+
+		defined( 'GTHEME_SOCIAL_META_DISABLED' )
+			or define( 'GTHEME_SOCIAL_META_DISABLED', TRUE );
 	}
 
 ////////////////////////////////////////////////////////////////////////////////
