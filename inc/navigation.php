@@ -61,27 +61,28 @@ class gThemeNavigation extends gThemeModuleCore
 		), $html );
 	}
 
-	public static function paginate( $atts = array() )
+	public static function paginate( $atts = [], $query = NULL )
 	{
-		global $wp_query;
+		if ( is_null( $query ) )
+			$query = $GLOBALS['wp_query'];
 
-		if ( $wp_query->max_num_pages < 2 )
+		if ( $query->max_num_pages < 2 )
 			return;
 
 		$big = 999999999;
 
-		$args = array_merge( self::atts( array(
+		$args = array_merge( self::atts( [
 			'prev_text' => _x( '<span aria-hidden="true">&larr;</span>', 'Modules: Navigation: Pagination: Previous', GTHEME_TEXTDOMAIN ),
 			'next_text' => _x( '<span aria-hidden="true">&rarr;</span>', 'Modules: Navigation: Pagination: Next', GTHEME_TEXTDOMAIN ),
 			'end_size'  => 1, // how many numbers on either the start and the end list edges / default 1
 			'mid_size'  => 4, // how many numbers to either side of the current pages / default 2
-		), $atts ), array(
+		], $atts ), [
 			'type'    => 'array',
 			'format'  => '?paged=%#%',
 			'base'    => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
 			'current' => max( 1, get_query_var( 'paged' ) ),
-			'total'   => $wp_query->max_num_pages,
-		) );
+			'total'   => isset( $query->max_num_pages ) ? $query->max_num_pages : 1,
+		] );
 
 		if ( ! $links = paginate_links( $args ) )
 			return;
