@@ -73,6 +73,10 @@ class gThemeWrap extends gThemeModuleCore
 
 	public static function wrap( $template )
 	{
+		if ( in_array( get_page_template_slug(), [ 'systempage.php' ] ) )
+			defined( 'GTHEME_IS_SYSTEM_PAGE' )
+				or define( 'GTHEME_IS_SYSTEM_PAGE', TRUE );
+
 		self::$main_template = $template;
 
 		self::$base_template = substr( basename( self::$main_template ), 0, -4 );
@@ -80,7 +84,11 @@ class gThemeWrap extends gThemeModuleCore
 		if ( 'index' == self::$base_template )
 			self::$base_template = FALSE;
 
-		$templates = array( 'base.php' );
+		if ( 'buddypress' == self::$base_template )
+			defined( 'GTHEME_IS_SYSTEM_PAGE' )
+				or define( 'GTHEME_IS_SYSTEM_PAGE', TRUE );
+
+		$templates = [ 'base.php' ];
 
 		if ( self::$base_template )
 			array_unshift( $templates, sprintf( 'base-%s.php', self::$base_template ) );
