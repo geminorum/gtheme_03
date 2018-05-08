@@ -656,7 +656,7 @@ $('#text-unjustify').click(function (e) {
 
 		$query_args = array(
 			'url'               => urlencode( get_permalink() ),
-			'pfCustomCSS'       => urlencode( GTHEME_URL.'/css/printfriendly.css&ver='.GTHEME_VERSION ),
+			'pfCustomCSS'       => urlencode( GTHEME_URL.'/css/printfriendly'.( gThemeUtilities::isRTL() ? '-rtl' : '' ).'.css&ver='.GTHEME_VERSION ),
 			'imageDisplayStyle' => gThemeUtilities::isRTL( 'left', 'right' ), // 'block',
 			// 'headerImageUrl'    => '',
 			// 'headerTagline'     => '',
