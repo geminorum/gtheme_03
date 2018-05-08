@@ -38,6 +38,12 @@ class gThemeMenu extends gThemeModuleCore
 		], $extra );
 	}
 
+	public static function navNetwork( $before = '', $after = '' )
+	{
+		if ( function_exists( 'gnetwork_navigation' ) )
+			gnetwork_navigation( $before, $after );
+	}
+
 	public static function nav( $location = 'primary', $atts = [], $before = '', $after = '' )
 	{
 		$args = array_merge( [
