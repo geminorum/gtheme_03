@@ -858,7 +858,7 @@ class gThemeWidgetTermPosts extends gThemeWidget
 	{
 		$instance = $old;
 
-		$instance['title']      = strip_tags( $new['title'] );
+		$instance['title']      = sanitize_text_field( $new['title'] );
 		$instance['title_link'] = strip_tags( $new['title_link'] );
 		$instance['term_id']    = strip_tags( $new['term_id'] );
 		$instance['taxonomy']   = strip_tags( $new['taxonomy'] );
@@ -978,7 +978,7 @@ class gThemeWidgetRelatedPosts extends gThemeWidget
 	{
 		$instance = $old;
 
-		$instance['title']      = strip_tags( $new['title'] );
+		$instance['title']      = sanitize_text_field( $new['title'] );
 		$instance['title_link'] = strip_tags( $new['title_link'] );
 		$instance['context']    = strip_tags( $new['context'] );
 		$instance['class']      = strip_tags( $new['class'] );
@@ -1074,7 +1074,7 @@ class gThemeWidgetRecentPosts extends gThemeWidget
 	{
 		$instance = $old;
 
-		$instance['title']      = strip_tags( $new['title'] );
+		$instance['title']      = sanitize_text_field( $new['title'] );
 		$instance['title_link'] = strip_tags( $new['title_link'] );
 		$instance['post_type']  = strip_tags( $new['post_type'] );
 		$instance['context']    = strip_tags( $new['context'] );
@@ -1179,7 +1179,7 @@ class gThemeWidgetRecentComments extends gThemeWidget
 	{
 		$instance = $old;
 
-		$instance['title']      = strip_tags( $new['title'] );
+		$instance['title']      = sanitize_text_field( $new['title'] );
 		$instance['title_link'] = strip_tags( $new['title_link'] );
 		$instance['class']      = strip_tags( $new['class'] );
 
@@ -1404,7 +1404,7 @@ class gThemeWidgetTheTerm extends gThemeWidget
 	{
 		$instance = $old;
 
-		$instance['title']      = strip_tags( $new['title'] );
+		$instance['title']      = sanitize_text_field( $new['title'] );
 		$instance['title_link'] = strip_tags( $new['title_link'] );
 		$instance['class']      = strip_tags( $new['class'] );
 
@@ -1485,7 +1485,7 @@ class gThemeWidgetCustomHTML extends gThemeWidget
 	{
 		$instance = $old;
 
-		$instance['title']      = strip_tags( $new['title'] );
+		$instance['title']      = sanitize_text_field( $new['title'] );
 		$instance['title_link'] = strip_tags( $new['title_link'] );
 		$instance['class']      = strip_tags( $new['class'] );
 

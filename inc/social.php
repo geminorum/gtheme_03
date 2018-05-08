@@ -7,6 +7,10 @@ class gThemeSocial extends gThemeModuleCore
 	// @SEE: http://scotch.io/quick-tips/all-search-and-social-media-meta-tags-starter-template
 	public static function doHead()
 	{
+		if ( defined( 'GTHEME_IS_SYSTEM_PAGE' )
+			&& GTHEME_IS_SYSTEM_PAGE )
+				return;
+
 		if ( defined( 'GTHEME_SOCIAL_META_DISABLED' )
 			&& GTHEME_SOCIAL_META_DISABLED )
 				return;

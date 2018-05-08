@@ -1,1 +1,5 @@
-<?php wp_footer(); ?></body></html>
+<?php defined( 'ABSPATH' ) or die( header( 'HTTP/1.0 403 Forbidden' ) );
+
+wp_footer();
+
+echo '</body></html>';

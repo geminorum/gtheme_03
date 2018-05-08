@@ -3,7 +3,7 @@
 class gThemeMenu extends gThemeModuleCore
 {
 
-	public function setup_actions( $args = array() )
+	public function setup_actions( $args = [] )
 	{
 		extract( self::atts( array(
 			'register_nav' => TRUE,
@@ -11,36 +11,38 @@ class gThemeMenu extends gThemeModuleCore
 		), $args ) );
 
 		if ( $register_nav )
-			add_action( 'init', array( $this, 'init' ) );
+			add_action( 'init', [ $this, 'init' ] );
 
 		if ( $allowedtags )
-			add_filter( 'wp_nav_menu_container_allowedtags', array( $this, 'wp_nav_menu_container_allowedtags' ) );
+			add_filter( 'wp_nav_menu_container_allowedtags', [ $this, 'wp_nav_menu_container_allowedtags' ] );
 
-		if ( ! is_admin() )
-			add_filter( 'nav_menu_css_class', array( $this, 'nav_menu_css_class' ), 10, 4 );
+		if ( ! is_admin() ) {
+			add_filter( 'nav_menu_css_class', [ $this, 'nav_menu_css_class' ], 10, 4 );
+			add_filter( 'nav_menu_item_id', '__return_empty_string', 12 );
+		}
 	}
 
 	public function init()
 	{
-		$menus = gThemeOptions::info( 'register_nav_menus', array() );
+		$menus = gThemeOptions::info( 'register_nav_menus', [] );
 		if ( $menus && count( $menus ) )
 			register_nav_menus( $menus );
 	}
 
-	public static function defaults( $extra = array() )
+	public static function defaults( $extra = [] )
 	{
-		return array_merge( array(
+		return array_merge( [
 			'primary'   => _x( 'Primary Navigation', 'Modules: Menu: Defaults', GTHEME_TEXTDOMAIN ),
 			'secondary' => _x( 'Secondary Navigation', 'Modules: Menu: Defaults', GTHEME_TEXTDOMAIN ),
 			'tertiary'  => _x( 'Tertiary Navigation', 'Modules: Menu: Defaults', GTHEME_TEXTDOMAIN ),
-		), $extra );
+		], $extra );
 	}
 
-	public static function nav( $location = 'primary', $atts = array(), $before = '', $after = '' )
+	public static function nav( $location = 'primary', $atts = [], $before = '', $after = '' )
 	{
-		$args = array_merge( array(
+		$args = array_merge( [
 			'location' => $location,
-		), $atts );
+		], $atts );
 
 		$key = GTHEME_FRAGMENTCACHE.'_'.md5( maybe_serialize( $args ) );
 
@@ -63,9 +65,9 @@ class gThemeMenu extends gThemeModuleCore
 		echo $before.$menu.$after;
 	}
 
-	public static function parseArgs( $atts = array() )
+	public static function parseArgs( $atts = [] )
 	{
-		$args = array(
+		$args = [
 			'fallback_cb'    => '__return_null',
 			'item_spacing'   => 'discard',
 			'echo'           => isset( $atts['echo'] ) ? $atts['echo'] : TRUE,
@@ -73,7 +75,7 @@ class gThemeMenu extends gThemeModuleCore
 			'container'      => isset( $atts['container'] ) ? $atts['container'] : 'nav',
 			'theme_location' => isset( $atts['location'] ) ? $atts['location'] : 'primary',
 			'items_wrap'     => isset( $atts['items_wrap'] ) ? $atts['items_wrap'] : '<ul id="%1$s" class="%2$s">%3$s</ul>',
-		);
+		];
 
 		$args['menu']       = $args['theme_location'];
 		$args['menu_class'] = 'menu-'.$args['theme_location'].' '.( isset( $atts['class'] ) ? $atts['class'] : 'clearfix' );
@@ -86,7 +88,7 @@ class gThemeMenu extends gThemeModuleCore
 
 	public function wp_nav_menu_container_allowedtags( $tags )
 	{
-		$new_tags = (array) gThemeOptions::info( 'nav_menu_allowedtags', array( 'p' ) );
+		$new_tags = (array) gThemeOptions::info( 'nav_menu_allowedtags', [ 'p' ] );
 
 		if ( count( $new_tags ) )
 			$tags = array_merge( $tags, $new_tags );
@@ -99,6 +101,7 @@ class gThemeMenu extends gThemeModuleCore
 		// we cache menus, so no active item!
 		$classes = array_diff( $classes, [
 			'menu-item',
+			'menu-item-'.$item->ID,
 			'menu-item-type-'.$item->type,
 			'menu-item-object-'.$item->object,
 			'page_item',
@@ -131,7 +134,7 @@ class gThemeMenu extends gThemeModuleCore
 
 			_wp_menu_item_classes_by_context( $menu_items );
 
-			$sorted_menu_items = array();
+			$sorted_menu_items = [];
 
 			foreach ( (array) $menu_items as $key => $menu_item )
 				$sorted_menu_items[$menu_item->menu_order] = $menu_item;
@@ -171,18 +174,18 @@ class gThemeMenu extends gThemeModuleCore
 
 	public static function menu_el( $item )
 	{
-		$html = gThemeHTML::tag( 'a', array(
+		$html = gThemeHTML::tag( 'a', [
 			'title'  => empty( $item->attr_title ) ? FALSE : $item->attr_title,
 			'target' => empty( $item->target ) ? FALSE : $item->target,
 			'rel'    => empty( $item->xfn ) ? FALSE : $item->xfn,
 			'href'   => empty( $item->url ) ? FALSE : $item->url,
-		), $item->title );
+		], $item->title );
 
-		$classes = empty( $item->classes ) ? array() : (array) $item->classes;
+		$classes = empty( $item->classes ) ? [] : (array) $item->classes;
 
-		return gThemeHTML::tag( 'li', array(
-			'id'    => apply_filters( 'nav_menu_item_id', 'menu-item-'.$item->ID, $item, array(), 0 ),
-			'class' => apply_filters( 'nav_menu_css_class', array_filter( $classes ), $item, array(), 0 ),
-		), $html );
+		return gThemeHTML::tag( 'li', [
+			'id'    => apply_filters( 'nav_menu_item_id', 'menu-item-'.$item->ID, $item, [], 0 ),
+			'class' => apply_filters( 'nav_menu_css_class', array_filter( $classes ), $item, [], 0 ),
+		], $html );
 	}
 }

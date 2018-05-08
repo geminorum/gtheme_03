@@ -1,4 +1,6 @@
-<div id="comments" class="comments-area"><?php
+<?php defined( 'ABSPATH' ) or die( header( 'HTTP/1.0 403 Forbidden' ) );
+
+echo '<div id="comments" class="comments-area">';
 
 	if ( gThemeComments::passwordRequired() )
 		return;
@@ -37,4 +39,4 @@
 
 	call_user_func( gThemeOptions::info( 'comment_form', array( 'gThemeComments', 'comment_form' ) ) );
 
-?></div>
+echo '</div>';

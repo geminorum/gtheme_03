@@ -4,31 +4,27 @@ class gThemeWrap extends gThemeModuleCore
 {
 
 	// non-admin only
-	public function setup_actions( $args = array() )
+	public function setup_actions( $args = [] )
 	{
-		extract( self::atts( array(
-			'images_404' => TRUE,
-		), $args ) );
+		extract( self::atts( [
+			'images_404' => FALSE,
+		], $args ) );
 
-		add_action( 'before_signup_header', array( $this, 'before_signup_header' ) );
-		add_action( 'activate_header', array( $this, 'activate_header' ) );
+		add_action( 'before_signup_header', [ $this, 'before_signup_header' ] );
+		add_action( 'activate_header', [ $this, 'activate_header' ] );
 
-		if ( $images_404 )
-			add_filter( 'template_include', array( $this, 'template_include_404_images' ), -1 );
+		if ( $images_404 && ! is_admin() )
+			add_filter( 'template_include', [ $this, 'template_include_404_images' ], -1 );
 
-		add_filter( 'template_include', array( 'gThemeWrap', 'wrap' ), 99 );
+		add_filter( 'template_include', [ __CLASS__, 'template_include' ], 99 );
 	}
 
-	// http://wpengineer.com/2377/implement-404-image-in-your-theme/
 	public function template_include_404_images( $template )
 	{
-		if ( is_admin() )
-			return $template;
-
 		if ( ! is_404() )
 			return $template;
 
-		// @version 2011.12.23
+		// @REF: http://wpengineer.com/2377/implement-404-image-in-your-theme/
 		// matches 'img.png' and 'img.gif?hello=world'
 		if ( preg_match( '~\.(jpe?g|png|gif|svg|bmp)(\?.*)?$~i', $_SERVER['REQUEST_URI'] ) ) {
 			header( 'Content-Type: image/png' );
@@ -71,7 +67,7 @@ class gThemeWrap extends gThemeModuleCore
 	static $main_template; // stores the full path to the main template file
 	static $base_template; // stores the base name of the template file; e.g. 'page' for 'page.php' etc.
 
-	public static function wrap( $template )
+	public static function template_include( $template )
 	{
 		if ( in_array( get_page_template_slug(), [ 'systempage.php' ] ) )
 			defined( 'GTHEME_IS_SYSTEM_PAGE' )
@@ -100,7 +96,8 @@ class gThemeWrap extends gThemeModuleCore
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-	// FIXME: DEPRECATED // BACK COMP // USED IN: head.php
+	// FIXME: DEPRECATED // BACK COMP
+	// USED IN: head.php
 	public static function html_title()
 	{
 		echo "\t".'<title>'.wp_get_document_title().'</title>'."\n";

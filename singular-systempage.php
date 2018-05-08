@@ -1,9 +1,6 @@
 <?php defined( 'ABSPATH' ) or die( header( 'HTTP/1.0 403 Forbidden' ) );
 
 echo '<div class="container -main -singular -systempage"><div class="row">';
-
-	// gThemeNavigation::breadcrumb( array( 'home' => 'home' ) );
-
 echo '<div class="col-sm-6 wrap-content" id="content">';
 
 	if ( have_posts() ) {

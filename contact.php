@@ -7,4 +7,4 @@
 Template Name: Contact Page
 */
 
-get_template_part( 'page', gtheme_template_base() );
+get_template_part( 'singular', gtheme_template_base() );
