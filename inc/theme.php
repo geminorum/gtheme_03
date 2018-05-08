@@ -17,7 +17,8 @@ class gThemeTheme extends gThemeModuleCore
 			'html5'         => TRUE,
 			'js'            => TRUE,
 			'hooks'         => TRUE,
-			'buddypress'    => TRUE,
+			'bp_support'    => TRUE,
+			'bp_no_styles'  => FALSE,
 		), $args ) );
 
 		if ( $cleanup )
@@ -49,10 +50,15 @@ class gThemeTheme extends gThemeModuleCore
 		if ( $feed_links )
 			add_theme_support( 'automatic-feed-links' );
 
-		if ( $buddypress )
+		if ( $bp_support )
 			add_theme_support( 'buddypress' );
 
-		add_filter( 'bp_use_theme_compat_with_current_theme', ( $buddypress ? '__return_true' : '__return_false' ) );
+		add_filter( 'bp_use_theme_compat_with_current_theme', ( $bp_support ? '__return_true' : '__return_false' ) );
+
+		if ( $bp_no_styles ) {
+			add_action( 'wp_enqueue_scripts', [ $this, 'remove_bp_styles' ], 20 ); // bp-legacy
+			add_filter( 'bp_nouveau_enqueue_styles', '__return_false', 20 ); // bp-nouveau
+		}
 
 		if ( $post_formats )
 			add_theme_support( 'post-formats',
@@ -158,5 +164,22 @@ class gThemeTheme extends gThemeModuleCore
 		// NO NEED: we enqueue autosize on comment form, and justify by it's caller
 		// if ( is_singular() )
 		// 	wp_enqueue_script( 'gtheme-singular', GTHEME_URL."/js/script.singular$suffix.js", array( 'jquery' ), GTHEME_VERSION, TRUE );
+	}
+
+	public function remove_bp_styles()
+	{
+		global $wp_styles;
+
+		$handles = [
+			'bp-legacy-css',
+			'bp-legacy-css-rtl',
+			'bp-parent-css',
+			'bp-parent-css-rtl',
+			'bp-child-css',
+			'bp-child-css-rtl',
+		];
+
+		foreach ( $handles as $handle )
+			$wp_styles->dequeue( $handle );
 	}
 }
