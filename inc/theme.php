@@ -26,10 +26,8 @@ class gThemeTheme extends gThemeModuleCore
 		if ( $html_title ) // @REF: https://make.wordpress.org/core/?p=11311
 			add_theme_support( 'title-tag' );
 
-		if ( $adminbar ) {
-			add_theme_support( 'admin-bar', array( 'callback' => '__return_false' ) );
-			add_action( 'template_redirect', array( $this, 'template_redirect_remove_styles' ), 99 );
-		}
+		if ( $adminbar )
+			add_theme_support( 'admin-bar', [ 'callback' => '__return_false' ] );
 
 		if ( $wpcf7 && function_exists( 'wpcf7_enqueue_scripts' ) )
 			add_action( 'wp_enqueue_scripts', array( $this, 'wp_enqueue_scripts_wpcf7' ), 5 );
@@ -139,11 +137,6 @@ class gThemeTheme extends gThemeModuleCore
 			return FALSE;
 
 		return $content_width = intval( $width );
-	}
-
-	public function template_redirect_remove_styles()
-	{
-		remove_action( 'wp_head', 'wp_admin_bar_header' ); // styles will added by theme
 	}
 
 	public function wp_enqueue_scripts_wpcf7()
