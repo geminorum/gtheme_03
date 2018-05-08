@@ -2,7 +2,7 @@ body:before {
   content: "XS";
   position: fixed;
   top: 32px;
-  left: 0;
+  right: 0;
   z-index: 9999999;
   background-color: #000;
   color: #f0ad4e;

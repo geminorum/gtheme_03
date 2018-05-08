@@ -6,7 +6,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
-@mixin theme-adminbar-init($bs: $theme-bs-navbar-height, $adminbar: $theme-wp-adminbar-height) {
+@mixin theme-adminbar-init($bs: $theme-bs-navbar-height, $ab: $theme-wp-adminbar-height) {
   $touch-addition: 14px;
   $touch-max-width: 782px;
   $smart-max-width: 600px;
@@ -14,35 +14,41 @@
   body.navbar-fixed {
     padding-top: $bs;
   }
+
   /// For Admin-Bar
   html.html-admin-bar body {
-    padding-top: $adminbar;
+    padding-top: $ab;
 
     &.navbar-fixed {
-      padding-top: $adminbar + $bs;
+      padding-top: calc(#{$ab} + #{$bs});
 
+      nav.fixed-top,
       .navbar-fixed-top {
-        top: $adminbar;
+        top: $ab;
       }
     }
   }
+
   // @media screen and (max-width: $touch-max-width) {
   @media (max-width: $touch-max-width) {
     html.html-admin-bar body {
-      padding-top: $adminbar + $touch-addition;
+      padding-top: calc(#{$ab} + #{$touch-addition});
 
       &.navbar-fixed {
-        padding-top: $adminbar + $bs + $touch-addition;
+        padding-top: calc(#{$ab} + #{$bs} + #{$touch-addition});
 
+        nav.fixed-top,
         .navbar-fixed-top {
-          top: $adminbar + $touch-addition;
+          top: calc(#{$ab} + #{$touch-addition});
         }
       }
     }
   }
+
   // @media screen and (max-width: $smart-max-width) {
   @media (max-width: $smart-max-width) {
     body.navbar-fixed {
+      nav.fixed-top,
       .navbar-fixed-top {
         position: absolute;
       }

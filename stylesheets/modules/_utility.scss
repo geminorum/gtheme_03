@@ -7,12 +7,13 @@
 
 // BASED ON BS3 Utilities
 @mixin theme-clearfix() {
-  &:before,
-  &:after {
+  &::before,
+  &::after {
     content: " ";
     display: table;
   }
-  &:after {
+
+  &::after {
     clear: both;
   }
 }
@@ -21,15 +22,23 @@
 /// CSS-Tricks: Inheriting box-sizing Probably Slightly Better Best-Practice
 // SEE: https://css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice/
 
+// FIXME: depricated
 @mixin theme-box-reset() {
+  @warn "gTheme Utility: depricated use of mixin: theme-box-reset()";
 
   // FIXME: this is testing for: "content-box" removes the html border on iphone5
-  html { box-sizing: content-box; }
-  body { box-sizing: border-box; }
+
+  html {
+    box-sizing: content-box;
+  }
+
+  body {
+    box-sizing: border-box;
+  }
 
   *,
-  *:before,
-  *:after {
+  *::before,
+  *::after {
     box-sizing: inherit;
   }
 }
@@ -40,8 +49,8 @@
   }
 
   *,
-  *:before,
-  *:after {
+  *::before,
+  *::after {
     box-sizing: inherit;
   }
 }
@@ -83,7 +92,7 @@
 
 // DEPRECATED: use @include theme-clearfix;
 @mixin clearfix() {
-  &:after {
+  &::after {
     content: "";
     display: table;
     clear: both;
@@ -92,19 +101,20 @@
 
 // DEPRECATED: use @include theme-clearfix;
 @mixin clear-fix() {
-  &:before,
-  &:after {
+  &::before,
+  &::after {
     content: " ";
     display: table;
   }
-  &:after {
+
+  &::after {
     clear: both;
   }
 }
 
 // DEPRECATED: use @include clearfix()
 %clearfix {
-  &:after {
+  &::after {
     content: "";
     display: table;
     clear: both;

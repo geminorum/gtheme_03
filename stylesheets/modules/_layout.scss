@@ -1,0 +1,28 @@
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+/// gTheme Modules: Layout -----------------------------------------------------
+
+@mixin theme-layout-init {
+  html {
+    box-sizing: border-box;
+
+    // * {
+    //   -webkit-font-smoothing: antialiased !important;
+    //   -moz-font-smoothing: antialiased !important;
+    //   font-smoothing: antialiased !important;
+    // }
+
+    &.no-js {
+      .hide-if-no-js {
+        display: none;
+      }
+    }
+  }
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: inherit;
+  }
+}

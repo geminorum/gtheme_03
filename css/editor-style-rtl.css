@@ -1,1 +1,47 @@
-.rtl .entry-content p,html .mceContentBody.rtl p{text-indent:10px}.rtl .entry-content h3,html .mceContentBody.rtl h3{margin:40px 2px 10px 0;line-height:36px;font-size:20px}.rtl .entry-content h4,html .mceContentBody.rtl h4{margin:30px 2px 10px 0;line-height:36px;font-size:18px}.rtl .entry-content h5,html .mceContentBody.rtl h5{margin:20px 2px 10px 0;line-height:36px;font-size:16px}.rtl .entry-content h6,html .mceContentBody.rtl h6{margin:10px 2px 10px 0;line-height:36px;font-size:13px}html .mceContentBody.rtl{direction:rtl;unicode-bidi:embed;float:right;max-width:448px}html .mceContentBody.rtl *{color:inherit;font-style:inherit;font-weight:inherit;font-size:14px;line-height:24px;font-family:tahoma,Iranian Sans,verdana,serif}html .mceContentBody.rtl h1,html .mceContentBody.rtl h2,html .mceContentBody.rtl h3,html .mceContentBody.rtl h4,html .mceContentBody.rtl h5,html .mceContentBody.rtl h6{font-family:arial,sans-serif}html .mceContentBody.rtl ol,html .mceContentBody.rtl ul{margin:0 2.5em 1.625em 0}html .mceContentBody.rtl table{text-align:right}html .mceContentBody.rtl blockquote{font-style:bold}html .mceContentBody.rtl strong{font-weight:600}html .mceContentBody.rtl cite,html .mceContentBody.rtl em,html .mceContentBody.rtl i{font-style:italic}
+.entry-content p,.mceContentBody p {
+  text-indent: 10px; }
+
+.entry-content h3,.mceContentBody h3 {
+  margin: 40px 0 10px 2px;
+  line-height: 36px;
+  font-size: 20px; }
+
+.entry-content h4,.mceContentBody h4 {
+  margin: 30px 0 10px 2px;
+  line-height: 36px;
+  font-size: 18px; }
+
+.entry-content h5,.mceContentBody h5 {
+  margin: 20px 0 10px 2px;
+  line-height: 36px;
+  font-size: 16px; }
+
+.entry-content h6,.mceContentBody h6 {
+  margin: 10px 0 10px 2px;
+  line-height: 36px;
+  font-size: 13px; }
+
+html .mceContentBody {
+  direction: rtl;
+  unicode-bidi: embed;
+  float: right;
+  max-width: 448px; }
+  html .mceContentBody * {
+    color: inherit;
+    font-style: inherit;
+    font-weight: inherit;
+    font-size: 14px;
+    line-height: 24px;
+    font-family: tahoma,Iranian Sans,verdana,serif; }
+  html .mceContentBody h1,html .mceContentBody h2,html .mceContentBody h3,html .mceContentBody h4,html .mceContentBody h5,html .mceContentBody h6 {
+    font-family: arial,sans-serif; }
+  html .mceContentBody ol,html .mceContentBody ul {
+    margin: 0 2.5em 1.625em 0; }
+  html .mceContentBody table {
+    text-align: right; }
+  html .mceContentBody blockquote {
+    font-style: bold; }
+  html .mceContentBody strong {
+    font-weight: 600; }
+  html .mceContentBody cite,html .mceContentBody em,html .mceContentBody i {
+    font-style: italic; }

@@ -1,5 +1,5 @@
-@import 'modules/all';
-@import 'partials/base';
+@import "modules/all";
+@import "partials/base";
 
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
@@ -9,14 +9,14 @@
 #printfriendly {
 
   // changes font family and size
-  font-family: Tahoma;
+  font-family: Tahoma, sans-serif;
   font-size: 14px;
 
   // aligns images to the left
   img {
-    float: left;
+    float: right;
     margin-top: 12px;
-    margin-right: 12px;
+    margin-left: 12px;
   }
 
   #pf-src {
@@ -25,6 +25,6 @@
 
   p.copyright,
   #pf-date {
-    direction: rtl;
+    direction: ltr;
   }
 }

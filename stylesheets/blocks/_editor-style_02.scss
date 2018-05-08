@@ -1,0 +1,50 @@
+
+html .mceContentBody {
+  direction: ltr;
+  unicode-bidi: embed;
+  float: left;
+  // max-width: 600px;
+  max-width: 448px;
+
+  * {
+    color: inherit;
+    font-style: inherit;
+    font-weight: inherit;
+
+    font-size: 14px;
+    line-height: 24px;
+    font-family: tahoma, "Iranian Sans", verdana, serif;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: arial, sans-serif;
+  }
+
+  ul,
+  ol {
+    margin: 0 0 1.625em 2.5em;
+  }
+
+  table {
+    text-align: left;
+  }
+
+  blockquote {
+    font-style: bold;
+  }
+
+  strong {
+    font-weight: 600;
+  }
+
+  cite,
+  em,
+  i {
+    font-style: italic;
+  }
+}

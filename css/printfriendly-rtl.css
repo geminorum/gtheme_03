@@ -2,8 +2,8 @@
   font-family: Tahoma,sans-serif;
   font-size: 14px; }
   #printfriendly img {
-    float: right;
+    float: left;
     margin-top: 12px;
-    margin-left: 12px; }
+    margin-right: 12px; }
   #printfriendly #pf-date,#printfriendly p.copyright {
-    direction: ltr; }
+    direction: rtl; }

@@ -53,7 +53,7 @@
 }
 
 label {
-  font-weight: normal;
+  font-weight: 400;
   margin: 0 2px 2px;
 }
 
@@ -87,7 +87,7 @@ label {
 }
 
 @media print {
-  a[href]:after {
+  a[href]::after {
     content: none;
   }
 }
