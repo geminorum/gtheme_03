@@ -31,6 +31,38 @@
       "components/bootstrap-sass/assets/stylesheets"
     ]
   },
+  "cssnano": {
+    "dev": {
+      "core": false,
+      "zindex": false,
+      "discardComments": false
+    },
+    "build": {
+      "zindex": false,
+      "discardComments": {
+        "removeAll": true
+      }
+    }
+  },
+  "autoprefixer": {
+    "dev": {
+      "browsers": [
+        "last 2 versions",
+        "ie >= 9",
+        "Android >= 2.3",
+        "ios >= 7"
+      ]
+    },
+    "build": {
+      "browsers": [
+        "last 2 versions",
+        "ie >= 9",
+        "Android >= 2.3",
+        "ios >= 7"
+      ],
+      "cascade": false
+    }
+  },
   "pot": {
     "package": "gTheme",
     "domain": "GTHEME_TEXTDOMAIN",
