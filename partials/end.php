@@ -5,8 +5,8 @@ gThemeMenu::navNetwork( '<div class="wrapper -footer"><div class="container -foo
 echo '<div class="wrapper -copyright"><div class="container -copyright">';
 	echo '<p class="copyright text-muted credit">';
 		gThemeTemplate::copyright( '', '' );
-		gThemeEditorial::siteModified( array(
+		gThemeEditorial::siteModified( [
 			'title'  => FALSE,
 			'before' => ' '._x( 'Last updated on', 'Root: End: Before Site Modified', GTHEME_TEXTDOMAIN ).' ',
-		) );
+		] );
 echo '</p></div></div>';

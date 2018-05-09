@@ -20,11 +20,11 @@ echo '<div id="comments" class="comments-area">';
 		echo '<ol class="commentlist comment-list media-list">';
 
 			// http://codex.wordpress.org/Function_Reference/wp_list_comments
-			wp_list_comments( array(
-				'callback' => gThemeOptions::info( 'comment_callback', array( 'gThemeComments', 'comment_callback' ) ),
+			wp_list_comments( [
+				'callback' => gThemeOptions::info( 'comment_callback', [ 'gThemeComments', 'comment_callback' ] ),
 				'style'    => 'ol',
 				'type'     => 'comment', // no ping & trackback / default is 'all'
-			) );
+			] );
 
 		echo '</ol>';
 
@@ -37,6 +37,6 @@ echo '<div id="comments" class="comments-area">';
 			echo '<p class="no-comments">'.$closed.'</p>';
 	}
 
-	call_user_func( gThemeOptions::info( 'comment_form', array( 'gThemeComments', 'comment_form' ) ) );
+	call_user_func( gThemeOptions::info( 'comment_form', [ 'gThemeComments', 'comment_form' ] ) );
 
 echo '</div>';

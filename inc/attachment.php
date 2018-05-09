@@ -21,14 +21,14 @@ class gThemeAttachment extends gThemeModuleCore
 		return $default;
 	}
 
-	public static function caption( $atts = array() )
+	public static function caption( $atts = [] )
 	{
-		$args = self::atts( array(
+		$args = self::atts( [
 			'before' => '<div class="entry-summary entry-caption">',
 			'after'  => '</div>',
 			'id'     => NULL,
 			'echo'   => TRUE,
-		), $atts );
+		], $atts );
 
 		if ( ! $html = wp_get_attachment_caption( $args['id'] ) )
 			return FALSE;
@@ -40,24 +40,24 @@ class gThemeAttachment extends gThemeModuleCore
 	}
 
 	// FIXME: DEPRECATED: USE: `gThemeAttachment::media()`
-	public static function image( $atts = array() )
+	public static function image( $atts = [] )
 	{
 		self::__dep( 'gThemeAttachment::media()' );
 		return self::media( $atts );
 	}
 
 	// @REF: `prepend_attachment()`
-	public static function media( $atts = array() )
+	public static function media( $atts = [] )
 	{
-		$args = self::atts( array(
+		$args = self::atts( [
 			'before' => '<div class="entry-attachment entry-attachment-media">',
 			'after'  => '</div>',
 			'id'     => NULL,
 			'tag'    => 'big',
 			'cover'  => TRUE, // audio cover
 			'echo'   => TRUE,
-			'extra'  => array(),
-		), $atts );
+			'extra'  => [],
+		], $atts );
 
 		$post = get_post( $args['id'] );
 
@@ -74,9 +74,7 @@ class gThemeAttachment extends gThemeModuleCore
 
 			$meta = wp_get_attachment_metadata( $post->ID );
 
-			$shortcode = array(
-				'src' => wp_get_attachment_url( $post->ID ),
-			);
+			$shortcode = [ 'src' => wp_get_attachment_url( $post->ID ) ];
 
 			if ( ! empty( $meta['width'] )
 				&& ! empty( $meta['height'] ) ) {
@@ -97,17 +95,17 @@ class gThemeAttachment extends gThemeModuleCore
 			if ( $html )
 				$html = '<div class="attachment-cover">'.$html.'</div>';
 
-			$html.= wp_audio_shortcode( array_merge( array(
+			$html.= wp_audio_shortcode( array_merge( [
 				'src' => wp_get_attachment_url( $post->ID ),
-			), $args['extra'] ) );
+			], $args['extra'] ) );
 
 		} else {
 
 			// FALLBACK
-			self::download( array(
+			self::download( [
 				'id'     => $args['id'],
 				'before' => '<div class="entry-download -fallback">',
-			) );
+			] );
 
 			return FALSE;
 		}
@@ -120,16 +118,16 @@ class gThemeAttachment extends gThemeModuleCore
 		return TRUE;
 	}
 
-	public static function backlink( $atts = array() )
+	public static function backlink( $atts = [] )
 	{
-		$args = self::atts( array(
+		$args = self::atts( [
 			'before'   => '<div class="entry-backlink">',
 			'after'    => '</div>',
 			'id'       => NULL,
 			'template' => _x( '&larr; Back to &ldquo;%s&rdquo;', 'Module: Attachment: Backlink Template', GTHEME_TEXTDOMAIN ),
 			'empty'    => _x( '&larr; Back', 'Module: Attachment: Backlink Empty Title', GTHEME_TEXTDOMAIN ),
 			'echo'     => TRUE,
-		), $atts );
+		], $atts );
 
 		$post = get_post( $args['id'] );
 
@@ -145,10 +143,10 @@ class gThemeAttachment extends gThemeModuleCore
 		else
 			$html = $args['empty'];
 
-		$html = gThemeHTML::tag( 'a', array(
+		$html = gThemeHTML::tag( 'a', [
 			'href'  => get_permalink( $post->post_parent ),
 			'class' => '-backlink',
-		), $html );
+		], $html );
 
 		if ( ! $args['echo'] )
 			return $args['before'].$html.$args['after'];
@@ -156,9 +154,9 @@ class gThemeAttachment extends gThemeModuleCore
 		echo $args['before'].$html.$args['after'];
 	}
 
-	public static function download( $atts = array() )
+	public static function download( $atts = [] )
 	{
-		$args = self::atts( array(
+		$args = self::atts( [
 			'before' => '<div class="entry-download">',
 			'after'  => '</div>',
 			'id'     => NULL,
@@ -166,20 +164,20 @@ class gThemeAttachment extends gThemeModuleCore
 			'class'  => NULL,
 			'link'   => _x( 'Download Attachment', 'Module: Attachment: Link', GTHEME_TEXTDOMAIN ),
 			'echo'   => TRUE,
-		), $atts );
+		], $atts );
 
 		$post = get_post( $args['id'] );
 
 		if ( ! $post )
 			return FALSE;
 
-		$html = gThemeHTML::tag( 'a', array(
+		$html = gThemeHTML::tag( 'a', [
 			'href'     => wp_get_attachment_url( $post->ID ),
 			'download' => gThemeOptions::info( 'attachment_download_prefix', '' ).basename( get_attached_file( $post->ID ) ),
 			'title'    => is_null( $args['title'] ) ? get_the_title( $post ) : $args['title'],
 			'class'    => '-download '.( is_null( $args['class'] ) ? 'btn btn-default' : $args['class'] ),
 			'rel'      => 'attachment',
-		), $args['link'] );
+		], $args['link'] );
 
 		if ( ! $args['echo'] )
 			return $args['before'].$html.$args['after'];

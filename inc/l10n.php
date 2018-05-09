@@ -21,7 +21,7 @@ class gThemeL10N extends gThemeModuleCore
 		if ( is_null( $string ) )
 			return NULL;
 
-		$pairs = array(
+		$pairs = [
 			'0'                 => chr(0xDB).chr(0xB0),
 			'1'                 => chr(0xDB).chr(0xB1),
 			'2'                 => chr(0xDB).chr(0xB2),
@@ -48,7 +48,7 @@ class gThemeL10N extends gThemeModuleCore
 			chr(0xD9).chr(0x89) => chr(0xDB).chr(0x8C),
 			chr(0xD9).chr(0x8A) => chr(0xDB).chr(0x8C),
 			chr(0xDB).chr(0x80) => chr(0xD9).chr(0x87).chr(0xD9).chr(0x94),
-		);
+		];
 
 		return strtr( $string, $pairs );
 	}

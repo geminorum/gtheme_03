@@ -3,9 +3,9 @@
 class gThemeTheme extends gThemeModuleCore
 {
 
-	public function setup_actions( $args = array() )
+	public function setup_actions( $args = [] )
 	{
-		extract( self::atts( array(
+		extract( self::atts( [
 			'cleanup'       => TRUE,
 			'html_title'    => TRUE,
 			'adminbar'      => TRUE,
@@ -19,7 +19,7 @@ class gThemeTheme extends gThemeModuleCore
 			'hooks'         => TRUE,
 			'bp_support'    => TRUE,
 			'bp_no_styles'  => FALSE,
-		), $args ) );
+		], $args ) );
 
 		if ( $cleanup )
 			$this->cleanup();
@@ -31,7 +31,7 @@ class gThemeTheme extends gThemeModuleCore
 			add_theme_support( 'admin-bar', [ 'callback' => '__return_false' ] );
 
 		if ( $wpcf7 && function_exists( 'wpcf7_enqueue_scripts' ) )
-			add_action( 'wp_enqueue_scripts', array( $this, 'wp_enqueue_scripts_wpcf7' ), 5 );
+			add_action( 'wp_enqueue_scripts', [ $this, 'wp_enqueue_scripts_wpcf7' ], 5 );
 
 		if ( $page_excerpt )
 			add_post_type_support( 'page', 'excerpt' );
@@ -62,14 +62,14 @@ class gThemeTheme extends gThemeModuleCore
 
 		if ( $post_formats )
 			add_theme_support( 'post-formats',
-				gThemeOptions::info( 'support_post_formats', array(
+				gThemeOptions::info( 'support_post_formats', [
 					'aside',
 					'link',
 					'gallery',
 					'status',
 					'quote',
 					'image',
-			) ) );
+			] ) );
 
 		else
 			add_action( 'init', function(){
@@ -78,21 +78,21 @@ class gThemeTheme extends gThemeModuleCore
 
 		if ( $html5 )
 			add_theme_support( 'html5',
-				gThemeOptions::info( 'support_html5', array(
+				gThemeOptions::info( 'support_html5', [
 					'comment-list',
 					'search-form',
 					'comment-form',
 					'gallery',
 					'caption',
-			) ) );
+			] ) );
 
 		if ( $js )
-			add_action( 'wp_enqueue_scripts', array( $this, 'wp_enqueue_scripts' ) );
+			add_action( 'wp_enqueue_scripts', [ $this, 'wp_enqueue_scripts' ] );
 
 		// http://justintadlock.com/archives/2011/09/01/a-better-way-for-plugins-to-hook-into-theme-templates
 		if ( $hooks )
 			add_theme_support( 'template-hooks',
-				gThemeOptions::info( 'support_template_hooks', array(
+				gThemeOptions::info( 'support_template_hooks', [
 					'before_post',
 					'after_post',
 					'template_body_top',
@@ -103,12 +103,12 @@ class gThemeTheme extends gThemeModuleCore
 					'gtheme_do_after_header',
 					'gtheme_do_before_footer',
 					'gtheme_do_footer',
-			) ) );
+			] ) );
 	}
 
 	public function cleanup()
 	{
-		foreach ( array(
+		foreach ( [
 			'rss2_head',
 			'commentsrss2_head',
 			'rss_head',
@@ -117,7 +117,7 @@ class gThemeTheme extends gThemeModuleCore
 			'comments_atom_head',
 			'opml_head',
 			'app_head',
-			) as $action ) remove_action( $action, 'the_generator' );
+			] as $action ) remove_action( $action, 'the_generator' );
 
 		remove_action( 'wp_head', 'locale_stylesheet' );
 		remove_action( 'embed_head', 'locale_stylesheet', 30 );
@@ -128,7 +128,7 @@ class gThemeTheme extends gThemeModuleCore
 
 		remove_filter( 'comment_text', 'make_clickable', 9 );
 		remove_filter( 'comment_text', 'capital_P_dangit', 31 );
-		foreach ( array( 'the_content', 'the_title', 'wp_title' ) as $filter )
+		foreach ( [ 'the_content', 'the_title', 'wp_title' ] as $filter )
 			remove_filter( $filter, 'capital_P_dangit', 11 );
 	}
 
@@ -159,11 +159,11 @@ class gThemeTheme extends gThemeModuleCore
 	{
 		$suffix = SCRIPT_DEBUG ? '' : '.min';
 
-		wp_enqueue_script( 'gtheme-all', GTHEME_URL."/js/script.all$suffix.js", array( 'jquery' ), GTHEME_VERSION, TRUE );
+		wp_enqueue_script( 'gtheme-all', GTHEME_URL."/js/script.all$suffix.js", [ 'jquery' ], GTHEME_VERSION, TRUE );
 
 		// NO NEED: we enqueue autosize on comment form, and justify by it's caller
 		// if ( is_singular() )
-		// 	wp_enqueue_script( 'gtheme-singular', GTHEME_URL."/js/script.singular$suffix.js", array( 'jquery' ), GTHEME_VERSION, TRUE );
+		// 	wp_enqueue_script( 'gtheme-singular', GTHEME_URL."/js/script.singular$suffix.js", [ 'jquery' ], GTHEME_VERSION, TRUE );
 	}
 
 	public function remove_bp_styles()

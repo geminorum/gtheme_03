@@ -3,27 +3,27 @@
 class gThemeShortCodes extends gThemeModuleCore
 {
 
-	public function setup_actions( $args = array() )
+	public function setup_actions( $args = [] )
 	{
-		extract( self::atts( array(
+		extract( self::atts( [
 			'defaults'         => TRUE,
 			'caption_override' => TRUE,
 			'gallery_override' => TRUE,
-		), $args ) );
+		], $args ) );
 
 		if ( $defaults )
-			add_action( 'init', array( $this, 'init' ), 14 );
+			add_action( 'init', [ $this, 'init' ], 14 );
 
 		if ( $caption_override )
-			add_filter( 'img_caption_shortcode', array( $this, 'img_caption_shortcode' ), 10, 3 );
+			add_filter( 'img_caption_shortcode', [ $this, 'img_caption_shortcode' ], 10, 3 );
 
 		if ( $gallery_override )
-			add_filter( 'post_gallery', array( $this, 'post_gallery' ), 10, 3 );
+			add_filter( 'post_gallery', [ $this, 'post_gallery' ], 10, 3 );
 	}
 
 	public function init()
 	{
-		$this->shortcodes( array(
+		$this->shortcodes( [
 			'theme-image' => 'shortcode_theme_image',
 			'panels'      => 'shortcode_panels',
 			'panel'       => 'shortcode_panel',
@@ -32,18 +32,18 @@ class gThemeShortCodes extends gThemeModuleCore
 			'children'    => 'shortcode_children',
 			'siblings'    => 'shortcode_siblings',
 			// 'slider'      => 'shortcode_gallery_slider',
-		) );
+		] );
 	}
 
 	public function img_caption_shortcode( $empty, $attr, $content )
 	{
-		$args = shortcode_atts( array(
+		$args = shortcode_atts( [
 			'id'      => FALSE,
 			'align'   => 'alignnone',
 			'width'   => '',
 			'caption' => FALSE,
 			'class'   => '',
-		), $attr, 'caption' );
+		], $attr, 'caption' );
 
 		$args['width'] = (int) $args['width'];
 		if ( $args['width'] < 1 || empty( $args['caption'] ) )
@@ -51,10 +51,10 @@ class gThemeShortCodes extends gThemeModuleCore
 
 		$caption = gThemeAttachment::normalizeCaption( $args['caption'], '<figcaption>', '</figcaption>' );
 
-		return gThemeHTML::tag( 'figure', array(
+		return gThemeHTML::tag( 'figure', [
 			'id'    => $args['id'],
 			'class' => trim( $args['align'].' '.$args['class'] ),
-		), do_shortcode( $content ).$caption );
+		], do_shortcode( $content ).$caption );
 	}
 
 	public function post_gallery( $empty, $attr, $instance )
@@ -75,7 +75,7 @@ class gThemeShortCodes extends gThemeModuleCore
 
 	public function shortcode_gallery_column( $atts, $content = NULL, $tag = 'gallery' )
 	{
-		$args = shortcode_atts( array(
+		$args = shortcode_atts( [
 			'order'     => 'ASC',
 			'orderby'   => 'menu_order ID',
 			'id'        => get_the_ID(),
@@ -86,20 +86,20 @@ class gThemeShortCodes extends gThemeModuleCore
 			'link'      => 'file', // 'file', 'none', empty
 			'file_size' => gThemeOptions::info( 'gallery_file_size', 'big' ),
 			'nocaption' => '<svg class="-icon -icon-magnifier"><use xlink:href="#icon-magnifier"></use></svg>',
-		), $atts, $tag );
+		], $atts, $tag );
 
 		$id = intval( $args['id'] );
 
-		$posts_args = array(
+		$posts_args = [
 			'post_status'    => 'inherit',
 			'post_type'      => 'attachment',
 			'post_mime_type' => 'image',
 			'order'          => $args['order'],
 			'orderby'        => $args['orderby'],
-		);
+		];
 
 		if ( ! empty( $args['include'] ) ) {
-			$attachments = array();
+			$attachments = [];
 			$posts_args['include'] = $args['include'];
 			foreach ( get_posts( $posts_args ) as $key => $val )
 				$attachments[$val->ID] = $val;
@@ -151,7 +151,7 @@ class gThemeShortCodes extends gThemeModuleCore
 			}
 
 			if ( trim( $attachment->post_excerpt ) ) {
-				$attr    = array( 'aria-describedby' => "$selector-$id" );
+				$attr    = [ 'aria-describedby' => "$selector-$id" ];
 				$title   = esc_attr( $attachment->post_excerpt );
 				$caption = wptexturize( $attachment->post_excerpt );
 			} else {
@@ -170,19 +170,19 @@ class gThemeShortCodes extends gThemeModuleCore
 
 		$icons = '<svg style="position: absolute; width: 0; height: 0; overflow: hidden" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><symbol id="icon-magnifier" viewBox="0 0 32 32"><title>magnifier</title><path d="M29.156 29.961l-0.709 0.709c-0.785 0.784-2.055 0.784-2.838 0l-5.676-5.674c-0.656-0.658-0.729-1.644-0.281-2.412l-3.104-3.102c-1.669 1.238-3.728 1.979-5.965 1.979-5.54 0-10.031-4.491-10.031-10.031s4.491-10.032 10.031-10.032c5.541 0 10.031 4.491 10.031 10.032 0 2.579-0.98 4.923-2.58 6.7l3.035 3.035c0.768-0.447 1.754-0.375 2.41 0.283l5.676 5.674c0.784 0.785 0.784 2.056 0.001 2.839zM18.088 11.389c0-4.155-3.369-7.523-7.524-7.523s-7.524 3.367-7.524 7.523 3.368 7.523 7.523 7.523 7.525-3.368 7.525-7.523z"></path></symbol></defs></svg>';
 
-		return '<div class="theme-gallery-wrap -columns"><div class="-gallery-spinner"></div>'.gThemeHTML::tag( 'div', array(
+		return '<div class="theme-gallery-wrap -columns"><div class="-gallery-spinner"></div>'.gThemeHTML::tag( 'div', [
 			'id'    => $selector,
-			'class' => array(
+			'class' => [
 				'-gallery',
 				'-columns-'.$args['columns'],
 				'-size-'.sanitize_html_class( $args['size'] ),
-			),
-		), $html ).$icons.'</div>';
+			],
+		], $html ).$icons.'</div>';
 	}
 
 	public function shortcode_gallery_slider( $atts, $content = NULL, $tag = '' )
 	{
-		$args = shortcode_atts( array(
+		$args = shortcode_atts( [
 			'order'   => 'ASC',
 			'orderby' => 'menu_order ID',
 			'id'      => get_the_ID(),
@@ -190,21 +190,21 @@ class gThemeShortCodes extends gThemeModuleCore
 			'include' => '',
 			'exclude' => '',
 			'link'    => '', // 'file', 'none', empty
-		), $atts, $tag );
+		], $atts, $tag );
 
 		$id = intval( $args['id'] );
 
-		$posts_args = array(
+		$posts_args = [
 			'post_status'    => 'inherit',
 			'post_type'      => 'attachment',
 			'post_mime_type' => 'image',
 			'order'          => $args['order'],
 			'orderby'        => $args['orderby'],
-		);
+		];
 
 		if ( ! empty( $args['include'] ) ) {
 
-			$attachments = array();
+			$attachments = [];
 			$posts_args['include'] = $args['include'];
 
 			foreach ( get_posts( $posts_args ) as $key => $val )
@@ -234,12 +234,12 @@ class gThemeShortCodes extends gThemeModuleCore
 
 			$html.= '<li>'.gThemeImage::getImageHTML( $id, $args['size'], $attr );
 
-			$html.= gThemeAttachment::caption( array(
+			$html.= gThemeAttachment::caption( [
 				'before' => '<div class="flex-caption">',
 				'after'  => '</div>',
 				'id'     => $id,
 				'echo'   => FALSE,
-			) ).'</li>';
+			] ).'</li>';
 		}
 
 		$html.= '</ul></div></div>';
@@ -279,11 +279,11 @@ class gThemeShortCodes extends gThemeModuleCore
 		if ( is_null( $content ) )
 			return $content;
 
-		$args = shortcode_atts( array(
+		$args = shortcode_atts( [
 			'class' => '',
 			'id'    => 'panel-group-'.$this->panel_group_count,
 			'role'  => 'tablist',
-		), $atts, $tag );
+		], $atts, $tag );
 
 		$this->panel_parent = $args['id'];
 
@@ -302,14 +302,14 @@ class gThemeShortCodes extends gThemeModuleCore
 		if ( is_null( $content ) )
 			return $content;
 
-		$args = shortcode_atts( array(
+		$args = shortcode_atts( [
 			'parent'    => ( $this->panel_parent ? $this->panel_parent : 'panel-group-'.$this->panel_group_count ),
 			'id'        => 'panel-'.$this->panel_count,
 			'title'     => _x( 'Untitled', 'Panel Shortcode Title', GTHEME_TEXTDOMAIN ),
 			'title_tag' => 'h4',
 			'context'   => 'default',
 			'expanded'  => FALSE,
-		), $atts, $tag );
+		], $atts, $tag );
 
 		$html = '<div class="panel panel-'.$args['context'].'">';
 		$html.= '<div class="panel-heading" role="tab" id="'.$args['id'].'-wrap">';
@@ -333,7 +333,7 @@ class gThemeShortCodes extends gThemeModuleCore
 	**/
 
 	protected $tabs_active = '';
-	protected $tabs_nav    = array();
+	protected $tabs_nav    = [];
 	protected $tabs_count  = 0;
 
 	public function shortcode_tabs( $atts, $content = NULL, $tag = '' )
@@ -341,11 +341,11 @@ class gThemeShortCodes extends gThemeModuleCore
 		if ( is_null( $content ) )
 			return $content;
 
-		$args = shortcode_atts( array(
+		$args = shortcode_atts( [
 			'class' => '',
 			'id'    => 'tabs-'.$this->tabs_count,
 			'role'  => 'tabpanel',
-		), $atts, $tag );
+		], $atts, $tag );
 
 		$tabs = do_shortcode( trim( $content, '<br />'."\n" ) );
 
@@ -367,7 +367,7 @@ class gThemeShortCodes extends gThemeModuleCore
 		$html.= $tabs;
 		$html.= '</div></div>';
 
-		$this->tabs_nav = array();
+		$this->tabs_nav = [];
 		$this->tabs_count++;
 
 		return $html;
@@ -378,12 +378,12 @@ class gThemeShortCodes extends gThemeModuleCore
 		if ( is_null( $content ) )
 			return $content;
 
-		$args = shortcode_atts( array(
+		$args = shortcode_atts( [
 			'id'      => 'tab-'.$this->tabs_count.'-'.count( $this->tabs_nav ),
 			'title'   => _x( 'Untitled', 'Tab Shortcode Title', GTHEME_TEXTDOMAIN ),
 			'context' => 'default',
 			'active'  => FALSE,
-		), $atts, $tag );
+		], $atts, $tag );
 
 		if ( $args['active'] )
 			$this->tabs_active = $args['id'];
@@ -399,7 +399,7 @@ class gThemeShortCodes extends gThemeModuleCore
 
 	public function shortcode_theme_image( $atts, $content = NULL, $tag = '' )
 	{
-		$args = shortcode_atts( array(
+		$args = shortcode_atts( [
 			'src'    => FALSE,
 			'alt'    => FALSE,
 			'title'  => FALSE,
@@ -407,35 +407,35 @@ class gThemeShortCodes extends gThemeModuleCore
 			'height' => FALSE,
 			'url'    => FALSE,
 			'dir'    => 'images',
-		), $atts, $tag );
+		], $atts, $tag );
 
 		if ( ! $args['src'] )
 			return $content;
 
-		$html = gThemeHTML::tag( 'img', array(
+		$html = gThemeHTML::tag( 'img', [
 			'src'    => GTHEME_CHILD_URL.'/'.$args['dir'].'/'.$args['src'],
 			'alt'    => $args['alt'],
 			'title'  => $args['url'] ? FALSE : $args['title'],
 			'width'  => $args['width'],
 			'height' => $args['height'],
-		) );
+		] );
 
 		if ( $args['url'] )
-			return gThemeHTML::tag( 'a', array(
+			return gThemeHTML::tag( 'a', [
 				'href'  => $args['url'],
 				'title' => $args['title'],
-			), $html );
+			], $html );
 
 		return $html;
 	}
 
 	public function shortcode_children( $atts, $content = NULL, $tag = '' )
 	{
-		$args = shortcode_atts( array(
+		$args = shortcode_atts( [
 			'id'      => get_queried_object_id(),
 			'type'    => 'page',
 			'excerpt' => TRUE,
-		), $atts, $tag );
+		], $atts, $tag );
 
 		if ( ! $args['id'] )
 			return $content;
@@ -443,7 +443,7 @@ class gThemeShortCodes extends gThemeModuleCore
 		if ( ! is_singular( $args['type'] ) )
 			return $content;
 
-		$children = wp_list_pages( array(
+		$children = wp_list_pages( [
 			'child_of'     => $args['id'],
 			'post_type'    => $args['type'],
 			'excerpt'      => $args['excerpt'],
@@ -453,7 +453,7 @@ class gThemeShortCodes extends gThemeModuleCore
 			'item_spacing' => 'discard',
 			'sort_column'  => 'menu_order, post_title',
 			'walker'       => new gTheme_Walker_Page(),
-		) );
+		] );
 
 		if ( ! $children )
 			return $content;
@@ -463,11 +463,11 @@ class gThemeShortCodes extends gThemeModuleCore
 
 	public function shortcode_siblings( $atts, $content = NULL, $tag = '' )
 	{
-		$args = shortcode_atts( array(
+		$args = shortcode_atts( [
 			'parent'  => NULL,
 			'type'    => 'page',
 			'excerpt' => TRUE,
-		), $atts, $tag );
+		], $atts, $tag );
 
 		if ( ! is_singular( $args['type'] ) )
 			return $content;
@@ -483,7 +483,7 @@ class gThemeShortCodes extends gThemeModuleCore
 		if ( ! $args['parent'] )
 			return $content;
 
-		$siblings = wp_list_pages( array(
+		$siblings = wp_list_pages( [
 			'child_of'     => $args['parent'],
 			'post_type'    => $args['type'],
 			'excerpt'      => $args['excerpt'],
@@ -493,7 +493,7 @@ class gThemeShortCodes extends gThemeModuleCore
 			'item_spacing' => 'discard',
 			'sort_column'  => 'menu_order, post_title',
 			'walker'       => new gTheme_Walker_Page(),
-		) );
+		] );
 
 		if ( ! $siblings )
 			return $content;
@@ -505,9 +505,9 @@ class gThemeShortCodes extends gThemeModuleCore
 class gTheme_Walker_Page extends Walker_Page
 {
 
-	public function start_el( &$output, $page, $depth = 0, $args = array(), $current_page = 0 )
+	public function start_el( &$output, $page, $depth = 0, $args = [], $current_page = 0 )
 	{
-		$css_class = array( 'list-group-item', 'page-item-'.$page->ID );
+		$css_class = [ 'list-group-item', 'page-item-'.$page->ID ];
 
 		if ( isset( $args['pages_with_children'][$page->ID] ) )
 			$css_class[] = 'page_item_has_children';
@@ -568,7 +568,7 @@ class gTheme_Walker_Page extends Walker_Page
 		*/
 	}
 
-	public function end_el( &$output, $page, $depth = 0, $args = array() )
+	public function end_el( &$output, $page, $depth = 0, $args = [] )
 	{
 		$output.= "\n";
 	}

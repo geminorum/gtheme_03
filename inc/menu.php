@@ -5,10 +5,10 @@ class gThemeMenu extends gThemeModuleCore
 
 	public function setup_actions( $args = [] )
 	{
-		extract( self::atts( array(
+		extract( self::atts( [
 			'register_nav' => TRUE,
 			'allowedtags'  => FALSE,
-		), $args ) );
+		], $args ) );
 
 		if ( $register_nav )
 			add_action( 'init', [ $this, 'init' ] );

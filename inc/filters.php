@@ -3,25 +3,25 @@
 class gThemeFilters extends gThemeModuleCore
 {
 
-	public function setup_actions( $args = array() )
+	public function setup_actions( $args = [] )
 	{
-		extract( self::atts( array(
+		extract( self::atts( [
 			'content_extra'      => FALSE,
 			'auto_paginate'      => FALSE,
 			'redirect_canonical' => FALSE,
 			'default_editor'     => FALSE,
 			'disable_autoembed'  => TRUE,
 			'overwrite_author'   => TRUE,
-		), $args ) );
+		], $args ) );
 
 		if ( ! is_admin() ) {
 
-			add_action( 'wp_head', array( $this, 'wp_head' ), 5 );
-			add_filter( 'body_class', array( $this, 'body_class' ), 10, 2 );
-			add_filter( 'post_class', array( $this, 'post_class' ), 10, 3 );
+			add_action( 'wp_head', [ $this, 'wp_head' ], 5 );
+			add_filter( 'body_class', [ $this, 'body_class' ], 10, 2 );
+			add_filter( 'post_class', [ $this, 'post_class' ], 10, 3 );
 
-			add_filter( 'document_title_separator', array( $this, 'document_title_separator' ) );
-			add_filter( 'document_title_parts', array( $this, 'document_title_parts' ), 8 );
+			add_filter( 'document_title_separator', [ $this, 'document_title_separator' ] );
+			add_filter( 'document_title_parts', [ $this, 'document_title_parts' ], 8 );
 
 			add_filter( 'the_excerpt', function( $text ){
 				return $text ? $text.gThemeContent::continueReading() : $text;
@@ -33,39 +33,39 @@ class gThemeFilters extends gThemeModuleCore
 					return $length;
 				} );
 
-			add_filter( 'excerpt_more', array( $this, 'excerpt_more' ) );
+			add_filter( 'excerpt_more', [ $this, 'excerpt_more' ] );
 
 			if ( gThemeOptions::info( 'trim_excerpt_characters', FALSE ) ) {
 				remove_filter( 'get_the_excerpt', 'wp_trim_excerpt' );
-				add_filter( 'get_the_excerpt', array( $this, 'get_the_excerpt' ) );
+				add_filter( 'get_the_excerpt', [ $this, 'get_the_excerpt' ] );
 			}
 
-			add_filter( 'the_content', array( $this, 'the_content' ), 15 );
-			add_filter( 'the_content_more_link', array( $this, 'the_content_more_link' ) );
+			add_filter( 'the_content', [ $this, 'the_content' ], 15 );
+			add_filter( 'the_content_more_link', [ $this, 'the_content_more_link' ] );
 
 			if ( $content_extra )
-				add_filter( 'the_content', array( $this, 'the_content_extra' ), 16 );
+				add_filter( 'the_content', [ $this, 'the_content_extra' ], 16 );
 
 			if ( $auto_paginate )
-				add_action( 'loop_start', array( $this, 'loop_start' ) );
+				add_action( 'loop_start', [ $this, 'loop_start' ] );
 
 			if ( $redirect_canonical )
-				add_filter( 'redirect_canonical', array( $this, 'redirect_canonical' ), 10, 2 );
+				add_filter( 'redirect_canonical', [ $this, 'redirect_canonical' ], 10, 2 );
 
 			if ( $default_editor )
-				add_filter( 'wp_default_editor', array( $this, 'wp_default_editor' ) );
+				add_filter( 'wp_default_editor', [ $this, 'wp_default_editor' ] );
 
 			// https://gist.github.com/ocean90/3796628
 			// disables the auto-embeds function in WordPress 3.5
 			if ( $disable_autoembed )
-				remove_filter( 'the_content', array( $GLOBALS['wp_embed'], 'autoembed' ), 8 );
+				remove_filter( 'the_content', [ $GLOBALS['wp_embed'], 'autoembed' ], 8 );
 
 			// to remove wp recent comments widget styles
 			add_filter( 'show_recent_comments_widget_style', '__return_false' );
 
 			if ( $overwrite_author ) {
-				add_filter( 'the_author', array( $this, 'the_author' ), 15 );
-				add_filter( 'the_author_posts_link', array( $this, 'the_author_posts_link' ), 15 );
+				add_filter( 'the_author', [ $this, 'the_author' ], 15 );
+				add_filter( 'the_author_posts_link', [ $this, 'the_author_posts_link' ], 15 );
 			}
 		}
 	}
@@ -400,10 +400,10 @@ class gThemeFilters extends gThemeModuleCore
 	// filter canonical redirects so we can support full page URLs
 	public function redirect_canonical( $redirect_url, $requested_url )
 	{
-		$url_endings = array(
+		$url_endings = [
 			'full',
 			'pall',
-		);
+		];
 
 		if ( is_singular() && in_array( trim( strtolower( substr( $requested_url, -5 ) ), '/' ), $url_endings ) )
 			return trailingslashit( $requested_url );
@@ -425,7 +425,7 @@ class gThemeFilters extends gThemeModuleCore
 		if ( is_feed() )
 			return $default ? get_the_author_meta( 'display_name', $default ) : NULL;
 
-		if ( $meta = gThemeEditorial::author( array( 'echo' => FALSE ) ) )
+		if ( $meta = gThemeEditorial::author( [ 'echo' => FALSE ] ) )
 			return $meta;
 
 		if ( ! $fallback = gThemeOptions::info( 'byline_fallback', TRUE ) )

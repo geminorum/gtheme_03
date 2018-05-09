@@ -1,6 +1,6 @@
 <?php defined( 'ABSPATH' ) or die( header( 'HTTP/1.0 403 Forbidden' ) );
 
-$gtheme_constants = array(
+$gtheme_constants = [
 
 	'GTHEME'               => 'gtheme',
 	'GTHEME_VERSION'       => gThemeCore::version( 'gtheme_03' ),
@@ -24,7 +24,7 @@ $gtheme_constants = array(
 	// 'GTHEME_IS_SYSTEM_PAGE' => FALSE, // cannot set this early!
 	// 'GTHEME_IS_WP_SIGNUP'   => FALSE, // cannot set this early!
 	// 'GTHEME_IS_WP_ACTIVATE' => FALSE, // cannot set this early!
-);
+];
 
 foreach ( $gtheme_constants as $key => $val )
 	defined( $key ) or define( $key, $val );

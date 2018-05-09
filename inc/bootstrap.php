@@ -37,7 +37,7 @@ class gThemeBootstrap extends gThemeModuleCore
 	// FIXME: add cache / problem with yamm
 	public static function navbarNav( $location = 'primary', $wrap = 'navbar', $class = '' )
 	{
-		$menu = wp_nav_menu( array(
+		$menu = wp_nav_menu( [
 			'echo'           => 0,
 			'menu'           => $location,
 			'theme_location' => $location,
@@ -47,7 +47,7 @@ class gThemeBootstrap extends gThemeModuleCore
 			'menu_class'     => 'nav navbar-nav menu-'.$location.' '.$class,
 			'fallback_cb'    => 'wp_bootstrap_navwalker::fallback',
 			'walker'         => new gThemeBootstrap_Walker_NavBar(),
-		) );
+		] );
 
 		if ( $menu )
 			echo $wrap ? '<div id="'.$wrap.'" class="collapse navbar-collapse">'.$menu.'</div>' : $menu;
@@ -75,13 +75,13 @@ class gThemeBootstrap extends gThemeModuleCore
 class gThemeBootstrap_Walker_NavBar extends Walker_Nav_Menu
 {
 
-	public function start_lvl( &$output, $depth = 0, $args = array() )
+	public function start_lvl( &$output, $depth = 0, $args = [] )
 	{
 		$indent = str_repeat( "\t", $depth );
 		$output.= "\n$indent<ul role=\"menu\" class=\" dropdown-menu\">\n";
 	}
 
-	public function start_el( &$output, $item, $depth = 0, $args = array(), $id = 0 )
+	public function start_el( &$output, $item, $depth = 0, $args = [], $id = 0 )
 	{
 		$indent = ( $depth ) ? str_repeat( "\t", $depth ) : '';
 
@@ -115,7 +115,7 @@ class gThemeBootstrap_Walker_NavBar extends Walker_Nav_Menu
 
 			$class = $value = $attributes = '';
 
-			$classes = empty( $item->classes ) ? array() : (array) $item->classes;
+			$classes = empty( $item->classes ) ? [] : (array) $item->classes;
 			// $classes[] = 'menu-item-'.$item->ID;
 
 			if ( $args->has_children )
@@ -133,7 +133,7 @@ class gThemeBootstrap_Walker_NavBar extends Walker_Nav_Menu
 
 			$output.= $indent.'<li'.$id.$value.$class.'>';
 
-			$atts = array();
+			$atts = [];
 			$atts['title']  = ! empty( $item->title )  ? $item->title  : '';
 			$atts['target'] = ! empty( $item->target ) ? $item->target : '';
 			$atts['rel']    = ! empty( $item->xfn )    ? $item->xfn	   : '';

@@ -7,7 +7,7 @@ class gThemeOptions extends gThemeModuleCore
 	{
 		$blog_name = get_bloginfo( 'name', 'display' );
 
-		$defaults = array(
+		$defaults = [
 			'name'      => 'gtheme',
 			'title'     => _x( 'gTheme', 'Theme Title', GTHEME_TEXTDOMAIN ),
 			'sub_title' => FALSE, // 'gTheme Child',
@@ -26,24 +26,24 @@ class gThemeOptions extends gThemeModuleCore
 			'editor_access'      => 'edit_others_posts', // FIXME: WTF
 
 			// INTEGRATION WITH OTHER PLUGINS
-			'supports' => array(
+			'supports' => [
 				'gpersiandate'    => defined( 'GPERSIANDATE_VERSION' ),
 				'geditorial-meta' => defined( 'GEDITORIAL_VERSION' ),
 				'gpeople'         => defined( 'GPEOPLE_VERSION' ),
 				'gshop'           => defined( 'GSHOP_VERSION' ),
 				'zoom'            => TRUE,
-			),
+			],
 
-			'theme_groups' => FALSE, // array( 'main' => 'Main' ),
+			'theme_groups' => FALSE, // [ 'main' => 'Main' ),
 
-			'module_args' => array(),
+			'module_args' => [],
 
 			// MENUS
 			// 'register_nav_menus' => gThemeMenu::defaults(),
-			// 'nav_menu_allowedtags' => array( 'p' ),
+			// 'nav_menu_allowedtags' => [ 'p' ),
 
 			// NAVIGATION
-			// 'breadcrumb_posttypes' => array( 'post' ),
+			// 'breadcrumb_posttypes' => [ 'post' ),
 
 			// SIDEBARS
 			// 'sidebars' => gThemeSideBar::defaults(),
@@ -69,7 +69,7 @@ class gThemeOptions extends gThemeModuleCore
 			// PRIMARY TERMS API
 			// 'primary_terms_legend'   => FALSE,
 			// 'primary_terms_taxonomy' => 'category',
-			// 'primary_terms_defaults' => array(),
+			// 'primary_terms_defaults' => [],
 
 			'default_sep'        => _x( ' ', 'Options: Separator: Default', GTHEME_TEXTDOMAIN ),
 			'title_sep'          => _x( ' &raquo; ', 'Options: Separator: Title', GTHEME_TEXTDOMAIN ),
@@ -132,12 +132,12 @@ class gThemeOptions extends gThemeModuleCore
 			// 'full_content_width' => 455, // setting global content_width on fullwidthpage.php // FALSE to default
 
 			// COMMENTS
-			'comments_disable_types' => array( 'attachment' ),
-			'comment_callback'       => array( 'gThemeComments', 'comment_callback' ), // null to use wp core
-			'comment_form'           => array( 'gThemeComments', 'comment_form' ), // comment_form to use wp core
-			// 'comment_form_strings'   => array(),
-			// 'comment_nav_strings'    => array(),
-			// 'comment_action_strings' => array(),
+			'comments_disable_types' => [ 'attachment' ],
+			'comment_callback'       => [ 'gThemeComments', 'comment_callback' ], // null to use wp core
+			'comment_form'           => [ 'gThemeComments', 'comment_form' ], // comment_form to use wp core
+			// 'comment_form_strings'   => [],
+			// 'comment_nav_strings'    => [],
+			// 'comment_action_strings' => [],
 			// 'comments_closed'        => __( 'Comments are closed.', GTHEME_TEXTDOMAIN ), // set FALSE to hide the text
 			// 'comment_awaiting'       => __( 'Your comment is awaiting moderation.', GTHEME_TEXTDOMAIN ), // set FALSE to hide the text
 
@@ -146,14 +146,14 @@ class gThemeOptions extends gThemeModuleCore
 			'default_avatar_src'  => GTHEME_URL.'/images/avatar.png',
 
 			// SYSTEM TAGS
-			'system_tags_cpt'      => array( 'post' ),
-			'system_tags_excludes' => array( 'no-front', 'no-feed' ),
+			'system_tags_cpt'      => [ 'post' ],
+			'system_tags_excludes' => [ 'no-front', 'no-feed' ],
 			// 'system_tags_defaults' => gThemeTerms::defaults(),
 
 			// EDITOR
 			// 'default_content'   => _x( '[content not available yet]', 'Editor Default Content', GTHEME_TEXTDOMAIN ),
-			// 'mce_buttons'       => array(), // 'superscript', 'subscript'
-			// 'mce_buttons_2'     => array( 'styleselect' ),
+			// 'mce_buttons'       => [], // 'superscript', 'subscript'
+			// 'mce_buttons_2'     => [ 'styleselect' ),
 			// 'mce_style_formats' => gThemeEditor::defaultFormats(),
 
 			'settings_legend' => FALSE, // html content to appear after settings
@@ -164,7 +164,7 @@ class gThemeOptions extends gThemeModuleCore
 			// 'empty_search_query' => '', // string to use on search input form / comment to use default
 
 			// 'post_actions_icons' => FALSE, // NEEDS: genericons css
-			'post_actions' => array( // the order is important!
+			'post_actions' => [ // the order is important!
 				'textsize_buttons', // or 'textsize_buttons_nosep',
 				'textjustify_buttons_nosep', // 'textjustify_buttons', // or ,
 				'printfriendly',
@@ -173,7 +173,7 @@ class gThemeOptions extends gThemeModuleCore
 				'comments_link', // or 'comments_link_feed',
 				'edit_post_link',
 				//'tag_list',
-			),
+			],
 
 			// 'js_tooltipsy'    => FALSE, // enables tooltipsy
 
@@ -181,9 +181,9 @@ class gThemeOptions extends gThemeModuleCore
 			'adjacent_empty'  => '[&hellip;]', // next/prev link, if empty post title
 			'head_viewport'   => 'width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no', // html head viewport meta, for mobile support. set FALSE to disable
 
-			'strings_index_navline' => array( // string for index navline based on conditional tags
+			'strings_index_navline' => [ // string for index navline based on conditional tags
 				// 'category' => 'Category Archives for <strong>%s</strong>',
-			),
+			],
 
 			'default_editor'       => 'html', // set default editor of post edit screen to html for each user // needs module arg // Either 'tinymce', or 'html', or 'test'
 
@@ -192,7 +192,7 @@ class gThemeOptions extends gThemeModuleCore
 			// 'byline_fallback' => TRUE, // if FALSE hides wp users
 
 			// list of font-faces to check after page load via FontDetect
-			// 'css_font_stack' => array( 'Arial', 'Tahoma' ),
+			// 'css_font_stack' => [ 'Arial', 'Tahoma' ],
 
 			// BANNERS API
 			// 'banners_legend' => FALSE, // html before admin banners page
@@ -210,7 +210,7 @@ class gThemeOptions extends gThemeModuleCore
 
 			// ATTACHMENT
 			// 'attachment_download_prefix' => '', // EXAMPLE: 'example.com-'
-		);
+		];
 
 		if ( FALSE === $option )
 			return $defaults;
@@ -221,10 +221,10 @@ class gThemeOptions extends gThemeModuleCore
 		return $default;
 	}
 
-	public static function getDefaultImages( $extra = array() )
+	public static function getDefaultImages( $extra = [] )
 	{
-		return array_merge( array(
-			'raw' => self::registerImage( array(
+		return array_merge( [
+			'raw' => self::registerImage( [
 				'name'        => _x( 'Raw', 'Media Tag Titles', GTHEME_TEXTDOMAIN ),
 				'description' => '',
 				'width'       => 9999,
@@ -234,8 +234,8 @@ class gThemeOptions extends gThemeModuleCore
 				'taxonomy'    => TRUE,
 				'tag'         => TRUE,
 				'insert'      => FALSE,
-			) ),
-			'big' => self::registerImage( array(
+			] ),
+			'big' => self::registerImage( [
 				'name'        => _x( 'Big', 'Media Tag Titles', GTHEME_TEXTDOMAIN ),
 				'description' => '',
 				'width'       => 1280,
@@ -245,8 +245,8 @@ class gThemeOptions extends gThemeModuleCore
 				'taxonomy'    => TRUE,
 				'tag'         => TRUE,
 				'insert'      => TRUE,
-			) ),
-			'single' => self::registerImage( array(
+			] ),
+			'single' => self::registerImage( [
 				'name'        => _x( 'Single', 'Media Tag Titles', GTHEME_TEXTDOMAIN ),
 				'description' => '',
 				'width'       => 1000,
@@ -256,25 +256,25 @@ class gThemeOptions extends gThemeModuleCore
 				'taxonomy'    => TRUE,
 				'tag'         => TRUE,
 				'insert'      => TRUE,
-			) ),
-		), $extra );
+			] ),
+		], $extra );
 	}
 
-	public static function registerImage( $atts = array() )
+	public static function registerImage( $atts = [] )
 	{
-		$args = self::atts( array(
+		$args = self::atts( [
 			'name'        => __( 'Untitled' ),
 			'description' => '',
 			'width'       => 0,
 			'height'      => 9999,
 			'crop'        => FALSE,
-			'post_type'   => array( 'post' ),
+			'post_type'   => [ 'post' ],
 			'taxonomy'    => FALSE, // support for terms
 			'tag'         => TRUE, // media tag
 			'insert'      => FALSE, // insert in post
-		), $atts );
+		], $atts );
 
-		return array(
+		return [
 			'n' => $args['name'],
 			'd' => $args['description'],
 			'w' => $args['width'],
@@ -284,14 +284,15 @@ class gThemeOptions extends gThemeModuleCore
 			't' => $args['taxonomy'],
 			's' => $args['tag'],
 			'i' => $args['insert'],
-		);
+		];
 	}
 
 	// FIXME: DEPRECATED
-	public static function register_image( $n, $w, $h = 9999, $c = 0, $t = TRUE, $i = FALSE, $p = array( 'post' ), $d = '' )
+	public static function register_image( $n, $w, $h = 9999, $c = 0, $t = TRUE, $i = FALSE, $p = [ 'post' ], $d = '' )
 	{
 		self::__dep( 'gThemeOptions::registerImage()' );
-		return array(
+
+		return [
 			'n' => $n, // name (title)
 			'd' => $d, // description
 			'w' => $w, // width
@@ -301,7 +302,7 @@ class gThemeOptions extends gThemeModuleCore
 			'i' => $i, // insert in post
 			'p' => $p, // post_type
 			't' => FALSE, // taxonomy
-		);
+		];
 	}
 
 	public static function getOptions()
@@ -342,7 +343,7 @@ class gThemeOptions extends gThemeModuleCore
 			$gtheme_options = self::getOptions();
 
 		if ( $gtheme_options === FALSE )
-			$gtheme_options = array();
+			$gtheme_options = [];
 
 		if ( !isset( $gtheme_options[$name] ) )
 			//$gtheme_options[$name] = $default;
@@ -358,7 +359,7 @@ class gThemeOptions extends gThemeModuleCore
 			$gtheme_options = self::getOptions();
 
 		if ( $gtheme_options === FALSE )
-			$gtheme_options = array();
+			$gtheme_options = [];
 
 		$gtheme_options[$name] = $value;
 
@@ -372,7 +373,7 @@ class gThemeOptions extends gThemeModuleCore
 			$gtheme_options = self::getOptions();
 
 		if ( $gtheme_options === FALSE )
-			$gtheme_options = array();
+			$gtheme_options = [];
 
 		unset( $gtheme_options[$name] );
 
@@ -417,7 +418,7 @@ class gThemeOptions extends gThemeModuleCore
 
 	public static function supports( $plugins, $fallback = FALSE )
 	{
-		$supports = self::info( 'supports', array() );
+		$supports = self::info( 'supports', [] );
 
 		foreach ( (array) $plugins as $plugin )
 			if ( isset( $supports[$plugin] ) )

@@ -17,7 +17,7 @@ if ( $debug ) {
 
 		if ( isset( $_SERVER['HTTP_IF_NONE_MATCH'] ) && stripslashes( $_SERVER['HTTP_IF_NONE_MATCH'] ) == $version ) {
 			$protocol = $_SERVER['SERVER_PROTOCOL'];
-			if ( ! in_array( $protocol, array( 'HTTP/1.1', 'HTTP/2', 'HTTP/2.0' ) ) ) {
+			if ( ! in_array( $protocol, [ 'HTTP/1.1', 'HTTP/2', 'HTTP/2.0' ] ) ) {
 				$protocol = 'HTTP/1.0';
 			}
 			header( $protocol.' 304 Not Modified' );

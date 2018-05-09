@@ -5,35 +5,37 @@ class gThemeEditor extends gThemeModuleCore
 
 	protected $ajax = TRUE;
 
-	function setup_actions( $args = array() )
+	function setup_actions( $args = [] )
 	{
-		extract( self::atts( array(
+		extract( self::atts( [
 			'css'             => TRUE, // this is the editor style!!
 			'buttons'         => TRUE,
 			'buttons_2'       => TRUE,
 			'advanced_styles' => TRUE,
 			'default_content' => FALSE,
-		), $args ) );
+		], $args ) );
 
 		if ( $css )
-			add_filter( 'mce_css', array( $this, 'mce_css' ) );
+			add_filter( 'mce_css', [ $this, 'mce_css' ] );
 
 		if ( $buttons )
-			add_filter( 'mce_buttons', array( $this, 'mce_buttons' ) );
+			add_filter( 'mce_buttons', [ $this, 'mce_buttons' ] );
 
 		if ( $buttons_2 )
-			add_filter( 'mce_buttons_2', array( $this, 'mce_buttons_2' ) );
+			add_filter( 'mce_buttons_2', [ $this, 'mce_buttons_2' ] );
 
 		if ( $advanced_styles )
-			add_filter( 'tiny_mce_before_init', array( $this, 'tiny_mce_before_init' ), 12 );
+			add_filter( 'tiny_mce_before_init', [ $this, 'tiny_mce_before_init' ], 12 );
 
 		if ( $default_content )
-			add_filter( 'default_content', array( $this, 'default_content' ), 10, 2 );
+			add_filter( 'default_content', [ $this, 'default_content' ], 10, 2 );
 	}
 
 	public static function style_url()
 	{
-		$file = gThemeUtilities::isRTL() ? 'editor-style-rtl.css' : 'editor-style.css';
+		$file = gThemeUtilities::isRTL()
+			? 'editor-style-rtl.css'
+			: 'editor-style.css';
 
 		if ( file_exists( GTHEME_CHILD_DIR.'/css/'.$file ) )
 			return GTHEME_CHILD_URL.'/css/'.$file;
@@ -52,7 +54,7 @@ class gThemeEditor extends gThemeModuleCore
 
 	public function mce_buttons( $buttons )
 	{
-		$gtheme_buttons = gThemeOptions::info( 'mce_buttons', array() );
+		$gtheme_buttons = gThemeOptions::info( 'mce_buttons', [] );
 
 		foreach ( $gtheme_buttons as $gtheme_button )
 			array_push( $buttons, $gtheme_button );
@@ -64,9 +66,9 @@ class gThemeEditor extends gThemeModuleCore
 	public function mce_buttons_2( $buttons )
 	{
 		if ( gThemeUtilities::isRTL() )
-			$buttons = array_diff( $buttons, array( 'outdent', 'indent' ) );
+			$buttons = array_diff( $buttons, [ 'outdent', 'indent' ] );
 
-		$gtheme_buttons = gThemeOptions::info( 'mce_buttons_2', array( 'styleselect' ) );
+		$gtheme_buttons = gThemeOptions::info( 'mce_buttons_2', [ 'styleselect' ] );
 
 		foreach ( $gtheme_buttons as $gtheme_button )
 			array_unshift( $buttons, $gtheme_button );
@@ -93,35 +95,35 @@ class gThemeEditor extends gThemeModuleCore
 		return $settings;
 	}
 
-	public static function defaultFormats( $extra = array() )
+	public static function defaultFormats( $extra = [] )
 	{
-		return array_merge( array(
-			array(
+		return array_merge( [
+			[
 				'title'   => _x( 'Blockquote', 'Editor Custom Class', GTHEME_TEXTDOMAIN ),
 				'block'   => 'blockquote',
 				'classes' => 'entry-quote',
-			),
-			array(
+			],
+			[
 				'title'    => _x( 'Unordered List', 'Editor Custom Class', GTHEME_TEXTDOMAIN ),
 				'selector' => 'ul', // http://wordpress.stackexchange.com/a/85071
 				'classes'  => 'entry-list',
-			),
-			array(
+			],
+			[
 				'title'    => _x( 'Ordered List', 'Editor Custom Class', GTHEME_TEXTDOMAIN ),
 				'selector' => 'ol',
 				'classes'  => 'entry-list',
-			),
-			array(
+			],
+			[
 				'title'   => _x( 'Note', 'Editor Custom Class', GTHEME_TEXTDOMAIN ),
 				'block'   => 'p',
 				'classes' => 'entry-note',
-			),
-			array(
+			],
+			[
 				'title'   => _x( 'Source', 'Editor Custom Class', GTHEME_TEXTDOMAIN ),
 				'block'   => 'p',
 				'classes' => 'entry-source',
-			),
-		), $extra );
+			],
+		], $extra );
 	}
 
 	public function default_content( $post_content, $post )

@@ -5,7 +5,7 @@ if ( ! function_exists( 'gmeta' ) ) : function gmeta(){} endif; // DEPRECATED: u
 if ( ! function_exists( 'gmeta_label' ) ) : function gmeta_label() {} endif; // DEPRECATED: use gThemeEditorial::label()
 if ( ! function_exists( 'gmeta_lead' ) ) : function gmeta_lead() {} endif; // DEPRECATED: use gThemeEditorial::lead()
 if ( ! function_exists( 'gmeta_author' ) ) :
-	function gmeta_author( $b = '', $a = '', $f = FALSE, $args = array() ) {
+	function gmeta_author( $b = '', $a = '', $f = FALSE, $args = [] ) {
 		$author = get_the_author();
 		if ( empty( $author ) )
 			return ( isset( $args['def'] ) ? $args['def'] : FALSE );

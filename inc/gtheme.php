@@ -18,7 +18,7 @@ final class gThemeCore
 
 	private function setup_globals()
 	{
-		$modules = array(
+		$modules = [
 			'core/base'      => '',
 			'core/html'      => '',
 			'core/misc'      => '',
@@ -57,7 +57,7 @@ final class gThemeCore
 			'date'       => 'gThemeDate',
 			'editorial'  => 'gThemeEditorial',
 			'attachment' => 'gThemeAttachment',
-		);
+		];
 
 		if ( is_admin() ) {
 			$modules['admin'] = 'gThemeAdmin';
@@ -72,10 +72,10 @@ final class gThemeCore
 	{
 		$this->load_modules( $this->modules );
 
-		add_action( 'after_setup_theme', array( $this, 'after_setup_theme' ) );
-		add_action( 'init', array( $this, 'init_late' ), 99 );
+		add_action( 'after_setup_theme', [ $this, 'after_setup_theme' ] );
+		add_action( 'init', [ $this, 'init_late' ], 99 );
 
-		do_action_ref_array( 'gtheme_after_setup_actions', array( &$this ) );
+		do_action_ref_array( 'gtheme_after_setup_actions', [ &$this ] );
 	}
 
 	private function load_modules( $modules, $root = null )
@@ -95,14 +95,14 @@ final class gThemeCore
 		}
 	}
 
-	private function init_modules( $modules, $options = array() )
+	private function init_modules( $modules, $options = [] )
 	{
 		foreach ( $modules as $module_slug => $module_class ) {
 
 			if ( $module_class && class_exists( $module_class ) ) {
 
-				$slug = str_ireplace( array( 'core/', 'modules/', 'misc/' ), '', $module_slug );
-				$args = empty( $options[$module_slug] ) ? array() : $options[$module_slug];
+				$slug = str_ireplace( [ 'core/', 'modules/', 'misc/' ], '', $module_slug );
+				$args = empty( $options[$module_slug] ) ? [] : $options[$module_slug];
 
 				try {
 					$this->{$module_slug} = new $module_class( $args );
@@ -117,12 +117,12 @@ final class gThemeCore
 	{
 		load_theme_textdomain( GTHEME_TEXTDOMAIN, GTHEME_DIR.'/languages' );
 
-		$this->init_modules( $this->modules, gThemeOptions::info( 'module_args', array() ) );
+		$this->init_modules( $this->modules, gThemeOptions::info( 'module_args', [] ) );
 	}
 
 	public function init_late()
 	{
-		$this->load_modules( array( 'fallbacks' => NULL ) );
+		$this->load_modules( [ 'fallbacks' => NULL ] );
 	}
 
 	public static function version( $theme = NULL )

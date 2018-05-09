@@ -9,7 +9,7 @@ class gThemeFrontPage extends gThemeModuleCore
 		global $gtheme_front_page_displayed;
 
 		if ( empty( $gtheme_front_page_displayed ) )
-			$gtheme_front_page_displayed = array();
+			$gtheme_front_page_displayed = [];
 
 		if ( is_singular() )
 			$gtheme_front_page_displayed[] = get_the_ID();
@@ -23,7 +23,7 @@ class gThemeFrontPage extends gThemeModuleCore
 		global $gtheme_front_page_displayed;
 
 		if ( empty( $gtheme_front_page_displayed ) )
-			$gtheme_front_page_displayed = array();
+			$gtheme_front_page_displayed = [];
 
 		if ( is_null( $post_id ) )
 			$post_id = get_the_ID();

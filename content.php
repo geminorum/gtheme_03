@@ -3,7 +3,7 @@
 	if ( is_singular() ) {
 
 		gThemeContent::wrapOpen( 'singular' );
-		gThemeImage::image( array( 'tag' => 'single' ) );
+		gThemeImage::image( [ 'tag' => 'single' ] );
 
 		if ( gThemeTerms::has( 'poster' ) ) {
 
@@ -19,7 +19,7 @@
 	} else {
 
 		gThemeContent::wrapOpen( 'index' );
-		gThemeImage::image( array( 'tag' => 'single' ) );
+		gThemeImage::image( [ 'tag' => 'single' ] );
 
 		get_template_part( 'partials/entry', 'index' );
 	}

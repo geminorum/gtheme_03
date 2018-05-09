@@ -3,13 +3,13 @@
 class gThemeContent extends gThemeModuleCore
 {
 
-	public static function wrapOpen( $context = 'index', $extra = array(), $tag = 'article' )
+	public static function wrapOpen( $context = 'index', $extra = [], $tag = 'article' )
 	{
-		$classes = array_merge( array(
+		$classes = array_merge( [
 			'entry-wrap',
 			'content-'.$context,
 			'clearfix',
-		), $extra );
+		], $extra );
 
 		$post_id = get_the_ID();
 
@@ -40,7 +40,7 @@ class gThemeContent extends gThemeModuleCore
 	}
 
 	// http://www.billerickson.net/code/wp_query-arguments/
-	public static function query( $args = array(), $expiration = GTHEME_CACHETTL )
+	public static function query( $args = [], $expiration = GTHEME_CACHETTL )
 	{
 		if ( gThemeWordPress::isDev() )
 			return new \WP_Query( $args );
@@ -51,8 +51,8 @@ class gThemeContent extends gThemeModuleCore
 			delete_transient( $key );
 
 		if ( FALSE === ( $query = get_transient( $key ) ) ) {
-			 $query = new \WP_Query( $args );
-			 set_transient( $key, $query, $expiration );
+			$query = new \WP_Query( $args );
+			set_transient( $key, $query, $expiration );
 		}
 
 		return $query;
@@ -102,7 +102,7 @@ class gThemeContent extends gThemeModuleCore
 		if ( 'page' == $post->post_type )
 			return '';
 
-		$args = array( 'id' => $post->ID, 'echo' => FALSE, 'context' => 'single' );
+		$args = [ 'id' => $post->ID, 'echo' => FALSE, 'context' => 'single' ];
 
 		if ( gThemeOptions::supports( 'gpeople', TRUE )
 			&& class_exists( 'gPeopleRemoteTemplate' ) ) {
@@ -163,9 +163,9 @@ class gThemeContent extends gThemeModuleCore
 	{
 		$post = get_post( $post_id );
 
-		$classes = $class ? array_map(
-			array( 'gThemeHTML', 'sanitizeClass' ),
-			gThemeHTML::attrClass( $class ) ) : array();
+		$classes = $class
+			? array_map( [ 'gThemeHTML', 'sanitizeClass' ], gThemeHTML::attrClass( $class ) )
+			: [];
 
 		if ( ! $post )
 			return $classes;
@@ -200,17 +200,17 @@ class gThemeContent extends gThemeModuleCore
 			$link = esc_url( get_permalink() );
 
 		if ( ! empty( $edit ) )
-			$edit = vsprintf( ' <a href="%1$s" title="%3$s" class="%4$s">%2$s</a>', array(
+			$edit = vsprintf( ' <a href="%1$s" title="%3$s" class="%4$s">%2$s</a>', [
 				$edit,
 				_x( 'Edit', 'Content: Read More Edit', GTHEME_TEXTDOMAIN ),
 				_x( 'Jump to edit page', 'Content: Read More Edit Title', GTHEME_TEXTDOMAIN ),
 				'post-edit-link',
-			) );
+			] );
 
 		$text  = gThemeOptions::info( 'read_more_text', _x( 'Read more&nbsp;<span class="excerpt-link-hellip">&hellip;</span>', 'Content: Read More Text', GTHEME_TEXTDOMAIN ) );
 		$title = sprintf( gThemeOptions::info( 'read_more_title', _x( 'Continue reading &ldquo;%s&rdquo; &hellip;', 'Content: Read More Title', GTHEME_TEXTDOMAIN ) ), $title );
 
-		return vsprintf( ' <a %6$s href="%1$s" aria-label="%3$s" class="%4$s">%2$s</a>%5$s', array( $link, $text, $title, 'excerpt-link', $edit, $scope ) );
+		return vsprintf( ' <a %6$s href="%1$s" aria-label="%3$s" class="%4$s">%2$s</a>%5$s', [ $link, $text, $title, 'excerpt-link', $edit, $scope ] );
 	}
 
 	// OLD: gtheme_the_title_attribute()
@@ -347,13 +347,13 @@ class gThemeContent extends gThemeModuleCore
 	public static function postActions( $before = '<li class="entry-action %s">', $after = '</li>', $list = TRUE, $icon = NULL )
 	{
 		if ( TRUE === $list )
-			$actions = gThemeOptions::info( 'post_actions', array() );
+			$actions = gThemeOptions::info( 'post_actions', [] );
 
 		else if ( is_array( $list ) )
 			$actions = $list;
 
 		else
-			$actions = array();
+			$actions = [];
 
 		if ( is_null( $icon ) )
 			$icon = gThemeOptions::info( 'post_actions_icons', FALSE );
@@ -365,7 +365,7 @@ class gThemeContent extends gThemeModuleCore
 			if ( is_array( $action ) ) {
 
 				if ( is_callable( $action ) )
-					call_user_func_array( $action, array( $before, $after, $icon ) );
+					call_user_func_array( $action, [ $before, $after, $icon ] );
 
 			} else {
 
@@ -536,19 +536,19 @@ class gThemeContent extends gThemeModuleCore
 			case 'the_date':
 			case 'date':
 
-				gThemeDate::date( array(
+				gThemeDate::date( [
 					'before' => sprintf( $before, 'the-date' ),
 					'after'  => $after,
 					'text'   => $icon ? self::getGenericon( 'edit' ) : NULL,
-				) );
+				] );
 
 			break;
 			case 'editorial_label':
 
-				gThemeEditorial::label( array(
+				gThemeEditorial::label( [
 					'before' => sprintf( $before, 'entry-label' ),
 					'after'  => $after,
-				) );
+				] );
 		}
 	}
 
@@ -566,15 +566,15 @@ class gThemeContent extends gThemeModuleCore
 		if ( ! $shortlink = wp_get_shortlink( $post->ID ) )
 			return;
 
-		echo $before.gThemeHTML::tag( 'a', array(
+		echo $before.gThemeHTML::tag( 'a', [
 			'href'  => $shortlink,
-			'title' => $title ? $title : FALSE,
+			'title' => $title ?: FALSE,
 			'rel'   => 'shortlink',
-			'data' => array(
+			'data'  => [
 				'toggle' => 'tooltip',
 				'id'     => $post->ID,
-			),
-		), $text ).$after;
+			],
+		], $text ).$after;
 	}
 
 	// ALSO SEE : http://wp.tutsplus.com/tutorials/theme-development/creating-a-wordpress-post-text-size-changer-using-jquery/
@@ -603,7 +603,7 @@ class gThemeContent extends gThemeModuleCore
 	{
 		if ( $footer && is_singular() ) {
 			wp_enqueue_script( 'jquery' );
-			add_action( 'wp_footer', array( __CLASS__, 'justify_buttons_footer' ), 99 );
+			add_action( 'wp_footer', [ __CLASS__, 'justify_buttons_footer' ], 99 );
 		}
 
 		echo $b;
@@ -652,9 +652,9 @@ $('#text-unjustify').click(function (e) {
 	public static function printfriendly( $before = '', $after = '', $text = NULL, $footer = TRUE, $analytics = TRUE )
 	{
 		if ( $footer && is_singular() )
-			add_action( 'wp_footer', array( __CLASS__, 'printfriendly_footer' ) );
+			add_action( 'wp_footer', [ __CLASS__, 'printfriendly_footer' ] );
 
-		$query_args = array(
+		$query_args = [
 			'url'               => urlencode( get_permalink() ),
 			'pfCustomCSS'       => urlencode( GTHEME_URL.'/css/printfriendly'.( gThemeUtilities::isRTL() ? '-rtl' : '' ).'.css&ver='.GTHEME_VERSION ),
 			'imageDisplayStyle' => gThemeUtilities::isRTL( 'left', 'right' ), // 'block',
@@ -665,7 +665,7 @@ $('#text-unjustify').click(function (e) {
 			// 'disablePrint'      => '',
 			// 'disableEmail'      => '',
 			// 'hideImages'        => '',
-		);
+		];
 
 		if ( $analytics )
 			$onclick = 'onclick="window.print();'."if(typeof(ga)!='undefined'){ga('send','event','PrintFriendly');}".'return false;"';
@@ -691,10 +691,10 @@ $('#text-unjustify').click(function (e) {
 	{
 		$premalink = get_permalink();
 
-		$query = array(
+		$query = [
 			'linkurl'  => urlencode( $premalink ),
 			'linkname' => self::title_attr( FALSE, NULL, '%s' ),
-		);
+		];
 
 		echo $before;
 		printf( '<a class="a2a_dd" href="%1$s" rel="nofollow" data-a2a-url="%3$s" data-a2a-title="%4$s">%2$s</a>',
@@ -736,7 +736,7 @@ if(typeof(ga)!='undefined'){a2a_config.track_links = 'ga';}
 	public static function addthis( $b = '', $a = '', $text = NULL, $footer = TRUE )
 	{
 		if ( $footer && is_singular() )
-			add_action( 'wp_footer', array( __CLASS__, 'addthis_footer' ), 5 );
+			add_action( 'wp_footer', [ __CLASS__, 'addthis_footer' ], 5 );
 
 		echo $b;
 		echo '<div class="addthis_sharing_toolbox" data-url="'.get_permalink().'" data-title="';
@@ -771,19 +771,19 @@ addthis_config.services_custom = [
 	{
 		ob_start();
 
-			gThemeEditorial::label( array(
+			gThemeEditorial::label( [
 				'after'       => ': ',
 				'image'       => FALSE,
 				'link'        => FALSE,
 				'description' => FALSE,
-			) );
+			] );
 
-			gThemeEditorial::meta( 'over-title', array( 'after' => $sep ) );
+			gThemeEditorial::meta( 'over-title', [ 'after' => $sep ] );
 
 			if ( $title )
 				echo $title;
 
-			gThemeEditorial::meta( 'sub-title', array( 'before' => $sep ) );
+			gThemeEditorial::meta( 'sub-title', [ 'before' => $sep ] );
 
 			if ( $byline )
 				echo strip_tags( self::byline( NULL, ' — ', '', FALSE ) );
@@ -792,9 +792,9 @@ addthis_config.services_custom = [
 	}
 
 	// ANCESTOR : gtheme_post_header()
-	public static function header( $atts = array() )
+	public static function header( $atts = [] )
 	{
-		$args = self::atts( array(
+		$args = self::atts( [
 			'context'     => 'single',
 			'prefix'      => 'entry',
 			'actions'     => FALSE,
@@ -808,7 +808,7 @@ addthis_config.services_custom = [
 			'meta'        => TRUE,
 			'link'        => TRUE, // disable linking compeletly
 			'anchor'      => FALSE, // permalink anchor for the post
-		), $atts );
+		], $atts );
 
 		if ( is_null( $args['title'] ) )
 			$args['title'] = gThemeUtilities::wordWrap( get_the_title(), 2 );
@@ -832,10 +832,10 @@ addthis_config.services_custom = [
 		echo '<div class="titles-class '.$args['prefix'].'-titles">';
 
 		if ( $args['meta'] )
-			gThemeEditorial::meta( 'over-title', array(
+			gThemeEditorial::meta( 'over-title', [
 				'before' => '<'.$args['meta_tag'].' itemprop="alternativeHeadline" class="overtitle '.$args['prefix'].'-overtitle">',
 				'after'  => '</'.$args['meta_tag'].'>',
-			) );
+			] );
 
 		echo '<'.$args['title_tag'].' itemprop="headline" class="title '.$args['prefix'].'-title amp-wp-title">';
 
@@ -853,10 +853,10 @@ addthis_config.services_custom = [
 		echo '</'.$args['title_tag'].'>';
 
 		if ( $args['meta'] )
-			gThemeEditorial::meta( 'sub-title', array(
+			gThemeEditorial::meta( 'sub-title', [
 				'before' => '<'.$args['meta_tag'].' itemprop="alternativeHeadline" class="subtitle '.$args['prefix'].'-subtitle">',
 				'after'  => '</'.$args['meta_tag'].'>',
-			) );
+			] );
 
 		echo '</div>';
 
@@ -870,9 +870,9 @@ addthis_config.services_custom = [
 			echo '</'.$args['wrap_tag'].'>';
 	}
 
-	public static function footer( $atts = array() )
+	public static function footer( $atts = [] )
 	{
-		$args = self::atts( array(
+		$args = self::atts( [
 			'context'     => 'single',
 			'prefix'      => 'entry',
 			'actions'     => FALSE,
@@ -883,7 +883,7 @@ addthis_config.services_custom = [
 			'title'       => NULL,
 			'meta'        => TRUE,
 			'link'        => TRUE, // disable linking compeletly
-		), $atts );
+		], $atts );
 
 		if ( $args['actions'] ) {
 			echo '<footer class="footer-class footer-'.$args['context'].' '.$args['prefix'].'-footer">';

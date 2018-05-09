@@ -3,25 +3,25 @@
 class gThemeComments extends gThemeModuleCore
 {
 
-	public function setup_actions( $args = array() )
+	public function setup_actions( $args = [] )
 	{
-		extract( self::atts( array(
+		extract( self::atts( [
 			'reverse_comments' => FALSE,
 			'disable_types'    => FALSE,
 			'closing_time'     => FALSE,
-		), $args ) );
+		], $args ) );
 
-		add_filter( 'comment_class', array( $this, 'comment_class' ), 10 ,4 );
-		add_action( 'comment_form_before', array( $this, 'comment_form_before' ) );
+		add_filter( 'comment_class', [ $this, 'comment_class' ], 10 ,4 );
+		add_action( 'comment_form_before', [ $this, 'comment_form_before' ] );
 
 		if ( $reverse_comments )
-			add_filter( 'comments_array', array( $this, 'comments_array_reverse' ), 12 );
+			add_filter( 'comments_array', [ $this, 'comments_array_reverse' ], 12 );
 
 		if ( $disable_types )
-			add_filter( 'comments_open', array( $this, 'comments_open' ), 10 , 2 );
+			add_filter( 'comments_open', [ $this, 'comments_open' ], 10 , 2 );
 
 		if ( $closing_time )
-			add_action( 'comment_form_top', array( $this, 'comment_form_top' ) );
+			add_action( 'comment_form_top', [ $this, 'comment_form_top' ] );
 	}
 
 	public static function template( $before = '', $after = '' )
@@ -61,7 +61,7 @@ class gThemeComments extends gThemeModuleCore
 	// http://www.wpbeginner.com/wp-tutorials/how-to-disable-comments-on-wordpress-media-attachments/
 	public function comments_open( $open, $post_id )
 	{
-		$post_types = gThemeOptions::info( 'comments_disable_types', array( 'attachment' ) );
+		$post_types = gThemeOptions::info( 'comments_disable_types', [ 'attachment' ] );
 
 		if ( $post_types && is_array( $post_types ) ) {
 			$post = get_post( $post_id );
@@ -106,11 +106,11 @@ class gThemeComments extends gThemeModuleCore
 
 	public static function navigation( $class = 'comment-nav-above' )
 	{
-		$strings = gThemeOptions::info( 'comment_nav_strings', array(
+		$strings = gThemeOptions::info( 'comment_nav_strings', [
 			'title'    => _x( 'Comment navigation', 'Comments Module', GTHEME_TEXTDOMAIN ),
 			'previous' => _x( '&rarr; Older Comments', 'Comments Module', GTHEME_TEXTDOMAIN ),
 			'next'     => _x( 'Newer Comments &larr;', 'Comments Module', GTHEME_TEXTDOMAIN ),
-		) );
+		] );
 
 		echo '<nav class="navigation comment-navigation '.$class.'" role="navigation">';
 		if ( $strings['title'] )
@@ -128,19 +128,17 @@ class gThemeComments extends gThemeModuleCore
 		$template = _nx( 'One thought on &ldquo;%2$s&rdquo;', '%1$s thoughts on &ldquo;%2$s&rdquo;', $comments, 'Comments Title', GTHEME_TEXTDOMAIN );
 		$title    = sprintf( $template, number_format_i18n( $comments ), '<span>'.get_the_title().'</span>' );
 
-		echo gThemeHTML::tag( $tag, array(
-			'class' => $class,
-		), $title );
+		echo gThemeHTML::tag( $tag, [ 'class' => $class ], $title );
 	}
 
 	public static function feed( $class = 'comments-feed' )
 	{
 		$icon = '<svg style="display:none" viewBox="0 0 32 32"><path d="M16-0.034c-8.842 0-16.034 7.192-16.034 16.034s7.192 16.034 16.034 16.034 16.034-7.192 16.034-16.034-7.192-16.034-16.034-16.034zM16 30.966c-8.252 0-14.966-6.714-14.966-14.966s6.714-14.966 14.966-14.966 14.966 6.714 14.966 14.966-6.714 14.966-14.966 14.966zM10.502 13.951c-0.295 0-0.534 0.239-0.534 0.534s0.239 0.534 0.534 0.534c2.253 0 4.14 0.697 5.454 2.016 1.315 1.318 2.010 3.208 2.010 5.465 0 0.295 0.239 0.534 0.534 0.534s0.534-0.239 0.534-0.534c0.001-2.546-0.802-4.696-2.32-6.22-1.521-1.523-3.668-2.329-6.212-2.329zM10.505 9.027c-0.295 0-0.534 0.239-0.534 0.534s0.239 0.534 0.534 0.534c7.14 0 12.523 5.333 12.523 12.404 0 0.295 0.239 0.534 0.534 0.534s0.534-0.239 0.534-0.534c0.001-7.68-5.842-13.472-13.591-13.472zM11.999 18.882c-1.121 0-2.033 0.913-2.033 2.035 0 1.121 0.912 2.033 2.033 2.033 1.122 0 2.035-0.912 2.035-2.034s-0.914-2.034-2.035-2.034zM11.999 21.882c-0.532 0-0.965-0.433-0.965-0.965 0-0.533 0.433-0.967 0.965-0.967s0.966 0.435 0.967 0.967c0 0.532-0.434 0.965-0.967 0.965z"></path></svg>';
 
-		$html = gThemeHTML::tag( 'a', array(
+		$html = gThemeHTML::tag( 'a', [
 			'href'  => get_post_comments_feed_link(),
 			'title' => _x( 'Grab the feed for comments of this post', 'Comments Module', GTHEME_TEXTDOMAIN ),
-		), $icon );
+		], $icon );
 
 		echo gThemeHTML::wrap( $html, $class );
 	}
@@ -225,16 +223,16 @@ class gThemeComments extends gThemeModuleCore
 
 	public static function commentActions( $comment, $args, $depth, $class = 'media-actions comment-actions' )
 	{
-		$actions = array();
+		$actions = [];
 
-		$strings = gThemeOptions::info( 'comment_action_strings', array(
+		$strings = gThemeOptions::info( 'comment_action_strings', [
 			'reply_text'    => _x( 'Reply', 'Comments Module: Action String', GTHEME_TEXTDOMAIN ),
 			'reply_to_text' => _x( 'Reply to %s', 'Comments Module: Action String', GTHEME_TEXTDOMAIN ),
 			'login_text'    => _x( 'Log in to Reply', 'Comments Module: Action String', GTHEME_TEXTDOMAIN ),
 			'edit'          => _x( 'Edit This', 'Comments Module: Action String', GTHEME_TEXTDOMAIN ),
-		) );
+		] );
 
-		$reply = get_comment_reply_link( array(
+		$reply = get_comment_reply_link( [
 			'depth'         => $depth,
 			'max_depth'     => $args['max_depth'],
 			'add_below'     => 'comment-body',
@@ -243,16 +241,16 @@ class gThemeComments extends gThemeModuleCore
 			'reply_text'    => $strings['reply_text'],
 			'reply_to_text' => $strings['reply_to_text'],
 			'login_text'    => $strings['login_text'],
-		), $comment );
+		], $comment );
 
 		if ( $reply )
 			$actions['reply'] = $reply;
 
 		if ( $edit = get_edit_comment_link( $comment->comment_ID ) )
-			$actions['edit-link'] = gThemeHTML::tag( 'a', array(
+			$actions['edit-link'] = gThemeHTML::tag( 'a', [
 				'href'  => $edit,
 				'class' => 'comment-edit-link',
-			), $strings['edit'] );
+			], $strings['edit'] );
 
 		$actions = apply_filters( 'gtheme_comment_actions', $actions, $comment, $args, $depth );
 
@@ -265,7 +263,7 @@ class gThemeComments extends gThemeModuleCore
 		echo '</ul>';
 	}
 
-	public static function comment_form( $args = array(), $post_id = null )
+	public static function comment_form( $args = [], $post_id = null )
 	{
 		if ( comments_open() ) {
 
@@ -280,7 +278,7 @@ class gThemeComments extends gThemeModuleCore
 			$required  = get_option( 'require_name_email' );
 			$html5     = (bool) current_theme_supports( 'html5', 'comment-form' );
 
-			$strings = gThemeOptions::info( 'comment_form_strings', array(
+			$strings = gThemeOptions::info( 'comment_form_strings', [
 				'required' => _x( '(Required)', 'Comments Module: Comment Form String', GTHEME_TEXTDOMAIN ),
 				'name'     => _x( 'Name', 'Comments Module: Comment Form String', GTHEME_TEXTDOMAIN ),
 				'email'    => _x( 'Email', 'Comments Module: Comment Form String', GTHEME_TEXTDOMAIN ),
@@ -295,15 +293,15 @@ class gThemeComments extends gThemeModuleCore
 				'title_reply_to'     => _x( 'Leave a Reply to %s', 'Comments Module: Comment Form String', GTHEME_TEXTDOMAIN ),
 				'cancel_reply_link'  => _x( 'Cancel reply', 'Comments Module: Comment Form String', GTHEME_TEXTDOMAIN ),
 				'label_submit'       => _x( 'Post Comment', 'Comments Module: Comment Form String', GTHEME_TEXTDOMAIN ),
-			) );
+			] );
 
-			$fields = array();
+			$fields = [];
 
 			$fields['author'] = '<div class="form-group comment-form-author"><label for="author">'
 				.$strings['name']
 				.( $required ? ' <span class="required">'.$strings['required'].'</span>' : '' )
 				.'</label>'
-				.gThemeHTML::tag( 'input', array(
+				.gThemeHTML::tag( 'input', [
 					'type'         => 'text',
 					'autocomplete' => 'name',
 					'required'     => $required,
@@ -312,13 +310,13 @@ class gThemeComments extends gThemeModuleCore
 					'id'           => 'author',
 					'name'         => 'author',
 					'value'        => $commenter['comment_author'],
-				) ).'</div>';
+				] ).'</div>';
 
 			$fields['email'] = '<div class="form-group comment-form-email"><label for="email">'
 				.$strings['email']
 				.( $required ? ' <span class="required">'.$strings['required'].'</span>' : '' )
 				.'</label>'
-				.gThemeHTML::tag( 'input', array(
+				.gThemeHTML::tag( 'input', [
 					'type'         => ( $html5 ? 'email' : 'text' ),
 					'autocomplete' => 'email',
 					'required'     => $required,
@@ -328,12 +326,12 @@ class gThemeComments extends gThemeModuleCore
 					'name'         => 'email',
 					'value'        => $commenter['comment_author_email'],
 					// 'placeholder'        => $strings['email'], // NOTE: problem with rtl
-				) ).'</div>';
+				] ).'</div>';
 
 			$fields['url'] = '<div class="form-group comment-form-url"><label for="url">'
 				.$strings['url']
 				.'</label>'
-				.gThemeHTML::tag( 'input', array(
+				.gThemeHTML::tag( 'input', [
 					'type'         => ( $html5 ? 'url' : 'text' ),
 					'autocomplete' => 'url',
 					'class'        => 'form-control comment-field-ltr',
@@ -342,23 +340,23 @@ class gThemeComments extends gThemeModuleCore
 					'name'         => 'url',
 					'value'        => $commenter['comment_author_url'],
 					// 'placeholder'   => $strings['url'], // NOTE: problem with rtl
-				) ).'</div>';
+				] ).'</div>';
 
 			$fields['cookies'] = '<div class="checkbox comment-form-cookies-consent"><label for="wp-comment-cookies-consent">'
-				.gThemeHTML::tag( 'input', array(
+				.gThemeHTML::tag( 'input', [
 					'type'    => 'checkbox',
 					'id'      => 'wp-comment-cookies-consent',
 					'name'    => 'wp-comment-cookies-consent',
 					'value'   => 'yes',
 					'checked' => ! empty( $commenter['comment_author_email'] ),
-				) ).$strings['cookies'].'</label></div>';
+				] ).$strings['cookies'].'</label></div>';
 
-			$defaults = array(
+			$defaults = [
 				'fields' => apply_filters( 'comment_form_default_fields', $fields ),
 
 				'comment_field' => '<div class="form-group comment-form-comment"><label for="comment" class="sr-only">'
 					.$strings['comment'].'</label>'
-					.gThemeHTML::tag( 'textarea', array(
+					.gThemeHTML::tag( 'textarea', [
 						'required'    => TRUE,
 						'class'       => 'form-control',
 						'cols'        => '45',
@@ -366,19 +364,19 @@ class gThemeComments extends gThemeModuleCore
 						'id'          => 'comment',
 						'name'        => 'comment',
 						'placeholder' => $strings['comment'],
-					), NULL ).'</div>',
+					], NULL ).'</div>',
 
 				'must_log_in' => '<p class="must-log-in">'
 						.sprintf( $strings['must_log_in'], wp_login_url( $permalink ) )
 					.'</p>',
 
 				'logged_in_as' => '<p class="logged-in-as">'
-					.vsprintf( $strings['logged_in_as'], array(
+					.vsprintf( $strings['logged_in_as'], [
 						get_edit_user_link(),
 						esc_attr( sprintf( $strings['logged_in_as_title'], $user_identity ) ),
 						$user_identity,
 						wp_logout_url( $permalink ),
-					) ).'</p>',
+					] ).'</p>',
 
 				'comment_notes_before' => '',
 				'comment_notes_after'  => '',
@@ -403,7 +401,7 @@ class gThemeComments extends gThemeModuleCore
 				'submit_field'  => '<p class="form-submit">%1$s %2$s</p>',
 
 				'action' => site_url( '/wp-comments-post.php' ),
-			);
+			];
 
 			$args = wp_parse_args( $args, apply_filters( 'comment_form_defaults', $defaults ) );
 

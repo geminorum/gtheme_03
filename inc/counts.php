@@ -5,37 +5,37 @@ class gThemeCounts extends gThemeModuleCore
 
 	protected $key = 'counts';
 
-	public function setup_actions( $args = array() )
+	public function setup_actions( $args = [] )
 	{
-		extract( self::atts( array(
+		extract( self::atts( [
 			'admin' => FALSE,
-		), $args ) );
+		], $args ) );
 
 		if ( $admin && is_admin() ) {
-			add_filter( 'gtheme_settings_subs', array( $this, 'subs' ), 5 );
-			add_action( 'gtheme_settings_load', array( $this, 'load' ) );
+			add_filter( 'gtheme_settings_subs', [ $this, 'subs' ], 5 );
+			add_action( 'gtheme_settings_load', [ $this, 'load' ] );
 		}
 	}
 
-	public static function defaults( $extra = array() )
+	public static function defaults( $extra = [] )
 	{
-		return array_merge( array(
-			'dashboard' => array(
+		return array_merge( [
+			'dashboard' => [
 				'title' => _x( 'Dashboard', 'Counts Module', GTHEME_TEXTDOMAIN ),
 				'desc'  => _x( 'Dashboard Count', 'Counts Module', GTHEME_TEXTDOMAIN ),
 				'def'   => 5,
-			),
-			'latest' => array(
+			],
+			'latest' => [
 				'title' => _x( 'Latest Posts', 'Counts Module', GTHEME_TEXTDOMAIN ),
 				'desc'  => _x( 'Latest Posts Count', 'Counts Module', GTHEME_TEXTDOMAIN ),
 				'def'   => 5,
-			),
-		), $extra );
+			],
+		], $extra );
 	}
 
 	public static function get( $name, $default = NULL )
 	{
-		$option_counts = gThemeOptions::getOption( 'counts', array() );
+		$option_counts = gThemeOptions::getOption( 'counts', [] );
 
 		if ( count( $option_counts ) && isset( $option_counts[$name] ) )
 			return $option_counts[$name];
@@ -51,9 +51,9 @@ class gThemeCounts extends gThemeModuleCore
 		return 0;
 	}
 
-	public static function link( $name, $atts = array() )
+	public static function link( $name, $atts = [] )
 	{
-		$args = self::atts( array(
+		$args = self::atts( [
 			'title'   => NULL,
 			'attr'    => FALSE,
 			'def'     => '#',
@@ -63,7 +63,7 @@ class gThemeCounts extends gThemeModuleCore
 			'echo'    => TRUE,
 			'context' => NULL,
 			'rel'     => FALSE,
-		), $atts );
+		], $atts );
 
 		if ( $page = self::get( $name, 0 ) ) {
 			$args['def'] = get_permalink( $page );
@@ -73,11 +73,11 @@ class gThemeCounts extends gThemeModuleCore
 		}
 
 		if ( $args['title'] ) {
-			$html = $args['before'].gThemeHTML::tag( 'a', array(
+			$html = $args['before'].gThemeHTML::tag( 'a', [
 				'href'  => $args['def'],
 				'class' => $args['class'],
 				'title' => $args['attr'],
-			), $args['title'] ).$args['after'];
+			], $args['title'] ).$args['after'];
 
 			if ( ! $args['echo'] )
 				return $html;
@@ -91,27 +91,27 @@ class gThemeCounts extends gThemeModuleCore
 
 	public function subs( $subs )
 	{
-		return array_merge( $subs, array( 'counts' => _x( 'Counts', 'Modules: Menu Name', GTHEME_TEXTDOMAIN ) ) );
+		return array_merge( $subs, [ 'counts' => _x( 'Counts', 'Modules: Menu Name', GTHEME_TEXTDOMAIN ) ] );
 	}
 
 	public function settings_sub_html( $uri, $sub = 'general' )
 	{
 		$defaults = gThemeOptions::info( 'counts', self::defaults() );
-		$options  = gThemeOptions::getOption( 'counts', array() );
+		$options  = gThemeOptions::getOption( 'counts', [] );
 
 		echo '<form method="post" action="">';
 			echo '<h3>'._x( 'Item Counts', 'Modules: Counts', GTHEME_TEXTDOMAIN ).'</h3>';
 			echo '<table class="form-table">';
 
 				foreach ( $defaults as $count => $default ) {
-					$this->do_settings_field( array(
+					$this->do_settings_field( [
 						'title'   => $default['title'],
 						'values'  => isset( $default['type'] ) ? $default['type'] : 'page',
 						'type'    => 'number',
 						'field'   => $count,
 						'default' => ( isset( $options[$count] ) ? $options[$count] : $defaults[$count]['def'] ),
 						'desc'    => isset( $default['desc'] ) ? $default['desc'] : '',
-					), TRUE );
+					], TRUE );
 				}
 
 			echo '</table>';
@@ -128,7 +128,7 @@ class gThemeCounts extends gThemeModuleCore
 
 			if ( ! empty( $_POST ) && wp_verify_nonce( $_POST['_gtheme_counts'], 'gtheme-counts' ) ) {
 
-				$options = gThemeOptions::getOption( 'counts', array() );
+				$options = gThemeOptions::getOption( 'counts', [] );
 
 				foreach ( gThemeOptions::info( 'counts', self::defaults() ) as $option => $default )
 
@@ -143,7 +143,7 @@ class gThemeCounts extends gThemeModuleCore
 				gThemeWordPress::redirectReferer( $result ? 'updated' : 'error' );
 			}
 
-			add_action( 'gtheme_settings_sub_counts', array( $this, 'settings_sub_html' ), 10, 2 );
+			add_action( 'gtheme_settings_sub_counts', [ $this, 'settings_sub_html' ], 10, 2 );
 		}
 	}
 }

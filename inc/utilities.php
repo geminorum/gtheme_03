@@ -160,7 +160,7 @@ class gThemeUtilities extends gThemeBaseCore
 		foreach ( (array) $terms as $term ) {
 			$count = $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM $wpdb->term_relationships WHERE term_taxonomy_id = %d", $term ) );
 			do_action( 'edit_term_taxonomy', $term, $taxonomy );
-			$wpdb->update( $wpdb->term_taxonomy, compact( 'count' ), array( 'term_taxonomy_id' => $term ) );
+			$wpdb->update( $wpdb->term_taxonomy, compact( 'count' ), [ 'term_taxonomy_id' => $term ] );
 			do_action( 'edited_term_taxonomy', $term, $taxonomy );
 		}
 	}
@@ -241,7 +241,7 @@ class gThemeUtilities extends gThemeBaseCore
 		if ( is_admin() )
 			$current_url = add_query_arg( $wp->query_string, '', home_url( $wp->request ) );
 		else
-			$current_url = home_url( add_query_arg( array(), ( empty( $wp->request ) ? FALSE : $wp->request ) ) );
+			$current_url = home_url( add_query_arg( [], ( empty( $wp->request ) ? FALSE : $wp->request ) ) );
 
 		if ( $trailingslashit )
 			return trailingslashit( $current_url );

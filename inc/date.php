@@ -5,12 +5,12 @@ class gThemeDate extends gThemeModuleCore
 
 	// FIXME: UNFINISHED
 	// ANCESTOR: gtheme_the_date()
-	public static function date( $atts = array() )
+	public static function date( $atts = [] )
 	{
 		$post_id  = get_the_ID();
 		$template = '<span class="date"><a href="%1$s" title="%2$s" rel="shortlink"><time class="%5$s-date" datetime="%3$s">%4$s</time></a></span>';
 
-		$args = self::atts( array(
+		$args = self::atts( [
 			'before'      => '',
 			'after'       => '',
 			'context'     => 'single',
@@ -25,7 +25,7 @@ class gThemeDate extends gThemeModuleCore
 			'meta'        => TRUE,
 			'link'        => TRUE, // disable linking compeletly
 			'echo'        => TRUE, // disable linking compeletly
-		), $atts );
+		], $atts );
 
 		if ( $args['onceperdate'] ) {
 			$args['post_id'] = $post_id; // NOTE: must be global b/c we also use the_date()
@@ -37,7 +37,7 @@ class gThemeDate extends gThemeModuleCore
 		$link = $args['shortlink'] ? wp_get_shortlink( $args['post_id'] ) : get_the_permalink( $args['post_id'] );
 
 
-		$html = vsprintf( $args['template'], array(
+		$html = vsprintf( $args['template'], [
 			esc_url( $link ),
 
 			// self::context( $args['post_id'], 'y/n/j' ),
@@ -50,7 +50,7 @@ class gThemeDate extends gThemeModuleCore
 			esc_html( $date ),
 
 			$args['prefix'],
-		) );
+		] );
 
 		if ( ! $args['echo'] )
 			return $args['before'].$html.$args['after'];
@@ -92,23 +92,20 @@ class gThemeDate extends gThemeModuleCore
 		if ( ! class_exists( 'gPersianDateArchives' ) )
 			return;
 
-		echo gPersianDateArchives::getCompact( array(
-			'post_type'   => array( 'post', 'reshare', 'issue' ),
+		echo gPersianDateArchives::getCompact( [
+			'post_type'   => [ 'post', 'reshare', 'issue' ],
 			'link_anchor' => TRUE,
-		));
+		] );
 
-		echo gPersianDateArchives::getClean(array(
-			'post_type'     => array( 'post', 'reshare', 'issue' ),
+		echo gPersianDateArchives::getClean( [
+			'post_type'     => [ 'post', 'reshare', 'issue' ],
 			'comment_count' => TRUE,
 			'row_context'   => 'latest',
 			// 'css_class'     => 'entry-after after-latest after-rows',
-		));
-
+		] );
 
 		// echo '<ul>';
-		// gPersianDateArchives::get( array(
-			// 'type' => 'daily',
-		// ));
+		// gPersianDateArchives::get( [ 'type' => 'daily' ] );
 		// echo '</ul>';
 	}
 }

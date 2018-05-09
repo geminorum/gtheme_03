@@ -3,22 +3,22 @@
 class gThemeEmbed extends gThemeModuleCore
 {
 
-	public function setup_actions( $args = array() )
+	public function setup_actions( $args = [] )
 	{
-		extract( self::atts( array(
+		extract( self::atts( [
 			'site_title'    => TRUE,
 			'content_meta'  => FALSE,
 			'response_data' => TRUE,
-		), $args ) );
+		], $args ) );
 
 		if ( $site_title )
-			add_filter( 'embed_site_title_html', array( $this, 'embed_site_title_html' ) );
+			add_filter( 'embed_site_title_html', [ $this, 'embed_site_title_html' ] );
 
 		if ( $content_meta )
-			add_action( 'embed_content_meta', array( $this, 'embed_content_meta' ) );
+			add_action( 'embed_content_meta', [ $this, 'embed_content_meta' ] );
 
 		if ( $content_meta )
-			add_filter( 'oembed_response_data', array( $this, 'oembed_response_data' ), 11, 4 );
+			add_filter( 'oembed_response_data', [ $this, 'oembed_response_data' ], 11, 4 );
 	}
 
 	public function embed_site_title_html( $site_title )
@@ -50,7 +50,7 @@ class gThemeEmbed extends gThemeModuleCore
 
 		if ( $thumbnail_id = gThemeImage::getThumbID( gThemeOptions::info( 'embed_image_size', 'single' ), $post->ID ) ) {
 
-			list( $thumbnail_url, $thumbnail_width, $thumbnail_height ) = wp_get_attachment_image_src( $thumbnail_id, array( $width, 99999 ) );
+			list( $thumbnail_url, $thumbnail_width, $thumbnail_height ) = wp_get_attachment_image_src( $thumbnail_id, [ $width, 99999 ] );
 			$data['thumbnail_url']    = $thumbnail_url;
 			$data['thumbnail_width']  = $thumbnail_width;
 			$data['thumbnail_height'] = $thumbnail_height;

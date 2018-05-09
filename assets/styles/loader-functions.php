@@ -1,6 +1,6 @@
 <?php
 
-function include_css( $array = array(), $debug = FALSE ){
+function include_css( $array = [], $debug = FALSE ){
 	foreach ( $array as $css )
 		if ( file_exists( $css ) )
 			include( $css );
@@ -18,10 +18,10 @@ SEE :
 function minify_css( $buffer ) {
 
 	$buffer = preg_replace( '/\x{FEFF}/u', '', $buffer ); // remove utf8 bom
-	$buffer = str_replace( array( "@charset 'UTF-8';", '@charset "UTF-8";' ), '', $buffer );
+	$buffer = str_replace( [ "@charset 'UTF-8';", '@charset "UTF-8";' ], '', $buffer );
 
 	$buffer = preg_replace( '!/\*[^*]*\*+([^/][^*]*\*+)*/!', '', $buffer ); // comments
-	$buffer = str_replace( array( "\r\n", "\r", "\n", "\t", '  ', '    ', '    ' ), '', $buffer ); // remove tabs, spaces, newlines, etc.
+	$buffer = str_replace( [ "\r\n", "\r", "\n", "\t", '  ', '    ', '    ' ], '', $buffer ); // remove tabs, spaces, newlines, etc.
 	$buffer = preg_replace( '/\s+/', ' ', $buffer ); // normalize whitespace
 	$buffer = preg_replace( '/;(?=\s*})/', '', $buffer ); // remove ; before }
 	$buffer = preg_replace( '/(,|:|;|\{|}|\*\/|>) /', '$1', $buffer ); // remove space after , : ; { } */ >
@@ -39,22 +39,22 @@ function minify_css( $buffer ) {
 // @REF: https://coderwall.com/p/fatjmw/compressing-html-output-with-php
 function minify_html( $buffer ) {
 
-	$buffer = str_replace( array( "\n", "\r", "\t" ), '', $buffer );
+	$buffer = str_replace( [ "\n", "\r", "\t" ], '', $buffer );
 
 	$buffer = preg_replace(
-		array( '/<!--(.*)-->/Uis', "/[[:blank:]]+/" ),
-		array( '', ' ' ),
+		[ '/<!--(.*)-->/Uis', "/[[:blank:]]+/" ],
+		[ '', ' ' ],
 	$buffer );
 
-	$buffer = preg_replace( array(
+	$buffer = preg_replace( [
 		'/\>[^\S ]+/s', // strip whitespaces after tags, except space
 		'/[^\S ]+\</s', // strip whitespaces before tags, except space
 		'/(\s)+/s' // shorten multiple whitespace sequences
-	), array(
+	], [
 		'>',
 		'<',
 		'\\1'
-	), $buffer );
+	], $buffer );
 
 	return trim( $buffer );
 }

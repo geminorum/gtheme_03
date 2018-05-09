@@ -3,25 +3,25 @@
 class gThemeEditorial extends gThemeModuleCore
 {
 
-	public function setup_actions( $args = array() )
+	public function setup_actions( $args = [] )
 	{
-		extract( self::atts( array(
+		extract( self::atts( [
 			'word_wrap' => FALSE,
-		), $args ) );
+		], $args ) );
 
 		if ( $word_wrap )
-			add_filter( 'gmeta_meta', array( $this, 'gmeta_meta' ), 12, 2 ); // FIXME: DEPRECATED on editorial meta
+			add_filter( 'gmeta_meta', [ $this, 'gmeta_meta' ], 12, 2 ); // FIXME: DEPRECATED on editorial meta
 	}
 
 	public function gmeta_meta( $meta, $field )
 	{
-		if ( $meta && in_array( $field, array( 'ot', 'st', 'over-title', 'sub-title' ) ) )
+		if ( $meta && in_array( $field, [ 'ot', 'st', 'over-title', 'sub-title' ] ) )
 			return gThemeUtilities::wordWrap( $meta, 2 );
 
 		return $meta;
 	}
 
-	public static function series( $atts = array() )
+	public static function series( $atts = [] )
 	{
 		if ( ! function_exists( 'gEditorial' ) )
 			return FALSE;
@@ -34,7 +34,7 @@ class gThemeEditorial extends gThemeModuleCore
 		return TRUE;
 	}
 
-	public static function postLikeButton( $atts = array() )
+	public static function postLikeButton( $atts = [] )
 	{
 		if ( ! function_exists( 'gEditorial' ) )
 			return FALSE;
@@ -42,11 +42,11 @@ class gThemeEditorial extends gThemeModuleCore
 		if ( ! gEditorial()->enabled( 'like' ) )
 			return FALSE;
 
-		$args = self::atts( array(
+		$args = self::atts( [
 			'before' => '',
 			'after'  => '',
 			'echo'   => TRUE,
-		), $atts );
+		], $atts );
 
 		if ( ! $html = gEditorial()->like->get_button() )
 			return FALSE;
@@ -60,7 +60,7 @@ class gThemeEditorial extends gThemeModuleCore
 		return TRUE;
 	}
 
-	public static function siteModified( $atts = array() )
+	public static function siteModified( $atts = [] )
 	{
 		if ( ! function_exists( 'gEditorial' ) )
 			return FALSE;
@@ -73,7 +73,7 @@ class gThemeEditorial extends gThemeModuleCore
 		return TRUE;
 	}
 
-	public static function postModified( $atts = array() )
+	public static function postModified( $atts = [] )
 	{
 		if ( ! function_exists( 'gEditorial' ) )
 			return FALSE;
@@ -86,58 +86,58 @@ class gThemeEditorial extends gThemeModuleCore
 		return TRUE;
 	}
 
-	public static function label( $atts = array() )
+	public static function label( $atts = [] )
 	{
-		if ( ! is_callable( array( 'geminorum\\gEditorial\\Templates\\Meta', 'metaLabel' ) ) )
+		if ( ! is_callable( [ 'geminorum\\gEditorial\\Templates\\Meta', 'metaLabel' ] ) )
 			return FALSE;
 
 		return \geminorum\gEditorial\Templates\Meta::metaLabel( $atts );
 	}
 
-	public static function source( $atts = array() )
+	public static function source( $atts = [] )
 	{
-		if ( ! is_callable( array( 'geminorum\\gEditorial\\Templates\\Meta', 'metaSource' ) ) )
+		if ( ! is_callable( [ 'geminorum\\gEditorial\\Templates\\Meta', 'metaSource' ] ) )
 			return FALSE;
 
 		return \geminorum\gEditorial\Templates\Meta::metaSource( $atts );
 	}
 
-	public static function author( $atts = array() )
+	public static function author( $atts = [] )
 	{
-		if ( ! is_callable( array( 'geminorum\\gEditorial\\Templates\\Meta', 'metaAuthor' ) ) )
+		if ( ! is_callable( [ 'geminorum\\gEditorial\\Templates\\Meta', 'metaAuthor' ] ) )
 			return FALSE;
 
 		return \geminorum\gEditorial\Templates\Meta::metaAuthor( $atts );
 	}
 
-	public static function lead( $atts = array() )
+	public static function lead( $atts = [] )
 	{
-		if ( ! is_callable( array( 'geminorum\\gEditorial\\Templates\\Meta', 'metaLead' ) ) )
+		if ( ! is_callable( [ 'geminorum\\gEditorial\\Templates\\Meta', 'metaLead' ] ) )
 			return FALSE;
 
 		return \geminorum\gEditorial\Templates\Meta::metaLead( $atts );
 	}
 
-	public static function meta( $field, $atts = array() )
+	public static function meta( $field, $atts = [] )
 	{
-		if ( ! is_callable( array( 'geminorum\\gEditorial\\Templates\\Meta', 'getMetaField' ) ) )
+		if ( ! is_callable( [ 'geminorum\\gEditorial\\Templates\\Meta', 'getMetaField' ] ) )
 			return FALSE;
 
-		$args = self::atts( array(
+		$args = self::atts( [
 			'id'     => isset( $atts['post_id'] ) ? $atts['post_id'] : NULL,
 			'filter' => FALSE,
-		), $atts );
+		], $atts );
 
 		if ( ! $html = \geminorum\gEditorial\Templates\Meta::getMetaField( $field, $args ) )
 			return FALSE;
 
-		$args = self::atts( array(
+		$args = self::atts( [
 			'before' => '',
 			'after'  => '',
 			'echo'   => TRUE,
-		), $atts );
+		], $atts );
 
-		if ( in_array( $field, array( 'ot', 'st', 'over-title', 'sub-title' ) ) )
+		if ( in_array( $field, [ 'ot', 'st', 'over-title', 'sub-title' ] ) )
 			$html = gThemeUtilities::wordWrap( $html, 2 );
 
 		$html = $args['before'].$html.$args['after'];
@@ -164,7 +164,7 @@ class gThemeEditorial extends gThemeModuleCore
 		return ob_get_clean();
 	}
 
-	public static function issuePosts( $atts = array() )
+	public static function issuePosts( $atts = [] )
 	{
 		if ( ! function_exists( 'gEditorial' ) )
 			return FALSE;
@@ -173,7 +173,7 @@ class gThemeEditorial extends gThemeModuleCore
 			return FALSE;
 
 		if ( ! array_key_exists( 'item_cb', $atts ) )
-			$atts['item_cb'] = array( __CLASS__, 'issueRowCallback' );
+			$atts['item_cb'] = [ __CLASS__, 'issueRowCallback' ];
 
 		echo gEditorial()->magazine->issue_shortcode( $atts );
 
@@ -182,39 +182,39 @@ class gThemeEditorial extends gThemeModuleCore
 		return TRUE;
 	}
 
-	public static function issue( $atts = array() )
+	public static function issue( $atts = [] )
 	{
-		if ( ! is_callable( array( 'geminorum\\gEditorial\\Templates\\Magazine', 'theIssue' ) ) )
+		if ( ! is_callable( [ 'geminorum\\gEditorial\\Templates\\Magazine', 'theIssue' ] ) )
 			return FALSE;
 
 		return \geminorum\gEditorial\Templates\Magazine::theIssue( $atts );
 	}
 
-	public static function issueMeta( $field, $atts = array() )
+	public static function issueMeta( $field, $atts = [] )
 	{
-		if ( ! is_callable( array( 'geminorum\\gEditorial\\Templates\\Magazine', 'theIssueMeta' ) ) )
+		if ( ! is_callable( [ 'geminorum\\gEditorial\\Templates\\Magazine', 'theIssueMeta' ] ) )
 			return FALSE;
 
 		return \geminorum\gEditorial\Templates\Magazine::theIssueMeta( $field, $atts );
 	}
 
-	public static function issueCover( $atts = array() )
+	public static function issueCover( $atts = [] )
 	{
-		if ( ! is_callable( array( 'geminorum\\gEditorial\\Templates\\Magazine', 'cover' ) ) )
+		if ( ! is_callable( [ 'geminorum\\gEditorial\\Templates\\Magazine', 'cover' ] ) )
 			return FALSE;
 
 		return \geminorum\gEditorial\Templates\Magazine::cover( $atts );
 	}
 
-	public static function bookCover( $atts = array() )
+	public static function bookCover( $atts = [] )
 	{
-		if ( ! is_callable( array( 'geminorum\\gEditorial\\Templates\\Book', 'cover' ) ) )
+		if ( ! is_callable( [ 'geminorum\\gEditorial\\Templates\\Book', 'cover' ] ) )
 			return FALSE;
 
 		return \geminorum\gEditorial\Templates\Book::cover( $atts );
 	}
 
-	public static function refList( $atts = array() )
+	public static function refList( $atts = [] )
 	{
 		if ( ! function_exists( 'gNetwork' ) )
 			return FALSE;
@@ -222,12 +222,12 @@ class gThemeEditorial extends gThemeModuleCore
 		if ( ! gNetwork()->module( 'shortcodes' ) )
 			return FALSE;
 
-		echo gNetwork()->shortcodes->shortcode_reflist( array_merge( $atts, array( 'context' => 'single' ) ), NULL, 'reflist' );
+		echo gNetwork()->shortcodes->shortcode_reflist( array_merge( $atts, [ 'context' => 'single' ] ), NULL, 'reflist' );
 
 		return TRUE;
 	}
 
-	public static function reshareSource( $atts = array() )
+	public static function reshareSource( $atts = [] )
 	{
 		self::__dep( 'gThemeEditorial::source()' );
 		return self::source( $atts );

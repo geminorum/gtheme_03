@@ -9,7 +9,7 @@ class gThemeNavigation extends gThemeModuleCore
 	{
 		global $wp_query;
 
-		$classes = array( 'navigation' );
+		$classes = [ 'navigation' ];
 
 		if ( $context )
 			$classes[] = 'navigation-'.$context;
@@ -55,10 +55,10 @@ class gThemeNavigation extends gThemeModuleCore
 
 		$html.= '</ul>';
 
-		echo gThemeHTML::tag( 'nav', array(
+		echo gThemeHTML::tag( 'nav', [
 			'role'  => 'navigation',
 			'class' => $classes,
-		), $html );
+		], $html );
 	}
 
 	public static function paginate( $atts = [], $query = NULL )
@@ -113,9 +113,9 @@ class gThemeNavigation extends gThemeModuleCore
 	}
 
 	// wrapper wit conditional tags
-	public static function breadcrumb( $atts = array() )
+	public static function breadcrumb( $atts = [] )
 	{
-		if ( is_singular( gThemeOptions::info( 'breadcrumb_posttypes', array( 'post' ) ) ) )
+		if ( is_singular( gThemeOptions::info( 'breadcrumb_posttypes', [ 'post' ] ) ) )
 			self::breadcrumbSingle( $atts );
 
 		else if ( is_archive() || is_search() )
@@ -124,11 +124,11 @@ class gThemeNavigation extends gThemeModuleCore
 
 	// Home > Cat > Label
 	// bootstrap 3 compatible markup
-	public static function breadcrumbSingle( $atts = array() )
+	public static function breadcrumbSingle( $atts = [] )
 	{
 		global $page, $numpages;
 
-		$args = self::atts( array(
+		$args = self::atts( [
 			'home'       => FALSE, // 'home' // 'network' // 'custom string'
 			'home_title' => NULL,
 			'term'       => 'both',
@@ -140,7 +140,7 @@ class gThemeNavigation extends gThemeModuleCore
 			'before'     => '<div class="nav-content nav-content-single">',
 			'after'      => '</div>',
 			'context'    => NULL,
-		), $atts );
+		], $atts );
 
 		$crumbs = self::crumbHome( $args );
 
@@ -148,7 +148,7 @@ class gThemeNavigation extends gThemeModuleCore
 			$crumbs[] = gThemeTemplate::the_terms( FALSE, $args['tax'], $args['term'] );
 
 		if ( FALSE !== $args['label'] && function_exists( 'gmeta_label' ) )
-			$crumbs[] = gmeta_label( '', '', FALSE, array( 'echo' => FALSE ) );
+			$crumbs[] = gmeta_label( '', '', FALSE, [ 'echo' => FALSE ] );
 
 		if ( is_singular() ) {
 
@@ -188,7 +188,7 @@ class gThemeNavigation extends gThemeModuleCore
 		echo '</ol>'.$args['after'];
 	}
 
-	public static function breadcrumb_single( $atts = array() )
+	public static function breadcrumb_single( $atts = [] )
 	{
 		self::__dep( 'gThemeNavigation::breadcrumbSingle()' );
 		self::breadcrumbSingle( $atts );
@@ -197,17 +197,17 @@ class gThemeNavigation extends gThemeModuleCore
 	// home > archives > paged
 	// bootstrap 3 compatible markup
 	// @SEE: [get_the_archive_title()](https://developer.wordpress.org/reference/functions/get_the_archive_title/)
-	public static function breadcrumbArchive( $atts = array() )
+	public static function breadcrumbArchive( $atts = [] )
 	{
-		$args = self::atts( array(
+		$args = self::atts( [
 			'home'       => FALSE, // 'home' // 'network' // 'custom string'
 			'home_title' => NULL,
-			'strings'    => gThemeOptions::info( 'strings_breadcrumb_archive', array() ),
+			'strings'    => gThemeOptions::info( 'strings_breadcrumb_archive', [] ),
 			'class'      => 'gtheme-breadcrumb',
 			'before'     => '<div class="nav-content nav-content-archive">',
 			'after'      => '</div>',
 			'context'    => NULL,
-		), $atts );
+		], $atts );
 
 		$crumbs = self::crumbHome( $args );
 
@@ -233,7 +233,7 @@ class gThemeNavigation extends gThemeModuleCore
 		echo '</ol>'.$args['after'];
 	}
 
-	public static function breadcrumb_archive( $atts = array() )
+	public static function breadcrumb_archive( $atts = [] )
 	{
 		self::__dep( 'gThemeNavigation::breadcrumbArchive()' );
 		self::breadcrumbArchive( $atts );
@@ -241,7 +241,7 @@ class gThemeNavigation extends gThemeModuleCore
 
 	public static function crumbHome( $args )
 	{
-		$crumbs = array();
+		$crumbs = [];
 
 		if ( empty( $args['home'] ) )
 			return $crumbs;

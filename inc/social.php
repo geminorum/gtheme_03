@@ -18,34 +18,34 @@ class gThemeSocial extends gThemeModuleCore
 		echo '<meta property="og:locale" content="'.esc_attr( gThemeOptions::info( 'locale', get_locale() ) ).'" />'."\n";
 		echo '<meta property="og:site_name" content="'.esc_attr( gThemeOptions::info( 'blog_name' ) ).'" />'."\n";
 
-		self::meta( 'type', array(
+		self::meta( 'type', [
 			'<meta property="og:type" content="',
-		), '" />'."\n" , 'esc_attr' );
+		], '" />'."\n" , 'esc_attr' );
 
-		self::meta( 'url', array(
+		self::meta( 'url', [
 			'<meta property="og:url" content="',
 			'<meta name="twitter:url" content="',
-		), '" />'."\n" , 'esc_url' );
+		], '" />'."\n" , 'esc_url' );
 
-		$image = self::meta( 'image', array(
+		$image = self::meta( 'image', [
 			'<meta itemprop="image" content="',
 			'<meta property="og:image" content="',
 			'<meta name="twitter:image" content="',
 			'<meta name="thumbnail" content="',
 			'<link rel="image_src" href="',
-		), '" />'."\n" , 'esc_url' );
+		], '" />'."\n" , 'esc_url' );
 
-		self::meta( 'title', array(
+		self::meta( 'title', [
 			'<meta itemprop="name" content="',
 			'<meta property="og:title" content="',
-		), '" />'."\n" , 'esc_attr' );
+		], '" />'."\n" , 'esc_attr' );
 
-		self::meta( 'description', array(
+		self::meta( 'description', [
 			'<meta itemprop="description" content="',
 			'<meta property="og:description" content="',
 			'<meta name="description" content="',
 			'<meta name="twitter:description" content="',
-		), '" />'."\n" , 'esc_attr' );
+		], '" />'."\n" , 'esc_attr' );
 
 		echo '<meta name="twitter:card" content="'.( $image ? 'summary_large_image' : 'summary' ).'" />'."\n";
 
@@ -96,18 +96,18 @@ class gThemeSocial extends gThemeModuleCore
 					$output = gThemeOptions::info( 'default_image_src', FALSE );
 
 				if ( is_singular() )
-					$output = gThemeImage::getImage( array(
+					$output = gThemeImage::getImage( [
 						'tag'   => $size,
 						'url'   => TRUE,
 						'empty' => $output,
-					) );
+					] );
 
 				else if ( is_tax() || is_tag() || is_category() )
-					$output = gThemeImage::termImage( array(
+					$output = gThemeImage::termImage( [
 						'tag'   => $size,
 						'url'   => TRUE,
 						'empty' => $output,
-					) );
+					] );
 
 			break;
 			case 'title':

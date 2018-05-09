@@ -4,24 +4,24 @@
 
 if ( $ltr ) {
 
-	$css = array(
+	$css = [
 
 		// 'style-ltr.css',
 		'style.css',
 
 		'../../../plugins/gnetwork/assets/css/front.all.raw.css',
 		'../../../plugins/geditorial/assets/css/front.all.raw.css',
-	);
+	];
 
 } else {
 
-	$css = array(
+	$css = [
 
 		'style.css',
 
 		'../../../plugins/gnetwork/assets/css/front.all.raw.css',
 		'../../../plugins/geditorial/assets/css/front.all.raw.css',
-	);
+	];
 }
 
 // echo '@charset "UTF-8";';

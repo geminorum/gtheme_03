@@ -14,11 +14,11 @@ class gThemeTemplate extends gThemeModuleCore
 			$template = gThemeOptions::info( 'template_logo', $template );
 		}
 
-		$logo = vsprintf( $template, array(
+		$logo = vsprintf( $template, [
 			gThemeUtilities::home(),
 			gThemeOptions::info( 'blog_name', '' ),
 			esc_attr( gThemeOptions::info( 'logo_title', '' ) ),
-		) );
+		] );
 
 		if ( ! $echo )
 			return $logo;
@@ -43,11 +43,11 @@ class gThemeTemplate extends gThemeModuleCore
 		$template     = gThemeOptions::getOption( 'template_author_link', '<a href="%1$s" title="%2$s" rel="author">%3$s</a>' );
 		$display_name = get_the_author_meta( 'display_name', $user->ID ); // applying gMember filter
 
-		return vsprintf( $template, array(
+		return vsprintf( $template, [
 			esc_url( get_author_posts_url( $user->ID, $user->user_nicename ) ),
 			esc_attr( sprintf( _x( 'Posts by %s', 'Modules: Template: Author', GTHEME_TEXTDOMAIN ), $display_name ) ),
 			$display_name,
-		) );
+		] );
 	}
 
 	// ANCESTOR : gtheme_get_term_link_tag()
@@ -72,16 +72,16 @@ class gThemeTemplate extends gThemeModuleCore
 		// $template = '<a href="%1$s" title="%3$s" class="%4$s">%2$s</a>';
 		$template = '<a href="%1$s" title="%3$s" class="%4$s" data-html="true" data-toggle="tooltip" data-placement="top">%2$s</a>';
 
-		return vsprintf( gThemeOptions::info( 'template_term_link', $template ), array(
+		return vsprintf( gThemeOptions::info( 'template_term_link', $template ), [
 			esc_url( get_term_link( $term, $taxonomy ) ),
 			esc_html( apply_filters( 'single_term_title', $name ) ),
 			esc_attr( $title ),
 			'term-link term-'.$taxonomy.'-link',
-		) );
+		] );
 	}
 
 	// ANCESTOR : get_category_parents()
-	public static function term_parents( $id, $sep = 'def', $taxonomy = 'category', $visited = array() )
+	public static function term_parents( $id, $sep = 'def', $taxonomy = 'category', $visited = [] )
 	{
 		$html = '';
 
@@ -132,12 +132,12 @@ class gThemeTemplate extends gThemeModuleCore
 		$default = gThemeOptions::info( 'default_avatar_src', FALSE );
 
 		if ( gThemeWordPress::isDev() && $default )
-			echo gThemeHTML::tag( 'img', array(
+			echo gThemeHTML::tag( 'img', [
 				'src'   => $default,
 				'alt'   => 'avatar',
 				'class' => 'avatar avatar-'.$size.' photo avatar-default',
 				'style' => 'max-width:'.$size.'px;max-height:'.$size.'px;',
-			) );
+			] );
 		else
 			echo get_avatar( $id_or_email, $size, $default );
 	}
@@ -156,7 +156,7 @@ class gThemeTemplate extends gThemeModuleCore
 		echo $before.$copyright.$after;
 	}
 
-	public static function telephone( $number, $before = '', $after = '', $atts = array() )
+	public static function telephone( $number, $before = '', $after = '', $atts = [] )
 	{
 		echo $before;
 

@@ -1,6 +1,6 @@
 <?php
 
-function include_css( $array = array(), $debug = FALSE ){
+function include_css( $array = [], $debug = FALSE ){
 	foreach ( $array as $css )
 		if ( file_exists( $css ) )
 			include( $css );
@@ -17,7 +17,7 @@ SEE :
 function minify_css( $buffer ) {
 
 	$buffer = preg_replace( '!/\*[^*]*\*+([^/][^*]*\*+)*/!', '', $buffer ); // comments
-	$buffer = str_replace( array( "\r\n", "\r", "\n", "\t", '  ', '    ', '    ' ), '', $buffer ); // remove tabs, spaces, newlines, etc.
+	$buffer = str_replace( [ "\r\n", "\r", "\n", "\t", '  ', '    ', '    ' ], '', $buffer ); // remove tabs, spaces, newlines, etc.
 	$buffer = preg_replace( '/\s+/', ' ', $buffer ); // normalize whitespace
 	$buffer = preg_replace( '/;(?=\s*})/', '', $buffer ); // remove ; before }
 	$buffer = preg_replace( '/(,|:|;|\{|}|\*\/|>) /', '$1', $buffer ); // remove space after , : ; { } */ >
