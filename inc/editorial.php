@@ -102,6 +102,36 @@ class gThemeEditorial extends gThemeModuleCore
 		return \geminorum\gEditorial\Templates\Meta::metaSource( $atts );
 	}
 
+	public static function estimated( $atts = [] )
+	{
+		if ( ! function_exists( 'gEditorial' ) )
+			return FALSE;
+
+		if ( ! gEditorial()->enabled( 'estimated' ) )
+			return FALSE;
+
+		$args = self::atts( [
+			'post'   => NULL,
+			'before' => '',
+			'after'  => '',
+			'echo'   => TRUE,
+		], $atts );
+
+		if ( ! $post = get_post( $args['post'] ) )
+			return FALSE;
+
+		if ( ! $html = gEditorial()->estimated->get_estimated( $post->ID ) )
+			return FALSE;
+
+		$html = $args['before'].$html.$args['after'];
+
+		if ( ! $args['echo'] )
+			return $html;
+
+		echo $html;
+		return TRUE;
+	}
+
 	public static function author( $atts = [] )
 	{
 		if ( ! is_callable( [ 'geminorum\\gEditorial\\Templates\\Meta', 'metaAuthor' ] ) )
