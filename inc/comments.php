@@ -265,6 +265,9 @@ class gThemeComments extends gThemeModuleCore
 
 	public static function comment_form( $args = [], $post_id = null )
 	{
+		if ( ! post_type_supports( get_post_type( $post_id ), 'comments' ) )
+			return;
+
 		if ( comments_open() ) {
 
 			if ( is_null( $post_id ) )
