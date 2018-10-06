@@ -1,3 +1,30 @@
+### 3.16.6
+* root/head: moved up charset meta
+* root/start: moved navbar to partials
+* root/systempage: specified by constant
+* module/admin: filter default template title
+* module/bootstrap: cleanup menu attrs
+* module/bootstrap: navbar brand helper
+* module/bootstrap: bs4 navbar helper
+* module/comments: check options for cookies checkbox
+* module/comments: check if posttype support comments
+* module/comments: check if theme supports comments
+* module/editorial: wrapper for estimated module
+* module/editorial: custom post for like module
+* module/filters: link custom stylesheets
+* module/filters: using rtl version for parent stylesheets
+* module/image: check if theme supports images
+* module/menu: strip core classes from menu item
+* module/menu: network nav helper
+* module/navigation: passing query into paginate
+* module/navigation: check if theme supports breadcrumbs
+* module/social: default image disabled
+* module/template: check if theme supports sidebars
+* module/theme: fewer hooks for aminbar
+* module/theme: buddypress no style
+* module/wrap: disable social via action hooks
+* module/wrap: system page constant on template include
+
 ### 3.16.5
 * module/pages: refactoring
 * module/pages: not found page
