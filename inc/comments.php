@@ -342,14 +342,15 @@ class gThemeComments extends gThemeModuleCore
 					// 'placeholder'   => $strings['url'], // NOTE: problem with rtl
 				] ).'</div>';
 
-			$fields['cookies'] = '<div class="checkbox comment-form-cookies-consent"><label for="wp-comment-cookies-consent">'
-				.gThemeHTML::tag( 'input', [
-					'type'    => 'checkbox',
-					'id'      => 'wp-comment-cookies-consent',
-					'name'    => 'wp-comment-cookies-consent',
-					'value'   => 'yes',
-					'checked' => ! empty( $commenter['comment_author_email'] ),
-				] ).$strings['cookies'].'</label></div>';
+			if ( has_action( 'set_comment_cookies', 'wp_set_comment_cookies' ) && get_option( 'show_comments_cookies_opt_in' ) )
+				$fields['cookies'] = '<div class="checkbox comment-form-cookies-consent"><label for="wp-comment-cookies-consent">'
+					.gThemeHTML::tag( 'input', [
+						'type'    => 'checkbox',
+						'id'      => 'wp-comment-cookies-consent',
+						'name'    => 'wp-comment-cookies-consent',
+						'value'   => 'yes',
+						'checked' => ! empty( $commenter['comment_author_email'] ),
+					] ).' '.$strings['cookies'].'</label></div>';
 
 			$defaults = [
 				'fields' => apply_filters( 'comment_form_default_fields', $fields ),
