@@ -3,6 +3,32 @@
 class gThemeBootstrap extends gThemeModuleCore
 {
 
+	// BS4
+	public static function navbarOpen( $brand = NULL, $class = 'navbar-expand-md' )
+	{
+		$target = 'navbar';
+		$fixed  = gThemeOptions::info( 'bootstrap_navbar_fixed', FALSE );
+		$scheme = gThemeOptions::info( 'bootstrap_color_scheme', 'dark' ); // dark/light
+
+		echo '<nav class="navbar navbar-'.$scheme.' bg-'.$scheme.( $fixed ? ' fixed-top ' : ' ' ).$class.'">';
+
+			self::navbarBrand( $brand );
+
+			echo '<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#'
+				.$target.'" aria-controls="'.$target.'" aria-expanded="false" aria-label="'
+				.__( 'Toggle navigation', GTHEME_TEXTDOMAIN ).'">'
+				.'<span class="navbar-toggler-icon"></span></button>';
+
+			echo '<div class="collapse navbar-collapse" id="'.$target.'">';
+	}
+
+	// BS4
+	public static function navbarClose( $additional = '', $dark = FALSE )
+	{
+		echo '</div></nav>';
+	}
+
+	// BS3
 	public static function navbarClass( $additional = '', $inverse = FALSE )
 	{
 		$fixed = gThemeOptions::info( 'bootstrap_navbar_fixed', FALSE );
@@ -10,6 +36,7 @@ class gThemeBootstrap extends gThemeModuleCore
 		echo 'class="navbar navbar-default'.( $fixed ? ' navbar-fixed-top' : '' ).( $inverse ? ' navbar-inverse' : '' ).' '.$additional.'"';
 	}
 
+	// BS3
 	public static function navbarHeader( $brand = NULL, $target = 'navbar' )
 	{
 		echo '<div class="navbar-header">';
