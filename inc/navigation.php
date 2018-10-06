@@ -112,9 +112,12 @@ class gThemeNavigation extends gThemeModuleCore
 			get_template_part( 'nav', $context );
 	}
 
-	// wrapper wit conditional tags
+	// wrapper with conditional tags
 	public static function breadcrumb( $atts = [] )
 	{
+		if ( ! gThemeOptions::info( 'breadcrumb_support', TRUE ) )
+			return;
+
 		if ( is_singular( gThemeOptions::info( 'breadcrumb_posttypes', [ 'post' ] ) ) )
 			self::breadcrumbSingle( $atts );
 

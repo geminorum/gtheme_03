@@ -43,7 +43,8 @@ class gThemeOptions extends gThemeModuleCore
 			// 'nav_menu_allowedtags' => [ 'p' ),
 
 			// NAVIGATION
-			// 'breadcrumb_posttypes' => [ 'post' ),
+			// 'breadcrumb_support'   => TRUE, // hides the default inserts
+			// 'breadcrumb_posttypes' => [ 'post' ],
 
 			// SIDEBARS
 			// 'sidebars' => gThemeSideBar::defaults(),
