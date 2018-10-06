@@ -408,9 +408,7 @@ class gThemeWidget extends WP_Widget
 		);
 
 		if ( $title && isset( $instance['title_link'] ) && $instance['title_link'] )
-			$title = gThemeHTML::tag( 'a', [
-				'href' => $instance['title_link'],
-			], $title );
+			$title = gThemeHTML::link( $title, $instance['title_link'] );
 
 		if ( ! $title )
 			return '';

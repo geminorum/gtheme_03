@@ -217,6 +217,7 @@ class gThemeTerms extends gThemeModuleCore
 			'hide-image-single' => _x( 'Hide Single Image', 'System Tags Defaults', GTHEME_TEXTDOMAIN ),
 			'no-front'          => _x( 'Not on FrontPage', 'System Tags Defaults', GTHEME_TEXTDOMAIN ),
 			'no-feed'           => _x( 'Not on Feed', 'System Tags Defaults', GTHEME_TEXTDOMAIN ),
+			'insert-people'     => _x( 'Insert People', 'System Tags Defaults', GTHEME_TEXTDOMAIN ),
 		], $extra );
 	}
 

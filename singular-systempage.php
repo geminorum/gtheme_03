@@ -19,6 +19,6 @@ echo '<div class="col-sm-6 wrap-content" id="content">';
 
 echo '</div>';
 
-	get_sidebar( 'systempage' );
+	gThemeTemplate::sidebar( 'systempage' );
 
 echo '</div></div>';

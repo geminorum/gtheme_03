@@ -21,6 +21,6 @@ echo '<div class="col-sm-8 wrap-content" id="content">';
 
 echo '</div>';
 
-	get_sidebar( gtheme_template_base() );
+	gThemeTemplate::sidebar( gtheme_template_base() );
 
 echo '</div></div>';

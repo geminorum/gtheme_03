@@ -5,7 +5,7 @@ class gThemeUtilities extends gThemeBaseCore
 
 	public static function enqueueAutosize( $ver = '4.0.2' )
 	{
-		wp_enqueue_script( 'gtheme-autosize', '//cdn.jsdelivr.net/npm/autosize@'.$ver.'/dist/autosize.min.js', NULL, $ver, TRUE );
+		wp_enqueue_script( 'gtheme-autosize', '//cdn.jsdelivr.net/npm/autosize@'.$ver.'/dist/autosize.min.js', [], NULL, TRUE );
 		wp_add_inline_script( 'gtheme-autosize', "autosize(document.querySelectorAll('textarea'));" );
 	}
 

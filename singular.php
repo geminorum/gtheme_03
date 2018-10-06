@@ -21,6 +21,6 @@ echo '<div class="col-sm-8 wrap-content" id="content">';
 
 echo '</div>';
 
-	get_sidebar( 'singular' );
+	gThemeTemplate::sidebar( 'singular' );
 
 echo '</div></div>';

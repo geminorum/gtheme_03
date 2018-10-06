@@ -34,13 +34,13 @@ class gThemeOptions extends gThemeModuleCore
 				'zoom'            => TRUE,
 			],
 
-			'theme_groups' => FALSE, // [ 'main' => 'Main' ),
+			'theme_groups' => FALSE, // [ 'main' => _x( 'Main' 'Options: Theme Group', GTHEME_TEXTDOMAIN ) ],
 
 			'module_args' => [],
 
 			// MENUS
-			// 'register_nav_menus' => gThemeMenu::defaults(),
-			// 'nav_menu_allowedtags' => [ 'p' ),
+			// 'register_nav_menus'   => gThemeMenu::defaults(),
+			// 'nav_menu_allowedtags' => [ 'p' ],
 
 			// NAVIGATION
 			// 'breadcrumb_support'   => TRUE, // hides the default inserts
@@ -91,13 +91,12 @@ class gThemeOptions extends gThemeModuleCore
 			'text_unjustify'   => _x( '[ uJ ]', 'Options: Text Unjustify', GTHEME_TEXTDOMAIN ),
 			'text_justify_sep' => _x( ' / ', 'Options: Text Justify Sep', GTHEME_TEXTDOMAIN ),
 
+			'source_before' => _x( 'Source: ', 'Options: Source Before', GTHEME_TEXTDOMAIN ),
 			'reflist_title' => sprintf( '<h4 class="-title" id="footnotes">%s</h4>', _x( 'Footnotes', 'Options: Reflist Title', GTHEME_TEXTDOMAIN ) ),
 
 			'excerpt_length'          => 40,
 			'excerpt_more'            => ' &hellip;', // FALSE: empty / TRUE: continueReading()
 			'trim_excerpt_characters' => FALSE, // set this to desired characters count. like : 300
-
-			// commented to use default
 
 			// 'restricted_content' => FALSE, // set TURE to show teaser only
 			// 'restricted_teaser'  => FALSE, // set FALSE to show teaser alongside
@@ -176,7 +175,7 @@ class gThemeOptions extends gThemeModuleCore
 				'shortlink',
 				'comments_link', // or 'comments_link_feed',
 				'edit_post_link',
-				//'tag_list',
+				// 'tag_list',
 			],
 
 			// 'js_tooltipsy'    => FALSE, // enables tooltipsy
@@ -189,7 +188,7 @@ class gThemeOptions extends gThemeModuleCore
 				// 'category' => 'Category Archives for <strong>%s</strong>',
 			],
 
-			'default_editor'       => 'html', // set default editor of post edit screen to html for each user // needs module arg // Either 'tinymce', or 'html', or 'test'
+			'default_editor' => 'html', // set default editor of post edit screen to html for each user // needs module arg // Either 'tinymce', or 'html', or 'test'
 
 			'additional_body_class' => FALSE, // body class just in case!
 
