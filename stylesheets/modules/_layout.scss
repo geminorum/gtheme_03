@@ -25,4 +25,14 @@
   *::after {
     box-sizing: inherit;
   }
+
+  body {
+
+    // disables pull-to-refresh but allows overscroll glow effects
+    // @REF: https://stackoverflow.com/a/48417352
+    // @REF: https://developers.google.com/web/updates/2017/11/overscroll-behavior
+    overscroll-behavior-y: contain;
+  }
+
+  @content;
 }

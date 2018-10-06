@@ -24,10 +24,9 @@
 
 // FIXME: depricated
 @mixin theme-box-reset() {
-  @warn "gTheme Utility: depricated use of mixin: theme-box-reset()";
+  @warn "gTheme Utility: depricated use of mixin: theme-box-reset() USE: theme-layout-init()";
 
-  // FIXME: this is testing for: "content-box" removes the html border on iphone5
-
+  //FIXME: this is testing for: "content-box" removes the html border on iphone5
   html {
     box-sizing: content-box;
   }

@@ -35,6 +35,7 @@
         url($path + ".ttf") format("truetype");
 
       unicode-range: u+0600-06ff, u+200c-200e, u+2010-2011, u+fb50-fdff, u+fe80-fefc;
+      font-display: swap; // @REF: https://css-tricks.com/font-display-masses/
     }
   }
 }
@@ -42,7 +43,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
-/// Vazir v18.0.0
+/// Vazir v19.0.0
 // https://github.com/rastikerdar/vazir-font
 // http://rastikerdar.github.io/vazir-font/
 
@@ -51,7 +52,7 @@
   $font-family-normal: "Vazir", "Tahoma", "Iranian Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif !global;
 
   $name: "Vazir";
-  $ver: "v18.0.0";
+  $ver: "v19.0.0";
   $weight: "normal";
 
   $base: "https://cdn.rawgit.com";
@@ -67,7 +68,7 @@
   $font-family-bold: "Vazir", "Arial", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", "Helvetica", sans-serif !global;
 
   $name: "Vazir";
-  $ver: "v18.0.0";
+  $ver: "v19.0.0";
   $weight: "bold";
 
   $base: "https://cdn.rawgit.com";
@@ -83,7 +84,7 @@
   $font-family-light: "Vazir", "Arial", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", "Helvetica", sans-serif !global;
 
   $name: "Vazir";
-  $ver: "v18.0.0";
+  $ver: "v19.0.0";
   $weight: "300";
 
   $base: "https://cdn.rawgit.com";
@@ -99,7 +100,7 @@
   $font-family-medium: "Vazir", "Arial", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", "Helvetica", sans-serif !global;
 
   $name: "Vazir";
-  $ver: "v18.0.0";
+  $ver: "v19.0.0";
   $weight: "500";
 
   $base: "https://cdn.rawgit.com";
@@ -115,12 +116,28 @@
   $font-family-thin: "Vazir", "Tahoma", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", "Helvetica", sans-serif !global;
 
   $name: "Vazir";
-  $ver: "v18.0.0";
+  $ver: "v19.0.0";
   $weight: "100";
 
   $base: "https://cdn.rawgit.com";
   $repo: "rastikerdar/vazir-font";
   $file: "dist/Vazir-Thin";
+  $path: $base + "/" + $repo + "/" + $ver + "/" + $file;
+
+  @include _theme-fonts-fontface($name, $path, $weight);
+}
+
+@mixin theme-fonts-Vazir-Heavy-CDN() {
+
+  $font-family-heavy: "Vazir", "Tahoma", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", "Helvetica", sans-serif !global;
+
+  $name: "Vazir";
+  $ver: "v19.0.0";
+  $weight: "900";
+
+  $base: "https://cdn.rawgit.com";
+  $repo: "rastikerdar/vazir-font";
+  $file: "dist/Vazir-Black";
   $path: $base + "/" + $repo + "/" + $ver + "/" + $file;
 
   @include _theme-fonts-fontface($name, $path, $weight);
@@ -225,7 +242,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
-/// Sahel v1.0.0-alpha12
+/// Sahel v1.0.0-alpha22
 // https://github.com/rastikerdar/sahel-font
 // https://rastikerdar.github.io/sahel-font/
 
@@ -234,7 +251,7 @@
   $font-family-normal: "Sahel", "Tahoma", "Iranian Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif !global;
 
   $name: "Sahel";
-  $ver: "v1.0.0-alpha12";
+  $ver: "v1.0.0-alpha22";
   $weight: "normal";
 
   $base: "https://cdn.rawgit.com";
@@ -250,7 +267,7 @@
   $font-family-bold: "Sahel", "Arial", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", "Helvetica", sans-serif !global;
 
   $name: "Sahel";
-  $ver: "v1.0.0-alpha12";
+  $ver: "v1.0.0-alpha22";
   $weight: "bold";
 
   $base: "https://cdn.rawgit.com";
@@ -266,7 +283,7 @@
   $font-family-bold: "Sahel", "Arial", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", "Helvetica", sans-serif !global;
 
   $name: "Sahel";
-  $ver: "v1.0.0-alpha12";
+  $ver: "v1.0.0-alpha22";
   $weight: "900";
 
   $base: "https://cdn.rawgit.com";

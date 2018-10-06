@@ -5,11 +5,49 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 
+// USAGE: #{$theme-forms-input-fields} {}
+$theme-forms-input-fields: ( "[type=color],
+[type=date],
+[type=datetime],
+[type=datetime-local],
+[type=email],
+[type=month],
+[type=number],
+[type=password],
+[type=search],
+[type=tel],
+[type=text],
+[type=url],
+[type=week],
+[type=time],
+select,
+textarea" );
+
+// USAGE: #{$theme-forms-button-fields} {}
+$theme-forms-button-fields: ( ".button,
+a.button,
+button,
+[type=reset],
+[type=button],
+[type=submit]" );
+
+////////////////////////////////////////////////////////////////////////////////
+
 // removes the .form-control outline
 @mixin theme-forms-focus-reset($border-color: $input-border-focus) {
   &:focus {
     // border-color: $border-color;
     outline: none;
     box-shadow: none;
+  }
+}
+
+// @REF: https://codepen.io/tylersticka/pen/pjYavN
+@mixin theme-forms-input-group() {
+  display: flex;
+  align-content: stretch;
+
+  > input {
+    flex: 1 0 auto;
   }
 }
