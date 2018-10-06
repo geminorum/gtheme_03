@@ -43,12 +43,16 @@ class gThemeEditorial extends gThemeModuleCore
 			return FALSE;
 
 		$args = self::atts( [
+			'post'   => NULL,
 			'before' => '',
 			'after'  => '',
 			'echo'   => TRUE,
 		], $atts );
 
-		if ( ! $html = gEditorial()->like->get_button() )
+		if ( ! $post = get_post( $args['post'] ) )
+			return FALSE;
+
+		if ( ! $html = gEditorial()->like->get_button( $post->ID ) )
 			return FALSE;
 
 		$html = $args['before'].$html.$args['after'];
