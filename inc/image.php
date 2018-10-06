@@ -726,6 +726,9 @@ class gThemeImage extends gThemeModuleCore
 	// ANCESTOR : gtheme_image(), gtheme_image_caption()
 	public static function image( $atts = [] )
 	{
+		if ( ! gThemeOptions::info( 'image_support', TRUE ) )
+			return;
+
 		$default_class = gThemeOptions::info( 'image-class', 'the-img img-responsive' );
 
 		$args = self::atts( [

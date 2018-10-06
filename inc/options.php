@@ -49,11 +49,12 @@ class gThemeOptions extends gThemeModuleCore
 			// 'sidebars' => gThemeSideBar::defaults(),
 
 			// MEDIA TAGS
-			// 'images' => gThemeOptions::getDefaultImages(),
-			'thumbnail_image_size' => 'single',
-			'enclosure_image_size' => 'single',
-			'amp_image_size'       => 'single',
+			// 'images'                  => gThemeOptions::getDefaultImages(),
+			// 'image_support'           => TRUE, // hides the default inserts
 			// 'post_thumbnail_fallback' => TRUE,
+			'thumbnail_image_size'    => 'single',
+			'enclosure_image_size'    => 'single',
+			'amp_image_size'          => 'single',
 
 			// 'jpeg_quality'          => 82, // quality of JPEG images uploaded to WP
 			// 'wp_editor_set_quality' => 82, // quality of JPEG images edited within WP
