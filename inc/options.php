@@ -132,6 +132,7 @@ class gThemeOptions extends gThemeModuleCore
 			// 'full_content_width' => 455, // setting global content_width on fullwidthpage.php // FALSE to default
 
 			// COMMENTS
+			// 'comments_support'       => TRUE, // hides the default inserts
 			'comments_disable_types' => [ 'attachment' ],
 			'comment_callback'       => [ 'gThemeComments', 'comment_callback' ], // null to use wp core
 			'comment_form'           => [ 'gThemeComments', 'comment_form' ], // comment_form to use wp core

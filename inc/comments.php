@@ -26,6 +26,9 @@ class gThemeComments extends gThemeModuleCore
 
 	public static function template( $before = '', $after = '' )
 	{
+		if ( ! gThemeOptions::info( 'comments_support', TRUE ) )
+			return;
+
 		echo $before;
 			comments_template( '', FALSE );
 		echo $after;
