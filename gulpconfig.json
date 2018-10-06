@@ -33,15 +33,23 @@
   },
   "cssnano": {
     "dev": {
-      "core": false,
-      "zindex": false,
-      "discardComments": false
+      "preset": [
+        "default", {
+          "zindex": false,
+          "normalizeWhitespace": false,
+          "discardComments": false
+        }
+      ]
     },
     "build": {
-      "zindex": false,
-      "discardComments": {
-        "removeAll": true
-      }
+      "preset": [
+        "default", {
+          "zindex": false,
+          "discardComments": {
+            "removeAll": true
+          }
+        }
+      ]
     }
   },
   "autoprefixer": {
