@@ -18,20 +18,26 @@ class gThemeBootstrap extends gThemeModuleCore
 				echo '<span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>';
 			echo '</button>';
 
-			if ( is_null( $brand ) )
-				$brand = gThemeOptions::info( 'blog_name', FALSE );
-
-			else if ( 'logo' == $brand )
-				$brand = gThemeTemplate::logo( 'navbar', '<img src="'.GTHEME_CHILD_URL.'/images/logo.png" alt="%2$s" />', FALSE );
-
-			if ( FALSE !== $brand )
-				vprintf( '<a class="navbar-brand" href="%1$s" title="%3$s">%2$s</a>', array(
-					gThemeUtilities::home(),
-					$brand,
-					esc_attr( gThemeOptions::info( 'logo_title', '' ) ),
-				) );
+			self::navbarBrand( $brand );
 
 		echo '</div>';
+	}
+
+	// BS3/BS4
+	public static function navbarBrand( $brand = NULL )
+	{
+		if ( is_null( $brand ) )
+			$brand = gThemeOptions::info( 'blog_name', FALSE );
+
+		else if ( 'logo' == $brand )
+			$brand = gThemeTemplate::logo( 'navbar', '<img src="'.GTHEME_CHILD_URL.'/images/logo.png" alt="%2$s" />', FALSE );
+
+		if ( FALSE !== $brand )
+			vprintf( '<a class="navbar-brand" href="%1$s" title="%3$s">%2$s</a>', [
+				gThemeUtilities::home(),
+				$brand,
+				esc_attr( gThemeOptions::info( 'logo_title', '' ) ),
+			] );
 	}
 
 	// FIXME: add cache / problem with yamm
