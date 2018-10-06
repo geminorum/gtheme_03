@@ -26,6 +26,16 @@ class gThemeTemplate extends gThemeModuleCore
 		echo $logo;
 	}
 
+	public static function sidebar( $name = NULL, $before = '', $after = '' )
+	{
+		if ( ! gThemeOptions::info( 'sidebar_support', TRUE ) )
+			return;
+
+		echo $before;
+			get_sidebar( $name );
+		echo $after;
+	}
+
 	// only for wp users
 	// @SEE: `gThemeContent::byline()`
 	// @REF: `get_the_author_posts_link()`

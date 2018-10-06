@@ -47,7 +47,8 @@ class gThemeOptions extends gThemeModuleCore
 			// 'breadcrumb_posttypes' => [ 'post' ],
 
 			// SIDEBARS
-			// 'sidebars' => gThemeSideBar::defaults(),
+			// 'sidebars'        => gThemeSideBar::defaults(),
+			// 'sidebar_support' => TRUE, // hides the default inserts
 
 			// MEDIA TAGS
 			// 'images'                  => gThemeOptions::getDefaultImages(),
