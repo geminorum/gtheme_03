@@ -112,14 +112,20 @@ class gThemeSocial extends gThemeModuleCore
 			break;
 			case 'title':
 
-				if ( is_home() || is_front_page() )
+				if ( is_home() || is_front_page() ) {
+
 					$output = gThemeOptions::info( 'frontpage_title', FALSE );
 
-				else if ( is_singular() )
-					$output = single_post_title( '', FALSE ).gThemeOptions::info( 'title_sep', ' &raquo; ' ).gThemeOptions::info( 'blog_title' );
+				} else if ( is_singular() ) {
 
-				else if ( is_tax() || is_tag() || is_category() )
-					$output = single_term_title( '', FALSE ).gThemeOptions::info( 'title_sep', ' &raquo; ' ).gThemeOptions::info( 'blog_title' );
+					if ( $title = single_post_title( '', FALSE ) )
+						$output = $title.gThemeOptions::info( 'title_sep', ' &raquo; ' ).gThemeOptions::info( 'blog_title' );
+
+				} else if ( is_tax() || is_tag() || is_category() ) {
+
+					if ( $title = single_term_title( '', FALSE ) )
+						$output = $title.gThemeOptions::info( 'title_sep', ' &raquo; ' ).gThemeOptions::info( 'blog_title' );
+				}
 
 			break;
 			case 'description':
