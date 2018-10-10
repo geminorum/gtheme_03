@@ -266,4 +266,34 @@ class gThemeEditorial extends gThemeModuleCore
 		self::__dep( 'gThemeEditorial::source()' );
 		return self::source( $atts );
 	}
+
+	public static function personPicture( $atts = [], $post = NULL )
+	{
+		if ( ! is_callable( [ 'geminorum\\gEditorial\\Templates\\Terms', 'termImage' ] ) )
+			return FALSE;
+
+		if ( ! array_key_exists( 'taxonomy', $atts ) )
+			$atts['taxonomy'] = 'people';
+
+		if ( ! array_key_exists( 'wrap', $atts ) )
+			$atts['wrap'] = FALSE;
+
+		if ( ! array_key_exists( 'id', $atts ) && is_singular() ) {
+
+			// the order applied via filter
+			$people = get_the_terms( $post, 'people' );
+
+			if ( ! $people || is_wp_error( $people ) )
+				return FALSE;
+
+			$person = array_shift( $people );
+
+			$atts['id'] = $person->term_id;
+
+			if ( ! array_key_exists( 'figure', $atts ) )
+				$atts['figure'] = TRUE; // only on singular
+		}
+
+		return \geminorum\gEditorial\Templates\Terms::termImage( $atts );
+	}
 }

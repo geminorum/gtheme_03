@@ -9,6 +9,10 @@ gThemeEditorial::estimated( [
 ] );
 
 gThemeEditorial::lead( [ 'before' => '<div class="entry-lead">', 'after' => '</div>' ] );
+
+if ( gThemeTerms::has( 'insert-people' ) )
+	gThemeEditorial::personPicture( [ 'before' => '<div class="entry-person">', 'after' => '</div>' ] );
+
 gThemeContent::content();
 
 gThemeEditorial::source( [
