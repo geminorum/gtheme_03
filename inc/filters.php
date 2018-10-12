@@ -350,7 +350,10 @@ class gThemeFilters extends gThemeModuleCore
 	// auto-paginate after 500 words, but respect paragraphs and don't leave page stubs.
 	public function loop_start( $query )
 	{
-		if ( ! is_singular() || ! $query->is_main_query() || 'post' != get_post_type() )
+		if ( ! $query->is_main_query() )
+			return;
+
+		if ( ! is_singular( gThemeOptions::info( 'post_auto_paginate_type', [ 'post' ] ) ) )
 			return;
 
 		$min  = gThemeOptions::info( 'post_auto_paginate_min', 900 );
