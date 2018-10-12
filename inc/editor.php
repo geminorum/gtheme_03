@@ -84,12 +84,14 @@ class gThemeEditor extends gThemeModuleCore
 		$style_formats = gThemeOptions::info( 'mce_style_formats', self::defaultFormats() );
 
 		if ( count( $style_formats ) ) {
+
 			$style_formats = wp_json_encode( $style_formats );
-			if ( isset( $settings['style_formats'] ) ) {
-				$settings['style_formats'] = gThemeUtilities::json_merge( $settings['style_formats'], $style_formats );
-			} else {
+
+			if ( ! empty( $settings['style_formats'] )
+				&& 'false' != $settings['style_formats'] )
+					$settings['style_formats'] = gThemeUtilities::json_merge( $settings['style_formats'], $style_formats );
+			else
 				$settings['style_formats'] = $style_formats;
-			}
 		}
 
 		return $settings;
