@@ -9,8 +9,11 @@ if ( $ltr ) {
 		// 'style-ltr.css',
 		'style.css',
 
-		'../../../plugins/gnetwork/assets/css/front.all.raw.css',
-		'../../../plugins/geditorial/assets/css/front.all.raw.css',
+		'../../../plugins/gnetwork/assets/css/front.all-rtl.css',
+		'../../../plugins/geditorial/assets/css/front.all-rtl.css',
+
+		'../../../plugins/gnetwork/assets/css/signup.all-rtl.css',
+		'../../../plugins/gnetwork/assets/css/activate.all-rtl.css',
 	];
 
 } else {
@@ -19,10 +22,12 @@ if ( $ltr ) {
 
 		'style.css',
 
-		'../../../plugins/gnetwork/assets/css/front.all.raw.css',
-		'../../../plugins/geditorial/assets/css/front.all.raw.css',
+		'../../../plugins/gnetwork/assets/css/front.all.css',
+		'../../../plugins/geditorial/assets/css/front.all.css',
+
+		'../../../plugins/gnetwork/assets/css/signup.all.css',
+		'../../../plugins/gnetwork/assets/css/activate.all.css',
 	];
 }
 
-// echo '@charset "UTF-8";';
 include_css( $css );

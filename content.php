@@ -26,7 +26,6 @@
 		gThemeImage::image( [ 'tag' => 'single' ] );
 
 		get_template_part( 'partials/entry', 'index' );
-	}
 
 		gThemeContent::wrapClose( 'index' );
 	}

@@ -156,7 +156,7 @@ class gThemeOptions extends gThemeModuleCore
 			// EDITOR
 			// 'default_content'   => _x( '[content not available yet]', 'Editor Default Content', GTHEME_TEXTDOMAIN ),
 			// 'mce_buttons'       => [], // 'superscript', 'subscript'
-			// 'mce_buttons_2'     => [ 'styleselect' ),
+			// 'mce_buttons_2'     => [ 'styleselect' ],
 			// 'mce_style_formats' => gThemeEditor::defaultFormats(),
 
 			'settings_legend' => FALSE, // html content to appear after settings

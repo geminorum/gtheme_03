@@ -31,18 +31,23 @@ class gThemeSearch extends gThemeModuleCore
 
 	public static function form( $context = 'index' )
 	{
-		$html = '<form role="search" method="get" class="form search-form search-form-'.$context
-			   .'" action="'.esc_url( self::getAction() ).'">'
-			   .'<span class="screen-reader-text sr-only"><label>'
-			   ._x( 'Search for:', 'label', GTHEME_TEXTDOMAIN ).'</label></span>'
-			   .'<div class="input-group"><input type="search" class="form-control search-field" placeholder="'
-			   .esc_attr_x( 'Search &hellip;', 'placeholder', GTHEME_TEXTDOMAIN )
-			   .'" value="'.self::query()
-			   .'" name="'.self::getKey()
-			   .'" title="'.esc_attr_x( 'Search for:', 'label', GTHEME_TEXTDOMAIN ).'" />'
-			   .'<span class="input-group-btn"><button type="submit" class="btn btn-default search-submit" />'
-			   ._x( 'Search', 'submit button', GTHEME_TEXTDOMAIN )
-			   .'</button></span></div></form>';
+		$html = '<form role="search" method="get" class="form search-form search-form-'.$context.'" action="'.esc_url( self::getAction() ).'">';
+
+			$html.= '<span class="screen-reader-text sr-only"><label>'._x( 'Search for:', 'label', GTHEME_TEXTDOMAIN ).'</label></span>';
+
+			$html.= '<div class="input-group">';
+
+				$html.= '<input type="search" class="form-control search-field" placeholder="'.esc_attr_x( 'Search &hellip;', 'placeholder', GTHEME_TEXTDOMAIN );
+				$html.= '" value="'.self::query().'" name="'.self::getKey().'" title="'.esc_attr_x( 'Search for:', 'label', GTHEME_TEXTDOMAIN ).'" />';
+
+				$html.= '<span class="input-group-btn">';
+					$html.= '<button type="submit" class="btn btn-default search-submit" />'._x( 'Search', 'submit button', GTHEME_TEXTDOMAIN ).'</button>';
+				$html.= '</span>';
+
+			$html.= '</div>';
+
+		$html.= '</form>';
+
 		echo $html;
 	}
 

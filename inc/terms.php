@@ -418,6 +418,7 @@ class gThemeTerms extends gThemeModuleCore
 		echo '</div>';
 	}
 
+	// if no terms are given, determines if post has any terms
 	public static function has( $term = '', $post = NULL, $taxonomy = GTHEME_SYSTEMTAGS )
 	{
 		return has_term( $term, $taxonomy, $post );

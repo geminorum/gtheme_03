@@ -373,6 +373,7 @@ class gThemeFilters extends gThemeModuleCore
 
 			$word_array = array_slice( $word_array, $each + $word_count, null, TRUE );
 			$word_count = 0;
+
 			foreach ( $word_array as $i => $word ) {
 
 				if ( 'p' != $word ) {
