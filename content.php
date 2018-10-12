@@ -14,6 +14,8 @@
 			get_template_part( 'partials/entry', 'singular' );
 		}
 
+		gThemeSideBar::sidebar( 'after-singular' );
+
 		gThemeComments::template( '<div class="wrap-comments">', '</div>' );
 
 		gThemeContent::wrapClose( 'singular' );

@@ -25,6 +25,7 @@ class gThemeSideBar extends gThemeModuleCore
 			'side-index'      => _x( 'Index: Side', 'Modules: Sidebar: Defaults', GTHEME_TEXTDOMAIN ),
 			'side-singular'   => _x( 'Singular: Side', 'Modules: Sidebar: Defaults', GTHEME_TEXTDOMAIN ),
 			'side-systempage' => _x( 'System Page: Side', 'Modules: Sidebar: Defaults', GTHEME_TEXTDOMAIN ),
+			'after-singular'  => _x( 'Singular: After Entry', 'Modules: Sidebar: Defaults', GTHEME_TEXTDOMAIN ),
 		], $extra );
 	}
 
