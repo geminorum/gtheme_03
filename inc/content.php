@@ -14,10 +14,14 @@ class gThemeContent extends gThemeModuleCore
 		$post_id = get_the_ID();
 
 		echo '<'.$tag.( $post_id ? ' id="post-'.$post_id.'"' : '' ).' class="'.join( ' ', self::getPostClass( $classes, $post_id ) ).'">';
+
+		do_action( 'gtheme_content_wrap_open', $context );
 	}
 
 	public static function wrapClose( $context = 'index', $tag = 'article' )
 	{
+		do_action( 'gtheme_content_wrap_close', $context );
+
 		echo '</'.$tag.'>';
 	}
 
