@@ -30,6 +30,9 @@ class gThemeSideBar extends gThemeModuleCore
 
 	public static function sidebar( $name, $before = '', $after = '', $else = FALSE )
 	{
+		if ( ! gThemeOptions::info( 'sidebar_support', TRUE ) )
+			return;
+
 		if ( is_active_sidebar( $name )  ) {
 
 			echo $before;
