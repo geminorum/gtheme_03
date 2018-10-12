@@ -11,7 +11,7 @@ class gThemeFrontPage extends gThemeModuleCore
 		if ( empty( $gtheme_front_page_displayed ) )
 			$gtheme_front_page_displayed = [];
 
-		if ( is_singular() )
+		if ( is_singular() || is_single() )
 			$gtheme_front_page_displayed[] = get_the_ID();
 
 		return array_unique( $gtheme_front_page_displayed, SORT_NUMERIC );

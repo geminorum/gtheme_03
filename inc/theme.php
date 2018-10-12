@@ -162,7 +162,7 @@ class gThemeTheme extends gThemeModuleCore
 		wp_enqueue_script( 'gtheme-all', GTHEME_URL."/js/script.all$suffix.js", [ 'jquery' ], GTHEME_VERSION, TRUE );
 
 		// NO NEED: we enqueue autosize on comment form, and justify by it's caller
-		// if ( is_singular() )
+		// if ( is_singular() || is_single() )
 		// 	wp_enqueue_script( 'gtheme-singular', GTHEME_URL."/js/script.singular$suffix.js", [ 'jquery' ], GTHEME_VERSION, TRUE );
 	}
 

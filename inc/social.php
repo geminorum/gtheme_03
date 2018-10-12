@@ -83,7 +83,7 @@ class gThemeSocial extends gThemeModuleCore
 				if ( is_home() || is_front_page() )
 					$output = FALSE;
 
-				else if ( is_singular() )
+				else if ( is_singular() || is_single() )
 					$output = get_permalink();
 
 			break;
@@ -95,7 +95,7 @@ class gThemeSocial extends gThemeModuleCore
 				if ( $image || is_home() || is_front_page() )
 					$output = gThemeOptions::info( 'default_image_src', FALSE );
 
-				if ( is_singular() )
+				if ( is_singular() || is_single() )
 					$output = gThemeImage::getImage( [
 						'tag'   => $size,
 						'url'   => TRUE,
@@ -116,7 +116,7 @@ class gThemeSocial extends gThemeModuleCore
 
 					$output = gThemeOptions::info( 'frontpage_title', FALSE );
 
-				} else if ( is_singular() ) {
+				} else if ( is_singular() || is_single() ) {
 
 					if ( $title = single_post_title( '', FALSE ) )
 						$output = $title.gThemeOptions::info( 'title_sep', ' &raquo; ' ).gThemeOptions::info( 'blog_title' );
@@ -134,7 +134,7 @@ class gThemeSocial extends gThemeModuleCore
 					&& ! $output = gThemeOptions::info( 'frontpage_desc', FALSE ) )
 						$output = FALSE;
 
-				else if ( is_singular() && has_excerpt() && ! post_password_required( $post ) )
+				else if ( ( is_singular() || is_single() ) && has_excerpt() && ! post_password_required( $post ) )
 					$output = strip_tags( wp_trim_excerpt( $post->post_excerpt ) );
 		}
 
@@ -152,7 +152,7 @@ class gThemeSocial extends gThemeModuleCore
 
 	public static function author()
 	{
-		if ( ! is_singular() )
+		if ( ! ( is_singular() || is_single() ) )
 			return;
 
 		if ( ! $post = get_queried_object() )

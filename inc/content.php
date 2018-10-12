@@ -458,7 +458,7 @@ class gThemeContent extends gThemeModuleCore
 						);
 					*/
 
-					if ( is_singular() ) {
+					if ( is_singular() || is_single() ) {
 						$link  = '#respond';
 						$class = 'scroll';
 					} else {
@@ -605,7 +605,7 @@ class gThemeContent extends gThemeModuleCore
 
 	public static function justify_buttons( $b = '', $a = '', $sep = 'def', $justify = 'def', $unjustify = 'def', $footer = TRUE )
 	{
-		if ( $footer && is_singular() ) {
+		if ( $footer && ( is_singular() || is_single() ) ) {
 			wp_enqueue_script( 'jquery' );
 			add_action( 'wp_footer', [ __CLASS__, 'justify_buttons_footer' ], 99 );
 		}
@@ -655,7 +655,7 @@ $('#text-unjustify').click(function (e) {
 	// @REF: https://support.printfriendly.com/button/developer-questions/custom-css-styles/
 	public static function printfriendly( $before = '', $after = '', $text = NULL, $footer = TRUE, $analytics = TRUE )
 	{
-		if ( $footer && is_singular() )
+		if ( $footer && ( is_singular() || is_single() ) )
 			add_action( 'wp_footer', [ __CLASS__, 'printfriendly_footer' ] );
 
 		$query_args = [
@@ -739,7 +739,7 @@ if(typeof(ga)!='undefined'){a2a_config.track_links = 'ga';}
 	// @SEE: http://www.addthis.com/academy/specifying-the-image-posted-to-pinterest/
 	public static function addthis( $b = '', $a = '', $text = NULL, $footer = TRUE )
 	{
-		if ( $footer && is_singular() )
+		if ( $footer && ( is_singular() || is_single() ) )
 			add_action( 'wp_footer', [ __CLASS__, 'addthis_footer' ], 5 );
 
 		echo $b;

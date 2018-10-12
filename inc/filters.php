@@ -405,7 +405,7 @@ class gThemeFilters extends gThemeModuleCore
 			'pall',
 		];
 
-		if ( is_singular() && in_array( trim( strtolower( substr( $requested_url, -5 ) ), '/' ), $url_endings ) )
+		if ( ( is_singular() || is_single() ) && in_array( trim( strtolower( substr( $requested_url, -5 ) ), '/' ), $url_endings ) )
 			return trailingslashit( $requested_url );
 		else
 			return $redirect_url;

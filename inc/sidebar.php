@@ -823,7 +823,7 @@ class gThemeWidgetTermPosts extends gThemeWidget
 			'update_post_meta_cache' => FALSE,
 		];
 
-		if ( is_singular() )
+		if ( is_singular() || is_single() )
 			$query_args['post__not_in'] = [ get_queried_object_id() ];
 
 		$row_query = new \WP_Query( $query_args );
@@ -1043,7 +1043,7 @@ class gThemeWidgetRecentPosts extends gThemeWidget
 			'update_post_meta_cache' => FALSE,
 		];
 
-		if ( is_singular() )
+		if ( is_singular() || is_single() )
 			$query_args['post__not_in'] = [ get_queried_object_id() ];
 
 		$row_query = new \WP_Query( $query_args );

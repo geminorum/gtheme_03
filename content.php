@@ -1,6 +1,6 @@
 <?php defined( 'ABSPATH' ) or die( header( 'HTTP/1.0 403 Forbidden' ) );
 
-	if ( is_singular() ) {
+	if ( is_singular() || is_single() ) {
 
 		gThemeContent::wrapOpen( 'singular' );
 		gThemeImage::image( [ 'tag' => 'single' ] );

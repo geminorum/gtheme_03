@@ -278,7 +278,7 @@ class gThemeEditorial extends gThemeModuleCore
 		if ( ! array_key_exists( 'wrap', $atts ) )
 			$atts['wrap'] = FALSE;
 
-		if ( ! array_key_exists( 'id', $atts ) && is_singular() ) {
+		if ( ! array_key_exists( 'id', $atts ) && ( is_singular() || is_single() ) ) {
 
 			// the order applied via filter
 			$people = get_the_terms( $post, 'people' );

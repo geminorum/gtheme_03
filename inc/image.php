@@ -748,7 +748,7 @@ class gThemeImage extends gThemeModuleCore
 			'context'         => NULL,
 		], $atts );
 
-		if ( $args['check_single'] && is_singular() && gThemeTerms::has( 'hide-image-single', $args['post_id'] ) )
+		if ( $args['check_single'] && ( is_singular() || is_single() ) && gThemeTerms::has( 'hide-image-single', $args['post_id'] ) )
 			return '';
 
 		if ( $args['class'] ) {
