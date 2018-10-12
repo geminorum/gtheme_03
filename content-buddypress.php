@@ -6,4 +6,4 @@ gThemeContent::wrapOpen( 'buddypress' );
 	// gThemeContent::byline( NULL, '<div class="entry-byline">', '</div>' );
 	gThemeContent::content();
 
-gThemeContent::wrapClose();
+gThemeContent::wrapClose( 'buddypress' );

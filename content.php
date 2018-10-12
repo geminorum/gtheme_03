@@ -16,6 +16,8 @@
 
 		gThemeComments::template( '<div class="wrap-comments">', '</div>' );
 
+		gThemeContent::wrapClose( 'singular' );
+
 	} else {
 
 		gThemeContent::wrapOpen( 'index' );
@@ -24,4 +26,5 @@
 		get_template_part( 'partials/entry', 'index' );
 	}
 
-gThemeContent::wrapClose();
+		gThemeContent::wrapClose( 'index' );
+	}

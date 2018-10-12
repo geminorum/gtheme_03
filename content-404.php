@@ -28,4 +28,4 @@ gThemeContent::wrapOpen( '404' );
 
 	echo '</div>';
 
-gThemeContent::wrapClose();
+gThemeContent::wrapClose( '404' );

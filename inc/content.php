@@ -16,7 +16,7 @@ class gThemeContent extends gThemeModuleCore
 		echo '<'.$tag.( $post_id ? ' id="post-'.$post_id.'"' : '' ).' class="'.join( ' ', self::getPostClass( $classes, $post_id ) ).'">';
 	}
 
-	public static function wrapClose( $tag = 'article' )
+	public static function wrapClose( $context = 'index', $tag = 'article' )
 	{
 		echo '</'.$tag.'>';
 	}

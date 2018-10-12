@@ -1,6 +1,6 @@
 <?php defined( 'ABSPATH' ) or die( header( 'HTTP/1.0 403 Forbidden' ) );
 
-gThemeContent::wrapClose();
+gThemeContent::wrapClose( gtheme_template_base() );
 
 echo '</div></div></div>';
 
