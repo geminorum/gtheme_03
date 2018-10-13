@@ -843,7 +843,8 @@ addthis_config.services_custom = [
 
 		echo '<'.$args['title_tag'].' itemprop="headline" class="title '.$args['prefix'].'-title amp-wp-title">';
 
-		if ( $args['link'] ) {
+		if ( $args['link'] && $link ) {
+
 			echo '<a itemprop="url" rel="bookmark" href="'.$link.'" title="';
 				self::title_attr( TRUE, $args['title'], ( TRUE === $args['shortlink'] ? FALSE : NULL ) );
 			echo '">'.$args['title'].'</a>';
