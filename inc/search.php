@@ -29,7 +29,23 @@ class gThemeSearch extends gThemeModuleCore
 		return esc_attr( $query );
 	}
 
-	public static function form( $context = 'index' )
+	public static function formSimple( $context = 'index', $extra = '' )
+	{
+		$html = '<form role="search" method="get" class="form search-form -simple search-form-'.$context.'" action="'.esc_url( self::getAction() ).'">';
+
+			$html.= '<span class="screen-reader-text sr-only"><label>'._x( 'Search for:', 'label', GTHEME_TEXTDOMAIN ).'</label></span>';
+
+			$html.= '<input type="search" class="form-control search-field" placeholder="'.esc_attr_x( 'Search &hellip;', 'placeholder', GTHEME_TEXTDOMAIN );
+			$html.= '" value="'.self::query().'" name="'.self::getKey().'" title="'.esc_attr_x( 'Search for:', 'label', GTHEME_TEXTDOMAIN ).'" />';
+
+			$html.= $extra;
+
+		$html.= '</form>';
+
+		echo $html;
+	}
+
+	public static function form( $context = 'index', $extra = '' )
 	{
 		$html = '<form role="search" method="get" class="form search-form search-form-'.$context.'" action="'.esc_url( self::getAction() ).'">';
 
@@ -45,6 +61,8 @@ class gThemeSearch extends gThemeModuleCore
 				$html.= '</span>';
 
 			$html.= '</div>';
+
+			$html.= $extra;
 
 		$html.= '</form>';
 
