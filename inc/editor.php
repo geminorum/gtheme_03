@@ -125,6 +125,16 @@ class gThemeEditor extends gThemeModuleCore
 				'block'   => 'p',
 				'classes' => 'entry-source',
 			],
+			[
+				'title'   => _x( 'Greeting', 'Editor Custom Class', GTHEME_TEXTDOMAIN ),
+				'block'   => 'p',
+				'classes' => 'entry-greeting',
+			],
+			[
+				'title'   => _x( 'Signature', 'Editor Custom Class', GTHEME_TEXTDOMAIN ),
+				'block'   => 'p',
+				'classes' => 'entry-signature',
+			],
 		], $extra );
 	}
 
