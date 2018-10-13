@@ -158,6 +158,9 @@ class gThemeSocial extends gThemeModuleCore
 		if ( ! $post = get_queried_object() )
 			return;
 
+		if ( empty( $post->post_author ) )
+			return;
+
 		if ( $post->post_author == gThemeOptions::getOption( 'default_user', 0 ) )
 			return;
 
