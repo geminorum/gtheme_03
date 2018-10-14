@@ -11,6 +11,8 @@ class gThemeEditorial extends gThemeModuleCore
 
 		if ( $word_wrap )
 			add_filter( 'gmeta_meta', [ $this, 'gmeta_meta' ], 12, 2 ); // FIXME: DEPRECATED on editorial meta
+
+		add_filter( 'geditorial_shortcode_attachement_download', [ $this, 'attachement_download' ], 9, 2 );
 	}
 
 	public function gmeta_meta( $meta, $field )
@@ -19,6 +21,11 @@ class gThemeEditorial extends gThemeModuleCore
 			return gThemeUtilities::wordWrap( $meta, 2 );
 
 		return $meta;
+	}
+
+	public function attachement_download( $filename, $post )
+	{
+		return gThemeOptions::info( 'attachment_download_prefix', '' ).$filename;
 	}
 
 	public static function series( $atts = [] )
