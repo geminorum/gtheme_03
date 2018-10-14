@@ -41,6 +41,19 @@ class gThemeEditorial extends gThemeModuleCore
 		return TRUE;
 	}
 
+	public static function attachments( $atts = [] )
+	{
+		if ( ! function_exists( 'gEditorial' ) )
+			return FALSE;
+
+		if ( ! gEditorial()->enabled( 'attachments' ) )
+			return FALSE;
+
+		echo gEditorial()->attachments->attachments_shortcode( $atts );
+
+		return TRUE;
+	}
+
 	public static function postLikeButton( $atts = [] )
 	{
 		if ( ! function_exists( 'gEditorial' ) )
