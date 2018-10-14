@@ -16,6 +16,7 @@
     }],
     "declaration-colon-space-after": "always",
     "number-leading-zero": null,
+    "string-no-newline": null,
     "indentation": 2
   }
 }
