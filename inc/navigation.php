@@ -118,10 +118,15 @@ class gThemeNavigation extends gThemeModuleCore
 		if ( ! gThemeOptions::info( 'breadcrumb_support', TRUE ) )
 			return;
 
-		if ( is_singular( gThemeOptions::info( 'breadcrumb_posttypes', [ 'post' ] ) ) )
+		$posttypes = gThemeOptions::info( 'breadcrumb_posttypes', [ 'post' ] );
+
+		if ( is_singular( $posttypes ) )
 			self::breadcrumbSingle( $atts );
 
-		else if ( is_archive() || is_search() )
+		else if ( is_post_type_archive( $posttypes ) )
+			self::breadcrumbArchive( $atts );
+
+		else if ( ! is_post_type_archive() && ( is_archive() || is_search() ) )
 			self::breadcrumbArchive( $atts );
 	}
 
