@@ -54,6 +54,19 @@ class gThemeEditorial extends gThemeModuleCore
 		return TRUE;
 	}
 
+	public static function publications( $atts = [] )
+	{
+		if ( ! function_exists( 'gEditorial' ) )
+			return FALSE;
+
+		if ( ! gEditorial()->enabled( 'book' ) )
+			return FALSE;
+
+		echo gEditorial()->book->publications_shortcode( $atts );
+
+		return TRUE;
+	}
+
 	public static function postLikeButton( $atts = [] )
 	{
 		if ( ! function_exists( 'gEditorial' ) )
