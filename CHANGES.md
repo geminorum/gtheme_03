@@ -1,3 +1,22 @@
+### 3.16.7
+* root/single: checking for single and singular
+* module/content: passing context into wrap close
+* module/content: before/after content actions
+* module/content: prevent linking header when no link
+* module/editor: check for false string on settings
+* module/editor: more default styles
+* module/editorial: insert person picture by system tags
+* module/editorial: attachment list wrapper
+* module/editorial: publication list wrapper
+* module/editorial: download prefix for attachment list
+* module/filters: type option for auto-paginate
+* module/navigation: better breadcrumb conditionals
+* module/search: new simple form with no button
+* module/social: check for empty titles
+* module/social: check for empty post author
+* module/sidebar: check for sidebar support
+* module/sidebar: default sidebar for after singular entry
+
 ### 3.16.6
 * root/head: moved up charset meta
 * root/start: moved navbar to partials
