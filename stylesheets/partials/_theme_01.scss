@@ -65,12 +65,14 @@ li.menu-item-has-children {}
 .entry-summary { margin-bottom:20px; }
 
 ////////////////////////////////////////////////////////////////////////////////
-/// SEE: gTheme Option: `mce_style_formats`
+/// @SEE: `gThemeEditor::defaultFormats()`
 blockquote.entry-quote {}
 ul.entry-list {}
 ol.entry-list {}
 p.entry-note {}
 p.entry-source {}
+p.entry-signature {}
+p.entry-greeting {}
 
 ////////////////////////////////////////////////////////////////////////////////
 /// COMMENTS -------------------------------------------------------------------

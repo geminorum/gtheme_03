@@ -18,6 +18,15 @@
   }
 }
 
+// @REF: https://stackoverflow.com/a/40029478
+@mixin theme-clearflex() {
+  &::before,
+  &::after {
+    flex-basis: 0;
+    order: 1;
+  }
+}
+
 ////////////////////////////////////////////////////////////////////////////////
 /// CSS-Tricks: Inheriting box-sizing Probably Slightly Better Best-Practice
 // SEE: https://css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice/
@@ -91,6 +100,8 @@
 
 // DEPRECATED: use @include theme-clearfix;
 @mixin clearfix() {
+  @warn "Theme Utilities: clearfix DEPRECATED: use @include theme-clearfix";
+
   &::after {
     content: "";
     display: table;
@@ -100,6 +111,8 @@
 
 // DEPRECATED: use @include theme-clearfix;
 @mixin clear-fix() {
+  @warn "Theme Utilities: clear-fix DEPRECATED: use @include theme-clearfix";
+
   &::before,
   &::after {
     content: " ";
@@ -111,7 +124,7 @@
   }
 }
 
-// DEPRECATED: use @include clearfix()
+// DEPRECATED: use @include theme-clearfix;
 %clearfix {
   &::after {
     content: "";

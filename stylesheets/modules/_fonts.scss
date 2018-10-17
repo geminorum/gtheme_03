@@ -7,6 +7,11 @@
 
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
+
+// $theme-fonts-base: "https://cdn.rawgit.com" !default;
+$theme-fonts-base: "https://rawcdn.githack.com" !default;
+
+////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 /// Native Fonts
 
@@ -55,7 +60,7 @@
   $ver: "v19.0.0";
   $weight: "normal";
 
-  $base: "https://cdn.rawgit.com";
+  $base: $theme-fonts-base;
   $repo: "rastikerdar/vazir-font";
   $file: "dist/Vazir";
   $path: $base + "/" + $repo + "/" + $ver + "/" + $file;
@@ -71,7 +76,7 @@
   $ver: "v19.0.0";
   $weight: "bold";
 
-  $base: "https://cdn.rawgit.com";
+  $base: $theme-fonts-base;
   $repo: "rastikerdar/vazir-font";
   $file: "dist/Vazir-Bold";
   $path: $base + "/" + $repo + "/" + $ver + "/" + $file;
@@ -87,7 +92,7 @@
   $ver: "v19.0.0";
   $weight: "300";
 
-  $base: "https://cdn.rawgit.com";
+  $base: $theme-fonts-base;
   $repo: "rastikerdar/vazir-font";
   $file: "dist/Vazir-Light";
   $path: $base + "/" + $repo + "/" + $ver + "/" + $file;
@@ -103,7 +108,7 @@
   $ver: "v19.0.0";
   $weight: "500";
 
-  $base: "https://cdn.rawgit.com";
+  $base: $theme-fonts-base;
   $repo: "rastikerdar/vazir-font";
   $file: "dist/Vazir-Medium";
   $path: $base + "/" + $repo + "/" + $ver + "/" + $file;
@@ -119,7 +124,7 @@
   $ver: "v19.0.0";
   $weight: "100";
 
-  $base: "https://cdn.rawgit.com";
+  $base: $theme-fonts-base;
   $repo: "rastikerdar/vazir-font";
   $file: "dist/Vazir-Thin";
   $path: $base + "/" + $repo + "/" + $ver + "/" + $file;
@@ -135,7 +140,7 @@
   $ver: "v19.0.0";
   $weight: "900";
 
-  $base: "https://cdn.rawgit.com";
+  $base: $theme-fonts-base;
   $repo: "rastikerdar/vazir-font";
   $file: "dist/Vazir-Black";
   $path: $base + "/" + $repo + "/" + $ver + "/" + $file;
@@ -151,7 +156,7 @@
   $ver: "v1.0.3";
   $weight: "normal";
 
-  $base: "https://cdn.rawgit.com";
+  $base: $theme-fonts-base;
   $repo: "rastikerdar/vazir-code-font";
   $file: "dist/Vazir-Code";
   $path: $base + "/" + $repo + "/" + $ver + "/" + $file;
@@ -174,7 +179,7 @@
   $ver: "v2.0.1";
   $weight: "normal";
 
-  $base: "https://cdn.rawgit.com";
+  $base: $theme-fonts-base;
   $repo: "rastikerdar/samim-font";
   $file: "dist/Samim";
   $path: $base + "/" + $repo + "/" + $ver + "/" + $file;
@@ -190,7 +195,7 @@
   $ver: "v2.0.1";
   $weight: "bold";
 
-  $base: "https://cdn.rawgit.com";
+  $base: $theme-fonts-base;
   $repo: "rastikerdar/samim-font";
   $file: "dist/Samim-Bold";
   $path: $base + "/" + $repo + "/" + $ver + "/" + $file;
@@ -214,7 +219,7 @@
   $ver: "v0.5.1";
   $weight: "normal";
 
-  $base: "https://cdn.rawgit.com";
+  $base: $theme-fonts-base;
   $repo: "rastikerdar/gandom-font";
   $file: "dist/Gandom";
   $path: $base + "/" + $repo + "/" + $ver + "/" + $file;
@@ -231,7 +236,7 @@
   $ver: "v0.5.1";
   $weight: "bold";
 
-  $base: "https://cdn.rawgit.com";
+  $base: $theme-fonts-base;
   $repo: "rastikerdar/gandom-font";
   $file: "dist/Gandom-Bold";
   $path: $base + "/" + $repo + "/" + $ver + "/" + $file;
@@ -254,7 +259,7 @@
   $ver: "v1.0.0-alpha22";
   $weight: "normal";
 
-  $base: "https://cdn.rawgit.com";
+  $base: $theme-fonts-base;
   $repo: "rastikerdar/sahel-font";
   $file: "dist/Sahel";
   $path: $base + "/" + $repo + "/" + $ver + "/" + $file;
@@ -270,7 +275,7 @@
   $ver: "v1.0.0-alpha22";
   $weight: "bold";
 
-  $base: "https://cdn.rawgit.com";
+  $base: $theme-fonts-base;
   $repo: "rastikerdar/sahel-font";
   $file: "dist/Sahel-Bold";
   $path: $base + "/" + $repo + "/" + $ver + "/" + $file;
@@ -286,9 +291,33 @@
   $ver: "v1.0.0-alpha22";
   $weight: "900";
 
-  $base: "https://cdn.rawgit.com";
+  $base: $theme-fonts-base;
   $repo: "rastikerdar/sahel-font";
   $file: "dist/Sahel-Black";
+  $path: $base + "/" + $repo + "/" + $ver + "/" + $file;
+
+  @include _theme-fonts-fontface($name, $path, $weight);
+}
+
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+/// Dirooz v0.2.1
+// https://github.com/rastikerdar/dirooz-font
+// https://rastikerdar.github.io/dirooz-font/
+
+@mixin theme-fonts-Dirooz-CDN() {
+
+  $font-family-normal: "Dirooz", "Tahoma", "Iranian Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif !global;
+  $font-family-bold: "Dirooz", "Tahoma", "Iranian Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif !global;
+
+  $name: "Dirooz";
+  $ver: "v0.2.1";
+  $weight: "normal";
+
+  $base: $theme-fonts-base;
+  $repo: "rastikerdar/dirooz-font";
+  $file: "dist/Dirooz";
   $path: $base + "/" + $repo + "/" + $ver + "/" + $file;
 
   @include _theme-fonts-fontface($name, $path, $weight);

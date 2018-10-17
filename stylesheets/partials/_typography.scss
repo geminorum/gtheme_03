@@ -21,17 +21,40 @@
   hyphenate-lines: 3;
 }
 
-// Adjusting font sizes for fallback fonts
-// In situations where font fallback occurs, fallback fonts may not share the same
-// aspect ratio as the desired font family and will thus appear less readable.
-// The font-size-adjust property is a way to preserve the readability of text when
-// font fallback occurs. It does this by adjusting the font-size so that the x-height
-// is the same regardless of the font used.
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+/// Adjusting font sizes for fallback fonts
+// In situations where font fallback occurs, fallback fonts may not share
+// the same aspect ratio as the desired font family and will thus appear
+// less readable. The font-size-adjust property is a way to preserve
+// the readability of text when font fallback occurs. It does this by
+// adjusting the font-size so that the x-height is the same
+// regardless of the font used.
 @mixin theme-typography-adjust() {
   font-size-adjust: auto;
 }
 
-// Default paragraph styles
+////////////////////////////////////////////////////////////////////////////////
+// @REF: https://codepen.io/shanomurphy/pen/jeNOwr
+// @SEE: https://codepen.io/ibrahimjabbari/pen/ozinB
+@mixin theme-typography-hr-dots() {
+  border: 0;
+  height: 1px;
+  margin: 2.5rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &::before {
+    content: "•••";
+    font-size: 1.25em;
+    letter-spacing: .75em;
+    opacity: .75;
+  }
+}
+
+////////////////////////////////////////////////////////////////////////////////
+// Default Paragraph Styles
 @mixin theme-default-paragraph() {
   // font-size: $font-size-large;
 

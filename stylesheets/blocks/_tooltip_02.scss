@@ -1,0 +1,139 @@
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+/// gTheme Blocks: Tooltip: 02 - 2015-10-12
+// -----------------------------------------------------------------------------
+// based on BS4 Tooltips
+
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+
+$theme-tooltip-bg: $gray-base !default;
+$theme-tooltip-color: $gray-lighter !default;
+$theme-tooltip-width: 200px !default;
+$theme-tooltip-padding: 8px !default;
+$theme-tooltip-fontsize: 14px !default;
+$theme-tooltip-lineheight: 1.2 !default;
+$theme-tooltip-borderradius: 2px !default;
+
+$tooltip-opacity: .9 !default;
+$tooltip-padding-y: .2rem !default;
+$tooltip-padding-x: .4rem !default;
+$tooltip-margin: 0 !default;
+
+$tooltip-arrow-width: .6rem !default;
+$tooltip-arrow-height: .2rem !default;
+$tooltip-arrow-color: $theme-tooltip-bg !default;
+
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+
+[data-toggle^="tooltip"] {
+  // pointer-events: none;
+}
+
+.tooltip {
+  position: absolute;
+  z-index: 1070;
+  display: block;
+  margin: $tooltip-margin;
+
+  // Our parent element can be arbitrary since tooltips are by default inserted
+  // as a sibling of their target element.
+  // So reset our font and text properties to avoid inheriting weird values.
+  // @include reset-text();
+
+  font-size: $theme-tooltip-fontsize;
+
+  // Allow breaking very long words so they don't overflow the tooltip's bounds
+  word-wrap: break-word;
+  opacity: 0;
+
+  &[aria-hidden^="false"] {
+    opacity: $tooltip-opacity;
+  }
+
+  .tooltip-inner {
+    max-width: $theme-tooltip-width;
+    padding: $tooltip-padding-y $tooltip-padding-x;
+    color: $theme-tooltip-color;
+    text-align: center;
+    text-indent: 0;
+    background-color: $theme-tooltip-bg;
+    border-radius: $theme-tooltip-borderradius;
+  }
+
+  .tooltip-arrow {
+    position: absolute;
+    display: block;
+    width: $tooltip-arrow-width;
+    height: $tooltip-arrow-height;
+
+    &::before {
+      position: absolute;
+      content: "";
+      border-color: transparent;
+      border-style: solid;
+    }
+  }
+
+  &[x-placement^="top"] {
+    padding: $tooltip-arrow-height 0;
+
+    .tooltip-arrow {
+      bottom: 0;
+
+      &::before {
+        top: 0;
+        border-width: $tooltip-arrow-height ($tooltip-arrow-width / 2) 0;
+        border-top-color: $tooltip-arrow-color;
+      }
+    }
+  }
+
+  &[x-placement^="right"] {
+    padding: 0 $tooltip-arrow-height;
+
+    .tooltip-arrow {
+      left: 0;
+      width: $tooltip-arrow-height;
+      height: $tooltip-arrow-width;
+
+      &::before {
+        right: 0;
+        border-width: ($tooltip-arrow-width / 2) $tooltip-arrow-height ($tooltip-arrow-width / 2) 0;
+        border-right-color: $tooltip-arrow-color;
+      }
+    }
+  }
+
+  &[x-placement^="bottom"] {
+    padding: $tooltip-arrow-height 0;
+
+    .tooltip-arrow {
+      top: 0;
+
+      &::before {
+        bottom: 0;
+        border-width: 0 ($tooltip-arrow-width / 2) $tooltip-arrow-height;
+        border-bottom-color: $tooltip-arrow-color;
+      }
+    }
+  }
+
+  &[x-placement^="left"] {
+    padding: 0 $tooltip-arrow-height;
+
+    .tooltip-arrow {
+      right: 0;
+      width: $tooltip-arrow-height;
+      height: $tooltip-arrow-width;
+
+      &::before {
+        left: 0;
+        border-width: ($tooltip-arrow-width / 2) 0 ($tooltip-arrow-width / 2) $tooltip-arrow-height;
+        border-left-color: $tooltip-arrow-color;
+      }
+    }
+  }
+}

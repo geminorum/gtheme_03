@@ -1,0 +1,193 @@
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+/// gTheme Blocks: Tooltip: 01 - 2015-10-09
+// -----------------------------------------------------------------------------
+// @REF: https://chrisbracco.com/a-simple-css-tooltip/
+// @REF: https://codepen.io/cbracco/pen/nufHz
+
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+
+$theme-tooltip-bg: hsla(0, 0%, 20%, 0.9) !default;
+$theme-tooltip-color: #fff !default;
+$theme-tooltip-width: 160px !default;
+$theme-tooltip-padding: 8px !default;
+$theme-tooltip-fontsize: 14px !default;
+$theme-tooltip-lineheight: 1.2 !default;
+$theme-tooltip-borderradius: 2px !default;
+
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+
+[data-tooltip],
+// [data-toggle="tooltip"],
+.tooltip {
+  position: relative;
+  cursor: pointer;
+
+  // base styles for the entire tooltip
+  &::before,
+  &::after {
+    position: absolute;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out, visibility 0.2s ease-in-out, transform 0.2s cubic-bezier(0.71, 1.7, 0.77, 1.24);
+    transform: translate3d(0, 0, 0);
+    pointer-events: none;
+
+    // tooltip-top
+    bottom: 100%;
+    left: 50%;
+  }
+
+  // show the entire tooltip on hover and focus
+  &:hover::before,
+  &:hover::after,
+  &:focus::before,
+  &:focus::after {
+    visibility: visible;
+    opacity: 1;
+
+    // tooltip-top
+    transform: translateY(-12px) translateZ(1px);
+  }
+
+  // base styles for the tooltip's directional arrow
+  &::before {
+    z-index: 1001;
+    border: 6px solid transparent;
+    background: transparent;
+    content: "";
+
+    // tooltip-top
+    margin-left: -6px;
+    margin-bottom: -12px;
+    border-top-color: $theme-tooltip-bg;
+  }
+
+  // base styles for the tooltip's content area
+  &::after {
+    z-index: 1000;
+    padding: $theme-tooltip-padding;
+    width: $theme-tooltip-width;
+    border-radius: $theme-tooltip-borderradius;
+    background-color: $theme-tooltip-bg;
+    color: $theme-tooltip-color;
+    font-size: $theme-tooltip-fontsize;
+    line-height: $theme-tooltip-lineheight;
+    text-indent: 0;
+    // content: attr(data-tooltip);
+
+    // tooltip-top
+    // margin-left: -80px;
+    margin-left: $theme-tooltip-width * -0.5;
+  }
+}
+
+[data-tooltip] {
+  &::after {
+    content: attr(data-tooltip);
+  }
+}
+
+// [data-toggle="tooltip"],
+.tooltip {
+  &::after {
+    content: attr(title);
+  }
+}
+
+[data-tooltip-direction="ltr"] {
+  &::after {
+    direction: ltr;
+  }
+}
+
+.tooltip-left {
+  &::before,
+  &::after {
+    right: 100%;
+    bottom: 50%;
+    left: auto;
+  }
+
+  &::before {
+    margin-left: 0;
+    margin-right: -12px;
+    margin-bottom: 0;
+    border-top-color: transparent;
+    border-left-color: $theme-tooltip-bg;
+  }
+
+  &:hover,
+  &:focus {
+    &::before,
+    &::after {
+      transform: translateX(-12px) translateZ(1px);
+    }
+  }
+}
+
+.tooltip-bottom {
+  &::before,
+  &::after {
+    top: 100%;
+    bottom: auto;
+    left: 50%;
+  }
+
+  &::before {
+    margin-top: -12px;
+    margin-bottom: 0;
+    border-top-color: transparent;
+    border-bottom-color: $theme-tooltip-bg;
+  }
+
+  &:hover,
+  &:focus {
+    &::before,
+    &::after {
+      transform: translateY(12px) translateZ(1px);
+    }
+  }
+}
+
+.tooltip-right {
+  &::before,
+  &::after {
+    left: 100%;
+    bottom: 50%;
+  }
+
+  &::before {
+    margin-bottom: 0;
+    margin-left: -12px;
+    border-top-color: transparent;
+    border-right-color: $theme-tooltip-bg;
+  }
+
+  &:hover,
+  &:focus {
+    &::before,
+    &::after {
+      transform: translateX(12px) translateZ(1px);
+    }
+  }
+}
+
+// move directional arrows down a bit for left/right tooltips
+.tooltip-left::before,
+.tooltip-right::before {
+  top: 3px;
+}
+
+// vertically center tooltip content for left/right tooltips
+.tooltip-left::after,
+.tooltip-right::after {
+  margin-left: 0;
+  margin-bottom: -16px;
+}
+
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
