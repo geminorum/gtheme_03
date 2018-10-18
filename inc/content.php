@@ -710,7 +710,7 @@ $('#text-unjustify').click(function (e) {
 		echo $after;
 
 		if ( $twitter = gThemeOptions::info( 'twitter_site', FALSE ) )
-			$twitter_template = '${title} ${link} '.gThemeMisc::getTwitter( $twitter );
+			$twitter_template = '${title} ${link} '.gThemeThird::getTwitter( $twitter );
 		else
 			$twitter_template = '${title} ${link}';
 

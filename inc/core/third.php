@@ -1,6 +1,6 @@
 <?php defined( 'ABSPATH' ) or die( header( 'HTTP/1.0 403 Forbidden' ) );
 
-class gThemeMisc extends gThemeBaseCore
+class gThemeThird extends gThemeBaseCore
 {
 
 	// @REF: https://gist.github.com/boonebgorges/5537311

@@ -53,7 +53,7 @@ class gThemeSocial extends gThemeModuleCore
 			echo '<link href="'.esc_url( $publisher ).'" rel="publisher" />'."\n";
 
 		if ( $twitter = gThemeOptions::info( 'twitter_site', FALSE ) )
-			echo '<meta name="twitter:site" content="'.gThemeMisc::getTwitter( $twitter ).'" />'."\n";
+			echo '<meta name="twitter:site" content="'.gThemeThird::getTwitter( $twitter ).'" />'."\n";
 
 		self::author();
 	}
@@ -168,6 +168,6 @@ class gThemeSocial extends gThemeModuleCore
 			echo '<link href="'.esc_url( untrailingslashit( $plus ).'?rel=author' ).'" rel="author" />'."\n";
 
 		if ( $twitter = get_user_meta( $post->post_author, 'twitter', TRUE ) )
-			echo '<meta name="twitter:creator" content="'.gThemeMisc::getTwitter( $twitter ).'" />'."\n";
+			echo '<meta name="twitter:creator" content="'.gThemeThird::getTwitter( $twitter ).'" />'."\n";
 	}
 }

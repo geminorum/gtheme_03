@@ -21,7 +21,7 @@ final class gThemeCore
 		$modules = [
 			'core/base'      => '',
 			'core/html'      => '',
-			'core/misc'      => '',
+			'core/third'     => '',
 			'core/text'      => '',
 			'core/wordpress' => '',
 
