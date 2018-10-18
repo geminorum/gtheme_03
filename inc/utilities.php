@@ -9,19 +9,19 @@ class gThemeUtilities extends gThemeBaseCore
 		wp_add_inline_script( 'gtheme-autosize', "autosize(document.querySelectorAll('textarea'));" );
 	}
 
-	public static function prepTitle( $text )
+	public static function prepTitle( $text, $post_id = 0 )
 	{
 		if ( ! $text )
 			return '';
 
-		$text = apply_filters( 'the_title', $text, 0 );
+		$text = apply_filters( 'the_title', $text, $post_id );
 		$text = apply_filters( 'string_format_i18n', $text );
 		$text = apply_filters( 'gnetwork_typography', $text );
 
 		return trim( $text );
 	}
 
-	public static function prepDescription( $text, $shortcode = TRUE )
+	public static function prepDescription( $text, $shortcode = TRUE, $autop = TRUE )
 	{
 		if ( ! $text )
 			return '';
@@ -32,7 +32,7 @@ class gThemeUtilities extends gThemeBaseCore
 		$text = apply_filters( 'html_format_i18n', $text );
 		$text = apply_filters( 'gnetwork_typography', $text );
 
-		return wpautop( $text );
+		return $autop ? wpautop( $text ) : $text;
 	}
 
 	// @REF: http://davidwalsh.name/word-wrap-mootools-php
