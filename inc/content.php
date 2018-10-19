@@ -821,10 +821,13 @@ addthis_config.services_custom = [
 			return;
 
 		if ( $args['link'] ) {
+
 			if ( FALSE === $args['shortlink'] )
 				$link = get_permalink();
+
 			else if ( TRUE === $args['shortlink'] )
 				$link = wp_get_shortlink( 0, 'post' );
+
 			else
 				$link = $args['shortlink'];
 		}
@@ -848,7 +851,9 @@ addthis_config.services_custom = [
 			echo '<a itemprop="url" rel="bookmark" href="'.$link.'" title="';
 				self::title_attr( TRUE, $args['title'], ( TRUE === $args['shortlink'] ? FALSE : NULL ) );
 			echo '">'.$args['title'].'</a>';
+
 		} else {
+
 			echo $args['title'];
 		}
 

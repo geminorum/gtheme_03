@@ -125,7 +125,7 @@ class gThemeFilters extends gThemeModuleCore
 	}
 
 	// FIXME: use this!
-	// @SOURCE: [Optimize CSS Delivery](https://developers.google.com/speed/docs/insights/OptimizeCSSDelivery)
+	// @SEE: https://developers.google.com/speed/docs/insights/OptimizeCSSDelivery
 	public static function asyncStyle( $css = NULL, $singular = FALSE )
 	{
 		if ( is_null( $css ) )

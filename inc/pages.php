@@ -72,6 +72,7 @@ class gThemePages extends gThemeModuleCore
 			'echo'    => TRUE,
 			'context' => NULL,
 			'rel'     => FALSE,
+			'data'    => FALSE,
 		], $atts );
 
 		if ( $args['url'] )
@@ -89,6 +90,7 @@ class gThemePages extends gThemeModuleCore
 				'href'  => $args['def'],
 				'class' => $args['class'],
 				'title' => $args['attr'],
+				'data'  => $args['data'],
 			], $args['title'] ).$args['after'];
 
 			if ( ! $args['echo'] )

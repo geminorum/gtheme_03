@@ -30,6 +30,9 @@ final class gThemeCore
 			'modulecore' => '',
 			'cache'      => '',
 
+			'Misc/Bootstrap_Walker_NavBar' => '',
+			'Misc/gTheme_Walker_Page'      => '',
+
 			'template'   => 'gThemeTemplate',
 			'options'    => 'gThemeOptions',
 			'theme'      => 'gThemeTheme',
@@ -105,8 +108,11 @@ final class gThemeCore
 				$args = empty( $options[$module_slug] ) ? [] : $options[$module_slug];
 
 				try {
+
 					$this->{$module_slug} = new $module_class( $args );
+
 				} catch ( Exception $e ) {
+
 					// do nothing!
 				}
 			}
