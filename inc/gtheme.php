@@ -33,6 +33,18 @@ final class gThemeCore
 			'Misc/Bootstrap_Walker_NavBar' => '',
 			'Misc/gTheme_Walker_Page'      => '',
 
+			'WordPress/Widget'       => '',
+			'Widgets/TermPosts'      => '',
+			'Widgets/RelatedPosts'   => '',
+			'Widgets/RecentPosts'    => '',
+			'Widgets/RecentComments' => '',
+			'Widgets/Search'         => '',
+			'Widgets/TemplatePart'   => '',
+			'Widgets/Children'       => '',
+			'Widgets/Siblings'       => '',
+			'Widgets/TheTerm'        => '',
+			'Widgets/CustomHTML'     => '',
+
 			'template'   => 'gThemeTemplate',
 			'options'    => 'gThemeOptions',
 			'theme'      => 'gThemeTheme',
