@@ -10,7 +10,7 @@ class gThemeFilters extends gThemeModuleCore
 			'auto_paginate'      => FALSE,
 			'redirect_canonical' => FALSE,
 			'default_editor'     => FALSE,
-			'disable_autoembed'  => TRUE,
+			'disable_autoembed'  => FALSE, // gNetwork does it
 			'overwrite_author'   => TRUE,
 		], $args ) );
 

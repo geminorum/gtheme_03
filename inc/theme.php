@@ -7,16 +7,16 @@ class gThemeTheme extends gThemeModuleCore
 	{
 		extract( self::atts( [
 			'cleanup'       => TRUE,
-			'html_title'    => TRUE,
+			'html_title'    => TRUE, // @REF: https://make.wordpress.org/core/?p=11311
 			'adminbar'      => TRUE,
 			'wpcf7'         => TRUE,
 			'page_excerpt'  => TRUE,
-			'content_width' => TRUE,
+			'content_width' => TRUE, // @SEE: https://core.trac.wordpress.org/ticket/21256
 			'feed_links'    => TRUE,
 			'post_formats'  => FALSE,
 			'html5'         => TRUE,
-			'js'            => TRUE,
-			'hooks'         => TRUE,
+			'js'            => FALSE,
+			'hooks'         => TRUE, // @REF: https://is.gd/4ORzuI
 			'bp_support'    => TRUE,
 			'bp_no_styles'  => FALSE,
 		], $args ) );
@@ -24,7 +24,7 @@ class gThemeTheme extends gThemeModuleCore
 		if ( $cleanup )
 			$this->cleanup();
 
-		if ( $html_title ) // @REF: https://make.wordpress.org/core/?p=11311
+		if ( $html_title )
 			add_theme_support( 'title-tag' );
 
 		if ( $adminbar )
@@ -36,7 +36,7 @@ class gThemeTheme extends gThemeModuleCore
 		if ( $page_excerpt )
 			add_post_type_support( 'page', 'excerpt' );
 
-		if ( $content_width ) { // @SEE: https://core.trac.wordpress.org/ticket/21256
+		if ( $content_width ) {
 
 			$this->set_content_width( gThemeOptions::info( 'default_content_width', FALSE ) );
 
@@ -89,7 +89,6 @@ class gThemeTheme extends gThemeModuleCore
 		if ( $js )
 			add_action( 'wp_enqueue_scripts', [ $this, 'wp_enqueue_scripts' ] );
 
-		// http://justintadlock.com/archives/2011/09/01/a-better-way-for-plugins-to-hook-into-theme-templates
 		if ( $hooks )
 			add_theme_support( 'template-hooks',
 				gThemeOptions::info( 'support_template_hooks', [

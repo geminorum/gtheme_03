@@ -128,7 +128,7 @@ class gThemeOptions extends gThemeModuleCore
 			'frontpage_desc'  => self::getOption( 'frontpage_desc', get_bloginfo( 'description', 'display' ) ), // FALSE to disable
 
 			// 'default_image_src' => FALSE, // GTHEME_URL.'/images/document-large.png', // FIXME: MUST DEP
-			'copyright'         => self::getOption( 'copyright', __( '&copy; All right reserved.', GTHEME_TEXTDOMAIN ) ),
+			'copyright'         => self::getOption( 'copyright', __( '&copy; All rights reserved.', GTHEME_TEXTDOMAIN ) ),
 
 			// 'default_content_width' => 455, // setting global content_width // FALSE to default
 			// 'full_content_width' => 455, // setting global content_width on fullwidthpage.php // FALSE to default

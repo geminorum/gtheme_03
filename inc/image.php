@@ -183,6 +183,7 @@ class gThemeImage extends gThemeModuleCore
 			'alt'   => $alt ?: FALSE,
 			'class' => apply_filters( 'get_image_tag_class', 'align'.$align, $id, $align, $size ),
 			'data'  => [
+				'class'  => 'wp-image-'.$id, // WP core need this
 				'width'  => $width, // need this for `image_add_caption()`
 				// 'height' => $height,
 				'id'     => $id,
