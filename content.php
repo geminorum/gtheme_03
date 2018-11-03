@@ -3,29 +3,39 @@
 	if ( is_singular() || is_single() ) {
 
 		gThemeContent::wrapOpen( 'singular' );
-		gThemeImage::image( [ 'tag' => 'single' ] );
 
-		if ( gThemeTerms::has( 'poster' ) ) {
+			gThemeImage::image( [
+				'tag'   => 'single',
+				'link'  => 'attachment',
+				'empty' => FALSE,
+			] );
 
-			// NO HEADER
-			// NO CONTENT
+			if ( gThemeTerms::has( 'poster' ) ) {
 
-		} else {
-			get_template_part( 'partials/entry', 'singular' );
-		}
+				// NO HEADER
+				// NO CONTENT
 
-		gThemeSideBar::sidebar( 'after-singular' );
+			} else {
+				get_template_part( 'partials/entry', 'singular' );
+			}
 
-		gThemeComments::template( '<div class="wrap-comments">', '</div>' );
+			gThemeSideBar::sidebar( 'after-singular' );
+
+			gThemeComments::template( '<div class="wrap-comments">', '</div>' );
 
 		gThemeContent::wrapClose( 'singular' );
 
 	} else {
 
 		gThemeContent::wrapOpen( 'index' );
-		gThemeImage::image( [ 'tag' => 'single' ] );
 
-		get_template_part( 'partials/entry', 'index' );
+			gThemeImage::image( [
+				'tag'   => 'single',
+				'link'  => 'parent',
+				'empty' => FALSE,
+			] );
+
+			get_template_part( 'partials/entry', 'index' );
 
 		gThemeContent::wrapClose( 'index' );
 	}
