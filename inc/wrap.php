@@ -151,7 +151,9 @@ class gThemeWrap extends gThemeModuleCore
 	{
 		do_action( 'template_body_bottom' );
 
-		echo '</body>';
+		?><script>var html=document.querySelector("html");html.classList.remove("no-js");</script><?php
+
+		echo "\n".'</body>';
 
 		echo "\n".$after;
 	}
