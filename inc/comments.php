@@ -24,9 +24,19 @@ class gThemeComments extends gThemeModuleCore
 			add_action( 'comment_form_top', [ $this, 'comment_form_top' ] );
 	}
 
-	public static function template( $before = '', $after = '' )
+	public static function template( $before = '', $after = '', $post = NULL )
 	{
 		if ( ! gThemeOptions::info( 'comments_support', TRUE ) )
+			return;
+
+		if ( ! $post = get_post( $post ) )
+			return;
+
+		// dummy post
+		if ( ! $post->ID )
+			return;
+
+		if ( 'page' == $post->post_type )
 			return;
 
 		echo $before;

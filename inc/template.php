@@ -44,6 +44,10 @@ class gThemeTemplate extends gThemeModuleCore
 		if ( ! $post = get_post( $post ) )
 			return '';
 
+		// dummy post
+		if ( ! $post->ID )
+			return '';
+
 		if ( $post->post_author == gThemeOptions::getOption( 'default_user', 0 ) )
 			return '';
 

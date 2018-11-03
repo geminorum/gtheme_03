@@ -103,6 +103,10 @@ class gThemeContent extends gThemeModuleCore
 		if ( ! $post = get_post( $post ) )
 			return '';
 
+		// dummy post
+		if ( ! $post->ID )
+			return '';
+
 		if ( 'page' == $post->post_type )
 			return '';
 
