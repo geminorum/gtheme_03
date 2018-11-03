@@ -168,7 +168,7 @@ class gThemeFilters extends gThemeModuleCore
 
 			$media = 'print';
 
-		} else if ( file_exists( GTHEME_CHILD_DIR.'/css/css.php' ) )
+		} else if ( file_exists( GTHEME_CHILD_DIR.'/css/css.php' ) ) {
 
 			if ( ! $rtl )
 				$args['ltr'] = '';
