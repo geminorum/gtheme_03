@@ -9,6 +9,7 @@
 **/
 
 (function($) {
+  var body = $('body');
   body.append('<div id="zoom"><a class="close"></a><a href="#previous" class="previous"></a><a href="#next" class="next"></a><div class="content loading"></div></div>');
 
   var zoom = $('#zoom').hide(),
