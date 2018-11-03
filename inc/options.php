@@ -194,9 +194,6 @@ class gThemeOptions extends gThemeModuleCore
 
 			// 'byline_fallback' => TRUE, // if FALSE hides wp users
 
-			// list of font-faces to check after page load via FontDetect
-			// 'css_font_stack' => [ 'Arial', 'Tahoma' ],
-
 			// BANNERS API
 			// 'banners_legend' => FALSE, // html before admin banners page
 			// 'banner_groups'  => gThemeBanners::defaults(),

@@ -118,9 +118,6 @@ class gThemeWrap extends gThemeModuleCore
 		if ( $lang = get_bloginfo( 'language', 'display' ) )
 			$atts[] = "lang=\"$lang\"";
 
-		if ( $font_stack = gThemeOptions::info( 'css_font_stack', FALSE ) )
-			$atts[] = 'data-font-stack=\''.wp_json_encode( $font_stack ).'\'';
-
 		if ( count( $atts ) )
 			$atts = ' '.apply_filters( 'language_attributes', implode( ' ', $atts ) );
 		else
