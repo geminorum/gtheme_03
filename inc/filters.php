@@ -88,18 +88,20 @@ class gThemeFilters extends gThemeModuleCore
 
 		gThemeSocial::doHead();
 
-		$args = [ 'ver' => GTHEME_CHILD_VERSION ];
+		if ( gThemeOptions::info( 'deferred_styles', FALSE ) ) {
 
-		if ( gThemeWordPress::isDev() )
-			$args['debug'] = '';
+			self::preloadStyles();
 
-		if ( ! gThemeUtilities::isRTL() )
-			$args['ltr'] = '';
+			add_action( 'template_body_top', [ $this, 'template_body_top' ] );
+			add_action( 'template_body_bottom', [ $this, 'template_body_bottom' ] );
 
-		foreach ( (array) gThemeOptions::info( 'stylesheets', [] ) as $stylesheet )
-			gThemeUtilities::linkStyleSheet( $stylesheet, FALSE );
+		} else {
 
-		gThemeUtilities::linkStyleSheet( self::getStyle( $singular ), $args, 'all' );
+			foreach ( (array) gThemeOptions::info( 'stylesheets', [] ) as $stylesheet )
+				gThemeUtilities::linkStyleSheet( $stylesheet, FALSE );
+
+			echo self::getStyleLink( $singular );
+		}
 
 		// FIXME: also check if Bootstrap
 		// if ( gThemeWordPress::isDev() && ! gThemeUtilities::isPrint() )
@@ -109,40 +111,115 @@ class gThemeFilters extends gThemeModuleCore
 			echo '<link rel="pingback" href="'.get_bloginfo( 'pingback_url', 'display' ).'" />'."\n";
 	}
 
-	public static function getStyle( $singular = FALSE )
+	public function template_body_top()
 	{
-		if ( $singular && gThemeUtilities::isPrint() )
-			$css = file_exists( GTHEME_CHILD_DIR.'/print.css' )
-				? GTHEME_CHILD_URL.'/print.css'
-				: GTHEME_URL.'/print.css';
-
-		else
-			$css = file_exists( GTHEME_CHILD_DIR.'/css/css.php' )
-				? GTHEME_CHILD_URL.'/css/'
-				: GTHEME_CHILD_URL.'/style.css';
-
-		return $css;
+		echo '<div id="preload-spinner" class="preload-spinner '
+			.gThemeOptions::info( 'preload_spinner_class', 'light' )
+			.'"><div><div></div></div></div>';
 	}
 
-	// FIXME: use this!
-	// @SEE: https://developers.google.com/speed/docs/insights/OptimizeCSSDelivery
-	public static function asyncStyle( $css = NULL, $singular = FALSE )
+	public function template_body_bottom()
 	{
-		if ( is_null( $css ) )
-			$css = self::getStyle( $singular );
+		$html = '';
 
-?><script>
-	var cb = function() {
-		var l = document.createElement('link');
-		var h = document.getElementsByTagName('head')[0];
-		l.rel = 'stylesheet';
-		l.href = '<?php echo $css; ?>';
-		h.parentNode.insertBefore(l, h);
+		foreach ( (array) gThemeOptions::info( 'stylesheets', [] ) as $stylesheet )
+			$html.= gThemeUtilities::linkStyleSheet( $stylesheet, FALSE, FALSE, FALSE );
+
+		$html.= self::getStyleLink( is_singular() );
+
+		if ( $html )
+			self::deferredStyles( $html );
+	}
+
+	public static function preloadStyles()
+	{
+		$file = 'front.preload'
+			.( gThemeUtilities::isRTL() ? '-rtl' : '' )
+			.( SCRIPT_DEBUG ? '' : '.min' )
+			.'.css';
+
+		$path = file_exists( GTHEME_CHILD_DIR.'/css/'.$file )
+			? GTHEME_CHILD_DIR.'/css/'.$file
+			: GTHEME_DIR.'/css/'.$file;
+
+		echo '<style type="text/css">';
+			readfile( $path );
+		echo '</style>';
+	}
+
+	public static function getStyleLink( $singular = FALSE )
+	{
+		$rtl  = gThemeUtilities::isRTL();
+		$args = [ 'ver' => GTHEME_CHILD_VERSION ];
+
+		if ( gThemeWordPress::isDev() )
+			$args['debug'] = '';
+
+		if ( $singular && gThemeUtilities::isPrint() ) {
+
+			$file = 'front.print'
+				.( $rtl ? '-rtl' : '' )
+				.( SCRIPT_DEBUG ? '' : '.min' )
+				.'.css';
+
+			$url = file_exists( GTHEME_CHILD_DIR.'/css/'.$file )
+				? GTHEME_CHILD_URL.'/css/'.$file
+				: GTHEME_URL.'/css/'.$file;
+
+			$media = 'print';
+
+		} else if ( file_exists( GTHEME_CHILD_DIR.'/css/css.php' ) )
+
+			if ( ! $rtl )
+				$args['ltr'] = '';
+
+			$url = GTHEME_CHILD_URL.'/css/';
+
+			$media = FALSE;
+
+		} else {
+
+			$url = GTHEME_CHILD_URL.'/css/front.screen'
+				.( $rtl ? '-rtl' : '' )
+				.( SCRIPT_DEBUG ? '' : '.min' )
+				.'.css';
+
+			$media = 'screen';
+		}
+
+		return gThemeUtilities::linkStyleSheet( $url, $args, $media, FALSE );
+	}
+
+	// @REF: https://developers.google.com/speed/docs/insights/OptimizeCSSDelivery
+	public static function deferredStyles( $tags )
+	{
+		?><noscript id="deferred-styles"><?php echo "\n".$tags; ?></noscript>
+<script>
+	var loadDeferredStyles = function() {
+		var addStylesNode = document.getElementById("deferred-styles");
+		var replacement = document.createElement("div");
+		replacement.innerHTML = addStylesNode.textContent;
+		document.body.appendChild(replacement)
+		addStylesNode.parentElement.removeChild(addStylesNode);
 	};
-	var raf = requestAnimationFrame || mozRequestAnimationFrame ||
-		webkitRequestAnimationFrame || msRequestAnimationFrame;
-	if (raf) raf(cb);
-	else window.addEventListener('load', cb);
+	var disableSpinner = function() {
+		// document.getElementById("preload-spinner").outerHTML = "";
+		var spinner = document.getElementById("preload-spinner");
+		spinner.classList.add("fade-out");
+	};
+	var raf = window.requestAnimationFrame
+		|| window.mozRequestAnimationFrame
+		|| window.webkitRequestAnimationFrame
+		|| window.msRequestAnimationFrame;
+	if (raf) {
+		raf(function() {
+			window.setTimeout(loadDeferredStyles, 0);
+			window.addEventListener('load', disableSpinner);
+		});
+	} else {
+		window.addEventListener('load', loadDeferredStyles);
+		window.addEventListener('load', disableSpinner);
+	};
 </script><?php
 	}
 
