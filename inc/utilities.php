@@ -165,9 +165,9 @@ class gThemeUtilities extends gThemeBaseCore
 		}
 	}
 
-	public static function linkStyleSheet( $url, $version = GTHEME_CHILD_VERSION, $media = FALSE )
+	public static function linkStyleSheet( $url, $version = GTHEME_CHILD_VERSION, $media = FALSE, $echo = TRUE )
 	{
-		gThemeHTML::linkStyleSheet( $url, $version, $media );
+		return gThemeHTML::linkStyleSheet( $url, $version, $media, $echo );
 	}
 
 	// http://stackoverflow.com/a/9241873
