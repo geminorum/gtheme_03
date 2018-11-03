@@ -2,4 +2,4 @@
 
 wp_footer();
 
-echo '</body></html>';
+gThemeWrap::bodyClose( '</html>' );

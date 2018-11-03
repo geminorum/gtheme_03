@@ -148,6 +148,16 @@ class gThemeWrap extends gThemeModuleCore
 
 		do_action( 'template_body_top' );
 	}
+
+	// USED IN: foot.php
+	public static function bodyClose( $after = '' )
+	{
+		do_action( 'template_body_bottom' );
+
+		echo '</body>';
+
+		echo "\n".$after;
+	}
 }
 
 function gtheme_template_path() {
