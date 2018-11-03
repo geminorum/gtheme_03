@@ -429,6 +429,10 @@ class gThemeTerms extends gThemeModuleCore
 		if ( ! $post = get_post( $post ) )
 			return FALSE;
 
+		// dummy post
+		if ( ! $post->ID )
+			return FALSE;
+
 		$taxonomy  = gThemeOptions::info( 'primary_terms_taxonomy', 'category' );
 		$primaries = gThemeOptions::getOption( 'terms', [] );
 

@@ -145,6 +145,8 @@ class gThemeFilters extends gThemeModuleCore
 		echo '<style type="text/css">';
 			readfile( $path );
 		echo '</style>';
+
+		echo '<noscript><style type="text/css">#preload-spinner{display:none;z-index:-999999;}</style></noscript>';
 	}
 
 	public static function getStyleLink( $singular = FALSE )
@@ -218,7 +220,7 @@ class gThemeFilters extends gThemeModuleCore
 		});
 	} else {
 		window.addEventListener('load', loadDeferredStyles);
-		window.addEventListener('load', disableSpinner);
+		window.addEventListener('DOMContentLoaded', disableSpinner);
 	};
 </script><?php
 	}
