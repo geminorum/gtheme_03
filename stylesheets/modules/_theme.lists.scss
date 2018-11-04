@@ -1,0 +1,54 @@
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+/// Modules: Theme: Lists ------------------------------------------------------
+
+////////////////////////////////////////////////////////////////////////////////
+@mixin theme-list-reset() {
+  @include theme-gutter-reset();
+  list-style: none;
+  // li:before,
+  // li:after {
+  //   content: "";
+  //   margin: 0;
+  //   padding: 0;
+  //   display: none;
+  // }
+}
+
+////////////////////////////////////////////////////////////////////////////////
+
+@mixin theme-list-inline() {
+  @include theme-list-reset();
+
+  > li {
+    display: inline-block;
+  }
+}
+
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+// $bs: $theme-bs-navbar-height, $ab: $theme-wp-adminbar-height
+// @REF: https://codepen.io/mtclmn/pen/OPQmbx
+@mixin theme-list-style-diamond( $gutter: $theme-grid-gutter, $color: $gray-light) {
+  @include theme-list-reset();
+
+  li {
+    margin: 0;
+    margin-bottom: $gutter / 2;
+    padding-right: $gutter;
+    position: relative;
+
+    &::after {
+      content: "";
+      height: $gutter / 4;
+      width: $gutter / 4;
+      background: $color;
+      display: block;
+      position: absolute;
+      transform: rotate(45deg);
+      top: $gutter / 3;
+      right: $gutter / 4;
+    }
+  }
+}

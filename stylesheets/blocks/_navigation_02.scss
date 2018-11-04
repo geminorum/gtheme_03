@@ -1,0 +1,40 @@
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+/// Blocks: Navigation 02 - 2018-11-02
+// for non Bootstrap
+
+////////////////////////////////////////////////////////////////////////////////
+.breadcrumb,
+.entry-actions.list-inline {
+  font-size: 0.8rem;
+  display: flex;
+  flex-wrap: wrap;
+  padding: .75rem 1rem;
+  margin: 0 0 1rem;
+  list-style: none;
+
+  > li + li {
+    padding-left: .5rem;
+
+    &::before {
+      padding-right: .5rem;
+      color: $gray-light;
+      content: "/";
+    }
+  }
+}
+
+// .pager is dropped on BS4
+.pager {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: .75rem 1rem;
+  margin: 0 0 1rem;
+  list-style: none;
+  clear: both;
+
+  // .previous {}
+  // .next {}
+}

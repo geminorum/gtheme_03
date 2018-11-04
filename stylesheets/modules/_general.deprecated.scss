@@ -1,0 +1,239 @@
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+/// Modules: General: DEPRECATED -----------------------------------------------
+
+////////////////////////////////////////////////////////////////////////////////
+@mixin background-opacity($color, $opacity: 0.3) {
+  @warn "DEPRICATED: Modules: Coloring: background-opacity()";
+
+  background: $color;
+  background: rgba($color, $opacity);
+}
+
+////////////////////////////////////////////////////////////////////////////////
+// USAGE: @include link-colors(white, blue, green, red);
+@mixin link-colors($link: $link-color, $hover: $link-hover-color, $visit: $link-color, $active: $link-hover-color) {
+  @warn "DEPRICATED: Modules: Coloring: link-colors()";
+
+  color: $link;
+
+  &:hover {
+    color: $hover;
+  }
+
+  &:visited {
+    color: $visit;
+  }
+
+  &:active {
+    color: $active;
+  }
+}
+
+////////////////////////////////////////////////////////////////////////////////
+/// [Gray out image with CSS](http://stackoverflow.com/a/11842712)
+// @SEE: [The CSS3 Filter property](http://blog.nmsdvid.com/css-filter-property/)
+// EXAMPLE: @include coloring-filter-grayscale(80%);
+
+@mixin coloring-filter-grayscale($amount: 100%) {
+  @warn "DEPRICATED: coloring-filter-grayscale() USE: theme-coloring-grayscale-hover()";
+
+  filter: gray; /* stylelint-disable-line color-named */
+  filter: grayscale($amount);
+
+  // backface-visibility: hidden;
+  transition: all 0.6s ease;
+
+  &:hover {
+    filter: grayscale(0%);
+    filter: none;
+
+    transition: all 0.3s ease;
+  }
+}
+
+////////////////////////////////////////////////////////////////////////////////
+/// CSS-Tricks: Inheriting box-sizing Probably Slightly Better Best-Practice
+// SEE: https://css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice/
+
+@mixin theme-box-reset() {
+  @warn "gTheme Utility: depricated use of mixin: theme-box-reset() USE: theme-layout-init()";
+
+  //FIXME: this is testing for: "content-box" removes the html border on iphone5
+  html {
+    box-sizing: content-box;
+  }
+
+  body {
+    box-sizing: border-box;
+  }
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: inherit;
+  }
+}
+
+@mixin theme-box-reset-OLD() {
+  html {
+    box-sizing: border-box;
+  }
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: inherit;
+  }
+}
+
+////////////////////////////////////////////////////////////////////////////////
+
+
+%dir_rtl {
+  // @warn "DEPRECATED: Theme Utilities: %dir_rtl";
+  direction: rtl !important;
+}
+
+// DEPRECATED: use @include theme-clearfix;
+@mixin clearfix() {
+  @warn "Theme Utilities: clearfix DEPRECATED: use @include theme-clearfix";
+
+  &::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+// DEPRECATED: use @include theme-clearfix;
+@mixin clear-fix() {
+  @warn "Theme Utilities: clear-fix DEPRECATED: use @include theme-clearfix";
+
+  &::before,
+  &::after {
+    content: " ";
+    display: table;
+  }
+
+  &::after {
+    clear: both;
+  }
+}
+
+// DEPRECATED: use @include theme-clearfix;
+%clearfix {
+  // @warn "DEPRECATED: Theme Utilities: %clearfix";
+
+  &::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+@mixin mainwrap() {
+  @warn "DEPRECATED: Theme Utilities: mainwrap()";
+
+  box-sizing: border-box;
+
+  *,
+  &::after,
+  *::after,
+  &::before,
+  *::before {
+    box-sizing: border-box;
+  }
+
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+// DEPRECATED: use @include box-reset()
+%box-reset {
+  // @warn "DEPRECATED: Theme Utilities: %box-reset";
+
+  box-sizing: border-box;
+}
+
+// DEPRECATED: use @include mainwrap()
+%main_wrap {
+  // @warn "DEPRECATED: Theme Utilities: %main_wrap";
+  @extend %box-reset;
+
+  *,
+  &::after,
+  *::after,
+  &::before,
+  *::before {
+    @extend %box-reset;
+  }
+
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+// MUST DEPRECATED: use @include mainwrap()
+@mixin main-wrap() {
+  @warn "DEPRECATED: Theme Utilities: main-wrap()";
+  @extend %box-reset;
+
+  *,
+  &::after,
+  *::after,
+  &::before,
+  *::before {
+    @extend %box-reset;
+  }
+
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+// http://www.stefanwienert.de/blog/2012/05/18/easy-css-vendor-prefix-mixin-for-sass/
+// Easy css vendor prefix mixin for SASS
+// May 18, 2012
+//p { @include vendor-prefix(hyphens, auto)}
+
+@mixin vendor-prefix($name, $argument) {
+  -webkit-#{$name}: #{$argument};
+  -ms-#{$name}: #{$argument};
+  -moz-#{$name}: #{$argument};
+  -o-#{$name}: #{$argument};
+  #{$name}: #{$argument};
+}
+
+////////////////////////////////////////////////////////////////////////////////
+
+@mixin gutter-reset() {
+  @warn "DEPRICATED: gutter-reset()";
+  @include theme-gutter-reset();
+}
+
+@mixin box-reset() {
+  @warn "DEPRICATED: box-reset()";
+  box-sizing: border-box;
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+
+@mixin theme-breakpoint($min: 0, $max: 0) {
+  @warn "DEPRICATED: theme-breakpoint() USE: theme-bootstrap3-breakpoint()";
+
+  @include theme-bootstrap3-breakpoint($min, $max) {
+    @content;
+  }
+}
+
+@mixin theme-breakpoint-nomobile($min: 0, $max: 0) {
+  @warn "DEPRICATED: theme-breakpoint-nomobile() USE: theme-bootstrap3-breakpoint-nomobile()";
+
+  @include theme-bootstrap3-breakpoint-nomobile($min, $max) {
+    @content;
+  }
+}

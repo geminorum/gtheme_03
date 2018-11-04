@@ -1,5 +1,38 @@
-.rtl .entry-content p, html .mceContentBody.rtl p { text-indent:10px; }
-.rtl .entry-content h3, html .mceContentBody.rtl h3 { margin:40px 2px 10px 0; line-height:36px; font-size:20px; }
-.rtl .entry-content h4, html .mceContentBody.rtl h4 { margin:30px 2px 10px 0; line-height:36px; font-size:18px; }
-.rtl .entry-content h5, html .mceContentBody.rtl h5 { margin:20px 2px 10px 0; line-height:36px; font-size:16px; }
-.rtl .entry-content h6, html .mceContentBody.rtl h6 { margin:10px 2px 10px 0; line-height:36px; font-size:13px; }
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+/// Blocks: Entry Content 01
+
+////////////////////////////////////////////////////////////////////////////////
+.rtl .entry-content p,
+html .mceContentBody.rtl p {
+  text-indent: 10px;
+}
+
+.rtl .entry-content h3,
+html .mceContentBody.rtl h3 {
+  margin: 40px 2px 10px 0;
+  line-height: 36px;
+  font-size: 20px;
+}
+
+.rtl .entry-content h4,
+html .mceContentBody.rtl h4 {
+  margin: 30px 2px 10px 0;
+  line-height: 36px;
+  font-size: 18px;
+}
+
+.rtl .entry-content h5,
+html .mceContentBody.rtl h5 {
+  margin: 20px 2px 10px 0;
+  line-height: 36px;
+  font-size: 16px;
+}
+
+.rtl .entry-content h6,
+html .mceContentBody.rtl h6 {
+  margin: 10px 2px 10px 0;
+  line-height: 36px;
+  font-size: 13px;
+}

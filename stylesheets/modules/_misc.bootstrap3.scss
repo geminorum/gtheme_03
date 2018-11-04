@@ -1,0 +1,128 @@
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+/// Modules: Misc: Bootstrap 3 -------------------------------------------------
+
+////////////////////////////////////////////////////////////////////////////////
+/// Creating a Dead Simple Sass Mixin to Handle Responsive Breakpoints
+// @REF: https://medium.com/developing-with-sass/creating-a-dead-simple-sass-mixin-to-handle-responsive-breakpoints-889927b37740
+
+@mixin theme-bootstrap3-breakpoint($min: 0, $max: 0) {
+
+  $screen-sm-min: 768px;
+  $screen-xs-max: ($screen-sm-min - 1);
+  $screen-md-min: 992px;
+  $screen-sm-max: ($screen-md-min - 1);
+  $screen-lg-min: 1200px;
+  $screen-md-max: ($screen-lg-min - 1);
+
+  $type: type-of($min);
+
+  @if $type == string {
+
+    @if $min == "xs" {
+
+      @media (max-width: $screen-xs-max) {
+        @content;
+      }
+
+    } @else if $min == "sm" {
+
+      @media (min-width: $screen-sm-min) {
+        @content;
+      }
+
+    } @else if $min == "md" {
+
+      @media (min-width: $screen-md-min) {
+        @content;
+      }
+
+    } @else if $min == "lg" {
+
+      @media (min-width: $screen-lg-min) {
+        @content;
+      }
+
+    } @else {
+
+      @warn "Breakpoint mixin supports: xs, sm, md, lg";
+    }
+
+  } @else if $type == number {
+
+    $query: "all" !default;
+
+    @if $min != 0 and $max != 0 {
+      $query: "(min-width: #{$min}) and (max-width: #{$max})";
+    } @else if $min != 0 and $max == 0 {
+      $query: "(min-width: #{$min})";
+    } @else if $min == 0 and $max != 0 {
+      $query: "(max-width: #{$max})";
+    }
+
+    @media #{$query} {
+      @content;
+    }
+  }
+}
+
+@mixin theme-bootstrap3-breakpoint-nomobile($min: 0, $max: 0) {
+
+  $screen-sm-min: 768px;
+  $screen-xs-max: ($screen-sm-min - 1);
+  $screen-md-min: 992px;
+  $screen-sm-max: ($screen-md-min - 1);
+  $screen-lg-min: 1200px;
+  $screen-md-max: ($screen-lg-min - 1);
+
+  $type: type-of($min);
+
+  @if $type == string {
+
+    @if $min == "lg" {
+
+      @media (max-width: $screen-lg-min) {
+        @content;
+      }
+
+    } @else if $min == "md" {
+
+      @media (max-width: $screen-md-min) {
+        @content;
+      }
+
+    } @else if $min == "sm" {
+
+      @media (max-width: $screen-sm-min) {
+        @content;
+      }
+
+    } @else if $min == "xs" {
+
+      @media (max-width: $screen-xs-max) {
+        @content;
+      }
+
+    } @else {
+
+      @warn "Breakpoint mixin supports: xs, sm, md, lg";
+    }
+
+  } @else if $type == number {
+
+    $query: "all" !default;
+
+    @if $min != 0 and $max != 0 {
+      $query: "(min-width: #{$min}) and (max-width: #{$max})";
+    } @else if $min != 0 and $max == 0 {
+      $query: "(min-width: #{$min})";
+    } @else if $min == 0 and $max != 0 {
+      $query: "(max-width: #{$max})";
+    }
+
+    @media #{$query} {
+      @content;
+    }
+  }
+}

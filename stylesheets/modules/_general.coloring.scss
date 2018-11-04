@@ -1,0 +1,45 @@
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+/// Modules: General: Coloring -------------------------------------------------
+
+////////////////////////////////////////////////////////////////////////////////
+/// Generate color and box-shadow in a loop
+// @REF: http://creative-punch.net/2014/01/using-sass-generate-color-box-shadow-loop/
+// @REF: http://codepen.io/CreativePunch/pen/piErg
+// USAGE: @include theme-coloring-loop-shadow(10, 30px);
+@mixin theme-coloring-loop-shadow($elements, $height) {
+  @for $i from 0 to $elements {
+
+    $red: $i * 10 + 150;
+    $green: ($i * 10 + 150) / 2;
+    $blue: ($i * 10 + 150) / 2;
+
+    div:nth-child(#{$i}) {
+      background: rgb($red, $green, $blue);
+      width: 100%;
+      height: $height;
+      box-shadow: 0 -1px #{($elements - $i) * 2}px rgba(0, 0, 0, 0.7);
+    }
+  }
+}
+
+////////////////////////////////////////////////////////////////////////////////
+/// [Gray out image with CSS](http://stackoverflow.com/a/11842712)
+// @SEE: [The CSS3 Filter property](http://blog.nmsdvid.com/css-filter-property/)
+// EXAMPLE: @include coloring-filter-grayscale(80%);
+
+@mixin theme-coloring-grayscale-hover($amount: 80%) {
+  filter: gray; /* stylelint-disable-line color-named */
+  filter: grayscale($amount);
+
+  // backface-visibility: hidden;
+  transition: all 0.6s ease;
+
+  &:hover {
+    filter: grayscale(0%);
+    filter: none;
+
+    transition: all 0.3s ease;
+  }
+}

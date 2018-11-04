@@ -1,12 +1,12 @@
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
-/// gTheme Blocks: Gallery 03 - 20170821
-////////////////////////////////////////////////////////////////////////////////
+/// Blocks: Gallery 03 - 20170821
+// FIXME: it's RTL ONLY
 
+////////////////////////////////////////////////////////////////////////////////
 // default WP markup
 // @REF: https://clicknathan.com/web-design/css-for-all-available-wordpress-gallery-columns/
-// FIXME: it's RTL ONLY
 .entry-content .gallery {
 
   @include mainwrap();
@@ -14,14 +14,22 @@
   // width: 100%;
   margin: 0 auto $theme-grid-gutter / 2;
 
-  &:after {
+  &::after {
     content: "";
     display: table;
     clear: both;
   }
 
-  figure {max-width: 100%; height: auto; margin:1em 0;}
-  // p img.alignright, p img.alignleft {margin-top:0;}
+  figure {
+    max-width: 100%;
+    height: auto;
+    margin: 1em 0;
+  }
+
+  // p img.alignright,
+  // p img.alignleft {
+  //   margin-top: 0;
+  // }
 
   figcaption {
     text-align: center;
@@ -66,10 +74,9 @@
 
 .theme-gallery-wrap {
 
-  &.-flex {}
+  // &.-flex {}
 
   &.-columns {
-
     .-icon {
       display: inline-block;
       width: 1em;
@@ -81,12 +88,20 @@
 
     .-gallery-spinner {
       @include theme-animation-spinner($gray); // FIXME: use default theme color vars
+
+      html.no-js & {
+        display: none;
+      }
     }
 
     .-gallery {
 
       // until the gallery images are loaded
       opacity: 0;
+
+      html.no-js & {
+        opacity: 1;
+      }
 
       @include vendor-prefix(column-gap, 0);
 

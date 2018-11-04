@@ -1,0 +1,51 @@
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+/// Blocks: Defaults 01 - 2018-11-02
+
+////////////////////////////////////////////////////////////////////////////////
+.wrapper {
+  // &.-main {}
+  // &.-copyright {}
+}
+
+.container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 1rem;
+
+  &.-main {
+    margin-top: 1rem;
+  }
+
+  &.-copyright {
+    font-size: 0.8rem;
+    text-align: center;
+  }
+}
+
+.entry-wrap {
+  .entry-byline {
+    font-size: 0.89rem;
+    text-align: center;
+    margin-top: -1rem;
+  }
+
+  .entry-content {
+    &.entry-404 {
+      text-align: center;
+    }
+  }
+
+  .entry-footer {
+    font-size: 0.89rem;
+  }
+}
+
+.wrap-comments {
+  .no-comments {
+    color: $gray-light;
+    font-size: 0.8rem;
+    text-align: center;
+  }
+}

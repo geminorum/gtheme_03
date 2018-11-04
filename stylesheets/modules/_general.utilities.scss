@@ -1,0 +1,50 @@
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+/// Modules: General: Utilities ------------------------------------------------
+
+////////////////////////////////////////////////////////////////////////////////
+
+// BASED ON BS3 Utilities
+@mixin theme-clearfix() {
+  &::before,
+  &::after {
+    content: " ";
+    display: table;
+  }
+
+  &::after {
+    clear: both;
+  }
+}
+
+// @REF: https://stackoverflow.com/a/40029478
+@mixin theme-clearflex() {
+  &::before,
+  &::after {
+    flex-basis: 0;
+    order: 1;
+  }
+}
+
+@mixin theme-gutter-reset() {
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+@mixin theme-box-sizing-reset() {
+  *,
+  &::after,
+  *::after,
+  &::before,
+  *::before {
+    box-sizing: border-box;
+  }
+}
+
+@mixin body-rtl() {
+  body.rtl & {
+    @content;
+  }
+}

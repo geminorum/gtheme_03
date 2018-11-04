@@ -1,0 +1,65 @@
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+/// Modules: Theme: Responsive -------------------------------------------------
+
+// @SEE: http://www.sitepoint.com/managing-responsive-breakpoints-sass/
+
+////////////////////////////////////////////////////////////////////////////////
+/// Embeds Responsive
+// From: Bootstrap 3 Sass by Nicolas Gallagher and SUIT CSS.
+// @SEE: http://maddesigns.de/?p=2417
+@mixin theme-responsive-embed() {
+  position: relative;
+  display: block;
+  height: 0;
+  padding: 0;
+  overflow: hidden;
+
+  .embed-responsive-item,
+  embed,
+  iframe,
+  object,
+  video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 100%;
+    width: 100%;
+    border: 0;
+  }
+
+  // modifier class for 16:9 aspect ratio
+  &.-ratio16x9,
+  &.embed-responsive-16by9 {
+    padding-bottom: 56.25%;
+  }
+
+  // modifier class for 4:3 aspect ratio
+  &.-ratio4x3,
+  &.embed-responsive-4by3 {
+    padding-bottom: 75%;
+  }
+}
+
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+// NOT WORKING
+// @SEE: http://jsfiddle.net/masau/7wrhm/
+@mixin theme-responsive-iframe() {
+  position: relative !important;
+  height: 100%;
+  margin: 0 auto;
+
+  iframe {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+  }
+}

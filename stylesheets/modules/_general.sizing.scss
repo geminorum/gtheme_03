@@ -1,0 +1,47 @@
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+/// Modules: General: Sizing ---------------------------------------------------
+
+////////////////////////////////////////////////////////////////////////////////
+// [Convert px to em](https://gist.github.com/ocean90/1552031)
+// Use: font-size: px2em( 12px, 14px );
+@function px2em( $target, $context: $base-size-font ) {
+  @if $target == 0 {
+    @return 0;
+  }
+
+  @return $target / $context + 0em; /* stylelint-disable-line length-zero-no-unit */
+}
+
+////////////////////////////////////////////////////////////////////////////////
+// [SASS Mixin for converting px values to rem](https://gist.github.com/ocean90/4517823)
+// Based on https://github.com/bitmanic/rem/
+// Examples of usage:
+//   text-shadow: rem( 1px 1px 0 #fff );
+//   font-size: rem( 16px );
+//   @include box-shadow( rem( -2px 2px 0 )	rgba(0,0,0,0.1) );
+@function rem( $px-values, $baseline-px: $base-size-baseline ) {
+  $baseline-rem: $baseline-px / 1rem;
+
+  @if type-of($px-values) == "number" {
+    @return $px-values / $baseline-rem;
+  } @else {
+    // Create an empty list that we can dump values into
+    $rem-values: unquote("");
+    @each $value in $px-values {
+      @if type-of($value) != "number" {
+        // If the value is no number, return the value as is
+        $rem-values: append($rem-values, $value);
+      } @else if $value == 0 {
+        // If the value is zero, return 0
+        $rem-values: append($rem-values, 0);
+      } @else {
+        $rem-values: append($rem-values, $value / $baseline-rem);
+      }
+    }
+
+    // Return the property and its list of converted values
+    @return $rem-values;
+  }
+}
