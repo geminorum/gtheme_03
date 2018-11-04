@@ -13,7 +13,7 @@
   var fs = require('fs');
 
   var pkg = JSON.parse(fs.readFileSync('./package.json'));
-  var config = require('./gulpconfig.json');
+  var config = require('./gulp.config.json');
 
   // var env = config.env;
   // var banner = config.banner.join('\n');
@@ -74,6 +74,37 @@
         if (file.extname !== '.map') return true;
       }, plugins.livereload()));
   });
+
+  gulp.task('ready:styles', function () {
+    return gulp.src(config.input.sass)
+      .pipe(plugins.sass(config.sass).on('error', plugins.sass.logError))
+      .pipe(plugins.postcss([
+        cssnano(config.cssnano.build),
+        autoprefixer(config.autoprefixer.build)
+      ]))
+      .pipe(gulp.dest(config.output.css)).on('error', log.error);
+  });
+
+  // seperated because of stripping rtl directives in compression
+  gulp.task('ready:rtl', function () {
+    return gulp.src(config.input.sass)
+      .pipe(plugins.sass(config.sass).on('error', plugins.sass.logError))
+      .pipe(plugins.postcss([
+        rtlcss(),
+        cssnano(config.cssnano.build),
+        autoprefixer(config.autoprefixer.build)
+      ]))
+      .pipe(plugins.rename({suffix: '-rtl'}))
+      .pipe(gulp.dest(config.output.css)).on('error', log.error);
+  });
+
+  gulp.task('ready', gulp.series(
+    gulp.parallel('ready:styles', 'ready:rtl'),
+    function (done) {
+      log('Done!');
+      done();
+    }
+  ));
 
   gulp.task('bump:package', function () {
     return gulp.src('./package.json')
