@@ -8,7 +8,7 @@ class gThemeEditor extends gThemeModuleCore
 	function setup_actions( $args = [] )
 	{
 		extract( self::atts( [
-			'css'             => TRUE, // this is the editor style!!
+			'css'             => TRUE, // the editor style
 			'buttons'         => TRUE,
 			'buttons_2'       => TRUE,
 			'advanced_styles' => TRUE,
@@ -33,9 +33,10 @@ class gThemeEditor extends gThemeModuleCore
 
 	public static function style_url()
 	{
-		$file = gThemeUtilities::isRTL()
-			? 'editor-style-rtl.css'
-			: 'editor-style.css';
+		$file = 'front.editor'
+			.( gThemeUtilities::isRTL() ? '-rtl' : '' )
+			.( SCRIPT_DEBUG ? '' : '.min' )
+			.'.css';
 
 		if ( file_exists( GTHEME_CHILD_DIR.'/css/'.$file ) )
 			return GTHEME_CHILD_URL.'/css/'.$file;
@@ -43,7 +44,7 @@ class gThemeEditor extends gThemeModuleCore
 			return GTHEME_URL.'/css/'.$file;
 	}
 
-	// the comma-delimited list of stylesheets to load in TinyMCE.
+	// comma-delimited list of stylesheets to load in TinyMCE
 	public function mce_css( $url )
 	{
 		if ( ! empty( $url ) )
@@ -62,7 +63,7 @@ class gThemeEditor extends gThemeModuleCore
 		return $buttons;
 	}
 
-	// add "styles" drop-down for the second row
+	// adds `styles` drop-down for the second row
 	public function mce_buttons_2( $buttons )
 	{
 		if ( gThemeUtilities::isRTL() )
@@ -76,9 +77,9 @@ class gThemeEditor extends gThemeModuleCore
 		return $buttons;
 	}
 
-	// add "styles" drop-down content or classes
-	// SEE : http://www.tinymce.com/wiki.php/Configuration:formats
-	// SEE : http://www.tinymce.com/tryit/custom_formats.php
+	// adds `styles` drop-down content or classes
+	// @SEE: http://www.tinymce.com/wiki.php/Configuration:formats
+	// @SEE: http://www.tinymce.com/tryit/custom_formats.php
 	public function tiny_mce_before_init( $settings )
 	{
 		$style_formats = gThemeOptions::info( 'mce_style_formats', self::defaultFormats() );

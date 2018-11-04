@@ -105,7 +105,7 @@ class gThemeFilters extends gThemeModuleCore
 
 		// FIXME: also check if Bootstrap
 		// if ( gThemeWordPress::isDev() && ! gThemeUtilities::isPrint() )
-		// 	gThemeUtilities::linkStyleSheet( GTHEME_URL.'/css/dev'.( gThemeUtilities::isRTL() ? '-rtl' : '' ).'.css', GTHEME_VERSION, 'all' );
+		// 	gThemeUtilities::linkStyleSheet( GTHEME_URL.'/css/front.dev'.( gThemeUtilities::isRTL() ? '-rtl' : '' ).'.css', GTHEME_VERSION, 'all' );
 
 		if ( $singular )
 			echo '<link rel="pingback" href="'.get_bloginfo( 'pingback_url', 'display' ).'" />'."\n";
@@ -203,6 +203,7 @@ class gThemeFilters extends gThemeModuleCore
 		replacement.innerHTML = addStylesNode.textContent;
 		document.body.appendChild(replacement)
 		addStylesNode.parentElement.removeChild(addStylesNode);
+		window.setTimeout(disableSpinner, 100);
 	};
 	var disableSpinner = function() {
 		// document.getElementById("preload-spinner").outerHTML = "";
@@ -216,11 +217,9 @@ class gThemeFilters extends gThemeModuleCore
 	if (raf) {
 		raf(function() {
 			window.setTimeout(loadDeferredStyles, 0);
-			window.addEventListener('load', disableSpinner);
 		});
 	} else {
-		window.addEventListener('load', loadDeferredStyles);
-		window.addEventListener('DOMContentLoaded', disableSpinner);
+		window.addEventListener('load', loadDeferredStyles, false);
 	};
 </script><?php
 	}
