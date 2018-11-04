@@ -35,7 +35,7 @@ class gThemeEditor extends gThemeModuleCore
 	{
 		$file = 'front.editor'
 			.( gThemeUtilities::isRTL() ? '-rtl' : '' )
-			.( SCRIPT_DEBUG ? '' : '.min' )
+			// .( SCRIPT_DEBUG ? '' : '.min' )
 			.'.css';
 
 		if ( file_exists( GTHEME_CHILD_DIR.'/css/'.$file ) )

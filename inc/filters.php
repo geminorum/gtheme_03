@@ -135,7 +135,7 @@ class gThemeFilters extends gThemeModuleCore
 	{
 		$file = 'front.preload'
 			.( gThemeUtilities::isRTL() ? '-rtl' : '' )
-			.( SCRIPT_DEBUG ? '' : '.min' )
+			// .( SCRIPT_DEBUG ? '' : '.min' )
 			.'.css';
 
 		$path = file_exists( GTHEME_CHILD_DIR.'/css/'.$file )
@@ -161,7 +161,7 @@ class gThemeFilters extends gThemeModuleCore
 
 			$file = 'front.print'
 				.( $rtl ? '-rtl' : '' )
-				.( SCRIPT_DEBUG ? '' : '.min' )
+				// .( SCRIPT_DEBUG ? '' : '.min' )
 				.'.css';
 
 			$url = file_exists( GTHEME_CHILD_DIR.'/css/'.$file )
@@ -183,7 +183,7 @@ class gThemeFilters extends gThemeModuleCore
 
 			$url = GTHEME_CHILD_URL.'/css/front.screen'
 				.( $rtl ? '-rtl' : '' )
-				.( SCRIPT_DEBUG ? '' : '.min' )
+				// .( SCRIPT_DEBUG ? '' : '.min' )
 				.'.css';
 
 			$media = 'screen';
