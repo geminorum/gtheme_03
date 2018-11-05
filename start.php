@@ -1,3 +1,3 @@
 <?php defined( 'ABSPATH' ) or die( header( 'HTTP/1.0 403 Forbidden' ) );
 
-get_template_part( 'partials/navbar', 'bs3' );
+get_template_part( 'partials/navbar' );
