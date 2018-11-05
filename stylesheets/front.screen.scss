@@ -31,10 +31,6 @@ hr {
   @include theme-typography-hr-dots;
 }
 
-h2 {
-  @include theme-typography-heading-line;
-}
-
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -43,3 +39,16 @@ h2 {
 @import "blocks/navigation_02";
 @import "blocks/forms_01";
 @import "blocks/table_02";
+
+////////////////////////////////////////////////////////////////////////////////
+
+h2.entry-title {
+  @include theme-typography-heading-line;
+}
+
+.breadcrumb,
+.list-inline,
+.entry-actions.list-inline {
+  padding-right: 0;
+  padding-left: 0;
+}

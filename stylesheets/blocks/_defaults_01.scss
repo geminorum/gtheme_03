@@ -14,6 +14,25 @@
   margin: 0 auto;
   padding: 0 1rem;
 
+  &.-nav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 1rem;
+
+    > h1,
+    > ul {
+      flex-grow: 0;
+      margin: 0;
+    }
+
+    > .-rule {
+      flex-grow: 1;
+      margin: 0 .4rem;
+      border-top: 2px dotted $gray-light;
+    }
+  }
+
   &.-main {
     margin-top: 1rem;
   }
@@ -21,14 +40,22 @@
   &.-copyright {
     font-size: 0.8rem;
     text-align: center;
+    color: $gray-light;
+    border-top: 1px dotted $gray-lighter;
+    margin-top: 1rem;
   }
 }
 
 .entry-wrap {
+  .entry-header {
+    margin-bottom: 1rem;
+  }
+
   .entry-byline {
     font-size: 0.89rem;
     text-align: center;
     margin-top: -1rem;
+    margin-bottom: 1rem;
   }
 
   .entry-content {

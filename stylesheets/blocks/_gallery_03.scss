@@ -8,11 +8,18 @@
 // default WP markup
 // @REF: https://clicknathan.com/web-design/css-for-all-available-wordpress-gallery-columns/
 .entry-content .gallery {
-
-  @include mainwrap();
+  *,
+  &::after,
+  *::after,
+  &::before,
+  *::before {
+    box-sizing: border-box;
+  }
 
   // width: 100%;
   margin: 0 auto $theme-grid-gutter / 2;
+  padding: 0;
+  border: 0;
 
   &::after {
     content: "";
