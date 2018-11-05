@@ -141,7 +141,7 @@ class gThemeWrap extends gThemeModuleCore
 
 		echo $extra_atts;
 
-		echo '>';
+		echo '>'."\n";
 
 		do_action( 'template_body_top' );
 	}

@@ -12,4 +12,4 @@ echo '><div class="container -nav">';
 		gThemeBootstrap::navbarNav( 'tertiary', FALSE, 'navbar-right' );
 		gThemeBootstrap::navbarNav( 'secondary', FALSE, 'navbar-left' );
 
-echo '</div></div></nav>';
+echo '</div></div></nav>'."\n";

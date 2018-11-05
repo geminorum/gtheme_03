@@ -2,12 +2,11 @@
 
 // NOTE: SAMPLE
 
-if ( $ltr ) {
+if ( ! $ltr ) {
 
 	$css = [
 
-		// 'style-ltr.css',
-		'style.css',
+		'front.screen-rtl.css',
 
 		'../../../plugins/gnetwork/assets/css/front.all-rtl.css',
 		'../../../plugins/geditorial/assets/css/front.all-rtl.css',
@@ -20,7 +19,7 @@ if ( $ltr ) {
 
 	$css = [
 
-		'style.css',
+		'front.screen.css',
 
 		'../../../plugins/gnetwork/assets/css/front.all.css',
 		'../../../plugins/geditorial/assets/css/front.all.css',

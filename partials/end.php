@@ -9,4 +9,4 @@ echo '<div class="wrapper -copyright"><div class="container -copyright">';
 			'title'  => FALSE,
 			'before' => ' '._x( 'Last updated on', 'Root: End: Before Site Modified', GTHEME_TEXTDOMAIN ).' ',
 		] );
-echo '</p></div></div>';
+echo '</p></div></div>'."\n";

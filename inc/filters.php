@@ -113,9 +113,9 @@ class gThemeFilters extends gThemeModuleCore
 
 	public function template_body_top()
 	{
-		echo '<div id="preload-spinner" class="preload-spinner '
+		echo '<div id="preloadspinner" class="preload -spinner '
 			.gThemeOptions::info( 'preload_spinner_class', 'light' )
-			.'"><div><div></div></div></div>';
+			.'"><div><div></div></div></div>'."\n";
 	}
 
 	public function template_body_bottom()
@@ -144,9 +144,9 @@ class gThemeFilters extends gThemeModuleCore
 
 		echo '<style type="text/css">';
 			readfile( $path );
-		echo '</style>';
+		echo '</style>'."\n";
 
-		echo '<noscript><style type="text/css">#preload-spinner{display:none;z-index:-999999;}</style></noscript>';
+		echo '<noscript><style type="text/css">#preloadspinner{display:none;z-index:-999999;}</style></noscript>'."\n";
 	}
 
 	public static function getStyleLink( $singular = FALSE )
@@ -203,12 +203,14 @@ class gThemeFilters extends gThemeModuleCore
 		replacement.innerHTML = addStylesNode.textContent;
 		document.body.appendChild(replacement)
 		addStylesNode.parentElement.removeChild(addStylesNode);
-		window.setTimeout(disableSpinner, 100);
+		console.log('styles loaded');
+		window.setTimeout(disableSpinner, 600);
 	};
 	var disableSpinner = function() {
-		// document.getElementById("preload-spinner").outerHTML = "";
-		var spinner = document.getElementById("preload-spinner");
+		// document.getElementById("preloadspinner").outerHTML = "";
+		var spinner = document.getElementById("preloadspinner");
 		spinner.classList.add("fade-out");
+		console.log('spinner disabled');
 	};
 	var raf = window.requestAnimationFrame
 		|| window.mozRequestAnimationFrame
