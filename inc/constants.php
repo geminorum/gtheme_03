@@ -12,6 +12,7 @@ $gtheme_constants = [
 	'GTHEME_CHILD_DIR'     => get_stylesheet_directory(),
 	'GTHEME_CHILD_URL'     => get_stylesheet_directory_uri(),
 
+	'GTHEME_PRINT_QUERY'       => 'print', // @SEE: gEditorial Paper
 	'GTHEME_SYSTEMTAGS'        => 'system_tags',
 	'GTHEME_FRAGMENTCACHE'     => 'gtheme',
 	'GTHEME_CACHETTL'          => 60 * 60 * 12, // 12 hours

@@ -109,6 +109,9 @@ class gThemeWrap extends gThemeModuleCore
 		$atts    = [];
 		$classes = [ 'no-js' ];
 
+		if ( gThemeUtilities::isPrint() )
+			$classes[] = 'html-print';
+
 		if ( is_admin_bar_showing() )
 			$classes[] = 'html-admin-bar';
 

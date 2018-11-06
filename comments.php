@@ -34,7 +34,7 @@ echo '<div id="comments" class="comments-area">';
 	} else if ( ! comments_open() && ! is_page() && post_type_supports( get_post_type(), 'comments' ) ) {
 
 		if ( $closed = gThemeOptions::info( 'comments_closed', __( 'Comments are closed.', GTHEME_TEXTDOMAIN ) ) )
-			echo '<p class="no-comments">'.$closed.'</p>';
+			echo '<p class="no-comments -print-hide">'.$closed.'</p>';
 	}
 
 	call_user_func( gThemeOptions::info( 'comment_form', [ 'gThemeComments', 'comment_form' ] ) );

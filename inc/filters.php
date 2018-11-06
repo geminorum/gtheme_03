@@ -73,11 +73,12 @@ class gThemeFilters extends gThemeModuleCore
 	public function wp_head()
 	{
 		$singular = is_singular();
+		$print    = gThemeUtilities::isPrint();
 
 		if ( $viewport = gThemeOptions::info( 'head_viewport', 'width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no' ) )
 			echo '<meta name="viewport" content="'.$viewport.'" />'."\n";
 
-		if ( $theme_color = gThemeOptions::info( 'theme_color' ) ) {
+		if ( ! $print && ( $theme_color = gThemeOptions::info( 'theme_color' ) ) ) {
 
 			// @REF: https://generatewp.com/easy-custom-mobile-chrome-address-bar-colors-wordpress/
 			echo '<meta name="theme-color" content="'.$theme_color.'" />'."\n";
@@ -88,7 +89,11 @@ class gThemeFilters extends gThemeModuleCore
 
 		gThemeSocial::doHead();
 
-		if ( gThemeOptions::info( 'deferred_styles', FALSE ) ) {
+		if ( $singular && $print ) {
+
+			echo self::getStyleLink( TRUE, TRUE );
+
+		} else if ( gThemeOptions::info( 'deferred_styles', FALSE ) ) {
 
 			self::preloadStyles();
 
@@ -149,7 +154,7 @@ class gThemeFilters extends gThemeModuleCore
 		echo '<noscript><style type="text/css">#preloadspinner{display:none;z-index:-999999;}</style></noscript>'."\n";
 	}
 
-	public static function getStyleLink( $singular = FALSE )
+	public static function getStyleLink( $singular = FALSE, $print = FALSE )
 	{
 		$rtl  = gThemeUtilities::isRTL();
 		$args = [ 'ver' => GTHEME_CHILD_VERSION ];
@@ -157,7 +162,7 @@ class gThemeFilters extends gThemeModuleCore
 		if ( gThemeWordPress::isDev() )
 			$args['debug'] = '';
 
-		if ( $singular && gThemeUtilities::isPrint() ) {
+		if ( $singular && $print ) {
 
 			$file = 'front.print'
 				.( $rtl ? '-rtl' : '' )
@@ -168,7 +173,7 @@ class gThemeFilters extends gThemeModuleCore
 				? GTHEME_CHILD_URL.'/css/'.$file
 				: GTHEME_URL.'/css/'.$file;
 
-			$media = 'print';
+			$media = 'all'; // also for custom endpoint view
 
 		} else if ( file_exists( GTHEME_CHILD_DIR.'/css/css.php' ) ) {
 

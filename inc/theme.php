@@ -19,6 +19,7 @@ class gThemeTheme extends gThemeModuleCore
 			'hooks'         => TRUE, // @REF: https://is.gd/4ORzuI
 			'bp_support'    => TRUE,
 			'bp_no_styles'  => FALSE,
+			'print_support' => TRUE,
 		], $args ) );
 
 		if ( $cleanup )
@@ -103,6 +104,12 @@ class gThemeTheme extends gThemeModuleCore
 					'gtheme_do_before_footer',
 					'gtheme_do_footer',
 			] ) );
+
+		if ( $print_support ) {
+			add_action( 'init', function() {
+				add_rewrite_endpoint( GTHEME_PRINT_QUERY, EP_PERMALINK | EP_PAGES );
+			} );
+		}
 	}
 
 	public function cleanup()

@@ -89,7 +89,13 @@ class gThemeUtilities extends gThemeBaseCore
 
 	public static function isPrint()
 	{
-		return isset( $_GET['print'] );
+		global $wp_query;
+
+		if ( ! empty( $wp_query->query_vars )
+			&& array_key_exists( GTHEME_PRINT_QUERY, $wp_query->query_vars ) )
+				return TRUE;
+
+		return isset( $_GET[GTHEME_PRINT_QUERY] );
 	}
 
 	public static function isRTL( $true = TRUE, $false = FALSE )
