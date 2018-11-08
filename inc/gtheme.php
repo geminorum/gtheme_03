@@ -23,6 +23,7 @@ final class gThemeCore
 			'core/html'      => '',
 			'core/third'     => '',
 			'core/text'      => '',
+			'core/url'       => '',
 			'core/wordpress' => '',
 
 			'constants'  => '',
