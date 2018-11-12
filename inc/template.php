@@ -141,7 +141,7 @@ class gThemeTemplate extends gThemeModuleCore
 			return;
 
 		if ( is_null( $size ) )
-			$size = (int) gThemeOptions::info( 'comment_avatar_size', 64 );
+			$size = (int) gThemeOptions::info( 'comment_avatar_size', 75 );
 
 		$default = gThemeOptions::info( 'default_avatar_src', FALSE );
 

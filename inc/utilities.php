@@ -91,11 +91,11 @@ class gThemeUtilities extends gThemeBaseCore
 	{
 		global $wp_query;
 
-		if ( ! empty( $wp_query->query_vars )
+		if ( GTHEME_PRINT_QUERY && ! empty( $wp_query->query_vars )
 			&& array_key_exists( GTHEME_PRINT_QUERY, $wp_query->query_vars ) )
 				return TRUE;
 
-		return isset( $_GET[GTHEME_PRINT_QUERY] );
+		return isset( $_GET[(GTHEME_PRINT_QUERY ?: 'print')] );
 	}
 
 	public static function isRTL( $true = TRUE, $false = FALSE )

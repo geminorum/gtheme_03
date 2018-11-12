@@ -105,7 +105,7 @@ class gThemeTheme extends gThemeModuleCore
 					'gtheme_do_footer',
 			] ) );
 
-		if ( $print_support ) {
+		if ( GTHEME_PRINT_QUERY && $print_support ) {
 			add_action( 'init', function() {
 				add_rewrite_endpoint( GTHEME_PRINT_QUERY, EP_PERMALINK | EP_PAGES );
 			} );

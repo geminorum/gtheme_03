@@ -35,8 +35,7 @@ class gThemeOptions extends gThemeModuleCore
 			],
 
 			'theme_groups' => FALSE, // [ 'main' => _x( 'Main' 'Options: Theme Group', GTHEME_TEXTDOMAIN ) ],
-
-			'module_args' => [],
+			'module_args'  => [],
 
 			// MENUS
 			// 'register_nav_menus'   => gThemeMenu::defaults(),
@@ -94,9 +93,8 @@ class gThemeOptions extends gThemeModuleCore
 			'source_before' => _x( 'Source: ', 'Options: Source Before', GTHEME_TEXTDOMAIN ),
 			'reflist_title' => sprintf( '<h4 class="-title" id="footnotes">%s</h4>', _x( 'Footnotes', 'Options: Reflist Title', GTHEME_TEXTDOMAIN ) ),
 
-			'excerpt_length'          => 40,
-			'excerpt_more'            => ' &hellip;', // FALSE: empty / TRUE: continueReading()
-			'trim_excerpt_characters' => FALSE, // set this to desired characters count. like : 300
+			'excerpt_length' => 40,
+			'excerpt_more'   => ' &hellip;', // FALSE: empty / TRUE: continueReading()
 
 			// 'restricted_content' => FALSE, // set TURE to show teaser only
 			// 'restricted_teaser'  => FALSE, // set FALSE to show teaser alongside
@@ -135,9 +133,9 @@ class gThemeOptions extends gThemeModuleCore
 
 			// COMMENTS
 			// 'comments_support'       => TRUE, // hides the default inserts
-			'comments_disable_types' => [ 'attachment' ],
-			'comment_callback'       => [ 'gThemeComments', 'comment_callback' ], // null to use wp core
-			'comment_form'           => [ 'gThemeComments', 'comment_form' ], // comment_form to use wp core
+			// 'comments_disable_types' => [ 'attachment' ],
+			// 'comment_callback'       => [ 'gThemeComments', 'comment_callback' ], // null to use wp core
+			// 'comment_form'           => [ 'gThemeComments', 'comment_form' ], // comment_form to use wp core
 			// 'comment_form_strings'   => [],
 			// 'comment_nav_strings'    => [],
 			// 'comment_action_strings' => [],
@@ -145,11 +143,11 @@ class gThemeOptions extends gThemeModuleCore
 			// 'comment_awaiting'       => __( 'Your comment is awaiting moderation.', GTHEME_TEXTDOMAIN ), // set FALSE to hide the text
 
 			// AVATARS
-			'comment_avatar_size' => 75, // wp core is 32
+			// 'comment_avatar_size' => 75, // wp core is 32
 			'default_avatar_src'  => GTHEME_URL.'/images/avatar.png',
 
 			// SYSTEM TAGS
-			'system_tags_cpt'      => [ 'post' ],
+			// 'system_tags_cpt'      => [ 'post' ],
 			'system_tags_excludes' => [ 'no-front', 'no-feed' ],
 			// 'system_tags_defaults' => gThemeTerms::defaults(),
 
@@ -159,7 +157,7 @@ class gThemeOptions extends gThemeModuleCore
 			// 'mce_buttons_2'     => [ 'styleselect' ],
 			// 'mce_style_formats' => gThemeEditor::defaultFormats(),
 
-			'settings_legend' => FALSE, // html content to appear after settings
+			// 'settings_legend' => FALSE, // html content to appear after settings
 			// FIXME: DEPRECATED: use PAGES API
 			// 'search_page' => self::getOption( 'search_page', 0 ),
 
@@ -168,29 +166,24 @@ class gThemeOptions extends gThemeModuleCore
 
 			// 'post_actions_icons' => FALSE, // NEEDS: genericons css
 			'post_actions' => [ // the order is important!
-				'textsize_buttons', // or 'textsize_buttons_nosep',
-				'textjustify_buttons_nosep', // 'textjustify_buttons', // or ,
-				'printfriendly',
-				'a2a_dd',
+				// 'textsize_buttons', // or 'textsize_buttons_nosep',
+				// 'textjustify_buttons_nosep', // 'textjustify_buttons', // or ,
+				// 'printfriendly',
+				'printlink',
+				'addtoany',
+				// 'addthis',
 				'shortlink',
 				'comments_link', // or 'comments_link_feed',
 				'edit_post_link',
+				// 'cat_list',
 				// 'tag_list',
+				// 'editorial_label',
+				// 'editorial_estimated',
+				// 'the_date',
+				// 'primary_term',
+				// 'categories',
+				// 'tags',
 			],
-
-			// 'js_tooltipsy'    => FALSE, // enables tooltipsy
-
-			'wpautop_with_br' => FALSE, // set TRUE to disable extra br removing
-			'adjacent_empty'  => '[&hellip;]', // next/prev link, if empty post title
-			'head_viewport'   => 'width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no', // html head viewport meta, for mobile support. set FALSE to disable
-
-			'strings_index_navline' => [ // string for index navline based on conditional tags
-				// 'category' => 'Category Archives for <strong>%s</strong>',
-			],
-
-			'default_editor' => 'html', // set default editor of post edit screen to html for each user // needs module arg // Either 'tinymce', or 'html', or 'test'
-
-			'additional_body_class' => FALSE, // body class just in case!
 
 			// 'byline_fallback' => TRUE, // if FALSE hides wp users
 

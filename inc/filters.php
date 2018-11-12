@@ -239,10 +239,10 @@ class gThemeFilters extends gThemeModuleCore
 
 		$classes[] = 'gtheme';
 
-		if ( $gtheme_info['name'] != 'gtheme' )
+		if ( ! empty( $gtheme_info['name'] ) && $gtheme_info['name'] != 'gtheme' )
 			$classes[] = $gtheme_info['name'];
 
-		if ( $gtheme_info['additional_body_class'] )
+		if ( ! empty( $gtheme_info['additional_body_class'] ) )
 			$classes[] = $gtheme_info['additional_body_class'];
 
 		$classes[] = 'theme-group-'.gThemeOptions::getGroup();
@@ -428,6 +428,7 @@ class gThemeFilters extends gThemeModuleCore
 			return preg_replace( '/\s\s+/', ' ', $content );
 	}
 
+	// FIXME: Not working well with UTF / problem in `str_word_count()`
 	// https://gist.github.com/danielbachhuber/6691084
 	// auto-paginate after 500 words, but respect paragraphs and don't leave page stubs.
 	public function loop_start( $query )
@@ -442,8 +443,9 @@ class gThemeFilters extends gThemeModuleCore
 		$each = gThemeOptions::info( 'post_auto_paginate_each', 500 );
 
 		$content = $query->posts[0]->post_content;
+		$count   = gThemeText::wordCountUTF8( $content );
 
-		if ( $min > str_word_count( $content ) )
+		if ( $min > $count )
 			return;
 
 		$content_array   = str_split( $content );

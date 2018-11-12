@@ -31,7 +31,7 @@ class gThemeSearch extends gThemeModuleCore
 
 	public static function formSimple( $context = 'index', $extra = '' )
 	{
-		$html = '<form role="search" method="get" class="form search-form -simple search-form-'.$context.'" action="'.esc_url( self::getAction() ).'">';
+		$html = '<form role="search" method="get" class="form search-form -simple search-form-'.$context.' -print-hide" action="'.esc_url( self::getAction() ).'">';
 
 			$html.= '<span class="screen-reader-text sr-only"><label>'._x( 'Search for:', 'label', GTHEME_TEXTDOMAIN ).'</label></span>';
 
@@ -47,7 +47,7 @@ class gThemeSearch extends gThemeModuleCore
 
 	public static function form( $context = 'index', $extra = '' )
 	{
-		$html = '<form role="search" method="get" class="form search-form search-form-'.$context.'" action="'.esc_url( self::getAction() ).'">';
+		$html = '<form role="search" method="get" class="form search-form search-form-'.$context.' -print-hide" action="'.esc_url( self::getAction() ).'">';
 
 			$html.= '<span class="screen-reader-text sr-only"><label>'._x( 'Search for:', 'label', GTHEME_TEXTDOMAIN ).'</label></span>';
 

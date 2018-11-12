@@ -377,14 +377,14 @@ class gThemeContent extends gThemeModuleCore
 
 			} else {
 
-				self::do_action( $action, $before, $after, $icon );
+				self::doAction( $action, $before, $after, $icon );
 			}
 		}
 
 		do_action( 'gtheme_action_links', $before, $after, $actions, $icon );
 	}
 
-	public static function do_action( $action, $before, $after, $icon = FALSE )
+	public static function doAction( $action, $before, $after, $icon = FALSE )
 	{
 		switch ( $action ) {
 
