@@ -93,4 +93,217 @@ class gThemeText extends gThemeBaseCore
 	{
 		return preg_replace( '/<p>\s*(<a .*>)?\s*(<img .* \/>)\s*(<\/a>)?\s*<\/p>/iU', '\1\2\3', $string );
 	}
+
+	// like wp but without check for func_overload
+	// @SOURCE: `seems_utf8()`
+	public static function seemsUTF8( $string )
+	{
+		$length = strlen( $string );
+
+		for ( $i = 0; $i < $length; $i++ ) {
+
+			$c = ord( $string[$i] );
+
+			if ( $c < 0x80 )
+				$n = 0; // 0bbbbbbb
+
+			else if ( ( $c & 0xE0 ) == 0xC0 )
+				$n = 1; // 110bbbbb
+
+			else if ( ( $c & 0xF0 ) == 0xE0 )
+				$n = 2; // 1110bbbb
+
+			else if ( ( $c & 0xF8 ) == 0xF0 )
+				$n = 3; // 11110bbb
+
+			else if ( ( $c & 0xFC ) == 0xF8 )
+				$n = 4; // 111110bb
+
+			else if ( ( $c & 0xFE ) == 0xFC )
+				$n = 5; // 1111110b
+
+			else
+				return FALSE; // does not match any model
+
+			for ( $j = 0; $j < $n; $j++ ) // n bytes matching 10bbbbbb follow ?
+				if ( ( ++$i == $length )
+					|| ( ( ord( $string[$i] ) & 0xC0 ) != 0x80 ) )
+						return FALSE;
+		}
+
+		return TRUE;
+	}
+
+	// @SOURCE: `normalize_whitespace()`
+	public static function normalizeWhitespace( $string )
+	{
+		// return preg_replace( '!\s+!', ' ', $string );
+		// return preg_replace( '/\s\s+/', ' ', $string );
+
+		return preg_replace(
+			array( '/\n+/', '/[ \t]+/' ),
+			array( "\n", ' ' ),
+			str_replace( "\r", "\n", trim( $string ) )
+		);
+	}
+
+	// @REF: http://stackoverflow.com/a/3226746
+	public static function normalizeWhitespaceUTF8( $string, $check = FALSE )
+	{
+		if ( $check && ! self::seemsUTF8( $string ) )
+			return self::normalizeWhitespace( $string );
+
+		return preg_replace( '/[\p{Z}\s]{2,}/u', ' ', $string );
+	}
+
+	// @REF: _cleanup_image_add_caption()
+	// remove any line breaks from inside the tags
+	public static function noLineBreak( $string )
+	{
+		return preg_replace( '/[\r\n\t]+/', ' ', $string );
+	}
+
+	/**
+	 * Copyright (c) 2008, David R. Nadeau, NadeauSoftware.com.
+	 * All rights reserved.
+	 * License: http://www.opensource.org/licenses/bsd-license.php
+	 *
+	 * Strip punctuation characters from UTF-8 text.
+	 *
+	 * Characters stripped from the text include characters in the following
+	 * Unicode categories:
+	 *
+	 * 	Separators
+	 * 	Control characters
+	 *	Formatting characters
+	 *	Surrogates
+	 *	Open and close quotes
+	 *	Open and close brackets
+	 *	Dashes
+	 *	Connectors
+	 *	Numer separators
+	 *	Spaces
+	 *	Other punctuation
+	 *
+	 * Exceptions are made for punctuation characters that occur withn URLs
+	 * (such as [ ] : ; @ & ? and others), within numbers (such as . , % # '),
+	 * and within words (such as - and ').
+	 *
+	 * Parameters:
+	 * 	text		the UTF-8 text to strip
+	 *
+	 * Return values:
+	 * 	the stripped UTF-8 text.
+	 *
+	 * See also:
+	 * 	http://nadeausoftware.com/articles/2007/9/php_tip_how_strip_punctuation_characters_web_page
+	 */
+	public static function stripPunctuation( $text )
+	{
+		$urlbrackets    = '\[\]\(\)';
+		$urlspacebefore = ':;\'_\*%@&?!' . $urlbrackets;
+		$urlspaceafter  = '\.,:;\'\-_\*@&\/\\\\\?!#' . $urlbrackets;
+		$urlall         = '\.,:;\'\-_\*%@&\/\\\\\?!#' . $urlbrackets;
+
+		$specialquotes = '\'"\*<>';
+
+		$fullstop      = '\x{002E}\x{FE52}\x{FF0E}';
+		$comma         = '\x{002C}\x{FE50}\x{FF0C}';
+		$arabsep       = '\x{066B}\x{066C}';
+		$numseparators = $fullstop . $comma . $arabsep;
+
+		$numbersign    = '\x{0023}\x{FE5F}\x{FF03}';
+		$percent       = '\x{066A}\x{0025}\x{066A}\x{FE6A}\x{FF05}\x{2030}\x{2031}';
+		$prime         = '\x{2032}\x{2033}\x{2034}\x{2057}';
+		$nummodifiers  = $numbersign . $percent . $prime;
+
+		return preg_replace(
+			array(
+			// Remove separator, control, formatting, surrogate,
+			// open/close quotes.
+				'/[\p{Z}\p{Cc}\p{Cf}\p{Cs}\p{Pi}\p{Pf}]/u',
+			// Remove other punctuation except special cases
+				'/\p{Po}(?<![' . $specialquotes .
+					$numseparators . $urlall . $nummodifiers . '])/u',
+			// Remove non-URL open/close brackets, except URL brackets.
+				'/[\p{Ps}\p{Pe}](?<![' . $urlbrackets . '])/u',
+			// Remove special quotes, dashes, connectors, number
+			// separators, and URL characters followed by a space
+				'/[' . $specialquotes . $numseparators . $urlspaceafter .
+					'\p{Pd}\p{Pc}]+((?= )|$)/u',
+			// Remove special quotes, connectors, and URL characters
+			// preceded by a space
+				'/((?<= )|^)[' . $specialquotes . $urlspacebefore . '\p{Pc}]+/u',
+			// Remove dashes preceded by a space, but not followed by a number
+				'/((?<= )|^)\p{Pd}+(?![\p{N}\p{Sc}])/u',
+			// Remove consecutive spaces
+				'/ +/',
+			),
+			' ',
+			$text );
+	}
+
+	public static function wordCountUTF8( $html, $normalize = TRUE )
+	{
+		if ( ! $html )
+			return 0;
+
+		if ( $normalize ) {
+
+			$html = preg_replace( array(
+				'@<script[^>]*?>.*?</script>@si',
+				'@<style[^>]*?>.*?</style>@siU',
+				'@<embed[^>]*?.*?</embed>@siu',
+				'@<![\s\S]*?--[ \t\n\r]*>@',
+				'/<blockquote.*?>(.*)?<\/blockquote>/im',
+				'/<figure.*?>(.*)?<\/figure>/im',
+			), '', $html );
+
+			$html = strip_tags( $html );
+
+			// FIXME: convert back html entities
+
+			$html = str_replace( array(
+				"&nbsp;",
+				"&mdash;",
+				"&ndash;",
+			), ' ', $html );
+
+			$html = str_replace( array(
+				"&zwnj;",
+				"\xE2\x80\x8C", // Zero Width Non-Joiner U+200C
+				"\xE2\x80\x8F", // Right-To-Left Mark U+200F
+				"\xE2\x80\x8E", // Right-To-Left Mark U+200E
+				"\xEF\xBB\xBF", // UTF8 Bom
+			), '', $html );
+
+			$html = strip_shortcodes( $html );
+
+			$html = self::noLineBreak( $html );
+			$html = self::stripPunctuation( $html );
+			$html = self::normalizeWhitespaceUTF8( $html, TRUE );
+
+			$html = trim( $html );
+		}
+
+		if ( ! $html )
+			return 0;
+
+		// http://php.net/manual/en/function.str-word-count.php#85579
+		// return preg_match_all( "/\\p{L}[\\p{L}\\p{Mn}\\p{Pd}'\\x{2019}]*/u", $html, $matches );
+
+		/**
+		* This simple utf-8 word count function (it only counts)
+		* is a bit faster then the one with preg_match_all
+		* about 10x slower then the built-in str_word_count
+		*
+		* If you need the hyphen or other code points as word-characters
+		* just put them into the [brackets] like [^\p{L}\p{N}\'\-]
+		* If the pattern contains utf-8, utf8_encode() the pattern,
+		* as it is expected to be valid utf-8 (using the u modifier).
+		*
+		* @link http://php.net/manual/en/function.str-word-count.php#107363
+		**/
+		return count( preg_split( '~[^\p{L}\p{N}\']+~u', $html ) );
+	}
 }
