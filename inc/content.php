@@ -568,6 +568,14 @@ class gThemeContent extends gThemeModuleCore
 					'before' => sprintf( $before, 'entry-label' ),
 					'after'  => $after,
 				] );
+
+			break;
+			case 'editorial_estimated';
+
+				gThemeEditorial::estimated( [
+					'before' => sprintf( $before, 'entry-estimated' ),
+					'after'  => $after,
+				] );
 		}
 	}
 
