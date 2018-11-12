@@ -435,6 +435,17 @@ class gThemeContent extends gThemeModuleCore
 				);
 
 			break;
+			case 'printlink':
+
+				self::printLink(
+					( $icon ? self::getGenericon( 'print' ) : _x( 'Print Version', 'Modules: Content: Action', GTHEME_TEXTDOMAIN ) ),
+					NULL,
+					sprintf( $before, '-action -printlink' ),
+					$after,
+					FALSE // self::title_attr( FALSE, '', FALSE )
+				);
+
+			break;
 			case 'shortlink':
 
 				self::shortlink(
@@ -564,6 +575,35 @@ class gThemeContent extends gThemeModuleCore
 	public static function getGenericon( $icon = 'edit', $tag = 'div' )
 	{
 		return '<'.$tag.' class="genericon genericon-'.$icon.'"></'.$tag.'>';
+	}
+
+	public static function printLink( $text, $post = NULL, $before = '', $after = '', $title = NULL )
+	{
+		global $wp_rewrite;
+
+		if ( ! $post = get_post() )
+			return;
+
+		if ( ! $permalink = get_permalink( $post ) )
+			return;
+
+		if ( GTHEME_PRINT_QUERY && $GLOBALS['wp_rewrite']->using_permalinks() )
+			$printlink = gThemeURL::trail( $permalink ).GTHEME_PRINT_QUERY;
+
+		else if ( GTHEME_PRINT_QUERY )
+			$printlink = add_query_arg( [ GTHEME_PRINT_QUERY => '' ], $permalink );
+
+		else if ( GTHEME_PRINT_QUERY )
+			$printlink = add_query_arg( [ 'print' => '' ], $permalink );
+
+		echo $before.gThemeHTML::tag( 'a', [
+			'href'  => $printlink,
+			'title' => $title ?: FALSE,
+			'data'  => [
+				'toggle' => 'tooltip',
+				'id'     => $post->ID,
+			],
+		], $text ).$after;
 	}
 
 	public static function shortlink( $text, $post = NULL, $before = '', $after = '', $title = NULL )
