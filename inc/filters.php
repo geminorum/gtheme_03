@@ -201,33 +201,30 @@ class gThemeFilters extends gThemeModuleCore
 	public static function deferredStyles( $tags )
 	{
 		?><noscript id="deferred-styles"><?php echo "\n".$tags; ?></noscript>
-<script>
-	var loadDeferredStyles = function() {
+<script type="text/javascript">
+(function(){
+	var loadDeferredStyles = function(){
 		var addStylesNode = document.getElementById("deferred-styles");
 		var replacement = document.createElement("div");
 		replacement.innerHTML = addStylesNode.textContent;
 		document.body.appendChild(replacement)
 		addStylesNode.parentElement.removeChild(addStylesNode);
-		console.log('styles loaded');
+		<?php if ( SCRIPT_DEBUG ) echo 'console.log("styles loaded");'; ?>
 		window.setTimeout(disableSpinner, 600);
 	};
-	var disableSpinner = function() {
-		// document.getElementById("preloadspinner").outerHTML = "";
+	var disableSpinner = function(){
 		var spinner = document.getElementById("preloadspinner");
-		spinner.classList.add("fade-out");
-		console.log('spinner disabled');
+		if (spinner.classList) spinner.classList.add("fade-out");
+		else spinner.className += " fade-out";
+		<?php if ( SCRIPT_DEBUG ) echo 'console.log("spinner disabled");'; ?>
 	};
 	var raf = window.requestAnimationFrame
 		|| window.mozRequestAnimationFrame
 		|| window.webkitRequestAnimationFrame
 		|| window.msRequestAnimationFrame;
-	if (raf) {
-		raf(function() {
-			window.setTimeout(loadDeferredStyles, 0);
-		});
-	} else {
-		window.addEventListener('load', loadDeferredStyles, false);
-	};
+	if (raf) raf(function(){window.setTimeout(loadDeferredStyles, 0);});
+	else window.addEventListener('load', loadDeferredStyles);
+}());
 </script><?php
 	}
 
