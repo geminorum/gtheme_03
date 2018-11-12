@@ -31,7 +31,7 @@ $tooltip-arrow-color: $theme-tooltip-bg !default;
 
 .tooltip {
   position: absolute;
-  z-index: 1070;
+  z-index: 999999; // over adminbar
   display: block;
   margin: $tooltip-margin;
 

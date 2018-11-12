@@ -31,6 +31,10 @@
       margin: 0 .4rem;
       border-top: 2px dotted $gray-light;
     }
+
+    ul {
+      @extend .breadcrumb;
+    }
   }
 
   &.-main {
