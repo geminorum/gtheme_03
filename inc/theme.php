@@ -102,9 +102,9 @@ class gThemeTheme extends gThemeModuleCore
 		if ( $html5 )
 			add_theme_support( 'html5',
 				gThemeOptions::info( 'support_html5', [
-					'comment-list',
 					'search-form',
 					'comment-form',
+					'comment-list',
 					'gallery',
 					'caption',
 			] ) );

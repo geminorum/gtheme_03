@@ -601,7 +601,7 @@ class gThemeContent extends gThemeModuleCore
 		else if ( GTHEME_PRINT_QUERY )
 			$printlink = add_query_arg( [ GTHEME_PRINT_QUERY => '' ], $permalink );
 
-		else if ( GTHEME_PRINT_QUERY )
+		else
 			$printlink = add_query_arg( [ 'print' => '' ], $permalink );
 
 		echo $before.gThemeHTML::tag( 'a', [
