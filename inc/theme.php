@@ -6,20 +6,22 @@ class gThemeTheme extends gThemeModuleCore
 	public function setup_actions( $args = [] )
 	{
 		extract( self::atts( [
-			'cleanup'       => TRUE,
-			'html_title'    => TRUE, // @REF: https://make.wordpress.org/core/?p=11311
-			'adminbar'      => TRUE,
-			'wpcf7'         => TRUE,
-			'page_excerpt'  => TRUE,
-			'content_width' => TRUE, // @SEE: https://core.trac.wordpress.org/ticket/21256
-			'feed_links'    => TRUE,
-			'post_formats'  => FALSE,
-			'html5'         => TRUE,
-			'js'            => FALSE,
-			'hooks'         => TRUE, // @REF: https://is.gd/4ORzuI
-			'bp_support'    => TRUE,
-			'bp_no_styles'  => FALSE,
-			'print_support' => TRUE,
+			'cleanup'           => TRUE,
+			'html_title'        => TRUE, // @REF: https://make.wordpress.org/core/?p=11311
+			'adminbar'          => TRUE,
+			'wpcf7'             => TRUE,
+			'page_excerpt'      => TRUE,
+			'content_width'     => TRUE, // @SEE: https://core.trac.wordpress.org/ticket/21256
+			'feed_links'        => TRUE, // Adds default posts and comments RSS feed links to head.
+			'post_formats'      => FALSE,
+			'custom_background' => FALSE,
+			'custom_logo'       => FALSE,
+			'html5'             => TRUE,
+			'js'                => FALSE,
+			'hooks'             => TRUE, // @REF: https://is.gd/4ORzuI
+			'bp_support'        => TRUE,
+			'bp_no_styles'      => FALSE,
+			'print_support'     => TRUE,
 		], $args ) );
 
 		if ( $cleanup )
@@ -76,6 +78,26 @@ class gThemeTheme extends gThemeModuleCore
 			add_action( 'init', function(){
 				remove_post_type_support( 'post', 'post-formats' );
 			} );
+
+		if ( $custom_background )
+			add_theme_support( 'custom-background',
+				gThemeOptions::info( 'support_custom_background', [
+					'default-color'          => 'ffffff',
+					'default-image'          => '',
+					'wp-head-callback'       => '_custom_background_cb',
+					'admin-head-callback'    => '',
+					'admin-preview-callback' => '',
+			] ) );
+
+		if ( $custom_logo )
+			add_theme_support( 'custom-logo',
+				gThemeOptions::info( 'support_custom_logo', [
+					'width'       => NULL,
+					'height'      => NULL,
+					'flex-width'  => TRUE,
+					'flex-height' => TRUE,
+					'header-text' => gThemeOptions::info( 'blog_name', '' ),
+			] ) );
 
 		if ( $html5 )
 			add_theme_support( 'html5',
