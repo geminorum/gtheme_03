@@ -8,20 +8,17 @@ class gThemeSettings extends gThemeModuleCore
 	public function setup_actions( $args = [] )
 	{
 		extract( self::atts( [
-			'activation_redirect' => TRUE, // redirect after theme activation
+			'activation_redirect' => FALSE, // redirects to settings after activation
 		], $args ) );
 
 		$this->set_page();
 
 		if ( is_admin() ) {
 
-			if ( $activation_redirect ) {
-				global $pagenow;
-				if ( isset( $_GET['activated'] ) && 'themes.php' == $pagenow ) {
-					wp_redirect( admin_url( $this->_settings_uri ) );
-					exit;
-				}
-			}
+			if ( $activation_redirect
+				&& isset( $_GET['activated'] )
+				&& 'themes.php' == $GLOBALS['pagenow'] )
+					gThemeWordPress::redirect( admin_url( $this->_settings_uri ) );
 
 			add_action( 'admin_menu', [ $this, 'admin_menu' ] );
 
