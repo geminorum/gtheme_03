@@ -224,6 +224,9 @@ class gThemeContent extends gThemeModuleCore
 	// OLD: gtheme_the_title_attribute()
 	public static function title_attr( $echo = TRUE, $title = NULL, $template = NULL, $empty = '' )
 	{
+		if ( FALSE === $title )
+			return '';
+
 		if ( is_null( $title ) )
 			$title = trim( strip_tags( get_the_title() ) );
 
@@ -860,7 +863,7 @@ addthis_config.services_custom = [
 			'wrap_close'  => TRUE,
 			'title_tag'   => 'h2',
 			'meta_tag'    => 'h4',
-			'title'       => NULL,
+			'title'       => NULL, // or FALSE to disable
 			'meta'        => TRUE,
 			'link'        => TRUE, // disable linking compeletly
 			'anchor'      => FALSE, // permalink anchor for the post
@@ -900,9 +903,12 @@ addthis_config.services_custom = [
 
 		if ( $args['link'] && $link ) {
 
-			echo '<a itemprop="url" rel="bookmark" href="'.$link.'" title="';
-				self::title_attr( TRUE, $args['title'], ( TRUE === $args['shortlink'] ? FALSE : NULL ) );
-			echo '">'.$args['title'].'</a>';
+			echo '<a itemprop="url" rel="bookmark" href="'.$link.'"';
+
+			if ( FALSE !== $args['title'] )
+				echo ' title="'.self::title_attr( FALSE, $args['title'], ( TRUE === $args['shortlink'] ? FALSE : NULL ) ).'"';
+
+			echo '>'.$args['title'].'</a>';
 
 		} else {
 
