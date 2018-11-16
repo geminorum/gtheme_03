@@ -81,7 +81,7 @@ class gThemeSearch extends gThemeModuleCore
 
 			$html.= '<div class="input-group">';
 
-			$html.= '<label for="search-terms" class="accessibly-hidden sr-only">';
+			$html.= '<label for="search-terms" class="accessibly-hidden screen-reader-text sr-only">';
 				$html.= _x( 'Search for:', 'buddypress: label', GTHEME_TEXTDOMAIN );
 			$html.= '</label>';
 

@@ -41,7 +41,7 @@ class gThemeBootstrap extends gThemeModuleCore
 	{
 		echo '<div class="navbar-header">';
 			echo '<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#'.$target.'" aria-expanded="false">';
-				echo '<span class="sr-only">'.__( 'Toggle navigation', GTHEME_TEXTDOMAIN ).'</span>';
+				echo '<span class="screen-reader-text sr-only">'.__( 'Toggle navigation', GTHEME_TEXTDOMAIN ).'</span>';
 				echo '<span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>';
 			echo '</button>';
 
@@ -95,7 +95,8 @@ class gThemeBootstrap extends gThemeModuleCore
 			$placeholder = __( 'Search &hellip;', GTHEME_TEXTDOMAIN );
 
 		echo '<form class="navbar-form '.$class.'" role="search" method="get" action="'.gThemeSearch::getAction().'"><div class="form-group">';
-			echo '<input type="text" class="form-control" name="'.gThemeSearch::getKey().'" value="'.gThemeSearch::query().'"';
+			echo '<label for="search" class="screen-reader-text sr-only">'._x( 'Search for:', 'label', GTHEME_TEXTDOMAIN ).'</label>';
+			echo '<input id="search" type="text" class="form-control" name="'.gThemeSearch::getKey().'" value="'.gThemeSearch::query().'"';
 			if ( $placeholder )
 				echo ' placeholder="'.$placeholder.'" ';
 		echo '/></div></form>';

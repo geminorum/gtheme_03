@@ -127,7 +127,7 @@ class gThemeComments extends gThemeModuleCore
 
 		echo '<nav class="navigation comment-navigation '.$class.'" role="navigation">';
 		if ( $strings['title'] )
-			echo '<h4 class="assistive-text sr-only">'.$strings['title'].'</h4>';
+			echo '<h4 class="screen-reader-text sr-only">'.$strings['title'].'</h4>';
 		echo '<div class="nav-previous">';
 			previous_comments_link( $strings['previous'] );
 		echo '</div><div class="nav-next">';
@@ -371,7 +371,7 @@ class gThemeComments extends gThemeModuleCore
 			$defaults = [
 				'fields' => apply_filters( 'comment_form_default_fields', $fields ),
 
-				'comment_field' => '<div class="form-group comment-form-comment"><label for="comment" class="sr-only">'
+				'comment_field' => '<div class="form-group comment-form-comment"><label for="comment" class="screen-reader-text sr-only">'
 					.$strings['comment'].'</label>'
 					.gThemeHTML::tag( 'textarea', [
 						'required'    => TRUE,
