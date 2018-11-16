@@ -20,13 +20,12 @@ class gThemeBaseCore
 		die();
 	}
 
-	public static function __log_req()
+	public static function _log_req()
 	{
-		self::__log( $_REQUEST );
+		self::_log( $_REQUEST );
 	}
 
-	// INTERNAL
-	public static function __log()
+	public static function _log()
 	{
 		if ( defined( 'WP_DEBUG_LOG' ) && ! WP_DEBUG_LOG )
 			return;
@@ -41,7 +40,7 @@ class gThemeBaseCore
 	}
 
 	// INTERNAL: used on anything deprecated
-	protected static function __dep( $note = '', $prefix = 'DEP: ', $offset = 1 )
+	protected static function _dep( $note = '', $prefix = 'DEP: ', $offset = 1 )
 	{
 		if ( defined( 'WP_DEBUG_LOG' ) && ! WP_DEBUG_LOG )
 			return;
@@ -79,10 +78,10 @@ class gThemeBaseCore
 	}
 
 	// INTERNAL: used on anything deprecated : only on dev mode
-	protected static function __dev_dep( $note = '', $prefix = 'DEP: ', $offset = 2 )
+	protected static function _dev_dep( $note = '', $prefix = 'DEP: ', $offset = 2 )
 	{
 		if ( gThemeWordPress::isDev() )
-			self::__dep( $note, $prefix, $offset );
+			self::_dep( $note, $prefix, $offset );
 	}
 
 	public static function stat( $format = NULL )

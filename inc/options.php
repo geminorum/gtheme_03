@@ -283,7 +283,7 @@ class gThemeOptions extends gThemeModuleCore
 	// FIXME: DEPRECATED
 	public static function register_image( $n, $w, $h = 9999, $c = 0, $t = TRUE, $i = FALSE, $p = [ 'post' ], $d = '' )
 	{
-		self::__dep( 'gThemeOptions::registerImage()' );
+		self::_dep( 'gThemeOptions::registerImage()' );
 
 		return [
 			'n' => $n, // name (title)
@@ -306,7 +306,7 @@ class gThemeOptions extends gThemeModuleCore
 	// FIXME: DEPRECATED: use gThemeOptions::getOptions();
 	public static function get_options()
 	{
-		self::__dep( 'gThemeOptions::getOptions()' );
+		self::_dep( 'gThemeOptions::getOptions()' );
 		return self::getOptions();
 	}
 
@@ -318,14 +318,14 @@ class gThemeOptions extends gThemeModuleCore
 	// FIXME: DEPRECATED: use gThemeOptions::updateOptions();
 	public static function update_options( $options )
 	{
-		self::__dep( 'gThemeOptions::updateOptions()' );
+		self::_dep( 'gThemeOptions::updateOptions()' );
 		return self::updateOptions( $options );
 	}
 
 	// FIXME: DEPRECATED: use gThemeOptions::getOption();
 	public static function get_option( $name, $default = FALSE )
 	{
-		self::__dep( 'gThemeOptions::getOption()' );
+		self::_dep( 'gThemeOptions::getOption()' );
 		return self::getOption( $name, $default );
 	}
 
@@ -405,7 +405,7 @@ class gThemeOptions extends gThemeModuleCore
 	// FIXME: DEPRECATED: use gThemeCounts::get()
 	public static function count( $name, $def = 0 )
 	{
-		self::__dep( 'gThemeCounts::get()' );
+		self::_dep( 'gThemeCounts::get()' );
 		return gThemeCounts::get( $name, $def );
 	}
 

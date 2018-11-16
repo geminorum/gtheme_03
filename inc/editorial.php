@@ -326,7 +326,7 @@ class gThemeEditorial extends gThemeModuleCore
 
 	public static function reshareSource( $atts = [] )
 	{
-		self::__dep( 'gThemeEditorial::source()' );
+		self::_dep( 'gThemeEditorial::source()' );
 		return self::source( $atts );
 	}
 

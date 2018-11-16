@@ -198,7 +198,7 @@ class gThemeNavigation extends gThemeModuleCore
 
 	public static function breadcrumb_single( $atts = [] )
 	{
-		self::__dep( 'gThemeNavigation::breadcrumbSingle()' );
+		self::_dep( 'gThemeNavigation::breadcrumbSingle()' );
 		self::breadcrumbSingle( $atts );
 	}
 
@@ -243,7 +243,7 @@ class gThemeNavigation extends gThemeModuleCore
 
 	public static function breadcrumb_archive( $atts = [] )
 	{
-		self::__dep( 'gThemeNavigation::breadcrumbArchive()' );
+		self::_dep( 'gThemeNavigation::breadcrumbArchive()' );
 		self::breadcrumbArchive( $atts );
 	}
 
@@ -366,7 +366,7 @@ class gThemeNavigation extends gThemeModuleCore
 
 	public static function paginateLinks()
 	{
-		self::__dep( 'gThemeNavigation::paginate()' );
+		self::_dep( 'gThemeNavigation::paginate()' );
 		self::paginate();
 	}
 }

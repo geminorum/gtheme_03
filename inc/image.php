@@ -578,7 +578,7 @@ class gThemeImage extends gThemeModuleCore
 	// FIXME: DEPRECATED
 	public static function get_image( $atts = [] )
 	{
-		self::__dep( 'gThemeImage::getImage()' );
+		self::_dep( 'gThemeImage::getImage()' );
 		return self::getImage( $atts );
 	}
 

@@ -42,7 +42,7 @@ class gThemeAttachment extends gThemeModuleCore
 	// FIXME: DEPRECATED: USE: `gThemeAttachment::media()`
 	public static function image( $atts = [] )
 	{
-		self::__dep( 'gThemeAttachment::media()' );
+		self::_dep( 'gThemeAttachment::media()' );
 		return self::media( $atts );
 	}
 

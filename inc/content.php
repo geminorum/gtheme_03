@@ -195,7 +195,7 @@ class gThemeContent extends gThemeModuleCore
 	// FIXME: DEPRECATED
 	public static function continue_reading( $edit = '', $scope = '', $permalink = FALSE, $title_att = FALSE )
 	{
-		self::__dep( 'gThemeContent::continueReading()' );
+		self::_dep( 'gThemeContent::continueReading()' );
 		return self::continueReading( $edit, $scope, $permalink, $title_att );
 	}
 
