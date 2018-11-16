@@ -174,6 +174,9 @@ class gThemeTemplate extends gThemeModuleCore
 			$copyright = gThemeText::autoP( gThemeUtilities::wordWrap( $copyright ), FALSE );
 
 		echo $before.$copyright.$after;
+
+		if ( gThemeOptions::info( 'copyright_append_home_in_print', TRUE ) )
+			echo '<div class="visible-print-block -print-only -code">'.gThemeUtilities::home( TRUE ).'</div>';
 	}
 
 	public static function telephone( $number, $before = '', $after = '', $atts = [] )
