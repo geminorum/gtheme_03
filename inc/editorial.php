@@ -28,7 +28,7 @@ class gThemeEditorial extends gThemeModuleCore
 		return gThemeOptions::info( 'attachment_download_prefix', '' ).$filename;
 	}
 
-	public static function series( $atts = [] )
+	public static function series( $atts = [], $echo = TRUE )
 	{
 		if ( ! function_exists( 'gEditorial' ) )
 			return FALSE;
@@ -36,12 +36,17 @@ class gThemeEditorial extends gThemeModuleCore
 		if ( ! gEditorial()->enabled( 'series' ) )
 			return FALSE;
 
-		echo gEditorial()->series->series_shortcode( $atts );
+		$html = gEditorial()->series->series_shortcode( $atts );
+
+		if ( ! $echo )
+			return $html;
+
+		echo $html;
 
 		return TRUE;
 	}
 
-	public static function attachments( $atts = [] )
+	public static function attachments( $atts = [], $echo = TRUE )
 	{
 		if ( ! function_exists( 'gEditorial' ) )
 			return FALSE;
@@ -49,12 +54,17 @@ class gThemeEditorial extends gThemeModuleCore
 		if ( ! gEditorial()->enabled( 'attachments' ) )
 			return FALSE;
 
-		echo gEditorial()->attachments->attachments_shortcode( $atts );
+		$html = gEditorial()->attachments->attachments_shortcode( $atts );
+
+		if ( ! $echo )
+			return $html;
+
+		echo $html;
 
 		return TRUE;
 	}
 
-	public static function publications( $atts = [] )
+	public static function publications( $atts = [], $echo = TRUE )
 	{
 		if ( ! function_exists( 'gEditorial' ) )
 			return FALSE;
@@ -62,7 +72,12 @@ class gThemeEditorial extends gThemeModuleCore
 		if ( ! gEditorial()->enabled( 'book' ) )
 			return FALSE;
 
-		echo gEditorial()->book->publications_shortcode( $atts );
+		$html = gEditorial()->book->publications_shortcode( $atts );
+
+		if ( ! $echo )
+			return $html;
+
+		echo $html;
 
 		return TRUE;
 	}
@@ -97,7 +112,7 @@ class gThemeEditorial extends gThemeModuleCore
 		return TRUE;
 	}
 
-	public static function siteModified( $atts = [] )
+	public static function siteModified( $atts = [], $echo = TRUE )
 	{
 		if ( ! function_exists( 'gEditorial' ) )
 			return FALSE;
@@ -105,12 +120,17 @@ class gThemeEditorial extends gThemeModuleCore
 		if ( ! gEditorial()->enabled( 'modified' ) )
 			return FALSE;
 
-		echo gEditorial()->modified->site_modified_shortcode( $atts );
+		$html = gEditorial()->modified->site_modified_shortcode( $atts );
+
+		if ( ! $echo )
+			return $html;
+
+		echo $html;
 
 		return TRUE;
 	}
 
-	public static function postModified( $atts = [] )
+	public static function postModified( $atts = [], $echo = TRUE )
 	{
 		if ( ! function_exists( 'gEditorial' ) )
 			return FALSE;
@@ -118,7 +138,12 @@ class gThemeEditorial extends gThemeModuleCore
 		if ( ! gEditorial()->enabled( 'modified' ) )
 			return FALSE;
 
-		echo gEditorial()->modified->post_modified_shortcode( $atts );
+		$html = gEditorial()->modified->post_modified_shortcode( $atts );
+
+		if ( ! $echo )
+			return $html;
+
+		echo $html;
 
 		return TRUE;
 	}
@@ -231,7 +256,7 @@ class gThemeEditorial extends gThemeModuleCore
 		return ob_get_clean();
 	}
 
-	public static function issuePosts( $atts = [] )
+	public static function issuePosts( $atts = [], $echo = TRUE )
 	{
 		if ( ! function_exists( 'gEditorial' ) )
 			return FALSE;
@@ -242,9 +267,14 @@ class gThemeEditorial extends gThemeModuleCore
 		if ( ! array_key_exists( 'item_cb', $atts ) )
 			$atts['item_cb'] = [ __CLASS__, 'issueRowCallback' ];
 
-		echo gEditorial()->magazine->issue_shortcode( $atts );
+		$html = gEditorial()->magazine->issue_shortcode( $atts );
 
 		wp_reset_postdata(); // since callback used setup post data
+
+		if ( ! $echo )
+			return $html;
+
+		echo $html;
 
 		return TRUE;
 	}
