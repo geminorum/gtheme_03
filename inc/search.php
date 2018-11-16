@@ -47,17 +47,22 @@ class gThemeSearch extends gThemeModuleCore
 
 	public static function form( $context = 'index', $extra = '' )
 	{
-		$html = '<form role="search" method="get" class="form search-form search-form-'.$context.' -print-hide" action="'.esc_url( self::getAction() ).'">';
+		$html = '<form role="search" method="get" class="form search-form search-form-';
+		$html.= $context.' -print-hide" action="'.esc_url( self::getAction() ).'">';
 
-			$html.= '<span class="screen-reader-text sr-only"><label>'._x( 'Search for:', 'label', GTHEME_TEXTDOMAIN ).'</label></span>';
+			$html.= '<span class="screen-reader-text sr-only"><label>';
+			$html.= _x( 'Search for:', 'label', GTHEME_TEXTDOMAIN ).'</label></span>';
 
 			$html.= '<div class="input-group">';
 
-				$html.= '<input type="search" class="form-control search-field" placeholder="'.esc_attr_x( 'Search &hellip;', 'placeholder', GTHEME_TEXTDOMAIN );
-				$html.= '" value="'.self::query().'" name="'.self::getKey().'" title="'.esc_attr_x( 'Search for:', 'label', GTHEME_TEXTDOMAIN ).'" />';
+				$html.= '<input type="search" class="form-control search-field" placeholder="';
+				$html.= esc_attr_x( 'Search &hellip;', 'placeholder', GTHEME_TEXTDOMAIN );
+				$html.= '" value="'.self::query().'" name="'.self::getKey().'" title="';
+				$html.= esc_attr_x( 'Search for:', 'label', GTHEME_TEXTDOMAIN ).'" />';
 
-				$html.= '<span class="input-group-btn">';
-					$html.= '<button type="submit" class="btn btn-default search-submit" />'._x( 'Search', 'submit button', GTHEME_TEXTDOMAIN ).'</button>';
+				$html.= '<span class="input-group-btn input-group-append">';
+					$html.= '<button type="submit" class="btn btn-default search-submit" />';
+					$html.= _x( 'Search', 'submit button', GTHEME_TEXTDOMAIN ).'</button>';
 				$html.= '</span>';
 
 			$html.= '</div>';
@@ -71,22 +76,34 @@ class gThemeSearch extends gThemeModuleCore
 
 	public static function form_buddypress()
 	{
-		$html = '<form action="'.bp_search_form_action().'" method="post" id="search-form"'
-			   .' class="form search-form search-form-buddypress"><div class="input-group">'
-			   .'<label for="search-terms" class="accessibly-hidden sr-only">'
-			   ._x( 'Search for:', 'buddypress: label', GTHEME_TEXTDOMAIN )
-			   .'</label><input type="text" id="search-terms" class="form-control" name="search-terms" value="'
-			   //.self::query( 'search-terms' )
-			   .get_search_query()
-			   .'" placeholder="'.esc_attr_x( 'Search &hellip;', 'buddypress: placeholder', GTHEME_TEXTDOMAIN )
-			   .'" />'.bp_search_form_type_select()
-			   .'<span class="input-group-btn"><button type="submit" class="btn btn-default " name="search-submit" id="search-submit">'
-			   ._x( 'Search', 'buddypress: submit button', GTHEME_TEXTDOMAIN )
-			   .'</button></span></div>'
-			   .wp_nonce_field( 'bp_search_form', '_wpnonce', true, false )
-			   .'</form>';
+		$html = '<form action="'.bp_search_form_action().'" method="post" id="search-form"';
+			$html.= ' class="form search-form search-form-buddypress">';
+
+			$html.= '<div class="input-group">';
+
+			$html.= '<label for="search-terms" class="accessibly-hidden sr-only">';
+				$html.= _x( 'Search for:', 'buddypress: label', GTHEME_TEXTDOMAIN );
+			$html.= '</label>';
+
+			$html.= '<input type="text" id="search-terms" class="form-control" name="search-terms" value="';
+
+			// $html.= self::query( 'search-terms' );
+			$html.= get_search_query();
+
+			$html.= '" placeholder="'.esc_attr_x( 'Search &hellip;', 'buddypress: placeholder', GTHEME_TEXTDOMAIN ).'" />';
+
+			$html.= bp_search_form_type_select();
+
+			$html.= '<span class="input-group-btn input-group-append">';
+				$html.= '<button type="submit" class="btn btn-default" name="search-submit" id="search-submit">';
+				$html.= _x( 'Search', 'buddypress: submit button', GTHEME_TEXTDOMAIN );
+			$html.= '</button></span></div>';
+
+			$html.= wp_nonce_field( 'bp_search_form', '_wpnonce', TRUE, FALSE );
+		$html.= '</form>';
 
 		echo $html;
+
 		do_action( 'bp_search_login_bar' );
 	}
 }

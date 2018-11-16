@@ -642,7 +642,7 @@ class gThemeContent extends gThemeModuleCore
 		], $text ).$after;
 	}
 
-	// ALSO SEE : http://wp.tutsplus.com/tutorials/theme-development/creating-a-wordpress-post-text-size-changer-using-jquery/
+	// @SEE : https://code.tutsplus.com/tutorials/creating-a-wordpress-post-text-size-changer-using-jquery--wp-28403
 	public static function text_size_buttons( $b = '', $a = '', $sep = 'def', $increase = 'def', $decrease = 'def' )
 	{
 
@@ -957,7 +957,7 @@ addthis_config.services_custom = [
 		}
 
 		if ( $args['wrap_close'] )
-			echo '</'.$args['wrap_tag'].'>';
+			echo '</'.$args['wrap_tag'].'>'."\n";
 	}
 
 	public static function footer( $atts = [] )
