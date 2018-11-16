@@ -87,6 +87,20 @@ class gThemeUtilities extends gThemeBaseCore
 		return $default;
 	}
 
+	public static function isSystemPage()
+	{
+		if ( defined( 'GTHEME_IS_WP_SIGNUP' ) && GTHEME_IS_WP_SIGNUP )
+			return TRUE;
+
+		if ( defined( 'GTHEME_IS_WP_ACTIVATE' ) && GTHEME_IS_WP_ACTIVATE )
+			return TRUE;
+
+		if ( defined( 'GTHEME_IS_SYSTEM_PAGE' ) && GTHEME_IS_SYSTEM_PAGE )
+			return TRUE;
+
+		return FALSE;
+	}
+
 	public static function isPrint()
 	{
 		global $wp_query;
