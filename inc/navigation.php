@@ -131,6 +131,8 @@ class gThemeNavigation extends gThemeModuleCore
 
 		if ( is_search() && gThemeOptions::info( 'breadcrumb_search_form', TRUE ) )
 			gThemeSearch::form();
+
+		do_action( 'gtheme_navigation_breadcrumb_after' );
 	}
 
 	// Home > Cat > Label
