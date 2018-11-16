@@ -1,8 +1,22 @@
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
-/// Blocks: Preload 01 - 2018-11-03
+/// Blocks: Preload 01 - 2018-11-13
 
+////////////////////////////////////////////////////////////////////////////////
+// preventing white flash before loading on no-js
+
+body {
+  background: $body-bg;
+  color: $body-color;
+}
+
+a {
+  &,
+  &:hover {
+    color: $link-color;
+  }
+}
 ////////////////////////////////////////////////////////////////////////////////
 .preload.-spinner {
   position: fixed;
@@ -34,9 +48,9 @@
     > div {
       border-radius: 100%;
       border-style: solid;
-      border-width: 0.25rem;
-      height: 5rem;
-      width: 5rem;
+      border-width: $theme-preload-border;
+      height: $theme-preload-size;
+      width: $theme-preload-size;
 
       animation: preloadSpinner 1s infinite linear;
     }

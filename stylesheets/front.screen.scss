@@ -37,7 +37,7 @@ hr {
 @import "blocks/defaults_01";
 @import "blocks/typography_01";
 @import "blocks/navigation_02";
-@import "blocks/forms_01";
+@import "blocks/forms_02";
 @import "blocks/table_02";
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -55,4 +55,4 @@ h2.entry-title {
 
 ////////////////////////////////////////////////////////////////////////////////
 
-@include theme-layout-misc;
+@include theme-layout-media;

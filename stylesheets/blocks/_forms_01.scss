@@ -44,9 +44,9 @@ button.button-primary,
 input[type="button"].button-primary,
 input[type="reset"].button-primary,
 input[type="submit"].button-primary {
-  color: #FFF;
-  background-color: #33C3F0;
-  border-color: #33C3F0;
+  color: #fff;
+  background-color: #33c3f0;
+  border-color: #33c3f0;
 }
 
 .button.button-primary:focus,
@@ -59,9 +59,9 @@ input[type="reset"].button-primary:focus,
 input[type="reset"].button-primary:hover,
 input[type="submit"].button-primary:focus,
 input[type="submit"].button-primary:hover {
-  color: #FFF;
-  background-color: #1EAEDB;
-  border-color: #1EAEDB;
+  color: #fff;
+  background-color: #1eaedb;
+  border-color: #1eaedb;
 }
 
 input[type="email"],
@@ -77,7 +77,7 @@ textarea {
   padding: 6px 10px;
   // The 6px vertically centers text on FF, ignored by Webkit
   background-color: transparent;
-  border: 1px solid #D1D1D1;
+  border: 1px solid #d1d1d1;
   box-shadow: none;
 }
 
@@ -96,7 +96,7 @@ input[type="text"]:focus,
 input[type="url"]:focus,
 select:focus,
 textarea:focus {
-  border: 1px solid #33C3F0;
+  border: 1px solid #33c3f0;
   outline: 0;
 }
 

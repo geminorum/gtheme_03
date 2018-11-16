@@ -1,9 +1,56 @@
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
-/// Blocks: Forms 02 - 2018-10-02
+/// Blocks: Forms 02 - 2018-11-13
+
+////////////////////////////////////////////////////////////////////////////////
+#{$theme-forms-input-fields},
+#{$theme-forms-button-fields} {
+  padding: .3rem;
+  background: transparent;
+  color: $body-color;
+  font-size: .85rem;
+
+  border: 1px solid $input-border-color;
+  border-radius: $input-border-radius;
+}
+
+#{$theme-forms-ltr-fields} {
+
+  /*rtl:ignore*/
+  direction: ltr;
+}
 
 ////////////////////////////////////////////////////////////////////////////////
 .form-control {}
 
-.input-group {} // @include theme-forms-input-group;
+.search-form.-simple,
+.input-group {
+  @include theme-forms-input-group;
+
+  margin-top: .5rem;
+
+  > .form-control:not(:last-child),
+  > .input-group-prepend > .btn,
+    // > .input-group-prepend > .input-group-text,
+  > .input-group-append:not(:last-child) > .btn
+  // > .input-group-append:not(:last-child) > .input-group-text,
+  // > .input-group-append:last-child > .btn:not(:last-child):not(.dropdown-toggle),
+  // > .input-group-append:last-child > .input-group-text:not(:last-child) {
+  {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  > .form-control:not(:first-child),
+  > .input-group-append > .btn,
+  // > .input-group-append > .input-group-text,
+  > .input-group-prepend:not(:first-child) > .btn
+  // > .input-group-prepend:not(:first-child) > .input-group-text,
+  // > .input-group-prepend:first-child > .btn:not(:first-child),
+  // > .input-group-prepend:first-child > .input-group-text:not(:first-child) {
+  {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+}

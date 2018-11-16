@@ -9,21 +9,44 @@
     // margin: $pading; // let browser decide the margin on print UI
   }
 
-  #content {
+  body {
     width: $width;
     // padding: $pading;
   }
 
   @media screen {
-    body {
+    html {
       background: $background;
     }
 
-    #content {
+    body {
       background: $page;
       box-shadow: 0 .5mm 2mm rgba(0, 0, 0, .3);
       margin: 5mm auto;
       padding: $pading;
     }
+  }
+
+  // must be here: on print only styles
+  .-printlink {
+    display: none;
+  }
+
+  h1 {
+    page-break-before: always;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    page-break-after: avoid;
+  }
+
+  table,
+  figure {
+    page-break-inside: avoid;
   }
 }
