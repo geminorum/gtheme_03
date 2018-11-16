@@ -120,10 +120,10 @@ class gThemeNavigation extends gThemeModuleCore
 
 		$posttypes = gThemeOptions::info( 'breadcrumb_posttypes', [ 'post' ] );
 
-		if ( is_singular( $posttypes ) )
+		if ( FALSE !== $posttypes && is_singular( $posttypes ) )
 			self::breadcrumbSingle( $atts );
 
-		else if ( is_post_type_archive( $posttypes ) )
+		else if ( FALSE !== $posttypes && is_post_type_archive( $posttypes ) )
 			self::breadcrumbArchive( $atts );
 
 		else if ( ! is_post_type_archive() && ( is_archive() || is_search() ) )
