@@ -34,7 +34,7 @@ class gThemeOptions extends gThemeModuleCore
 				'zoom'            => TRUE,
 			],
 
-			'theme_groups' => FALSE, // [ 'main' => _x( 'Main' 'Options: Theme Group', GTHEME_TEXTDOMAIN ) ],
+			// 'theme_groups' => FALSE, // [ 'main' => _x( 'Main' 'Options: Theme Group', GTHEME_TEXTDOMAIN ) ],
 			'module_args'  => [],
 
 			// MENUS
@@ -53,9 +53,9 @@ class gThemeOptions extends gThemeModuleCore
 			// 'images'                  => gThemeOptions::getDefaultImages(),
 			// 'image_support'           => TRUE, // hides the default inserts
 			// 'post_thumbnail_fallback' => TRUE,
-			'thumbnail_image_size'    => 'single',
-			'enclosure_image_size'    => 'single',
-			'amp_image_size'          => 'single',
+			// 'thumbnail_image_size'    => 'single',
+			// 'enclosure_image_size'    => 'single',
+			// 'amp_image_size'          => 'single',
 
 			// 'jpeg_quality'          => 82, // quality of JPEG images uploaded to WP
 			// 'wp_editor_set_quality' => 82, // quality of JPEG images edited within WP
@@ -82,13 +82,13 @@ class gThemeOptions extends gThemeModuleCore
 			'feed_sep'           => _x( '; ', 'Options: Separator: Feed', GTHEME_TEXTDOMAIN ),
 			'comment_action_sep' => _x( ' | ', 'Options: Separator: Comment Action', GTHEME_TEXTDOMAIN ),
 
-			'text_size_increase' => _x( '[ A+ ]', 'Options: Text Size Increase', GTHEME_TEXTDOMAIN ),
-			'text_size_decrease' => _x( '[ A- ]', 'Options: Text Size Decrease', GTHEME_TEXTDOMAIN ),
-			'text_size_sep'      => _x( ' / ', 'Options: Text Size Sep', GTHEME_TEXTDOMAIN ),
+			// 'text_size_increase' => _x( '[ A+ ]', 'Options: Text Size Increase', GTHEME_TEXTDOMAIN ),
+			// 'text_size_decrease' => _x( '[ A- ]', 'Options: Text Size Decrease', GTHEME_TEXTDOMAIN ),
+			// 'text_size_sep'      => _x( ' / ', 'Options: Text Size Sep', GTHEME_TEXTDOMAIN ),
 
-			'text_justify'     => _x( '[ Ju ]', 'Options: Text Justify', GTHEME_TEXTDOMAIN ),
-			'text_unjustify'   => _x( '[ uJ ]', 'Options: Text Unjustify', GTHEME_TEXTDOMAIN ),
-			'text_justify_sep' => _x( ' / ', 'Options: Text Justify Sep', GTHEME_TEXTDOMAIN ),
+			// 'text_justify'     => _x( '[ Ju ]', 'Options: Text Justify', GTHEME_TEXTDOMAIN ),
+			// 'text_unjustify'   => _x( '[ uJ ]', 'Options: Text Unjustify', GTHEME_TEXTDOMAIN ),
+			// 'text_justify_sep' => _x( ' / ', 'Options: Text Justify Sep', GTHEME_TEXTDOMAIN ),
 
 			'source_before' => _x( 'Source: ', 'Options: Source Before', GTHEME_TEXTDOMAIN ),
 			'reflist_title' => sprintf( '<h4 class="-title" id="footnotes">%s</h4>', _x( 'Footnotes', 'Options: Reflist Title', GTHEME_TEXTDOMAIN ) ),
@@ -144,11 +144,11 @@ class gThemeOptions extends gThemeModuleCore
 
 			// AVATARS
 			// 'comment_avatar_size' => 75, // wp core is 32
-			'default_avatar_src'  => GTHEME_URL.'/images/avatar.png',
+			// 'default_avatar_src'  => GTHEME_URL.'/images/avatar.png',
 
 			// SYSTEM TAGS
 			// 'system_tags_cpt'      => [ 'post' ],
-			'system_tags_excludes' => [ 'no-front', 'no-feed' ],
+			// 'system_tags_excludes' => [ 'no-front', 'no-feed' ],
 			// 'system_tags_defaults' => gThemeTerms::defaults(),
 
 			// EDITOR
@@ -165,25 +165,25 @@ class gThemeOptions extends gThemeModuleCore
 			// 'empty_search_query' => '', // string to use on search input form / comment to use default
 
 			// 'post_actions_icons' => FALSE, // NEEDS: genericons css
-			'post_actions' => [ // the order is important!
-				// 'textsize_buttons', // or 'textsize_buttons_nosep',
-				// 'textjustify_buttons_nosep', // 'textjustify_buttons', // or ,
-				// 'printfriendly',
-				'printlink',
-				'addtoany',
-				// 'addthis',
-				'shortlink',
-				'comments_link', // or 'comments_link_feed',
-				'edit_post_link',
-				// 'cat_list',
-				// 'tag_list',
-				// 'editorial_label',
-				// 'editorial_estimated',
-				// 'the_date',
-				// 'primary_term',
-				// 'categories',
-				// 'tags',
-			],
+			// 'post_actions' => [ // the order is important!
+			// 	// 'textsize_buttons', // or 'textsize_buttons_nosep',
+			// 	// 'textjustify_buttons_nosep', // 'textjustify_buttons', // or ,
+			// 	// 'printfriendly',
+			// 	'printlink',
+			// 	'addtoany',
+			// 	// 'addthis',
+			// 	'shortlink',
+			// 	'comments_link', // or 'comments_link_feed',
+			// 	'edit_post_link',
+			// 	// 'cat_list',
+			// 	// 'tag_list',
+			// 	// 'editorial_label',
+			// 	// 'editorial_estimated',
+			// 	// 'the_date',
+			// 	// 'primary_term',
+			// 	// 'categories',
+			// 	// 'tags',
+			// ],
 
 			// 'byline_fallback' => TRUE, // if FALSE hides wp users
 
@@ -198,8 +198,8 @@ class gThemeOptions extends gThemeModuleCore
 			// 'template_the_date'    => '<span class="date"><a href="%1$s" title="%2$s" rel="shortlink"><time class="%5$s-date" datetime="%3$s">%4$s</time></a></span>',
 
 			// DATE FORMATS
-			'date_format_byline' => _x( 'j M Y', 'Options: Defaults: Date Format: Byline', GTHEME_TEXTDOMAIN ), // used on post by line
-			'date_format_day'    => _x( 'j M Y', 'Options: Defaults: Date Format: Day', GTHEME_TEXTDOMAIN ), // day navigation
+			// 'date_format_byline' => _x( 'j M Y', 'Options: Defaults: Date Format: Byline', GTHEME_TEXTDOMAIN ), // used on post by line
+			// 'date_format_day'    => _x( 'j M Y', 'Options: Defaults: Date Format: Day', GTHEME_TEXTDOMAIN ), // day navigation
 
 			// ATTACHMENT
 			// 'attachment_download_prefix' => '', // EXAMPLE: 'example.com-'

@@ -358,7 +358,13 @@ class gThemeContent extends gThemeModuleCore
 	public static function postActions( $before = '<li class="entry-action %s">', $after = '</li>', $list = TRUE, $icon = NULL )
 	{
 		if ( TRUE === $list )
-			$actions = gThemeOptions::info( 'post_actions', [] );
+			$actions = gThemeOptions::info( 'post_actions', [
+					'printlink',
+					'addtoany',
+					'shortlink',
+					'comments_link',
+					'edit_post_link',
+				] );
 
 		else if ( is_array( $list ) )
 			$actions = $list;
@@ -639,21 +645,28 @@ class gThemeContent extends gThemeModuleCore
 	// ALSO SEE : http://wp.tutsplus.com/tutorials/theme-development/creating-a-wordpress-post-text-size-changer-using-jquery/
 	public static function text_size_buttons( $b = '', $a = '', $sep = 'def', $increase = 'def', $decrease = 'def' )
 	{
+
+		if ( 'def' == $increase )
+			$increase = gThemeOptions::info( 'text_size_increase', _x( '[ A+ ]', 'Options: Text Size Increase', GTHEME_TEXTDOMAIN ) );
+
+		if ( 'def' == $decrease )
+			$decrease = gThemeOptions::info( 'text_size_decrease', _x( '[ A- ]', 'Options: Text Size Decrease', GTHEME_TEXTDOMAIN ) );
+
+		if ( 'def' == $sep )
+			$sep = gThemeOptions::info( 'text_size_sep', _x( ' / ', 'Options: Text Size Sep', GTHEME_TEXTDOMAIN ) );
+
 		echo $b;
 
-		echo '<a id="gtheme-fontsize-plus" class="fontsize-button increase-font" href="#" title="'.__( 'Increase font size', GTHEME_TEXTDOMAIN ).'">';
-			echo ( 'def' == $increase ? gThemeOptions::info( 'text_size_increase', '[ A+ ]' ) : $increase );
-		echo '</a>';
+		echo '<a id="gtheme-fontsize-plus" class="fontsize-button increase-font" href="#" title="';
+			_e( 'Increase font size', GTHEME_TEXTDOMAIN );
+		echo '">'.$increase.'</a>';
 
-		if ( FALSE !== $sep ) {
-			echo '<a id="gtheme-fontsize-default" class="fontsize-button" href="#">';
-			echo gThemeUtilities::sanitize_sep( $sep, 'text_size_sep' );
-			echo '</a>';
-		}
+		if ( $sep )
+			printf( '<a id="gtheme-fontsize-default" class="fontsize-button" href="#">%s</a>', $sep );
 
-		echo '<a id="gtheme-fontsize-minus" class="fontsize-button decrease-font" href="#" title="'.__( 'Decrease font size', GTHEME_TEXTDOMAIN ).'">';
-			echo ( 'def' == $decrease ? gThemeOptions::info( 'text_size_decrease', '[ A- ]' ) : $decrease );
-		echo '</a>';
+		echo '<a id="gtheme-fontsize-minus" class="fontsize-button decrease-font" href="#" title="';
+			_e( 'Decrease font size', GTHEME_TEXTDOMAIN );
+		echo '">'.$decrease.'</a>';
 
 		echo $a;
 	}
@@ -665,18 +678,27 @@ class gThemeContent extends gThemeModuleCore
 			add_action( 'wp_footer', [ __CLASS__, 'justify_buttons_footer' ], 99 );
 		}
 
+		if ( 'def' == $justify )
+			$justify = gThemeOptions::info( 'text_justify', _x( '[ Ju ]', 'Options: Text Justify', GTHEME_TEXTDOMAIN ) );
+
+		if ( 'def' == $unjustify )
+			$unjustify = gThemeOptions::info( 'text_unjustify', _x( '[ uJ ]', 'Options: Text Unjustify', GTHEME_TEXTDOMAIN ) );
+
+		if ( 'def' == $sep )
+			$sep = gThemeOptions::info( 'text_justify_sep', _x( ' / ', 'Options: Text Justify Sep', GTHEME_TEXTDOMAIN ) );
+
 		echo $b;
 
-		echo '<a id="text-justify" class="text-justify-button hidden" href="#" title="'.__( 'Justify paragraphs', GTHEME_TEXTDOMAIN ).'">';
-			echo ( 'def' == $justify ? gThemeOptions::info( 'text_justify', 'Ju' ) : $justify );
-		echo '</a>';
+		echo '<a id="text-justify" class="text-justify-button hidden" href="#" title="';
+			_e( 'Justify paragraphs', GTHEME_TEXTDOMAIN );
+		echo '">'.$justify.'</a>';
 
-		if ( FALSE !== $sep )
-			echo gThemeUtilities::sanitize_sep( $sep, 'text_justify_sep' );
+		if ( $sep )
+			printf( '%s', $sep );
 
-		echo '<a id="text-unjustify" class="text-justify-button" href="#" title="'.__( 'Un-justify paragraphs', GTHEME_TEXTDOMAIN ).'">';
-			echo ( 'def' == $unjustify ? gThemeOptions::info( 'text_unjustify', 'uJ' ) : $unjustify );
-		echo '</a>';
+		echo '<a id="text-unjustify" class="text-justify-button" href="#" title="';
+			_e( 'Un-justify paragraphs', GTHEME_TEXTDOMAIN );
+		echo '">'.$unjustify.'</a>';
 
 		echo $a;
 	}

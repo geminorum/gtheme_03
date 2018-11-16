@@ -16,7 +16,7 @@ class gThemeDate extends gThemeModuleCore
 			'context'     => 'single',
 			'prefix'      => 'entry',
 			'post_id'     => $post_id,
-			'format'      => gThemeOptions::info( 'date_format_byline', 'j M Y' ),
+			'format'      => gThemeOptions::info( 'date_format_byline', _x( 'j M Y', 'Options: Defaults: Date Format: Byline', GTHEME_TEXTDOMAIN ) ),
 			'template'    => gThemeOptions::info( 'template_the_date', $template ),
 			'onceperdate' => FALSE,
 			'shortlink'   => TRUE,

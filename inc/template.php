@@ -143,7 +143,7 @@ class gThemeTemplate extends gThemeModuleCore
 		if ( is_null( $size ) )
 			$size = (int) gThemeOptions::info( 'comment_avatar_size', 75 );
 
-		$default = gThemeOptions::info( 'default_avatar_src', FALSE );
+		$default = gThemeOptions::info( 'default_avatar_src', GTHEME_URL.'/images/avatar.png' );
 
 		if ( gThemeWordPress::isDev() && $default )
 			echo gThemeHTML::tag( 'img', [

@@ -119,12 +119,16 @@ class gThemeSocial extends gThemeModuleCore
 				} else if ( is_singular() || is_single() ) {
 
 					if ( $title = single_post_title( '', FALSE ) )
-						$output = $title.gThemeOptions::info( 'title_sep', ' &raquo; ' ).gThemeOptions::info( 'blog_title' );
+						$output = $title
+							.gThemeOptions::info( 'title_sep', _x( ' &raquo; ', 'Options: Separator: Title', GTHEME_TEXTDOMAIN ) )
+							.gThemeOptions::info( 'blog_title' );
 
 				} else if ( is_tax() || is_tag() || is_category() ) {
 
 					if ( $title = single_term_title( '', FALSE ) )
-						$output = $title.gThemeOptions::info( 'title_sep', ' &raquo; ' ).gThemeOptions::info( 'blog_title' );
+						$output = $title
+							.gThemeOptions::info( 'title_sep', _x( ' &raquo; ', 'Options: Separator: Title', GTHEME_TEXTDOMAIN ) )
+							.gThemeOptions::info( 'blog_title' );
 				}
 
 			break;

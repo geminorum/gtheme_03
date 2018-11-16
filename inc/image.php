@@ -82,7 +82,7 @@ class gThemeImage extends gThemeModuleCore
 		if ( 'post' != $post->post_type )
 			return $html;
 
-		$size = gThemeOptions::info( 'thumbnail_image_size', $size );
+		$size = gThemeOptions::info( 'thumbnail_image_size', 'single' );
 
 		if ( ! $post_thumbnail_id = self::getThumbID( $size, $post_id ) )
 			return $html;

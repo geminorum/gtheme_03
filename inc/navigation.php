@@ -345,7 +345,7 @@ class gThemeNavigation extends gThemeModuleCore
 			return sprintf( ( empty( $args['strings']['day'] )
 				? _x( 'Daily Archives for <strong>%s</strong>', 'Modules: Navigation: Breadcrumbs', GTHEME_TEXTDOMAIN )
 				: $args['strings']['day'] ),
-			get_the_date( gThemeOptions::getOption( 'date_format_day', 'j M Y' ) ) );
+			get_the_date( gThemeOptions::info( 'date_format_day', _x( 'j M Y', 'Options: Defaults: Date Format: Day', GTHEME_TEXTDOMAIN ) ) ) );
 
 		if ( is_month() )
 			return sprintf( ( empty( $args['strings']['month'] )

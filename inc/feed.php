@@ -130,7 +130,7 @@ class gThemeFeed extends gThemeModuleCore
 	{
 		if ( $query->is_feed() ) {
 
-			if ( $excludes = gThemeOptions::info( 'system_tags_excludes', FALSE ) )
+			if ( $excludes = gThemeOptions::info( 'system_tags_excludes', [ 'no-front', 'no-feed' ] ) )
 				$query->set( 'tax_query', [ [
 					'taxonomy' => GTHEME_SYSTEMTAGS,
 					'field'    => 'slug',
