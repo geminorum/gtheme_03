@@ -3,6 +3,36 @@
 class gThemeTemplate extends gThemeModuleCore
 {
 
+	public static function wrapOpen( $context = 'index', $extra = [] )
+	{
+		$columns = self::atts( [
+			'index'         => 'col-sm-8',
+			'singular'      => 'col-sm-8',
+			'systempage'    => 'col-sm-6',
+			'fullwidthpage' => 'col-sm-12',
+			'signup'        => 'col-sm-12',
+			'activate'      => 'col-sm-12',
+		], gThemeOptions::info( 'template_columns', [] ) );
+
+		if ( array_key_exists( $context, $columns ) )
+			$column = $columns[$context];
+		else
+			$column = gThemeOptions::info( 'template_column_fallback', 'col-sm-8' );
+
+		$classes = [ 'wrap-content', 'wrap-content-'.$context ];
+
+		echo '<div id="content" class="'.join( ' ', gThemeHTML::attrClass( $column, $classes, $extra ) ).'">';
+
+		do_action( 'gtheme_template_wrap_open', $context );
+	}
+
+	public static function wrapClose( $context = 'index' )
+	{
+		do_action( 'gtheme_template_wrap_close', $context );
+
+		echo '</div>';
+	}
+
 	public static function logo( $context = 'header', $template = NULL, $echo = TRUE )
 	{
 		if ( is_null( $template ) ) {

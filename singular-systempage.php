@@ -1,7 +1,7 @@
 <?php defined( 'ABSPATH' ) or die( header( 'HTTP/1.0 403 Forbidden' ) );
 
 echo '<div class="container -main -singular -systempage"><div class="row">';
-echo '<div class="col-sm-6 wrap-content" id="content">';
+gThemeTemplate::wrapOpen( 'systempage' );
 
 	if ( have_posts() ) {
 
@@ -17,8 +17,6 @@ echo '<div class="col-sm-6 wrap-content" id="content">';
 		get_template_part( 'content', '404' );
 	}
 
-echo '</div>';
-
-	gThemeTemplate::sidebar( 'systempage' );
-
+gThemeTemplate::wrapClose( 'systempage' );
+gThemeTemplate::sidebar( 'systempage' );
 echo '</div></div>';

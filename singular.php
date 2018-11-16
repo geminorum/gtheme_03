@@ -1,7 +1,7 @@
 <?php defined( 'ABSPATH' ) or die( header( 'HTTP/1.0 403 Forbidden' ) );
 
 echo '<div class="container -main -singular"><div class="row">';
-echo '<div class="col-sm-8 wrap-content" id="content">';
+gThemeTemplate::wrapOpen( 'singular' );
 
 	gThemeNavigation::breadcrumb( [ 'home' => 'home' ] );
 
@@ -19,8 +19,6 @@ echo '<div class="col-sm-8 wrap-content" id="content">';
 		get_template_part( 'content', '404' );
 	}
 
-echo '</div>';
-
-	gThemeTemplate::sidebar( 'singular' );
-
+gThemeTemplate::wrapClose( 'singular' );
+gThemeTemplate::sidebar( 'singular' );
 echo '</div></div>';
