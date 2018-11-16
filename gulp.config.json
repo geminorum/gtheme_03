@@ -26,10 +26,7 @@
     "tinypng": ""
   },
   "sass": {
-    "errLogToConsole": true,
-    "includePaths": [
-      "components/bootstrap-sass/assets/stylesheets"
-    ]
+    "errLogToConsole": true
   },
   "cssnano": {
     "dev": {

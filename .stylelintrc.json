@@ -6,9 +6,9 @@
     "block-no-empty": null,
     "no-descending-specificity": null,
     "selector-class-pattern": "^[a-z/-]+(-[a-z]+)*",
-    "at-rule-empty-line-before": [ "always", {
-      "except": ["blockless-after-blockless","first-nested"],
-      "ignore": ["after-comment","inside-block"]
+    "at-rule-empty-line-before": ["always", {
+      "except": ["blockless-after-blockless", "first-nested"],
+      "ignore": ["after-comment", "inside-block"]
     }],
     "rule-empty-line-before": ["always", {
       "except": ["first-nested"],
