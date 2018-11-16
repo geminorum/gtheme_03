@@ -530,7 +530,7 @@ class gThemeContent extends gThemeModuleCore
 					the_tags(
 						sprintf( $before, 'tag-links' ).
 						gThemeOptions::info( 'before_tag_list', '' ),
-						gThemeUtilities::sanitize_sep( 'def', 'term_sep' ),
+						gThemeOptions::info( 'term_sep', _x( ', ', 'Options: Separator: Term', GTHEME_TEXTDOMAIN ) ),
 						$after
 					);
 
@@ -546,7 +546,7 @@ class gThemeContent extends gThemeModuleCore
 				if ( is_object_in_taxonomy( get_post_type(), 'category' ) )
 					echo sprintf( $before, 'cat-links' )
 						.gThemeOptions::info( 'before_cat_list', '' )
-						.get_the_category_list( gThemeUtilities::sanitize_sep( 'def', 'term_sep' ) )
+						.get_the_category_list( gThemeOptions::info( 'term_sep', _x( ', ', 'Options: Separator: Term', GTHEME_TEXTDOMAIN ) ) )
 						.$after;
 
 			break;

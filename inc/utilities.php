@@ -129,9 +129,11 @@ class gThemeUtilities extends gThemeBaseCore
 		return $display ? gThemeURL::prepTitle( $home ) : $home;
 	}
 
-	// FIXME: must be depricated
+	// FIXME: DEPRECATED
 	public static function sanitize_sep( $sep = 'def', $context = 'default_sep', $def = ' ' )
 	{
+		self::_dep();
+
 		if ( 'def' == $sep )
 			return gThemeOptions::info( $context, $def );
 

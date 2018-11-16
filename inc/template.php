@@ -132,7 +132,7 @@ class gThemeTemplate extends gThemeModuleCore
 		// TODO: if $mode == child
 
 		foreach ( $terms as $term )
-			return self::term_parents( $term, gThemeUtilities::sanitize_sep( $sep, 'nav_sep', ' &raquo; ' ), $taxonomy );
+			return self::term_parents( $term, gThemeOptions::info( 'nav_sep', _x( ' &laquo; ', 'Options: Separator: Nav', GTHEME_TEXTDOMAIN ) ), $taxonomy );
 	}
 
 	public static function avatar( $id_or_email, $size = NULL )

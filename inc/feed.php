@@ -36,7 +36,7 @@ class gThemeFeed extends gThemeModuleCore
 
 			return gThemeContent::getHeader(
 				get_the_title_rss(),
-				gThemeUtilities::sanitize_sep( 'def', 'feed_sep', '; ' )
+				gThemeOptions::info( 'feed_sep', _x( '; ', 'Options: Separator: Feed', GTHEME_TEXTDOMAIN ) )
 			);
 
 		} else if ( 'list' == $for ) {
