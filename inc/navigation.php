@@ -128,6 +128,9 @@ class gThemeNavigation extends gThemeModuleCore
 
 		else if ( ! is_post_type_archive() && ( is_archive() || is_search() ) )
 			self::breadcrumbArchive( $atts );
+
+		if ( is_search() && gThemeOptions::info( 'breadcrumb_search_form', TRUE ) )
+			gThemeSearch::form();
 	}
 
 	// Home > Cat > Label
