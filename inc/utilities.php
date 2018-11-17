@@ -180,6 +180,7 @@ class gThemeUtilities extends gThemeBaseCore
 	public static function update_count_callback( $terms, $taxonomy )
 	{
 		global $wpdb;
+
 		foreach ( (array) $terms as $term ) {
 			$count = $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM $wpdb->term_relationships WHERE term_taxonomy_id = %d", $term ) );
 			do_action( 'edit_term_taxonomy', $term, $taxonomy );

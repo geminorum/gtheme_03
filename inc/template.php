@@ -66,11 +66,13 @@ class gThemeTemplate extends gThemeModuleCore
 		echo $after;
 	}
 
+	// FIXME: DEPRECATED
 	// only for wp users
-	// @SEE: `gThemeContent::byline()`
 	// @REF: `get_the_author_posts_link()`
 	public static function author( $post = NULL, $echo = TRUE )
 	{
+		self::_dep( 'gThemeContent::byline()' );
+
 		if ( ! $post = get_post( $post ) )
 			return '';
 
@@ -136,10 +138,11 @@ class gThemeTemplate extends gThemeModuleCore
 		$html = '';
 
 		$parent = get_term( $id, $taxonomy );
+
 		if ( is_wp_error( $parent ) )
 			return $parent;
 
-		if ( $parent->parent && ( $parent->parent != $parent->term_id ) && !in_array( $parent->parent, $visited ) ) {
+		if ( $parent->parent && ( $parent->parent != $parent->term_id ) && ! in_array( $parent->parent, $visited ) ) {
 			$visited[] = $parent->parent;
 			$html.= self::term_parents( $parent->parent, $sep, $taxonomy, $visited );
 		}

@@ -359,12 +359,12 @@ class gThemeContent extends gThemeModuleCore
 	{
 		if ( TRUE === $list )
 			$actions = gThemeOptions::info( 'post_actions', [
-					'printlink',
-					'addtoany',
-					'shortlink',
-					'comments_link',
-					'edit_post_link',
-				] );
+				'printlink',
+				'addtoany',
+				'shortlink',
+				'comments_link',
+				'edit_post_link',
+			] );
 
 		else if ( is_array( $list ) )
 			$actions = $list;
