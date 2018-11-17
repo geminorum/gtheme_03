@@ -509,19 +509,21 @@ class gThemeTerms extends gThemeModuleCore
 		if ( ! $terms || is_wp_error( $terms ) )
 			return [];
 
-		return self::getWithParentsCallback( $terms[0] );
+		return self::getWithParentsCallback( $terms[0], $taxonomy );
 	}
 
-	public static function getWithParentsCallback( $term, $parents = [] )
+	public static function getWithParentsCallback( $parent, $taxonomy, $parents = [] )
 	{
 		$terms = [];
+
+		$term = get_term( $parent, $taxonomy );
 
 		if ( $term->parent
 			&& $term->parent != $term->term_id
 			&& ! in_array( $term->parent, $parents ) ) {
 
 			$parents[] = $term->parent;
-			$terms = array_merge( $terms, self::getWithParentsCallback( $term->parent, $parents ) );
+			$terms = array_merge( $terms, self::getWithParentsCallback( $term->parent, $taxonomy, $parents ) );
 		}
 
 		return array_merge( $terms, (array) self::getTermLink( $term ) );
