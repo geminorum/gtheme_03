@@ -144,8 +144,8 @@ class gThemeNavigation extends gThemeModuleCore
 		$args = self::atts( [
 			'home'       => FALSE, // 'home' // 'network' // 'custom string'
 			'home_title' => NULL,
-			'term'       => 'both',
-			'tax'        => 'category',
+			'taxonomy'   => isset( $atts['tax'] ) ? $atts['tax'] : 'category',
+			'term'       => 'parents', // 'primary', // FALSE,
 			'label'      => TRUE,
 			'page_is'    => TRUE,
 			'post_title' => FALSE,
@@ -157,8 +157,11 @@ class gThemeNavigation extends gThemeModuleCore
 
 		$crumbs = self::crumbHome( $args );
 
-		if ( FALSE !== $args['term'] )
-			$crumbs[] = gThemeTemplate::the_terms( FALSE, $args['tax'], $args['term'] );
+		if ( 'primary' == $args['term'] && $args['taxonomy'] == gThemeOptions::info( 'primary_terms_taxonomy', 'category' ) )
+			$crumbs[] = gThemeTerms::linkPrimary( '', '', NULL, '', FALSE );
+
+		else if ( 'parents' == $args['term'] )
+			$crumbs = array_merge( $crumbs, gThemeTerms::getWithParents( $args['taxonomy'] ) );
 
 		if ( FALSE !== $args['label'] && function_exists( 'gmeta_label' ) )
 			$crumbs[] = gmeta_label( '', '', FALSE, [ 'echo' => FALSE ] );

@@ -495,4 +495,35 @@ class gThemeTerms extends gThemeModuleCore
 
 		return TRUE;
 	}
+
+	public static function getWithParents( $taxonomy, $post = NULL )
+	{
+		if ( ! $post = get_post( $post ) )
+			return [];
+
+		if ( ! is_object_in_taxonomy( $post, $taxonomy ) )
+			return [];
+
+		$terms = get_the_terms( $post, $taxonomy );
+
+		if ( ! $terms || is_wp_error( $terms ) )
+			return [];
+
+		return self::getWithParentsCallback( $terms[0] );
+	}
+
+	public static function getWithParentsCallback( $term, $parents = [] )
+	{
+		$terms = [];
+
+		if ( $term->parent
+			&& $term->parent != $term->term_id
+			&& ! in_array( $term->parent, $parents ) ) {
+
+			$parents[] = $term->parent;
+			$terms = array_merge( $terms, self::getWithParentsCallback( $term->parent, $parents ) );
+		}
+
+		return array_merge( $terms, (array) self::getTermLink( $term ) );
+	}
 }

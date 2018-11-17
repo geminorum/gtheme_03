@@ -94,9 +94,12 @@ class gThemeTemplate extends gThemeModuleCore
 		] );
 	}
 
+	// FIXME: DEPRECATED
 	// ANCESTOR : gtheme_get_term_link_tag()
 	public static function term_link( $term, $taxonomy, $title = NULL )
 	{
+		self::_dep( 'gThemeTerms::getTermLink()' );
+
 		if ( ! is_object( $term ) )
 			$term = get_term( $term, $taxonomy );
 
@@ -124,9 +127,12 @@ class gThemeTemplate extends gThemeModuleCore
 		] );
 	}
 
+	// FIXME: DEPRECATED
 	// ANCESTOR : get_category_parents()
 	public static function term_parents( $id, $sep = 'def', $taxonomy = 'category', $visited = [] )
 	{
+		self::_dep( 'gThemeTerms::getWithParents()' );
+
 		$html = '';
 
 		$parent = get_term( $id, $taxonomy );
@@ -144,10 +150,12 @@ class gThemeTemplate extends gThemeModuleCore
 		return $html;
 	}
 
-	// FIXME: rewrite this
+	// FIXME: DEPRECATED
 	// ANCESTOR : gtheme_get_the_categories()
 	public static function the_terms( $sep = 'def', $taxonomy = 'category', $mode = 'both' )
 	{
+		self::_dep();
+
 		if ( ! $post = get_post() )
 			return '';
 
