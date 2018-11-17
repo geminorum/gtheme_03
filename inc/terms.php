@@ -424,6 +424,18 @@ class gThemeTerms extends gThemeModuleCore
 		return has_term( $term, $taxonomy, $post );
 	}
 
+	public static function getTermLink( $term, $before = '', $after = '', $title = FALSE, $class = [] )
+	{
+		$name = sanitize_term_field( 'name', $term->name, $term->term_id, $term->taxonomy, 'display' );
+
+		return $before.gThemeHTML::tag( 'a', [
+			'href'        => get_term_link( $term ),
+			'class'       => gThemeHTML::attrClass( '-term-link', 'taxonomy-'.$term->taxonomy, $class ),
+			'title'       => $title,
+			'data-toggle' => $title ? 'tooltip' : FALSE,
+		], esc_html( $name ) ).$after;
+	}
+
 	public static function getPrimary( $post = NULL )
 	{
 		if ( ! $post = get_post( $post ) )
@@ -453,23 +465,22 @@ class gThemeTerms extends gThemeModuleCore
 		return $terms[0];
 	}
 
-	public static function linkPrimary( $before = '', $after = '', $post = NULL, $title = '' )
+	public static function linkPrimary( $before = '', $after = '', $post = NULL, $title = '', $echo = TRUE )
 	{
 		if ( ! $primary = self::getPrimary( $post ) )
 			return FALSE;
 
-		echo $before;
-			echo '<a href="'
-				.get_term_link( $primary, $primary->taxonomy )
-				.'" data-toggle="tooltip" title="'.$title.'">'
-					.esc_html( $primary->name )
-				.'</a>';
-		echo $after;
+		$link = self::getTermLink( $primary, $before, $after, $title );
+
+		if ( ! $echo )
+			return $link;
+
+		echo $link;
 
 		return TRUE;
 	}
 
-	public static function theList( $taxonomy, $before = '', $after = '', $post = NULL, $title = '' )
+	public static function theList( $taxonomy, $before = '', $after = '', $post = NULL )
 	{
 		$terms = get_the_terms( $post, $taxonomy );
 
@@ -480,10 +491,7 @@ class gThemeTerms extends gThemeModuleCore
 			return FALSE;
 
 		foreach ( $terms as $term )
-			echo $before.gThemeHTML::tag( 'a', [
-				'href'  => get_term_link( $term, $taxonomy ),
-				'class' => [ 'taxonomy-'.$taxonomy, 'term-'.$term->slug ],
-			], esc_html( sanitize_term_field( 'name', $term->name, $term->term_id, $term->taxonomy, 'display' ) ) ).$after;
+			echo self::getTermLink( $term, $before, $after );
 
 		return TRUE;
 	}
