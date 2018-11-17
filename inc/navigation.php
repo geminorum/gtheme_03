@@ -144,8 +144,8 @@ class gThemeNavigation extends gThemeModuleCore
 		$args = self::atts( [
 			'home'       => FALSE, // 'home' // 'network' // 'custom string'
 			'home_title' => NULL,
-			'taxonomy'   => isset( $atts['tax'] ) ? $atts['tax'] : 'category',
-			'term'       => 'parents', // 'primary', // FALSE,
+			'taxonomy'   => isset( $atts['tax'] ) ? $atts['tax'] : NULL,
+			'term'       => count( gThemeOptions::getOption( 'terms', [] ) ) ? 'primary' : 'parents', // FALSE,
 			'label'      => TRUE,
 			'page_is'    => TRUE,
 			'post_title' => FALSE,
@@ -155,9 +155,15 @@ class gThemeNavigation extends gThemeModuleCore
 			'context'    => NULL,
 		], $atts );
 
+		if ( 'primary' == $args['term'] )
+			$args['taxonomy'] = gThemeOptions::info( 'primary_terms_taxonomy', 'category' );
+
+		else if ( is_null( $args['taxonomy'] ) )
+			$args['taxonomy'] = 'category';
+
 		$crumbs = self::crumbHome( $args );
 
-		if ( 'primary' == $args['term'] && $args['taxonomy'] == gThemeOptions::info( 'primary_terms_taxonomy', 'category' ) )
+		if ( 'primary' == $args['term'] )
 			$crumbs[] = gThemeTerms::linkPrimary( '', '', NULL, '', FALSE );
 
 		else if ( 'parents' == $args['term'] )
@@ -193,7 +199,7 @@ class gThemeNavigation extends gThemeModuleCore
 		$crumbs = array_filter( $crumbs );
 		$count  = count( $crumbs );
 
-		if ( ! $count )
+		if ( $count < 2 )
 			return;
 
 		echo $args['before'].'<ol class="breadcrumb '.$args['class'].'">';
