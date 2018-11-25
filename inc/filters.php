@@ -78,16 +78,19 @@ class gThemeFilters extends gThemeModuleCore
 		if ( $viewport = gThemeOptions::info( 'head_viewport', 'width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no' ) )
 			echo '<meta name="viewport" content="'.$viewport.'" />'."\n";
 
-		if ( ! $print && ( $theme_color = gThemeOptions::info( 'theme_color' ) ) ) {
+		if ( ! $print ) {
 
-			// @REF: https://generatewp.com/easy-custom-mobile-chrome-address-bar-colors-wordpress/
-			echo '<meta name="theme-color" content="'.$theme_color.'" />'."\n";
-			echo '<meta name="msapplication-navbutton-color" content="'.$theme_color.'">'."\n";
-			echo '<meta name="apple-mobile-web-app-capable" content="yes">'."\n";
-			echo '<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">'."\n";
+			if ( $theme_color = gThemeOptions::info( 'theme_color' ) ) {
+
+				// @REF: https://generatewp.com/easy-custom-mobile-chrome-address-bar-colors-wordpress/
+				echo '<meta name="theme-color" content="'.$theme_color.'" />'."\n";
+				echo '<meta name="msapplication-navbutton-color" content="'.$theme_color.'">'."\n";
+				echo '<meta name="apple-mobile-web-app-capable" content="yes">'."\n";
+				echo '<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">'."\n";
+			}
+
+			gThemeSocial::doHead();
 		}
-
-		gThemeSocial::doHead();
 
 		if ( $singular && $print ) {
 
