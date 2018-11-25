@@ -166,7 +166,6 @@ class gThemeComments extends gThemeModuleCore
 		}
 	}
 
-	// UNFINISHED but working
 	public static function comment_callback( $comment, $args, $depth )
 	{
 		switch ( $comment->comment_type ) {
@@ -179,62 +178,73 @@ class gThemeComments extends gThemeModuleCore
 			case '':
 			// default:
 
-				$avatar = get_option( 'show_avatars' );
+				$avatar     = get_option( 'show_avatars' );
+				$comment_id = get_comment_ID(); // for the filter
 
 				echo '<li ';
 					comment_class( 'media'.( $avatar ? ' -with-avatar' : ' -no-avatar' ) );
-				echo ' id="comment-'.$comment->comment_ID.'">';
+				echo ' id="comment-'.$comment_id.'">';
 
-					if ( $avatar ) {
-						echo '<a class="comment-avatar '
-							.( gThemeUtilities::isRTL() ? 'pull-right media-right' : 'pull-left media-left' )
-							.'" href="'.get_comment_author_url().'" rel="external nofollow">';
+				if ( $avatar ) {
+					if ( $author_url = get_comment_author_url() ) {
+
+						echo '<a class="comment-avatar" href="'.esc_url( $author_url ).'" rel="external nofollow">';
 							gThemeTemplate::avatar( $comment );
 						echo '</a>';
+
+					} else {
+
+						echo '<span class="comment-avatar">';
+							gThemeTemplate::avatar( $comment );
+						echo '</span>';
 					}
+				}
 
-					echo '<div class="media-body comment-body" id="comment-body-'.$comment->comment_ID.'">';
+				echo '<div class="comment-body" id="comment-body-'.$comment_id.'">';
 
-						echo '<h6 class="media-heading comment-meta">';
-							echo '<span class="comment-author">'.get_comment_author_link().'</span>';
-							echo ' <small class="comment-time">';
-							self::time( $comment->comment_ID );
-						echo '</small></h6>';
+					echo '<h6 class="comment-meta">';
+						echo '<span class="comment-author">'.get_comment_author_link().'</span>';
+						echo ' ';
+						self::time( '<small class="comment-time">', '</small>' );
+					echo '</h6>';
 
-						echo '<div class="comment-content">';
-							comment_text( $comment->comment_ID );
-						echo '</div>';
+					echo '<div class="comment-content">';
+						comment_text( $comment );
+					echo '</div>';
 
-						self::awaiting( $comment );
-						self::commentActions( $comment, $args, $depth );
+					self::awaiting( $comment );
+					self::commentActions( $comment, $args, $depth );
 
-					echo '</div><div class=" clearfix"></div>';
-			break;
+				echo '</div>';
 		}
 	}
 
 	public static function awaiting( $comment, $before = '<p class="text-danger comment-awaiting-moderation comment-moderation">', $after = '</p>' )
 	{
-		if ( '0' == $comment->comment_approved )
-			echo $before.gThemeOptions::info( 'comment_awaiting',
-					_x( 'Your comment is awaiting moderation.', 'Comments Module', GTHEME_TEXTDOMAIN ) )
-				.$after;
+		if ( '0' != $comment->comment_approved )
+			return;
+
+		$awaiting = gThemeOptions::info( 'comment_awaiting',
+			_x( 'Your comment is awaiting moderation.', 'Comments Module', GTHEME_TEXTDOMAIN ) );
+
+		if ( $awaiting )
+			echo $before.$awaiting.$after;
 	}
 
-	public static function time( $comment_ID )
+	public static function time( $comment, $before = '', $after = '' )
 	{
-		echo '<a href="'.esc_url( get_comment_link( $comment_ID ) ).'">';
-			echo '<time datetime="';
-				comment_time( 'c' );
-			echo '">'.sprintf(
-				_x( '%1$s at %2$s', '1: date, 2: time', GTHEME_TEXTDOMAIN ),
+		echo $before;
+		echo '<a href="'.esc_url( get_comment_link( $comment ) ).'">';
+			echo '<time datetime="'.get_comment_time( 'c', TRUE, FALSE ).'">';
+			printf( _x( '%1$s at %2$s', '1: date, 2: time', GTHEME_TEXTDOMAIN ),
 				get_comment_date(),
 				get_comment_time()
 			);
 		echo '</time></a>';
+		echo $after;
 	}
 
-	public static function commentActions( $comment, $args, $depth, $class = 'media-actions comment-actions' )
+	public static function commentActions( $comment, $args, $depth, $class = '' )
 	{
 		$actions = [];
 
@@ -270,7 +280,7 @@ class gThemeComments extends gThemeModuleCore
 		if ( empty( $actions ) )
 			return;
 
-		echo '<ul class="list-inline '.$class.'">';
+		echo '<ul class="comment-actions list-inline '.$class.'">';
 			foreach ( $actions as $action_class => $action )
 				echo '<li class="'.$action_class.'">'.$action.'</li>';
 		echo '</ul>';

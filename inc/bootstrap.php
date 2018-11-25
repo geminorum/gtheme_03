@@ -101,4 +101,61 @@ class gThemeBootstrap extends gThemeModuleCore
 				echo ' placeholder="'.$placeholder.'" ';
 		echo '/></div></form>';
 	}
+
+	public static function commentCallback_BS3( $comment, $args, $depth )
+	{
+		switch ( $comment->comment_type ) {
+
+			case 'pingback':
+			case 'trackback':
+			break;
+
+			case 'comment':
+			case '':
+			// default:
+
+				$avatar = get_option( 'show_avatars' );
+
+				echo '<li ';
+					comment_class( 'media'.( $avatar ? ' -with-avatar' : ' -no-avatar' ) );
+				echo ' id="comment-'.get_comment_ID().'">';
+
+					if ( $avatar ) {
+						if ( $author_url = get_comment_author_url() ) {
+
+							echo '<a class="comment-avatar '
+								.( gThemeUtilities::isRTL() ? 'pull-right media-right' : 'pull-left media-left' )
+								.'" href="'.esc_url( $author_url ).'" rel="external nofollow">';
+								gThemeTemplate::avatar( $comment );
+							echo '</a>';
+
+						} else {
+
+							echo '<span class="comment-avatar '
+								.( gThemeUtilities::isRTL() ? 'pull-right media-right' : 'pull-left media-left' )
+								.'">';
+								gThemeTemplate::avatar( $comment );
+							echo '</span>';
+						}
+					}
+
+					echo '<div class="media-body comment-body" id="comment-body-'.get_comment_ID().'">';
+
+						echo '<h6 class="media-heading comment-meta">';
+							echo '<span class="comment-author">'.get_comment_author_link().'</span>';
+							echo ' ';
+							gThemeComments::time( $comment, '<small class="comment-time">', '</small>' );
+						echo '</h6>';
+
+						echo '<div class="comment-content">';
+							comment_text( $comment->comment_ID );
+						echo '</div>';
+
+						gThemeComments::awaiting( $comment );
+						gThemeComments::commentActions( $comment, $args, $depth, 'media-actions' );
+
+					echo '</div><div class=" clearfix"></div>';
+			break;
+		}
+	}
 }
