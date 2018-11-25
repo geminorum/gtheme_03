@@ -6,6 +6,6 @@ echo '<nav class="wrapper -navbar"><div class="container -nav">';
 
 	echo '<div class="-rule"></div>';
 
-	gThemeMenu::nav( 'primary', [ 'class' => '-print-hide' ] );
+	gThemeMenu::nav( 'primary', [ 'class' => '-navigation -print-hide' ] );
 
 echo '</div></nav>'."\n";

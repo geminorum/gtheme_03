@@ -565,9 +565,10 @@ class gThemeContent extends gThemeModuleCore
 			case 'date':
 
 				gThemeDate::date( [
-					'before' => sprintf( $before, 'the-date' ),
-					'after'  => $after,
-					'text'   => $icon ? self::getGenericon( 'edit' ) : NULL,
+					'before'   => sprintf( $before, 'the-date' ),
+					'after'    => $after,
+					'text'     => $icon ? self::getGenericon( 'edit' ) : NULL,
+					'template' => '<a href="%1$s" rel="shortlink"><time class="%5$s-date" datetime="%3$s">%4$s</time></a>',
 				] );
 
 			break;

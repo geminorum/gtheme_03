@@ -24,4 +24,5 @@ gThemeEditorial::refList( [
 	'before' => '<div class="entry-after after-single after-reflist">',
 	'after'  => '</div>',
 	'title'  => gThemeOptions::info( 'reflist_title', FALSE ),
+	'wrap'   => FALSE,
 ] );

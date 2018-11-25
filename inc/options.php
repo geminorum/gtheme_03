@@ -135,6 +135,7 @@ class gThemeOptions extends gThemeModuleCore
 			// 'comments_support'       => TRUE, // hides the default inserts
 			// 'comments_disable_types' => [ 'attachment' ],
 			// 'comment_callback'       => [ 'gThemeComments', 'comment_callback' ], // null to use wp core
+			// 'comment_callback'       => [ 'gThemeBootstrap', 'commentCallback_BS3' ], // null to use wp core
 			// 'comment_form'           => [ 'gThemeComments', 'comment_form' ], // comment_form to use wp core
 			// 'comment_form_strings'   => [],
 			// 'comment_nav_strings'    => [],
@@ -332,14 +333,15 @@ class gThemeOptions extends gThemeModuleCore
 	public static function getOption( $name, $default = FALSE )
 	{
 		global $gtheme_options;
-		if ( empty(	$gtheme_options ) )
+
+		if ( empty( $gtheme_options ) )
 			$gtheme_options = self::getOptions();
 
-		if ( $gtheme_options === FALSE )
+		if ( FALSE === $gtheme_options )
 			$gtheme_options = [];
 
 		if ( !isset( $gtheme_options[$name] ) )
-			//$gtheme_options[$name] = $default;
+			// $gtheme_options[$name] = $default;
 			return $default;
 
 		return $gtheme_options[$name];

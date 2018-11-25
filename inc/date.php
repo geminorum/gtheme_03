@@ -34,8 +34,9 @@ class gThemeDate extends gThemeModuleCore
 			$date = get_the_date( $args['format'], $args['post_id'] );
 		}
 
-		$link = $args['shortlink'] ? wp_get_shortlink( $args['post_id'] ) : get_the_permalink( $args['post_id'] );
-
+		$link = $args['shortlink']
+			? wp_get_shortlink( $args['post_id'] )
+			: get_the_permalink( $args['post_id'] );
 
 		$html = vsprintf( $args['template'], [
 			esc_url( $link ),

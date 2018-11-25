@@ -21,7 +21,7 @@
 
 			gThemeSideBar::sidebar( 'after-singular' );
 
-			gThemeComments::template( '<div class="wrap-comments">', '</div>' );
+			gThemeComments::template( '<div class="entry-comments">', '</div>' );
 
 		gThemeContent::wrapClose( 'singular' );
 

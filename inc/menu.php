@@ -25,7 +25,8 @@ class gThemeMenu extends gThemeModuleCore
 	public function init()
 	{
 		$menus = gThemeOptions::info( 'register_nav_menus', [] );
-		if ( $menus && count( $menus ) )
+
+		if ( ! empty( $menus ) )
 			register_nav_menus( $menus );
 	}
 

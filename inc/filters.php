@@ -268,13 +268,13 @@ class gThemeFilters extends gThemeModuleCore
 		if ( is_page() )
 			$classes[] = sanitize_html_class( 'slug-'.get_post()->post_name );
 
-		$uri = explode( '/', $_SERVER['REQUEST_URI'] );
+		// $uri = explode( '/', $_SERVER['REQUEST_URI'] );
 
-		if ( isset( $uri[1] ) ) {
-			$uri_string = htmlentities( trim( strip_tags( $uri[1] ) ) );
-			if ( ! empty( $uri_string ) )
-				$classes[] = 'uri-'.$uri_string;
-		}
+		// if ( isset( $uri[1] ) ) {
+		// 	$uri_string = htmlentities( trim( strip_tags( $uri[1] ) ) );
+		// 	if ( ! empty( $uri_string ) )
+		// 		$classes[] = 'uri-'.$uri_string;
+		// }
 
 		// foreach ( $gtheme_info['sidebars'] as $sidebar_name => $sidebar_title )
 		// 	if ( is_active_sidebar( $sidebar_name ) )
