@@ -2,7 +2,10 @@
 
 echo '<nav class="wrapper -navbar"><div class="container -nav">';
 
-	gThemeTemplate::logo( 'navbar', '<h1><a href="%1$s" title="%3$s" rel="home">%2$s</a></h1>' );
+	echo '<div class="-branding">';
+		gThemeTemplate::logo( 'navbar', '<h1><a href="%1$s" title="%3$s" rel="home">%2$s</a></h1>' );
+		gThemeTemplate::description();
+	echo '</div>';
 
 	echo '<div class="-rule"></div>';
 
