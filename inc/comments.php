@@ -205,7 +205,7 @@ class gThemeComments extends gThemeModuleCore
 					echo '<h6 class="comment-meta">';
 						echo '<span class="comment-author">'.get_comment_author_link().'</span>';
 						echo ' ';
-						self::time( '<small class="comment-time">', '</small>' );
+						self::time( $comment, '<small class="comment-time">', '</small>' );
 					echo '</h6>';
 
 					echo '<div class="comment-content">';

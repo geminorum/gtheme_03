@@ -33,6 +33,8 @@ class gThemeTemplate extends gThemeModuleCore
 		echo '</div>';
 	}
 
+	// @REF: https://css-tricks.com/header-text-image-replacement/
+	// @REF: http://luigimontanez.com/2010/stop-using-text-indent-css-trick/
 	public static function logo( $context = 'header', $template = NULL, $echo = TRUE )
 	{
 		if ( is_null( $template ) ) {
@@ -80,7 +82,7 @@ class gThemeTemplate extends gThemeModuleCore
 	// @REF: `get_the_author_posts_link()`
 	public static function author( $post = NULL, $echo = TRUE )
 	{
-		self::_dep( 'gThemeContent::byline()' );
+		// self::_dep( 'gThemeContent::byline()' );
 
 		if ( ! $post = get_post( $post ) )
 			return '';
