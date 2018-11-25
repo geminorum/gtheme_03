@@ -56,6 +56,15 @@ class gThemeTemplate extends gThemeModuleCore
 		echo $logo;
 	}
 
+
+	public static function description( $before = '<p class="site-description -description">', $after = '</p>' )
+	{
+		$desc = gThemeOptions::info( 'frontpage_desc' );
+
+		if ( $desc )
+			echo $before.$desc.$after;
+	}
+
 	public static function sidebar( $name = NULL, $before = '', $after = '' )
 	{
 		if ( ! gThemeOptions::info( 'sidebar_support', TRUE ) )
