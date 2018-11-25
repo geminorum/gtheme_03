@@ -311,7 +311,7 @@ class gThemeEditorial extends gThemeModuleCore
 		return \geminorum\gEditorial\Templates\Book::cover( $atts );
 	}
 
-	public static function refList( $atts = [] )
+	public static function refList( $atts = [], $echo = TRUE )
 	{
 		if ( ! function_exists( 'gNetwork' ) )
 			return FALSE;
@@ -319,7 +319,12 @@ class gThemeEditorial extends gThemeModuleCore
 		if ( ! gNetwork()->module( 'shortcodes' ) )
 			return FALSE;
 
-		echo gNetwork()->shortcodes->shortcode_reflist( array_merge( $atts, [ 'context' => 'single' ] ), NULL, 'reflist' );
+		$html = gNetwork()->shortcodes->shortcode_reflist( array_merge( $atts, [ 'context' => 'single' ] ), NULL, 'reflist' );
+
+		if ( ! $echo )
+			return $html;
+
+		echo $html;
 
 		return TRUE;
 	}
