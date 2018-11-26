@@ -896,7 +896,7 @@ addthis_config.services_custom = [
 			'prefix'      => 'entry',
 			'byline'      => FALSE,
 			'actions'     => FALSE,
-			'action_icon' => 'def',
+			'action_icon' => NULL,
 			'shortlink'   => gThemeOptions::info( 'content_header_shortlink', FALSE ),
 			'wrap_tag'    => 'header',
 			'wrap_close'  => TRUE,
@@ -972,7 +972,7 @@ addthis_config.services_custom = [
 		}
 
 		if ( $args['actions'] ) {
-			echo '<ul class="-actions '.$args['prefix'].'-actions actions-'.$args['context'].' list-inline">'; // FIXME: must drop list inline
+			echo '<ul class="-actions -actions-header '.$args['prefix'].'-actions actions-'.$args['context'].' list-inline">'; // FIXME: must drop list inline
 				self::postActions( '<li class="'.$args['prefix'].'-action %s">', '</li>', $args['actions'], $args['action_icon'] );
 			echo '</ul>';
 		}
@@ -986,8 +986,8 @@ addthis_config.services_custom = [
 		$args = self::atts( [
 			'context'     => 'single',
 			'prefix'      => 'entry',
-			'action_icon' => 'def',
 			'actions'     => gThemeOptions::info( 'post_actions_footer', [ 'categories', 'date' ] ),
+			'action_icon' => NULL,
 			'shortlink'   => FALSE,
 			'title_tag'   => 'h2',
 			'meta_tag'    => 'h4',
@@ -998,7 +998,7 @@ addthis_config.services_custom = [
 
 		if ( $args['actions'] ) {
 			echo '<footer class="footer-class footer-'.$args['context'].' '.$args['prefix'].'-footer">';
-				echo '<ul class="-actions '.$args['prefix'].'-actions actions-'.$args['context'].' list-inline">'; // FIXME: must drop list inline
+				echo '<ul class="-actions -actions-footer '.$args['prefix'].'-actions actions-'.$args['context'].' list-inline">'; // FIXME: must drop list inline
 					self::postActions( '<li class="'.$args['prefix'].'-action %s">', '</li>', $args['actions'], $args['action_icon'] );
 				echo '</ul>';
 			echo '</footer>';

@@ -161,7 +161,7 @@ class gThemeComments extends gThemeModuleCore
 	{
 		if ( defined( 'WPLOCKDOWN' ) && constant( 'WPLOCKDOWN' ) ) {
 			echo '<div class="lockdown-notice '.$class.'">';
-				_ex( 'Sorry, The site is locked down. Updates will appear shortly', 'Comments Module', GTHEME_TEXTDOMAIN );
+				_ex( 'Sorry, The site is locked down. Updates will appear shortly.', 'Comments Module', GTHEME_TEXTDOMAIN );
 			echo '</div>';
 		}
 	}
@@ -300,7 +300,7 @@ class gThemeComments extends gThemeModuleCore
 			$user_identity = empty( $user->ID ) ? '' : $user->display_name;
 
 			$commenter = wp_get_current_commenter();
-			$permalink = apply_filters( 'the_permalink', get_permalink( $post_id ) );
+			$permalink = apply_filters( 'the_permalink', get_permalink( $post_id ), $post_id );
 			$required  = get_option( 'require_name_email' );
 			$html5     = (bool) current_theme_supports( 'html5', 'comment-form' );
 
