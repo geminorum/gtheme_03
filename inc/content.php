@@ -771,8 +771,11 @@ $('#text-unjustify').click(function (e) {
 	}
 
 	// @REF: https://www.addtoany.com/buttons/customize/
-	public static function addtoany( $before = '', $after = '', $text = NULL )
+	public static function addtoany( $before = '', $after = '', $text = NULL, $footer = TRUE )
 	{
+		if ( $footer && ( is_singular() || is_single() ) )
+			add_action( 'wp_footer', [ __CLASS__, 'addtoany_footer' ] );
+
 		$premalink = get_permalink();
 
 		$query = [
@@ -788,7 +791,10 @@ $('#text-unjustify').click(function (e) {
 			esc_attr( $query['linkname'] )
 		);
 		echo $after;
+	}
 
+	public static function addtoany_footer()
+	{
 		if ( $twitter = gThemeOptions::info( 'twitter_site', FALSE ) )
 			$twitter_template = '${title} ${link} '.gThemeThird::getTwitter( $twitter );
 		else
@@ -796,8 +802,8 @@ $('#text-unjustify').click(function (e) {
 
 		?><script type="text/javascript">
 var a2a_config = a2a_config || {};
-a2a_config.linkname  = '<?php echo esc_js( $query['linkname'] ); ?>';
-a2a_config.linkurl = '<?php echo esc_js( esc_url_raw( $premalink ) ); ?>';
+a2a_config.linkname  = '<?php echo esc_js( self::title_attr( FALSE, NULL, '%s' ) ); ?>';
+a2a_config.linkurl = '<?php echo esc_js( esc_url_raw( get_permalink() ) ); ?>';
 a2a_config.onclick = true;
 a2a_config.locale = "fa";
 a2a_config.prioritize = ["email", "twitter", "facebook", "evernote", "tumblr", "wordpress", "blogger_post", "read_it_later", "linkedin"];
