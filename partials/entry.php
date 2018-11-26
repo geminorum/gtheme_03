@@ -2,11 +2,4 @@
 
 gThemeContent::header( [ 'context' => 'index', 'byline' => TRUE ] );
 gThemeContent::excerpt();
-
-gThemeContent::footer( [
-	'context' => 'index',
-	'actions' => [
-		'categories',
-		'date',
-	],
-] );
+gThemeContent::footer( [ 'context' => 'index' ] );
