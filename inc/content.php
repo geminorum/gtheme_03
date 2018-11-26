@@ -357,6 +357,13 @@ class gThemeContent extends gThemeModuleCore
 
 	public static function postActions( $before = '<li class="entry-action %s">', $after = '</li>', $list = TRUE, $icon = NULL )
 	{
+		if ( ! $post = get_post() )
+			return;
+
+		// dummy post
+		if ( ! $post->ID )
+			return;
+
 		if ( TRUE === $list )
 			$actions = gThemeOptions::info( 'post_actions', [
 				'printlink',
