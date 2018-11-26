@@ -6,6 +6,5 @@ gThemeContent::header( [
 	'prefix'    => 'row',
 	'title_tag' => 'h3',
 	'meta_tag'  => 'h5',
+	'byline'    => TRUE,
 ] );
-
-gThemeContent::byline( NULL, '<div class="entry-byline">', '</div>' );

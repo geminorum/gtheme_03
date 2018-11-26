@@ -887,6 +887,7 @@ addthis_config.services_custom = [
 		$args = self::atts( [
 			'context'     => 'single',
 			'prefix'      => 'entry',
+			'byline'      => FALSE,
 			'actions'     => FALSE,
 			'action_icon' => 'def',
 			'shortlink'   => gThemeOptions::info( 'content_header_shortlink', FALSE ),
@@ -958,6 +959,10 @@ addthis_config.services_custom = [
 			] );
 
 		echo '</div>';
+
+		if ( $args['byline'] ) {
+			self::byline( NULL, '<div class="'.$args['prefix'].'-byline byline-'.$args['context'].'">', '</div>' );
+		}
 
 		if ( $args['actions'] ) {
 			echo '<ul class="-actions '.$args['prefix'].'-actions actions-'.$args['context'].' list-inline">'; // FIXME: must drop list inline

@@ -2,8 +2,7 @@
 
 gThemeContent::wrapOpen( 'buddypress' );
 
-	// gThemeContent::header( [ 'context' => 'buddypress' ] );
-	// gThemeContent::byline( NULL, '<div class="entry-byline">', '</div>' );
+	// gThemeContent::header( [ 'context' => 'buddypress', 'byline' => TRUE ] );
 	gThemeContent::content();
 
 gThemeContent::wrapClose( 'buddypress' );
