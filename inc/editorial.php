@@ -177,12 +177,13 @@ class gThemeEditorial extends gThemeModuleCore
 			'before' => '',
 			'after'  => '',
 			'echo'   => TRUE,
+			'prefix' => NULL,
 		], $atts );
 
 		if ( ! $post = get_post( $args['post'] ) )
 			return FALSE;
 
-		if ( ! $html = gEditorial()->estimated->get_estimated( $post->ID ) )
+		if ( ! $html = gEditorial()->estimated->get_estimated( $post->ID, $args['prefix'] ) )
 			return FALSE;
 
 		$html = $args['before'].$html.$args['after'];

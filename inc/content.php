@@ -364,6 +364,7 @@ class gThemeContent extends gThemeModuleCore
 				'shortlink',
 				'comments_link',
 				'edit_post_link',
+				'editorial_estimated',
 			] );
 
 		else if ( is_array( $list ) )
@@ -585,6 +586,7 @@ class gThemeContent extends gThemeModuleCore
 				gThemeEditorial::estimated( [
 					'before' => sprintf( $before, 'entry-estimated' ),
 					'after'  => $after,
+					'prefix' => '',
 				] );
 		}
 	}
