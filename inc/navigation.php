@@ -118,7 +118,7 @@ class gThemeNavigation extends gThemeModuleCore
 		if ( ! gThemeOptions::info( 'breadcrumb_support', TRUE ) )
 			return;
 
-		$posttypes = gThemeOptions::info( 'breadcrumb_posttypes', [ 'post' ] );
+		$posttypes = gThemeOptions::info( 'breadcrumb_posttypes', [ 'post', 'entry' ] );
 
 		if ( FALSE !== $posttypes && is_singular( $posttypes ) )
 			self::breadcrumbSingle( $atts );
@@ -139,7 +139,7 @@ class gThemeNavigation extends gThemeModuleCore
 	// bootstrap 3 compatible markup
 	public static function breadcrumbSingle( $atts = [] )
 	{
-		global $page, $numpages;
+		global $post, $page, $numpages;
 
 		$args = self::atts( [
 			'home'       => FALSE, // 'home' // 'network' // 'custom string'
@@ -159,15 +159,15 @@ class gThemeNavigation extends gThemeModuleCore
 			$args['taxonomy'] = gThemeOptions::info( 'primary_terms_taxonomy', 'category' );
 
 		else if ( is_null( $args['taxonomy'] ) )
-			$args['taxonomy'] = 'category';
+			$args['taxonomy'] = gThemeTerms::getMainTaxonomy( $post, 'category' );
 
 		$crumbs = self::crumbHome( $args );
 
-		if ( 'primary' == $args['term'] )
-			$crumbs[] = gThemeTerms::linkPrimary( '', '', NULL, '', FALSE );
+		if ( $args['taxonomy'] && 'primary' == $args['term'] )
+			$crumbs[] = gThemeTerms::linkPrimary( '', '', $post, '', FALSE );
 
-		else if ( 'parents' == $args['term'] )
-			$crumbs = array_merge( $crumbs, gThemeTerms::getWithParents( $args['taxonomy'] ) );
+		else if ( $args['taxonomy'] && 'parents' == $args['term'] )
+			$crumbs = array_merge( $crumbs, gThemeTerms::getWithParents( $args['taxonomy'], $post ) );
 
 		if ( FALSE !== $args['label'] && function_exists( 'gmeta_label' ) )
 			$crumbs[] = gmeta_label( '', '', FALSE, [ 'echo' => FALSE ] );
@@ -191,10 +191,9 @@ class gThemeNavigation extends gThemeModuleCore
 				$crumbs[] = $single_html;
 		}
 
-		if ( $args['post_title'] && get_the_title() )
-			$crumbs[] = '<a href="'.esc_url( apply_filters( 'the_permalink', get_permalink() ) )
-					.'" title="'.gThemeContent::title_attr( FALSE ).'" rel="bookmark">'
-					.get_the_title().'</a>';
+		if ( $args['post_title'] && ( $post_title = get_the_title( $post ) ) )
+			$crumbs[] = '<a href="'.esc_url( apply_filters( 'the_permalink', get_permalink( $post ), $post ) )
+				.'" title="'.gThemeContent::title_attr( FALSE, $post_title ).'">'.$post_title.'</a>';
 
 		$crumbs = array_filter( $crumbs );
 		$count  = count( $crumbs );

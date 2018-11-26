@@ -528,4 +528,18 @@ class gThemeTerms extends gThemeModuleCore
 
 		return array_merge( $terms, (array) self::getTermLink( $term ) );
 	}
+
+	public static function getMainTaxonomy( $post, $fallback = 'category' )
+	{
+		if ( ! $post = get_post( $post ) )
+			return $fallback;
+
+		$map = gThemeOptions::info( 'post_main_taxonomy_map', [
+			'post'  => 'category',
+			'page'  => FALSE,
+			'entry' => 'entry_section',
+		] );
+
+		return array_key_exists( $post->post_type, $map ) ? $map[$post->post_type] : $fallback;
+	}
 }
