@@ -202,10 +202,10 @@ class gThemeContent extends gThemeModuleCore
 	public static function continueReading( $edit = '', $scope = '', $link = FALSE, $title = FALSE )
 	{
 		if ( FALSE === $title )
-			$title = esc_attr( strip_tags( get_the_title() ) );
+			$title = strip_tags( get_the_title() );
 
 		if ( FALSE === $link )
-			$link = esc_url( get_permalink() );
+			$link = get_permalink();
 
 		if ( ! empty( $edit ) )
 			$edit = vsprintf( ' <a href="%1$s" title="%3$s" class="%4$s">%2$s</a>', [
@@ -218,7 +218,14 @@ class gThemeContent extends gThemeModuleCore
 		$text  = gThemeOptions::info( 'read_more_text', _x( 'Read more&nbsp;<span class="excerpt-link-hellip">&hellip;</span>', 'Content: Read More Text', GTHEME_TEXTDOMAIN ) );
 		$title = sprintf( gThemeOptions::info( 'read_more_title', _x( 'Continue reading &ldquo;%s&rdquo; &hellip;', 'Content: Read More Title', GTHEME_TEXTDOMAIN ) ), $title );
 
-		return vsprintf( ' <a %6$s href="%1$s" aria-label="%3$s" class="%4$s">%2$s</a>%5$s', [ $link, $text, $title, 'excerpt-link', $edit, $scope ] );
+		return vsprintf( ' <a %6$s href="%1$s" aria-label="%3$s" class="%4$s">%2$s</a>%5$s', [
+			esc_url( $link ),
+			$text,
+			esc_attr( $title ),
+			'excerpt-link',
+			$edit,
+			$scope,
+		] );
 	}
 
 	// OLD: gtheme_the_title_attribute()
