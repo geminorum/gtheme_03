@@ -231,6 +231,14 @@ class gThemeTemplate extends gThemeModuleCore
 			echo '<div class="visible-print-block -print-only -code">'.gThemeUtilities::home( TRUE ).'</div>';
 	}
 
+	public static function copyrightAMP()
+	{
+		if ( ! $copyright = gThemeOptions::info( 'copyright', FALSE ) )
+			return;
+
+		echo gThemeText::autoP( gThemeUtilities::wordWrap( $copyright ), FALSE );
+	}
+
 	public static function telephone( $number, $before = '', $after = '', $atts = [] )
 	{
 		echo $before;
