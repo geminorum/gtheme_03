@@ -4,14 +4,14 @@
 /// Modules: Theme: Printing ---------------------------------------------------
 
 ////////////////////////////////////////////////////////////////////////////////
-@mixin theme-printing-init($pading: 25mm, $width: 210mm, $background: $gray-lighter, $page: #fff) {
+@mixin theme-printing-init($pading: 15mm, $width: 210mm, $background: $gray-lighter, $page: #fff) {
   @page {
     // margin: $pading; // let browser decide the margin on print UI
   }
 
   body {
-    width: $width;
-    // padding: $pading;
+    // width: $width;
+    padding: $pading;
   }
 
   @media screen {
@@ -20,10 +20,12 @@
     }
 
     body {
+      width: $width;
+      // padding: $pading;
+
       background: $page;
       box-shadow: 0 .5mm 2mm rgba(0, 0, 0, .3);
       margin: 5mm auto;
-      padding: $pading;
     }
   }
 

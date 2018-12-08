@@ -21,18 +21,27 @@
   direction: ltr;
 }
 
+textarea {
+  resize: vertical;
+}
+
 ////////////////////////////////////////////////////////////////////////////////
-.form-control {}
+.form-control {
+  width: 100%;
+  // box-sizing: border-box;
+}
 
 .search-form.-simple,
 .input-group {
-  @include theme-forms-input-group;
+  // @include theme-forms-input-group;
+  display: flex;
+  align-content: stretch;
 
   margin-top: .5rem;
 
   > .form-control:not(:last-child),
   > .input-group-prepend > .btn,
-    // > .input-group-prepend > .input-group-text,
+  // > .input-group-prepend > .input-group-text,
   > .input-group-append:not(:last-child) > .btn
   // > .input-group-append:not(:last-child) > .input-group-text,
   // > .input-group-append:last-child > .btn:not(:last-child):not(.dropdown-toggle),

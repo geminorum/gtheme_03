@@ -54,6 +54,10 @@ input[type=url]" );
   display: flex;
   align-content: stretch;
 
+  // // > .input-group-addon,
+  // // > .input-group-btn,
+  // > .input-group-append,
+  // > .input-group-prepend,
   > input {
     flex: 1 0 auto;
   }

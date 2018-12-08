@@ -1,6 +1,112 @@
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
-/// Blocks: Typography 01 - 2018-11-03
+/// Blocks: Typography 01 - 2018-11-24
 
 ////////////////////////////////////////////////////////////////////////////////
+p {
+  // @include theme-default-paragraph();
+  margin: 0 0 1rem 0;
+
+  &:last-of-type {
+    margin-bottom: 0;
+  }
+}
+
+blockquote {
+  border-left: $border-radius solid $gray-light;
+  padding-left: .5rem;
+  margin: 1rem 1rem 1rem .5rem;
+
+  footer {
+    font-size: 80%;
+  }
+
+  cite {
+    &::before {
+      content: "—";
+      color: $gray-light;
+      padding-right: 0.2rem;
+    }
+  }
+}
+
+hr {
+  @include theme-typography-hr-dots;
+}
+
+////////////////////////////////////////////////////////////////////////////////
+// https://css-tricks.com/snippets/css/prevent-superscripts-and-subscripts-from-affecting-line-height/
+sup,
+sub {
+  vertical-align: baseline;
+  position: relative;
+  font-size: 70%;
+  top: -0.4em; // -0.33em;
+}
+
+sub {
+  top: 0.4em;
+}
+
+////////////////////////////////////////////////////////////////////////////////
+.entry-title {
+  @include theme-typography-heading-line($gray-light);
+}
+
+.entry-wrap.-empty-title {
+  margin-top: 1rem;
+  border-top: 1px dotted $gray-light;
+}
+
+.entry-overtitle + .entry-title,
+.entry-title + .entry-subtitle {
+  margin-top: -1rem;
+}
+
+////////////////////////////////////////////////////////////////////////////////
+.entry-content {
+  // ul:not(.list-unstyled):not(.list-inline):not(.-toc) {
+  //   @include theme-list-style-diamond-LTR();
+  // }
+}
+
+.entry-content ol:not(.-toc),
+.entry-after ol {
+  list-style-type: persian !important;
+  // list-style-position: inside !important;
+}
+
+////////////////////////////////////////////////////////////////////////////////
+.entry-after.after-source a,
+.entry-content a {
+  color: inherit;
+
+  &:hover,
+  &:focus {
+    color: $gray-darker;
+  }
+}
+
+////////////////////////////////////////////////////////////////////////////////
+.numeral-section-title {
+  color: $gray;
+  float: left;
+  font-size: 1.75rem;
+  line-height: 1;
+  display: inline-block;
+  margin: 1.5rem 1rem 0 0;
+
+  + p {
+    margin-top: 2rem;
+    text-indent: 0;
+  }
+
+  &:first-of-type {
+    margin-top: .5rem;
+
+    + p {
+      margin-top: 0;
+    }
+  }
+}

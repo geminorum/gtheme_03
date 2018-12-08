@@ -27,6 +27,17 @@
   }
 }
 
+@mixin theme-list-flex() {
+  @include theme-list-reset();
+  display: flex;
+  // align-items: center;
+  // justify-content: center;
+
+  > li {
+    @content;
+  }
+}
+
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 // $bs: $theme-bs-navbar-height, $ab: $theme-wp-adminbar-height
@@ -50,6 +61,29 @@
       transform: rotate(45deg);
       top: $gutter / 3;
       right: $gutter / 4;
+    }
+  }
+}
+
+@mixin theme-list-style-diamond-LTR( $gutter: $theme-grid-gutter, $color: $gray-light) {
+  @include theme-list-reset();
+
+  li {
+    margin: 0;
+    margin-bottom: $gutter / 2;
+    padding-left: $gutter;
+    position: relative;
+
+    &::after {
+      content: "";
+      height: $gutter / 4;
+      width: $gutter / 4;
+      background: $color;
+      display: block;
+      position: absolute;
+      transform: rotate(45deg);
+      top: $gutter / 3;
+      left: $gutter / 4;
     }
   }
 }

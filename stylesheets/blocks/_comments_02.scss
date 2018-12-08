@@ -50,6 +50,7 @@
   }
 
   .comment-form {
+    padding: 0 1px; // fixes focus border
     margin-top: $theme-grid-gutter;
 
     .comment-reply-title {

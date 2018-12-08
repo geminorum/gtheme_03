@@ -1,0 +1,86 @@
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+/// Blocks: Comments 03 - 2018-11-24
+
+////////////////////////////////////////////////////////////////////////////////
+.entry-comments {
+  .no-comments {
+    color: $gray-light;
+    font-size: 0.8rem;
+    text-align: center;
+    padding-top: .5rem;
+  }
+
+  .comment {
+    @include theme-clearfix;
+    margin-bottom: 1rem;
+
+    &.-with-avatar .comment-body {
+      margin-left: calc(75px + 1rem); // default avatar size: 75px
+    }
+  }
+
+  .comment-avatar {
+    float: left;
+    // margin-top: 0.5rem;
+  }
+
+  .comment-meta {
+    margin: .2rem 0 .4rem 0;
+    // color: $gray;
+    // font-size: 0.8rem;
+  }
+
+  .comment-author {
+    color: $gray-darker;
+  }
+
+  .comment-time {
+    color: $gray;
+    font-size: 0.8rem;
+    font-weight: 400;
+    padding-left: 0.5rem;
+
+    &::before {
+      content: "—";
+      color: $gray-light;
+      padding-right: 0.5rem;
+    }
+  }
+
+  .comment-content {
+    font-size: 0.9rem;
+  }
+
+  .comment-actions {
+    margin: 0 !important;
+    padding: .4rem 0;
+    font-size: 0.8rem;
+  }
+
+  ol {
+    list-style-type: none !important;
+    margin: 0;
+    padding: 0;
+
+    ol {
+      margin-left: 1.5rem;
+    }
+  }
+
+  .form-group {
+    margin-bottom: .5rem;
+
+    label {
+      font-size: 0.8rem;
+      color: $gray-light;
+      padding-bottom: 0.25rem;
+      display: inline-block;
+    }
+  }
+
+  .form-submit {
+    margin-top: 1rem;
+  }
+}

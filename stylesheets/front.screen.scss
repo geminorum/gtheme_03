@@ -25,11 +25,8 @@ body {
   line-height: 1.5;
 }
 
+@include theme-headings-init;
 @include theme-linking-init;
-
-hr {
-  @include theme-typography-hr-dots;
-}
 
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
@@ -39,20 +36,9 @@ hr {
 @import "blocks/navigation_02";
 @import "blocks/forms_02";
 @import "blocks/table_02";
+@import "blocks/comments_03";
 
 ////////////////////////////////////////////////////////////////////////////////
-
-h2.entry-title {
-  @include theme-typography-heading-line;
-}
-
-.breadcrumb,
-.list-inline,
-.entry-actions.list-inline {
-  padding-right: 0;
-  padding-left: 0;
-}
-
 ////////////////////////////////////////////////////////////////////////////////
 
 @include theme-layout-media;

@@ -99,3 +99,45 @@
   left: 50%;
   top: 50%;
 }
+////////////////////////////////////////////////////////////////////////////////
+// @REF: https://jsfiddle.net/hajtwbot/
+@mixin theme-animation-blinking($color:#00AEEF, $time: 0.8s) {
+  @at-root {
+    @keyframes themeblinking {
+      0% {
+        color: $color;
+      }
+
+      49% {
+        color: transparent;
+      }
+
+      50% {
+        color: transparent;
+      }
+
+      99% {
+        color: transparent;
+      }
+
+      100% {
+        color: #000;
+      }
+    }
+  }
+
+  animation: themeblinking $time infinite;
+}
+////////////////////////////////////////////////////////////////////////////////
+// @REF: https://jsfiddle.net/umz8t/6490/
+@mixin theme-animation-blinking-2($time: 0.8s, $opacity: 0) {
+  @at-root {
+    @keyframes themeblinking2 {
+      50% {
+        opacity: $opacity;
+      }
+    }
+  }
+
+  animation: themeblinking2 $time linear infinite;
+}
