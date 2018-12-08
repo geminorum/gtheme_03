@@ -9,7 +9,7 @@ class gThemeImage extends gThemeModuleCore
 	{
 		extract( self::atts( [
 			'core_post_thumbnails'   => FALSE, // enables WordPress core thumbnail for posts
-			'amp_post_thumbnails'    => TRUE, // filters amp featured image
+			'amp_post_thumbnails'    => defined( 'AMP__VERSION' ), // filters amp featured image
 			'image_size_tags'        => TRUE, // registers theme's image sizes
 			'image_attachment_tags'  => TRUE, // displays ui for theme's image sizes
 			'image_attachment_terms' => FALSE, // image for terms on admin media editor

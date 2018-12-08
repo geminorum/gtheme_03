@@ -239,7 +239,15 @@ class gThemeHTML extends gThemeBaseCore
 		return self::escapeURL( 'tel:'.str_replace( array( '(', ')', '-', '.', '|', ' ' ), '', $number ) );
 	}
 
+	// FIXME: DEPRECATED
 	public static function getAtts( $string, $expecting = array() )
+	{
+		self::_dev_dep( 'gThemeHTML::parseAtts()' );
+
+		return self::parseAtts( $string, $expecting );
+	}
+
+	public static function parseAtts( $string, $expecting = array() )
 	{
 		foreach ( $expecting as $attr => $default ) {
 
