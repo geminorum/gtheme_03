@@ -1,3 +1,45 @@
+### 3.17.0
+* root/content: link image to attachment page on singular
+* partal/navbar: new default template
+* core/third: renamed from misc
+* module/bootstrap: seperate file for nav walker
+* module/content: print link action
+* module/content: editorial estimated action
+* module/content: byline on header
+* module/content: header default shortlink option
+* module/content: header default title disable option
+* module/content: addtoany script on footer
+* module/content: default actions on footer
+* module/content: check for dummy post on actions
+* module/comments: cleanup comment callback
+* module/editorial: optional return of shortcodes
+* module/editorial: prefix for estimated
+* module/filters: deferred styles with preload
+* module/filters: print style enhancements
+* module/filters: skip extra tags on print
+* module/navigation: disable posttype breadcrumbs
+* module/navigation: search form after search breadcrumb
+* module/navigation: after breadcrumb action hook
+* module/navigation: better handling primary terms on breadcrumb
+* module/navigation: main taxonomy for posttype on breadcrumb
+* module/options: fontdetect dropped
+* module/settings: activation redirect disabled by default
+* module/shortcodes: seperate file for page walker
+* module/sidebar: seperate files for widgets
+* module/theme: support for custom background/logo
+* module/template: avoid on dummy posts
+* module/template: main wrapper helpers
+* module/template: site description helper
+* module/template: copyright append site modified
+* module/template: copyright append home in print
+* module/template: copyright for amp
+* module/terms: single term link helper
+* module/terms: get with parents helper
+* module/utilities: better prep for title/desc
+* module/utilities: sanitize sep depricated
+* module/utilities: is system page helper
+* module/wrap: body close helper
+
 ### 3.16.7
 * root/single: checking for single and singular
 * module/content: passing context into wrap close
