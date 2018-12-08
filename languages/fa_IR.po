@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: gTheme 3\n"
 "Report-Msgid-Bugs-To: https://github.com/geminorum/gtheme_03/issues\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2018-10-14 23:04+0330\n"
+"PO-Revision-Date: 2018-12-08 12:41+0330\n"
 "Last-Translator: geminorum <contact@geminorum.ir>\n"
 "Language-Team: geminorum <contact@geminorum.ir>\n"
 "Language: fa_IR\n"
@@ -143,159 +143,166 @@ msgstr "ذخیره"
 msgid "Toggle navigation"
 msgstr "برای تغییر وضعیت کلیک کنید"
 
-#: inc/bootstrap.php:95
+#: inc/bootstrap.php:93, inc/search.php:53
 msgid "Search &hellip;"
 msgstr "جست‌وجو &hellip;"
+
+# @ gtheme
+#: inc/bootstrap.php:96, inc/search.php:36, inc/search.php:39,
+#: inc/search.php:57, inc/search.php:72, inc/search.php:79
+msgctxt "label"
+msgid "Search for:"
+msgstr "جست‌وجو برای:"
 
 # @ gtheme
 #: inc/cache.php:101
 msgid "Refreshed!"
 msgstr "تازه‌شد!"
 
-#: inc/comments.php:91
+#: inc/comments.php:101
 msgctxt "Comments Module"
 msgid "(This topic will automatically close in %s. )"
 msgstr "(دیدگاه‌های این نوشته به صورت خودکار در %s آینده، بسته خواهد شد.)"
 
-#: inc/comments.php:102
+#: inc/comments.php:112
 msgctxt "Comments Module"
 msgid ""
 "This post is password protected. Enter the password to view any comments."
 msgstr "این نوشته با رمز محافظت شده است. برای مشاهده رمز عبور را وارد کنید."
 
-#: inc/comments.php:113
+#: inc/comments.php:123
 msgctxt "Comments Module"
 msgid "Comment navigation"
 msgstr "راه‌بری در کامنت‌ها"
 
-#: inc/comments.php:114
+#: inc/comments.php:124
 msgctxt "Comments Module"
 msgid "&rarr; Older Comments"
 msgstr "&rarr; دیدگاه‌های کهنه‌تر"
 
-#: inc/comments.php:115
+#: inc/comments.php:125
 msgctxt "Comments Module"
 msgid "Newer Comments &larr;"
 msgstr "دیدگاه‌های تازه‌تر &larr;"
 
 # @ gtheme
-#: inc/comments.php:131
+#: inc/comments.php:141
 msgctxt "Comments Title"
 msgid "One thought on &ldquo;%2$s&rdquo;"
 msgid_plural "%1$s thoughts on &ldquo;%2$s&rdquo;"
 msgstr[0] "یک دیدگاه دربارهٔ «%2$s»"
 msgstr[1] "%1$s  دیدگاه دربارهٔ «%2$s»"
 
-#: inc/comments.php:143
+#: inc/comments.php:153
 msgctxt "Comments Module"
 msgid "Grab the feed for comments of this post"
 msgstr "خوراک برای دیدگاه‌های این نوشته"
 
-#: inc/comments.php:154
+#: inc/comments.php:164
 msgctxt "Comments Module"
-msgid "Sorry, The site is locked down. Updates will appear shortly"
+msgid "Sorry, The site is locked down. Updates will appear shortly."
 msgstr ""
 "متأسفیم، به دلیل ترافیک بالا، سایت قفل شده است. تغییرات به زودی اعمال خواهد "
 "شد."
 
-#: inc/comments.php:210
+#: inc/comments.php:228
 msgctxt "Comments Module"
 msgid "Your comment is awaiting moderation."
 msgstr "دیدگاه شما در انتظار بررسی است."
 
 # @ gtheme
-#: inc/comments.php:220
+#: inc/comments.php:239
 msgctxt "1: date, 2: time"
 msgid "%1$s at %2$s"
 msgstr "%1$s در %2$s"
 
-#: inc/comments.php:232
+#: inc/comments.php:252
 msgctxt "Comments Module: Action String"
 msgid "Reply"
 msgstr "پاسخ"
 
-#: inc/comments.php:233
+#: inc/comments.php:253
 msgctxt "Comments Module: Action String"
 msgid "Reply to %s"
 msgstr "پاسخ به %s"
 
-#: inc/comments.php:234
+#: inc/comments.php:254
 msgctxt "Comments Module: Action String"
 msgid "Log in to Reply"
 msgstr "برای ارسال پاسخ، ابتدا وارد شوید"
 
-#: inc/comments.php:235
+#: inc/comments.php:255
 msgctxt "Comments Module: Action String"
 msgid "Edit This"
 msgstr "ویرایش کنید"
 
-#: inc/comments.php:288
+#: inc/comments.php:308
 msgctxt "Comments Module: Comment Form String"
 msgid "(Required)"
 msgstr "(ضروری)"
 
-#: inc/comments.php:289
+#: inc/comments.php:309
 msgctxt "Comments Module: Comment Form String"
 msgid "Name"
 msgstr "نام"
 
-#: inc/comments.php:290
+#: inc/comments.php:310
 msgctxt "Comments Module: Comment Form String"
 msgid "Email"
 msgstr "ایمیل"
 
-#: inc/comments.php:291
+#: inc/comments.php:311
 msgctxt "Comments Module: Comment Form String"
 msgid "Website"
 msgstr "وب‌گاه"
 
-#: inc/comments.php:292
+#: inc/comments.php:312
 msgctxt "Comments Module: Comment Form String"
 msgid "Comment"
 msgstr "دیدگاه"
 
-#: inc/comments.php:293
+#: inc/comments.php:313
 msgctxt "Comments Module: Comment Form String"
 msgid ""
 "Save my name, email, and site URL in my browser for next time I post a "
 "comment."
 msgstr "برای دیدگاه‌های بعدی؛ نام، ایمیل و وب‌گاه من در مرورگر نگه‌داری شود."
 
-#: inc/comments.php:295
+#: inc/comments.php:315
 msgctxt "Comments Module: Comment Form String"
 msgid "You must be <a href=\"%s\">logged in</a> to post a comment."
 msgstr "برای ارسال دیدگاه باید <a href=\"%s\">وارد</a> شده باشید."
 
-#: inc/comments.php:296
+#: inc/comments.php:316
 msgctxt "Comments Module: Comment Form String"
 msgid ""
 "<a href=\"%1$s\" aria-label=\"%2$s\">Logged in as %3$s</a>. <a href=\"%4$s"
 "\">Log out?</a>"
 msgstr ""
-"<a href=\"%1$s\" aria-label=\"%2$s\">وارد شده با نام %3$s</a>. <a href=\"%4$s"
+"<a href=\"%1$s\" aria-label=\"%2$s\">ارسال با شناسه %3$s</a>. <a href=\"%4$s"
 "\">خروج؟</a>"
 
-#: inc/comments.php:297
+#: inc/comments.php:317
 msgctxt "Comments Module: Comment Form String"
 msgid "Logged in as %s. Edit your profile."
 msgstr "هم‌اکنون با نام %s شناخته شده‌اید. نمایه خود را ویرایش کنید."
 
-#: inc/comments.php:298
+#: inc/comments.php:318
 msgctxt "Comments Module: Comment Form String"
 msgid "Leave a Reply"
 msgstr "پاسخ دهید"
 
-#: inc/comments.php:299
+#: inc/comments.php:319
 msgctxt "Comments Module: Comment Form String"
 msgid "Leave a Reply to %s"
 msgstr "به %s پاسخ دهید"
 
-#: inc/comments.php:300
+#: inc/comments.php:320
 msgctxt "Comments Module: Comment Form String"
 msgid "Cancel reply"
 msgstr "انصراف"
 
-#: inc/comments.php:301
+#: inc/comments.php:321
 msgctxt "Comments Module: Comment Form String"
 msgid "Post Comment"
 msgstr "ارسال دیدگاه"
@@ -307,119 +314,154 @@ msgid ""
 "below or a search?"
 msgstr "چیزی که به دنبالش بودید پیدا نشد، شاید جست‌وجوی دوباره شما را یاری کند."
 
-#: inc/content.php:209
+#: inc/content.php:213
 msgctxt "Content: Read More Edit"
 msgid "Edit"
 msgstr "ویرایش"
 
-#: inc/content.php:210
+#: inc/content.php:214
 msgctxt "Content: Read More Edit Title"
 msgid "Jump to edit page"
 msgstr "این متن را ویرایش کنید"
 
-#: inc/content.php:214
+#: inc/content.php:218
 msgctxt "Content: Read More Text"
 msgid "Read more&nbsp;<span class=\"excerpt-link-hellip\">&hellip;</span>"
 msgstr "ادامه&nbsp;<span class=\"excerpt-link-hellip\">&hellip;</span>"
 
-#: inc/content.php:215
+#: inc/content.php:219
 msgctxt "Content: Read More Title"
 msgid "Continue reading &ldquo;%s&rdquo; &hellip;"
 msgstr "ادامهٔ &raquo;%s&laquo; را مطالعه کنید &hellip;"
 
-#: inc/content.php:230
+#: inc/content.php:244
 msgctxt "Content: Title Attr"
 msgid "Permanent link to &ndash;%s&ndash;"
 msgstr "پیوند پایدار به &ndash;%s&ndash;"
 
-#: inc/content.php:233
+#: inc/content.php:247
 msgctxt "Content: Title Attr"
 msgid "Short link for &ndash;%s&ndash;"
 msgstr "پیوند کوتاه به &ndash;%s&ndash;"
 
-#: inc/content.php:413
+#: inc/content.php:441, inc/content.php:465
 msgctxt "Modules: Content: Action"
 msgid "Print Version"
 msgstr "نسخهٔ چاپی"
 
-#: inc/content.php:422, inc/content.php:430
+#: inc/content.php:450, inc/content.php:458
 msgctxt "Modules: Content: Action"
 msgid "Share This"
 msgstr "همخوان کنید"
 
-#: inc/content.php:437
+#: inc/content.php:476
 msgctxt "Modules: Content: Action"
 msgid "Short Link"
 msgstr "پیوند کوتاه"
 
-#: inc/content.php:473
+#: inc/content.php:512
 msgctxt "Modules: Content: Action"
 msgid "<a href=\"%3$s\" class=\"%1$s\">Your Comment</a>"
 msgstr "<a href=\"%3$s\" class=\"%1$s\">دیدگاه شما</a>"
 
-#: inc/content.php:474
+#: inc/content.php:513
 msgctxt "Modules: Content: Action"
 msgid "<a href=\"%3$s\" class=\"%1$s\">One Comment</a>"
 msgstr "<a href=\"%3$s\" class=\"%1$s\">یک دیدگاه</a>"
 
-#: inc/content.php:475
+#: inc/content.php:514
 msgctxt "Modules: Content: Action"
 msgid "<a href=\"%3$s\" class=\"%1$s\">%2$s Comments</a>"
 msgstr "<a href=\"%3$s\" class=\"%1$s\">%2$s دیدگاه</a>"
 
-#: inc/content.php:482
+#: inc/content.php:521
 msgctxt "Modules: Content: Action"
 msgid ""
 " <small><small>(<a href=\"%1$s\" title=\"%2$s\" class=\"%3$s\"><abbr title="
 "\"Really Simple Syndication\">RSS</abbr></a>)</small></small>"
 msgstr ""
 
-#: inc/content.php:484
+#: inc/content.php:523
 msgctxt "Modules: Content: Action"
 msgid "Feed for this post's comments"
 msgstr "خوراک برای دیدگاه‌های این نوشته"
 
-#: inc/content.php:497
+#: inc/content.php:536
 msgctxt "Modules: Content: Action"
 msgid "Edit"
 msgstr "ویرایش"
 
+#: inc/content.php:548, inc/content.php:564
+msgctxt "Options: Separator: Term"
+msgid ", "
+msgstr "، "
+
+#: inc/content.php:667
+msgctxt "Options: Text Size Increase"
+msgid "[ A+ ]"
+msgstr "[ الف+ ]"
+
+#: inc/content.php:670
+msgctxt "Options: Text Size Decrease"
+msgid "[ A- ]"
+msgstr "[ الف– ]"
+
+#: inc/content.php:673
+msgctxt "Options: Text Size Sep"
+msgid " / "
+msgstr " \\ "
+
 # @ gtheme
-#: inc/content.php:589
+#: inc/content.php:678
 msgid "Increase font size"
 msgstr "اندازه قلم درشت‌تر"
 
 # @ gtheme
-#: inc/content.php:599
+#: inc/content.php:685
 msgid "Decrease font size"
 msgstr "اندازه قلم کوچک‌تر"
 
+#: inc/content.php:699
+msgctxt "Options: Text Justify"
+msgid "[ Ju ]"
+msgstr "[ همـ ]"
+
+#: inc/content.php:702
+msgctxt "Options: Text Unjustify"
+msgid "[ uJ ]"
+msgstr "[ ناهمـ ]"
+
+#: inc/content.php:705
+msgctxt "Options: Text Justify Sep"
+msgid " / "
+msgstr " \\ "
+
 # @ gtheme
-#: inc/content.php:615
+#: inc/content.php:710
 msgid "Justify paragraphs"
 msgstr "هم‌چین کردن متن"
 
 # @ gtheme
-#: inc/content.php:622
+#: inc/content.php:717
 msgid "Un-justify paragraphs"
 msgstr "غیر هم‌چین کردن متن"
 
-#: inc/content.php:682
+#: inc/content.php:776
 msgctxt "Modules: Content: PrintFriendly"
 msgid "Print Version"
 msgstr "نسخهٔ چاپی"
 
-#: inc/content.php:706
+#: inc/content.php:803
 msgctxt "Modules: Content: Addtoany"
 msgid "Share This"
 msgstr "همخوان کنید"
 
-#: inc/content.php:727
+#: inc/content.php:827
 msgctxt "Modules: Content: Addtoany"
 msgid "Check this out %s"
 msgstr "نگاهی بیاندازید به %s"
 
-#: inc/content.php:728
+#: inc/content.php:828
 msgctxt "Modules: Content: Addtoany"
 msgid ""
 "Click the link:\n"
@@ -456,66 +498,81 @@ msgctxt "Modules: Counts"
 msgid "Item Counts"
 msgstr "شمار نوشته‌ها"
 
+#: inc/date.php:19
+msgctxt "Options: Defaults: Date Format: Byline"
+msgid "j M Y"
+msgstr ""
+
 # @ gtheme
-#: inc/editor.php:104
+#: inc/editor.php:105
 msgctxt "Editor Custom Class"
 msgid "Blockquote"
 msgstr "نقل‌قول"
 
-#: inc/editor.php:109
+#: inc/editor.php:110
 msgctxt "Editor Custom Class"
 msgid "Unordered List"
 msgstr "فهرست بدون ترتیب"
 
-#: inc/editor.php:114
+#: inc/editor.php:115
 msgctxt "Editor Custom Class"
 msgid "Ordered List"
 msgstr "فهرست مرتب‌شده"
 
-#: inc/editor.php:119
+#: inc/editor.php:120
 msgctxt "Editor Custom Class"
 msgid "Note"
 msgstr "توضیح"
 
 # @ gtheme
-#: inc/editor.php:124
+#: inc/editor.php:125
 msgctxt "Editor Custom Class"
 msgid "Source"
 msgstr "منبع"
 
-#: inc/editor.php:129
+#: inc/editor.php:130
 msgctxt "Editor Custom Class"
 msgid "Greeting"
 msgstr "درود"
 
-#: inc/editor.php:134
+#: inc/editor.php:135
 msgctxt "Editor Custom Class"
 msgid "Signature"
 msgstr "امضاء"
 
 # @ gtheme
-#: inc/editor.php:143
+#: inc/editor.php:144
 msgctxt "Editor Default Content"
 msgid "[content not available yet]"
 msgstr "[این صفحه در حال تکمیل است.]"
 
-#: inc/image.php:296
+#: inc/embed.php:46
+msgctxt "Options: Separator: Embed"
+msgid "; "
+msgstr "؛ "
+
+#: inc/feed.php:39
+msgctxt "Options: Separator: Feed"
+msgid "; "
+msgstr "؛ "
+
+#: inc/image.php:297
 msgctxt "Image Module: Media Tag Checkbox Label"
 msgid "%1$s <small>(%2$s&times;%3$s)</small>"
 msgstr ""
 
 # @ gtheme
-#: inc/image.php:311
+#: inc/image.php:312
 msgid "Media Tags"
 msgstr "برچسب‌ها"
 
 # @ gtheme
-#: inc/image.php:381
+#: inc/image.php:382
 msgid "&mdash; Select a Term &mdash;"
 msgstr "&mdash; انتخاب کنید &mdash;"
 
 # @ gtheme
-#: inc/image.php:391
+#: inc/image.php:392
 msgid "Assign for"
 msgstr ""
 
@@ -559,23 +616,24 @@ msgctxt "Layouts Module: Tab Title"
 msgid "Layouts for %s"
 msgstr ""
 
-#: inc/menu.php:35
+#: inc/menu.php:36
 msgctxt "Modules: Menu: Defaults"
 msgid "Primary Navigation"
 msgstr "راه‌بری اولیه"
 
-#: inc/menu.php:36
+#: inc/menu.php:37
 msgctxt "Modules: Menu: Defaults"
 msgid "Secondary Navigation"
 msgstr "راه‌بری ثانویه"
 
-#: inc/menu.php:37
+#: inc/menu.php:38
 msgctxt "Modules: Menu: Defaults"
 msgid "Tertiary Navigation"
 msgstr "راه‌بری ثالث"
 
 # @ gtheme
-#: inc/modulecore.php:198, inc/sidebar.php:741, inc/sidebar.php:762
+#: inc/modulecore.php:198, inc/WordPress/Widget.php:471,
+#: inc/WordPress/Widget.php:492
 msgid "&mdash; Select &mdash;"
 msgstr "&mdash; انتخاب کنید &mdash;"
 
@@ -635,77 +693,82 @@ msgctxt "Modules: Navigation: Screen Reader Title"
 msgid "Navigation"
 msgstr "راه‌بری"
 
-#: inc/navigation.php:161
+#: inc/navigation.php:180
 msgctxt "Modules: Navigation: Breadcrumbs"
 msgid "(Preview)"
 msgstr "(پیش‌نمایش)"
 
-#: inc/navigation.php:166
+#: inc/navigation.php:185
 msgctxt "Modules: Navigation: Breadcrumbs"
 msgid "Page <strong>%s</strong> of %s"
 msgstr "صفحه <strong>%s</strong> از %s"
 
-#: inc/navigation.php:221
+#: inc/navigation.php:239
 msgctxt "Modules: Navigation: Breadcrumbs"
 msgid "Page <strong>%s</strong>"
 msgstr "صفحه <strong>%s</strong>"
 
-#: inc/navigation.php:282
+#: inc/navigation.php:300
 msgctxt "Modules: Navigation: Breadcrumbs"
 msgid "Not Found"
 msgstr "پیدا نشد"
 
-#: inc/navigation.php:287
+#: inc/navigation.php:305
 msgctxt "Modules: Navigation: Breadcrumbs"
 msgid "Category Archives for <strong>%s</strong>"
 msgstr "بایگانی دستهٔ <strong>%s</strong>"
 
-#: inc/navigation.php:293
+#: inc/navigation.php:311
 msgctxt "Modules: Navigation: Breadcrumbs"
 msgid "Tag Archives for <strong>%s</strong>"
 msgstr "بایگانی برچسب <strong>%s</strong>"
 
-#: inc/navigation.php:299
+#: inc/navigation.php:317
 msgctxt "Modules: Navigation: Breadcrumbs"
 msgid "People Archives for <strong>%s</strong>"
 msgstr "بایگانی برای <strong>%s</strong>"
 
-#: inc/navigation.php:305
+#: inc/navigation.php:323
 msgctxt "Modules: Navigation: Breadcrumbs"
 msgid "Archives for <strong>%s</strong>"
 msgstr "بایگانی <strong>%s</strong>"
 
-#: inc/navigation.php:314
+#: inc/navigation.php:332
 msgctxt "Modules: Navigation: Breadcrumbs"
 msgid "%s Archives for <strong>%s</strong>"
 msgstr "بایگانی %s <strong>%s</strong>"
 
-#: inc/navigation.php:328
+#: inc/navigation.php:346
 msgctxt "Modules: Navigation: Breadcrumbs"
 msgid "Author Archives for <strong>%s</strong>"
 msgstr "بایگانی نوشته‌های <strong>%s</strong>"
 
-#: inc/navigation.php:335
+#: inc/navigation.php:353
 msgctxt "Modules: Navigation: Breadcrumbs"
 msgid "Search Results for <strong>%s</strong>"
 msgstr "نتایج جست‌وجو برای <strong>%s</strong>"
 
-#: inc/navigation.php:341
+#: inc/navigation.php:359
 msgctxt "Modules: Navigation: Breadcrumbs"
 msgid "Daily Archives for <strong>%s</strong>"
 msgstr "بایگانی روز <strong>%s</strong>"
 
-#: inc/navigation.php:347
+#: inc/navigation.php:361
+msgctxt "Options: Defaults: Date Format: Day"
+msgid "j M Y"
+msgstr ""
+
+#: inc/navigation.php:365
 msgctxt "Modules: Navigation: Breadcrumbs"
 msgid "Monthly Archives for <strong>%s</strong>"
 msgstr "بایگانی ماه <strong>%s</strong>"
 
-#: inc/navigation.php:353
+#: inc/navigation.php:371
 msgctxt "Modules: Navigation: Breadcrumbs"
 msgid "Yearly Archives for <strong>%s</strong>"
 msgstr "بایگانی سال <strong>%s</strong>"
 
-#: inc/navigation.php:358
+#: inc/navigation.php:376
 msgctxt "Modules: Navigation: Breadcrumbs"
 msgid "Archives"
 msgstr "بایگانی"
@@ -721,115 +784,34 @@ msgctxt "Logo Title"
 msgid "Home"
 msgstr "خانه"
 
-#: inc/options.php:77
-msgctxt "Options: Separator: Default"
-msgid " "
-msgstr ""
-
-#: inc/options.php:78
-msgctxt "Options: Separator: Title"
-msgid " &raquo; "
-msgstr " &laquo; "
-
-#: inc/options.php:79
-msgctxt "Options: Separator: Nav"
-msgid " &laquo; "
-msgstr " &raquo; "
-
-#: inc/options.php:80
-msgctxt "Options: Separator: Byline"
-msgid " | "
-msgstr ""
-
-#: inc/options.php:81
-msgctxt "Options: Separator: Term"
-msgid ", "
-msgstr "، "
-
-#: inc/options.php:82
-msgctxt "Options: Separator: Embed"
-msgid "; "
-msgstr "؛ "
-
-#: inc/options.php:83
-msgctxt "Options: Separator: Feed"
-msgid "; "
-msgstr "؛ "
-
-#: inc/options.php:84
-msgctxt "Options: Separator: Comment Action"
-msgid " | "
-msgstr ""
-
-#: inc/options.php:86
-msgctxt "Options: Text Size Increase"
-msgid "[ A+ ]"
-msgstr "[ الف+ ]"
-
-#: inc/options.php:87
-msgctxt "Options: Text Size Decrease"
-msgid "[ A- ]"
-msgstr "[ الف– ]"
-
-#: inc/options.php:88
-msgctxt "Options: Text Size Sep"
-msgid " / "
-msgstr " \\ "
-
-#: inc/options.php:90
-msgctxt "Options: Text Justify"
-msgid "[ Ju ]"
-msgstr "[ همـ ]"
-
-#: inc/options.php:91
-msgctxt "Options: Text Unjustify"
-msgid "[ uJ ]"
-msgstr "[ ناهمـ ]"
-
-#: inc/options.php:92
-msgctxt "Options: Text Justify Sep"
-msgid " / "
-msgstr " \\ "
-
-#: inc/options.php:94
+#: inc/options.php:93
 msgctxt "Options: Source Before"
 msgid "Source: "
 msgstr "منبع: "
 
-#: inc/options.php:95
+#: inc/options.php:94
 msgctxt "Options: Reflist Title"
 msgid "Footnotes"
 msgstr "پانوشت‌ها"
 
-# @ gtheme
-#: inc/options.php:131
-msgid "&copy; All right reserved."
-msgstr "&copy; تمامی حقوق محفوظ است."
-
-#: inc/options.php:211
-msgctxt "Options: Defaults: Date Format: Byline"
-msgid "j M Y"
-msgstr ""
-
-#: inc/options.php:212
-msgctxt "Options: Defaults: Date Format: Day"
-msgid "j M Y"
-msgstr ""
+#: inc/options.php:129
+msgid "&copy; All rights reserved."
+msgstr "تمام حقوق محفوظ است."
 
 # @ gtheme
-#: inc/options.php:231
+#: inc/options.php:222
 msgctxt "Media Tag Titles"
 msgid "Raw"
 msgstr "خام"
 
 # @ gtheme
-#: inc/options.php:242
+#: inc/options.php:233
 msgctxt "Media Tag Titles"
 msgid "Big"
 msgstr "بزرگ"
 
 # @ gtheme
-#: inc/options.php:253
+#: inc/options.php:244
 msgctxt "Media Tag Titles"
 msgid "Single"
 msgstr "نوشته"
@@ -894,171 +876,165 @@ msgctxt "Pages Module: Default Pages"
 msgid "Privacy Policy"
 msgstr "حریم خصوصی"
 
-#: inc/pages.php:106
+#: inc/pages.php:108
 msgctxt "Modules: Menu Name"
 msgid "Pages"
 msgstr "برگه‌ها"
 
-#: inc/pages.php:115
+#: inc/pages.php:117
 msgctxt "Pages Module: Form Title"
 msgid "Site Page Settings"
 msgstr "تنظیمات برگه‌های سایت"
 
-#: inc/pages.php:131
+#: inc/pages.php:133
 msgctxt "Pages Module"
 msgid "Create Default Pages"
 msgstr "ساختن برگه‌های پیش‌فرض"
 
-#: inc/pages.php:132
+#: inc/pages.php:134
 msgctxt "Pages Module"
 msgid "Create Default Menus"
 msgstr "ساختن فهرست‌های پیش‌فرض"
 
-#: inc/pages.php:188
+#: inc/pages.php:190
 msgctxt "Options: Page Pre-Text"
 msgid "[ This page is being completed ]"
 msgstr "[این صفحه در حال آماده‌سازی است.]"
 
 # @ gtheme
-#: inc/search.php:36, inc/search.php:39, inc/search.php:52, inc/search.php:57
-msgctxt "label"
-msgid "Search for:"
-msgstr "جست‌وجو برای:"
-
-# @ gtheme
-#: inc/search.php:38, inc/search.php:56
+#: inc/search.php:38, inc/search.php:77
 msgctxt "placeholder"
 msgid "Search &hellip;"
 msgstr "جست‌وجو &hellip;"
 
 # @ gtheme
-#: inc/search.php:60
+#: inc/search.php:83
 msgctxt "submit button"
 msgid "Search"
 msgstr "جست‌وجو"
 
 # @ gtheme
-#: inc/search.php:77
+#: inc/search.php:103
 msgctxt "buddypress: label"
 msgid "Search for:"
 msgstr "جست‌وجو برای:"
 
 # @ gtheme
-#: inc/search.php:81
+#: inc/search.php:111
 msgctxt "buddypress: placeholder"
 msgid "Search &hellip;"
 msgstr "جست‌وجو &hellip;"
 
 # @ gtheme
-#: inc/search.php:84
+#: inc/search.php:117
 msgctxt "buddypress: submit button"
 msgid "Search"
 msgstr "جست‌وجو"
 
 # @ gtheme
-#: inc/settings.php:47, inc/settings.php:73, inc/settings.php:245
+#: inc/settings.php:44, inc/settings.php:70, inc/settings.php:242
 msgctxt "Admin Settings Page Title"
 msgid "gTheme Settings"
 msgstr "تنظیمات پوسته"
 
 # @ gtheme
-#: inc/settings.php:48, inc/settings.php:243
+#: inc/settings.php:45, inc/settings.php:240
 msgctxt "Admin Menu Title"
 msgid "Theme Settings"
 msgstr "تنظیمات پوسته"
 
-#: inc/settings.php:63
+#: inc/settings.php:60
 msgctxt "Modules: Menu Name"
 msgid "Overview"
 msgstr "در یک نگاه"
 
-#: inc/settings.php:64
+#: inc/settings.php:61
 msgctxt "Modules: Menu Name"
 msgid "General"
 msgstr "همگانی"
 
-#: inc/settings.php:68
+#: inc/settings.php:65
 msgctxt "Settings Module"
 msgid "Settings not updated."
 msgstr "تنظیمات به‌روز نشد."
 
-#: inc/settings.php:69
+#: inc/settings.php:66
 msgctxt "Settings Module"
 msgid "Settings updated."
 msgstr "تنظیمات به‌روز شد."
 
-#: inc/settings.php:113
+#: inc/settings.php:110
 msgctxt "Settings Module"
 msgid "General Settings"
 msgstr "تنظیمات همگانی"
 
-#: inc/settings.php:118
+#: inc/settings.php:115
 msgctxt "Settings Module"
 msgid "Theme Group"
 msgstr "گروه پوسته"
 
-#: inc/settings.php:123
+#: inc/settings.php:120
 msgctxt "Settings Module"
 msgid "Current site's theme group."
 msgstr "گروه پوسته برای این سایت."
 
-#: inc/settings.php:127
+#: inc/settings.php:124
 msgctxt "Settings Module"
 msgid "Site User"
 msgstr "کاربر سایت"
 
-#: inc/settings.php:132
+#: inc/settings.php:129
 msgctxt "Settings Module"
 msgid "Site default user. For hiding the editoris!"
 msgstr "کاربر پیش‌فرض سایت. برای پنهان‌کردن اپراتورها!"
 
-#: inc/settings.php:136
+#: inc/settings.php:133
 msgctxt "Settings Module"
 msgid "FrontPage Title"
 msgstr "عنوان صفحه اصلی"
 
-#: inc/settings.php:140
+#: inc/settings.php:137
 msgctxt "Settings Module"
 msgid "The title used on frontpage. Blank to use the build-in text."
 msgstr ""
 
-#: inc/settings.php:144
+#: inc/settings.php:141
 msgctxt "Settings Module"
 msgid "FrontPage Description"
 msgstr "توضیحات صفحه اصلی"
 
-#: inc/settings.php:148
+#: inc/settings.php:145
 msgctxt "Settings Module"
 msgid ""
 "The description meta tag used on frontpage. Blank to use the build-in text."
 msgstr ""
 
-#: inc/settings.php:152
+#: inc/settings.php:149
 msgctxt "Settings Module"
 msgid "Extra Body Class"
 msgstr "کلاس‌های اضافی برای بادی"
 
-#: inc/settings.php:156
+#: inc/settings.php:153
 msgctxt "Settings Module"
 msgid "Additional classes to append to the html body tag. Seperate with space."
 msgstr "کلاس‌های اضافی برای پیوست به بدنه HTML. با فاصله جدا شود."
 
-#: inc/settings.php:162
+#: inc/settings.php:159
 msgctxt "Settings Module"
 msgid "Legend"
 msgstr "توضیحات"
 
-#: inc/settings.php:224
+#: inc/settings.php:221
 msgctxt "Settings Module"
 msgid "Flush"
 msgstr "فلاش"
 
-#: inc/settings.php:231
+#: inc/settings.php:228
 msgctxt "Settings Module"
 msgid "All Posts"
 msgstr "همهٔ نوشته‌ها"
 
-#: inc/settings.php:256
+#: inc/settings.php:253
 msgctxt "Modules: Settings"
 msgid "Theme Template Base"
 msgstr "پایه الگوی پوسته"
@@ -1095,230 +1071,25 @@ msgctxt "Modules: Sidebar: Defaults"
 msgid "Singular: After Entry"
 msgstr "تک‌نوشته: بعد از متن"
 
-#: inc/sidebar.php:462
-msgctxt "Widget: Setting"
-msgid "Custom HTML:"
-msgstr "متن سفارشی:"
+#: inc/social.php:123, inc/social.php:130
+msgctxt "Options: Separator: Title"
+msgid " &raquo; "
+msgstr " &laquo; "
 
-#: inc/sidebar.php:481
-msgctxt "Widget: Setting"
-msgid "Number of posts to show:"
-msgstr "تعداد نوشته‌هایی که نمایش داده می‌شود:"
-
-#: inc/sidebar.php:509
-msgctxt "Widget: Setting"
-msgid "Context:"
-msgstr "زمینه:"
-
-#: inc/sidebar.php:525
-msgctxt "Widget: Setting"
-msgid "CSS Class:"
-msgstr "کلاس:"
-
-#: inc/sidebar.php:547
-msgctxt "Widget: Setting"
-msgid "PostType:"
-msgstr "نوع‌نوشته:"
-
-#: inc/sidebar.php:570
-msgctxt "Widget: Setting"
-msgid "Taxonomy:"
-msgstr "رده‌بندی:"
-
-#: inc/sidebar.php:585
-msgctxt "Widget: Setting"
-msgid "Title:"
-msgstr "عنوان:"
-
-#: inc/sidebar.php:601
-msgctxt "Widget: Setting"
-msgid "Title Link:"
-msgstr "پیوند عنوان:"
-
-#: inc/sidebar.php:607
-msgctxt "Widget: Setting"
-msgid "Custom Link:"
-msgstr "پیوند سفارشی:"
-
-#: inc/sidebar.php:626
-msgctxt "Widget: Setting"
-msgid "Custom Code:"
-msgstr "کد سفارشی:"
-
-#: inc/sidebar.php:645
-msgctxt "Widget: Setting"
-msgid "Empty Message:"
-msgstr "پیام خالی:"
-
-#: inc/sidebar.php:672
-msgctxt "Widget: Setting"
-msgid "Avatar Size:"
-msgstr "اندازه آواتار:"
-
-#: inc/sidebar.php:702
-msgctxt "Widget: Setting"
-msgid "Image Size:"
-msgstr "اندازه تصویر:"
-
-#: inc/sidebar.php:705
-msgctxt "Widget: Setting"
-msgid "No Image Size Available!"
-msgstr "اندازه‌ای برای تصاویر وجود ندارد!"
-
-#: inc/sidebar.php:712
-msgctxt "Widget: Setting"
-msgid "Checked"
-msgstr "منتخب:"
-
-#: inc/sidebar.php:733
-msgctxt "Widget: Setting"
-msgid "Page:"
-msgstr "برگه:"
-
-#: inc/sidebar.php:778
-msgctxt "Widget: Setting"
-msgid "Term:"
-msgstr "رده:"
-
-#: inc/sidebar.php:790
-msgctxt "Widget: Title"
-msgid "Theme: Term Posts"
-msgstr "پوسته: نوشته‌های رده"
-
-#: inc/sidebar.php:791
-msgctxt "Widget: Description"
-msgid "Displays the latest posts from a single term."
-msgstr "نمایش آخرین نوشته‌های یک رده."
-
-#: inc/sidebar.php:903
-msgctxt "Widget: Title"
-msgid "Theme: Related Posts"
-msgstr "پوسته: نوشته‌های مرتبط"
-
-#: inc/sidebar.php:904
-msgctxt "Widget: Description"
-msgid "Displays the related posts based on terms in a taxonomy."
-msgstr "نمایش نوشته‌های مرتبط براساس رده‌بندی‌ها."
-
-#: inc/sidebar.php:1021
-msgctxt "Widget: Title"
-msgid "Theme: Recent Posts"
-msgstr "پوسته: آخرین نوشته‌ها"
-
-#: inc/sidebar.php:1022
-msgctxt "Widget: Description"
-msgid "Displays the most recent posts."
-msgstr "نمایش آخرین نوشته‌ها."
-
-#: inc/sidebar.php:1115
-msgctxt "Widget: Title"
-msgid "Theme: Recent Comments"
-msgstr "پوسته: آخرین دیدگاه‌ها"
-
-#: inc/sidebar.php:1116
-msgctxt "Widget: Description"
-msgid "Displays the most recent comments."
-msgstr "نمایش آخرین دیدگاه‌ها."
-
-#: inc/sidebar.php:1218
-msgctxt "Widget: Title"
-msgid "Theme: Search"
-msgstr "پوسته: جست‌وجو"
-
-#: inc/sidebar.php:1219
-msgctxt "Widget: Description"
-msgid "Displays search form."
-msgstr "نمایش فرم جست‌وجو."
-
-#: inc/sidebar.php:1254
-msgctxt "Widget: Title"
-msgid "Theme: Template Part"
-msgstr "پوسته: قطعه‌ای از پوسته"
-
-#: inc/sidebar.php:1255
-msgctxt "Widget: Description"
-msgid "Include selected template part into sidebars."
-msgstr "قراردادن قطعه‌ای از پوسته در ستون‌های کناری."
-
-#: inc/sidebar.php:1290
-msgctxt "Widget: Title"
-msgid "Theme: Children"
-msgstr "پوسته: فرزندان"
-
-#: inc/sidebar.php:1291
-msgctxt "Widget: Description"
-msgid "Displays the list of current post's children."
-msgstr "نمایش فهرست فرزندان نوشته کنونی."
-
-#: inc/sidebar.php:1330
-msgctxt "Widget: Title"
-msgid "Theme: Siblings"
-msgstr "پوسته: هم‌نیاکان"
-
-#: inc/sidebar.php:1331
-msgctxt "Widget: Description"
-msgid "Displays the list of current post's siblings."
-msgstr "نمایش فهرست هم‌نیاکان نوشته کنونی."
-
-#: inc/sidebar.php:1370
-msgctxt "Widget: Title"
-msgid "Theme: The Term"
-msgstr "پوسته: رده"
-
-#: inc/sidebar.php:1371
-msgctxt "Widget: Description"
-msgid "Displays the current term info based on the query."
-msgstr "نمایش اطلاعات مربوط به ردهٔ فعال."
-
-#: inc/sidebar.php:1429
-msgctxt "Widget: Setting"
-msgid "Display Meta Image"
-msgstr "نمایش تصویر متا"
-
-#: inc/sidebar.php:1430
-msgctxt "Widget: Setting"
-msgid "Hide if no Description"
-msgstr "بدون توضیحات پنهان شود"
-
-#: inc/sidebar.php:1444
-msgctxt "Widget: Title"
-msgid "Theme: Custom HTML"
-msgstr "پوسته: متن سفارشی"
-
-#: inc/sidebar.php:1445
-msgctxt "Widget: Description"
-msgid "Displays arbitrary HTML code with support for shortcodes and embeds."
-msgstr "نمایش کد HTML دلخواه، همراه با پشتیبانی از شورت‌کدها و جاسازها."
-
-#: inc/sidebar.php:1522
-msgctxt "Widget: Setting"
-msgid "Process Embeds"
-msgstr "پردازش جاسازها"
-
-#: inc/sidebar.php:1523
-msgctxt "Widget: Setting"
-msgid "Process Shortcodes"
-msgstr "پردازش شورت‌کدها"
-
-#: inc/sidebar.php:1524
-msgctxt "Widget: Setting"
-msgid "Process Filters"
-msgstr "پردازش فیلترها"
-
-#: inc/sidebar.php:1525
-msgctxt "Widget: Setting"
-msgid "Process Filters (Legacy)"
-msgstr "پردازش فیلترها (قدیمی)"
-
-#: inc/sidebar.php:1526
-msgctxt "Widget: Setting"
-msgid "Automatic Paragraphs"
-msgstr "پاراگراف‌های خودکار"
-
-#: inc/template.php:58
+#: inc/template.php:105
 msgctxt "Modules: Template: Author"
 msgid "Posts by %s"
 msgstr "نوشته‌های %s"
+
+#: inc/template.php:187
+msgctxt "Options: Separator: Nav"
+msgid " &laquo; "
+msgstr " &raquo; "
+
+#: inc/template.php:222
+msgctxt "Root: End: Before Site Modified"
+msgid "Last updated on"
+msgstr "آخرین به‌روزرسانی در"
 
 #: inc/terms.php:44
 msgctxt "Modules: Menu Name"
@@ -1498,19 +1269,234 @@ msgid "Connected Posts"
 msgstr "نوشته‌های مرتبط"
 
 # @ gtheme
-#: inc/utilities.php:191
+#: inc/utilities.php:216
 msgctxt "Alert button (screen reader only)"
 msgid "Close"
 msgstr "بستن"
 
+#: inc/Widgets/Children.php:11
+msgctxt "Widget: Title"
+msgid "Theme: Children"
+msgstr "پوسته: فرزندان"
+
+#: inc/Widgets/Children.php:12
+msgctxt "Widget: Description"
+msgid "Displays the list of current post's children."
+msgstr "نمایش فهرست فرزندان نوشته کنونی."
+
+#: inc/Widgets/CustomHTML.php:11
+msgctxt "Widget: Title"
+msgid "Theme: Custom HTML"
+msgstr "پوسته: متن سفارشی"
+
+#: inc/Widgets/CustomHTML.php:12
+msgctxt "Widget: Description"
+msgid "Displays arbitrary HTML code with support for shortcodes and embeds."
+msgstr "نمایش کد HTML دلخواه، همراه با پشتیبانی از شورت‌کدها و جاسازها."
+
+#: inc/Widgets/CustomHTML.php:89
+msgctxt "Widget: Setting"
+msgid "Process Embeds"
+msgstr "پردازش جاسازها"
+
+#: inc/Widgets/CustomHTML.php:90
+msgctxt "Widget: Setting"
+msgid "Process Shortcodes"
+msgstr "پردازش شورت‌کدها"
+
+#: inc/Widgets/CustomHTML.php:91
+msgctxt "Widget: Setting"
+msgid "Process Filters"
+msgstr "پردازش فیلترها"
+
+#: inc/Widgets/CustomHTML.php:92
+msgctxt "Widget: Setting"
+msgid "Process Filters (Legacy)"
+msgstr "پردازش فیلترها (قدیمی)"
+
+#: inc/Widgets/CustomHTML.php:93
+msgctxt "Widget: Setting"
+msgid "Automatic Paragraphs"
+msgstr "پاراگراف‌های خودکار"
+
+#: inc/Widgets/RecentComments.php:11
+msgctxt "Widget: Title"
+msgid "Theme: Recent Comments"
+msgstr "پوسته: آخرین دیدگاه‌ها"
+
+#: inc/Widgets/RecentComments.php:12
+msgctxt "Widget: Description"
+msgid "Displays the most recent comments."
+msgstr "نمایش آخرین دیدگاه‌ها."
+
+#: inc/Widgets/RecentPosts.php:11
+msgctxt "Widget: Title"
+msgid "Theme: Recent Posts"
+msgstr "پوسته: آخرین نوشته‌ها"
+
+#: inc/Widgets/RecentPosts.php:12
+msgctxt "Widget: Description"
+msgid "Displays the most recent posts."
+msgstr "نمایش آخرین نوشته‌ها."
+
+#: inc/Widgets/RelatedPosts.php:11
+msgctxt "Widget: Title"
+msgid "Theme: Related Posts"
+msgstr "پوسته: نوشته‌های مرتبط"
+
+#: inc/Widgets/RelatedPosts.php:12
+msgctxt "Widget: Description"
+msgid "Displays the related posts based on terms in a taxonomy."
+msgstr "نمایش نوشته‌های مرتبط براساس رده‌بندی‌ها."
+
+#: inc/Widgets/Search.php:11
+msgctxt "Widget: Title"
+msgid "Theme: Search"
+msgstr "پوسته: جست‌وجو"
+
+#: inc/Widgets/Search.php:12
+msgctxt "Widget: Description"
+msgid "Displays search form."
+msgstr "نمایش فرم جست‌وجو."
+
+#: inc/Widgets/Siblings.php:11
+msgctxt "Widget: Title"
+msgid "Theme: Siblings"
+msgstr "پوسته: هم‌نیاکان"
+
+#: inc/Widgets/Siblings.php:12
+msgctxt "Widget: Description"
+msgid "Displays the list of current post's siblings."
+msgstr "نمایش فهرست هم‌نیاکان نوشته کنونی."
+
+#: inc/Widgets/TemplatePart.php:11
+msgctxt "Widget: Title"
+msgid "Theme: Template Part"
+msgstr "پوسته: قطعه‌ای از پوسته"
+
+#: inc/Widgets/TemplatePart.php:12
+msgctxt "Widget: Description"
+msgid "Include selected template part into sidebars."
+msgstr "قراردادن قطعه‌ای از پوسته در ستون‌های کناری."
+
+#: inc/Widgets/TermPosts.php:11
+msgctxt "Widget: Title"
+msgid "Theme: Term Posts"
+msgstr "پوسته: نوشته‌های رده"
+
+#: inc/Widgets/TermPosts.php:12
+msgctxt "Widget: Description"
+msgid "Displays the latest posts from a single term."
+msgstr "نمایش آخرین نوشته‌های یک رده."
+
+#: inc/Widgets/TheTerm.php:11
+msgctxt "Widget: Title"
+msgid "Theme: The Term"
+msgstr "پوسته: رده"
+
+#: inc/Widgets/TheTerm.php:12
+msgctxt "Widget: Description"
+msgid "Displays the current term info based on the query."
+msgstr "نمایش اطلاعات مربوط به ردهٔ فعال."
+
+#: inc/Widgets/TheTerm.php:70
+msgctxt "Widget: Setting"
+msgid "Display Meta Image"
+msgstr "نمایش تصویر متا"
+
+#: inc/Widgets/TheTerm.php:71
+msgctxt "Widget: Setting"
+msgid "Hide if no Description"
+msgstr "بدون توضیحات پنهان شود"
+
+#: inc/WordPress/Widget.php:192
+msgctxt "Widget: Setting"
+msgid "Custom HTML:"
+msgstr "متن سفارشی:"
+
+#: inc/WordPress/Widget.php:211
+msgctxt "Widget: Setting"
+msgid "Number of posts to show:"
+msgstr "تعداد نوشته‌هایی که نمایش داده می‌شود:"
+
+#: inc/WordPress/Widget.php:239
+msgctxt "Widget: Setting"
+msgid "Context:"
+msgstr "زمینه:"
+
+#: inc/WordPress/Widget.php:255
+msgctxt "Widget: Setting"
+msgid "CSS Class:"
+msgstr "کلاس:"
+
+#: inc/WordPress/Widget.php:277
+msgctxt "Widget: Setting"
+msgid "PostType:"
+msgstr "نوع‌نوشته:"
+
+#: inc/WordPress/Widget.php:300
+msgctxt "Widget: Setting"
+msgid "Taxonomy:"
+msgstr "رده‌بندی:"
+
+#: inc/WordPress/Widget.php:315
+msgctxt "Widget: Setting"
+msgid "Title:"
+msgstr "عنوان:"
+
+#: inc/WordPress/Widget.php:331
+msgctxt "Widget: Setting"
+msgid "Title Link:"
+msgstr "پیوند عنوان:"
+
+#: inc/WordPress/Widget.php:337
+msgctxt "Widget: Setting"
+msgid "Custom Link:"
+msgstr "پیوند سفارشی:"
+
+#: inc/WordPress/Widget.php:356
+msgctxt "Widget: Setting"
+msgid "Custom Code:"
+msgstr "کد سفارشی:"
+
+#: inc/WordPress/Widget.php:375
+msgctxt "Widget: Setting"
+msgid "Empty Message:"
+msgstr "پیام خالی:"
+
+#: inc/WordPress/Widget.php:402
+msgctxt "Widget: Setting"
+msgid "Avatar Size:"
+msgstr "اندازه آواتار:"
+
+#: inc/WordPress/Widget.php:432
+msgctxt "Widget: Setting"
+msgid "Image Size:"
+msgstr "اندازه تصویر:"
+
+#: inc/WordPress/Widget.php:435
+msgctxt "Widget: Setting"
+msgid "No Image Size Available!"
+msgstr "اندازه‌ای برای تصاویر وجود ندارد!"
+
+#: inc/WordPress/Widget.php:442
+msgctxt "Widget: Setting"
+msgid "Checked"
+msgstr "منتخب:"
+
+#: inc/WordPress/Widget.php:463
+msgctxt "Widget: Setting"
+msgid "Page:"
+msgstr "برگه:"
+
+#: inc/WordPress/Widget.php:508
+msgctxt "Widget: Setting"
+msgid "Term:"
+msgstr "رده:"
+
 #: latest.php:7
 msgid "Latest Page"
 msgstr "برگه آخرین‌ها"
-
-#: partials/end.php:10
-msgctxt "Root: End: Before Site Modified"
-msgid "Last updated on"
-msgstr "آخرین به‌روزرسانی در"
 
 #: searchadvanced.php:7
 msgid "Search Advanced"
@@ -1539,6 +1525,10 @@ msgstr "https://fa.geminorum.ir/"
 #: systempage.php:7
 msgid "System Page"
 msgstr "برگه سیستم"
+
+# @ gtheme
+#~ msgid "&copy; All right reserved."
+#~ msgstr "&copy; تمامی حقوق محفوظ است."
 
 # @ gtheme
 #~ msgid "<strong>The default avatar is overrided by the active theme.</strong>"
