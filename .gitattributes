@@ -7,3 +7,17 @@
 *.woff2 binary
 *.ttf binary
 *.eot binary
+
+# Files to exclude when creating archive.
+*.git export-ignore
+*.gitignore export-ignore
+*.gitattributes export-ignore
+
+.editorconfig export-ignore
+.stylelintrc.json export-ignore
+
+gulp.config.json export-ignore
+gulpfile.js export-ignore
+
+package.json export-ignore
+yarn.lock export-ignore
