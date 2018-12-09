@@ -362,6 +362,7 @@ class gThemeContent extends gThemeModuleCore
 		echo $b.$excerpt.$a;
 	}
 
+	// FIXME: must accept `$post`
 	public static function postActions( $before = '<li class="entry-action %s">', $after = '</li>', $list = TRUE, $icon = NULL )
 	{
 		if ( ! $post = get_post() )
@@ -899,6 +900,7 @@ addthis_config.services_custom = [
 	public static function header( $atts = [] )
 	{
 		$args = self::atts( [
+			'post'        => NULL,
 			'context'     => 'single',
 			'prefix'      => 'entry',
 			'byline'      => FALSE,
@@ -910,13 +912,17 @@ addthis_config.services_custom = [
 			'title_tag'   => 'h2',
 			'meta_tag'    => 'h4',
 			'title'       => NULL, // or FALSE to disable
+			'title_attr'  => NULL, // or FALSE to disable
 			'meta'        => TRUE,
 			'link'        => TRUE, // disable linking compeletly
 			'anchor'      => FALSE, // permalink anchor for the post
 		], $atts );
 
+		if ( ! $post = get_post( $args['post'] ) )
+			return;
+
 		if ( is_null( $args['title'] ) )
-			$args['title'] = gThemeUtilities::wordWrap( get_the_title(), 2 );
+			$args['title'] = get_the_title( $post );
 
 		if ( 0 == strlen( $args['title'] ) )
 			return;
@@ -924,10 +930,10 @@ addthis_config.services_custom = [
 		if ( $args['link'] ) {
 
 			if ( FALSE === $args['shortlink'] )
-				$link = get_permalink();
+				$link = get_permalink( $post );
 
 			else if ( TRUE === $args['shortlink'] )
-				$link = wp_get_shortlink( 0, 'post' );
+				$link = wp_get_shortlink( $post->ID, 'post' );
 
 			else
 				$link = $args['shortlink'];
@@ -941,8 +947,9 @@ addthis_config.services_custom = [
 
 		if ( $args['meta'] )
 			gThemeEditorial::meta( 'over-title', [
-				'before' => '<'.$args['meta_tag'].' itemprop="alternativeHeadline" class="overtitle '.$args['prefix'].'-overtitle">',
-				'after'  => '</'.$args['meta_tag'].'>',
+				'post_id' => $post->ID,
+				'before'  => '<'.$args['meta_tag'].' itemprop="alternativeHeadline" class="overtitle '.$args['prefix'].'-overtitle">',
+				'after'   => '</'.$args['meta_tag'].'>',
 			] );
 
 		echo '<'.$args['title_tag'].' itemprop="headline" class="title '.$args['prefix'].'-title amp-wp-title">';
@@ -951,31 +958,37 @@ addthis_config.services_custom = [
 
 			echo '<a itemprop="url" rel="bookmark" href="'.$link.'"';
 
-			if ( FALSE !== $args['title'] )
-				echo ' title="'.self::title_attr( FALSE, $args['title'], ( TRUE === $args['shortlink'] ? FALSE : NULL ) ).'"';
+			if ( FALSE !== $args['title_attr'] ) {
 
-			echo '>'.$args['title'].'</a>';
+				if ( is_null( $args['title_attr'] ) )
+					$args['title_attr'] = trim( strip_tags( $args['title'] ) );
+
+				echo ' title="'.self::title_attr( FALSE, $args['title_attr'], ( TRUE === $args['shortlink'] ? FALSE : NULL ) ).'"';
+			}
+
+			echo '>'.gThemeUtilities::wordWrap( $args['title'], 2 ).'</a>';
 
 		} else {
 
-			echo $args['title'];
+			echo gThemeUtilities::wordWrap( $args['title'], 2 );
 		}
 
 		if ( $args['anchor'] )
-			permalink_anchor( 'id' );
+			echo '<a id="post-'.$post->ID.'"></a>'; // @REF: `permalink_anchor();`
 
 		echo '</'.$args['title_tag'].'>';
 
 		if ( $args['meta'] )
 			gThemeEditorial::meta( 'sub-title', [
-				'before' => '<'.$args['meta_tag'].' itemprop="alternativeHeadline" class="subtitle '.$args['prefix'].'-subtitle">',
-				'after'  => '</'.$args['meta_tag'].'>',
+				'post_id' => $post->ID,
+				'before'  => '<'.$args['meta_tag'].' itemprop="alternativeHeadline" class="subtitle '.$args['prefix'].'-subtitle">',
+				'after'   => '</'.$args['meta_tag'].'>',
 			] );
 
 		echo '</div>';
 
 		if ( $args['byline'] ) {
-			self::byline( NULL, '<div class="'.$args['prefix'].'-byline byline-'.$args['context'].'">', '</div>' );
+			self::byline( $post, '<div class="'.$args['prefix'].'-byline byline-'.$args['context'].'">', '</div>' );
 		}
 
 		if ( $args['actions'] ) {
