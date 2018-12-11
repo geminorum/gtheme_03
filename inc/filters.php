@@ -96,7 +96,8 @@ class gThemeFilters extends gThemeModuleCore
 
 			echo self::getStyleLink( TRUE, TRUE );
 
-		} else if ( gThemeOptions::info( 'deferred_styles', FALSE ) ) {
+		} else if ( gThemeOptions::info( 'deferred_styles', FALSE )
+			&& ! gThemeWordPress::isDebug() ) {
 
 			self::preloadStyles();
 
