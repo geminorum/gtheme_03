@@ -23,6 +23,7 @@ class gThemeTheme extends gThemeModuleCore
 			'bp_support'        => TRUE,
 			'bp_no_styles'      => FALSE,
 			'print_support'     => TRUE,
+			'alignwide_support' => FALSE,
 		], $args ) );
 
 		if ( $cleanup )
@@ -165,6 +166,10 @@ class gThemeTheme extends gThemeModuleCore
 			add_action( 'init', function() {
 				add_rewrite_endpoint( GTHEME_PRINT_QUERY, EP_PERMALINK | EP_PAGES );
 			} );
+		}
+
+		if ( $alignwide_support ) {
+			add_theme_support( 'align-wide' );
 		}
 	}
 
