@@ -73,6 +73,7 @@ final class gThemeCore
 			'date'       => 'gThemeDate',
 			'editorial'  => 'gThemeEditorial',
 			'attachment' => 'gThemeAttachment',
+			'colors'     => 'gThemeColors',
 		];
 
 		if ( is_admin() ) {
