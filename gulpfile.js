@@ -97,6 +97,11 @@
   ));
 
   gulp.task('github:tag', function (done) {
+    if (!env.github) {
+      log.error('Error: missing required token for github');
+      return done();
+    }
+
     var changes = parseChangelog(fs.readFileSync('CHANGES.md', { encoding: 'utf-8' }), { title: false });
     var repo = /github\.com:?\/?([\w-]+)\/([\w-]+)/.exec(pkg.repository.url);
     var options = {
