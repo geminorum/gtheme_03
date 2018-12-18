@@ -16,6 +16,7 @@ class gThemeTheme extends gThemeModuleCore
 			'post_formats'      => FALSE,
 			'custom_background' => FALSE,
 			'custom_logo'       => FALSE,
+			'custom_fontsizes'  => FALSE,
 			'html5'             => TRUE,
 			'js'                => FALSE,
 			'hooks'             => TRUE, // @REF: https://is.gd/4ORzuI
@@ -98,6 +99,39 @@ class gThemeTheme extends gThemeModuleCore
 					'flex-height' => TRUE,
 					'header-text' => gThemeOptions::info( 'blog_name', '' ),
 			] ) );
+
+		if ( $custom_fontsizes ) {
+
+			add_theme_support( 'disable-custom-font-sizes' );
+
+			add_theme_support( 'editor-font-sizes',
+				gThemeOptions::info( 'editor_custom_fontsizes', [
+					[
+						'name'      => _x( 'Small', 'Editor Custom Font Sizes', GTHEME_TEXTDOMAIN ),
+						'shortName' => _x( 'S', 'Editor Custom Font Sizes', GTHEME_TEXTDOMAIN ),
+						'slug'      => 'small',
+						'size'      => 12,
+					],
+					[
+						'name'      => _x( 'Regular', 'Editor Custom Font Sizes', GTHEME_TEXTDOMAIN ),
+						'shortName' => _x( 'M', 'Editor Custom Font Sizes', GTHEME_TEXTDOMAIN ),
+						'slug'      => 'regular',
+						'size'      => 16,
+					],
+					[
+						'name'      => _x( 'Large', 'Editor Custom Font Sizes', GTHEME_TEXTDOMAIN ),
+						'shortName' => _x( 'L', 'Editor Custom Font Sizes', GTHEME_TEXTDOMAIN ),
+						'slug'      => 'large',
+						'size'      => 36,
+					],
+					[
+						'name'      => _x( 'Larger', 'Editor Custom Font Sizes', GTHEME_TEXTDOMAIN ),
+						'shortName' => _x( 'XL', 'Editor Custom Font Sizes', GTHEME_TEXTDOMAIN ),
+						'slug'      => 'larger',
+						'size'      => 50,
+					],
+			] ) );
+		}
 
 		if ( $html5 )
 			add_theme_support( 'html5',
