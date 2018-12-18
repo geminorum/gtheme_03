@@ -15,8 +15,11 @@ class gThemeEditor extends gThemeModuleCore
 			'default_content' => FALSE,
 		], $args ) );
 
-		if ( $css )
+		if ( $css ) {
+			add_theme_support( 'editor-style' );
+			add_action( 'enqueue_block_editor_assets', [ $this, 'enqueue_block_editor_assets' ] );
 			add_filter( 'mce_css', [ $this, 'mce_css' ] );
+		}
 
 		if ( $buttons )
 			add_filter( 'mce_buttons', [ $this, 'mce_buttons' ] );
@@ -31,9 +34,9 @@ class gThemeEditor extends gThemeModuleCore
 			add_filter( 'default_content', [ $this, 'default_content' ], 10, 2 );
 	}
 
-	public static function style_url()
+	public static function style_url( $asset = 'editor' )
 	{
-		$file = 'front.editor'
+		$file = 'front.'.$asset
 			.( gThemeUtilities::isRTL() ? '-rtl' : '' )
 			// .( SCRIPT_DEBUG ? '' : '.min' )
 			.'.css';
@@ -42,6 +45,16 @@ class gThemeEditor extends gThemeModuleCore
 			return GTHEME_CHILD_URL.'/css/'.$file;
 		else
 			return GTHEME_URL.'/css/'.$file;
+	}
+
+	public function enqueue_block_editor_assets()
+	{
+		wp_enqueue_style( GTHEME.'-blocks-style', self::style_url( 'blocks' ), FALSE, GTHEME_CHILD_VERSION, 'all' );
+
+		$inline = gThemeColors::getAccentColorCSS();
+
+		if ( trim( $inline ) )
+			wp_add_inline_style( GTHEME.'-blocks-style', $inline );
 	}
 
 	// comma-delimited list of stylesheets to load in TinyMCE
