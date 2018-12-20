@@ -1,3 +1,6 @@
+### 3.18.1
+* module/editorial: explicitly check for module enabled
+
 ### 3.18.0
 * module/colors: new module
 * module/content: using post from atts in headers
