@@ -172,7 +172,7 @@ class gThemeTerms extends gThemeModuleCore
 			'update_count_callback' => [ 'gThemeUtilities', 'update_count_callback' ],
 			'rewrite'               => FALSE,
 			'query_var'             => FALSE,
-			'show_in_rest'          => FALSE,
+			'show_in_rest'          => TRUE, // for block editor
 			'capabilities'          => [
 				'manage_terms' => $manage,
 				'edit_terms'   => $manage,
