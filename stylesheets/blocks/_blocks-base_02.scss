@@ -1,0 +1,82 @@
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+/// Blocks: Editor Blocks: Base 02 - 2018-12-16
+
+// NOT USED
+
+////////////////////////////////////////////////////////////////////////////////
+body {
+  background-color: $theme-background-color;
+  color: $theme-text-color;
+}
+
+// /* Main column width */
+.wp-block {
+  max-width: $theme-entry-width;
+}
+
+// /* Width of "wide" blocks */
+.wp-block[data-align="wide"] {
+  max-width: 1080px;
+}
+
+// /* Width of "full-wide" blocks */
+.wp-block[data-align="full"] {
+  max-width: none;
+}
+
+
+.edit-post-visual-editor {
+  background-color: $theme-background-color;
+
+  .editor-post-title__input,
+  .editor-block-list__block {
+    color: $theme-text-color;
+    // margin: 0 auto;
+    // max-width: $theme-entry-width;
+  }
+
+  .editor-post-title__input {
+    font-family: $headings-font-family;
+    font-weight: $headings-font-weight;
+    color: $headings-color;
+  }
+
+  .editor-block-list__block {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-family: $headings-font-family;
+      font-weight: $headings-font-weight;
+      color: $headings-color;
+    }
+
+    ol,
+    ul {
+      list-style: none outside none;
+
+      li {}
+    }
+
+    // @import "content";
+    // @import "custom";
+  }
+}
+
+.edit-post-visual-editor p,
+.edit-post-visual-editor,
+.blocks-rich-text__tinymce.mce-content-body {
+  line-height: inherit;
+  font-size: inherit;
+}
+
+.edit-post-visual-editor .editor-block-list__block-edit,
+.edit-post-visual-editor {
+  font-family: $font-family-normal;
+  font-size: $font-size-base; // $theme-font-size
+  line-height: $line-height-base; // $theme-line-height;
+}

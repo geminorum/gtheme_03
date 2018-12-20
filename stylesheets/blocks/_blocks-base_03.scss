@@ -1,0 +1,56 @@
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+/// Blocks: Editor Blocks: Base 03 - 2018-12-16
+
+$headings-font-family: $font-family-bold !default;
+$headings-font-weight: 700 !default;
+
+////////////////////////////////////////////////////////////////////////////////
+body {
+  .wp-block[data-align="full"] {
+    width: 100%;
+  }
+}
+
+.wp-block {
+  // width: calc(100vw - (2 * 1rem));
+  // max-width: 100%;
+
+  max-width: $theme-entry-width;
+
+  &[data-align="full"] {
+    max-width: none;
+  }
+
+  &[data-align="wide"] {
+    max-width: $theme-container-width;
+  }
+
+  // Only the top level blocks need specific widths,
+  // therefore override for every nested block.
+  .wp-block {
+    width: 100%;
+  }
+}
+
+.edit-post-visual-editor {
+  &.editor-styles-wrapper {
+    font-size: $base-size-font;
+    font-family: $font-family-normal;
+    line-height: $line-height-base;
+    color: $theme-text-color;
+    background-color: $theme-background-color;
+  }
+
+  .editor-post-title__input {
+    font-family: $headings-font-family;
+    font-weight: $headings-font-weight;
+    // font-size: 1.5rem;
+    color: $headings-color;
+  }
+
+  p {
+    @include theme-default-paragraph();
+  }
+}

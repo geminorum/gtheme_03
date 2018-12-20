@@ -74,12 +74,13 @@
 
 ////////////////////////////////////////////////////////////////////////////////
 // Default Paragraph Styles
+// it's better to be empty and child override it
 @mixin theme-default-paragraph() {
   // font-size: $font-size-large;
 
   // line-height: $headings-line-height * 1.2;
   // line-height: $line-height-large;
-  // line-height:   $theme-grid-gutter;
+  // line-height: $theme-grid-gutter;
   // line-height: $line-height-base * 1.1;
 
   // margin-bottom: $theme-grid-gutter;

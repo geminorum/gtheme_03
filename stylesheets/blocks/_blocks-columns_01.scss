@@ -1,0 +1,38 @@
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+/// Blocks: Editor Blocks: Columns 01 - 2018-12-11
+// @REF: https://css-tricks.com/styling-the-gutenberg-columns-block/
+// @REF: https://codepen.io/jcasabona/pen/BOMqoK
+// @SEE: https://codepen.io/jcasabona/pen/RYvEYd
+
+////////////////////////////////////////////////////////////////////////////////
+.wp-block-columns {
+  display: flex;
+  margin: $theme-grid-gutter 0;
+}
+
+.wp-block-column {
+  flex: 1;
+  margin: 0 $theme-grid-gutter;
+}
+
+@media (max-width: 764px) {
+  .wp-block-columns.has-3-columns {
+    flex-flow: row wrap;
+  }
+
+  .has-3-columns .wp-block-column:first-child {
+    flex-basis: 100%;
+  }
+}
+
+@media (max-width: 478px) {
+  .wp-block-columns.has-3-columns {
+    display: block;
+  }
+
+  .wp-block-column {
+    margin: $theme-grid-gutter 0;
+  }
+}

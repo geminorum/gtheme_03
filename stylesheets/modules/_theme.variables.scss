@@ -5,10 +5,12 @@
 
 ////////////////////////////////////////////////////////////////////////////////
 $theme-container-width: 1440px !default;
+$theme-entry-width: $theme-container-width / 2 !default;
 $theme-grid-gutter: 20px !default;
 
 $theme-brand-color: #2868c7 !default;
 $theme-background-color: #fff !default;
+$theme-text-color: $gray-dark !default;
 
 ////////////////////////////////////////////////////////////////////////////////
 $theme-wp-adminbar-height: 32px !default; // WordPress Adminbar Height

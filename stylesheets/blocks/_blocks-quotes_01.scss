@@ -1,0 +1,72 @@
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+/// Blocks: Editor Blocks: Quotes 01 - 2018-12-11
+// @REF: https://www.billerickson.net/getting-your-theme-ready-for-gutenberg/
+
+$highlight: $gray-light !default;
+
+////////////////////////////////////////////////////////////////////////////////
+/// Blockquote
+
+blockquote,
+blockquote.wp-block-quote {
+  background: transparent;
+  text-align: left;
+
+  p {
+    color: $highlight;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+  }
+
+  cite,
+  .wp-block-quote__citation {
+    color: $highlight;
+    display: block;
+    font-size: 16px;
+    font-weight: 700;
+    margin-top: 12px;
+    text-transform: uppercase;
+  }
+
+  p:last-of-type {
+    margin-bottom: 0;
+  }
+
+  &.is-large,
+  &.is-style-large {
+    margin: $theme-grid-gutter auto;
+
+    p {
+      // @include font-sizes( 24px, 36px );
+    }
+  }
+
+}
+
+////////////////////////////////////////////////////////////////////////////////
+/// Pull Quote
+
+.wp-block-pullquote {
+  border: none;
+  padding: 0;
+
+  blockquote {
+    border-left: 0;
+    border-top: 8px solid $highlight;
+    border-bottom: 8px solid $highlight;
+    padding: 16px 0;
+    text-align: center;
+    max-width: 50%;
+    margin: 0 auto;
+  }
+
+  &.alignleft,
+  &.alignright {
+    blockquote {
+      max-width: 100%;
+    }
+  }
+}

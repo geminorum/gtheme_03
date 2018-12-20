@@ -1,0 +1,41 @@
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+/// Blocks: Editor Blocks: Rules 01 - 2018-12-11
+// @REF: https://www.billerickson.net/getting-your-theme-ready-for-gutenberg/
+
+$highlight: $gray-light !default;
+$border-color: $gray-lighter !default;
+
+////////////////////////////////////////////////////////////////////////////////
+/// Separator
+
+.wp-block-separator,
+hr {
+  &:not(.is-style-dots) {
+    background-color: $border-color;
+    border: 0;
+    height: 1px;
+  }
+
+  &:not(.is-style-wide):not(.is-style-dots) {
+    width: 100%;
+    height: 4px;
+    background: transparent;
+
+    &::before {
+      content: "";
+      display: block;
+      height: 4px;
+      width: 40px;
+      background: $highlight;
+    }
+  }
+
+  &.is-style-dots::before {
+    color: $gray-darker;
+    font-size: 18px;
+    letter-spacing: 12px;
+    padding-left: 12px;
+  }
+}
