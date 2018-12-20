@@ -76,6 +76,10 @@ class gThemeImage extends gThemeModuleCore
 
 	public function tweaks_column_thumb( $html, $post_id, $size )
 	{
+		// only if it's empty
+		if ( ! empty( $html ) )
+			return $html;
+
 		if ( ! $post = get_post( $post_id ) )
 			return $html;
 
