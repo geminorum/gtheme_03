@@ -45,6 +45,25 @@ class gThemeSearch extends gThemeModuleCore
 		echo $html;
 	}
 
+	// FIXME: DRAFT: NOT USED
+	// @REF: http://bootsnipp.com/snippets/featured/expanding-search-button-in-css
+	// @SEE: http://jsbin.com/futeyo/1/edit?html,css,js,output
+	public static function formExpanding( $placeholder = NULL, $class = '' )
+	{
+		if ( is_null( $placeholder ) )
+			$placeholder = __( 'Search &hellip;', GTHEME_TEXTDOMAIN );
+
+		echo '<form class="form search-form -expanding '.$class.'" role="search" method="get" action="'.esc_url( self::getAction() ).'">';
+		echo '<div class="form-group">';
+			echo '<label for="search" class="screen-reader-text sr-only">'._x( 'Search for:', 'label', GTHEME_TEXTDOMAIN ).'</label>';
+			echo '<input id="search" type="text" class="form-control" name="'.self::getKey().'" value="'.self::query().'"';
+			if ( $placeholder )
+				echo ' placeholder="'.$placeholder.'" ';
+		echo '/>';
+		echo '<span class="glyphicon glyphicon-search form-control-feedback"></span>';
+		echo '</div></form>';
+	}
+
 	public static function form( $context = 'index', $extra = '' )
 	{
 		$html = '<form role="search" method="get" class="form search-form search-form-';

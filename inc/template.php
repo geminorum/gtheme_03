@@ -58,13 +58,32 @@ class gThemeTemplate extends gThemeModuleCore
 		echo $logo;
 	}
 
-
 	public static function description( $before = '<p class="site-description -description">', $after = '</p>' )
 	{
 		$desc = gThemeOptions::info( 'frontpage_desc' );
 
 		if ( $desc )
 			echo $before.$desc.$after;
+	}
+
+	// FIXME: DRAFT: NOT USED
+	public static function header( $before = '', $after = '' )
+	{
+		if ( ! $src = get_header_image() )
+			return;
+
+		$image = get_custom_header();
+
+		echo $before;
+
+		echo '<center><a href="'.gThemeUtilities::home().'">';
+		echo '<img src="'.$src.'" class="header-image';
+		echo '" width="'.esc_attr( $image->width );
+		echo '" height="'.esc_attr( $image->height );
+		echo '" alt="'.gThemeOptions::info( 'blog_name', '' );
+		echo '" /></a></center>';
+
+		echo $after;
 	}
 
 	public static function sidebar( $name = NULL, $before = '', $after = '' )

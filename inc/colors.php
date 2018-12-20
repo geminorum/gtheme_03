@@ -6,7 +6,7 @@ class gThemeColors extends gThemeModuleCore
 	public function setup_actions( $args = [] )
 	{
 		extract( self::atts( [
-			'custom_palette' => FALSE,
+			'custom_palette' => TRUE,
 			'accent_color'   => self::getAccentColorDefault(), // @REF: https://richtabor.com/gutenberg-customizer-colors/
 		], $args ) );
 
@@ -86,8 +86,8 @@ class gThemeColors extends gThemeModuleCore
 
 		$accent = get_theme_mod( 'accent_color', $default );
 
-		$css = '.has-'.GTHEME.'-accent-color { color: '.esc_attr( $accent ).' !important; }';
-		$css.= '.has-'.GTHEME.'-accent-background-color { background-color: '.esc_attr( $accent ).'; }';
+		$css = '.has-'.GTHEME.'-accent-color{color:'.esc_attr( $accent ).'!important;}';
+		$css.= '.has-'.GTHEME.'-accent-background-color{background-color:'.esc_attr( $accent ).';}';
 
 		return wp_strip_all_tags( $css );
 	}
