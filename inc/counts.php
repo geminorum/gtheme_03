@@ -21,13 +21,13 @@ class gThemeCounts extends gThemeModuleCore
 	{
 		return array_merge( [
 			'dashboard' => [
-				'title' => _x( 'Dashboard', 'Counts Module', GTHEME_TEXTDOMAIN ),
-				'desc'  => _x( 'Dashboard Count', 'Counts Module', GTHEME_TEXTDOMAIN ),
+				'title' => _x( 'Dashboard', 'Modules: Counts', GTHEME_TEXTDOMAIN ),
+				'desc'  => _x( 'Dashboard Count', 'Modules: Counts', GTHEME_TEXTDOMAIN ),
 				'def'   => 5,
 			],
 			'latest' => [
-				'title' => _x( 'Latest Posts', 'Counts Module', GTHEME_TEXTDOMAIN ),
-				'desc'  => _x( 'Latest Posts Count', 'Counts Module', GTHEME_TEXTDOMAIN ),
+				'title' => _x( 'Latest Posts', 'Modules: Counts', GTHEME_TEXTDOMAIN ),
+				'desc'  => _x( 'Latest Posts Count', 'Modules: Counts', GTHEME_TEXTDOMAIN ),
 				'def'   => 5,
 			],
 		], $extra );

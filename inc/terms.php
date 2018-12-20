@@ -109,7 +109,7 @@ class gThemeTerms extends gThemeModuleCore
 				echo $legend;
 
 			echo '<table class="form-table">';
-				echo '<tr><th scope="row">'._x( 'Primary Terms', 'Terms Module', GTHEME_TEXTDOMAIN ).'</th><td>';
+				echo '<tr><th scope="row">'._x( 'Primary Terms', 'Modules: Terms', GTHEME_TEXTDOMAIN ).'</th><td>';
 
 				foreach ( gThemeWordPress::getTerms( $taxonomy, FALSE, TRUE ) as $term ) {
 
@@ -146,7 +146,7 @@ class gThemeTerms extends gThemeModuleCore
 			echo '<p class="submit">';
 
 				$this->settings_buttons( 'primaryterms', FALSE );
-				echo get_submit_button( _x( 'Create Default Primary Terms', 'Terms Module', GTHEME_TEXTDOMAIN ), 'secondary', 'create-default-primaryterms', FALSE, self::getButtonConfirm() ).'&nbsp;&nbsp;';
+				echo get_submit_button( _x( 'Create Default Primary Terms', 'Modules: Terms', GTHEME_TEXTDOMAIN ), 'secondary', 'create-default-primaryterms', FALSE, self::getButtonConfirm() ).'&nbsp;&nbsp;';
 
 			echo '</p>';
 			wp_nonce_field( 'gtheme-primaryterms', '_gtheme_primaryterms' );
@@ -283,16 +283,16 @@ class gThemeTerms extends gThemeModuleCore
 	public function after_system_tags_table( $taxonomy )
 	{
 		$name   = 'gtheme_action';
-		$title  = _x( 'Install Default System Tags', 'Terms Module', GTHEME_TEXTDOMAIN );
+		$title  = _x( 'Install Default System Tags', 'Modules: Terms', GTHEME_TEXTDOMAIN );
 		$action = add_query_arg( $name, 'install_systemtags' );
 
 		if ( isset( $_GET[$name] ) ) {
 
 			if ( 'error_systemtags' == $_GET[$name] )
-				$title = _x( 'Error while adding default system tags.', 'Terms Module', GTHEME_TEXTDOMAIN );
+				$title = _x( 'Error while adding default system tags.', 'Modules: Terms', GTHEME_TEXTDOMAIN );
 
 			else if ( 'added_systemtags' == $_GET[$name] )
-				$title = _x( 'Default system tags added.', 'Terms Module', GTHEME_TEXTDOMAIN );
+				$title = _x( 'Default system tags added.', 'Modules: Terms', GTHEME_TEXTDOMAIN );
 		}
 
 		echo '<div class="form-field"><p>';
@@ -305,7 +305,7 @@ class gThemeTerms extends gThemeModuleCore
 		if ( $taxonomy != GTHEME_SYSTEMTAGS )
 			return $actions;
 
-		return array_merge( $actions, [ 'empty_lastmonth' => _x( 'Empty Before Last Month', 'Terms Module', GTHEME_TEXTDOMAIN ) ] );
+		return array_merge( $actions, [ 'empty_lastmonth' => _x( 'Empty Before Last Month', 'Modules: Terms', GTHEME_TEXTDOMAIN ) ] );
 	}
 
 	public function taxonomy_bulk_callback( $callback, $action, $taxonomy )

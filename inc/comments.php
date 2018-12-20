@@ -98,7 +98,7 @@ class gThemeComments extends gThemeModuleCore
 					 + get_option( 'close_comments_days_old' )
 					 * DAY_IN_SECONDS;
 
-			printf( _x( '(This topic will automatically close in %s. )', 'Comments Module', GTHEME_TEXTDOMAIN ), human_time_diff( $expires, current_time( 'timestamp' ) ) );
+			printf( _x( '(This topic will automatically close in %s. )', 'Modules: Comments', GTHEME_TEXTDOMAIN ), human_time_diff( $expires, current_time( 'timestamp' ) ) );
 		}
 	}
 
@@ -109,7 +109,7 @@ class gThemeComments extends gThemeModuleCore
 
 		if ( $print )
 			echo '<p class="no-password">'
-				._x( 'This post is password protected. Enter the password to view any comments.', 'Comments Module', GTHEME_TEXTDOMAIN )
+				._x( 'This post is password protected. Enter the password to view any comments.', 'Modules: Comments', GTHEME_TEXTDOMAIN )
 			.'</p>';
 
 		echo '</div>';
@@ -120,9 +120,9 @@ class gThemeComments extends gThemeModuleCore
 	public static function navigation( $class = 'comment-nav-above' )
 	{
 		$strings = gThemeOptions::info( 'comment_nav_strings', [
-			'title'    => _x( 'Comment navigation', 'Comments Module', GTHEME_TEXTDOMAIN ),
-			'previous' => _x( '&rarr; Older Comments', 'Comments Module', GTHEME_TEXTDOMAIN ),
-			'next'     => _x( 'Newer Comments &larr;', 'Comments Module', GTHEME_TEXTDOMAIN ),
+			'title'    => _x( 'Comment navigation', 'Modules: Comments', GTHEME_TEXTDOMAIN ),
+			'previous' => _x( '&rarr; Older Comments', 'Modules: Comments', GTHEME_TEXTDOMAIN ),
+			'next'     => _x( 'Newer Comments &larr;', 'Modules: Comments', GTHEME_TEXTDOMAIN ),
 		] );
 
 		echo '<nav class="navigation comment-navigation '.$class.'" role="navigation">';
@@ -150,7 +150,7 @@ class gThemeComments extends gThemeModuleCore
 
 		$html = gThemeHTML::tag( 'a', [
 			'href'  => get_post_comments_feed_link(),
-			'title' => _x( 'Grab the feed for comments of this post', 'Comments Module', GTHEME_TEXTDOMAIN ),
+			'title' => _x( 'Grab the feed for comments of this post', 'Modules: Comments', GTHEME_TEXTDOMAIN ),
 		], $icon );
 
 		echo gThemeHTML::wrap( $html, $class );
@@ -161,7 +161,7 @@ class gThemeComments extends gThemeModuleCore
 	{
 		if ( defined( 'WPLOCKDOWN' ) && constant( 'WPLOCKDOWN' ) ) {
 			echo '<div class="lockdown-notice '.$class.'">';
-				_ex( 'Sorry, The site is locked down. Updates will appear shortly.', 'Comments Module', GTHEME_TEXTDOMAIN );
+				_ex( 'Sorry, The site is locked down. Updates will appear shortly.', 'Modules: Comments', GTHEME_TEXTDOMAIN );
 			echo '</div>';
 		}
 	}
@@ -225,7 +225,7 @@ class gThemeComments extends gThemeModuleCore
 			return;
 
 		$awaiting = gThemeOptions::info( 'comment_awaiting',
-			_x( 'Your comment is awaiting moderation.', 'Comments Module', GTHEME_TEXTDOMAIN ) );
+			_x( 'Your comment is awaiting moderation.', 'Modules: Comments', GTHEME_TEXTDOMAIN ) );
 
 		if ( $awaiting )
 			echo $before.$awaiting.$after;
@@ -249,10 +249,10 @@ class gThemeComments extends gThemeModuleCore
 		$actions = [];
 
 		$strings = gThemeOptions::info( 'comment_action_strings', [
-			'reply_text'    => _x( 'Reply', 'Comments Module: Action String', GTHEME_TEXTDOMAIN ),
-			'reply_to_text' => _x( 'Reply to %s', 'Comments Module: Action String', GTHEME_TEXTDOMAIN ),
-			'login_text'    => _x( 'Log in to Reply', 'Comments Module: Action String', GTHEME_TEXTDOMAIN ),
-			'edit'          => _x( 'Edit This', 'Comments Module: Action String', GTHEME_TEXTDOMAIN ),
+			'reply_text'    => _x( 'Reply', 'Modules: Comments: Action String', GTHEME_TEXTDOMAIN ),
+			'reply_to_text' => _x( 'Reply to %s', 'Modules: Comments: Action String', GTHEME_TEXTDOMAIN ),
+			'login_text'    => _x( 'Log in to Reply', 'Modules: Comments: Action String', GTHEME_TEXTDOMAIN ),
+			'edit'          => _x( 'Edit This', 'Modules: Comments: Action String', GTHEME_TEXTDOMAIN ),
 		] );
 
 		$reply = get_comment_reply_link( [
@@ -305,20 +305,20 @@ class gThemeComments extends gThemeModuleCore
 			$html5     = (bool) current_theme_supports( 'html5', 'comment-form' );
 
 			$strings = gThemeOptions::info( 'comment_form_strings', [
-				'required' => _x( '(Required)', 'Comments Module: Comment Form String', GTHEME_TEXTDOMAIN ),
-				'name'     => _x( 'Name', 'Comments Module: Comment Form String', GTHEME_TEXTDOMAIN ),
-				'email'    => _x( 'Email', 'Comments Module: Comment Form String', GTHEME_TEXTDOMAIN ),
-				'url'      => _x( 'Website', 'Comments Module: Comment Form String', GTHEME_TEXTDOMAIN ),
-				'comment'  => _x( 'Comment', 'Comments Module: Comment Form String', GTHEME_TEXTDOMAIN ),
-				'cookies'  => _x( 'Save my name, email, and site URL in my browser for next time I post a comment.', 'Comments Module: Comment Form String', GTHEME_TEXTDOMAIN ),
+				'required' => _x( '(Required)', 'Modules: Comments: Comment Form String', GTHEME_TEXTDOMAIN ),
+				'name'     => _x( 'Name', 'Modules: Comments: Comment Form String', GTHEME_TEXTDOMAIN ),
+				'email'    => _x( 'Email', 'Modules: Comments: Comment Form String', GTHEME_TEXTDOMAIN ),
+				'url'      => _x( 'Website', 'Modules: Comments: Comment Form String', GTHEME_TEXTDOMAIN ),
+				'comment'  => _x( 'Comment', 'Modules: Comments: Comment Form String', GTHEME_TEXTDOMAIN ),
+				'cookies'  => _x( 'Save my name, email, and site URL in my browser for next time I post a comment.', 'Modules: Comments: Comment Form String', GTHEME_TEXTDOMAIN ),
 
-				'must_log_in'        => _x( 'You must be <a href="%s">logged in</a> to post a comment.', 'Comments Module: Comment Form String', GTHEME_TEXTDOMAIN ),
-				'logged_in_as'       => _x( '<a href="%1$s" aria-label="%2$s">Logged in as %3$s</a>. <a href="%4$s">Log out?</a>', 'Comments Module: Comment Form String', GTHEME_TEXTDOMAIN ),
-				'logged_in_as_title' => _x( 'Logged in as %s. Edit your profile.', 'Comments Module: Comment Form String', GTHEME_TEXTDOMAIN ),
-				'title_reply'        => _x( 'Leave a Reply', 'Comments Module: Comment Form String', GTHEME_TEXTDOMAIN ),
-				'title_reply_to'     => _x( 'Leave a Reply to %s', 'Comments Module: Comment Form String', GTHEME_TEXTDOMAIN ),
-				'cancel_reply_link'  => _x( 'Cancel reply', 'Comments Module: Comment Form String', GTHEME_TEXTDOMAIN ),
-				'label_submit'       => _x( 'Post Comment', 'Comments Module: Comment Form String', GTHEME_TEXTDOMAIN ),
+				'must_log_in'        => _x( 'You must be <a href="%s">logged in</a> to post a comment.', 'Modules: Comments: Comment Form String', GTHEME_TEXTDOMAIN ),
+				'logged_in_as'       => _x( '<a href="%1$s" aria-label="%2$s">Logged in as %3$s</a>. <a href="%4$s">Log out?</a>', 'Modules: Comments: Comment Form String', GTHEME_TEXTDOMAIN ),
+				'logged_in_as_title' => _x( 'Logged in as %s. Edit your profile.', 'Modules: Comments: Comment Form String', GTHEME_TEXTDOMAIN ),
+				'title_reply'        => _x( 'Leave a Reply', 'Modules: Comments: Comment Form String', GTHEME_TEXTDOMAIN ),
+				'title_reply_to'     => _x( 'Leave a Reply to %s', 'Modules: Comments: Comment Form String', GTHEME_TEXTDOMAIN ),
+				'cancel_reply_link'  => _x( 'Cancel reply', 'Modules: Comments: Comment Form String', GTHEME_TEXTDOMAIN ),
+				'label_submit'       => _x( 'Post Comment', 'Modules: Comments: Comment Form String', GTHEME_TEXTDOMAIN ),
 			] );
 
 			$fields = [];
