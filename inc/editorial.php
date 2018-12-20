@@ -28,12 +28,25 @@ class gThemeEditorial extends gThemeModuleCore
 		return gThemeOptions::info( 'attachment_download_prefix', '' ).$filename;
 	}
 
+	public static function availableNetwork( $module )
+	{
+		if ( function_exists( 'gNetwork' ) )
+			return (bool) gNetwork()->module( $module );
+
+		return FALSE;
+	}
+
+	public static function availableEditorial( $module )
+	{
+		if ( function_exists( 'gEditorial' ) )
+			return gEditorial()->enabled( $module );
+
+		return FALSE;
+	}
+
 	public static function series( $atts = [], $echo = TRUE )
 	{
-		if ( ! function_exists( 'gEditorial' ) )
-			return FALSE;
-
-		if ( ! gEditorial()->enabled( 'series' ) )
+		if ( ! self::availableEditorial( 'series' ) )
 			return FALSE;
 
 		$html = gEditorial()->series->series_shortcode( $atts );
@@ -48,10 +61,7 @@ class gThemeEditorial extends gThemeModuleCore
 
 	public static function attachments( $atts = [], $echo = TRUE )
 	{
-		if ( ! function_exists( 'gEditorial' ) )
-			return FALSE;
-
-		if ( ! gEditorial()->enabled( 'attachments' ) )
+		if ( ! self::availableEditorial( 'attachments' ) )
 			return FALSE;
 
 		$html = gEditorial()->attachments->attachments_shortcode( $atts );
@@ -66,10 +76,7 @@ class gThemeEditorial extends gThemeModuleCore
 
 	public static function publications( $atts = [], $echo = TRUE )
 	{
-		if ( ! function_exists( 'gEditorial' ) )
-			return FALSE;
-
-		if ( ! gEditorial()->enabled( 'book' ) )
+		if ( ! self::availableEditorial( 'book' ) )
 			return FALSE;
 
 		$html = gEditorial()->book->publications_shortcode( $atts );
@@ -84,10 +91,7 @@ class gThemeEditorial extends gThemeModuleCore
 
 	public static function postLikeButton( $atts = [] )
 	{
-		if ( ! function_exists( 'gEditorial' ) )
-			return FALSE;
-
-		if ( ! gEditorial()->enabled( 'like' ) )
+		if ( ! self::availableEditorial( 'like' ) )
 			return FALSE;
 
 		$args = self::atts( [
@@ -114,10 +118,7 @@ class gThemeEditorial extends gThemeModuleCore
 
 	public static function siteModified( $atts = [], $echo = TRUE )
 	{
-		if ( ! function_exists( 'gEditorial' ) )
-			return FALSE;
-
-		if ( ! gEditorial()->enabled( 'modified' ) )
+		if ( ! self::availableEditorial( 'modified' ) )
 			return FALSE;
 
 		$html = gEditorial()->modified->site_modified_shortcode( $atts );
@@ -132,6 +133,9 @@ class gThemeEditorial extends gThemeModuleCore
 
 	public static function postModified( $atts = [], $echo = TRUE )
 	{
+		if ( ! self::availableEditorial( 'modified' ) )
+			return FALSE;
+
 		if ( ! function_exists( 'gEditorial' ) )
 			return FALSE;
 
@@ -150,6 +154,9 @@ class gThemeEditorial extends gThemeModuleCore
 
 	public static function label( $atts = [] )
 	{
+		if ( ! self::availableEditorial( 'meta' ) )
+			return FALSE;
+
 		if ( ! is_callable( [ 'geminorum\\gEditorial\\Templates\\Meta', 'metaLabel' ] ) )
 			return FALSE;
 
@@ -158,6 +165,9 @@ class gThemeEditorial extends gThemeModuleCore
 
 	public static function source( $atts = [] )
 	{
+		if ( ! self::availableEditorial( 'meta' ) )
+			return FALSE;
+
 		if ( ! is_callable( [ 'geminorum\\gEditorial\\Templates\\Meta', 'metaSource' ] ) )
 			return FALSE;
 
@@ -166,10 +176,7 @@ class gThemeEditorial extends gThemeModuleCore
 
 	public static function estimated( $atts = [] )
 	{
-		if ( ! function_exists( 'gEditorial' ) )
-			return FALSE;
-
-		if ( ! gEditorial()->enabled( 'estimated' ) )
+		if ( ! self::availableEditorial( 'estimated' ) )
 			return FALSE;
 
 		$args = self::atts( [
@@ -197,6 +204,9 @@ class gThemeEditorial extends gThemeModuleCore
 
 	public static function author( $atts = [] )
 	{
+		if ( ! self::availableEditorial( 'meta' ) )
+			return FALSE;
+
 		if ( ! is_callable( [ 'geminorum\\gEditorial\\Templates\\Meta', 'metaAuthor' ] ) )
 			return FALSE;
 
@@ -205,6 +215,9 @@ class gThemeEditorial extends gThemeModuleCore
 
 	public static function lead( $atts = [] )
 	{
+		if ( ! self::availableEditorial( 'meta' ) )
+			return FALSE;
+
 		if ( ! is_callable( [ 'geminorum\\gEditorial\\Templates\\Meta', 'metaLead' ] ) )
 			return FALSE;
 
@@ -213,6 +226,9 @@ class gThemeEditorial extends gThemeModuleCore
 
 	public static function meta( $field, $atts = [] )
 	{
+		if ( ! self::availableEditorial( 'meta' ) )
+			return FALSE;
+
 		if ( ! is_callable( [ 'geminorum\\gEditorial\\Templates\\Meta', 'getMetaField' ] ) )
 			return FALSE;
 
@@ -259,10 +275,7 @@ class gThemeEditorial extends gThemeModuleCore
 
 	public static function issuePosts( $atts = [], $echo = TRUE )
 	{
-		if ( ! function_exists( 'gEditorial' ) )
-			return FALSE;
-
-		if ( ! gEditorial()->enabled( 'magazine' ) )
+		if ( ! self::availableEditorial( 'magazine' ) )
 			return FALSE;
 
 		if ( ! array_key_exists( 'item_cb', $atts ) )
@@ -282,6 +295,9 @@ class gThemeEditorial extends gThemeModuleCore
 
 	public static function issue( $atts = [] )
 	{
+		if ( ! self::availableEditorial( 'magazine' ) )
+			return FALSE;
+
 		if ( ! is_callable( [ 'geminorum\\gEditorial\\Templates\\Magazine', 'theIssue' ] ) )
 			return FALSE;
 
@@ -290,6 +306,9 @@ class gThemeEditorial extends gThemeModuleCore
 
 	public static function issueMeta( $field, $atts = [] )
 	{
+		if ( ! self::availableEditorial( 'magazine' ) )
+			return FALSE;
+
 		if ( ! is_callable( [ 'geminorum\\gEditorial\\Templates\\Magazine', 'theIssueMeta' ] ) )
 			return FALSE;
 
@@ -298,6 +317,9 @@ class gThemeEditorial extends gThemeModuleCore
 
 	public static function issueCover( $atts = [] )
 	{
+		if ( ! self::availableEditorial( 'magazine' ) )
+			return FALSE;
+
 		if ( ! is_callable( [ 'geminorum\\gEditorial\\Templates\\Magazine', 'cover' ] ) )
 			return FALSE;
 
@@ -306,6 +328,9 @@ class gThemeEditorial extends gThemeModuleCore
 
 	public static function bookCover( $atts = [] )
 	{
+		if ( ! self::availableEditorial( 'book' ) )
+			return FALSE;
+
 		if ( ! is_callable( [ 'geminorum\\gEditorial\\Templates\\Book', 'cover' ] ) )
 			return FALSE;
 
@@ -314,10 +339,7 @@ class gThemeEditorial extends gThemeModuleCore
 
 	public static function refList( $atts = [], $echo = TRUE )
 	{
-		if ( ! function_exists( 'gNetwork' ) )
-			return FALSE;
-
-		if ( ! gNetwork()->module( 'shortcodes' ) )
+		if ( ! self::availableNetwork( 'shortcodes' ) )
 			return FALSE;
 
 		$html = gNetwork()->shortcodes->shortcode_reflist( array_merge( $atts, [ 'context' => 'single' ] ), NULL, 'reflist' );
@@ -338,6 +360,9 @@ class gThemeEditorial extends gThemeModuleCore
 
 	public static function personPicture( $atts = [], $post = NULL )
 	{
+		if ( ! self::availableEditorial( 'terms' ) )
+			return FALSE;
+
 		if ( ! is_callable( [ 'geminorum\\gEditorial\\Templates\\Terms', 'termImage' ] ) )
 			return FALSE;
 
