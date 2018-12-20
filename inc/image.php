@@ -61,11 +61,11 @@ class gThemeImage extends gThemeModuleCore
 		if ( $no_images_srcset_sizes )
 			remove_filter( 'the_content', 'wp_make_content_images_responsive' );
 
-		if ( is_admin() ) {
+		if ( ! is_admin() )
+			return;
 
-			if ( $image_attachment_tags )
-				add_filter( 'geditorial_tweaks_column_thumb', [ $this, 'tweaks_column_thumb' ], 12, 3 );
-		}
+		// also for fallbacks
+		add_filter( 'geditorial_tweaks_column_thumb', [ $this, 'tweaks_column_thumb' ], 12, 3 );
 	}
 
 	public function init()
