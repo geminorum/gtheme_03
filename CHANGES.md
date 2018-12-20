@@ -1,3 +1,12 @@
+### 3.18.0
+* module/colors: new module
+* module/content: using post from atts in headers
+* module/editor: support for block styles
+* module/filters: disable deferred on debug
+* module/terms: system tags on block editor
+* module/theme: support for align wide
+* module/theme: support for custom font sizes
+* widget/the term: using prep desc helper
 ### 3.17.0
 * root/content: link image to attachment page on singular
 * partal/navbar: new default template
