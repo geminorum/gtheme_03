@@ -38,7 +38,7 @@ class gThemeWidgetTheTerm extends gThemeWidget
 			echo $image;
 
 		if ( $desc )
-			echo wpautop( gThemeUtilities::wordWrap( $desc ), FALSE );
+			echo gThemeUtilities::prepDescription( $desc );
 
 		$this->after_widget( $args, $instance );
 	}
