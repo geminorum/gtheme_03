@@ -6,14 +6,16 @@ class gThemeColors extends gThemeModuleCore
 	public function setup_actions( $args = [] )
 	{
 		extract( self::atts( [
+			'disable_custom' => TRUE,
 			'custom_palette' => TRUE,
 			'accent_color'   => self::getAccentColorDefault(), // @REF: https://richtabor.com/gutenberg-customizer-colors/
 		], $args ) );
 
-		if ( $custom_palette ) {
+		if ( $disable_custom )
 			add_theme_support( 'disable-custom-colors' );
+
+		if ( $custom_palette )
 			add_theme_support( 'editor-color-palette', self::getCustomPalette() );
-		}
 
 		if ( $accent_color ) {
 			add_action( 'customize_register', [ $this, 'customize_register' ], 11 );
