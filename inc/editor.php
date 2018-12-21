@@ -18,6 +18,7 @@ class gThemeEditor extends gThemeModuleCore
 		if ( $css ) {
 			add_theme_support( 'editor-style' );
 			add_action( 'enqueue_block_editor_assets', [ $this, 'enqueue_block_editor_assets' ] );
+			add_action( 'enqueue_block_assets', [ $this, 'enqueue_block_assets' ] );
 			add_filter( 'mce_css', [ $this, 'mce_css' ] );
 		}
 
@@ -55,6 +56,11 @@ class gThemeEditor extends gThemeModuleCore
 
 		if ( trim( $inline ) )
 			wp_add_inline_style( GTHEME.'-blocks-style', $inline );
+	}
+
+	public function enqueue_block_assets()
+	{
+		wp_dequeue_style( [ 'wp-block-library', 'wp-block-library-theme' ] );
 	}
 
 	// comma-delimited list of stylesheets to load in TinyMCE
