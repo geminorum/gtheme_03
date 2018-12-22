@@ -181,7 +181,8 @@ class gThemeFilters extends gThemeModuleCore
 
 		} else if ( file_exists( GTHEME_CHILD_DIR.'/css/css.php' ) ) {
 
-			$args['dir'] = $rtl ? 'rtl' : 'ltr';
+			$args['dir']   = $rtl ? 'rtl' : 'ltr';
+			$args['group'] = gThemeOptions::getGroup();
 
 			$url = GTHEME_CHILD_URL.'/css/';
 
