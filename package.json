@@ -59,7 +59,7 @@
     "xtend": "^4.0.1"
   },
   "optionalDependencies": {
-    "bootstrap": "^4.1.3",
+    "bootstrap": "^4.2.1",
     "genericons-neue": "^4.0.5",
     "minireset.css": "^0.0.3",
     "paper-css": "^0.4.1",
