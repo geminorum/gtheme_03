@@ -5,14 +5,20 @@
 
 ////////////////////////////////////////////////////////////////////////////////
 
-@mixin theme-images-default() {
-  background-color: $gray-light;
-  padding: 1px;
-  max-width: 100%;
-  height: auto;
-  border-radius: 2px;
-}
+////////////////////////////////////////////////////////////////////////////////
+// Default Image Styles
+// it's better to be empty and child override it
+@mixin theme-images-default() {}
 
+// @mixin theme-images-default() {
+//   background-color: $gray-light;
+//   padding: 1px;
+//   max-width: 100%;
+//   height: auto;
+//   border-radius: 2px;
+// }
+
+////////////////////////////////////////////////////////////////////////////////
 @mixin theme-images-noborder() {
   background-color: transparent !important;
   border: none !important;

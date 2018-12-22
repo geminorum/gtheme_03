@@ -17,7 +17,7 @@ body {
   // width: calc(100vw - (2 * 1rem));
   // max-width: 100%;
 
-  max-width: $theme-entry-width;
+  max-width: $theme-entry-width + ( 2 * 15px ); // entry + paddings
 
   &[data-align="full"] {
     max-width: none;
@@ -50,7 +50,22 @@ body {
     color: $headings-color;
   }
 
+  // TODO: move this to gNetwork
+  .wp-block-shortcode {
+    .input-control {
+      direction: ltr;
+    }
+  }
+
+  .wp-block-image {
+    img {
+      @include theme-images-default();
+    }
+  }
+
   p {
     @include theme-default-paragraph();
   }
 }
+
+////////////////////////////////////////////////////////////////////////////////

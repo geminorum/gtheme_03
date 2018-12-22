@@ -1,0 +1,48 @@
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+/// Modules: Theme: Coloring -------------------------------------------------
+
+////////////////////////////////////////////////////////////////////////////////
+// @REF: https://richtabor.com/gutenberg-color-palettes/
+@mixin theme-coloring-gray-palette() {
+  .has-gray-darker-background-color {
+    background-color: $gray-darker;
+  }
+
+  .has-gray-darker-color {
+    color: $gray-darker;
+  }
+
+  .has-gray-dark-background-color {
+    background-color: $gray-dark;
+  }
+
+  .has-gray-dark-color {
+    color: $gray-dark;
+  }
+
+  .has-gray-background-color {
+    background-color: $gray;
+  }
+
+  .has-gray-color {
+    color: $gray;
+  }
+
+  .has-gray-light-background-color {
+    background-color: $gray-light;
+  }
+
+  .has-gray-light-color {
+    color: $gray-light;
+  }
+
+  .has-gray-lighter-background-color {
+    background-color: $gray-lighter;
+  }
+
+  .has-gray-lighter-color {
+    color: $gray-lighter;
+  }
+}
