@@ -14,7 +14,35 @@ class gThemePages extends gThemeModuleCore
 		if ( $admin && is_admin() ) {
 			add_filter( 'gtheme_settings_subs', [ $this, 'subs' ], 5 );
 			add_action( 'gtheme_settings_load', [ $this, 'load' ] );
+
+			add_filter( 'display_post_states', [ $this, 'display_post_states' ], 10, 2 );
 		}
+	}
+
+	public function display_post_states( $states, $post )
+	{
+		if ( 'page' != $post->post_type )
+			return $states;
+
+		$option = gThemeOptions::getOption( 'pages', [] );
+
+		if ( empty( $option ) )
+			return $states;
+
+		$flipped = array_flip( $option );
+
+		if ( ! array_key_exists( $post->ID, $flipped ) )
+			return $states;
+
+		$defaults = gThemeOptions::info( 'pages_list', self::defaults() );
+
+		$title = isset( $defaults[$flipped[$post->ID]] )
+			? $defaults[$flipped[$post->ID]]
+			: $flipped[$post->ID];
+
+		$states['gtheme_page'] = sprintf( _x( 'Theme: %s', 'Modules: Pages: Page State', GTHEME_TEXTDOMAIN ), $title );
+
+		return $states;
 	}
 
 	// FIXME: drop this
