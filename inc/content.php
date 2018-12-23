@@ -363,7 +363,7 @@ class gThemeContent extends gThemeModuleCore
 	}
 
 	// FIXME: must accept `$post`
-	public static function postActions( $before = '<li class="entry-action %s">', $after = '</li>', $list = TRUE, $icon = NULL )
+	public static function postActions( $before = '<li class="-action entry-action %s">', $after = '</li>', $list = TRUE, $icon = NULL )
 	{
 		if ( ! $post = get_post() )
 			return;
@@ -992,8 +992,8 @@ addthis_config.services_custom = [
 		}
 
 		if ( $args['actions'] ) {
-			echo '<ul class="-actions -actions-header '.$args['prefix'].'-actions actions-'.$args['context'].' list-inline">'; // FIXME: must drop list inline
-				self::postActions( '<li class="'.$args['prefix'].'-action %s">', '</li>', $args['actions'], $args['action_icon'] );
+			echo '<ul class="-actions -actions-header '.$args['prefix'].'-actions actions-'.$args['context'].' -inline">';
+				self::postActions( '<li class="-action '.$args['prefix'].'-action %s">', '</li>', $args['actions'], $args['action_icon'] );
 			echo '</ul>';
 		}
 
@@ -1018,8 +1018,8 @@ addthis_config.services_custom = [
 
 		if ( $args['actions'] ) {
 			echo '<footer class="footer-class footer-'.$args['context'].' '.$args['prefix'].'-footer">';
-				echo '<ul class="-actions -actions-footer '.$args['prefix'].'-actions actions-'.$args['context'].' list-inline">'; // FIXME: must drop list inline
-					self::postActions( '<li class="'.$args['prefix'].'-action %s">', '</li>', $args['actions'], $args['action_icon'] );
+				echo '<ul class="-actions -actions-footer '.$args['prefix'].'-actions actions-'.$args['context'].' -inline">';
+					self::postActions( '<li class="-action '.$args['prefix'].'-action %s">', '</li>', $args['actions'], $args['action_icon'] );
 				echo '</ul>';
 			echo '</footer>';
 		}
