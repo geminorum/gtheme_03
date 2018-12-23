@@ -805,6 +805,8 @@ class gThemeImage extends gThemeModuleCore
 			'term_id' => get_queried_object_id(),
 			'url'     => FALSE,
 			'empty'   => '',
+			'before'  => '',
+			'after'   => '',
 		], $atts );
 
 		if ( ! $args['term_id'] )
@@ -821,10 +823,10 @@ class gThemeImage extends gThemeModuleCore
 		if ( $args['url'] )
 			return $image[0];
 
-		return gThemeHTML::tag( 'img', [
+		return $args['before'].gThemeHTML::tag( 'img', [
 			'src'   => $image[0],
 			'alt'   => '',
 			'class' => gThemeOptions::info( 'image-class', 'the-img img-responsive' ).' -featured',
-		] );
+		] ).$args['after'];
 	}
 }
