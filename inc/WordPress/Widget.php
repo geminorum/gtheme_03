@@ -141,11 +141,11 @@ class gThemeWidget extends WP_Widget
 			$this->id_base
 		);
 
-		if ( $title && isset( $instance['title_link'] ) && $instance['title_link'] )
-			$title = gThemeHTML::link( $title, $instance['title_link'] );
-
 		if ( ! $title )
 			return '';
+
+		if ( ! empty( $instance['title_link'] ) )
+			$title = gThemeHTML::link( $title, $instance['title_link'] );
 
 		$html = $args['before_title'].$title.$args['after_title'];
 
