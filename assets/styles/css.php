@@ -5,8 +5,8 @@
 if ( ! $ltr ) {
 
 	$css = [
-		'front.screen-rtl.css',
-		// '../../gtheme_03/css/front.screen-rtl.css',
+		'main.screen-rtl.css',
+		// '../../gtheme_03/css/main.screen-rtl.css',
 
 		'../../../plugins/gnetwork/assets/css/front.all-rtl.css',
 		'../../../plugins/geditorial/assets/css/front.all-rtl.css',
@@ -18,8 +18,8 @@ if ( ! $ltr ) {
 } else {
 
 	$css = [
-		'front.screen.css',
-		// '../../gtheme_03/css/front.screen.css',
+		'main.screen.css',
+		// '../../gtheme_03/css/main.screen.css',
 
 		'../../../plugins/gnetwork/assets/css/front.all.css',
 		'../../../plugins/geditorial/assets/css/front.all.css',

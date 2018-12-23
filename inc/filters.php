@@ -114,7 +114,7 @@ class gThemeFilters extends gThemeModuleCore
 
 		// FIXME: also check if Bootstrap
 		// if ( gThemeWordPress::isDev() && ! gThemeUtilities::isPrint() )
-		// 	gThemeUtilities::linkStyleSheet( GTHEME_URL.'/css/front.dev'.( gThemeUtilities::isRTL() ? '-rtl' : '' ).'.css', GTHEME_VERSION, 'all' );
+		// 	gThemeUtilities::linkStyleSheet( GTHEME_URL.'/css/main.dev'.( gThemeUtilities::isRTL() ? '-rtl' : '' ).'.css', GTHEME_VERSION, 'all' );
 
 		if ( $singular )
 			echo '<link rel="pingback" href="'.get_bloginfo( 'pingback_url', 'display' ).'" />'."\n";
@@ -140,9 +140,12 @@ class gThemeFilters extends gThemeModuleCore
 			self::deferredStyles( $html );
 	}
 
-	public static function preloadStyles()
+	public static function preloadStyles( $group = NULL )
 	{
-		$file = 'front.preload'
+		if ( is_null( $group ) )
+			$group = gThemeOptions::getGroup();
+
+		$file = $group.'.preload'
 			.( gThemeUtilities::isRTL() ? '-rtl' : '' )
 			// .( SCRIPT_DEBUG ? '' : '.min' )
 			.'.css';
@@ -158,17 +161,20 @@ class gThemeFilters extends gThemeModuleCore
 		echo '<noscript><style type="text/css">#preloadspinner{display:none;z-index:-999999;}</style></noscript>'."\n";
 	}
 
-	public static function getStyleLink( $singular = FALSE, $print = FALSE )
+	public static function getStyleLink( $singular = FALSE, $print = FALSE, $group = NULL )
 	{
 		$rtl  = gThemeUtilities::isRTL();
 		$args = [ 'ver' => GTHEME_CHILD_VERSION ];
+
+		if ( is_null( $group ) )
+			$group = gThemeOptions::getGroup();
 
 		if ( gThemeWordPress::isDev() )
 			$args['debug'] = '';
 
 		if ( $singular && $print ) {
 
-			$file = 'front.print'
+			$file = $group.'.print'
 				.( $rtl ? '-rtl' : '' )
 				// .( SCRIPT_DEBUG ? '' : '.min' )
 				.'.css';
@@ -190,7 +196,8 @@ class gThemeFilters extends gThemeModuleCore
 
 		} else {
 
-			$url = GTHEME_CHILD_URL.'/css/front.screen'
+			$url = GTHEME_CHILD_URL.'/css/'
+				.$group.'.screen'
 				.( $rtl ? '-rtl' : '' )
 				// .( SCRIPT_DEBUG ? '' : '.min' )
 				.'.css';

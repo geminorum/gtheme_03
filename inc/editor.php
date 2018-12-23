@@ -35,9 +35,12 @@ class gThemeEditor extends gThemeModuleCore
 			add_filter( 'default_content', [ $this, 'default_content' ], 10, 2 );
 	}
 
-	public static function style_url( $asset = 'editor' )
+	public static function style_url( $asset = 'editor', $group = NULL )
 	{
-		$file = 'front.'.$asset
+		if ( is_null( $group ) )
+			$group = gThemeOptions::getGroup();
+
+		$file = $group.'.'.$asset
 			.( gThemeUtilities::isRTL() ? '-rtl' : '' )
 			// .( SCRIPT_DEBUG ? '' : '.min' )
 			.'.css';
