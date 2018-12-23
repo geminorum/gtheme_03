@@ -331,6 +331,11 @@ $theme-fonts-base: "https://rawcdn.githack.com" !default;
 // http://openfontlibrary.org/en/font/droid-arabic-naskh
 
 @mixin theme-fonts-DroidArabicNaskh($base: "../../gtheme_03/fonts") {
+  @include theme-fonts-DroidArabicNaskh-Normal($base);
+  @include theme-fonts-DroidArabicNaskh-Bold($base);
+}
+
+@mixin theme-fonts-DroidArabicNaskh-Normal($base: "../../gtheme_03/fonts") {
 
   $font-family-normal: "Droid Arabic Naskh", "Tahoma", "Iranian Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif !global;
 
@@ -352,6 +357,9 @@ $theme-fonts-base: "https://rawcdn.githack.com" !default;
         url($path + ".ttf") format("truetype");
     }
   }
+}
+
+@mixin theme-fonts-DroidArabicNaskh-Bold($base: "../../gtheme_03/fonts") {
 
   $font-family-bold: "Droid Arabic Naskh", "Arial", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", "Helvetica", sans-serif !global;
 
@@ -383,6 +391,11 @@ $theme-fonts-base: "https://rawcdn.githack.com" !default;
 // https://github.com/googlei18n/noto-fonts
 
 @mixin theme-fonts-NotoNaskhArabic($base: "../../gtheme_03/fonts") {
+  @include theme-fonts-NotoNaskhArabic-Normal($base);
+  @include theme-fonts-NotoNaskhArabic-Bold($base);
+}
+
+@mixin theme-fonts-NotoNaskhArabic-Normal($base: "../../gtheme_03/fonts") {
 
   $font-family-normal: "Noto Naskh Arabic", "Tahoma", "Iranian Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif !global;
 
@@ -404,6 +417,9 @@ $theme-fonts-base: "https://rawcdn.githack.com" !default;
         url($path + ".ttf") format("truetype");
     }
   }
+}
+
+@mixin theme-fonts-NotoNaskhArabic-Bold($base: "../../gtheme_03/fonts") {
 
   $font-family-bold: "Noto Naskh Arabic", "Arial", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", "Helvetica", sans-serif !global;
 

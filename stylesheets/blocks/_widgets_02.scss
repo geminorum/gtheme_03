@@ -1,0 +1,94 @@
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+/// Blocks: Widgets 02 - 2018-12-23
+
+////////////////////////////////////////////////////////////////////////////////
+$theme-widget-gutter: $theme-grid-gutter !default;
+
+////////////////////////////////////////////////////////////////////////////////
+.widget {
+
+  margin-bottom: $theme-widget-gutter;
+
+  .widget-title {
+    font-size: $font-size-h4;
+    color: $gray-dark;
+    margin-top: 0;
+  }
+
+  img,
+  select {
+    max-width: 100%;
+  }
+
+  iframe {
+    border: 0;
+  }
+
+  ul,
+  ol {
+    padding: 0;
+    padding-right: $theme-widget-gutter / 4;
+
+    li {
+      list-style: none;
+      padding: 0;
+      margin-bottom: $theme-widget-gutter / 4;
+    }
+  }
+
+  &.widget_calendar {
+    table {
+      // margin-top: $theme-widget-gutter / 2;
+      width: 100%;
+
+      a {
+        font-weight: 600;
+
+        &:hover {
+          color: $gray !important;
+          text-decoration: none;
+        }
+      }
+
+      // @REF: http://stackoverflow.com/a/8948741
+      td > a {
+        display: block;
+        height: 100%;
+        width: 100%;
+      }
+
+      caption {
+        color: $gray-dark;
+        padding: $padding-base-vertical $padding-base-horizontal;
+        text-align: center;
+      }
+
+      thead {
+        background: $table-bg-accent;
+        box-shadow: inset 0 -1px 0 #ddd;
+      }
+
+      th {
+        font-weight: 600;
+      }
+
+      th,
+      td {
+        padding: 3px 0;
+        text-align: center;
+        border: 1px solid $table-border-color;
+      }
+
+      td:hover {
+        background: $table-bg-hover;
+      }
+
+      .pad,
+      .-pad {
+        padding: 0 !important;
+      }
+    }
+  }
+}
