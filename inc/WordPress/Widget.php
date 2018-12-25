@@ -255,10 +255,16 @@ class gThemeWidget extends WP_Widget
 		], _x( 'CSS Class:', 'Widget: Setting', GTHEME_TEXTDOMAIN ).$html ).'</p>';
 	}
 
-	public function form_post_type( $instance, $default = 'post', $field = 'post_type' )
+	public function form_post_type( $instance, $default = 'post', $field = 'post_type', $any = TRUE )
 	{
 		$html = '';
 		$type = isset( $instance[$field] ) ? $instance[$field] : $default;
+
+		if ( $any )
+			$html.= gThemeHTML::tag( 'option', [
+				'value'    => 'any',
+				'selected' => $type == 'any',
+			], _x( '&ndash; (Any)', 'Widget: Setting', GTHEME_TEXTDOMAIN ) );
 
 		foreach ( gThemeWordPress::getPostTypes() as $name => $title )
 			$html.= gThemeHTML::tag( 'option', [
