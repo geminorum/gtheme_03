@@ -942,17 +942,17 @@ addthis_config.services_custom = [
 		if ( $args['meta'] )
 			$args['meta'] = gThemeOptions::supports( 'geditorial-meta', TRUE );
 
-		echo '<'.$args['wrap_tag'].' class="header-class header-'.$args['context'].' '.$args['prefix'].'-header amp-wp-article-header">';
-		echo '<div class="titles-class '.$args['prefix'].'-titles">';
+		echo '<'.$args['wrap_tag'].' class="-header header-class header-'.$args['context'].' '.$args['prefix'].'-header amp-wp-article-header">';
+		echo '<div class="-titles titles-class '.$args['prefix'].'-titles">';
 
 		if ( $args['meta'] )
 			gThemeEditorial::meta( 'over-title', [
 				'post_id' => $post->ID,
-				'before'  => '<'.$args['meta_tag'].' itemprop="alternativeHeadline" class="overtitle '.$args['prefix'].'-overtitle">',
+				'before'  => '<'.$args['meta_tag'].' itemprop="alternativeHeadline" class="-overtitle overtitle '.$args['prefix'].'-overtitle">',
 				'after'   => '</'.$args['meta_tag'].'>',
 			] );
 
-		echo '<'.$args['title_tag'].' itemprop="headline" class="title '.$args['prefix'].'-title amp-wp-title">';
+		echo '<'.$args['title_tag'].' itemprop="headline" class="-title title '.$args['prefix'].'-title amp-wp-title">';
 
 		if ( $args['link'] && $link ) {
 
@@ -981,14 +981,14 @@ addthis_config.services_custom = [
 		if ( $args['meta'] )
 			gThemeEditorial::meta( 'sub-title', [
 				'post_id' => $post->ID,
-				'before'  => '<'.$args['meta_tag'].' itemprop="alternativeHeadline" class="subtitle '.$args['prefix'].'-subtitle">',
+				'before'  => '<'.$args['meta_tag'].' itemprop="alternativeHeadline" class="-subtitle subtitle '.$args['prefix'].'-subtitle">',
 				'after'   => '</'.$args['meta_tag'].'>',
 			] );
 
 		echo '</div>';
 
 		if ( $args['byline'] ) {
-			self::byline( $post, '<div class="'.$args['prefix'].'-byline byline-'.$args['context'].'">', '</div>' );
+			self::byline( $post, '<div class="-byline '.$args['prefix'].'-byline byline-'.$args['context'].'">', '</div>' );
 		}
 
 		if ( $args['actions'] ) {
