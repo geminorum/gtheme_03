@@ -47,12 +47,21 @@ class gThemeWidgetRelatedPosts extends gThemeWidget
 			return TRUE;
 
 		$row_query = new \WP_Query( [
-			'tax_query' => [ [
-				'taxonomy' => $taxonomy,
-				'field'    => 'id',
-				'terms'    => $terms,
-				'operator' => 'IN',
-			] ],
+			'tax_query' => [
+				[
+					'taxonomy' => $taxonomy,
+					'field'    => 'id',
+					'terms'    => $terms,
+					'operator' => 'IN',
+				],
+				'relation' => 'AND',
+				[
+					'taxonomy' => GTHEME_SYSTEMTAGS,
+					'field'    => 'slug',
+					'terms'    => 'no-related',
+					'operator' => 'NOT IN',
+				],
+			],
 			'post_type'      => $post_type,
 			'post__not_in'   => [ $post->ID ],
 			'posts_per_page' => $number,
