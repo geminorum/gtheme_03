@@ -131,7 +131,7 @@ class gThemeWordPress extends gThemeBaseCore
 	{
 		$list = array();
 
-		if ( FALSE === $object || 'any' == $object )
+		if ( FALSE === $object )
 			$objects = get_taxonomies( $args, 'objects' );
 		else
 			$objects = get_object_taxonomies( $object, 'objects' );
