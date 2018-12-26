@@ -25,18 +25,19 @@ class gThemeSearch extends gThemeModuleCore
 		if ( is_null( $query_var ) )
 			$query_var = self::getKey();
 
-		$query = apply_filters( 'get_search_query', get_query_var( $query_var ) );
-		return esc_attr( $query );
+		return apply_filters( 'get_search_query', get_query_var( $query_var ) );
 	}
 
 	public static function formSimple( $context = 'index', $extra = '' )
 	{
+		$query = '404' == $context ? '' : esc_attr( self::query() );
+
 		$html = '<form role="search" method="get" class="form search-form -simple search-form-'.$context.' -print-hide" action="'.esc_url( self::getAction() ).'">';
 
 			$html.= '<span class="screen-reader-text sr-only"><label>'._x( 'Search for:', 'label', GTHEME_TEXTDOMAIN ).'</label></span>';
 
 			$html.= '<input type="search" class="form-control search-field" placeholder="'.esc_attr_x( 'Search &hellip;', 'placeholder', GTHEME_TEXTDOMAIN );
-			$html.= '" value="'.self::query().'" name="'.self::getKey().'" title="'.esc_attr_x( 'Search for:', 'label', GTHEME_TEXTDOMAIN ).'" />';
+			$html.= '" value="'.$query.'" name="'.self::getKey().'" title="'.esc_attr_x( 'Search for:', 'label', GTHEME_TEXTDOMAIN ).'" />';
 
 			$html.= $extra;
 
@@ -56,7 +57,7 @@ class gThemeSearch extends gThemeModuleCore
 		echo '<form class="form search-form -expanding '.$class.'" role="search" method="get" action="'.esc_url( self::getAction() ).'">';
 		echo '<div class="form-group">';
 			echo '<label for="search" class="screen-reader-text sr-only">'._x( 'Search for:', 'label', GTHEME_TEXTDOMAIN ).'</label>';
-			echo '<input id="search" type="text" class="form-control" name="'.self::getKey().'" value="'.self::query().'"';
+			echo '<input id="search" type="text" class="form-control" name="'.self::getKey().'" value="'.esc_attr( self::query() ).'"';
 			if ( $placeholder )
 				echo ' placeholder="'.$placeholder.'" ';
 		echo '/>';
@@ -66,6 +67,8 @@ class gThemeSearch extends gThemeModuleCore
 
 	public static function form( $context = 'index', $extra = '' )
 	{
+		$query = '404' == $context ? '' : esc_attr( self::query() );
+
 		$html = '<form role="search" method="get" class="form search-form search-form-';
 		$html.= $context.' -print-hide" action="'.esc_url( self::getAction() ).'">';
 
@@ -76,7 +79,7 @@ class gThemeSearch extends gThemeModuleCore
 
 				$html.= '<input type="search" class="form-control search-field" placeholder="';
 				$html.= esc_attr_x( 'Search &hellip;', 'placeholder', GTHEME_TEXTDOMAIN );
-				$html.= '" value="'.self::query().'" name="'.self::getKey().'" title="';
+				$html.= '" value="'.$query.'" name="'.self::getKey().'" title="';
 				$html.= esc_attr_x( 'Search for:', 'label', GTHEME_TEXTDOMAIN ).'" />';
 
 				$html.= '<span class="input-group-btn input-group-append">';
@@ -106,8 +109,8 @@ class gThemeSearch extends gThemeModuleCore
 
 			$html.= '<input type="text" id="search-terms" class="form-control" name="search-terms" value="';
 
-			// $html.= self::query( 'search-terms' );
-			$html.= get_search_query();
+			// $html.= esc_attr( self::query( 'search-terms' ) );
+			$html.= esc_attr( get_search_query() );
 
 			$html.= '" placeholder="'.esc_attr_x( 'Search &hellip;', 'buddypress: placeholder', GTHEME_TEXTDOMAIN ).'" />';
 
