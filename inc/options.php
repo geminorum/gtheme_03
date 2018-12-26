@@ -197,6 +197,7 @@ class gThemeOptions extends gThemeModuleCore
 			// 'template_term_link'   => '<a href="%1$s" title="%3$s" class="%4$s" data-html="true" data-toggle="tooltip" data-placement="top">%2$s</a>',
 			// 'template_author_link' => '<a href="%1$s" title="%2$s" rel="author">%3$s</a>', // FIXME: no gThemeAuthors yet! / RENAMED
 			// 'template_the_date'    => '<span class="date"><a href="%1$s" title="%2$s" rel="shortlink"><time class="%5$s-date" datetime="%3$s">%4$s</time></a></span>',
+			// 'template_read_more'   => ' <a %6$s href="%1$s" aria-label="%3$s" class="%4$s">%2$s</a>%5$s',
 
 			// DATE FORMATS
 			// 'date_format_byline' => _x( 'j M Y', 'Options: Defaults: Date Format: Byline', GTHEME_TEXTDOMAIN ), // used on post by line
