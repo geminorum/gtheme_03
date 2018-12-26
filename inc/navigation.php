@@ -115,6 +115,8 @@ class gThemeNavigation extends gThemeModuleCore
 	// wrapper with conditional tags
 	public static function breadcrumb( $atts = [] )
 	{
+		global $wp_query;
+
 		if ( ! gThemeOptions::info( 'breadcrumb_support', TRUE ) )
 			return;
 
@@ -129,7 +131,8 @@ class gThemeNavigation extends gThemeModuleCore
 		else if ( ! is_post_type_archive() && ( is_archive() || is_search() ) )
 			self::breadcrumbArchive( $atts );
 
-		if ( is_search() && gThemeOptions::info( 'breadcrumb_search_form', TRUE ) )
+		// 404 has it's own search form
+		if ( is_search() && ! empty( $wp_query->found_posts ) && gThemeOptions::info( 'breadcrumb_search_form', TRUE ) )
 			gThemeSearch::form();
 
 		do_action( 'gtheme_navigation_breadcrumb_after' );
