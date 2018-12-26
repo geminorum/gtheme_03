@@ -352,7 +352,7 @@ class gThemeFilters extends gThemeModuleCore
 
 	public function excerpt_more( $more )
 	{
-		$custom = gThemeOptions::info( 'excerpt_more', ' &hellip;' );
+		$custom = gThemeOptions::info( 'excerpt_more', '&nbsp;&hellip;' );
 
 		if ( TRUE === $custom )
 			return gThemeContent::continueReading();

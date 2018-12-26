@@ -94,7 +94,7 @@ class gThemeOptions extends gThemeModuleCore
 			'reflist_title' => sprintf( '<h4 class="-title" id="footnotes">%s</h4>', _x( 'Footnotes', 'Options: Reflist Title', GTHEME_TEXTDOMAIN ) ),
 
 			'excerpt_length' => 40,
-			'excerpt_more'   => ' &hellip;', // FALSE: empty / TRUE: continueReading()
+			'excerpt_more'   => '&nbsp;&hellip;', // FALSE: empty / TRUE: continueReading()
 
 			// 'restricted_content' => FALSE, // set TURE to show teaser only
 			// 'restricted_teaser'  => FALSE, // set FALSE to show teaser alongside
