@@ -255,12 +255,16 @@ class gThemeEditorial extends gThemeModuleCore
 			return FALSE;
 
 		$args = self::atts( [
-			'before' => '',
-			'after'  => '',
-			'echo'   => TRUE,
+			'before'   => '',
+			'after'    => '',
+			'echo'     => TRUE,
+			'wordwrap' => NULL,
 		], $atts );
 
-		if ( in_array( $field, [ 'ot', 'st', 'over-title', 'sub-title' ] ) )
+		if ( $args['wordwrap'] )
+			$html = gThemeUtilities::wordWrap( $html, 2 );
+
+		else if ( is_null( $args['wordwrap'] ) && in_array( $field, [ 'ot', 'st', 'over-title', 'sub-title' ] ) )
 			$html = gThemeUtilities::wordWrap( $html, 2 );
 
 		$html = $args['before'].$html.$args['after'];
