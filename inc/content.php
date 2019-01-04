@@ -915,7 +915,7 @@ addthis_config.services_custom = [
 			'title'       => NULL, // or FALSE to disable
 			'title_attr'  => NULL, // or FALSE to disable
 			'meta'        => TRUE,
-			'link'        => TRUE, // disable linking compeletly
+			'link'        => TRUE, // default/custom/disable
 			'anchor'      => FALSE, // permalink anchor for the post
 		], $atts );
 
@@ -928,16 +928,16 @@ addthis_config.services_custom = [
 		if ( 0 == strlen( $args['title'] ) )
 			return;
 
-		if ( $args['link'] ) {
+		if ( TRUE === $args['link'] ) {
 
 			if ( FALSE === $args['shortlink'] )
-				$link = get_permalink( $post );
+				$args['link'] = get_permalink( $post );
 
 			else if ( TRUE === $args['shortlink'] )
-				$link = wp_get_shortlink( $post->ID, 'post' );
+				$args['link'] = wp_get_shortlink( $post->ID, 'post' );
 
 			else
-				$link = $args['shortlink'];
+				$args['link'] = $args['shortlink'];
 		}
 
 		if ( $args['meta'] )
@@ -955,9 +955,10 @@ addthis_config.services_custom = [
 
 		echo '<'.$args['title_tag'].' itemprop="headline" class="-title title '.$args['prefix'].'-title amp-wp-title">';
 
-		if ( $args['link'] && $link ) {
+		if ( $args['link'] ) {
 
-			echo '<a itemprop="url" rel="bookmark" href="'.$link.'"';
+			echo '<a itemprop="url" rel="bookmark" href="'.esc_url( $args['link'] ).'"';
+
 
 			if ( FALSE !== $args['title_attr'] ) {
 
