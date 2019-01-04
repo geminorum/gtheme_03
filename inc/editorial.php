@@ -224,6 +224,20 @@ class gThemeEditorial extends gThemeModuleCore
 		return \geminorum\gEditorial\Templates\Meta::metaLead( $atts );
 	}
 
+	public static function getMeta( $field, $atts = [] )
+	{
+		if ( ! array_key_exists( 'echo', $atts ) )
+			$atts['echo'] = FALSE;
+
+		if ( ! array_key_exists( 'default', $atts ) )
+			$atts['default'] = '';
+
+		if ( ! $meta = self::meta( $field, $atts ) )
+			return $atts['default'];
+
+		return $meta;
+	}
+
 	public static function meta( $field, $atts = [] )
 	{
 		if ( ! self::availableEditorial( 'meta' ) )
