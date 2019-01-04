@@ -914,7 +914,8 @@ addthis_config.services_custom = [
 			'meta_tag'    => 'h4',
 			'title'       => NULL, // or FALSE to disable
 			'title_attr'  => NULL, // or FALSE to disable
-			'meta'        => TRUE,
+			'title_sep'   => ' / ', // used on meta as title attr
+			'meta'        => gThemeOptions::supports( 'geditorial-meta', TRUE ),
 			'link'        => TRUE, // default/custom/disable
 			'anchor'      => FALSE, // permalink anchor for the post
 		], $atts );
@@ -940,9 +941,6 @@ addthis_config.services_custom = [
 				$args['link'] = $args['shortlink'];
 		}
 
-		if ( $args['meta'] )
-			$args['meta'] = gThemeOptions::supports( 'geditorial-meta', TRUE );
-
 		echo '<'.$args['wrap_tag'].' class="-header header-class header-'.$args['context'].' '.$args['prefix'].'-header amp-wp-article-header">';
 		echo '<div class="-titles titles-class '.$args['prefix'].'-titles">';
 
@@ -959,14 +957,29 @@ addthis_config.services_custom = [
 
 			echo '<a itemprop="url" rel="bookmark" href="'.esc_url( $args['link'] ).'"';
 
+			$title_template = TRUE === $args['shortlink'] ? FALSE : NULL;
 
-			if ( FALSE !== $args['title_attr'] ) {
+			if ( is_null( $args['title_attr'] ) ) {
 
-				if ( is_null( $args['title_attr'] ) )
-					$args['title_attr'] = trim( strip_tags( $args['title'] ) );
+				$args['title_attr'] = trim( strip_tags( $args['title'] ) );
 
-				echo ' title="'.self::title_attr( FALSE, $args['title_attr'], ( TRUE === $args['shortlink'] ? FALSE : NULL ) ).'"';
+			} else if ( 'meta' == $args['title_attr'] ) {
+
+				$overtitle = gThemeEditorial::getMeta( 'over-title', [ 'post_id' => $post->ID ] );
+				$subtitle  = gThemeEditorial::getMeta( 'sub-title', [ 'post_id' => $post->ID ] );
+
+				$args['title_attr'] = $overtitle;
+
+				if ( $overtitle && $subtitle )
+					$args['title_attr'].= $args['title_sep'];
+
+				$args['title_attr'].= $subtitle;
+
+				$title_template = '%s';
 			}
+
+			if ( $args['title_attr'] )
+				echo ' title="'.self::title_attr( FALSE, $args['title_attr'], $title_template ).'"';
 
 			echo '>'.gThemeUtilities::wordWrap( $args['title'], 2 ).'</a>';
 
