@@ -153,7 +153,7 @@ class gThemeNavigation extends gThemeModuleCore
 			'page_is'    => TRUE,
 			'post_title' => FALSE,
 			'class'      => 'gtheme-breadcrumb',
-			'before'     => '<div class="nav-content nav-content-single">',
+			'before'     => '<div class="nav-content nav-content-single nav-content-singular">',
 			'after'      => '</div>',
 			'context'    => NULL,
 		], $atts );

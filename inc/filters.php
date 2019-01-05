@@ -384,17 +384,18 @@ class gThemeFilters extends gThemeModuleCore
 
 			if ( strlen( $text ) > $length ) {
 
-				$more = apply_filters( 'excerpt_more', ' '.'[&hellip;]' );
-				$text = substr( $text, 0, $length + 1 );
+				$regex = "/[\n\r\t ]+/";
+				$text  = substr( $text, 0, $length + 1 );
+				$words = preg_split( $regex, $text, -1, PREG_SPLIT_NO_EMPTY );
 
-				$words = preg_split( "/[\n\r\t ]+/", $text, -1, PREG_SPLIT_NO_EMPTY );
-
-				// if the last character is not a white space, we remove the cut off last word
-				preg_match( "/[\n\r\t ]+/", $text, $last, 0, $length );
+				// if the last character is not a white space,
+				// must remove the cut off last word
+				preg_match( $regex, $text, $last, 0, $length );
 
 				if ( empty( $last ) )
 					array_pop( $words );
 
+				$more = apply_filters( 'excerpt_more', ' '.'[&hellip;]' );
 				$text = implode( ' ', $words ).$more;
 			}
 		}
