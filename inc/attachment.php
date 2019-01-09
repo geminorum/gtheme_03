@@ -99,6 +99,14 @@ class gThemeAttachment extends gThemeModuleCore
 				'src' => wp_get_attachment_url( $post->ID ),
 			], $args['extra'] ) );
 
+		} else if ( 'text/csv' == $post->post_mime_type ) {
+
+			$html = do_shortcode( '[csv id="'.$post->ID.'"][/csv]' );
+
+		} else if ( 'application/pdf' == $post->post_mime_type ) {
+
+			$html = do_shortcode( '[pdf url="'.wp_get_attachment_url( $post->ID ).'"][/pdf]' );
+
 		} else {
 
 			// FALLBACK
