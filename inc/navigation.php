@@ -17,14 +17,15 @@ class gThemeNavigation extends gThemeModuleCore
 		if ( is_null( $max_num_pages ) )
 			$max_num_pages = $wp_query->max_num_pages;
 
-		$prev_text = _x( '<span aria-hidden="true">&larr;</span> Older', 'Modules: Navigation: Post Navigation: Previous', GTHEME_TEXTDOMAIN );
-		$next_text = _x( 'Newer <span aria-hidden="true">&rarr;</span>', 'Modules: Navigation: Post Navigation: Next', GTHEME_TEXTDOMAIN );
-
 		if ( is_singular() || is_single() ) {
 
 			$classes[] = 'post-navigation';
 			$title = _x( 'Post Navigation', 'Modules: Navigation: Screen Reader Title', GTHEME_TEXTDOMAIN );
 
+			$prev_text = _x( '<span aria-hidden="true">&larr;</span> %title', 'Modules: Navigation: Post Navigation: Previous', GTHEME_TEXTDOMAIN );
+			$next_text = _x( '%title <span aria-hidden="true">&rarr;</span>', 'Modules: Navigation: Post Navigation: Next', GTHEME_TEXTDOMAIN );
+
+			// TODO: support row templaets
 			$prev = get_adjacent_post_link( '%link', $prev_text, FALSE, '', TRUE,  $taxonomy );
 			$next = get_adjacent_post_link( '%link', $next_text, FALSE, '', FALSE, $taxonomy );
 
@@ -32,6 +33,9 @@ class gThemeNavigation extends gThemeModuleCore
 
 			$classes[] = 'paging-navigation';
 			$title = _x( 'Posts Navigation', 'Modules: Navigation: Screen Reader Title', GTHEME_TEXTDOMAIN );
+
+			$prev_text = _x( '<span aria-hidden="true">&larr;</span> Older', 'Modules: Navigation: Posts Navigation: Previous', GTHEME_TEXTDOMAIN );
+			$next_text = _x( 'Newer <span aria-hidden="true">&rarr;</span>', 'Modules: Navigation: Posts Navigation: Next', GTHEME_TEXTDOMAIN );
 
 			// intentionally reversed!
 			$prev = get_next_posts_link( $prev_text );

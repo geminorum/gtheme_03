@@ -20,3 +20,5 @@ gThemeEditorial::refList( [
 	'title'  => gThemeOptions::info( 'reflist_title', FALSE ),
 	'wrap'   => FALSE,
 ] );
+
+gThemeNavigation::content();
