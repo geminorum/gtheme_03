@@ -7,6 +7,7 @@ if ( gThemeTerms::has( 'insert-people' ) )
 	gThemeEditorial::personPicture( [ 'before' => '<div class="entry-person">', 'after' => '</div>' ] );
 
 gThemeContent::content();
+gThemeContent::navigation();
 
 gThemeEditorial::source( [
 	'before' => '<div class="entry-after after-single after-source">'.gThemeOptions::info( 'source_before', '' ),

@@ -1039,4 +1039,37 @@ addthis_config.services_custom = [
 			echo '</footer>';
 		}
 	}
+
+	public static function navigation( $atts = [] )
+	{
+		$args = self::atts( [
+			'link_before'      => '',
+			'link_after'       => '',
+			'next_or_number'   => 'number',
+			'separator'        => '',
+			'nextpagelink'     => _x( 'Next page', 'Modules: Content: Link Pages', GTHEME_TEXTDOMAIN ),
+			'previouspagelink' => _x( 'Previous page', 'Modules: Content: Link Pages', GTHEME_TEXTDOMAIN ),
+			'pagelink'         => '%',
+		], $atts );
+
+		$args['before'] = $args['after'] = $args['echo'] = '';
+
+		if ( ! $html = wp_link_pages( $args ) )
+			return FALSE;
+
+		$args = self::atts( [
+			'before' => '<div class="entry-pages">',
+			'after'  => '</div>',
+			'title'  => _x( 'Pages:', 'Modules: Content: Link Pages', GTHEME_TEXTDOMAIN ),
+			'echo'   => TRUE,
+		], $atts );
+
+		if ( $args['title'] )
+			$html = $args['title'].' '.$html;
+
+		if ( ! $args['echo'] )
+			return $args['before'].$html.$args['after'];
+
+		echo $args['before'].$html.$args['after'];
+	}
 }
