@@ -59,9 +59,7 @@ class gThemeAttachment extends gThemeModuleCore
 			'extra'  => [],
 		], $atts );
 
-		$post = get_post( $args['id'] );
-
-		if ( ! $post )
+		if ( ! $post = get_post( $args['id'] ) )
 			return FALSE;
 
 		$html = '';
@@ -137,9 +135,7 @@ class gThemeAttachment extends gThemeModuleCore
 			'echo'     => TRUE,
 		], $atts );
 
-		$post = get_post( $args['id'] );
-
-		if ( ! $post )
+		if ( ! $post = get_post( $args['id'] ) )
 			return FALSE;
 
 		if ( empty( $post->post_parent ) )
@@ -174,9 +170,7 @@ class gThemeAttachment extends gThemeModuleCore
 			'echo'   => TRUE,
 		], $atts );
 
-		$post = get_post( $args['id'] );
-
-		if ( ! $post )
+		if ( ! $post = get_post( $args['id'] ) )
 			return FALSE;
 
 		$html = gThemeHTML::tag( 'a', [
