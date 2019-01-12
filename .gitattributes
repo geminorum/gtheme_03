@@ -9,6 +9,7 @@
 *.eot binary
 
 css/* linguist-generated=true
+*.mo linguist-generated=true
 
 # Files to exclude when creating archive.
 *.git export-ignore
