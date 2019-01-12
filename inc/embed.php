@@ -7,12 +7,16 @@ class gThemeEmbed extends gThemeModuleCore
 	{
 		extract( self::atts( [
 			'site_title'    => TRUE,
+			'lead_excerpt'  => TRUE,
 			'content_meta'  => FALSE,
 			'response_data' => TRUE,
 		], $args ) );
 
 		if ( $site_title )
 			add_filter( 'embed_site_title_html', [ $this, 'embed_site_title_html' ] );
+
+		if ( $lead_excerpt )
+			add_filter( 'the_excerpt_embed', [ $this, 'the_excerpt_embed' ], 9 );
 
 		if ( $content_meta )
 			add_action( 'embed_content_meta', [ $this, 'embed_content_meta' ] );
@@ -32,6 +36,11 @@ class gThemeEmbed extends gThemeModuleCore
 		);
 
 		return '<div class="wp-embed-site-title">'.$html.'</div>';
+	}
+
+	public function the_excerpt_embed( $output )
+	{
+		return gThemeEditorial::lead( [ 'echo' => FALSE, 'default' => $output ] );
 	}
 
 	public function embed_content_meta()
