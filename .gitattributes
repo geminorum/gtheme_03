@@ -8,7 +8,7 @@
 *.ttf binary
 *.eot binary
 
-*.css linguist-generated=true
+css/* linguist-generated=true
 
 # Files to exclude when creating archive.
 *.git export-ignore
