@@ -905,7 +905,7 @@ addthis_config.services_custom = [
 			'context'     => 'single',
 			'prefix'      => 'entry',
 			'byline'      => FALSE,
-			'actions'     => FALSE,
+			'actions'     => FALSE, // or NULL to check for posttype
 			'action_icon' => NULL,
 			'shortlink'   => gThemeOptions::info( 'content_header_shortlink', FALSE ),
 			'wrap_tag'    => 'header',
@@ -1006,7 +1006,7 @@ addthis_config.services_custom = [
 			self::byline( $post, '<div class="-byline '.$args['prefix'].'-byline byline-'.$args['context'].'">', '</div>' );
 		}
 
-		if ( $args['actions'] ) {
+		if ( $args['actions'] || ( is_null( $args['actions'] ) && ! is_page() ) ) {
 			echo '<ul class="-actions -actions-header '.$args['prefix'].'-actions actions-'.$args['context'].' -inline">';
 				self::postActions( '<li class="-action '.$args['prefix'].'-action %s">', '</li>', $args['actions'], $args['action_icon'] );
 			echo '</ul>';

@@ -1,6 +1,6 @@
 <?php defined( 'ABSPATH' ) or die( header( 'HTTP/1.0 403 Forbidden' ) );
 
-gThemeContent::header( [ 'context' => 'singular', 'byline' => TRUE, 'actions' => TRUE ] );
+gThemeContent::header( [ 'context' => 'singular', 'byline' => TRUE, 'actions' => NULL ] );
 gThemeEditorial::lead( [ 'before' => '<div class="entry-lead">', 'after' => '</div>' ] );
 
 if ( gThemeTerms::has( 'insert-people' ) )
