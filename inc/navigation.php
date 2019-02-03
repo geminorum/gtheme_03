@@ -17,7 +17,11 @@ class gThemeNavigation extends gThemeModuleCore
 		if ( is_null( $max_num_pages ) )
 			$max_num_pages = $wp_query->max_num_pages;
 
-		if ( is_singular() || is_single() ) {
+		if ( is_page() ) {
+
+			return; // skip on pages
+
+		} else if ( is_singular() || is_single() ) {
 
 			$classes[] = 'post-navigation';
 			$title = _x( 'Post Navigation', 'Modules: Navigation: Screen Reader Title', GTHEME_TEXTDOMAIN );
