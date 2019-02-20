@@ -117,7 +117,6 @@ class gThemeOptions extends gThemeModuleCore
 			// SEO
 			// 'meta_image_size' => 'single',
 			// 'meta_image_all'  => TRUE, // display fallback image for all pages
-			// 'rel_publisher'   => FALSE,
 			// 'twitter_site'    => FALSE,
 			// 'googlecse_cx'    => FALSE,
 

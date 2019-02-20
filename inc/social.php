@@ -49,9 +49,6 @@ class gThemeSocial extends gThemeModuleCore
 
 		echo '<meta name="twitter:card" content="'.( $image ? 'summary_large_image' : 'summary' ).'" />'."\n";
 
-		if ( $publisher = gThemeOptions::info( 'rel_publisher', FALSE ) )
-			echo '<link href="'.esc_url( $publisher ).'" rel="publisher" />'."\n";
-
 		if ( $twitter = gThemeOptions::info( 'twitter_site', FALSE ) )
 			echo '<meta name="twitter:site" content="'.gThemeThird::getTwitter( $twitter ).'" />'."\n";
 
