@@ -4,6 +4,11 @@
 /// Modules: Theme: Variables --------------------------------------------------
 
 ////////////////////////////////////////////////////////////////////////////////
+$theme-baseline-size: 16px !default;
+$theme-font-size:     16px !default;
+$theme-line-height:   1.428571429 !default; // 20/14
+
+////////////////////////////////////////////////////////////////////////////////
 $theme-container-width: 1440px !default;
 $theme-entry-width: $theme-container-width / 2 !default;
 $theme-grid-gutter: 20px !default;

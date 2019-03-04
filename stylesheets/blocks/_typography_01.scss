@@ -61,11 +61,16 @@ sub {
 
 .entry-overtitle + .entry-title,
 .entry-title + .entry-subtitle {
-  margin-top: -1rem;
+  margin-top: 0; // -1rem;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 .entry-content {
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
   // ul:not(.list-unstyled):not(.list-inline):not(.-toc) {
   //   @include theme-list-style-diamond-LTR();
   // }

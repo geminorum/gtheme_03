@@ -1,0 +1,142 @@
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+/// Blocks: Contact-Form-7 01 - 2018-12-24
+
+////////////////////////////////////////////////////////////////////////////////
+div.wpcf7 {
+  margin: 0;
+  padding: 0;
+
+  .wpcf7-response-output {
+    margin: $theme-grid-gutter;
+    padding: ($theme-grid-gutter/4) ($theme-grid-gutter/2);
+    text-align: center;
+    border-radius: 2px;
+  }
+
+  .screen-reader-response {
+    @extend .screen-reader-text;
+  }
+
+  .wpcf7-mail-sent-ok {
+    border: 1px solid $brand-success;
+  }
+
+  .wpcf7-mail-sent-ng {
+    border: 1px solid $brand-danger;
+  }
+
+  .wpcf7-spam-blocked {
+    border: 1px solid #ffa500;
+  }
+
+  .wpcf7-validation-errors {
+    border: 1px solid $brand-warning;
+  }
+
+  .wpcf7-form {
+    label {
+      display: inline-block;
+      width: 100%;
+      margin: 0 0 1.5em;
+
+      .wpcf7-form-control-wrap {
+        display: block;
+        margin-top: 0.2em;
+      }
+    }
+  }
+
+  .wpcf7-form-control {
+    &.wpcf7-recaptcha {
+      margin: 0 0 1.5em; // same as label
+
+      // > div > div {
+      //   margin: 0 auto; // not working
+      // }
+    }
+  }
+
+  .wpcf7-form-control-wrap {
+    position: relative;
+
+    select,
+    option,
+    textarea,
+    input {
+      box-sizing: border-box;
+    }
+
+    select,
+    textarea,
+    input[type="tel"],
+    input[type="url"],
+    input[type="text"],
+    input[type="password"],
+    input[type="email"] {
+      width: 100%;
+    }
+
+    input[type="number"] {
+      width: 33%;
+    }
+
+    input[type="tel"],
+    input[type="url"],
+    input[type="email"] {
+
+      /*rtl:ignore*/
+      direction: ltr !important;
+
+      &::placeholder {
+        direction: rtl; // must not be ignored by RTLCSS
+        text-align: right; // for firefox
+      }
+    }
+
+    textarea {
+      resize: vertical;
+    }
+  }
+
+  .wpcf7-not-valid-tip {
+    color: $brand-danger;
+    font-size: 0.89em;
+    display: block;
+    padding: 0.2em 0.5em;
+  }
+
+  .use-floating-validation-tip span.wpcf7-not-valid-tip {
+    position: absolute;
+    top: 20%;
+    right: 20%;
+    z-index: 100;
+    border: 1px solid $brand-danger;
+    background: $gray-lighter;
+    padding: .2em .8em;
+  }
+
+  span.wpcf7-list-item {
+    margin-left: 0.5em;
+  }
+
+  .wpcf7-display-none {
+    display: none;
+  }
+
+  img.ajax-loader {
+    border: none;
+    vertical-align: middle;
+    margin: 0 4px;
+    background: none;
+  }
+
+  div.ajax-error {
+    display: none;
+  }
+
+  .placeheld {
+    color: $gray-light;
+  }
+}

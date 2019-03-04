@@ -16,8 +16,7 @@ body {
 .wp-block {
   // width: calc(100vw - (2 * 1rem));
   // max-width: 100%;
-
-  max-width: $theme-entry-width + ( 2 * 15px ); // entry + paddings
+  max-width: calc(#{$theme-entry-width} + (2 * 15px)); // entry + paddings
 
   &[data-align="full"] {
     max-width: none;
@@ -36,9 +35,9 @@ body {
 
 .edit-post-visual-editor {
   &.editor-styles-wrapper {
-    font-size: $base-size-font;
     font-family: $font-family-normal;
-    line-height: $line-height-base;
+    font-size: $theme-font-size;
+    line-height: $theme-line-height;
     color: $theme-text-color;
     background-color: $theme-background-color;
   }
@@ -69,3 +68,6 @@ body {
 }
 
 ////////////////////////////////////////////////////////////////////////////////
+.editor-rich-text__tinymce {
+  white-space: normal; // strange behaviour on lists on RTL
+}

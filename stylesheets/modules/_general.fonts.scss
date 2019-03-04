@@ -10,6 +10,7 @@
 
 // $theme-fonts-base: "https://cdn.rawgit.com" !default;
 $theme-fonts-base: "https://rawcdn.githack.com" !default;
+$theme-fonts-repo: "../../gtheme_03/fonts" !default;
 
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
@@ -21,6 +22,16 @@ $theme-fonts-base: "https://rawcdn.githack.com" !default;
 
 @mixin theme-fonts-core-code() {
   font-family: Consolas, Monaco, monospace;
+}
+
+@mixin theme-fonts-core-dashicons() {
+  font-family: dashicons; /* stylelint-disable-line font-family-no-missing-generic-family-keyword */
+}
+
+////////////////////////////////////////////////////////////////////////////////
+
+@mixin theme-fonts-unicoderange-Persian() {
+  unicode-range: u+0600-06ff, u+200c-200e, u+2010-2011, u+fb50-fdff, u+fe80-fefc;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -39,8 +50,9 @@ $theme-fonts-base: "https://rawcdn.githack.com" !default;
         url($path + ".woff") format("woff"),
         url($path + ".ttf") format("truetype");
 
-      unicode-range: u+0600-06ff, u+200c-200e, u+2010-2011, u+fb50-fdff, u+fe80-fefc;
       font-display: swap; // @REF: https://css-tricks.com/font-display-masses/
+
+      @content;
     }
   }
 }
@@ -48,7 +60,7 @@ $theme-fonts-base: "https://rawcdn.githack.com" !default;
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
-/// Vazir v19.0.0
+/// Vazir v19.2.0
 // https://github.com/rastikerdar/vazir-font
 // http://rastikerdar.github.io/vazir-font/
 
@@ -57,7 +69,7 @@ $theme-fonts-base: "https://rawcdn.githack.com" !default;
   $font-family-normal: "Vazir", "Tahoma", "Iranian Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif !global;
 
   $name: "Vazir";
-  $ver: "v19.0.0";
+  $ver: "v19.2.0";
   $weight: "normal";
 
   $base: $theme-fonts-base;
@@ -65,7 +77,9 @@ $theme-fonts-base: "https://rawcdn.githack.com" !default;
   $file: "dist/Vazir";
   $path: $base + "/" + $repo + "/" + $ver + "/" + $file;
 
-  @include _theme-fonts-fontface($name, $path, $weight);
+  @include _theme-fonts-fontface($name, $path, $weight) {
+    @include theme-fonts-unicoderange-Persian;
+  }
 }
 
 @mixin theme-fonts-Vazir-Bold-CDN() {
@@ -73,7 +87,7 @@ $theme-fonts-base: "https://rawcdn.githack.com" !default;
   $font-family-bold: "Vazir", "Arial", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", "Helvetica", sans-serif !global;
 
   $name: "Vazir";
-  $ver: "v19.0.0";
+  $ver: "v19.2.0";
   $weight: "bold";
 
   $base: $theme-fonts-base;
@@ -81,7 +95,9 @@ $theme-fonts-base: "https://rawcdn.githack.com" !default;
   $file: "dist/Vazir-Bold";
   $path: $base + "/" + $repo + "/" + $ver + "/" + $file;
 
-  @include _theme-fonts-fontface($name, $path, $weight);
+  @include _theme-fonts-fontface($name, $path, $weight) {
+    @include theme-fonts-unicoderange-Persian;
+  }
 }
 
 @mixin theme-fonts-Vazir-Light-CDN() {
@@ -89,7 +105,7 @@ $theme-fonts-base: "https://rawcdn.githack.com" !default;
   $font-family-light: "Vazir", "Arial", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", "Helvetica", sans-serif !global;
 
   $name: "Vazir";
-  $ver: "v19.0.0";
+  $ver: "v19.2.0";
   $weight: "300";
 
   $base: $theme-fonts-base;
@@ -97,7 +113,9 @@ $theme-fonts-base: "https://rawcdn.githack.com" !default;
   $file: "dist/Vazir-Light";
   $path: $base + "/" + $repo + "/" + $ver + "/" + $file;
 
-  @include _theme-fonts-fontface($name, $path, $weight);
+  @include _theme-fonts-fontface($name, $path, $weight) {
+    @include theme-fonts-unicoderange-Persian;
+  }
 }
 
 @mixin theme-fonts-Vazir-Medium-CDN() {
@@ -105,7 +123,7 @@ $theme-fonts-base: "https://rawcdn.githack.com" !default;
   $font-family-medium: "Vazir", "Arial", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", "Helvetica", sans-serif !global;
 
   $name: "Vazir";
-  $ver: "v19.0.0";
+  $ver: "v19.2.0";
   $weight: "500";
 
   $base: $theme-fonts-base;
@@ -113,7 +131,9 @@ $theme-fonts-base: "https://rawcdn.githack.com" !default;
   $file: "dist/Vazir-Medium";
   $path: $base + "/" + $repo + "/" + $ver + "/" + $file;
 
-  @include _theme-fonts-fontface($name, $path, $weight);
+  @include _theme-fonts-fontface($name, $path, $weight) {
+    @include theme-fonts-unicoderange-Persian;
+  }
 }
 
 @mixin theme-fonts-Vazir-Thin-CDN() {
@@ -121,7 +141,7 @@ $theme-fonts-base: "https://rawcdn.githack.com" !default;
   $font-family-thin: "Vazir", "Tahoma", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", "Helvetica", sans-serif !global;
 
   $name: "Vazir";
-  $ver: "v19.0.0";
+  $ver: "v19.2.0";
   $weight: "100";
 
   $base: $theme-fonts-base;
@@ -129,7 +149,9 @@ $theme-fonts-base: "https://rawcdn.githack.com" !default;
   $file: "dist/Vazir-Thin";
   $path: $base + "/" + $repo + "/" + $ver + "/" + $file;
 
-  @include _theme-fonts-fontface($name, $path, $weight);
+  @include _theme-fonts-fontface($name, $path, $weight) {
+    @include theme-fonts-unicoderange-Persian;
+  }
 }
 
 @mixin theme-fonts-Vazir-Heavy-CDN() {
@@ -137,7 +159,7 @@ $theme-fonts-base: "https://rawcdn.githack.com" !default;
   $font-family-heavy: "Vazir", "Tahoma", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", "Helvetica", sans-serif !global;
 
   $name: "Vazir";
-  $ver: "v19.0.0";
+  $ver: "v19.2.0";
   $weight: "900";
 
   $base: $theme-fonts-base;
@@ -145,7 +167,9 @@ $theme-fonts-base: "https://rawcdn.githack.com" !default;
   $file: "dist/Vazir-Black";
   $path: $base + "/" + $repo + "/" + $ver + "/" + $file;
 
-  @include _theme-fonts-fontface($name, $path, $weight);
+  @include _theme-fonts-fontface($name, $path, $weight) {
+    @include theme-fonts-unicoderange-Persian;
+  }
 }
 
 @mixin theme-fonts-Vazir-Code-CDN() {
@@ -161,7 +185,9 @@ $theme-fonts-base: "https://rawcdn.githack.com" !default;
   $file: "dist/Vazir-Code";
   $path: $base + "/" + $repo + "/" + $ver + "/" + $file;
 
-  @include _theme-fonts-fontface($name, $path, $weight);
+  @include _theme-fonts-fontface($name, $path, $weight) {
+    @include theme-fonts-unicoderange-Persian;
+  }
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -184,7 +210,9 @@ $theme-fonts-base: "https://rawcdn.githack.com" !default;
   $file: "dist/Samim";
   $path: $base + "/" + $repo + "/" + $ver + "/" + $file;
 
-  @include _theme-fonts-fontface($name, $path, $weight);
+  @include _theme-fonts-fontface($name, $path, $weight) {
+    @include theme-fonts-unicoderange-Persian;
+  }
 }
 
 @mixin theme-fonts-Samim-Bold-CDN() {
@@ -200,7 +228,9 @@ $theme-fonts-base: "https://rawcdn.githack.com" !default;
   $file: "dist/Samim-Bold";
   $path: $base + "/" + $repo + "/" + $ver + "/" + $file;
 
-  @include _theme-fonts-fontface($name, $path, $weight);
+  @include _theme-fonts-fontface($name, $path, $weight) {
+    @include theme-fonts-unicoderange-Persian;
+  }
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -224,7 +254,9 @@ $theme-fonts-base: "https://rawcdn.githack.com" !default;
   $file: "dist/Gandom";
   $path: $base + "/" + $repo + "/" + $ver + "/" + $file;
 
-  @include _theme-fonts-fontface($name, $path, $weight);
+  @include _theme-fonts-fontface($name, $path, $weight) {
+    @include theme-fonts-unicoderange-Persian;
+  }
 }
 
 // !! Gandom has no bold version
@@ -241,7 +273,9 @@ $theme-fonts-base: "https://rawcdn.githack.com" !default;
   $file: "dist/Gandom-Bold";
   $path: $base + "/" + $repo + "/" + $ver + "/" + $file;
 
-  @include _theme-fonts-fontface($name, $path, $weight);
+  @include _theme-fonts-fontface($name, $path, $weight) {
+    @include theme-fonts-unicoderange-Persian;
+  }
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -264,7 +298,9 @@ $theme-fonts-base: "https://rawcdn.githack.com" !default;
   $file: "dist/Sahel";
   $path: $base + "/" + $repo + "/" + $ver + "/" + $file;
 
-  @include _theme-fonts-fontface($name, $path, $weight);
+  @include _theme-fonts-fontface($name, $path, $weight) {
+    @include theme-fonts-unicoderange-Persian;
+  }
 }
 
 @mixin theme-fonts-Sahel-Bold-CDN() {
@@ -280,7 +316,9 @@ $theme-fonts-base: "https://rawcdn.githack.com" !default;
   $file: "dist/Sahel-Bold";
   $path: $base + "/" + $repo + "/" + $ver + "/" + $file;
 
-  @include _theme-fonts-fontface($name, $path, $weight);
+  @include _theme-fonts-fontface($name, $path, $weight) {
+    @include theme-fonts-unicoderange-Persian;
+  }
 }
 
 @mixin theme-fonts-Sahel-Black-CDN() {
@@ -296,7 +334,9 @@ $theme-fonts-base: "https://rawcdn.githack.com" !default;
   $file: "dist/Sahel-Black";
   $path: $base + "/" + $repo + "/" + $ver + "/" + $file;
 
-  @include _theme-fonts-fontface($name, $path, $weight);
+  @include _theme-fonts-fontface($name, $path, $weight) {
+    @include theme-fonts-unicoderange-Persian;
+  }
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -320,7 +360,9 @@ $theme-fonts-base: "https://rawcdn.githack.com" !default;
   $file: "dist/Dirooz";
   $path: $base + "/" + $repo + "/" + $ver + "/" + $file;
 
-  @include _theme-fonts-fontface($name, $path, $weight);
+  @include _theme-fonts-fontface($name, $path, $weight) {
+    @include theme-fonts-unicoderange-Persian;
+  }
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -330,12 +372,12 @@ $theme-fonts-base: "https://rawcdn.githack.com" !default;
 // http://www.google.com/webfonts/earlyaccess
 // http://openfontlibrary.org/en/font/droid-arabic-naskh
 
-@mixin theme-fonts-DroidArabicNaskh($base: "../../gtheme_03/fonts") {
+@mixin theme-fonts-DroidArabicNaskh($base: $theme-fonts-repo) {
   @include theme-fonts-DroidArabicNaskh-Normal($base);
   @include theme-fonts-DroidArabicNaskh-Bold($base);
 }
 
-@mixin theme-fonts-DroidArabicNaskh-Normal($base: "../../gtheme_03/fonts") {
+@mixin theme-fonts-DroidArabicNaskh-Normal($base: $theme-fonts-repo) {
 
   $font-family-normal: "Droid Arabic Naskh", "Tahoma", "Iranian Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif !global;
 
@@ -355,11 +397,14 @@ $theme-fonts-base: "https://rawcdn.githack.com" !default;
         url($path + ".woff2") format("woff2"),
         url($path + ".woff") format("woff"),
         url($path + ".ttf") format("truetype");
+
+      @include theme-fonts-unicoderange-Persian;
+      font-display: swap;
     }
   }
 }
 
-@mixin theme-fonts-DroidArabicNaskh-Bold($base: "../../gtheme_03/fonts") {
+@mixin theme-fonts-DroidArabicNaskh-Bold($base: $theme-fonts-repo) {
 
   $font-family-bold: "Droid Arabic Naskh", "Arial", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", "Helvetica", sans-serif !global;
 
@@ -379,6 +424,9 @@ $theme-fonts-base: "https://rawcdn.githack.com" !default;
         url($path + ".woff2") format("woff2"),
         url($path + ".woff") format("woff"),
         url($path + ".ttf") format("truetype");
+
+      @include theme-fonts-unicoderange-Persian;
+      font-display: swap;
     }
   }
 }
@@ -390,12 +438,12 @@ $theme-fonts-base: "https://rawcdn.githack.com" !default;
 // https://www.google.com/get/noto/
 // https://github.com/googlei18n/noto-fonts
 
-@mixin theme-fonts-NotoNaskhArabic($base: "../../gtheme_03/fonts") {
+@mixin theme-fonts-NotoNaskhArabic($base: $theme-fonts-repo) {
   @include theme-fonts-NotoNaskhArabic-Normal($base);
   @include theme-fonts-NotoNaskhArabic-Bold($base);
 }
 
-@mixin theme-fonts-NotoNaskhArabic-Normal($base: "../../gtheme_03/fonts") {
+@mixin theme-fonts-NotoNaskhArabic-Normal($base: $theme-fonts-repo) {
 
   $font-family-normal: "Noto Naskh Arabic", "Tahoma", "Iranian Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif !global;
 
@@ -415,11 +463,14 @@ $theme-fonts-base: "https://rawcdn.githack.com" !default;
         url($path + ".woff2") format("woff2"),
         url($path + ".woff") format("woff"),
         url($path + ".ttf") format("truetype");
+
+      @include theme-fonts-unicoderange-Persian;
+      font-display: swap;
     }
   }
 }
 
-@mixin theme-fonts-NotoNaskhArabic-Bold($base: "../../gtheme_03/fonts") {
+@mixin theme-fonts-NotoNaskhArabic-Bold($base: $theme-fonts-repo) {
 
   $font-family-bold: "Noto Naskh Arabic", "Arial", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", "Helvetica", sans-serif !global;
 
@@ -439,6 +490,9 @@ $theme-fonts-base: "https://rawcdn.githack.com" !default;
         url($path + ".woff2") format("woff2"),
         url($path + ".woff") format("woff"),
         url($path + ".ttf") format("truetype");
+
+      @include theme-fonts-unicoderange-Persian;
+      font-display: swap;
     }
   }
 }
@@ -449,7 +503,7 @@ $theme-fonts-base: "https://rawcdn.githack.com" !default;
 /// Droid Arabic Kufi (Arabic) v6
 // http://www.google.com/fonts/earlyaccess
 
-@mixin theme-fonts-DroidArabicKufi($base: "../../gtheme_03/fonts") {
+@mixin theme-fonts-DroidArabicKufi($base: $theme-fonts-repo) {
 
   $name: "Droid Arabic Kufi";
   $folder: "droidarabickufi";
@@ -467,6 +521,9 @@ $theme-fonts-base: "https://rawcdn.githack.com" !default;
         url($path + ".woff2") format("woff2"),
         url($path + ".woff") format("woff"),
         url($path + ".ttf") format("truetype");
+
+      @include theme-fonts-unicoderange-Persian;
+      font-display: swap;
     }
   }
 
@@ -486,6 +543,9 @@ $theme-fonts-base: "https://rawcdn.githack.com" !default;
         url($path + ".woff2") format("woff2"),
         url($path + ".woff") format("woff"),
         url($path + ".ttf") format("truetype");
+
+      @include theme-fonts-unicoderange-Persian;
+      font-display: swap;
     }
   }
 }
@@ -497,7 +557,7 @@ $theme-fonts-base: "https://rawcdn.githack.com" !default;
 // http://goo.gl/WhRr3a
 // http://weblogma.com/
 
-@mixin theme-fonts-WeblogmaYekan($base: "../../gtheme_03/fonts") {
+@mixin theme-fonts-WeblogmaYekan($base: $theme-fonts-repo) {
 
   $name: "Weblogma Yekan";
   $folder: "weblogmayekan";
@@ -515,6 +575,9 @@ $theme-fonts-base: "https://rawcdn.githack.com" !default;
         // url($path + ".woff2") format("woff2"),
         url($path + ".woff") format("woff"),
         url($path + ".ttf") format("truetype");
+
+      @include theme-fonts-unicoderange-Persian;
+      font-display: swap;
     }
   }
 }

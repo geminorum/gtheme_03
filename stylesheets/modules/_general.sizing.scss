@@ -6,7 +6,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 // [Convert px to em](https://gist.github.com/ocean90/1552031)
 // Use: font-size: px2em( 12px, 14px );
-@function px2em( $target, $context: $base-size-font ) {
+@function px2em( $target, $context: $theme-font-size ) {
   @if $target == 0 {
     @return 0;
   }
@@ -21,7 +21,7 @@
 //   text-shadow: rem( 1px 1px 0 #fff );
 //   font-size: rem( 16px );
 //   @include box-shadow( rem( -2px 2px 0 )	rgba(0,0,0,0.1) );
-@function rem( $px-values, $baseline-px: $base-size-baseline ) {
+@function rem( $px-values, $baseline-px: $theme-baseline-size ) {
   $baseline-rem: $baseline-px / 1rem;
 
   @if type-of($px-values) == "number" {

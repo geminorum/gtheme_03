@@ -127,6 +127,19 @@
     }
   }
 
+  .entry-pages {
+    border-top: 1px dotted $gray-lighter;
+    padding-top: .5rem;
+    margin: 1rem 0;
+    font-size: 0.89rem;
+  }
+
+  .post-navigation {
+    border-top: 1px dotted $gray-light;
+    margin: 1rem 0 0;
+    font-size: 0.89rem;
+  }
+
   .entry-summary {
     @include theme-clearfix;
   }

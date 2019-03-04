@@ -29,7 +29,7 @@
     //   // #h4.assistive-text.sr-only
     //   // margin: 0;
     //   // text-align: center;
-    //   // font-size: $font-size-base;
+    //   // font-size: $theme-font-size;
     //   // // font-weight: normal;
     //   // color: $gray;
     // }
@@ -56,7 +56,7 @@
     .comment-reply-title {
       // h3#reply-title
       margin: 0 2px $padding-large-vertical;
-      font-size: $font-size-base;
+      font-size: $theme-font-size;
       // font-weight: normal;
       // padding-bottom: $theme-grid-gutter;
       // margin-bottom: $theme-grid-gutter;
@@ -144,7 +144,7 @@
 
   .comments-title {
     font-size: $font-size-h5;
-    line-height: $line-height-base;
+    line-height: $theme-line-height;
     margin: 0;
   }
 
