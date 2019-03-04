@@ -5,7 +5,7 @@ class gThemeEditor extends gThemeModuleCore
 
 	protected $ajax = TRUE;
 
-	function setup_actions( $args = [] )
+	public function setup_actions( $args = [] )
 	{
 		extract( self::atts( [
 			'css'             => TRUE, // the editor style

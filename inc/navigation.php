@@ -46,6 +46,7 @@ class gThemeNavigation extends gThemeModuleCore
 			$next = get_previous_posts_link( $next_text );
 
 		} else {
+
 			return;
 		}
 

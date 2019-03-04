@@ -3,6 +3,7 @@
 // ALSO SEE: http://www.creativewebdesign.ro/en/blog/wordpress/create-a-responsive-wordpress-theme-with-bootstrap-3-header-and-footer/
 // ORIGINALLY BASED ON: wp_bootstrap_navwalker class v2.0.4 by Edward McIntyre
 // https://github.com/twittem/wp-bootstrap-navwalker
+// https://github.com/dupkey/bs4navwalker
 class gThemeBootstrap_Walker_NavBar extends Walker_Nav_Menu
 {
 
