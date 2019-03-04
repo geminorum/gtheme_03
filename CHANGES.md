@@ -1,3 +1,35 @@
+### 3.19.0
+* core/widget: skip linking empty titles
+* module/attachments: csv/pdf template support via shortcode
+* module/colors: separate arg for disable custom colors
+* module/content: check for actions on pages
+* module/content: custom link on headers
+* module/content: entry pages navigation
+* module/content: h2 title on singular headers only
+* module/content: meta as title attr on headers
+* module/content: post actions classes revised
+* module/content: sub classes for header blocks
+* module/content: template for read more
+* module/editor: de-queue front-end block styles
+* module/editorial: control over word-wrap in meta fields
+* module/editorial: get meta wrapper
+* module/editorial: properly falling back to the defaults
+* module/embed: lead meta as excerpt
+* module/filters: better passing direction into css loader
+* module/filters: factor theme group in stylesheets
+* module/filters: non-breakable space before excerpt more
+* module/filters: passing theme group into css loader
+* module/image: before/after for term image
+* module/image: tweaks colum fallback
+* module/image: tweaks colum only if empty
+* module/navigation: better navigation on posts
+* module/navigation: hide search form on zero results
+* module/navigation: skip content navs on pages
+* module/pages: display selected as page state
+* module/search: properly escape search queries
+* module/social: remove support for gplus
+* module/terms: no related system tag
+
 ### 3.18.1
 * module/editorial: explicitly check for module enabled
 
@@ -10,6 +42,7 @@
 * module/theme: support for align wide
 * module/theme: support for custom font sizes
 * widget/the term: using prep desc helper
+
 ### 3.17.0
 * root/content: link image to attachment page on singular
 * partal/navbar: new default template
