@@ -52,7 +52,7 @@ class gThemeShortCodes extends gThemeModuleCore
 		$caption = gThemeAttachment::normalizeCaption( $args['caption'], '<figcaption>', '</figcaption>' );
 
 		return gThemeHTML::tag( 'figure', [
-			'id'    => $args['id'],
+			'id'    => $args['id'] ?: FALSE,
 			'class' => trim( $args['align'].' '.$args['class'] ),
 		], do_shortcode( $content ).$caption );
 	}
