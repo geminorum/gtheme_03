@@ -5,6 +5,7 @@
   "rules": {
     "block-no-empty": null,
     "max-line-length": null,
+    "comment-empty-line-before": null,
     "no-descending-specificity": null,
     "selector-class-pattern": "^[a-z/-]+(-[a-z]+)*",
     "at-rule-empty-line-before": ["always", {
