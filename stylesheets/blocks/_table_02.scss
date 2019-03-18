@@ -4,14 +4,11 @@
 /// Blocks: Table 02 - 2018-11-03
 
 ////////////////////////////////////////////////////////////////////////////////
-
-table {
+table:not(.-unstyled) {
   width: 100%;
   border-spacing: 0;
   margin: 0.7rem 0 1.5rem;
-}
 
-table:not(.-unstyled) {
   td,
   td ol li,
   td p,

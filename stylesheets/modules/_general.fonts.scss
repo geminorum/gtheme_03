@@ -236,17 +236,16 @@ $theme-fonts-repo: "../../gtheme_03/fonts" !default;
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
-/// Gandom v0.5.1
+/// Gandom v0.6
 // https://github.com/rastikerdar/gandom-font
 // https://rastikerdar.github.io/gandom-font/
 
-// !! Gandom has no woff2
 @mixin theme-fonts-Gandom-CDN() {
 
   $font-family-normal: "Gandom", "Tahoma", "Iranian Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif !global;
 
   $name: "Gandom";
-  $ver: "v0.5.1";
+  $ver: "v0.6";
   $weight: "normal";
 
   $base: $theme-fonts-base;
@@ -265,7 +264,7 @@ $theme-fonts-repo: "../../gtheme_03/fonts" !default;
   $font-family-bold: "Gandom", "Arial", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", "Helvetica", sans-serif !global;
 
   $name: "Gandom";
-  $ver: "v0.5.1";
+  $ver: "v0.6";
   $weight: "bold";
 
   $base: $theme-fonts-base;
@@ -342,27 +341,34 @@ $theme-fonts-repo: "../../gtheme_03/fonts" !default;
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
-/// Dirooz v0.2.1
-// https://github.com/rastikerdar/dirooz-font
-// https://rastikerdar.github.io/dirooz-font/
+/// Nahid v0.3.0
+// previously known as Dirooz
+// https://github.com/rastikerdar/nahid-font
+// https://rastikerdar.github.io/nahid-font/
 
-@mixin theme-fonts-Dirooz-CDN() {
+// !! Nahid has no bold version
+@mixin theme-fonts-Nahid-CDN() {
 
-  $font-family-normal: "Dirooz", "Tahoma", "Iranian Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif !global;
-  $font-family-bold: "Dirooz", "Tahoma", "Iranian Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif !global;
+  $font-family-normal: "Nahid", "Tahoma", "Iranian Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif !global;
+  $font-family-bold: "Nahid", "Tahoma", "Iranian Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif !global;
 
-  $name: "Dirooz";
-  $ver: "v0.2.1";
+  $name: "Nahid";
+  $ver: "v0.3.0";
   $weight: "normal";
 
   $base: $theme-fonts-base;
-  $repo: "rastikerdar/dirooz-font";
-  $file: "dist/Dirooz";
+  $repo: "rastikerdar/nahid-font";
+  $file: "dist/Nahid";
   $path: $base + "/" + $repo + "/" + $ver + "/" + $file;
 
   @include _theme-fonts-fontface($name, $path, $weight) {
     @include theme-fonts-unicoderange-Persian;
   }
+}
+
+// FIXME: back comp
+@mixin theme-fonts-Dirooz-CDN() {
+  @include theme-fonts-Nahid-CDN;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
