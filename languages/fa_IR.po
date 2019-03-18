@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: gTheme 3\n"
 "Report-Msgid-Bugs-To: https://github.com/geminorum/gtheme_03/issues\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2019-03-04 16:51+0330\n"
+"PO-Revision-Date: 2019-03-18 07:47+0330\n"
 "Last-Translator: geminorum <contact@geminorum.ir>\n"
 "Language-Team: geminorum <contact@geminorum.ir>\n"
 "Language: fa_IR\n"
@@ -301,7 +301,7 @@ msgctxt "Modules: Comments: Comment Form String"
 msgid ""
 "Save my name, email, and site URL in my browser for next time I post a "
 "comment."
-msgstr "برای دیدگاه‌های بعدی؛ نام، ایمیل و وب‌گاه من در مرورگر نگه‌داری شود."
+msgstr "برای دیدگاه‌های بعدی؛ نام، ایمیل و وب‌گاه من در مرورگر نگهداری شود."
 
 #: inc/comments.php:315
 msgctxt "Modules: Comments: Comment Form String"
@@ -554,44 +554,44 @@ msgid "j M Y"
 msgstr ""
 
 # @ gtheme
-#: inc/editor.php:139
+#: inc/editor.php:137
 msgctxt "Editor Custom Class"
 msgid "Blockquote"
 msgstr "نقل‌قول"
 
-#: inc/editor.php:144
+#: inc/editor.php:142
 msgctxt "Editor Custom Class"
 msgid "Unordered List"
 msgstr "فهرست بدون ترتیب"
 
-#: inc/editor.php:149
+#: inc/editor.php:147
 msgctxt "Editor Custom Class"
 msgid "Ordered List"
 msgstr "فهرست مرتب‌شده"
 
-#: inc/editor.php:154
+#: inc/editor.php:152
 msgctxt "Editor Custom Class"
 msgid "Note"
 msgstr "توضیح"
 
 # @ gtheme
-#: inc/editor.php:159
+#: inc/editor.php:157
 msgctxt "Editor Custom Class"
 msgid "Source"
 msgstr "منبع"
 
-#: inc/editor.php:164
+#: inc/editor.php:162
 msgctxt "Editor Custom Class"
 msgid "Greeting"
 msgstr "درود"
 
-#: inc/editor.php:169
+#: inc/editor.php:167
 msgctxt "Editor Custom Class"
 msgid "Signature"
 msgstr "امضاء"
 
 # @ gtheme
-#: inc/editor.php:178
+#: inc/editor.php:176
 msgctxt "Editor Default Content"
 msgid "[content not available yet]"
 msgstr "[این صفحه در حال تکمیل است.]"

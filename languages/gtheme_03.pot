@@ -520,42 +520,42 @@ msgctxt "Options: Defaults: Date Format: Byline"
 msgid "j M Y"
 msgstr ""
 
-#: inc/editor.php:139
+#: inc/editor.php:137
 msgctxt "Editor Custom Class"
 msgid "Blockquote"
 msgstr ""
 
-#: inc/editor.php:144
+#: inc/editor.php:142
 msgctxt "Editor Custom Class"
 msgid "Unordered List"
 msgstr ""
 
-#: inc/editor.php:149
+#: inc/editor.php:147
 msgctxt "Editor Custom Class"
 msgid "Ordered List"
 msgstr ""
 
-#: inc/editor.php:154
+#: inc/editor.php:152
 msgctxt "Editor Custom Class"
 msgid "Note"
 msgstr ""
 
-#: inc/editor.php:159
+#: inc/editor.php:157
 msgctxt "Editor Custom Class"
 msgid "Source"
 msgstr ""
 
-#: inc/editor.php:164
+#: inc/editor.php:162
 msgctxt "Editor Custom Class"
 msgid "Greeting"
 msgstr ""
 
-#: inc/editor.php:169
+#: inc/editor.php:167
 msgctxt "Editor Custom Class"
 msgid "Signature"
 msgstr ""
 
-#: inc/editor.php:178
+#: inc/editor.php:176
 msgctxt "Editor Default Content"
 msgid "[content not available yet]"
 msgstr ""
