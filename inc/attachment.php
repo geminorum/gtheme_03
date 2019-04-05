@@ -101,6 +101,10 @@ class gThemeAttachment extends gThemeModuleCore
 
 			$html = do_shortcode( '[csv id="'.$post->ID.'"][/csv]' );
 
+		} else if ( 'application/epub+zip' == $post->post_mime_type ) {
+
+			$html = do_shortcode( '[epub id="'.$post->ID.'"][/epub]' );
+
 		} else if ( 'application/pdf' == $post->post_mime_type ) {
 
 			$html = do_shortcode( '[pdf url="'.wp_get_attachment_url( $post->ID ).'"][/pdf]' );
