@@ -130,7 +130,7 @@ class gThemeWrap extends gThemeModuleCore
 	}
 
 	// USED IN: head.php
-	// @SEE: https://core.trac.wordpress.org/ticket/12563
+	// @REF: https://core.trac.wordpress.org/ticket/12563
 	public static function bodyOpen( $before = '', $extra_atts = '' )
 	{
 		echo "\n".$before;
@@ -147,6 +147,7 @@ class gThemeWrap extends gThemeModuleCore
 		echo '>'."\n";
 
 		do_action( 'template_body_top' );
+		do_action( 'wp_body_open' ); // @since WP 5.2.0
 	}
 
 	// USED IN: foot.php
