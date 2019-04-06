@@ -55,7 +55,7 @@ class gThemeSocial extends gThemeModuleCore
 		self::author();
 	}
 
-	public static function meta( $scope, $b = '', $a ='', $f = FALSE )
+	public static function meta( $scope, $before = '', $after = '', $filter = FALSE )
 	{
 		global $post;
 
@@ -139,14 +139,23 @@ class gThemeSocial extends gThemeModuleCore
 					$output = strip_tags( wp_trim_excerpt( $post->post_excerpt ) );
 		}
 
+		$output = apply_filters( 'gtheme_social_meta', $output, $scope, $before, $after, $filter );
+
 		if ( FALSE === $output )
 			return $output;
 
-		if ( is_array( $b ) )
-			foreach ( $b as $key => $before )
-				echo $before.( $f ? $f( $output ) : $output ).( is_array( $a ) ? $a[$key] : $a );
-		else
-			echo $b.( $f ? $f( $output ) : $output ).$a;
+		if ( is_callable( $filter ) )
+			$output = call_user_func_array( $filter, [ $output ] );
+
+		if ( is_array( $before ) ) {
+
+			foreach ( $before as $key => $value )
+				echo $value.$output.( is_array( $after ) ? $after[$key] : $after );
+
+		} else {
+
+			echo $before.$output.$after;
+		}
 
 		return TRUE;
 	}
