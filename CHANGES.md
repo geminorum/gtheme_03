@@ -1,3 +1,10 @@
+### 3.19.1
+* module/attachment: support for epub mime
+* module/editor: dequeue block library theme
+* module/shortcodes: skip empty id attr on captions
+* module/social: apply filter on meta output
+* module/wrap: new core action hook
+
 ### 3.19.0
 * core/widget: skip linking empty titles
 * module/attachments: csv/pdf template support via shortcode
