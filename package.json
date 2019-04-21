@@ -25,13 +25,18 @@
     "refresh": "gulp dev:rtl",
     "locale": "gulp pot",
     "watch": "gulp watch:styles",
-    "release": "gulp github:tag"
+    "patch": "gulp bump --patch",
+    "minor": "gulp bump",
+    "changes": "echo ### > CHANGES.temp && git changelog >> CHANGES.temp && (echo. & echo.) >> CHANGES.temp && type CHANGES.md >> CHANGES.temp && type CHANGES.temp > CHANGES.md && del CHANGES.temp",
+    "release": "gulp github:tag && start https://github.com/geminorum/gtheme_03/releases",
+    "home": "start https://github.com/geminorum/gtheme_03/",
+    "issues": "start https://github.com/geminorum/gtheme_03/issues"
   },
   "dependencies": {},
   "devDependencies": {
-    "autoprefixer": "^9.4.10",
+    "autoprefixer": "^9.5.1",
     "cssnano": "^4.1.10",
-    "del": "^4.0.0",
+    "del": "^4.1.0",
     "fancy-log": "^1.3.3",
     "gulp": "^4.0.0",
     "gulp-bump": "^3.1.3",
@@ -48,14 +53,14 @@
     "gulp-sass": "^4.0.2",
     "gulp-size": "^3.0.0",
     "gulp-sourcemaps": "^2.6.5",
-    "gulp-wp-pot": "^2.3.4",
-    "js-yaml": "^3.12.2",
+    "gulp-wp-pot": "^2.3.5",
+    "js-yaml": "^3.13.1",
     "parse-changelog": "^1.0.2",
     "prettyjson": "^1.2.1",
     "rtlcss": "^2.4.0",
     "semistandard": "^13.0.1",
-    "stylelint": "^9.10.1",
-    "stylelint-config-wordpress": "^13.1.0",
+    "stylelint": "^10.0.1",
+    "stylelint-config-wordpress": "^14.0.0",
     "xtend": "^4.0.1"
   },
   "optionalDependencies": {
@@ -63,8 +68,8 @@
     "genericons-neue": "^4.0.5",
     "minireset.css": "^0.0.4",
     "paper-css": "^0.4.1",
-    "popper.js": "^1.14.7",
-    "screenfull": "^4.0.1"
+    "popper.js": "^1.15.0",
+    "screenfull": "^4.2.0"
   },
   "semistandard": {
     "ignore": [
