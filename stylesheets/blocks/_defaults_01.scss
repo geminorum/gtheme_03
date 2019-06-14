@@ -85,6 +85,8 @@
 
 ////////////////////////////////////////////////////////////////////////////////
 .entry-wrap {
+  @include theme-clearfix;
+
   .entry-attachment,
   .entry-image {
     text-align: center;

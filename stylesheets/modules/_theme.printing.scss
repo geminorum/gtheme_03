@@ -35,7 +35,7 @@
   }
 
   h1 {
-    page-break-before: always;
+    // page-break-before: always; // messes when we have site logo
   }
 
   h1,
