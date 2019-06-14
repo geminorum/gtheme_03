@@ -54,18 +54,18 @@ class gThemePages extends gThemeModuleCore
 	public static function defaults( $extra = [] )
 	{
 		return array_merge( [
-			'not-found'    => _x( '404: Not Found', 'Modules: Pages: Default Pages', GTHEME_TEXTDOMAIN ),
-			'about'        => _x( 'About', 'Modules: Pages: Default Pages', GTHEME_TEXTDOMAIN ),
-			'contact'      => _x( 'Contact', 'Modules: Pages: Default Pages', GTHEME_TEXTDOMAIN ),
-			'search'       => _x( 'Search', 'Modules: Pages: Default Pages', GTHEME_TEXTDOMAIN ),
-			'archives'     => _x( 'Archives', 'Modules: Pages: Default Pages', GTHEME_TEXTDOMAIN ),
-			'latest'       => _x( 'Latest Posts', 'Modules: Pages: Default Pages', GTHEME_TEXTDOMAIN ),
-			'social'       => _x( 'Social Profiles', 'Modules: Pages: Default Pages', GTHEME_TEXTDOMAIN ),
-			'work-with-us' => _x( 'Work with us', 'Modules: Pages: Default Pages', GTHEME_TEXTDOMAIN ),
-			'advertise'    => _x( 'Advertise here', 'Modules: Pages: Default Pages', GTHEME_TEXTDOMAIN ),
-			'copyright'    => _x( 'Copyright Policy', 'Modules: Pages: Default Pages', GTHEME_TEXTDOMAIN ),
-			'terms'        => _x( 'Terms of Use', 'Modules: Pages: Default Pages', GTHEME_TEXTDOMAIN ),
-			'privacy'      => _x( 'Privacy Policy', 'Modules: Pages: Default Pages', GTHEME_TEXTDOMAIN ),
+			'not-found'  => _x( '404: Not Found', 'Modules: Pages: Default Pages', GTHEME_TEXTDOMAIN ),
+			'about'      => _x( 'About', 'Modules: Pages: Default Pages', GTHEME_TEXTDOMAIN ),
+			'contact'    => _x( 'Contact', 'Modules: Pages: Default Pages', GTHEME_TEXTDOMAIN ),
+			'search'     => _x( 'Search', 'Modules: Pages: Default Pages', GTHEME_TEXTDOMAIN ),
+			'archives'   => _x( 'Archives', 'Modules: Pages: Default Pages', GTHEME_TEXTDOMAIN ),
+			'latest'     => _x( 'Latest Posts', 'Modules: Pages: Default Pages', GTHEME_TEXTDOMAIN ),
+			'social'     => _x( 'Social Profiles', 'Modules: Pages: Default Pages', GTHEME_TEXTDOMAIN ),
+			'contribute' => _x( 'Contribute', 'Modules: Pages: Default Pages', GTHEME_TEXTDOMAIN ),
+			'advertise'  => _x( 'Advertise here', 'Modules: Pages: Default Pages', GTHEME_TEXTDOMAIN ),
+			'copyright'  => _x( 'Copyright Policy', 'Modules: Pages: Default Pages', GTHEME_TEXTDOMAIN ),
+			'terms'      => _x( 'Terms of Use', 'Modules: Pages: Default Pages', GTHEME_TEXTDOMAIN ),
+			'privacy'    => _x( 'Privacy Policy', 'Modules: Pages: Default Pages', GTHEME_TEXTDOMAIN ),
 		], $extra );
 	}
 

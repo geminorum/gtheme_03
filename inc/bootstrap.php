@@ -151,7 +151,7 @@ class gThemeBootstrap extends gThemeModuleCore
 						gThemeComments::awaiting( $comment );
 						gThemeComments::commentActions( $comment, $args, $depth, 'media-actions' );
 
-					echo '</div><div class=" clearfix"></div>';
+					echo '</div><div class="clearfix"></div>';
 			break;
 		}
 	}

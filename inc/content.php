@@ -289,7 +289,7 @@ class gThemeContent extends gThemeModuleCore
 		}
 	}
 
-	// @REF: https://developer.wordpress.org/reference/functions/the_content/#comment-338
+	// @REF: https://developer.wordpress.org/?p=1394#comment-338
 	public static function teaser( $before = '<div class="entry-teaser">', $after = '</div>', $link = NULL, $edit = NULL )
 	{
 		$GLOBALS['more'] = 0;
