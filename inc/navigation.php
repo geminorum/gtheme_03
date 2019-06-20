@@ -245,7 +245,7 @@ class gThemeNavigation extends gThemeModuleCore
 		$crumbs = self::crumbHome( $args );
 
 		if ( $crumb = self::crumbArchive( $args ) )
-			$crumbs[] = $crumb;
+			$crumbs[] = apply_filters( 'gtheme_navigation_crumb_archive', $crumb, $args );
 
 		if ( is_paged() ) {
 			$template = empty( $args['strings']['paged'] ) ? _x( 'Page <strong>%s</strong>', 'Modules: Navigation: Breadcrumbs', GTHEME_TEXTDOMAIN ) : $args['strings']['paged'];
@@ -298,7 +298,7 @@ class gThemeNavigation extends gThemeModuleCore
 			$crumbs[] = '<a href="'.esc_url( gThemeUtilities::home() ).'" rel="home" title="'.esc_attr( $args['home_title'] ).'">'.$args['home'].'</a>';
 		}
 
-		return apply_filters( 'gtheme_breadcrumb_after_home', $crumbs, $args );
+		return apply_filters( 'gtheme_navigation_crumb_home', $crumbs, $args ); // OLD FILTER: `gtheme_breadcrumb_after_home`
 	}
 
 	// @REF: `get_the_archive_title()`
