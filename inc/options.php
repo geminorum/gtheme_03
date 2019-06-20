@@ -168,7 +168,6 @@ class gThemeOptions extends gThemeModuleCore
 			// 'post_actions' => [ // the order is important!
 			// 	// 'textsize_buttons', // or 'textsize_buttons_nosep',
 			// 	// 'textjustify_buttons_nosep', // 'textjustify_buttons', // or ,
-			// 	// 'printfriendly',
 			// 	'printlink',
 			// 	'addtoany',
 			// 	// 'addthis',

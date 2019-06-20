@@ -436,14 +436,6 @@ class gThemeContent extends gThemeModuleCore
 				);
 
 			break;
-			case 'printfriendly':
-
-				self::printfriendly(
-					sprintf( $before, 'printfriendly post-print-link hidden-print' ), $after,
-					( $icon ? self::getGenericon( 'print' ) : _x( 'Print Version', 'Modules: Content: Action', GTHEME_TEXTDOMAIN ) )
-				);
-
-			break;
 			case 'a2a_dd':
 			case 'addtoany':
 
@@ -746,44 +738,6 @@ $('#text-unjustify').click(function (e) {
 	$('#text-unjustify').hide();
 	});
 });</script><?php
-	}
-
-	// @REF: https://support.printfriendly.com/button/developer-questions/custom-css-styles/
-	public static function printfriendly( $before = '', $after = '', $text = NULL, $footer = TRUE, $analytics = TRUE )
-	{
-		if ( $footer && ( is_singular() || is_single() ) )
-			add_action( 'wp_footer', [ __CLASS__, 'printfriendly_footer' ] );
-
-		$query_args = [
-			'url'               => urlencode( get_permalink() ),
-			'pfCustomCSS'       => urlencode( GTHEME_URL.'/css/printfriendly'.( gThemeUtilities::isRTL() ? '-rtl' : '' ).'.css&ver='.GTHEME_VERSION ),
-			'imageDisplayStyle' => gThemeUtilities::isRTL( 'left', 'right' ), // 'block',
-			// 'headerImageUrl'    => '',
-			// 'headerTagline'     => '',
-			// 'disableClickToDel' => '',
-			// 'disablePDF'        => '',
-			// 'disablePrint'      => '',
-			// 'disableEmail'      => '',
-			// 'hideImages'        => '',
-		];
-
-		if ( $analytics )
-			$onclick = 'onclick="window.print();'."if(typeof(ga)!='undefined'){ga('send','event','PrintFriendly');}".'return false;"';
-		else
-			$onclick = 'onclick="window.print();return false;"';
-
-		echo $before;
-		printf( '<a href="%1$s" rel="nofollow" %3$s>%2$s</a>',
-			add_query_arg( $query_args, 'https://www.printfriendly.com/print' ),
-			( $text ? $text : _x( 'Print Version', 'Modules: Content: PrintFriendly', GTHEME_TEXTDOMAIN ) ),
-			$onclick
-		);
-		echo $after;
-	}
-
-	public static function printfriendly_footer()
-	{
-		?><script type="text/javascript">(function(){var e=document.createElement('script');e.type='text/javascript';e.src='//cdn.printfriendly.com/printfriendly.js';document.getElementsByTagName('head')[0].appendChild(e);})();</script><?php
 	}
 
 	// @REF: https://www.addtoany.com/buttons/customize/
