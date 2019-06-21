@@ -34,7 +34,9 @@ final class gThemeCore
 			'Misc/Bootstrap_Walker_NavBar' => '',
 			'Misc/gTheme_Walker_Page'      => '',
 
-			'WordPress/Widget'       => '',
+			'WordPress/Taxonomy' => '',
+			'WordPress/Widget'   => '',
+
 			'Widgets/TermPosts'      => '',
 			'Widgets/RelatedPosts'   => '',
 			'Widgets/RecentPosts'    => '',

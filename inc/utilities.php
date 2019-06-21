@@ -227,4 +227,16 @@ class gThemeUtilities extends gThemeBaseCore
 	{
 		return gThemeURL::current( $trailingslashit, $forwarded_host );
 	}
+
+	public static function joinItems( $items )
+	{
+		return
+			_x( '&rdquo;', 'Utilities: Join Items Helper', GTHEME_TEXTDOMAIN )
+			.join( _x( '&ldquo; and &rdquo;', 'Utilities: Join Items Helper', GTHEME_TEXTDOMAIN ),
+				array_filter( array_merge( [
+					join( _x( '&ldquo;, &rdquo;', 'Utilities: Join Items Helper', GTHEME_TEXTDOMAIN ),
+					array_slice( $items, 0, -1 ) ) ],
+					array_slice( $items, -1 ) ) ) )
+			._x( '&ldquo;', 'Utilities: Join Items Helper', GTHEME_TEXTDOMAIN ).'.';
+	}
 }
