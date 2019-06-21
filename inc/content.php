@@ -772,7 +772,7 @@ $('#text-unjustify').click(function (e) {
 
 		?><script type="text/javascript">
 var a2a_config = a2a_config || {};
-a2a_config.linkname  = '<?php echo esc_js( self::title_attr( FALSE, NULL, '%s' ) ); ?>';
+a2a_config.linkname = '<?php echo esc_js( self::title_attr( FALSE, NULL, '%s' ) ); ?>';
 a2a_config.linkurl = '<?php echo esc_js( esc_url_raw( get_permalink() ) ); ?>';
 a2a_config.onclick = true;
 a2a_config.locale = "fa";

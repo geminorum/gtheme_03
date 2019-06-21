@@ -353,7 +353,6 @@ class gThemeTerms extends gThemeModuleCore
 
 	public function taxonomy_bulk_callback( $callback, $action, $taxonomy )
 	{
-
 		if ( $taxonomy == GTHEME_SYSTEMTAGS && 'empty_lastmonth' == $action )
 			return [ $this, 'bulk_empty_lastmonth' ];
 
