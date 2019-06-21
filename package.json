@@ -65,6 +65,7 @@
     "xtend": "^4.0.1"
   },
   "optionalDependencies": {
+    "jquery": "^3.4.1",
     "bootstrap": "^4.3.1",
     "genericons-neue": "^4.0.5",
     "minireset.css": "^0.0.5",
