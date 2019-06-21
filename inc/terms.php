@@ -256,6 +256,48 @@ class gThemeTerms extends gThemeModuleCore
 			$this->system_tags_table_action( 'gtheme_action' );
 			add_action( 'after-'.GTHEME_SYSTEMTAGS.'-table', [ $this, 'after_system_tags_table' ] );
 		}
+
+		$primary_taxonomy = gThemeOptions::info( 'primary_terms_taxonomy', 'category' );
+
+		if ( $_REQUEST['taxonomy'] == $primary_taxonomy ) {
+			add_action( 'after-'.$primary_taxonomy.'-table', [ $this, 'after_category_table' ], 8 );
+			add_filter( 'term_name', [ $this, 'term_name' ], 12, 2 );
+		}
+	}
+
+	public function after_category_table( $taxonomy )
+	{
+		$primaries = gThemeOptions::getOption( 'terms', [] );
+
+		if ( empty( $primaries ) ) {
+
+			$desc = _x( 'Currently no primary terms are defined.', 'Modules: Terms', GTHEME_TEXTDOMAIN );
+
+		} else {
+
+			$list = gThemeTaxonomy::listTerms( $taxonomy, NULL, [ 'include' => $primaries ] );
+			$desc = sprintf( _x( 'Primary Terms are: %s', 'Modules: Terms', GTHEME_TEXTDOMAIN ), gThemeUtilities::joinItems( $list ) );
+		}
+
+		echo '<br />';
+		gThemeHTML::desc( $desc );
+	}
+
+	// FIXME: the filter is not good enough, it must be outside of the link
+	public function term_name( $name, $term )
+	{
+		if ( ! is_object( $term ) )
+			return $name;
+
+		$primaries = gThemeOptions::getOption( 'terms', [] );
+
+		if ( empty( $primaries ) )
+			return $name;
+
+		if ( in_array( $term->term_id, $primaries ) )
+			$name.= sprintf( ' — [%s]', _x( 'Primary Term', 'Modules: Terms', GTHEME_TEXTDOMAIN ) );
+
+		return $name;
 	}
 
 	private function system_tags_table_action( $name )
