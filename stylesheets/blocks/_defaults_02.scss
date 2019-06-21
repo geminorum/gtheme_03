@@ -1,0 +1,316 @@
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+/// Blocks: Defaults 02 - 2019-06-20
+
+////////////////////////////////////////////////////////////////////////////////
+.wrapper {
+  // &.-main {}
+  // &.-copyright {}
+}
+
+////////////////////////////////////////////////////////////////////////////////
+.container {
+  max-width: $theme-container-width;
+  margin: 0 auto;
+  padding: 0 1rem;
+
+  &.-nav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 1rem;
+
+    .-branding,
+    .-expanding,
+    .-navigation {
+      flex-grow: 0;
+    }
+
+    h1,
+    ul,
+    form,
+    p {
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+
+    h1 {
+      font-size: 1.2rem;
+    }
+
+    .-branding {
+      text-align: center;
+    }
+
+    .-description {
+      font-size: .8rem;
+      color: $gray-light;
+    }
+
+    > .-rule {
+      flex-grow: 1;
+      margin: 0 .4rem;
+      border-top: 2px dotted $gray-light;
+    }
+
+    .-expanding {
+      padding-left: .4rem !important;
+    }
+  }
+
+  &.-main {
+    margin-top: 1rem;
+  }
+
+  &.-footer {
+    margin-top: 1rem;
+    margin-bottom: -.5rem;
+
+    ul {
+      font-size: .8rem;
+      justify-content: center;
+    }
+  }
+
+  &.-copyright {
+    font-size: .8rem;
+    text-align: center;
+    color: $gray-light;
+    border-top: 1px dotted $gray-lighter;
+    margin-top: 1rem;
+    padding-top: .5rem;
+  }
+}
+
+////////////////////////////////////////////////////////////////////////////////
+.entry-wrap {
+  @include theme-clearfix;
+
+  .entry-attachment,
+  .entry-image {
+    text-align: center;
+
+    img {
+      max-width: 100%;
+    }
+  }
+
+  .entry-header {
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+
+  .entry-title {
+    margin: 1.25rem 0 1rem; // normalizing for h1/h2/h3
+  }
+
+  .entry-overtitle {
+    margin: 0.5rem 0 -1rem;
+  }
+
+  .entry-subtitle {
+    margin: -0.75rem 0 1rem;
+  }
+
+  .entry-byline {
+    font-size: 0.8rem;
+    text-align: center;
+    margin-top: -0.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .entry-actions {
+    &:empty {
+      display: none;
+    }
+
+    &.-actions-header {
+      margin-top: -1rem !important;
+    }
+
+    &.-actions-footer {
+      margin-top: 1rem !important;
+    }
+  }
+
+  .entry-lead {
+    color: $gray-light;
+    margin-bottom: 1rem;
+  }
+
+  .entry-content {
+    &.entry-404 {
+      max-width: ( $theme-container-width / 2 );
+      margin: 0 auto;
+      text-align: center;
+    }
+  }
+
+  .entry-pages {
+    border-top: 1px dotted $gray-lighter;
+    padding-top: .5rem;
+    margin: 1rem 0;
+    font-size: 0.89rem;
+  }
+
+  .post-navigation {
+    border-top: 1px dotted $gray-light;
+    margin: 1rem 0 0;
+    font-size: 0.89rem;
+  }
+
+  .entry-summary {
+    @include theme-clearfix;
+  }
+
+  .entry-footer {
+    font-size: 0.89rem;
+  }
+
+  .entry-download {
+    font-size: 0.75rem;
+    float: right;
+
+    a {
+      color: $gray-light;
+    }
+  }
+
+  .entry-caption {
+    font-size: 0.89rem;
+  }
+
+  .entry-backlink {
+    text-align: center;
+    font-size: 0.75rem;
+  }
+}
+
+.entry-before {
+  &.before-estimated {
+    cursor: help;
+    color: $gray-light;
+    font-size: 0.8rem;
+    margin-top: -0.5rem;
+    margin-bottom: 0.5rem;
+    text-align: right;
+  }
+}
+
+.entry-after {
+  @include theme-clearfix;
+
+  &.after-source {
+    color: $gray-light;
+    font-size: 0.8rem;
+    margin-top: 1rem;
+    text-align: right;
+  }
+
+  &.after-reflist {
+    .-title {
+      margin: 0.5rem 0;
+    }
+
+    ol {
+      margin: 0;
+      padding: 0;
+    }
+
+    li {
+      margin-bottom: 0.5rem;
+      font-size: 0.8rem;
+    }
+  }
+}
+
+////////////////////////////////////////////////////////////////////////////////
+.entry-after.after-reflist,
+.entry-comments {
+  border-top: 1px dotted $gray-light;
+  max-width: ( $theme-container-width / 2 );
+  margin: 2rem auto 1rem;
+}
+
+////////////////////////////////////////////////////////////////////////////////
+.container.-footer ul,
+.container.-nav ul,
+// ol.breadcrumb,
+ul.entry-actions.-actions-footer,
+ul.comment-actions.list-inline {
+  @include theme-list-flex() {
+    + li {
+      padding-left: .5rem;
+
+      &::before {
+        padding-right: .5rem;
+        color: $gray-light;
+        content: "∫";
+        font-size: smaller;
+      }
+    }
+  }
+}
+
+ul.entry-actions.-actions-header {
+  flex-direction: row-reverse;
+  @include theme-list-flex() {
+    + li {
+      padding-right: .5rem;
+
+      &::after {
+        padding-left: .5rem;
+        color: $gray-light;
+        content: "∫";
+        font-size: smaller;
+      }
+    }
+  }
+}
+
+.container.-footer ul,
+.container.-nav ul,
+// ol.breadcrumb,
+ul.comment-actions.list-inline,
+ul.entry-actions.list-inline {
+  font-size: 0.8rem;
+  color: $gray-dark;
+
+  a {
+    color: $gray-dark;
+
+    &:hover,
+    &:focus {
+      color: $gray-darker;
+    }
+  }
+}
+
+ol.breadcrumb {
+  background: $gray-lighter;
+  border-radius: $border-radius;
+  padding: .4rem .6rem;
+  margin: 0 0 1rem;
+
+  // li + li::before {
+  //   content: "»";
+  // }
+}
+
+////////////////////////////////////////////////////////////////////////////////
+@media (max-width: 782px) {
+  .container {
+    &.-nav {
+      display: block;
+
+      > .-rule {
+        margin: .25rem 0;
+      }
+
+      ul {
+        justify-content: center;
+      }
+    }
+  }
+}
