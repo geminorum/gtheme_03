@@ -1,3 +1,12 @@
+### 3.19.3
+* missed bump
+
+### 3.19.2
+* module/content: drop support for printfriendly
+* module/navigation: apply filters on breadcrumbs
+* module/terms: more identifiers for primary terms
+* root/content: partial for page entry only
+
 ### 3.19.1
 * module/attachment: support for epub mime
 * module/editor: dequeue block library theme
