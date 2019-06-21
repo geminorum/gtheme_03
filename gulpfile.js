@@ -10,17 +10,17 @@
   var extend = require('xtend');
   var yaml = require('js-yaml');
   var log = require('fancy-log');
-  var del = require('del');
+  // var del = require('del');
   var fs = require('fs');
 
   var pkg = JSON.parse(fs.readFileSync('./package.json'));
   var config = require('./gulp.config.json');
 
   var env = config.env;
-  var banner = config.banner.join('\n');
+  // var banner = config.banner.join('\n');
 
   try {
-    env = extend(config.env, yaml.safeLoad(fs.readFileSync('./environment.yml', {encoding: 'utf-8'}), {'json': true}));
+    env = extend(config.env, yaml.safeLoad(fs.readFileSync('./environment.yml', { encoding: 'utf-8' }), { 'json': true }));
   } catch (e) {
     log.warn('no environment.yml loaded!');
   }
@@ -47,14 +47,14 @@
         autoprefixer(config.autoprefixer.dev)
       ]))
       .pipe(plugins.sourcemaps.write(config.output.sourcemaps))
-      .pipe(plugins.size({title: 'CSS:', showFiles: true}))
+      .pipe(plugins.size({ title: 'CSS:', showFiles: true }))
       .pipe(gulp.dest(config.output.css)).on('error', log.error)
       .pipe(plugins.postcss([rtlcss()]))
-      .pipe(plugins.rename({suffix: '-rtl'}))
-      .pipe(plugins.size({title: 'RTL:', showFiles: true}))
+      .pipe(plugins.rename({ suffix: '-rtl' }))
+      .pipe(plugins.size({ title: 'RTL:', showFiles: true }))
       .pipe(gulp.dest(config.output.css)).on('error', log.error)
       .pipe(plugins.changedInPlace())
-      .pipe(plugins.debug({title: 'Changed'}))
+      .pipe(plugins.debug({ title: 'Changed' }))
       .pipe(plugins.if(function (file) {
         if (file.extname !== '.map') return true;
       }, plugins.livereload()));
@@ -84,7 +84,7 @@
         cssnano(config.cssnano.build),
         autoprefixer(config.autoprefixer.build)
       ]))
-      .pipe(plugins.rename({suffix: '-rtl'}))
+      .pipe(plugins.rename({ suffix: '-rtl' }))
       .pipe(gulp.dest(config.output.css)).on('error', log.error);
   });
 
