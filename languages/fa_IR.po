@@ -3,14 +3,14 @@ msgstr ""
 "Project-Id-Version: gTheme 3\n"
 "Report-Msgid-Bugs-To: https://github.com/geminorum/gtheme_03/issues\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2019-03-18 07:47+0330\n"
+"PO-Revision-Date: 2019-06-21 17:37+0430\n"
 "Last-Translator: geminorum <contact@geminorum.ir>\n"
 "Language-Team: geminorum <contact@geminorum.ir>\n"
 "Language: fa_IR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.2.1\n"
+"X-Generator: Poedit 2.2.3\n"
 "X-Textdomain-Support: yes\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -57,17 +57,17 @@ msgctxt "Modules: Admin"
 msgid "Default Template"
 msgstr "برگه پیش‌فرض"
 
-#: inc/attachment.php:133
+#: inc/attachment.php:137
 msgctxt "Module: Attachment: Backlink Template"
 msgid "&larr; Back to &ldquo;%s&rdquo;"
 msgstr "&rarr; بازگشت به «%s»"
 
-#: inc/attachment.php:134
+#: inc/attachment.php:138
 msgctxt "Module: Attachment: Backlink Empty Title"
 msgid "&larr; Back"
 msgstr "&rarr; بازگشت"
 
-#: inc/attachment.php:169
+#: inc/attachment.php:173
 msgctxt "Module: Attachment: Link"
 msgid "Download Attachment"
 msgstr "دریافت پیوست"
@@ -379,141 +379,136 @@ msgctxt "Content: Title Attr"
 msgid "Short link for &ndash;%s&ndash;"
 msgstr "پیوند کوتاه به &ndash;%s&ndash;"
 
-#: inc/content.php:443, inc/content.php:467
-msgctxt "Modules: Content: Action"
-msgid "Print Version"
-msgstr "نسخهٔ چاپی"
-
-#: inc/content.php:452, inc/content.php:460
+#: inc/content.php:444, inc/content.php:452
 msgctxt "Modules: Content: Action"
 msgid "Share This"
 msgstr "همخوان کنید"
 
-#: inc/content.php:478
+#: inc/content.php:459
+msgctxt "Modules: Content: Action"
+msgid "Print Version"
+msgstr "نسخهٔ چاپی"
+
+#: inc/content.php:470
 msgctxt "Modules: Content: Action"
 msgid "Short Link"
 msgstr "پیوند کوتاه"
 
-#: inc/content.php:514
+#: inc/content.php:506
 msgctxt "Modules: Content: Action"
 msgid "<a href=\"%3$s\" class=\"%1$s\">Your Comment</a>"
 msgstr "<a href=\"%3$s\" class=\"%1$s\">دیدگاه شما</a>"
 
-#: inc/content.php:515
+#: inc/content.php:507
 msgctxt "Modules: Content: Action"
 msgid "<a href=\"%3$s\" class=\"%1$s\">One Comment</a>"
 msgstr "<a href=\"%3$s\" class=\"%1$s\">یک دیدگاه</a>"
 
-#: inc/content.php:516
+#: inc/content.php:508
 msgctxt "Modules: Content: Action"
 msgid "<a href=\"%3$s\" class=\"%1$s\">%2$s Comments</a>"
 msgstr "<a href=\"%3$s\" class=\"%1$s\">%2$s دیدگاه</a>"
 
-#: inc/content.php:523
+#: inc/content.php:515
 msgctxt "Modules: Content: Action"
 msgid ""
 " <small><small>(<a href=\"%1$s\" title=\"%2$s\" class=\"%3$s\"><abbr title="
 "\"Really Simple Syndication\">RSS</abbr></a>)</small></small>"
 msgstr ""
 
-#: inc/content.php:525
+#: inc/content.php:517
 msgctxt "Modules: Content: Action"
 msgid "Feed for this post's comments"
 msgstr "خوراک برای دیدگاه‌های این نوشته"
 
-#: inc/content.php:538
+#: inc/content.php:530
 msgctxt "Modules: Content: Action"
 msgid "Edit"
 msgstr "ویرایش"
 
-#: inc/content.php:550, inc/content.php:566
+#: inc/content.php:542, inc/content.php:558
 msgctxt "Options: Separator: Term"
 msgid ", "
 msgstr "، "
 
-#: inc/content.php:669
+#: inc/content.php:661
 msgctxt "Options: Text Size Increase"
 msgid "[ A+ ]"
 msgstr "[ الف+ ]"
 
-#: inc/content.php:672
+#: inc/content.php:664
 msgctxt "Options: Text Size Decrease"
 msgid "[ A- ]"
 msgstr "[ الف– ]"
 
-#: inc/content.php:675
+#: inc/content.php:667
 msgctxt "Options: Text Size Sep"
 msgid " / "
 msgstr " \\ "
 
 # @ gtheme
-#: inc/content.php:680
+#: inc/content.php:672
 msgid "Increase font size"
 msgstr "اندازه قلم درشت‌تر"
 
 # @ gtheme
-#: inc/content.php:687
+#: inc/content.php:679
 msgid "Decrease font size"
 msgstr "اندازه قلم کوچک‌تر"
 
-#: inc/content.php:701
+#: inc/content.php:693
 msgctxt "Options: Text Justify"
 msgid "[ Ju ]"
 msgstr "[ همـ ]"
 
-#: inc/content.php:704
+#: inc/content.php:696
 msgctxt "Options: Text Unjustify"
 msgid "[ uJ ]"
 msgstr "[ ناهمـ ]"
 
-#: inc/content.php:707
+#: inc/content.php:699
 msgctxt "Options: Text Justify Sep"
 msgid " / "
 msgstr " \\ "
 
 # @ gtheme
-#: inc/content.php:712
+#: inc/content.php:704
 msgid "Justify paragraphs"
 msgstr "هم‌چین کردن متن"
 
 # @ gtheme
-#: inc/content.php:719
+#: inc/content.php:711
 msgid "Un-justify paragraphs"
 msgstr "غیر هم‌چین کردن متن"
 
-#: inc/content.php:778
-msgctxt "Modules: Content: PrintFriendly"
-msgid "Print Version"
-msgstr "نسخهٔ چاپی"
-
-#: inc/content.php:805
+#: inc/content.php:759
 msgctxt "Modules: Content: Addtoany"
 msgid "Share This"
 msgstr "همخوان کنید"
 
-#: inc/content.php:829
+#: inc/content.php:783
 msgctxt "Modules: Content: Addtoany"
 msgid "Check this out %s"
 msgstr "نگاهی بیاندازید به %s"
 
-#: inc/content.php:830
+#: inc/content.php:784
 msgctxt "Modules: Content: Addtoany"
 msgid ""
 "Click the link:\n"
 "%s"
 msgstr "روی پیوند کلیک کنید: %s"
 
-#: inc/content.php:1050
+#: inc/content.php:1004
 msgctxt "Modules: Content: Link Pages"
 msgid "Next page"
 msgstr "صفحه بعدی"
 
-#: inc/content.php:1051
+#: inc/content.php:1005
 msgctxt "Modules: Content: Link Pages"
 msgid "Previous page"
 msgstr "صفحه قبلی"
 
-#: inc/content.php:1063
+#: inc/content.php:1017
 msgctxt "Modules: Content: Link Pages"
 msgid "Pages:"
 msgstr "صفحه‌ها:"
@@ -665,130 +660,130 @@ msgstr "&mdash; انتخاب کنید &mdash;"
 msgid "Error: settings type undefined."
 msgstr "خطا: این نوع تعریف نشده است."
 
-#: inc/navigation.php:99
+#: inc/navigation.php:27
 msgctxt "Modules: Navigation: Screen Reader Title"
 msgid "Post Navigation"
 msgstr "راه‌بری نوشته"
 
-#: inc/navigation.php:101
+#: inc/navigation.php:29
 msgctxt "Modules: Navigation: Post Navigation: Previous"
 msgid "<span aria-hidden=\"true\">&larr;</span> %title"
 msgstr "<span aria-hidden=\"true\">&rarr;</span> %title"
 
-#: inc/navigation.php:102
+#: inc/navigation.php:30
 msgctxt "Modules: Navigation: Post Navigation: Next"
 msgid "%title <span aria-hidden=\"true\">&rarr;</span>"
 msgstr "%title <span aria-hidden=\"true\">&larr;</span>"
 
 # @ gtheme
-#: inc/navigation.php:111
+#: inc/navigation.php:39
 msgctxt "Modules: Navigation: Screen Reader Title"
 msgid "Posts Navigation"
 msgstr "راه‌بری نوشته‌ها"
 
 # @ gtheme
-#: inc/navigation.php:113
+#: inc/navigation.php:41
 msgctxt "Modules: Navigation: Posts Navigation: Previous"
 msgid "<span aria-hidden=\"true\">&larr;</span> Older"
 msgstr "<span aria-hidden=\"true\">&rarr;</span> کهنه‌تر"
 
 # @ gtheme
-#: inc/navigation.php:114
+#: inc/navigation.php:42
 msgctxt "Modules: Navigation: Posts Navigation: Next"
 msgid "Newer <span aria-hidden=\"true\">&rarr;</span>"
 msgstr "تازه‌تر <span aria-hidden=\"true\">&larr;</span>"
 
-#: inc/navigation.php:156
+#: inc/navigation.php:84
 msgctxt "Modules: Navigation: Pagination: Previous"
 msgid "<span aria-hidden=\"true\">&larr;</span>"
 msgstr "<span aria-hidden=\"true\">&rarr;</span>"
 
-#: inc/navigation.php:157
+#: inc/navigation.php:85
 msgctxt "Modules: Navigation: Pagination: Next"
 msgid "<span aria-hidden=\"true\">&rarr;</span>"
 msgstr "<span aria-hidden=\"true\">&larr;</span>"
 
-#: inc/navigation.php:174
+#: inc/navigation.php:102
 msgctxt "Modules: Navigation: Screen Reader Title"
 msgid "Navigation"
 msgstr "راه‌بری"
 
-#: inc/navigation.php:264
+#: inc/navigation.php:192
 msgctxt "Modules: Navigation: Breadcrumbs"
 msgid "(Preview)"
 msgstr "(پیش‌نمایش)"
 
-#: inc/navigation.php:269
+#: inc/navigation.php:197
 msgctxt "Modules: Navigation: Breadcrumbs"
 msgid "Page <strong>%s</strong> of %s"
 msgstr "صفحه <strong>%s</strong> از %s"
 
-#: inc/navigation.php:323
+#: inc/navigation.php:251
 msgctxt "Modules: Navigation: Breadcrumbs"
 msgid "Page <strong>%s</strong>"
 msgstr "صفحه <strong>%s</strong>"
 
-#: inc/navigation.php:384
+#: inc/navigation.php:312
 msgctxt "Modules: Navigation: Breadcrumbs"
 msgid "Not Found"
 msgstr "پیدا نشد"
 
-#: inc/navigation.php:389
+#: inc/navigation.php:317
 msgctxt "Modules: Navigation: Breadcrumbs"
 msgid "Category Archives for <strong>%s</strong>"
 msgstr "بایگانی دستهٔ <strong>%s</strong>"
 
-#: inc/navigation.php:395
+#: inc/navigation.php:323
 msgctxt "Modules: Navigation: Breadcrumbs"
 msgid "Tag Archives for <strong>%s</strong>"
 msgstr "بایگانی برچسب <strong>%s</strong>"
 
-#: inc/navigation.php:401
+#: inc/navigation.php:329
 msgctxt "Modules: Navigation: Breadcrumbs"
 msgid "People Archives for <strong>%s</strong>"
 msgstr "بایگانی برای <strong>%s</strong>"
 
-#: inc/navigation.php:407
+#: inc/navigation.php:335
 msgctxt "Modules: Navigation: Breadcrumbs"
 msgid "Archives for <strong>%s</strong>"
 msgstr "بایگانی <strong>%s</strong>"
 
-#: inc/navigation.php:416
+#: inc/navigation.php:344
 msgctxt "Modules: Navigation: Breadcrumbs"
 msgid "%s Archives for <strong>%s</strong>"
 msgstr "بایگانی %s <strong>%s</strong>"
 
-#: inc/navigation.php:430
+#: inc/navigation.php:358
 msgctxt "Modules: Navigation: Breadcrumbs"
 msgid "Author Archives for <strong>%s</strong>"
 msgstr "بایگانی نوشته‌های <strong>%s</strong>"
 
-#: inc/navigation.php:437
+#: inc/navigation.php:365
 msgctxt "Modules: Navigation: Breadcrumbs"
 msgid "Search Results for <strong>%s</strong>"
 msgstr "نتایج جست‌وجو برای <strong>%s</strong>"
 
-#: inc/navigation.php:443
+#: inc/navigation.php:371
 msgctxt "Modules: Navigation: Breadcrumbs"
 msgid "Daily Archives for <strong>%s</strong>"
 msgstr "بایگانی روز <strong>%s</strong>"
 
-#: inc/navigation.php:445
+#: inc/navigation.php:373
 msgctxt "Options: Defaults: Date Format: Day"
 msgid "j M Y"
 msgstr ""
 
-#: inc/navigation.php:449
+#: inc/navigation.php:377
 msgctxt "Modules: Navigation: Breadcrumbs"
 msgid "Monthly Archives for <strong>%s</strong>"
 msgstr "بایگانی ماه <strong>%s</strong>"
 
-#: inc/navigation.php:455
+#: inc/navigation.php:383
 msgctxt "Modules: Navigation: Breadcrumbs"
 msgid "Yearly Archives for <strong>%s</strong>"
 msgstr "بایگانی سال <strong>%s</strong>"
 
-#: inc/navigation.php:460
+#: inc/navigation.php:388
 msgctxt "Modules: Navigation: Breadcrumbs"
 msgid "Archives"
 msgstr "بایگانی"
@@ -819,19 +814,19 @@ msgid "&copy; All rights reserved."
 msgstr "تمام حقوق محفوظ است."
 
 # @ gtheme
-#: inc/options.php:222
+#: inc/options.php:221
 msgctxt "Media Tag Titles"
 msgid "Raw"
 msgstr "خام"
 
 # @ gtheme
-#: inc/options.php:233
+#: inc/options.php:232
 msgctxt "Media Tag Titles"
 msgid "Big"
 msgstr "بزرگ"
 
 # @ gtheme
-#: inc/options.php:244
+#: inc/options.php:243
 msgctxt "Media Tag Titles"
 msgid "Single"
 msgstr "نوشته"
@@ -878,8 +873,8 @@ msgstr "شبکه‌های اجتماعی"
 
 #: inc/pages.php:64
 msgctxt "Modules: Pages: Default Pages"
-msgid "Work with us"
-msgstr "با ما همکاری کنید"
+msgid "Contribute"
+msgstr "همکاری"
 
 #: inc/pages.php:65
 msgctxt "Modules: Pages: Default Pages"
@@ -1273,28 +1268,43 @@ msgctxt "System Tags Defaults"
 msgid "Insert People"
 msgstr "جای‌گذاری تصویر افراد"
 
-#: inc/terms.php:287
+#: inc/terms.php:274
+msgctxt "Modules: Terms"
+msgid "Currently no primary terms are defined."
+msgstr "در حال حاضر، رده‌های اصلی تعریف نشده‌اند."
+
+#: inc/terms.php:279
+msgctxt "Modules: Terms"
+msgid "Primary Terms are: %s"
+msgstr "رده‌های اصلی: %s"
+
+#: inc/terms.php:299
+msgctxt "Modules: Terms"
+msgid "Primary Term"
+msgstr "رده اصلی"
+
+#: inc/terms.php:330
 msgctxt "Modules: Terms"
 msgid "Install Default System Tags"
 msgstr "نصب برچسب‌های راه‌بری پیش‌فرض"
 
-#: inc/terms.php:293
+#: inc/terms.php:336
 msgctxt "Modules: Terms"
 msgid "Error while adding default system tags."
 msgstr "خطایی هنگام افزودن برچسب‌های راه‌بری پیش‌فرض اتفاق افتاده است."
 
-#: inc/terms.php:296
+#: inc/terms.php:339
 msgctxt "Modules: Terms"
 msgid "Default system tags added."
 msgstr "برچسب‌های راه‌بری پیش‌فرض افزوده شد."
 
-#: inc/terms.php:309
+#: inc/terms.php:352
 msgctxt "Modules: Terms"
 msgid "Empty Before Last Month"
 msgstr "خالی کردن قبل از ماه گذشته"
 
 # @ gtheme
-#: inc/terms.php:367
+#: inc/terms.php:409
 msgid "Connected Posts"
 msgstr "نوشته‌های مرتبط"
 
@@ -1343,6 +1353,26 @@ msgstr "بـ تـ"
 msgctxt "Alert button (screen reader only)"
 msgid "Close"
 msgstr "بستن"
+
+#: inc/utilities.php:234
+msgctxt "Utilities: Join Items Helper"
+msgid "&rdquo;"
+msgstr "&ldquo;"
+
+#: inc/utilities.php:235
+msgctxt "Utilities: Join Items Helper"
+msgid "&ldquo; and &rdquo;"
+msgstr "&rdquo; و &ldquo;"
+
+#: inc/utilities.php:237
+msgctxt "Utilities: Join Items Helper"
+msgid "&ldquo;, &rdquo;"
+msgstr "&ldquo;، &rdquo;"
+
+#: inc/utilities.php:240
+msgctxt "Utilities: Join Items Helper"
+msgid "&ldquo;"
+msgstr "&rdquo;"
 
 #: inc/Widgets/Children.php:11
 msgctxt "Widget: Title"
@@ -1600,6 +1630,14 @@ msgstr "https://fa.geminorum.ir/"
 #: systempage.php:7
 msgid "System Page"
 msgstr "برگه سیستم"
+
+#~ msgctxt "Modules: Content: PrintFriendly"
+#~ msgid "Print Version"
+#~ msgstr "نسخهٔ چاپی"
+
+#~ msgctxt "Modules: Pages: Default Pages"
+#~ msgid "Work with us"
+#~ msgstr "با ما همکاری کنید"
 
 #~ msgctxt "Layouts Module"
 #~ msgid "Home Page"
