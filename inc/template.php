@@ -237,6 +237,7 @@ class gThemeTemplate extends gThemeModuleCore
 
 		if ( gThemeOptions::info( 'copyright_append_site_modified', TRUE ) )
 			$copyright.= gThemeEditorial::siteModified( [
+				'link'   => gThemeOptions::info( 'copyright_link_site_modified', FALSE ),
 				'title'  => FALSE,
 				'before' => ' '._x( 'Last updated on', 'Root: End: Before Site Modified', GTHEME_TEXTDOMAIN ).' ',
 			], FALSE );
