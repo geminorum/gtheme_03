@@ -9,6 +9,16 @@ class gThemeUtilities extends gThemeBaseCore
 		wp_add_inline_script( 'gtheme-autosize', "autosize(document.querySelectorAll('textarea'));" );
 	}
 
+	public static function enqueueTimeAgo()
+	{
+		$callback = [ 'gPersianDateTimeAgo', 'enqueue' ];
+
+		if ( ! is_callable( $callback ) )
+			return FALSE;
+
+		return call_user_func( $callback );
+	}
+
 	public static function prepTitle( $text, $post_id = 0 )
 	{
 		if ( ! $text )

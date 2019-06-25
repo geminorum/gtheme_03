@@ -8,7 +8,7 @@ class gThemeDate extends gThemeModuleCore
 	public static function date( $atts = [] )
 	{
 		$post_id  = get_the_ID();
-		$template = '<span class="date"><a href="%1$s" title="%2$s" rel="shortlink"><time class="%5$s-date" datetime="%3$s">%4$s</time></a></span>';
+		$template = '<span class="date"><a href="%1$s"%2$s><time class="%5$s-time do-timeago" datetime="%3$s">%4$s</time></a></span>';
 
 		$args = self::atts( [
 			'before'      => '',
@@ -22,6 +22,7 @@ class gThemeDate extends gThemeModuleCore
 			'shortlink'   => TRUE,
 			'title'       => NULL,
 			'text'        => NULL, // override text
+			'timeago'     => TRUE, // enqueue time ago script
 			'meta'        => TRUE,
 			'link'        => TRUE, // disable linking compeletly
 			'echo'        => TRUE, // disable linking compeletly
@@ -40,18 +41,15 @@ class gThemeDate extends gThemeModuleCore
 
 		$html = vsprintf( $args['template'], [
 			esc_url( $link ),
-
-			// self::context( $args['post_id'], 'y/n/j' ),
-			'',
-
-			// gThemePost::titleAttr( FALSE, NULL, TRUE ),
-			// esc_attr( sprintf( __( 'Permalink to %s', GTHEME_TEXTDOMAIN ), the_title_attribute( 'echo=0' ) ) ),
-			esc_attr( get_the_date( 'c', $args['post_id'] ) ), // FIXME: must be % ago
-
+			 // self::context( $args['post_id'], 'y/n/j' ),
+			$args['shortlink'] ? ' rel="shortlink"' : '',
+			esc_attr( get_the_date( 'c', $args['post_id'] ) ),
 			esc_html( $date ),
-
 			$args['prefix'],
 		] );
+
+		if ( $args['timeago'] )
+			gThemeUtilities::enqueueTimeAgo();
 
 		if ( ! $args['echo'] )
 			return $args['before'].$html.$args['after'];
