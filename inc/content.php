@@ -353,7 +353,7 @@ class gThemeContent extends gThemeModuleCore
 
 		if ( $excerpt_length )
 			// MIGHT be a problem since we bypass other filters too
-			$excerpt = apply_filters( 'the_excerpt', gTheme()->filters->get_the_excerpt( gThemeL10N::html( $post->post_excerpt ), $excerpt_length ) );
+			$excerpt = apply_filters( 'the_excerpt', gTheme()->filters->get_the_excerpt( gThemeL10N::html( trim( $post->post_excerpt ) ), $excerpt_length ) );
 		else
 			$excerpt = apply_filters( 'the_excerpt', get_the_excerpt() );
 

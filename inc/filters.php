@@ -370,7 +370,8 @@ class gThemeFilters extends gThemeModuleCore
 		if ( FALSE === $length )
 			return wp_trim_excerpt( $text );
 
-		$raw = $text;
+		$raw  = $text;
+		$text = trim( $text );
 
 		if ( '' == $text ) {
 
