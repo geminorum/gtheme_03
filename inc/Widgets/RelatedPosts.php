@@ -20,19 +20,18 @@ class gThemeWidgetRelatedPosts extends gThemeWidget
 
 	public function widget( $args, $instance )
 	{
-		global $post;
-
 		$post_type = isset( $instance['post_type'] ) ? $instance['post_type'] : 'post';
 
 		if ( ! is_singular( $post_type ) )
 			return;
 
-		$this->widget_cache( $args, $instance, '_'.$post->ID );
+		$this->widget_cache( $args, $instance, '_'.get_queried_object_id() );
 	}
 
 	public function widget_html( $args, $instance )
 	{
-		global $post;
+		if ( ! $post_id = get_queried_object_id() )
+			return FALSE;
 
 		$context   = isset( $instance['context'] ) ? $instance['context'] : 'related';
 		$taxonomy  = isset( $instance['taxonomy'] ) ? $instance['taxonomy'] : 'post_tag';
@@ -41,7 +40,7 @@ class gThemeWidgetRelatedPosts extends gThemeWidget
 		if ( empty( $instance['number'] ) || ! $number = absint( $instance['number'] ) )
 			$number = 10;
 
-		$terms = wp_get_object_terms( $post->ID, $taxonomy, [ 'fields' => 'ids' ] );
+		$terms = wp_get_object_terms( $post_id, $taxonomy, [ 'fields' => 'ids' ] );
 
 		if ( is_wp_error( $terms ) || empty( $terms ) )
 			return TRUE;
@@ -62,10 +61,10 @@ class gThemeWidgetRelatedPosts extends gThemeWidget
 					'operator' => 'NOT IN',
 				],
 			],
-			'post_type'      => $post_type,
-			'post__not_in'   => [ $post->ID ],
-			'posts_per_page' => $number,
 			'post_status'    => 'publish',
+			'post_type'      => $post_type,
+			'posts_per_page' => $number,
+			'post__not_in'   => [ $post_id ],
 
 			'ignore_sticky_posts'    => TRUE,
 			'no_found_rows'          => TRUE,

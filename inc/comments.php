@@ -286,21 +286,21 @@ class gThemeComments extends gThemeModuleCore
 		echo '</ul>';
 	}
 
-	public static function comment_form( $args = [], $post_id = null )
+	public static function comment_form( $args = [], $post = BULL )
 	{
-		if ( ! post_type_supports( get_post_type( $post_id ), 'comments' ) )
+		if ( ! $post = get_post( $post ) )
 			return;
 
-		if ( comments_open() ) {
+		if ( ! post_type_supports( $post->post_type, 'comments' ) )
+			return;
 
-			if ( is_null( $post_id ) )
-				$post_id = get_the_ID();
+		if ( comments_open( $post ) ) {
 
-			$user          = wp_get_current_user();
-			$user_identity = empty( $user->ID ) ? '' : $user->display_name;
+			$user     = wp_get_current_user();
+			$identity = empty( $user->ID ) ? '' : $user->display_name;
 
 			$commenter = wp_get_current_commenter();
-			$permalink = apply_filters( 'the_permalink', get_permalink( $post_id ), $post_id );
+			$permalink = apply_filters( 'the_permalink', get_permalink( $post ), $post );
 			$required  = get_option( 'require_name_email' );
 			$html5     = (bool) current_theme_supports( 'html5', 'comment-form' );
 
@@ -400,8 +400,8 @@ class gThemeComments extends gThemeModuleCore
 				'logged_in_as' => '<p class="logged-in-as">'
 					.vsprintf( $strings['logged_in_as'], [
 						get_edit_user_link(),
-						esc_attr( sprintf( $strings['logged_in_as_title'], $user_identity ) ),
-						$user_identity,
+						esc_attr( sprintf( $strings['logged_in_as_title'], $identity ) ),
+						$identity,
 						wp_logout_url( $permalink ),
 					] ).'</p>',
 
@@ -432,7 +432,7 @@ class gThemeComments extends gThemeModuleCore
 
 			$args = wp_parse_args( $args, apply_filters( 'comment_form_defaults', $defaults ) );
 
-			self::form( $post_id, $args, $commenter, $user_identity );
+			self::form( $post, $args, $commenter, $identity );
 
 			gThemeUtilities::enqueueAutosize();
 
@@ -442,7 +442,7 @@ class gThemeComments extends gThemeModuleCore
 		}
 	}
 
-	private static function form( $post_id, $args, $commenter, $user_identity = '' )
+	private static function form( $post, $args, $commenter, $identity = '' )
 	{
 		do_action( 'comment_form_before' );
 
@@ -473,9 +473,9 @@ class gThemeComments extends gThemeModuleCore
 
 					if ( is_user_logged_in() ) {
 
-						echo apply_filters( 'comment_form_logged_in', $args['logged_in_as'], $commenter, $user_identity );
+						echo apply_filters( 'comment_form_logged_in', $args['logged_in_as'], $commenter, $identity );
 
-						do_action( 'comment_form_logged_in_after', $commenter, $user_identity );
+						do_action( 'comment_form_logged_in_after', $commenter, $identity );
 
 					} else {
 
@@ -502,12 +502,12 @@ class gThemeComments extends gThemeModuleCore
 					$submit_field = sprintf(
 						$args['submit_field'],
 						apply_filters( 'comment_form_submit_button', $submit_button, $args ),
-						get_comment_id_fields( $post_id )
+						get_comment_id_fields( $post->ID )
 					);
 
 					echo apply_filters( 'comment_form_submit_field', $submit_field, $args );
 
-					do_action( 'comment_form', $post_id );
+					do_action( 'comment_form', $post->ID );
 
 				echo '</form>';
 			}

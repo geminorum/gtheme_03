@@ -82,18 +82,21 @@ class gThemeContent extends gThemeModuleCore
 
 	public static function row( $before = '', $after = '', $empty = FALSE )
 	{
-		if ( ! get_the_title() && ! $empty )
+		if ( ! $post = get_post() )
+			return;
+
+		$title = get_the_title( $post );
+
+		if ( ! $title && ! $empty )
 			return;
 
 		echo $before;
 
-			echo '<a class="permalink" title="';
-				self::title_attr();
-			echo '" href="';
-				the_permalink();
-			echo '">';
-				echo gThemeUtilities::wordWrap( get_the_title(), 2 );
-			echo '</a>';
+		echo gThemeHTML::tag( 'a', [
+			'href'  => apply_filters( 'the_permalink', get_permalink( $post ), $post ),
+			'title' => self::title_attr( FALSE, $title ),
+			'class' => '-link -permalink',
+		], gThemeUtilities::wordWrap( $title ) );
 
 		echo $after;
 	}
@@ -215,9 +218,9 @@ class gThemeContent extends gThemeModuleCore
 				'post-edit-link',
 			] );
 
-		$text  = gThemeOptions::info( 'read_more_text', _x( 'Read more&nbsp;<span class="excerpt-link-hellip">&hellip;</span>', 'Content: Read More Text', GTHEME_TEXTDOMAIN ) );
 		$template = gThemeOptions::info( 'template_read_more', ' <a %6$s href="%1$s" aria-label="%3$s" class="%4$s">%2$s</a>%5$s' );
-		$title = sprintf( gThemeOptions::info( 'read_more_title', _x( 'Continue reading &ldquo;%s&rdquo; &hellip;', 'Content: Read More Title', GTHEME_TEXTDOMAIN ) ), $title );
+		$text     = gThemeOptions::info( 'read_more_text', _x( 'Read more&nbsp;<span class="excerpt-link-hellip">&hellip;</span>', 'Content: Read More Text', GTHEME_TEXTDOMAIN ) );
+		$title    = sprintf( gThemeOptions::info( 'read_more_title', _x( 'Continue reading &ldquo;%s&rdquo; &hellip;', 'Content: Read More Title', GTHEME_TEXTDOMAIN ) ), $title );
 
 		return vsprintf( $template, [
 			esc_url( $link ),
