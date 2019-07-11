@@ -74,16 +74,24 @@ class gThemeWidgetRelatedPosts extends gThemeWidget
 		] );
 
 		if ( $row_query->have_posts() ) {
+
 			$this->before_widget( $args, $instance );
 			$this->widget_title( $args, $instance );
-			echo '<div class="theme-list-wrap related-posts"><ul>';
+			echo '<div class="-list-wrap related-posts"><ul>';
+
 			while ( $row_query->have_posts() ) {
+
 				$row_query->the_post();
+
 				if ( trim( get_the_title() ) ) {
-					echo '<li>'; get_template_part( 'row', $context ); echo '</li>';
+					echo '<li>';
+						get_template_part( 'row', $context );
+					echo '</li>';
 				}
 			}
+
 			wp_reset_postdata();
+
 			echo '</ul></div>';
 			$this->after_widget( $args, $instance );
 

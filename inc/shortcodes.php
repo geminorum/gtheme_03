@@ -458,7 +458,7 @@ class gThemeShortCodes extends gThemeModuleCore
 		if ( ! $children )
 			return $content;
 
-		return '<div class="list-group children">'.$children.'</div>';
+		return '<div class="-list-wrap list-group children">'.$children.'</div>';
 	}
 
 	public function shortcode_siblings( $atts, $content = NULL, $tag = '' )
@@ -498,6 +498,6 @@ class gThemeShortCodes extends gThemeModuleCore
 		if ( ! $siblings )
 			return $content;
 
-		return '<div class="list-group siblings">'.$siblings.'</div>';
+		return '<div class="-list-wrap list-group siblings">'.$siblings.'</div>';
 	}
 }
