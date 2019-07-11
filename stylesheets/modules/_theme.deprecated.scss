@@ -5,16 +5,16 @@
 
 ////////////////////////////////////////////////////////////////////////////////
 @mixin theme-list-before() {
-  @warn "DEPRICATED: theme-list-before()";
+  @warn "DEPRECATED: theme-list-before()";
   list-style: none;
   padding: 0;
   // &:before {}
 }
 
 @mixin theme-list-wrap() {
-  @warn "DEPRICATED: theme-list-wrap()";
+  @warn "DEPRECATED: theme-list-wrap()";
 
-  .theme-list-wrap {
+  .-list-wrap {
     ul {
       @include theme-list-reset();
 
@@ -29,17 +29,9 @@
       }
     }
 
-    &.related-posts {
-
-    }
-
-    &.recent-posts {
-
-    }
-
-    &.recent-comments {
-
-    }
+    // &.related-posts {}
+    // &.recent-posts {}
+    // &.recent-comments {}
   }
 }
 

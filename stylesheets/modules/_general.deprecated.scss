@@ -5,7 +5,7 @@
 
 ////////////////////////////////////////////////////////////////////////////////
 @mixin background-opacity($color, $opacity: 0.3) {
-  @warn "DEPRICATED: Modules: Coloring: background-opacity()";
+  @warn "DEPRECATED: Modules: Coloring: background-opacity()";
 
   background: $color;
   background: rgba($color, $opacity);
@@ -14,7 +14,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 // USAGE: @include link-colors(white, blue, green, red);
 @mixin link-colors($link: $link-color, $hover: $link-hover-color, $visit: $link-color, $active: $link-hover-color) {
-  @warn "DEPRICATED: Modules: Coloring: link-colors()";
+  @warn "DEPRECATED: Modules: Coloring: link-colors()";
 
   color: $link;
 
@@ -37,7 +37,7 @@
 // EXAMPLE: @include coloring-filter-grayscale(80%);
 
 @mixin coloring-filter-grayscale($amount: 100%) {
-  @warn "DEPRICATED: coloring-filter-grayscale() USE: theme-coloring-grayscale-hover()";
+  @warn "DEPRECATED: coloring-filter-grayscale() USE: theme-coloring-grayscale-hover()";
 
   filter: gray; /* stylelint-disable-line color-named */
   filter: grayscale($amount);
@@ -210,12 +210,12 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 @mixin gutter-reset() {
-  @warn "DEPRICATED: gutter-reset()";
+  @warn "DEPRECATED: gutter-reset()";
   @include theme-gutter-reset();
 }
 
 @mixin box-reset() {
-  @warn "DEPRICATED: box-reset()";
+  @warn "DEPRECATED: box-reset()";
   box-sizing: border-box;
 }
 
@@ -223,7 +223,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 @mixin theme-breakpoint($min: 0, $max: 0) {
-  @warn "DEPRICATED: theme-breakpoint() USE: theme-bootstrap3-breakpoint()";
+  @warn "DEPRECATED: theme-breakpoint() USE: theme-bootstrap3-breakpoint()";
 
   @include theme-bootstrap3-breakpoint($min, $max) {
     @content;
@@ -231,7 +231,7 @@
 }
 
 @mixin theme-breakpoint-nomobile($min: 0, $max: 0) {
-  @warn "DEPRICATED: theme-breakpoint-nomobile() USE: theme-bootstrap3-breakpoint-nomobile()";
+  @warn "DEPRECATED: theme-breakpoint-nomobile() USE: theme-bootstrap3-breakpoint-nomobile()";
 
   @include theme-bootstrap3-breakpoint-nomobile($min, $max) {
     @content;

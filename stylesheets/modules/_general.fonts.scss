@@ -236,7 +236,7 @@ $theme-fonts-repo: "../../gtheme_03/fonts" !default;
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
-/// Gandom v0.7
+/// Gandom v0.8
 // https://github.com/rastikerdar/gandom-font
 // https://rastikerdar.github.io/gandom-font/
 
@@ -245,7 +245,7 @@ $theme-fonts-repo: "../../gtheme_03/fonts" !default;
   $font-family-normal: "Gandom", "Tahoma", "Iranian Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif !global;
 
   $name: "Gandom";
-  $ver: "v0.7";
+  $ver: "v0.8";
   $weight: "normal";
 
   $base: $theme-fonts-base;
@@ -258,13 +258,13 @@ $theme-fonts-repo: "../../gtheme_03/fonts" !default;
   }
 }
 
-// !! Gandom has no bold version
+// !! Gandom has no bold version @REF: https://github.com/rastikerdar/gandom-font/issues/2
 @mixin theme-fonts-Gandom-Bold-CDN() {
 
   $font-family-bold: "Gandom", "Arial", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", "Helvetica", sans-serif !global;
 
   $name: "Gandom";
-  $ver: "v0.7";
+  $ver: "v0.8";
   $weight: "bold";
 
   $base: $theme-fonts-base;
