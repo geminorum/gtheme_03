@@ -24,14 +24,15 @@ class gThemeShortCodes extends gThemeModuleCore
 	public function init()
 	{
 		$this->shortcodes( [
-			'theme-image' => 'shortcode_theme_image',
-			'panels'      => 'shortcode_panels',
-			'panel'       => 'shortcode_panel',
-			'tabs'        => 'shortcode_tabs',
-			'tab'         => 'shortcode_tab',
-			'children'    => 'shortcode_children',
-			'siblings'    => 'shortcode_siblings',
-			// 'slider'      => 'shortcode_gallery_slider',
+			'theme-image'   => 'shortcode_theme_image',
+			'panels'        => 'shortcode_panels',
+			'panel'         => 'shortcode_panel',
+			'tabs'          => 'shortcode_tabs',
+			'tab'           => 'shortcode_tab',
+			'children'      => 'shortcode_children',
+			'siblings'      => 'shortcode_siblings',
+			'related-posts' => 'shortcode_related_posts',
+			// 'slider'        => 'shortcode_gallery_slider',
 		] );
 	}
 
@@ -499,5 +500,99 @@ class gThemeShortCodes extends gThemeModuleCore
 			return $content;
 
 		return '<div class="-list-wrap list-group siblings">'.$siblings.'</div>';
+	}
+
+	public function shortcode_related_posts( $atts = [], $content = NULL, $tag = '' )
+	{
+		$args = shortcode_atts( [
+			'ids'      => FALSE,
+			'post'     => NULL,
+			'posttype' => 'post',
+			'taxonomy' => 'post_tag',
+			'number'   => 10,
+			'title'    => _x( 'Related Posts', 'Modules: ShortCodes: Defaults', GTHEME_TEXTDOMAIN ), // FALSE to disable
+			'context'  => NULL,
+			'wrap'     => TRUE,
+			'before'   => '',
+			'after'    => '',
+		], $atts, $tag );
+
+		if ( FALSE === $args['context'] )
+			return NULL;
+
+		$query_args = [
+			'post_status'            => 'publish',
+			'no_found_rows'          => TRUE,
+			'ignore_sticky_posts'    => TRUE,
+			'update_post_term_cache' => FALSE,
+			'update_post_meta_cache' => FALSE,
+		];
+
+		if ( ! empty( $args['ids'] ) ) {
+
+			$query_args = array_merge( $query_args, [
+				'post__in'       => explode( ',', maybe_unserialize( $args['ids'] ) ),
+				'orderby'        => 'post__in',
+				'post_type'      => 'any',
+				'posts_per_page' => -1,
+			] );
+
+		} else {
+
+			if ( ! $post = get_post( $args['post'] ) )
+				return $content;
+
+			$terms = wp_get_object_terms( $post->ID, $args['taxonomy'], [ 'fields' => 'ids' ] );
+
+			if ( is_wp_error( $terms ) || empty( $terms ) )
+				return $content;
+
+			$query_args = array_merge( $query_args, [
+				'tax_query' => [
+					[
+						'taxonomy' => $args['taxonomy'],
+						'field'    => 'id',
+						'terms'    => $terms,
+						'operator' => 'IN',
+					],
+					'relation' => 'AND',
+					[
+						'taxonomy' => GTHEME_SYSTEMTAGS,
+						'field'    => 'slug',
+						'terms'    => 'no-related',
+						'operator' => 'NOT IN',
+					],
+				],
+				'post_type'      => $args['posttype'],
+				'posts_per_page' => $args['number'],
+				'post__not_in'   => [ $post->ID ],
+			] );
+		}
+
+		$query = new \WP_Query( $query_args );
+
+		if ( ! $query->have_posts() )
+			return $content;
+
+		ob_start();
+
+		gThemeHTML::h3( $args['title'], '-title' );
+		echo '<ul>';
+
+		while ( $query->have_posts() ) {
+
+			$query->the_post();
+
+			if ( trim( get_the_title() ) ) {
+				echo '<li>';
+					get_template_part( 'row', $args['context'] );
+				echo '</li>';
+			}
+		}
+
+		echo '</ul>';
+		wp_reset_postdata();
+
+		return self::shortcodeWrap( ob_get_clean(), 'related-posts', $args );
 	}
 }

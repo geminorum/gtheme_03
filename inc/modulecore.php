@@ -526,4 +526,32 @@ class gThemeModuleCore extends gThemeBaseCore
 		$this->counter++;
 		return $selector;
 	}
+
+	public static function shortcodeWrap( $html, $suffix = FALSE, $args = [], $block = TRUE, $extra = [] )
+	{
+		if ( is_null( $html ) )
+			return $html;
+
+		$before = empty( $args['before'] ) ? '' : $args['before'];
+		$after  = empty( $args['after'] )  ? '' : $args['after'];
+
+		if ( empty( $args['wrap'] ) )
+			return $before.$html.$after;
+
+		$classes = [ '-wrap', 'gtheme-wrap-shortcode' ];
+
+		if ( $suffix )
+			$classes[] = 'shortcode-'.$suffix;
+
+		if ( isset( $args['context'] ) && $args['context'] )
+			$classes[] = 'context-'.$args['context'];
+
+		if ( ! empty( $args['class'] ) )
+			$classes[] = $args['class'];
+
+		if ( $after )
+			return $before.gThemeHTML::tag( $block ? 'div' : 'span', array_merge( [ 'class' => $classes ], $extra ), $html ).$after;
+
+		return gThemeHTML::tag( $block ? 'div' : 'span', array_merge( [ 'class' => $classes ], $extra ), $before.$html );
+	}
 }
