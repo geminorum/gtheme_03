@@ -42,6 +42,7 @@ final class gThemeCore
 			'Widgets/RecentPosts'    => '',
 			'Widgets/RecentComments' => '',
 			'Widgets/Search'         => '',
+			'Widgets/SearchTerms'    => '',
 			'Widgets/TemplatePart'   => '',
 			'Widgets/Children'       => '',
 			'Widgets/Siblings'       => '',

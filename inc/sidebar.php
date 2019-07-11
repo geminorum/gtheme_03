@@ -51,6 +51,7 @@ class gThemeSideBar extends gThemeModuleCore
 		return apply_filters( 'gtheme_widgets', [
 			'gThemeWidgetCustomHTML',
 			'gThemeWidgetSearch',
+			'gThemeWidgetSearchTerms',
 			'gThemeWidgetTermPosts',
 			'gThemeWidgetRelatedPosts',
 			'gThemeWidgetRecentPosts',
