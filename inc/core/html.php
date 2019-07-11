@@ -18,9 +18,9 @@ class gThemeHTML extends gThemeBaseCore
 		return '<a class="-mailto" href="mailto:'.trim( $email ).'">'.( $title ? $title : trim( $email ) ).'</a>';
 	}
 
-	public static function scroll( $html, $to )
+	public static function scroll( $html, $to, $title = '' )
 	{
-		return '<a class="scroll" href="#'.$to.'">'.$html.'</a>';
+		return '<a class="scroll" title="'.$title.'" href="#'.$to.'">'.$html.'</a>';
 	}
 
 	public static function img( $src, $class = '', $alt = '' )
@@ -28,14 +28,19 @@ class gThemeHTML extends gThemeBaseCore
 		return '<img src="'.$src.'" class="'.$class.'" alt="'.$alt.'" />';
 	}
 
-	public static function h2( $html, $class = FALSE )
+	public static function h1( $html, $class = FALSE, $link = FALSE )
 	{
-		echo self::tag( 'h2', array( 'class' => $class ), $html );
+		if ( $html ) echo self::tag( 'h1', array( 'class' => $class ), ( $link ? self::link( $html, $link ) : $html ) );
 	}
 
-	public static function h3( $html, $class = FALSE )
+	public static function h2( $html, $class = FALSE, $link = FALSE )
 	{
-		echo self::tag( 'h3', array( 'class' => $class ), $html );
+		if ( $html ) echo self::tag( 'h2', array( 'class' => $class ), ( $link ? self::link( $html, $link ) : $html ) );
+	}
+
+	public static function h3( $html, $class = FALSE, $link = FALSE )
+	{
+		if ( $html ) echo self::tag( 'h3', array( 'class' => $class ), ( $link ? self::link( $html, $link ) : $html ) );
 	}
 
 	public static function desc( $html, $block = TRUE, $class = '' )
