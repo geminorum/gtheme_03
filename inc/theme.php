@@ -169,7 +169,7 @@ class gThemeTheme extends gThemeModuleCore
 
 		if ( GTHEME_PRINT_QUERY && $print_support ) {
 			add_action( 'init', function() {
-				add_rewrite_endpoint( GTHEME_PRINT_QUERY, EP_PERMALINK | EP_PAGES );
+				add_rewrite_endpoint( GTHEME_PRINT_QUERY, EP_PERMALINK | EP_PAGES ); // FIXME: apply `print_posttypes` from info
 			} );
 		}
 

@@ -611,9 +611,10 @@ class gThemeContent extends gThemeModuleCore
 
 	public static function printLink( $text, $post = NULL, $before = '', $after = '', $title = NULL )
 	{
-		global $wp_rewrite;
+		if ( ! $post = get_post( $post ) )
+			return;
 
-		if ( ! $post = get_post() )
+		if ( ! in_array( $post->post_type, (array) gThemeOptions::info( 'print_posttypes', [ 'post' ] ) ) )
 			return;
 
 		if ( ! $permalink = get_permalink( $post ) )

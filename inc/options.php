@@ -203,6 +203,9 @@ class gThemeOptions extends gThemeModuleCore
 			// 'date_format_byline' => _x( 'j M Y', 'Options: Defaults: Date Format: Byline', GTHEME_TEXTDOMAIN ), // used on post by line
 			// 'date_format_day'    => _x( 'j M Y', 'Options: Defaults: Date Format: Day', GTHEME_TEXTDOMAIN ), // day navigation
 
+			// PRINT
+			// 'print_posttypes' => [ 'post' ],
+
 			// ATTACHMENT
 			// 'attachment_download_prefix' => '', // EXAMPLE: 'example.com-'
 		];
