@@ -157,15 +157,14 @@ class gThemeContent extends gThemeModuleCore
 		return '';
 	}
 
-	// FIXME: WORKING DRAFT
-	// SEE: gThemeDate::date()
 	public static function date( $before = '<div class="entry-date">', $after = '</div>' )
 	{
-		echo $before;
-
-		the_date( 'Y/j/m' );
-
-		echo $after;
+		gThemeDate::once( [
+			'before' => $before,
+			'after'  => $after,
+			'format' => gThemeOptions::info( 'date_format_content', _x( 'Y/j/m', 'Options: Defaults: Date Format: Content', GTHEME_TEXTDOMAIN ) ),
+			'echo'   => TRUE,
+		] );
 	}
 
 	// core duplicate for performance reasons

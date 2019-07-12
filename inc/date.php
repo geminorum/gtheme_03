@@ -3,48 +3,56 @@
 class gThemeDate extends gThemeModuleCore
 {
 
-	// FIXME: UNFINISHED
-	// ANCESTOR: gtheme_the_date()
+	// post date once per day
+	// @REF: `the_date()`, `is_new_day()`
+	public static function once( $atts = [] )
+	{
+		global $currentday, $previousday;
+
+		if ( $currentday === $previousday )
+			return '';
+
+		$previousday = $currentday;
+
+		return self::date( $atts );
+	}
+
+	// ANCESTOR: `gtheme_the_date()`
 	public static function date( $atts = [] )
 	{
-		$post_id  = get_the_ID();
-		$template = '<span class="date"><a href="%1$s"%2$s><time class="%5$s-time do-timeago" datetime="%3$s">%4$s</time></a></span>';
-
 		$args = self::atts( [
-			'before'      => '',
-			'after'       => '',
-			'context'     => 'single',
-			'prefix'      => 'entry',
-			'post_id'     => $post_id,
-			'format'      => gThemeOptions::info( 'date_format_byline', _x( 'j M Y', 'Options: Defaults: Date Format: Byline', GTHEME_TEXTDOMAIN ) ),
-			'template'    => gThemeOptions::info( 'template_the_date', $template ),
-			'onceperdate' => FALSE,
-			'shortlink'   => TRUE,
-			'title'       => NULL,
-			'text'        => NULL, // override text
-			'timeago'     => TRUE, // enqueue time ago script
-			'meta'        => TRUE,
-			'link'        => TRUE, // disable linking compeletly
-			'echo'        => TRUE, // disable linking compeletly
+			'post'      => NULL,
+			'before'    => '',
+			'after'     => '',
+			'context'   => 'single',
+			'prefix'    => 'entry',
+			'format'    => gThemeOptions::info( 'date_format_byline', _x( 'j M Y', 'Options: Defaults: Date Format: Byline', GTHEME_TEXTDOMAIN ) ),
+			'template'  => gThemeOptions::info( 'template_the_date', '<span class="date"><a href="%1$s"%2$s><time class="%5$s-time do-timeago" datetime="%3$s">%4$s</time></a></span>' ),
+			'shortlink' => TRUE,
+			'title'     => NULL,
+			'text'      => NULL, // override text
+			'timeago'   => TRUE, // enqueue time ago script
+			'meta'      => TRUE,
+			'link'      => TRUE, // disable linking compeletly
+			'echo'      => TRUE, // disable linking compeletly
 		], $atts );
 
-		if ( $args['onceperdate'] ) {
-			$args['post_id'] = $post_id; // NOTE: must be global b/c we also use the_date()
-			$date = the_date( $args['format'], '', '', FALSE );
-		} else {
-			$date = get_the_date( $args['format'], $args['post_id'] );
-		}
+		if ( ! $post = get_post( $args['post'] ) )
+			return '';
+
+		if ( ! in_array( $post->post_type, (array) gThemeOptions::info( 'date_posttypes', [ 'post' ] ) ) )
+			return '';
 
 		$link = $args['shortlink']
-			? wp_get_shortlink( $args['post_id'] )
-			: get_permalink( $args['post_id'] );
+			? wp_get_shortlink( $post->ID )
+			: apply_filters( 'the_permalink', get_permalink( $post ), $post );
 
 		$html = vsprintf( $args['template'], [
 			esc_url( $link ),
-			 // self::context( $args['post_id'], 'y/n/j' ),
+			// self::context( $post, 'y/n/j' ),
 			$args['shortlink'] ? ' rel="shortlink"' : '',
-			esc_attr( get_the_date( 'c', $args['post_id'] ) ),
-			esc_html( $date ),
+			esc_attr( get_the_date( 'c', $post ) ),
+			esc_html( get_the_date( $args['format'], $post ) ),
 			$args['prefix'],
 		] );
 
@@ -58,7 +66,7 @@ class gThemeDate extends gThemeModuleCore
 	}
 
 	// FIXME: DRAFT: NOT WORKING
-	public static function context( $id = NULL, $format = 'j F Y' )
+	public static function context( $post = NULL, $format = 'j F Y' )
 	{
 		// if ( class_exists( 'gPersianDate' ) )
 		// 	echo gPersianDate::the_context_time( $format, FALSE );

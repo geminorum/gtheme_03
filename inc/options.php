@@ -199,9 +199,11 @@ class gThemeOptions extends gThemeModuleCore
 			// 'template_the_date'    => '<span class="date"><a href="%1$s"%2$s><time class="%5$s-time do-timeago" datetime="%3$s">%4$s</time></a></span>',
 			// 'template_read_more'   => ' <a %6$s href="%1$s" aria-label="%3$s" class="%4$s">%2$s</a>%5$s',
 
-			// DATE FORMATS
-			// 'date_format_byline' => _x( 'j M Y', 'Options: Defaults: Date Format: Byline', GTHEME_TEXTDOMAIN ), // used on post by line
-			// 'date_format_day'    => _x( 'j M Y', 'Options: Defaults: Date Format: Day', GTHEME_TEXTDOMAIN ), // day navigation
+			// DATE
+			// 'date_posttypes'      => [ 'post' ],
+			// 'date_format_byline'  => _x( 'j M Y', 'Options: Defaults: Date Format: Byline', GTHEME_TEXTDOMAIN ), // used on post by line
+			// 'date_format_content' => _x( 'Y/j/m', 'Options: Defaults: Date Format: Content', GTHEME_TEXTDOMAIN ),  // not used yet!
+			// 'date_format_day'     => _x( 'j M Y', 'Options: Defaults: Date Format: Day', GTHEME_TEXTDOMAIN ), // day navigation
 
 			// PRINT
 			// 'print_posttypes' => [ 'post' ],
