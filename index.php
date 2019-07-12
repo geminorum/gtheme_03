@@ -12,7 +12,7 @@ gThemeTemplate::wrapOpen( 'index' );
 			gThemeContent::post( 'index' );
 		}
 
-		gThemeNavigation::content();
+		gThemeNavigation::content( 'index' );
 
 	} else {
 

@@ -10,7 +10,7 @@ gThemeTemplate::wrapOpen( 'systempage' );
 			gThemeContent::post();
 		}
 
-		// gThemeNavigation::content();
+		// gThemeNavigation::content( 'singular' );
 
 	} else {
 

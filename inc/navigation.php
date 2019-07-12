@@ -5,7 +5,7 @@ class gThemeNavigation extends gThemeModuleCore
 
 	// @SEE: https://codex.wordpress.org/Pagination
 	// @SEE: [New Functions Available In WordPress 4.1](https://paulund.co.uk/new-functions-available-wordpress-4-1)
-	public static function content( $context = 'index', $taxonomy = 'category', $max_num_pages = NULL )
+	public static function content( $context = 'index', $in_same_term = FALSE, $taxonomy = 'category', $max_num_pages = NULL )
 	{
 		global $wp_query;
 
@@ -30,8 +30,8 @@ class gThemeNavigation extends gThemeModuleCore
 			$next_text = _x( '%title <span aria-hidden="true">&rarr;</span>', 'Modules: Navigation: Post Navigation: Next', GTHEME_TEXTDOMAIN );
 
 			// TODO: support row templaets
-			$prev = get_adjacent_post_link( '%link', $prev_text, FALSE, '', TRUE,  $taxonomy );
-			$next = get_adjacent_post_link( '%link', $next_text, FALSE, '', FALSE, $taxonomy );
+			$prev = get_adjacent_post_link( '%link', $prev_text, $in_same_term, '', TRUE,  $taxonomy );
+			$next = get_adjacent_post_link( '%link', $next_text, $in_same_term, '', FALSE, $taxonomy );
 
 		} else if ( $max_num_pages > 1 && ( is_home() || is_front_page() || is_archive() || is_search() ) ) {
 

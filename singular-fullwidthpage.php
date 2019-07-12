@@ -11,7 +11,7 @@ gThemeTemplate::wrapOpen( 'fullwidthpage' );
 			gThemeContent::post();
 		}
 
-		// gThemeNavigation::content();
+		// gThemeNavigation::content( 'singular' );
 
 	} else {
 

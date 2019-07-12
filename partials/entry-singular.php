@@ -21,4 +21,4 @@ gThemeEditorial::refList( [
 	'wrap'   => FALSE,
 ] );
 
-gThemeNavigation::content();
+gThemeNavigation::content( 'singular' );
