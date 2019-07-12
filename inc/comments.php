@@ -286,7 +286,7 @@ class gThemeComments extends gThemeModuleCore
 		echo '</ul>';
 	}
 
-	public static function comment_form( $args = [], $post = BULL )
+	public static function comment_form( $args = [], $post = NULL )
 	{
 		if ( ! $post = get_post( $post ) )
 			return;
