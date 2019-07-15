@@ -466,16 +466,17 @@ class gThemeTerms extends gThemeModuleCore
 		return has_term( $term, $taxonomy, $post );
 	}
 
-	public static function getTermLink( $term, $before = '', $after = '', $title = FALSE, $class = [] )
+	public static function getTermLink( $term, $before = '', $after = '', $text = NULL, $title = FALSE, $class = [] )
 	{
-		$name = sanitize_term_field( 'name', $term->name, $term->term_id, $term->taxonomy, 'display' );
+		if ( is_null( $text ) )
+			$text = sanitize_term_field( 'name', $term->name, $term->term_id, $term->taxonomy, 'display' );
 
 		return $before.gThemeHTML::tag( 'a', [
 			'href'        => get_term_link( $term ),
 			'class'       => gThemeHTML::attrClass( '-term-link', 'taxonomy-'.$term->taxonomy, $class ),
 			'title'       => $title,
 			'data-toggle' => $title ? 'tooltip' : FALSE,
-		], esc_html( $name ) ).$after;
+		], $text ).$after;
 	}
 
 	public static function getPrimary( $post = NULL )
@@ -509,10 +510,33 @@ class gThemeTerms extends gThemeModuleCore
 
 	public static function linkPrimary( $before = '', $after = '', $post = NULL, $title = '', $echo = TRUE )
 	{
-		if ( ! $primary = self::getPrimary( $post ) )
+		if ( ! $term = self::getPrimary( $post ) )
 			return FALSE;
 
-		$link = self::getTermLink( $primary, $before, $after, $title );
+		$link = self::getTermLink( $term, $before, $after, NULL, $title );
+
+		if ( ! $echo )
+			return $link;
+
+		echo $link;
+
+		return TRUE;
+	}
+
+	public static function imagePrimary( $before = '', $after = '', $post = NULL, $title = 'name', $echo = TRUE )
+	{
+		if ( ! $term = self::getPrimary( $post ) )
+			return FALSE;
+
+		$image = gThemeImage::termImage( [ 'term_id' => $term->term_id ] );
+
+		if ( ! $image )
+			return FALSE;
+
+		if ( 'name' == $title )
+			$title = sanitize_term_field( 'name', $term->name, $term->term_id, $term->taxonomy, 'display' );
+
+		$link = self::getTermLink( $term, $before, $after, $image, $title );
 
 		if ( ! $echo )
 			return $link;
