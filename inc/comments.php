@@ -308,7 +308,19 @@ class gThemeComments extends gThemeModuleCore
 		echo '</ul>';
 	}
 
-	public static function comment_form( $args = [], $post = NULL )
+	public static function renderForm( $post = NULL )
+	{
+		$callback = gThemeOptions::info( 'comments_form_callback', [ 'gThemeComments', 'form_callback' ] );
+
+		if ( is_callable( $callback ) )
+			call_user_func_array( $callback, [ [], $post ] );
+
+		else if ( is_null( $callback ) )
+			comment_form();
+	}
+
+	// @REF: `comment_form()`
+	public static function form_callback( $args = [], $post = NULL )
 	{
 		if ( ! $post = get_post( $post ) )
 			return;

@@ -28,6 +28,6 @@ echo '<div id="comments" class="comments-area">';
 			echo '<p class="no-comments -print-hide">'.$closed.'</p>';
 	}
 
-	call_user_func( gThemeOptions::info( 'comment_form', [ 'gThemeComments', 'comment_form' ] ) );
+	gThemeComments::renderForm();
 
 echo '</div>';
