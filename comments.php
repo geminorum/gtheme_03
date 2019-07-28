@@ -17,16 +17,7 @@ echo '<div id="comments" class="comments-area">';
 		if ( $gtheme_comment_navigation )
 			gThemeComments::navigation( 'comment-nav-above' );
 
-		echo '<ol class="commentlist comment-list media-list">';
-
-			// http://codex.wordpress.org/Function_Reference/wp_list_comments
-			wp_list_comments( [
-				'callback' => gThemeOptions::info( 'comment_callback', [ 'gThemeComments', 'comment_callback' ] ),
-				'style'    => 'ol',
-				'type'     => 'comment', // no ping & trackback / default is 'all'
-			] );
-
-		echo '</ol>';
+		gThemeComments::renderList();
 
 		if ( $gtheme_comment_navigation )
 			gThemeComments::navigation( 'comment-nav-below' );

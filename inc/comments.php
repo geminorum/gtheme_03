@@ -174,6 +174,20 @@ class gThemeComments extends gThemeModuleCore
 		}
 	}
 
+	public static function renderList()
+	{
+		echo '<ol class="commentlist comment-list media-list">';
+
+		// http://codex.wordpress.org/Function_Reference/wp_list_comments
+		wp_list_comments( [
+			'callback' => gThemeOptions::info( 'comments_item_callback', [ 'gThemeComments', 'comment_callback' ] ),
+			'style'    => 'ol',
+			'type'     => 'comment', // no ping & trackback / default is 'all'
+		] );
+
+		echo '</ol>';
+	}
+
 	public static function comment_callback( $comment, $args, $depth )
 	{
 		switch ( $comment->comment_type ) {
