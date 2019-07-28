@@ -135,7 +135,15 @@ class gThemeComments extends gThemeModuleCore
 		echo '</div></nav>';
 	}
 
-	public static function title( $class = 'comments-title', $tag = 'h3' )
+	public static function renderTitle( $class = 'comments-title', $tag = 'h3' )
+	{
+		$callback = gThemeOptions::info( 'comments_title_callback', [ 'gThemeComments', 'title_callback' ] );
+
+		if ( is_callable( $callback ) )
+			call_user_func_array( $callback, [ 'comments-title', 'h3' ] );
+	}
+
+	public static function title_callback( $class = 'comments-title', $tag = 'h3' )
 	{
 		$comments = get_comments_number();
 		$template = _nx( 'One thought on &ldquo;%2$s&rdquo;', '%1$s thoughts on &ldquo;%2$s&rdquo;', $comments, 'Comments Title', GTHEME_TEXTDOMAIN );

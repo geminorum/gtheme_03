@@ -8,7 +8,7 @@ echo '<div id="comments" class="comments-area">';
 	if ( have_comments() ) {
 
 		gThemeComments::feed();
-		gThemeComments::title();
+		gThemeComments::renderTitle();
 
 		gThemeComments::lockDownNotice();
 
