@@ -21,6 +21,7 @@ final class gThemeCore
 		$modules = [
 			'core/base'      => '',
 			'core/html'      => '',
+			'core/number'    => '',
 			'core/third'     => '',
 			'core/text'      => '',
 			'core/url'       => '',

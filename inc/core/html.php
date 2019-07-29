@@ -10,12 +10,26 @@ class gThemeHTML extends gThemeBaseCore
 
 	public static function link( $html, $link = '#', $target_blank = FALSE )
 	{
+		if ( is_null( $html ) ) $html = $link;
 		return self::tag( 'a', array( 'href' => $link, 'class' => '-link', 'target' => ( $target_blank ? '_blank' : FALSE ) ), $html );
 	}
 
-	public static function mailto( $email, $title = NULL )
+	public static function mailto( $email, $title = NULL, $wrap = FALSE )
 	{
-		return '<a class="-mailto" href="mailto:'.trim( $email ).'">'.( $title ? $title : trim( $email ) ).'</a>';
+		$title = $title ? $title : self::wrapLTR( trim( $email ) );
+		$link  = '<a class="-mailto" href="mailto:'.trim( $email ).'">'.$title.'</a>';
+		return $wrap ? self::tag( $wrap, $link ) : $link;
+	}
+
+	public static function tel( $number, $title = FALSE, $content = NULL )
+	{
+		if ( is_null( $content ) )
+			$content = gThemeNumber::format( $number );
+
+		return '<a class="-tel" href="'.self::sanitizePhoneNumber( $number )
+				.'"'.( $title ? ' data-toggle="tooltip" title="'.self::escape( $title ).'"' : '' )
+				.' data-tel-number="'.self::escape( $number ).'">'
+				.self::wrapLTR( $content ).'</a>';
 	}
 
 	public static function scroll( $html, $to, $title = '' )
@@ -50,12 +64,18 @@ class gThemeHTML extends gThemeBaseCore
 
 	public static function wrap( $html, $class = '', $block = TRUE )
 	{
+		if ( ! $html ) return '';
 		return $block ? '<div class="-wrap '.$class.'">'.$html.'</div>' : '<span class="-wrap '.$class.'">'.$html.'</span>';
+	}
+
+	public static function wrapLTR( $content )
+	{
+		return '&#8206;'.$content.'&#8207;';
 	}
 
 	public static function inputHidden( $name, $value = '' )
 	{
-		echo '<input type="hidden" name="'.self::escapeAttr( $name ).'" value="'.self::escapeAttr( $value ).'" />';
+		echo '<input type="hidden" name="'.self::escape( $name ).'" value="'.self::escape( $value ).'" />';
 	}
 
 	// @REF: https://gist.github.com/eric1234/5802030
@@ -204,13 +224,19 @@ class gThemeHTML extends gThemeBaseCore
 	}
 
 	// like WP core but without filter
-	// @SOURCE: `esc_attr()`
-	public static function escapeAttr( $text )
+	// @ref: `esc_html()`, `esc_attr()`
+	public static function escape( $text )
 	{
 		$safe_text = wp_check_invalid_utf8( $text );
 		$safe_text = _wp_specialchars( $safe_text, ENT_QUOTES );
 
 		return $safe_text;
+	}
+
+	// FIXME: DEPRECATED
+	public static function escapeAttr( $text )
+	{
+		return self::escape( $text );
 	}
 
 	public static function escapeURL( $url )

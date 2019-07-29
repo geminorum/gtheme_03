@@ -45,6 +45,23 @@ class gThemeUtilities extends gThemeBaseCore
 		return $autop ? wpautop( $text ) : $text;
 	}
 
+	public static function prepContact( $value, $title = NULL )
+	{
+		if ( is_email( $value ) )
+			$prepared = gThemeHTML::mailto( $value, $title );
+
+		else if ( gThemeURL::isValid( $value ) )
+			$prepared = gThemeHTML::link( $title, gThemeURL::untrail( $value ) );
+
+		else if ( is_numeric( str_ireplace( [ '+', '-', '.' ], '', $value ) ) )
+			$prepared = gThemeHTML::tel( $value, FALSE, $title );
+
+		else
+			$prepared = gThemeHTML::escape( $value );
+
+		return apply_filters( 'gtheme_prep_contact', $prepared, $value, $title );
+	}
+
 	// @REF: http://davidwalsh.name/word-wrap-mootools-php
 	// @REF: https://css-tricks.com/preventing-widows-in-post-titles/
 	public static function wordWrap( $text, $min = 2 )
