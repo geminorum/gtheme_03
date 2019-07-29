@@ -1,0 +1,46 @@
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+/// Blocks: Google Custom Search - Default Theme - 2019-07-01
+
+////////////////////////////////////////////////////////////////////////////////
+/*rtl:begin:ignore*/
+html[dir="rtl"] {
+  .gsc-control-cse {
+    font-family: $font-family-normal !important;
+    background-color: transparent !important;
+    border-color: transparent !important;
+
+    table {
+      margin: 0 !important;
+    }
+
+    .gsc-control-wrapper-cse {
+      direction: rtl;
+    }
+
+    .gsc-wrapper {}
+  }
+
+  .gsc-search-box-tools {
+    .gsc-search-box {
+
+      // tr { display: block; float: left; }
+      // th, td { display: block; }
+      // td {
+      //   display: block;
+      //   float: right;
+      // }
+
+
+      .gsc-input {
+        padding: 0 !important;
+      }
+
+      .gsc-search-button {
+        display: none;
+      }
+    }
+  }
+}
+/*rtl:end:ignore*/

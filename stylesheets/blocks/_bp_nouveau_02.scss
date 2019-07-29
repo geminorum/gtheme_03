@@ -1,0 +1,339 @@
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+/// Blocks: BuddyPress Nouveau 02 - No-Style 2019-07-06
+
+////////////////////////////////////////////////////////////////////////////////
+#buddypress {
+
+  //////////////////////////////////////////////////////////////////////////////
+  #item-header {
+    .desc-wrap {
+      background-color: $gray-lighter;
+      margin-top: 0.5rem;
+      padding: .5rem 1rem .1rem;
+
+      p {
+        font-size: .75rem;
+        margin: 0 0 .5rem;
+      }
+    }
+  }
+
+  #cover-image-container {
+    min-height: 225px;
+    margin-bottom: 0.5rem;
+    background-color: $gray-lighter;
+  }
+
+  #header-cover-image {
+    background-color: $gray-light;
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border: 0;
+    display: block;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+  }
+
+  #item-header-cover-image {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-content: stretch;
+    align-items: flex-start;
+    min-height: 225px;
+  }
+
+  #item-header-avatar {
+    order: 1;
+    flex: 0 1 auto;
+    align-self: flex-end;
+    padding-left: 1rem;
+    padding-bottom: 1rem;
+
+    > a {
+      display: inline-block;
+      line-height: .1;
+    }
+  }
+
+  #item-header-content {
+    order: 2;
+    flex: 1 1 auto;
+    align-self: flex-end;
+
+    padding-left: 1rem;
+    padding-bottom: 1.5rem;
+
+    h2 {
+      font-size: 0.7rem;
+      margin-top: 0;
+    }
+
+    > ul {
+      @include theme-list-flex() {
+        + li {
+          padding-left: 1rem;
+        }
+      }
+
+      margin-bottom: .5rem;
+
+      &:empty {
+        display: none;
+      }
+    }
+
+    .user-nicename {
+      /*rtl:ignore*/
+      direction: ltr;
+      text-align: left;
+    }
+
+    .item-meta {
+      font-size: 0.7rem;
+    }
+  }
+
+  #item-actions {
+    order: 3;
+    flex: 0 1 auto;
+    align-self: flex-end;
+    padding-right: 1rem;
+    padding-bottom: 1rem;
+
+    dl,
+    dd,
+    dt {
+      margin: 0;
+    }
+
+    dl {
+      margin-top: .5rem;
+      margin-left: .5rem;
+      // display: inline-block;
+      // float: right;
+    }
+
+    dt {
+      font-size: 0.5rem;
+      padding-bottom: 0.2rem;
+      text-align: right;
+    }
+
+    ul {
+      flex-direction: row-reverse;
+      @include theme-list-flex() {
+        + li {
+          padding-left: .5rem;
+        }
+      }
+    }
+  }
+
+  //////////////////////////////////////////////////////////////////////////////
+  .bp-navs,
+  #item-nav,
+  #subnav {
+    ul {
+      align-items: center;
+      line-height: 1;
+      font-size: 0.8rem;
+
+      @include theme-list-flex() {
+        &.last {
+          flex: 1 1 auto;
+        }
+
+        + li {
+          padding-left: .5rem;
+
+          &::before {
+            padding-right: .5rem;
+            color: $gray-light;
+            content: "∫";
+            font-size: smaller;
+          }
+        }
+      }
+    }
+
+    span.count {
+      // display: inline-block;
+      // border-radius: 50%;
+
+      display: inline-flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      border-radius: 100%;
+      background-color: #fff;
+      // padding: .25rem;
+      min-width: 1.1rem;
+      min-height: 1.1rem;
+      font-size: 0.75rem;
+    }
+  }
+
+
+  .bp-navs > ul,
+  #item-nav > ul,
+  #subnav > ul {
+    background-color: $gray-lighter;
+    margin-top: 0.5rem;
+    padding: .5rem 1rem;
+  }
+
+  ul.button-tabs,
+  .item-list-tabs ul,
+  .tabbed-links ol {
+    @include theme-list-flex() {
+      list-style-type: none !important;
+
+      padding: 0 1rem .5rem;
+      border-bottom: 2px solid transparent;
+
+      &.selected,
+      &.current {
+        border-bottom-color: $gray-light;
+      }
+
+      + li {
+        padding-left: 1.5rem;
+      }
+    }
+
+    border-bottom: 1px solid $gray-lighter;
+  }
+
+  .subnav-filters {
+    margin-top: 0.5rem;
+    padding: 0 0.5rem;
+
+    .subnav-search,
+    .bp-search {
+      float: right;
+    }
+  }
+
+  div.bp-search {
+    button[type="submit"] {
+      display: none;
+    }
+  }
+
+  .bp-pagination {
+    text-align: center;
+  }
+
+
+  #item-body .screen-heading {
+    @include theme-typography-heading-line($gray-light);
+    margin-top: 0.5rem;
+  }
+
+  #item-body .bp-feedback,
+  #item-body .bp-help-text {
+    margin-top: -0.5rem;
+    text-align: center;
+    font-size: 0.75rem;
+    color: $gray;
+  }
+
+  //////////////////////////////////////////////////////////////////////////////
+  #item-body {
+
+  }
+  // #message {}
+
+  .standard-form div.submit,
+  .bp-messages-content div.submit,
+  #previous-next {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    border-top: 1px solid $gray-lighter;
+    margin-top: 1rem;
+    padding: 1rem 1rem 0;
+
+    input[type="button"],
+    input[type="submit"] {
+
+    }
+  }
+
+
+  //////////////////////////////////////////////////////////////////////////////
+  .standard-form {
+    label {
+      display: block;
+      padding: .75rem .25rem .25rem;
+    }
+
+    input[type="password"],
+    input[type="email"],
+    input[type="text"],
+    textarea {
+      width: 100%;
+    }
+
+    input[type="checkbox"],
+    input[type="radio"] {
+      vertical-align: middle;
+    }
+
+    .wp-editor-wrap {
+      margin-top: 1rem;
+    }
+
+    fieldset.radio {
+      ul {
+        // @include theme-list-reset();
+        font-size: .75rem;
+        margin: 0;
+        list-style-type: square;
+      }
+    }
+
+    table {
+      th {
+        text-align: left;
+        font-size: .8rem;
+
+        &.icon {
+          width: 0;
+        }
+
+        &.yes,
+        &.no {
+          text-align: center;
+          width: 4%;
+        }
+      }
+
+      tr + tr {
+        // border-top: 1px solid red;
+        // background-color: navy;
+        margin-top: 0.5rem;
+      }
+
+      td {
+        font-size: .75rem;
+
+        &.yes,
+        &.no {
+          text-align: center;
+        }
+      }
+    }
+  }
+}

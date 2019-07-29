@@ -1,12 +1,21 @@
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
-/// Blocks: Comments 02 - 20151009
+/// Blocks: Comments 02 - BS3 - 20151009
 // Inspired by http://devs.mailchimp.com/blog/
 
 ////////////////////////////////////////////////////////////////////////////////
-
 .comments-area {
+  margin-bottom: $theme-grid-gutter / 2;
+
+  ol,
+  ul {
+    list-style-type: none !important;
+  }
+
+  // .no-password {}
+  // .no-comments {}
+
   .lockdown-notice {
     color: $brand-warning;
   }
@@ -23,16 +32,6 @@
       padding-top: $theme-grid-gutter / 4;
       border-top: 1px solid $gray-lighter;
     }
-
-    // SCREEN-READER-ONLY
-    // .assistive-text {
-    //   // #h4.assistive-text.sr-only
-    //   // margin: 0;
-    //   // text-align: center;
-    //   // font-size: $theme-font-size;
-    //   // // font-weight: normal;
-    //   // color: $gray;
-    // }
 
     // default floats added by : @include theme-floats-navigation();
     .nav-next,
@@ -63,6 +62,11 @@
       // border-bottom: 1px solid $gray-light;
       small a {
         // a#cancel-comment-reply-link
+
+      }
+
+      a#cancel-comment-reply-link {
+        color: $brand-danger;
       }
     }
 
@@ -74,7 +78,7 @@
     }
 
     .quicktags-toolbar {
-      margin-bottom: $padding-xs-vertical;
+      margin-bottom: $padding-small-vertical;
 
       .button {
         @include button-variant($btn-default-color, $btn-default-bg, $btn-default-border);
@@ -102,32 +106,21 @@
     .comment-field-ltr {
       direction: ltr;
     }
+
+    .logged-in-as {
+      font-size: $font-size-small;
+    }
   }
-}
-
-////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
-
-.comments-area {
-  margin-bottom: $theme-grid-gutter / 2;
-
-  ol,
-  ul {
-    list-style: none;
-  }
-
-  // .no-password {}
-  // .no-comments {}
 
   .comments-feed {
     float: left;
-    margin: 0 5px 5px 0;
+    margin: $padding-small-vertical $padding-small-horizontal;
 
     a {
-      color: $gray-light;
+      color: $brand-warning;
 
       &:hover {
-        color: $gray-darker;
+        color: $brand-danger;
         text-decoration: none;
       }
     }
