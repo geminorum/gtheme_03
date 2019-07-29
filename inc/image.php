@@ -804,6 +804,7 @@ class gThemeImage extends gThemeModuleCore
 			'tag'     => 'raw',
 			'term_id' => get_queried_object_id(),
 			'url'     => FALSE,
+			'alt'     => '',
 			'empty'   => '',
 			'before'  => '',
 			'after'   => '',
@@ -825,7 +826,7 @@ class gThemeImage extends gThemeModuleCore
 
 		return $args['before'].gThemeHTML::tag( 'img', [
 			'src'   => $image[0],
-			'alt'   => '',
+			'alt'   => $args['alt'],
 			'class' => gThemeOptions::info( 'image-class', 'the-img img-responsive' ).' -featured',
 		] ).$args['after'];
 	}
