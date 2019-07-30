@@ -19,11 +19,28 @@ class gThemeWidgetTheTerm extends gThemeWidget
 			&& GTHEME_WIDGET_THETERM_DISABLED )
 				return;
 
-		if ( ! ( is_tax() || is_tag() || is_category() ) )
-			return;
+		if ( 'all' == $instance['taxonomy'] ) {
 
-		if ( ! $term = get_queried_object() )
+			if ( ! ( is_tax() || is_tag() || is_category() ) )
+				return;
+
+			if ( ! $term = get_queried_object() )
+				return;
+
+		} else if ( is_singular() || is_single() ) {
+
+			$terms = get_the_terms( NULL, $instance['taxonomy'] );
+
+			if ( ! $terms || is_wp_error( $terms ) )
+				return $atts['default'];
+
+			// grab the first one!
+			$term = array_shift( $terms );
+
+		} else {
+
 			return;
+		}
 
 		$before = $after = $image = '';
 
@@ -66,6 +83,7 @@ class gThemeWidgetTheTerm extends gThemeWidget
 		$instance['title']      = sanitize_text_field( $new['title'] );
 		$instance['title_link'] = strip_tags( $new['title_link'] );
 		$instance['class']      = strip_tags( $new['class'] );
+		$instance['taxonomy']   = strip_tags( $new['taxonomy'] );
 
 		$instance['meta_image']      = isset( $new['meta_image'] );
 		$instance['hide_no_desc']    = isset( $new['hide_no_desc'] );
@@ -83,6 +101,8 @@ class gThemeWidgetTheTerm extends gThemeWidget
 		$this->form_title( $instance );
 		$this->form_title_link( $instance );
 		$this->form_class( $instance );
+		$this->form_taxonomy( $instance );
+		gThemeHTML::desc( _x( '&ldquo;All taxonomies option&rdquo; only works on archive pages.', 'Widget: Setting', GTHEME_TEXTDOMAIN ) );
 
 		$this->form_checkbox( $instance, TRUE, 'meta_image', _x( 'Display Meta Image', 'Widget: Setting', GTHEME_TEXTDOMAIN ) );
 		$this->form_checkbox( $instance, TRUE, 'hide_no_desc', _x( 'Hide if no Description', 'Widget: Setting', GTHEME_TEXTDOMAIN ) );
