@@ -65,7 +65,7 @@ class gThemeWidgetTheTerm extends gThemeWidget
 		if ( ! $before && ! $after && ! $desc && ! $image && ! empty( $instance['hide_no_desc'] ) )
 			return;
 
-		$this->before_widget( $args, $instance );
+		$this->before_widget( $args, $instance, ( $image ? '-has-image' : '' ) );
 		$this->widget_title( $args, $instance, $name );
 
 		echo gThemeHTML::wrap( $image, 'gtheme-widget-image' );
