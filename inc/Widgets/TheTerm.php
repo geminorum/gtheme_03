@@ -46,6 +46,7 @@ class gThemeWidgetTheTerm extends gThemeWidget
 
 		$name = sanitize_term_field( 'name', $term->name, $term->term_id, $term->taxonomy, 'display' );
 		$desc = sanitize_term_field( 'description', $term->description, $term->term_id, $term->taxonomy, 'display' );
+		$link = get_term_link( $term, $term->taxonomy );
 
 		if ( ! empty( $instance['meta_image'] ) )
 			$image = gThemeImage::termImage( [ 'term_id' => $term->term_id, 'alt' => $name ] );
@@ -68,11 +69,15 @@ class gThemeWidgetTheTerm extends gThemeWidget
 		$this->before_widget( $args, $instance, ( $image ? '-has-image' : '' ) );
 		$this->widget_title( $args, $instance, $name );
 
+		// link image only on singular
+		if ( is_singular() || is_single() )
+			$image = gThemeHTML::link( $image, $link );
+
 		echo gThemeHTML::wrap( $image, 'gtheme-widget-image' );
 
 		// fallback in case of a custom title
 		if ( ! empty( $instance['title'] ) )
-			echo gThemeHTML::wrap( $name, 'gtheme-widget-name' );
+			echo gThemeHTML::wrap( gThemeHTML::link( $name, $link ), 'gtheme-widget-name' );
 
 		echo gThemeHTML::wrap( $before, 'gtheme-widget-before' );
 		echo gThemeHTML::wrap( gThemeUtilities::prepDescription( $desc ), 'gtheme-widget-description' );
