@@ -69,6 +69,11 @@ class gThemeWidgetTheTerm extends gThemeWidget
 		$this->widget_title( $args, $instance, $name );
 
 		echo gThemeHTML::wrap( $image, 'gtheme-widget-image' );
+
+		// fallback in case of a custom title
+		if ( ! empty( $instance['title'] ) )
+			echo gThemeHTML::wrap( $name, 'gtheme-widget-name' );
+
 		echo gThemeHTML::wrap( $before, 'gtheme-widget-before' );
 		echo gThemeHTML::wrap( gThemeUtilities::prepDescription( $desc ), 'gtheme-widget-description' );
 		echo gThemeHTML::wrap( $after, 'gtheme-widget-after' );
