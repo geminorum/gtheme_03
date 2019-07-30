@@ -112,10 +112,11 @@ class gThemeWidget extends WP_Widget
 		return FALSE;
 	}
 
-	public function before_widget( $args, $instance, $echo = TRUE )
+	public function before_widget( $args, $instance, $extra_class = '', $echo = TRUE )
 	{
 		$classes = isset( $instance['context'] ) && $instance['context'] ? 'context-'.sanitize_html_class( $instance['context'], 'general' ).' ' : '';
 		$classes.= isset( $instance['class'] ) && $instance['class'] ? $instance['class'].' ' : '';
+		$classes.= $extra_class.' ';
 
 		$html = preg_replace( '%{GTHEME_WIDGET_CLASSNAME}%', $classes, $args['before_widget'] );
 
@@ -163,7 +164,7 @@ class gThemeWidget extends WP_Widget
 
 	public function before_form( $instance, $echo = TRUE )
 	{
-		$classes = [ static::BASE.'-admin-wrap-widgetform' ];
+		$classes = [ static::BASE.'-wrap', '-wrap', '-admin-widgetform' ];
 
 		if ( self::MODULE )
 			$classes[] = '-'.self::MODULE;
@@ -283,11 +284,16 @@ class gThemeWidget extends WP_Widget
 		], _x( 'PostType:', 'Widget: Setting', GTHEME_TEXTDOMAIN ).$html ).'</p>';
 	}
 
-	public function form_taxonomy( $instance, $default = 'post_tag', $field = 'taxonomy', $post_type_field = 'post_type', $post_type_default = 'post' )
+	public function form_taxonomy( $instance, $default = 'all', $field = 'taxonomy', $post_type_field = 'post_type', $post_type_default = 'any', $option_all = 'all' )
 	{
 		$html      = '';
 		$post_type = isset( $instance[$post_type_field] ) ? $instance[$post_type_field] : $post_type_default;
 		$taxonomy  = isset( $instance[$field] ) ? $instance[$field] : $default;
+
+		if ( $option_all )
+			$html.= gThemeHTML::tag( 'option', [
+				'value' => $option_all,
+			], _x( '&mdash; All Taxonomies &mdash;', 'Widget: Setting', GTHEME_TEXTDOMAIN ) );
 
 		foreach ( gThemeWordPress::getTaxonomies( 0, [], $post_type ) as $name => $title )
 			$html.= gThemeHTML::tag( 'option', [
