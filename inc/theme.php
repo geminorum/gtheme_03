@@ -22,7 +22,7 @@ class gThemeTheme extends gThemeModuleCore
 			'js'                => FALSE,
 			'hooks'             => TRUE, // @REF: https://is.gd/4ORzuI
 			'bp_support'        => TRUE,
-			'bp_no_styles'      => FALSE,
+			'bp_no_styles'      => TRUE,
 			'print_support'     => TRUE,
 			'alignwide_support' => FALSE,
 		], $args ) );
@@ -64,6 +64,7 @@ class gThemeTheme extends gThemeModuleCore
 		if ( $bp_no_styles ) {
 			add_action( 'wp_enqueue_scripts', [ $this, 'remove_bp_styles' ], 20 ); // bp-legacy
 			add_filter( 'bp_nouveau_enqueue_styles', '__return_false', 20 ); // bp-nouveau
+			defined( 'GNETWORK_DISABLE_BUDDYPRESS_STYLES' ) or define( 'GNETWORK_DISABLE_BUDDYPRESS_STYLES', TRUE ); // gNetwork
 		}
 
 		if ( $post_formats )
