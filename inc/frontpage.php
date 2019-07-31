@@ -32,4 +32,25 @@ class gThemeFrontPage extends gThemeModuleCore
 
 		return $post_id;
 	}
+
+	public static function getLatestPostID( $posttype )
+	{
+		$args = [
+			'post_type'           => $posttype,
+			'numberposts'         => 1,
+			'offset'              => 0,
+			'orderby'             => 'post_date',
+			'order'               => 'DESC',
+			'post_status'         => 'publish',
+			'suppress_filters'    => TRUE,
+			'ignore_sticky_posts' => TRUE,
+			'no_found_rows'       => TRUE,
+			'fields'              => 'ids',
+		];
+
+		$query = new \WP_Query;
+		$posts = $query->query( $args );
+
+		return $posts[0];
+	}
 }
