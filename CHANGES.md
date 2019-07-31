@@ -1,3 +1,26 @@
+### 3.19.4
+* module/comments: comments form renderer
+* module/comments: comments list renderer
+* module/comments: comments title callback
+* module/content: print posttypes option
+* module/content: trim custom excerpts
+* module/date: rethinking date method
+* module/date: support for time ago script
+* module/frontpage: extra ids for displayed
+* module/frontpage: helper for latest post
+* module/image: alt attr for term images
+* module/navigation: support in same term nav
+* module/shortcodes: :new: shortcode: releated posts
+* module/sidebar: :new: widget: search terms
+* module/template: custom link for site modified in copyright block
+* module/terms: image helper for primary terms
+* module/theme: disable bp styles by default
+* widget/the term: before/after action hooks
+* widget/the term: has image class
+* widget/the term: link name/image
+* widget/the term: name fallback in case of a custom title
+* widget/the term: singular support
+
 ### 3.19.3
 * missed bump
 
