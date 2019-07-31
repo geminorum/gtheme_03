@@ -32,7 +32,7 @@ class gThemeWidgetTheTerm extends gThemeWidget
 			$terms = get_the_terms( NULL, $instance['taxonomy'] );
 
 			if ( ! $terms || is_wp_error( $terms ) )
-				return $atts['default'];
+				return;
 
 			// grab the first one!
 			$term = array_shift( $terms );

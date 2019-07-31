@@ -133,16 +133,17 @@ class gThemeOptions extends gThemeModuleCore
 			// 'full_content_width' => 455, // setting global content_width on fullwidthpage.php // FALSE to default
 
 			// COMMENTS
-			// 'comments_support'       => TRUE, // hides the default inserts
-			// 'comments_disable_types' => [ 'attachment' ],
-			// 'comment_callback'       => [ 'gThemeComments', 'comment_callback' ], // null to use wp core
-			// 'comment_callback'       => [ 'gThemeBootstrap', 'commentCallback_BS3' ], // null to use wp core
-			// 'comment_form'           => [ 'gThemeComments', 'comment_form' ], // comment_form to use wp core
-			// 'comment_form_strings'   => [],
-			// 'comment_nav_strings'    => [],
-			// 'comment_action_strings' => [],
-			// 'comments_closed'        => __( 'Comments are closed.', GTHEME_TEXTDOMAIN ), // set FALSE to hide the text
-			// 'comment_awaiting'       => __( 'Your comment is awaiting moderation.', GTHEME_TEXTDOMAIN ), // set FALSE to hide the text
+			// 'comments_support'        => TRUE, // hides the default inserts
+			// 'comments_disable_types'  => [ 'attachment' ],
+			// 'comments_item_callback'  => [ 'gThemeBootstrap', 'commentCallback_BS3' ], // null to use wp core
+			// 'comments_item_callback'  => [ 'gThemeComments', 'comment_callback' ], // null to use wp core
+			// 'comments_title_callback' => [ 'gThemeComments', 'title_callback' ],
+			// 'comments_form_callback'  => [ 'gThemeComments', 'form_callback' ], // null to use wp core
+			// 'comment_form_strings'    => [],
+			// 'comment_nav_strings'     => [],
+			// 'comment_action_strings'  => [],
+			// 'comments_closed'         => __( 'Comments are closed.', GTHEME_TEXTDOMAIN ), // set FALSE to hide the text
+			// 'comment_awaiting'        => __( 'Your comment is awaiting moderation.', GTHEME_TEXTDOMAIN ), // set FALSE to hide the text
 
 			// AVATARS
 			// 'comment_avatar_size' => 75, // wp core is 32
