@@ -168,6 +168,16 @@ class gThemeEditor extends gThemeModuleCore
 				'block'   => 'p',
 				'classes' => 'entry-signature',
 			],
+			[
+				'title'   => _x( 'Poem', 'Editor Custom Class', GTHEME_TEXTDOMAIN ),
+				'block'   => 'p',
+				'classes' => 'wrap-poem',
+			],
+			[
+				'title'   => _x( 'Question', 'Editor Custom Class', GTHEME_TEXTDOMAIN ),
+				'block'   => 'p',
+				'classes' => 'wrap-question',
+			],
 		], $extra );
 	}
 
