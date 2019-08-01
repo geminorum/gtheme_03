@@ -147,6 +147,21 @@ class gThemeEditorial extends gThemeModuleCore
 		return TRUE;
 	}
 
+	public static function listAttachments( $atts = [], $echo = TRUE )
+	{
+		if ( ! self::availableEditorial( 'attachments' ) )
+			return NULL;
+
+		$html = gEditorial()->attachments->attachments_shortcode( $atts );
+
+		if ( ! $echo )
+			return $html;
+
+		echo $html;
+
+		return TRUE;
+	}
+
 	public static function label( $atts = [] )
 	{
 		if ( ! array_key_exists( 'default', $atts ) )
