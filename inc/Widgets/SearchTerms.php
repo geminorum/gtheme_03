@@ -9,7 +9,7 @@ class gThemeWidgetSearchTerms extends gThemeWidget
 			'name'  => 'search_terms',
 			'class' => 'search-terms',
 			'title' => _x( 'Theme: Search Terms', 'Widget: Title', GTHEME_TEXTDOMAIN ),
-			'desc'  => _x( 'Displays the results of current search criteria on selected taxonomy.', 'Widget: Description', GTHEME_TEXTDOMAIN ),
+			'desc'  => _x( 'Displays the results of current search criteria on selected taxonomies.', 'Widget: Description', GTHEME_TEXTDOMAIN ),
 		];
 	}
 
@@ -21,11 +21,14 @@ class gThemeWidgetSearchTerms extends gThemeWidget
 		if ( ! $criteria = trim( get_search_query() ) )
 			return;
 
-		$taxonomy = empty( $instance['taxonomy'] ) ? 'post_tag' : $instance['taxonomy'];
+		if ( empty( $instance['taxonomy'] ) || 'all' == $instance['taxonomy'] )
+			$taxonomies = NULL;
+		else
+			$taxonomies = [ $instance['taxonomy'] ];
 
 		$query = new \WP_Term_Query( [
 			'name__like' => $criteria,
-			'taxonomy'   => [ $taxonomy ],
+			'taxonomy'   => $taxonomies,
 			'orderby'    => 'name',
 			'hide_empty' => TRUE,
 		] );
