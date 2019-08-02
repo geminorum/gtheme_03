@@ -1,3 +1,10 @@
+### 3.19.5
+* module/editor: more general styles
+* module/editorial: list attachments
+* widget/post terms: :new: widget
+* widget/search terms: restrict to public taxonomies
+* widget/search terms: support all taxonomies
+
 ### 3.19.4
 * module/comments: comments form renderer
 * module/comments: comments list renderer
