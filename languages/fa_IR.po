@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: gTheme 3\n"
 "Report-Msgid-Bugs-To: https://github.com/geminorum/gtheme_03/issues\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2019-08-01 00:46+0430\n"
+"PO-Revision-Date: 2019-08-02 05:19+0430\n"
 "Last-Translator: geminorum <contact@geminorum.ir>\n"
 "Language-Team: geminorum <contact@geminorum.ir>\n"
 "Language: fa_IR\n"
@@ -590,8 +590,18 @@ msgctxt "Editor Custom Class"
 msgid "Signature"
 msgstr "امضاء"
 
+#: inc/editor.php:172
+msgctxt "Editor Custom Class"
+msgid "Poem"
+msgstr "شعر"
+
+#: inc/editor.php:177
+msgctxt "Editor Custom Class"
+msgid "Question"
+msgstr "سؤال"
+
 # @ gtheme
-#: inc/editor.php:176
+#: inc/editor.php:186
 msgctxt "Editor Default Content"
 msgid "[content not available yet]"
 msgstr "[این صفحه در حال تکمیل است.]"
@@ -1429,6 +1439,16 @@ msgctxt "Widget: Setting"
 msgid "Automatic Paragraphs"
 msgstr "پاراگراف‌های خودکار"
 
+#: inc/Widgets/PostTerms.php:11
+msgctxt "Widget: Title"
+msgid "Theme: Post Terms"
+msgstr "پوسته: رده‌های نوشته"
+
+#: inc/Widgets/PostTerms.php:12
+msgctxt "Widget: Description"
+msgid "Displays the current post's assigned terms on selected taxonomy."
+msgstr "فهرست رده‌ها را بر اساس نوشته کنونی نمایش می‌دهد."
+
 #: inc/Widgets/RecentComments.php:11
 msgctxt "Widget: Title"
 msgid "Theme: Recent Comments"
@@ -1665,6 +1685,10 @@ msgstr "https://fa.geminorum.ir/"
 #: systempage.php:7
 msgid "System Page"
 msgstr "برگه سیستم"
+
+#~ msgctxt "Widget: Description"
+#~ msgid "Displays the results of current search criteria on selected taxonomy."
+#~ msgstr "نتایج جست‌وجوی رده‌ها را بر اساس عبارت فعلی نمایش می‌دهد."
 
 #~ msgctxt "Modules: Content: PrintFriendly"
 #~ msgid "Print Version"

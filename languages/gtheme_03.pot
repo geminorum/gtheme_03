@@ -555,7 +555,17 @@ msgctxt "Editor Custom Class"
 msgid "Signature"
 msgstr ""
 
-#: inc/editor.php:176
+#: inc/editor.php:172
+msgctxt "Editor Custom Class"
+msgid "Poem"
+msgstr ""
+
+#: inc/editor.php:177
+msgctxt "Editor Custom Class"
+msgid "Question"
+msgstr ""
+
+#: inc/editor.php:186
 msgctxt "Editor Default Content"
 msgid "[content not available yet]"
 msgstr ""
@@ -1365,6 +1375,16 @@ msgstr ""
 #: inc/Widgets/CustomHTML.php:93
 msgctxt "Widget: Setting"
 msgid "Automatic Paragraphs"
+msgstr ""
+
+#: inc/Widgets/PostTerms.php:11
+msgctxt "Widget: Title"
+msgid "Theme: Post Terms"
+msgstr ""
+
+#: inc/Widgets/PostTerms.php:12
+msgctxt "Widget: Description"
+msgid "Displays the current post's assigned terms on selected taxonomy."
 msgstr ""
 
 #: inc/Widgets/RecentComments.php:11
