@@ -22,7 +22,7 @@ class gThemeWidgetSearchTerms extends gThemeWidget
 			return;
 
 		if ( empty( $instance['taxonomy'] ) || 'all' == $instance['taxonomy'] )
-			$taxonomies = NULL;
+			$taxonomies = get_taxonomies( [ 'public' => TRUE, 'show_ui' => TRUE ] );
 		else
 			$taxonomies = [ $instance['taxonomy'] ];
 
