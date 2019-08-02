@@ -19,7 +19,7 @@ class gThemeWidgetTheTerm extends gThemeWidget
 			&& GTHEME_WIDGET_THETERM_DISABLED )
 				return;
 
-		if ( 'all' == $instance['taxonomy'] ) {
+		if ( empty( $instance['taxonomy'] ) || 'all' == $instance['taxonomy'] ) {
 
 			if ( ! ( is_tax() || is_tag() || is_category() ) )
 				return;

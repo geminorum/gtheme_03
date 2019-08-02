@@ -9,7 +9,7 @@ class gThemeWidgetSearchTerms extends gThemeWidget
 			'name'  => 'search_terms',
 			'class' => 'search-terms',
 			'title' => _x( 'Theme: Search Terms', 'Widget: Title', GTHEME_TEXTDOMAIN ),
-			'desc'  => _x( 'Displays the results of current search criteria on selected taxonomies.', 'Widget: Description', GTHEME_TEXTDOMAIN ),
+			'desc'  => _x( 'Displays the results of current search criteria on selected taxonomy.', 'Widget: Description', GTHEME_TEXTDOMAIN ),
 		];
 	}
 
@@ -37,7 +37,7 @@ class gThemeWidgetSearchTerms extends gThemeWidget
 		$this->widget_title( $args, $instance );
 		echo '<div class="-list-wrap search-terms"><ul>';
 
-		foreach( $query->terms as $term ) {
+		foreach ( $query->terms as $term ) {
 			echo '<li>'.gThemeHTML::link(
 				sanitize_term_field( 'name', $term->name, $term->term_id, $term->taxonomy, 'display' ),
 				get_term_link( $term->term_id, $term->taxonomy )
