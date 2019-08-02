@@ -38,6 +38,7 @@ final class gThemeCore
 			'WordPress/Taxonomy' => '',
 			'WordPress/Widget'   => '',
 
+			'Widgets/PostTerms'      => '',
 			'Widgets/TermPosts'      => '',
 			'Widgets/RelatedPosts'   => '',
 			'Widgets/RecentPosts'    => '',
