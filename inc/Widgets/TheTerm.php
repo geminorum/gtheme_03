@@ -16,10 +16,14 @@ class gThemeWidgetTheTerm extends gThemeWidget
 	public function widget( $args, $instance )
 	{
 		if ( defined( 'GTHEME_WIDGET_THETERM_DISABLED' )
-			&& GTHEME_WIDGET_THETERM_DISABLED )
+			&& TRUE === GTHEME_WIDGET_THETERM_DISABLED )
 				return;
 
 		if ( empty( $instance['taxonomy'] ) || 'all' == $instance['taxonomy'] ) {
+
+			if ( defined( 'GTHEME_WIDGET_THETERM_DISABLED' )
+				&& 'all' === GTHEME_WIDGET_THETERM_DISABLED )
+					return;
 
 			if ( ! ( is_tax() || is_tag() || is_category() ) )
 				return;
@@ -28,6 +32,10 @@ class gThemeWidgetTheTerm extends gThemeWidget
 				return;
 
 		} else if ( is_singular() || is_single() ) {
+
+			if ( defined( 'GTHEME_WIDGET_THETERM_DISABLED' )
+				&& $instance['taxonomy'] === GTHEME_WIDGET_THETERM_DISABLED )
+					return;
 
 			$terms = get_the_terms( NULL, $instance['taxonomy'] );
 
