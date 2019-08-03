@@ -324,10 +324,10 @@ class gThemeNavigation extends gThemeModuleCore
 				: $args['strings']['tag'] ),
 			single_term_title( '', FALSE ) );
 
-		if ( is_tax( 'people' ) )
-			return sprintf( ( empty( $args['strings']['people'] )
+		if ( is_tax( GTHEME_PEOPLE_TAXONOMY ) )
+			return sprintf( ( empty( $args['strings'][GTHEME_PEOPLE_TAXONOMY] )
 				? _x( 'People Archives for <strong>%s</strong>', 'Modules: Navigation: Breadcrumbs', GTHEME_TEXTDOMAIN )
-				: $args['strings']['people'] ),
+				: $args['strings'][GTHEME_PEOPLE_TAXONOMY] ),
 			single_term_title( '', FALSE ) );
 
 		if ( is_post_type_archive() )

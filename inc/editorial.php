@@ -427,7 +427,7 @@ class gThemeEditorial extends gThemeModuleCore
 			return $atts['default'];
 
 		if ( ! array_key_exists( 'taxonomy', $atts ) )
-			$atts['taxonomy'] = 'people';
+			$atts['taxonomy'] = GTHEME_PEOPLE_TAXONOMY;
 
 		if ( ! array_key_exists( 'wrap', $atts ) )
 			$atts['wrap'] = FALSE;
@@ -435,7 +435,7 @@ class gThemeEditorial extends gThemeModuleCore
 		if ( ! array_key_exists( 'id', $atts ) && ( is_singular() || is_single() ) ) {
 
 			// the order applied via filter
-			$people = get_the_terms( $post, 'people' );
+			$people = get_the_terms( $post, $atts['taxonomy'] );
 
 			if ( ! $people || is_wp_error( $people ) )
 				return $atts['default'];

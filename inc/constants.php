@@ -14,6 +14,7 @@ $gtheme_constants = [
 
 	'GTHEME_PRINT_QUERY'       => 'print', // @SEE: gEditorial Paper
 	'GTHEME_SYSTEMTAGS'        => 'system_tags',
+	'GTHEME_PEOPLE_TAXONOMY'   => defined( 'GPEOPLE_PEOPLE_TAXONOMY' ) ? constant( 'GPEOPLE_PEOPLE_TAXONOMY' ) : 'people',
 	'GTHEME_FRAGMENTCACHE'     => 'gtheme',
 	'GTHEME_CACHETTL'          => 60 * 60 * 12, // 12 hours
 	'GTHEME_IMAGES_META'       => '_gtheme_images',
