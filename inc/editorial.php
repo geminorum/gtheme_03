@@ -429,8 +429,8 @@ class gThemeEditorial extends gThemeModuleCore
 		if ( ! array_key_exists( 'taxonomy', $atts ) )
 			$atts['taxonomy'] = GTHEME_PEOPLE_TAXONOMY;
 
-		if ( ! array_key_exists( 'wrap', $atts ) )
-			$atts['wrap'] = FALSE;
+		// if ( ! array_key_exists( 'wrap', $atts ) )
+		// 	$atts['wrap'] = FALSE;
 
 		if ( ! array_key_exists( 'id', $atts ) && ( is_singular() || is_single() ) ) {
 
