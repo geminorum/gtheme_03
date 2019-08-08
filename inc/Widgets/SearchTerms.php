@@ -26,6 +26,11 @@ class gThemeWidgetSearchTerms extends gThemeWidget
 		else
 			$taxonomies = [ $instance['taxonomy'] ];
 
+		if ( ! empty( $instance['strip_hashtags'] ) )
+			$criteria = preg_replace_callback( "/^#(.*)$/m", function ( $matches ) {
+				return str_replace( '_', ' ', $matches[1] );
+			}, $criteria );
+
 		$query = new \WP_Term_Query( [
 			'name__like' => $criteria,
 			'taxonomy'   => $taxonomies,
@@ -61,6 +66,8 @@ class gThemeWidgetSearchTerms extends gThemeWidget
 
 		$instance['taxonomy'] = strip_tags( $new['taxonomy'] );
 
+		$instance['strip_hashtags'] = isset( $new['strip_hashtags'] );
+
 		$this->flush_widget_cache();
 
 		return $instance;
@@ -75,6 +82,8 @@ class gThemeWidgetSearchTerms extends gThemeWidget
 		$this->form_class( $instance );
 
 		$this->form_taxonomy( $instance );
+
+		$this->form_checkbox( $instance, FALSE, 'strip_hashtags', _x( 'Strip Hash-tags', 'Widget: Setting', GTHEME_TEXTDOMAIN ) );
 
 		$this->after_form( $instance );
 	}
