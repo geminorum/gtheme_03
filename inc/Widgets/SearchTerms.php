@@ -27,7 +27,7 @@ class gThemeWidgetSearchTerms extends gThemeWidget
 			$taxonomies = [ $instance['taxonomy'] ];
 
 		if ( ! empty( $instance['strip_hashtags'] ) )
-			$criteria = preg_replace_callback( "/^#(.*)$/m", function ( $matches ) {
+			$criteria = preg_replace_callback( "/^#(.*)$/mu", function ( $matches ) {
 				return str_replace( '_', ' ', $matches[1] );
 			}, $criteria );
 
