@@ -116,7 +116,7 @@ class gThemeContent extends gThemeModuleCore
 		$args = [ 'id' => $post->ID, 'echo' => FALSE, 'context' => 'single' ];
 
 		if ( gThemeOptions::supports( 'gpeople', TRUE )
-			&& class_exists( 'gPeopleRemoteTemplate' ) ) {
+			&& is_callable( [ 'gPeopleRemoteTemplate', 'post_byline' ] ) ) {
 
 			if ( $html = \gPeopleRemoteTemplate::post_byline( $post, $args ) ) {
 
