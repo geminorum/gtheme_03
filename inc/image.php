@@ -614,6 +614,7 @@ class gThemeImage extends gThemeModuleCore
 			'post_thumbnail_id' => FALSE,
 			'attr'              => '',
 			'link'              => 'parent',
+			'link_label'        => NULL,
 			'empty'             => '',
 			'url'               => FALSE,
 			'caption'           => FALSE,
@@ -674,6 +675,9 @@ class gThemeImage extends gThemeModuleCore
 
 					$args['link'] = get_permalink( $args['post_id'] );
 
+					if ( is_null( $args['link_label'] ) )
+						$args['link_label'] = sprintf( _x( 'Read more about %s', 'Modules: Image: Link Label', GTHEME_TEXTDOMAIN ), get_the_title( $args['post_id'] ) );
+
 				} else if ( 'attachment' == $args['link'] ) {
 
 					$args['link'] = get_attachment_link( $attachment );
@@ -702,7 +706,7 @@ class gThemeImage extends gThemeModuleCore
 
 			if ( $args['link'] ) {
 
-				$template = gThemeOptions::info( 'template_image_link', '<a href="%2$s" class="%3$s" data-title="%4$s" data-caption="%5$s">%1$s</a>' );
+				$template = gThemeOptions::info( 'template_image_link', '<a href="%2$s" class="%3$s" data-title="%4$s" data-caption="%5$s" area-label="%6$s">%1$s</a>' );
 
 				$html = vsprintf( $template, [
 					$html,
@@ -710,6 +714,7 @@ class gThemeImage extends gThemeModuleCore
 					'-thumbnail-link',
 					$args['default_title'] ?: gThemeUtilities::prepTitle( $attachment->post_title ),
 					$caption ?: apply_filters( 'wp_get_attachment_caption', $attachment->post_excerpt, $attachment->ID ),
+					$args['link_label'] ?: '',
 				] );
 			}
 
