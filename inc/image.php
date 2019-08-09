@@ -706,7 +706,7 @@ class gThemeImage extends gThemeModuleCore
 
 			if ( $args['link'] ) {
 
-				$template = gThemeOptions::info( 'template_image_link', '<a href="%2$s" class="%3$s" data-title="%4$s" data-caption="%5$s" area-label="%6$s">%1$s</a>' );
+				$template = gThemeOptions::info( 'template_image_link', '<a href="%2$s" class="%3$s" data-title="%4$s" data-caption="%5$s" aria-label="%6$s">%1$s</a>' );
 
 				$html = vsprintf( $template, [
 					$html,
