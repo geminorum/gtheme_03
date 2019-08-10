@@ -868,11 +868,14 @@ addthis_config.services_custom = [
 			'shortlink'   => gThemeOptions::info( 'content_header_shortlink', FALSE ),
 			'wrap_tag'    => 'header',
 			'wrap_close'  => TRUE,
+			'itemprop'    => TRUE,
+			'link_rel'    => 'bookmark',
 			'title_tag'   => is_singular() ? 'h2' : 'h3',
 			'meta_tag'    => 'h5',
-			'title'       => NULL, // or FALSE to disable
+			'title'       => NULL,
 			'title_attr'  => NULL, // or FALSE to disable
 			'title_sep'   => ' / ', // used on meta as title attr
+			'amp'         => is_singular(),
 			'meta'        => gThemeOptions::supports( 'geditorial-meta', TRUE ),
 			'link'        => TRUE, // default/custom/disable
 			'anchor'      => FALSE, // permalink anchor for the post
@@ -899,21 +902,34 @@ addthis_config.services_custom = [
 				$args['link'] = $args['shortlink'];
 		}
 
-		echo '<'.$args['wrap_tag'].' class="-header header-class header-'.$args['context'].' '.$args['prefix'].'-header amp-wp-article-header">';
+		if ( $args['wrap_tag'] )
+			echo '<'.$args['wrap_tag'].' class="-header header-class header-'.$args['context'].' '.$args['prefix'].'-header'.( $args['amp'] ? ' amp-wp-article-header' : '' ).'">';
+
 		echo '<div class="-titles titles-class '.$args['prefix'].'-titles">';
 
 		if ( $args['meta'] )
 			gThemeEditorial::meta( 'over-title', [
 				'post_id' => $post->ID,
-				'before'  => '<'.$args['meta_tag'].' itemprop="alternativeHeadline" class="-overtitle overtitle '.$args['prefix'].'-overtitle">',
+				'before'  => '<'.$args['meta_tag'].' class="-overtitle overtitle '.$args['prefix'].'-overtitle"'.( $args['itemprop'] ? ' itemprop="alternativeHeadline"' : '' ).'>',
 				'after'   => '</'.$args['meta_tag'].'>',
 			] );
 
-		echo '<'.$args['title_tag'].' itemprop="headline" class="-title title '.$args['prefix'].'-title amp-wp-title">';
+		echo '<'.$args['title_tag'].' class="-title title '.$args['prefix'].'-title'.( $args['amp'] ? ' amp-wp-title' : '' ).'"';
+
+		if ( $args['itemprop'] )
+			echo ' itemprop="headline"';
+
+		echo '>';
 
 		if ( $args['link'] ) {
 
-			echo '<a itemprop="url" rel="bookmark" href="'.esc_url( $args['link'] ).'"';
+			echo '<a href="'.esc_url( $args['link'] ).'"';
+
+			if ( $args['itemprop'] )
+				echo ' itemprop="url"';
+
+			if ( $args['link_rel'] )
+				echo ' rel="'.$args['link_rel'].'"';
 
 			$title_template = TRUE === $args['shortlink'] ? FALSE : NULL;
 
@@ -954,7 +970,7 @@ addthis_config.services_custom = [
 		if ( $args['meta'] )
 			gThemeEditorial::meta( 'sub-title', [
 				'post_id' => $post->ID,
-				'before'  => '<'.$args['meta_tag'].' itemprop="alternativeHeadline" class="-subtitle subtitle '.$args['prefix'].'-subtitle">',
+				'before'  => '<'.$args['meta_tag'].' class="-subtitle subtitle '.$args['prefix'].'-subtitle"'.( $args['itemprop'] ? ' itemprop="alternativeHeadline"' : '' ).'>',
 				'after'   => '</'.$args['meta_tag'].'>',
 			] );
 
@@ -970,7 +986,7 @@ addthis_config.services_custom = [
 			echo '</ul>';
 		}
 
-		if ( $args['wrap_close'] )
+		if ( $args['wrap_close'] && $args['wrap_tag'] )
 			echo '</'.$args['wrap_tag'].'>'."\n";
 	}
 
