@@ -196,11 +196,14 @@ class gThemeFilters extends gThemeModuleCore
 
 		} else {
 
-			$url = GTHEME_CHILD_URL.'/css/'
-				.$group.'.screen'
+			$file = $group.'.screen'
 				.( $rtl ? '-rtl' : '' )
 				// .( SCRIPT_DEBUG ? '' : '.min' )
 				.'.css';
+
+			$url = file_exists( GTHEME_CHILD_DIR.'/css/'.$file )
+				? GTHEME_CHILD_URL.'/css/'.$file
+				: GTHEME_URL.'/css/'.$file;
 
 			$media = 'screen';
 		}
