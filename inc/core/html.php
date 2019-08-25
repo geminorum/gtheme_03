@@ -39,7 +39,7 @@ class gThemeHTML extends gThemeBaseCore
 
 	public static function img( $src, $class = '', $alt = '' )
 	{
-		return '<img src="'.$src.'" class="'.$class.'" alt="'.$alt.'" />';
+		return $src ? '<img src="'.$src.'" class="'.self::prepClass( $class ).'" alt="'.$alt.'" />' : '';
 	}
 
 	public static function h1( $html, $class = FALSE, $link = FALSE )
@@ -57,15 +57,29 @@ class gThemeHTML extends gThemeBaseCore
 		if ( $html ) echo self::tag( 'h3', array( 'class' => $class ), ( $link ? self::link( $html, $link ) : $html ) );
 	}
 
-	public static function desc( $html, $block = TRUE, $class = '' )
+	public static function desc( $html, $block = TRUE, $class = '', $nl2br = TRUE )
 	{
-		if ( $html ) echo $block ? '<p class="description -description '.$class.'">'.$html.'</p>' : '<span class="description -description '.$class.'">'.$html.'</span>';
+		if ( ! $html )
+			return;
+
+		if ( $nl2br )
+			$html = nl2br( trim( $html ) );
+
+		$html = gThemeText::wordWrap( $html );
+
+		echo $block
+			? '<p class="'.self::prepClass( 'description', '-description', $class ).'">'.$html.'</p>'
+			: '<span class="'.self::prepClass( 'description', '-description', $class ).'">'.$html.'</span>';
 	}
 
 	public static function wrap( $html, $class = '', $block = TRUE )
 	{
-		if ( ! $html ) return '';
-		return $block ? '<div class="-wrap '.$class.'">'.$html.'</div>' : '<span class="-wrap '.$class.'">'.$html.'</span>';
+		if ( ! $html )
+			return '';
+
+		return $block
+			? '<div class="'.self::prepClass( '-wrap', $class ).'">'.$html.'</div>'
+			: '<span class="'.self::prepClass( '-wrap', $class ).'">'.$html.'</span>';
 	}
 
 	public static function wrapLTR( $content )
@@ -140,6 +154,16 @@ class gThemeHTML extends gThemeBaseCore
 				$classes = array_merge( $classes, preg_split( '#\s+#', $arg ) );
 
 		return array_unique( array_filter( $classes, 'trim' ) );
+	}
+
+	public static function prepClass( $classes )
+	{
+		$classes = func_get_args();
+
+		if ( TRUE === $classes[0] )
+			return '';
+
+		return implode( ' ', array_unique( array_filter( call_user_func_array( array( __CLASS__, 'attrClass' ), $classes ), array( __CLASS__, 'sanitizeClass' ) ) ) );
 	}
 
 	private static function _tag_open( $tag, $atts, $content = TRUE )

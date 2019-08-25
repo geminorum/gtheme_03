@@ -306,4 +306,25 @@ class gThemeText extends gThemeBaseCore
 		**/
 		return count( preg_split( '~[^\p{L}\p{N}\']+~u', $html ) );
 	}
+
+	// @REF: http://davidwalsh.name/word-wrap-mootools-php
+	// @REF: https://css-tricks.com/preventing-widows-in-post-titles/
+	public static function wordWrap( $text, $min = 2 )
+	{
+		$return = $text;
+
+		// FIXME: must convert back all &nbsp; to space
+
+		if ( strlen( trim( $text ) ) ) {
+			$arr = explode( ' ', trim( $text ) );
+
+			if ( count( $arr ) >= $min ) {
+				$arr[count( $arr ) - 2].= '&nbsp;'.$arr[count( $arr ) - 1];
+				array_pop( $arr );
+				$return = implode( ' ', $arr );
+			}
+		}
+
+		return $return;
+	}
 }
