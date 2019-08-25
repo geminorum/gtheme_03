@@ -205,7 +205,7 @@ class gThemeFilters extends gThemeModuleCore
 				? GTHEME_CHILD_URL.'/css/'.$file
 				: GTHEME_URL.'/css/'.$file;
 
-			$media = 'screen';
+			$media = 'all';
 		}
 
 		return gThemeUtilities::linkStyleSheet( $url, $args, $media, FALSE );

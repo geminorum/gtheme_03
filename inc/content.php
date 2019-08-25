@@ -30,7 +30,7 @@ class gThemeContent extends gThemeModuleCore
 		$default = _x( 'It looks like nothing was found at this location. Maybe try one of the links below or a search?', 'Content: Not Found Message', GTHEME_TEXTDOMAIN );
 
 		if ( $message = gThemeOptions::info( 'message_notfound', $default ) )
-			echo $before.gThemeUtilities::wordWrap( $message ).$after;
+			echo $before.gThemeText::wordWrap( $message ).$after;
 	}
 
 	public static function post( $context = NULL, $part = 'content' )
@@ -96,7 +96,7 @@ class gThemeContent extends gThemeModuleCore
 			'href'  => apply_filters( 'the_permalink', get_permalink( $post ), $post ),
 			'title' => self::title_attr( FALSE, $title ),
 			'class' => '-link -permalink',
-		], gThemeUtilities::wordWrap( $title ) );
+		], gThemeText::wordWrap( $title ) );
 
 		echo $after;
 	}
@@ -955,11 +955,11 @@ addthis_config.services_custom = [
 			if ( $args['title_attr'] )
 				echo ' title="'.self::title_attr( FALSE, $args['title_attr'], $title_template ).'"';
 
-			echo '>'.gThemeUtilities::wordWrap( $args['title'], 2 ).'</a>';
+			echo '>'.gThemeText::wordWrap( $args['title'], 2 ).'</a>';
 
 		} else {
 
-			echo gThemeUtilities::wordWrap( $args['title'], 2 );
+			echo gThemeText::wordWrap( $args['title'], 2 );
 		}
 
 		if ( $args['anchor'] )

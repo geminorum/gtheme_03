@@ -10,14 +10,9 @@ if ( is_single() ) { // any posttype except attachment/page
 			'empty' => FALSE,
 		] );
 
-		if ( gThemeTerms::has( 'poster' ) ) {
-
-			// NO HEADER
-			// NO CONTENT
-
-		} else {
+		// NO HEADER / NO CONTENT
+		if ( ! gThemeTerms::has( 'poster' ) )
 			get_template_part( 'partials/entry', 'singular' );
-		}
 
 		gThemeSideBar::sidebar( 'after-singular' );
 

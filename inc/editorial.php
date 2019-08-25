@@ -18,7 +18,7 @@ class gThemeEditorial extends gThemeModuleCore
 	public function gmeta_meta( $meta, $field )
 	{
 		if ( $meta && in_array( $field, [ 'ot', 'st', 'over-title', 'sub-title' ] ) )
-			return gThemeUtilities::wordWrap( $meta, 2 );
+			return gThemeText::wordWrap( $meta, 2 );
 
 		return $meta;
 	}
@@ -289,10 +289,10 @@ class gThemeEditorial extends gThemeModuleCore
 		], $atts );
 
 		if ( $args['wordwrap'] )
-			$html = gThemeUtilities::wordWrap( $html, 2 );
+			$html = gThemeText::wordWrap( $html, 2 );
 
 		else if ( is_null( $args['wordwrap'] ) && in_array( $field, [ 'ot', 'st', 'over-title', 'sub-title' ] ) )
-			$html = gThemeUtilities::wordWrap( $html, 2 );
+			$html = gThemeText::wordWrap( $html, 2 );
 
 		$html = $args['before'].$html.$args['after'];
 

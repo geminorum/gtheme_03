@@ -243,7 +243,7 @@ class gThemeTemplate extends gThemeModuleCore
 			], FALSE );
 
 		if ( $p )
-			$copyright = gThemeText::autoP( gThemeUtilities::wordWrap( $copyright ), FALSE );
+			$copyright = gThemeText::autoP( gThemeText::wordWrap( $copyright ), FALSE );
 
 		echo $before.$copyright.$after;
 
@@ -256,7 +256,7 @@ class gThemeTemplate extends gThemeModuleCore
 		if ( ! $copyright = gThemeOptions::info( 'copyright', FALSE ) )
 			return;
 
-		echo gThemeText::autoP( gThemeUtilities::wordWrap( $copyright ), FALSE );
+		echo gThemeText::autoP( gThemeText::wordWrap( $copyright ), FALSE );
 	}
 
 	public static function telephone( $number, $before = '', $after = '', $atts = [] )

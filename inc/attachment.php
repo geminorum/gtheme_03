@@ -15,7 +15,7 @@ class gThemeAttachment extends gThemeModuleCore
 			$caption = apply_filters( 'gnetwork_typography', $caption );
 
 			if ( trim( $caption ) )
-				return $before.gThemeUtilities::wordWrap( $caption, 2 ).$after;
+				return $before.gThemeText::wordWrap( $caption, 2 ).$after;
 		}
 
 		return $default;

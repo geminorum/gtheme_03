@@ -62,25 +62,12 @@ class gThemeUtilities extends gThemeBaseCore
 		return apply_filters( 'gtheme_prep_contact', $prepared, $value, $title );
 	}
 
-	// @REF: http://davidwalsh.name/word-wrap-mootools-php
-	// @REF: https://css-tricks.com/preventing-widows-in-post-titles/
+	// FIXME: DEPRECATED
 	public static function wordWrap( $text, $min = 2 )
 	{
-		$return = $text;
+		self::_dep( 'gThemeText::wordWrap()' );
 
-		// FIXME: must convert back all &nbsp; to space
-
-		if ( strlen( trim( $text ) ) ) {
-			$arr = explode( ' ', trim( $text ) );
-
-			if ( count( $arr ) >= $min ) {
-				$arr[count( $arr ) - 2].= '&nbsp;'.$arr[count( $arr ) - 1];
-				array_pop( $arr );
-				$return = implode( ' ', $arr );
-			}
-		}
-
-		return $return;
+		return gThemeText::wordWrap( $text, $min );
 	}
 
 	// @SOURCE: http://bavotasan.com/2012/trim-characters-using-php/
