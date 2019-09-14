@@ -156,7 +156,7 @@ class gThemeHTML extends gThemeBaseCore
 		return array_unique( array_filter( $classes, 'trim' ) );
 	}
 
-	public static function prepClass( $classes )
+	public static function prepClass()
 	{
 		$classes = func_get_args();
 

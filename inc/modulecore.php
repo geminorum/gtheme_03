@@ -48,7 +48,12 @@ class gThemeModuleCore extends gThemeBaseCore
 
 	protected static function sanitize_hook( $hook )
 	{
-		return trim( str_ireplace( [ '-', '.' ], '_', $hook ) );
+		return trim( str_ireplace( [ '-', '.', '/' ], '_', $hook ) );
+	}
+
+	protected static function sanitize_base( $hook )
+	{
+		return trim( str_ireplace( [ '_', '.' ], '-', $hook ) );
 	}
 
 	protected function hook()
@@ -56,7 +61,8 @@ class gThemeModuleCore extends gThemeBaseCore
 		$suffix = '';
 
 		foreach ( func_get_args() as $arg )
-			$suffix.= '_'.$arg;
+			if ( $arg )
+				$suffix.= '_'.strtolower( self::sanitize_hook( $arg ) );
 
 		return $this->base.'_'.$this->key.$suffix;
 	}
@@ -66,9 +72,10 @@ class gThemeModuleCore extends gThemeBaseCore
 		$suffix = '';
 
 		foreach ( func_get_args() as $arg )
-			$suffix.= '-'.$arg;
+			if ( $arg )
+				$suffix.= '-'.strtolower( self::sanitize_base( $arg ) );
 
-		return $this->base.'-'.$this->key.$suffix;
+		return $this->base.'-'.self::sanitize_base( $this->key ).$suffix;
 	}
 
 	protected function hash()
