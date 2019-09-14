@@ -12,7 +12,7 @@ if ( is_single() ) { // any posttype except attachment/page
 
 		// NO HEADER / NO CONTENT
 		if ( ! gThemeTerms::has( 'poster' ) )
-			get_template_part( 'partials/entry', 'singular' );
+			get_template_part( 'partials/entry', gtheme_template_base() );
 
 		gThemeSideBar::sidebar( 'after-singular' );
 
@@ -24,7 +24,7 @@ if ( is_single() ) { // any posttype except attachment/page
 
 	gThemeContent::wrapOpen( 'page' );
 
-		get_template_part( 'partials/entry', 'page' );
+		get_template_part( 'partials/page', gtheme_template_base() );
 
 	gThemeContent::wrapClose( 'page' );
 
@@ -38,7 +38,7 @@ if ( is_single() ) { // any posttype except attachment/page
 			'empty' => FALSE,
 		] );
 
-		get_template_part( 'partials/entry', 'index' );
+		get_template_part( 'partials/summary', gtheme_template_base() );
 
 	gThemeContent::wrapClose( 'index' );
 }
