@@ -38,9 +38,11 @@ class gThemeContent extends gThemeModuleCore
 		if ( is_null( $context ) )
 			$context = gtheme_template_base();
 
-		do_action( 'before_post', $context, $part );
+		do_action( 'gtheme_post_before', $context, $part );
+
 		get_template_part( $part, $context );
-		do_action( 'after_post', $context, $part );
+
+		do_action( 'gtheme_post_after', $context, $part );
 	}
 
 	// http://www.billerickson.net/code/wp_query-arguments/
@@ -67,6 +69,8 @@ class gThemeContent extends gThemeModuleCore
 		if ( is_null( $edit ) )
 			$edit = gThemeOptions::info( 'read_more_edit', FALSE );
 
+		do_action( 'gtheme_content_before' );
+
 		echo $before;
 
 		if ( gThemeOptions::info( 'restricted_content', FALSE ) )
@@ -78,6 +82,8 @@ class gThemeContent extends gThemeModuleCore
 			echo '<div class="copy-disabled"></div>'; // http://stackoverflow.com/a/23337329
 
 		echo $after;
+
+		do_action( 'gtheme_content_after' );
 	}
 
 	public static function row( $before = '', $after = '', $empty = FALSE )

@@ -101,8 +101,8 @@ class gThemeFilters extends gThemeModuleCore
 
 			self::preloadStyles();
 
-			add_action( 'template_body_top', [ $this, 'template_body_top' ] );
-			add_action( 'template_body_bottom', [ $this, 'template_body_bottom' ] );
+			$this->action( 'gtheme_wrap_body_open' );
+			$this->action( 'gtheme_wrap_body_close' );
 
 		} else {
 
@@ -120,14 +120,14 @@ class gThemeFilters extends gThemeModuleCore
 			echo '<link rel="pingback" href="'.get_bloginfo( 'pingback_url', 'display' ).'" />'."\n";
 	}
 
-	public function template_body_top()
+	public function gtheme_wrap_body_open()
 	{
 		echo '<div id="preloadspinner" class="preload -spinner '
 			.gThemeOptions::info( 'preload_spinner_class', 'light' )
 			.'"><div><div></div></div></div>'."\n";
 	}
 
-	public function template_body_bottom()
+	public function gtheme_wrap_body_close()
 	{
 		$html = '';
 

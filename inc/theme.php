@@ -20,7 +20,7 @@ class gThemeTheme extends gThemeModuleCore
 			'custom_fontsizes'  => FALSE,
 			'html5'             => TRUE,
 			'js'                => FALSE,
-			'hooks'             => TRUE, // @REF: https://is.gd/4ORzuI
+			'hooks'             => FALSE, // NO NEED
 			'bp_support'        => TRUE,
 			'bp_no_styles'      => TRUE,
 			'print_support'     => TRUE,
@@ -153,20 +153,23 @@ class gThemeTheme extends gThemeModuleCore
 		if ( $js )
 			add_action( 'wp_enqueue_scripts', [ $this, 'wp_enqueue_scripts' ] );
 
-		if ( $hooks )
+		if ( $hooks ) {
+
+			// @REF: http://justintadlock.com/archives/2011/09/01/a-better-way-for-plugins-to-hook-into-theme-templates
 			add_theme_support( 'template-hooks',
 				gThemeOptions::info( 'support_template_hooks', [
-					'before_post',
-					'after_post',
-					'template_body_top',
-					// 'template_before_loop',
-					// 'template_after_loop',
-					// 'template_after_sidebar',
+					'gtheme_post_before',
+					'gtheme_post_after',
+					'gtheme_content_wrap_open',
+					'gtheme_content_wrap_close',
+					'gtheme_wrap_body_open',
+					'gtheme_wrap_body_close',
 					'gtheme_do_header',
 					'gtheme_do_after_header',
 					'gtheme_do_before_footer',
 					'gtheme_do_footer',
 			] ) );
+		}
 
 		if ( GTHEME_PRINT_QUERY && $print_support ) {
 			add_action( 'init', function() {

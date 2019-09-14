@@ -146,14 +146,15 @@ class gThemeWrap extends gThemeModuleCore
 
 		echo '>'."\n";
 
-		do_action( 'template_body_top' );
+		do_action( 'gtheme_wrap_body_open' );
+
 		do_action( 'wp_body_open' ); // @since WP 5.2.0
 	}
 
 	// USED IN: foot.php
 	public static function bodyClose( $after = '' )
 	{
-		do_action( 'template_body_bottom' );
+		do_action( 'gtheme_wrap_body_close' );
 
 		?><script type="text/javascript">var html=document.querySelector("html");html.classList.remove("no-js");</script><?php
 
