@@ -4,15 +4,10 @@ if ( is_single() ) { // any posttype except attachment/page
 
 	gThemeContent::wrapOpen( 'singular' );
 
-		gThemeImage::image( [
-			'tag'   => 'single',
-			'link'  => 'attachment',
-			'empty' => FALSE,
-		] );
-
-		// NO HEADER / NO CONTENT
-		if ( ! gThemeTerms::has( 'poster' ) )
-			get_template_part( 'partials/entry', gtheme_template_base() );
+		if ( gThemeTerms::has( 'poster' ) )
+			get_template_part( 'partials/poster', get_post_type() );
+		else
+			get_template_part( 'partials/entry', get_post_type() );
 
 		gThemeSideBar::sidebar( 'after-singular' );
 
