@@ -1045,7 +1045,7 @@ addthis_config.services_custom = [
 		], $atts );
 
 		if ( $args['title'] )
-			$html = $args['title'].' '.$html;
+			$html = '<span class="-title">'.$args['title'].'</span> '.$html;
 
 		if ( ! $args['echo'] )
 			return $args['before'].$html.$args['after'];
