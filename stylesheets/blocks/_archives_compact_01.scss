@@ -1,0 +1,56 @@
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+/// Blocks: Archives: Compact 01 - 2019-08-24
+// gPersianDate Compact Archives Markup
+
+////////////////////////////////////////////////////////////////////////////////
+
+$theme-grid-gutter:        20px !default;
+$padding-small-vertical:   5px !default;
+$padding-small-horizontal: 10px !default;
+
+////////////////////////////////////////////////////////////////////////////////
+table.date-archives-compact {
+  width: auto;
+  margin: ($theme-grid-gutter/2) auto;
+
+  // @REF: https://css-tricks.com/table-borders-inside/
+  border-collapse: collapse;
+  border-style: hidden;
+
+  tr {
+    border-bottom: 1px dashed $gray-light;
+
+    &:last-of-type {
+      border: none;
+    }
+  }
+
+  td {
+    padding: 0 0 $padding-small-vertical ($padding-small-horizontal/2);
+  }
+
+  .-year {
+    padding: ($padding-small-horizontal/2) ($padding-small-horizontal/2) $padding-small-vertical 0;
+    font-family: $font-family-bold;
+    border-right: 1px dotted $gray-light;
+  }
+
+  .-month {
+    &::after {
+      // content: "|";
+      content: "\22ee";
+      color: $gray-light;
+      font-size: smaller;
+      padding-left: ($padding-small-horizontal/2);
+    }
+
+    &:last-of-type {
+      &::after {
+        content: "";
+        padding: 0;
+      }
+    }
+  }
+}

@@ -24,6 +24,7 @@
   }
 }
 
+////////////////////////////////////////////////////////////////////////////////
 // .pager is dropped on BS4
 .pager {
   display: flex;
@@ -36,4 +37,29 @@
 
   // .previous {}
   // .next {}
+}
+
+////////////////////////////////////////////////////////////////////////////////
+.entry-pages {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+
+  max-width: ( $theme-container-width / 2 );
+  margin: 1rem auto 0.5rem !important;
+
+  > a,
+  > span {
+    margin: 0 .5rem;
+    display: inline-block;
+    padding: .25rem .75rem;
+    border: 1px dotted $gray-lighter;
+    border-radius: $border-radius;
+
+    &:hover {
+      background: $gray-lighter;
+      text-decoration: none;
+      cursor: pointer;
+    }
+  }
 }
