@@ -6,7 +6,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 @mixin theme-layout-init {
   html {
-    box-sizing: border-box;
+    // box-sizing: border-box;
 
     // * {
     //   -webkit-font-smoothing: antialiased !important;
@@ -24,7 +24,8 @@
   *,
   *::before,
   *::after {
-    box-sizing: inherit;
+    // box-sizing: inherit;
+    box-sizing: border-box; // https://github.com/sindresorhus/modern-normalize/pull/37
   }
 
   body {
