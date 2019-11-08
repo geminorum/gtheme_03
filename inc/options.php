@@ -25,13 +25,15 @@ class gThemeOptions extends gThemeModuleCore
 			// 'system_tags_access' => 'edit_others_posts',
 			'editor_access'      => 'edit_others_posts', // FIXME: WTF
 
-			// INTEGRATION WITH OTHER PLUGINS
+			// INTEGRATION WITH OTHER PLUGINS, LIBS, ETC.
 			'supports' => [
 				'gpersiandate'    => defined( 'GPERSIANDATE_VERSION' ),
 				'geditorial-meta' => defined( 'GEDITORIAL_VERSION' ),
 				'gpeople'         => defined( 'GPEOPLE_VERSION' ),
 				'gshop'           => defined( 'GSHOP_VERSION' ),
 				'zoom'            => TRUE,
+				// 'bootstrap-3'     => TRUE,
+				// 'bootstrap-4'     => TRUE,
 			],
 
 			// 'theme_groups' => FALSE, // [ 'main' => _x( 'Main' 'Options: Theme Group', GTHEME_TEXTDOMAIN ) ],
@@ -418,13 +420,13 @@ class gThemeOptions extends gThemeModuleCore
 		return gThemeCounts::get( $name, $def );
 	}
 
-	public static function supports( $plugins, $fallback = FALSE )
+	public static function supports( $features, $fallback = FALSE )
 	{
 		$supports = self::info( 'supports', [] );
 
-		foreach ( (array) $plugins as $plugin )
-			if ( isset( $supports[$plugin] ) )
-				return $supports[$plugin];
+		foreach ( (array) $features as $feature )
+			if ( isset( $supports[$feature] ) )
+				return $supports[$feature];
 
 		return $fallback;
 	}
@@ -446,4 +448,4 @@ function gtheme_get_option( $name, $default = FALSE ) { return gThemeOptions::ge
 function gtheme_update_option( $name, $value ) { return gThemeOptions::update_option( $name, $value ); }
 function gtheme_delete_option( $name ) { return gThemeOptions::delete_option( $name ); }
 function gtheme_get_count( $name, $def = 0 ) { return gThemeOptions::count( $name, $def ); }
-function gtheme_supports( $plugins, $if_not_set = FALSE ) { return gThemeOptions::supports( $plugins, $if_not_set ); }
+function gtheme_supports( $features, $if_not_set = FALSE ) { return gThemeOptions::supports( $features, $if_not_set ); }

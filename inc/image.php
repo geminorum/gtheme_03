@@ -94,14 +94,12 @@ class gThemeImage extends gThemeModuleCore
 		if ( ! $post_thumbnail_img = wp_get_attachment_image_src( $post_thumbnail_id, $size ) )
 			return $html;
 
-		$image = gThemeHTML::tag( 'img', [ 'src' => $post_thumbnail_img[0] ] );
-
 		return gThemeHTML::tag( 'a', [
 			'href'   => wp_get_attachment_url( $post_thumbnail_id ),
 			'title'  => get_the_title( $post_thumbnail_id ),
 			'class'  => 'thickbox',
 			'target' => '_blank',
-		], $image );
+		], gThemeHTML::img( $post_thumbnail_img[0] ) );
 	}
 
 	// core dup with posttype/taxonomy/title
@@ -183,10 +181,11 @@ class gThemeImage extends gThemeModuleCore
 		list( $src, $width, $height ) = image_downsize( $id, $size );
 
 		return gThemeHTML::tag( 'img', [
-			'src'   => $src,
-			'alt'   => $alt ?: FALSE,
-			'class' => apply_filters( 'get_image_tag_class', 'align'.$align, $id, $align, $size ),
-			'data'  => [
+			'src'     => $src,
+			'alt'     => $alt ?: FALSE,
+			'class'   => apply_filters( 'get_image_tag_class', 'align'.$align, $id, $align, $size ),
+			'loading' => 'lazy',
+			'data'    => [
 				'class'  => 'wp-image-'.$id, // WP core need this
 				'width'  => $width, // need this for `image_add_caption()`
 				// 'height' => $height,
@@ -593,8 +592,9 @@ class gThemeImage extends gThemeModuleCore
 
 		$defaults = [
 			'src'      => $src,
-			'class'    => gThemeOptions::info( 'image-class', 'the-img img-responsive' ),
 			'alt'      => trim( strip_tags( get_post_meta( $attachment_id, '_wp_attachment_image_alt', TRUE ) ) ),
+			'class'    => gThemeOptions::info( 'image-class', 'the-img img-responsive' ),
+			'loading'  => 'lazy',
 			'data-url' => wp_get_attachment_url( $attachment_id ),
 		];
 
@@ -827,9 +827,10 @@ class gThemeImage extends gThemeModuleCore
 			return $image[0];
 
 		return $args['before'].gThemeHTML::tag( 'img', [
-			'src'   => $image[0],
-			'alt'   => $args['alt'],
-			'class' => gThemeOptions::info( 'image-class', 'the-img img-responsive' ).' -featured',
+			'src'     => $image[0],
+			'alt'     => $args['alt'],
+			'class'   => gThemeOptions::info( 'image-class', 'the-img img-responsive' ).' -featured',
+			'loading' => 'lazy',
 		] ).$args['after'];
 	}
 }

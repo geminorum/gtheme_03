@@ -403,24 +403,26 @@ class gThemeShortCodes extends gThemeModuleCore
 	public function shortcode_theme_image( $atts, $content = NULL, $tag = '' )
 	{
 		$args = shortcode_atts( [
-			'src'    => FALSE,
-			'alt'    => FALSE,
-			'title'  => FALSE,
-			'width'  => FALSE,
-			'height' => FALSE,
-			'url'    => FALSE,
-			'dir'    => 'images',
+			'src'     => FALSE,
+			'alt'     => FALSE,
+			'title'   => FALSE,
+			'width'   => FALSE,
+			'height'  => FALSE,
+			'url'     => FALSE,
+			'dir'     => 'images',
+			'loading' => 'lazy',
 		], $atts, $tag );
 
 		if ( ! $args['src'] )
 			return $content;
 
 		$html = gThemeHTML::tag( 'img', [
-			'src'    => GTHEME_CHILD_URL.'/'.$args['dir'].'/'.$args['src'],
-			'alt'    => $args['alt'],
-			'title'  => $args['url'] ? FALSE : $args['title'],
-			'width'  => $args['width'],
-			'height' => $args['height'],
+			'src'     => GTHEME_CHILD_URL.'/'.$args['dir'].'/'.$args['src'],
+			'alt'     => $args['alt'],
+			'title'   => $args['url'] ? FALSE : $args['title'],
+			'width'   => $args['width'],
+			'height'  => $args['height'],
+			'loading' => $args['loading'],
 		] );
 
 		if ( $args['url'] )

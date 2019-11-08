@@ -83,7 +83,7 @@ class gThemeSearch extends gThemeModuleCore
 				$html.= esc_attr_x( 'Search for:', 'label', GTHEME_TEXTDOMAIN ).'" />';
 
 				$html.= '<span class="input-group-btn input-group-append">';
-					$html.= '<button type="submit" class="btn btn-default search-submit" />';
+					$html.= '<button type="submit" class="btn btn-default btn-outline-secondary search-submit" />';
 					$html.= _x( 'Search', 'submit button', GTHEME_TEXTDOMAIN ).'</button>';
 				$html.= '</span>';
 

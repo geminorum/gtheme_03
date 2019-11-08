@@ -162,8 +162,8 @@ class gThemeNavigation extends gThemeModuleCore
 			'page_is'    => TRUE,
 			'post_title' => FALSE,
 			'class'      => 'gtheme-breadcrumb',
-			'before'     => '<div class="nav-content nav-content-single nav-content-singular">',
-			'after'      => '</div>',
+			'before'     => '<nav class="nav-content nav-content-single nav-content-singular" aria-label="breadcrumb">',
+			'after'      => '</nav>',
 			'context'    => NULL,
 		], $atts );
 
@@ -216,7 +216,7 @@ class gThemeNavigation extends gThemeModuleCore
 		echo $args['before'].'<ol class="breadcrumb '.$args['class'].'">';
 
 		foreach ( $crumbs as $offset => $crumb )
-			echo '<li'.( ( $count - 1 ) == $offset ? ' class="active"' : '' ).'>'.$crumb.'</li>';
+			echo '<li class="breadcrumb-item '.( ( $count - 1 ) == $offset ? ' active' : '' ).'">'.$crumb.'</li>';
 
 		echo '</ol>'.$args['after'];
 	}
@@ -237,8 +237,8 @@ class gThemeNavigation extends gThemeModuleCore
 			'home_title' => NULL,
 			'strings'    => gThemeOptions::info( 'strings_breadcrumb_archive', [] ),
 			'class'      => 'gtheme-breadcrumb',
-			'before'     => '<div class="nav-content nav-content-archive">',
-			'after'      => '</div>',
+			'before'     => '<nav class="nav-content nav-content-archive" aria-label="breadcrumb">',
+			'after'      => '</nav>',
 			'context'    => NULL,
 		], $atts );
 
@@ -261,7 +261,7 @@ class gThemeNavigation extends gThemeModuleCore
 		echo $args['before'].'<ol class="breadcrumb '.$args['class'].'">';
 
 		foreach ( $crumbs as $offset => $crumb )
-			echo '<li'.( ( $count - 1 ) == $offset ? ' class="active"' : '' ).'>'.$crumb.'</li>';
+			echo '<li class="breadcrumb-item'.( ( $count - 1 ) == $offset ? ' active' : '' ).'">'.$crumb.'</li>';
 
 		echo '</ol>'.$args['after'];
 	}
