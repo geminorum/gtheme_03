@@ -166,13 +166,13 @@ class gThemeImage extends gThemeModuleCore
 
 	public function get_image_tag_class( $class, $id, $align, $size )
 	{
-		return $class.' '.gThemeOptions::info( 'image-class', 'the-img img-responsive' );
+		return self::cssClass( $class );
 	}
 
 	public function wp_get_attachment_image_attributes( $attr, $attachment )
 	{
 		// unset( $attr['title'] ); // removed from core
-		$attr['class'] = $attr['class'].' '.gThemeOptions::info( 'image-class', 'the-img img-responsive' );
+		$attr['class'] = self::cssClass( $attr['class'] );
 		return $attr;
 	}
 
@@ -483,6 +483,12 @@ class gThemeImage extends gThemeModuleCore
 	////////////////////////////////////////////////////////////////////////////
 	/// STATIC METHODS
 
+	public static function cssClass( $extra = '' )
+	{
+		$class = gThemeOptions::info( 'image-class', 'the-img img-responsive img-fluid' );
+		return $extra ? gThemeHTML::prepClass( $class, $extra ) : $class;
+	}
+
 	public static function getMetaImages( $post_id = NULL, $check = FALSE )
 	{
 		global $gThemeImagesMeta;
@@ -593,7 +599,7 @@ class gThemeImage extends gThemeModuleCore
 		$defaults = [
 			'src'      => $src,
 			'alt'      => trim( strip_tags( get_post_meta( $attachment_id, '_wp_attachment_image_alt', TRUE ) ) ),
-			'class'    => gThemeOptions::info( 'image-class', 'the-img img-responsive' ),
+			'class'    => self::cssClass(),
 			'loading'  => 'lazy',
 			'data-url' => wp_get_attachment_url( $attachment_id ),
 		];
@@ -734,9 +740,7 @@ class gThemeImage extends gThemeModuleCore
 	public static function image( $atts = [] )
 	{
 		if ( ! gThemeOptions::info( 'image_support', TRUE ) )
-			return;
-
-		$default_class = gThemeOptions::info( 'image-class', 'the-img img-responsive' );
+			return '';
 
 		$args = self::atts( [
 			'tag'             => 'raw',
@@ -744,12 +748,12 @@ class gThemeImage extends gThemeModuleCore
 			'link'            => 'parent',
 			'attr'            => '',
 			'check_single'    => TRUE, // checks if post has `hide-image-single` system tag
-			'empty'           => self::holder( ( isset( $atts['tag'] ) ? $atts['tag'] : 'raw' ), ( isset( $atts['class'] ) ? $atts['class'] : $default_class ) ),
+			'empty'           => self::holder( ( isset( $atts['tag'] ) ? $atts['tag'] : 'raw' ), ( isset( $atts['class'] ) ? $atts['class'] : self::cssClass() ) ),
 			'url'             => FALSE,
 			'caption'         => FALSE,
 			'default_caption' => '',
 			'echo'            => TRUE,
-			'class'           => $default_class,
+			'class'           => self::cssClass(),
 			'before'          => '<div class="entry-image'.( isset( $atts['tag'] ) ? ' image-'.$atts['tag'] : '' ).'">',
 			'after'           => '</div>',
 			'context'         => NULL,
@@ -796,7 +800,7 @@ class gThemeImage extends gThemeModuleCore
 
 	public static function holderJS( $width = 100, $height = 100, $atts = [] )
 	{
-		return '<img class="'.gThemeOptions::info( 'image-class', 'the-img img-responsive' ).'" data-src="holder.js/'.$width.'x'.$height.'">';
+		return '<img class="'.self::cssClass( '-holder' ).'" data-src="holder.js/'.$width.'x'.$height.'">';
 	}
 
 	// FIXME: working draft
@@ -829,7 +833,7 @@ class gThemeImage extends gThemeModuleCore
 		return $args['before'].gThemeHTML::tag( 'img', [
 			'src'     => $image[0],
 			'alt'     => $args['alt'],
-			'class'   => gThemeOptions::info( 'image-class', 'the-img img-responsive' ).' -featured',
+			'class'   => self::cssClass( '-featured' ),
 			'loading' => 'lazy',
 		] ).$args['after'];
 	}

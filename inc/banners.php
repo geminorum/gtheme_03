@@ -97,7 +97,7 @@ class gThemeBanners extends gThemeModuleCore
 			'w'           => 'auto',
 			'h'           => 'auto',
 			'c'           => '#fff',
-			'img_class'   => 'img-responsive',
+			'img_class'   => gThemeImage::cssClass(),
 			'a_class'     => 'gtheme-banner',
 			'img_style'   => '',
 			'a_style'     => '',
