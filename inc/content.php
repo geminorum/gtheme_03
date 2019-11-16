@@ -186,6 +186,9 @@ class gThemeContent extends gThemeModuleCore
 		if ( ! $post )
 			return $classes;
 
+		if ( ! empty( $GLOBALS['wp_query'] ) && $GLOBALS['wp_query']->current_post > -1 )
+			$classes[] = sprintf( 'loop-index-%d', $GLOBALS['wp_query']->current_post );
+
 		$classes[] = gThemeHTML::sanitizeClass( 'type-'.$post->post_type );
 
 		if ( post_password_required( $post->ID ) )
