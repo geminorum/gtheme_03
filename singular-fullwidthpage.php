@@ -1,6 +1,6 @@
 <?php defined( 'ABSPATH' ) or die( header( 'HTTP/1.0 403 Forbidden' ) );
 
-echo '<div class="container -main -singular -fullwidthpage"><div class="row">';
+echo '<div class="container -main -singular -fullwidthpage"><div class="row justify-content-center">';
 gThemeTemplate::wrapOpen( 'fullwidthpage' );
 
 

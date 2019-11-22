@@ -5,7 +5,7 @@ do_action( 'gtheme_do_after_header', 'signup' );
 
 get_template_part( 'start', 'signup' );
 
-echo '<div class="container -main -signup"><div class="row">';
+echo '<div class="container -main -signup"><div class="row justify-content-center">';
 gThemeTemplate::wrapOpen( 'signup' );
 
 gThemeContent::wrapOpen( 'signup' );

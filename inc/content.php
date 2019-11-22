@@ -179,7 +179,7 @@ class gThemeContent extends gThemeModuleCore
 		] );
 	}
 
-	// core duplicate for performance reasons
+	// core duplicate for performance concerns
 	// @REF: `get_post_class()`
 	public static function getPostClass( $class = '', $post_id = NULL )
 	{

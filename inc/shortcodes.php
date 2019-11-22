@@ -49,6 +49,7 @@ class gThemeShortCodes extends gThemeModuleCore
 		], $attr, 'caption' );
 
 		$args['width'] = (int) $args['width'];
+
 		if ( $args['width'] < 1 || empty( $args['caption'] ) )
 			return $content;
 

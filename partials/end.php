@@ -4,4 +4,4 @@ gThemeMenu::navNetwork( '<div class="wrapper -footer"><div class="container -foo
 
 echo '<div class="wrapper -copyright"><div class="container -copyright">';
 	gThemeTemplate::copyright();
-echo '</p></div></div>'."\n";
+echo '</div></div>'."\n";

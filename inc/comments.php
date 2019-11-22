@@ -449,7 +449,7 @@ class gThemeComments extends gThemeModuleCore
 				'id_form'      => 'commentform',
 				'id_submit'    => 'submit',
 				'class_form'   => 'form-comment-form',
-				'class_submit' => 'submit btn btn-default',
+				'class_submit' => 'submit btn btn-default btn-outline-secondary',
 				'name_submit'  => 'submit',
 
 				'title_reply'        => $strings['title_reply'],

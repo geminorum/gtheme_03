@@ -21,7 +21,7 @@ class gThemeTemplate extends gThemeModuleCore
 
 		$classes = [ 'wrap-content', 'wrap-content-'.$context ];
 
-		echo '<div class="'.join( ' ', gThemeHTML::attrClass( $column, $classes, $extra ) ).'" id="content">';
+		echo '<div class="'.gThemeHTML::prepClass( $column, $classes, $extra ).'" id="content">';
 
 		do_action( 'gtheme_template_wrap_open', $context );
 	}
