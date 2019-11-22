@@ -39,9 +39,13 @@ class gThemeComments extends gThemeModuleCore
 		if ( 'page' == $post->post_type )
 			return;
 
+		do_action( 'gtheme_comments_before', $post );
+
 		echo $before;
 			comments_template( '', FALSE );
 		echo $after;
+
+		do_action( 'gtheme_comments_after', $post );
 	}
 
 	public function comment_class( $classes, $class, $comment_id, $post_id )
