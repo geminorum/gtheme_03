@@ -3,7 +3,7 @@
 class gThemeContent extends gThemeModuleCore
 {
 
-	public static function wrapOpen( $context = 'index', $extra = [], $tag = 'article' )
+	public static function wrapOpen( $context = 'index', $extra = [], $tag = NULL )
 	{
 		$classes = array_merge( [
 			'entry-wrap',
@@ -13,14 +13,20 @@ class gThemeContent extends gThemeModuleCore
 
 		$post_id = get_the_ID();
 
+		if ( is_null( $tag ) )
+			$tag = gThemeOptions::info( 'content_wrap_tag', 'article' );
+
 		echo '<'.$tag.( $post_id ? ' id="post-'.$post_id.'"' : '' ).' class="'.join( ' ', self::getPostClass( $classes, $post_id ) ).'">';
 
 		do_action( 'gtheme_content_wrap_open', $context );
 	}
 
-	public static function wrapClose( $context = 'index', $tag = 'article' )
+	public static function wrapClose( $context = 'index', $tag = NULL )
 	{
 		do_action( 'gtheme_content_wrap_close', $context );
+
+		if ( is_null( $tag ) )
+			$tag = gThemeOptions::info( 'content_wrap_tag', 'article' );
 
 		echo '</'.$tag.'>';
 	}
