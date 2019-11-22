@@ -634,14 +634,17 @@ class gThemeContent extends gThemeModuleCore
 		if ( ! $permalink = get_permalink( $post ) )
 			return;
 
-		if ( GTHEME_PRINT_QUERY && $GLOBALS['wp_rewrite']->using_permalinks() )
-			$printlink = gThemeURL::trail( $permalink ).GTHEME_PRINT_QUERY;
+		$endpoint = GTHEME_PRINT_QUERY ?: 'print';
 
-		else if ( GTHEME_PRINT_QUERY )
-			$printlink = add_query_arg( [ GTHEME_PRINT_QUERY => '' ], $permalink );
+		if ( $GLOBALS['wp_rewrite']->using_permalinks()
+			&& ! in_array( $post->post_status, [ 'draft', 'pending', 'auto-draft', 'future' ] ) ) {
 
-		else
-			$printlink = add_query_arg( [ 'print' => '' ], $permalink );
+			$printlink = gThemeURL::trail( $permalink ).$endpoint;
+
+		} else {
+
+			$printlink = add_query_arg( [ $endpoint => '' ], $permalink );
+		}
 
 		echo $before.gThemeHTML::tag( 'a', [
 			'href'  => $printlink,
