@@ -27,12 +27,6 @@ if ( is_single() ) { // any posttype except attachment/page
 
 	gThemeContent::wrapOpen( 'index' );
 
-		gThemeImage::image( [
-			'tag'   => 'single',
-			'link'  => 'parent',
-			'empty' => FALSE,
-		] );
-
 		get_template_part( 'partials/summary', gtheme_template_base() );
 
 	gThemeContent::wrapClose( 'index' );
