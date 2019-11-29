@@ -500,13 +500,11 @@ class gThemeContent extends gThemeModuleCore
 					printf( $before, 'comments-link' );
 
 					// if ( ! post_password_required() && ( comments_open() || '0' != get_comments_number() ) )
-					/*
-						comments_popup_link(
-							__( 'Leave a comment', 'mytheme' ),
-							__( '1 Comment', 'mytheme' ),
-							__( '% Comments', 'mytheme' )
-						);
-					*/
+					// 	comments_popup_link(
+					// 		_x( 'Leave a comment', 'Modules: Content: Action', GTHEME_TEXTDOMAIN ),
+					// 		_x( '1 Comment', 'Modules: Content: Action', GTHEME_TEXTDOMAIN ),
+					// 		_x( '% Comments', 'Modules: Content: Action', GTHEME_TEXTDOMAIN )
+					// 	);
 
 					if ( is_singular() || is_single() ) {
 
@@ -533,8 +531,10 @@ class gThemeContent extends gThemeModuleCore
 						);
 
 					if ( 'comments_link_feed' == $action ) {
+
 						if ( $icon )
 							printf( '<a href="%2$s" class="%1$s">%3$s</a>', 'comments-link-rss', get_post_comments_feed_link(), self::getGenericon( 'feed' ) );
+
 						else
 							printf( _x( ' <small><small>(<a href="%1$s" title="%2$s" class="%3$s"><abbr title="Really Simple Syndication">RSS</abbr></a>)</small></small>', 'Modules: Content: Action', GTHEME_TEXTDOMAIN ),
 								get_post_comments_feed_link(),

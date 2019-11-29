@@ -58,7 +58,7 @@ class gThemeWidgetPostTerms extends gThemeWidget
 
 		$this->before_widget( $args, $instance );
 		$this->widget_title( $args, $instance );
-		echo '<div class="-list-wrap search-terms"><ul>';
+		echo '<div class="-list-wrap post-terms"><ul>';
 			echo $html;
 		echo '</ul></div>';
 		$this->after_widget( $args, $instance );

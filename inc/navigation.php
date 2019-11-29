@@ -26,8 +26,8 @@ class gThemeNavigation extends gThemeModuleCore
 			$classes[] = 'post-navigation';
 			$title = _x( 'Post Navigation', 'Modules: Navigation: Screen Reader Title', GTHEME_TEXTDOMAIN );
 
-			$prev_text = _x( '<span aria-hidden="true">&larr;</span> %title', 'Modules: Navigation: Post Navigation: Previous', GTHEME_TEXTDOMAIN );
-			$next_text = _x( '%title <span aria-hidden="true">&rarr;</span>', 'Modules: Navigation: Post Navigation: Next', GTHEME_TEXTDOMAIN );
+			$prev_text = _x( '<span aria-hidden="true">&larr;</span>&nbsp;%title', 'Modules: Navigation: Post Navigation: Previous', GTHEME_TEXTDOMAIN );
+			$next_text = _x( '%title&nbsp;<span aria-hidden="true">&rarr;</span>', 'Modules: Navigation: Post Navigation: Next', GTHEME_TEXTDOMAIN );
 
 			// TODO: support row templaets
 			$prev = get_adjacent_post_link( '%link', $prev_text, $in_same_term, '', TRUE,  $taxonomy );
@@ -38,8 +38,8 @@ class gThemeNavigation extends gThemeModuleCore
 			$classes[] = 'paging-navigation';
 			$title = _x( 'Posts Navigation', 'Modules: Navigation: Screen Reader Title', GTHEME_TEXTDOMAIN );
 
-			$prev_text = _x( '<span aria-hidden="true">&larr;</span> Older', 'Modules: Navigation: Posts Navigation: Previous', GTHEME_TEXTDOMAIN );
-			$next_text = _x( 'Newer <span aria-hidden="true">&rarr;</span>', 'Modules: Navigation: Posts Navigation: Next', GTHEME_TEXTDOMAIN );
+			$prev_text = _x( '<span aria-hidden="true">&larr;</span>&nbsp;Older', 'Modules: Navigation: Posts Navigation: Previous', GTHEME_TEXTDOMAIN );
+			$next_text = _x( 'Newer&nbsp;<span aria-hidden="true">&rarr;</span>', 'Modules: Navigation: Posts Navigation: Next', GTHEME_TEXTDOMAIN );
 
 			// intentionally reversed!
 			$prev = get_next_posts_link( $prev_text );
