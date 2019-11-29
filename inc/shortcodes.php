@@ -524,18 +524,19 @@ class gThemeShortCodes extends gThemeModuleCore
 			return NULL;
 
 		$args = [
-			'taxonomy' => $parsed['taxonomy'],
-			'size'     => $parsed['size'],
-			'figure'   => $parsed['figure'],
-			'echo'     => FALSE,
-			'wrap'     => FALSE,
+			'taxonomy'     => $parsed['taxonomy'],
+			'size'         => $parsed['size'],
+			'figure'       => $parsed['figure'],
+			'caption_text' => $content,
+			'echo'         => FALSE,
+			'wrap'         => FALSE,
 		];
 
 		if ( $parsed['id'] )
 			$args['id'] = $parsed['id'];
 
 		if ( ! $html = gThemeEditorial::personPicture( $args ) )
-			return $content;
+			return NULL;
 
 		return self::shortcodeWrap( $html, 'person-picture', $parsed );
 	}
