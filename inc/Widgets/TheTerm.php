@@ -19,6 +19,8 @@ class gThemeWidgetTheTerm extends gThemeWidget
 			&& TRUE === GTHEME_WIDGET_THETERM_DISABLED )
 				return;
 
+		$term = FALSE;
+
 		if ( empty( $instance['taxonomy'] ) || 'all' == $instance['taxonomy'] ) {
 
 			if ( defined( 'GTHEME_WIDGET_THETERM_DISABLED' )
@@ -28,27 +30,40 @@ class gThemeWidgetTheTerm extends gThemeWidget
 			if ( ! ( is_tax() || is_tag() || is_category() ) )
 				return;
 
-			if ( ! $term = get_queried_object() )
-				return;
+			$term = get_queried_object();
 
-		} else if ( is_singular() || is_single() ) {
+		} else {
 
 			if ( defined( 'GTHEME_WIDGET_THETERM_DISABLED' )
 				&& $instance['taxonomy'] === GTHEME_WIDGET_THETERM_DISABLED )
 					return;
 
-			$terms = get_the_terms( NULL, $instance['taxonomy'] );
+			if ( is_singular() || is_single() ) {
 
-			if ( ! $terms || is_wp_error( $terms ) )
-				return;
+				$terms = get_the_terms( NULL, $instance['taxonomy'] );
 
-			// grab the first one!
-			$term = array_shift( $terms );
+				if ( ! $terms || is_wp_error( $terms ) )
+					return;
 
-		} else {
+				// grab the first one!
+				$term = array_shift( $terms );
 
-			return;
+			} else if ( 'category' == $instance['taxonomy'] && is_category() ) {
+
+				$term = get_queried_object();
+
+			} else if ( 'post_tag' == $instance['taxonomy'] && is_tag() ) {
+
+				$term = get_queried_object();
+
+			} else if ( is_tax( $instance['taxonomy'] ) ) {
+
+				$term = get_queried_object();
+			}
 		}
+
+		if ( ! $term )
+			return;
 
 		$before = $after = $image = '';
 
