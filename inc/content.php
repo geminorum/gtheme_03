@@ -509,20 +509,27 @@ class gThemeContent extends gThemeModuleCore
 					*/
 
 					if ( is_singular() || is_single() ) {
-						$link  = '#respond';
-						$class = 'scroll';
+
+						$respond  = '#respond';
+						$comments = '#comments';
+						$class    = 'scroll';
+
 					} else {
-						$link  = get_permalink().'#respond';
-						$class = ''; // hastip
+
+						$link     = get_permalink();
+						$respond  = $link.'#respond';
+						$comments = $link.'#comments';
+						$class    = ''; // hastip
 					}
 
 					if ( $icon )
-						printf( '<a href="%2$s" class="%1$s">%3$s</a>', $class, $link, self::getGenericon( 'comment' ) );
+						printf( '<a href="%2$s" class="%1$s">%3$s</a>', $class, ( get_comments_number() ? $comments : $respond ), self::getGenericon( 'comment' ) );
+
 					else
 						comments_number(
-							sprintf( _x( '<a href="%3$s" class="%1$s">Your Comment</a>', 'Modules: Content: Action', GTHEME_TEXTDOMAIN ), $class, '', $link ),
-							sprintf( _x( '<a href="%3$s" class="%1$s">One Comment</a>', 'Modules: Content: Action', GTHEME_TEXTDOMAIN ), $class, '', $link ),
-							sprintf( _x( '<a href="%3$s" class="%1$s">%2$s Comments</a>', 'Modules: Content: Action', GTHEME_TEXTDOMAIN ), $class, '%', $link )
+							sprintf( _x( '<a href="%3$s" class="%1$s">Your Comment</a>', 'Modules: Content: Action', GTHEME_TEXTDOMAIN ), $class, '', $respond ),
+							sprintf( _x( '<a href="%3$s" class="%1$s">One Comment</a>', 'Modules: Content: Action', GTHEME_TEXTDOMAIN ), $class, '', $comments ),
+							sprintf( _x( '<a href="%3$s" class="%1$s">%2$s Comments</a>', 'Modules: Content: Action', GTHEME_TEXTDOMAIN ), $class, '%', $comments )
 						);
 
 					if ( 'comments_link_feed' == $action ) {
