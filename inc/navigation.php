@@ -9,7 +9,7 @@ class gThemeNavigation extends gThemeModuleCore
 	{
 		global $wp_query;
 
-		$classes = [ 'navigation' ];
+		$classes = [ 'navigation', 'hidden-print' ];
 
 		if ( $context )
 			$classes[] = 'navigation-'.$context;
