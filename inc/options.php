@@ -149,7 +149,7 @@ class gThemeOptions extends gThemeModuleCore
 
 			// AVATARS
 			// 'comment_avatar_size' => 75, // wp core is 32
-			// 'default_avatar_src'  => GTHEME_URL.'/images/avatar.png',
+			// 'default_avatar_src'  => GTHEME_URL.'/images/avatar.svg',
 
 			// SYSTEM TAGS
 			// 'system_tags_cpt'      => [ 'post' ],
