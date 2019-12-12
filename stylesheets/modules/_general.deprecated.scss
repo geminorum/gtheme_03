@@ -98,7 +98,7 @@
 
 // DEPRECATED: use @include theme-clearfix;
 @mixin clearfix() {
-  @warn "Theme Utilities: clearfix DEPRECATED: use @include theme-clearfix";
+  @warn "DEPRECATED: Theme Utilities: clearfix(): use @include theme-clearfix";
 
   &::after {
     content: "";

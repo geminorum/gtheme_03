@@ -35,8 +35,15 @@
   list-style: none;
   clear: both;
 
-  // .previous {}
-  // .next {}
+  .previous {
+    flex: 1;
+    text-align: left;
+  }
+
+  .next {
+    flex: 1;
+    text-align: right;
+  }
 }
 
 ////////////////////////////////////////////////////////////////////////////////
