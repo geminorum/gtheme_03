@@ -21,7 +21,10 @@ class gThemeTemplate extends gThemeModuleCore
 
 		$classes = [ 'wrap-content', 'wrap-content-'.$context ];
 
-		echo '<div class="'.gThemeHTML::prepClass( $column, $classes, $extra ).'" id="content">';
+		vprintf( gThemeOptions::info( 'template_wrap_open', '<div id="content" class="%1$s">' ), [
+			gThemeHTML::prepClass( $column, $classes, $extra ),
+			$context,
+		] );
 
 		do_action( 'gtheme_template_wrap_open', $context );
 	}
@@ -30,7 +33,7 @@ class gThemeTemplate extends gThemeModuleCore
 	{
 		do_action( 'gtheme_template_wrap_close', $context );
 
-		echo '</div>';
+		echo gThemeOptions::info( 'template_wrap_close', '</div>' );
 	}
 
 	// @REF: https://css-tricks.com/header-text-image-replacement/
