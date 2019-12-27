@@ -222,7 +222,7 @@ class gThemeTemplate extends gThemeModuleCore
 		if ( gThemeWordPress::isDev() && $default )
 			echo gThemeHTML::tag( 'img', [
 				'src'     => $default,
-				'alt'     => 'avatar',
+				'alt'     => '', // 'avatar',
 				'class'   => 'avatar avatar-'.$size.' photo avatar-default',
 				'loading' => 'lazy',
 				'style'   => 'max-width:'.$size.'px;max-height:'.$size.'px;',
@@ -252,7 +252,7 @@ class gThemeTemplate extends gThemeModuleCore
 		echo $before.$copyright.$after;
 
 		if ( gThemeOptions::info( 'copyright_append_home_in_print', TRUE ) )
-			echo '<div class="visible-print-block -print-only -code">'.gThemeUtilities::home( TRUE ).'</div>';
+			echo '<div class="-home-in-print visible-print-block -print-only -code">'.gThemeUtilities::home( TRUE ).'</div>';
 	}
 
 	public static function copyrightAMP()

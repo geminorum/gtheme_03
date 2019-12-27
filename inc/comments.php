@@ -155,7 +155,7 @@ class gThemeComments extends gThemeModuleCore
 	public static function title_callback( $class = 'comments-title', $tag = 'h3' )
 	{
 		$comments = get_comments_number();
-		$template = _nx( 'One thought on &ldquo;%2$s&rdquo;', '%1$s thoughts on &ldquo;%2$s&rdquo;', $comments, 'Comments Title', GTHEME_TEXTDOMAIN );
+		$template = _nx( 'One thought on &ldquo;%2$s&rdquo;', '%1$s thoughts on &ldquo;%2$s&rdquo;', $comments, 'Modules: Comments Title', GTHEME_TEXTDOMAIN );
 		$title    = sprintf( $template, number_format_i18n( $comments ), '<span>'.get_the_title().'</span>' );
 
 		echo gThemeHTML::tag( $tag, [ 'class' => $class ], $title );

@@ -729,7 +729,7 @@ class gThemeImage extends gThemeModuleCore
 				$template = gThemeOptions::info( 'template_image_caption', '<div class="%3$s">%1$s<p class="%4$s">%2$s</p></div>' );
 
 				if ( $caption = gThemeAttachment::normalizeCaption( $caption ) )
-					$html = sprintf( $template, $html, $caption, 'the-caption', 'the-caption-text' );
+					$html = sprintf( $template, $html, $caption, '-caption', '-caption-text' );
 			}
 		}
 
