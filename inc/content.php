@@ -431,6 +431,11 @@ class gThemeContent extends gThemeModuleCore
 	{
 		switch ( $action ) {
 
+			case 'byline':
+
+				self::byline( NULL, sprintf( $before, '-action -byline' ), $after );
+
+			break;
 			case 'textsize_buttons':
 			case 'textsize_buttons_nosep':
 
@@ -1020,7 +1025,7 @@ addthis_config.services_custom = [
 		$args = self::atts( [
 			'context'     => 'single',
 			'prefix'      => 'entry',
-			'actions'     => gThemeOptions::info( 'post_actions_footer', [ 'categories', 'date' ] ),
+			'actions'     => gThemeOptions::info( 'post_actions_footer', [ 'byline', 'categories', 'date' ] ),
 			'action_icon' => NULL,
 			'shortlink'   => FALSE,
 			'title_tag'   => 'h2',

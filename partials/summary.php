@@ -6,6 +6,6 @@ gThemeImage::image( [
 	'empty' => FALSE,
 ] );
 
-gThemeContent::header( [ 'context' => 'index', 'byline' => TRUE ] );
+gThemeContent::header( [ 'context' => 'index' ] );
 gThemeContent::excerpt();
 gThemeContent::footer( [ 'context' => 'index' ] );
