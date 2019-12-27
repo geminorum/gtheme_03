@@ -20,6 +20,8 @@ gThemeEditorial::source( [
 	'after'  => '</div>',
 ] );
 
+gThemeEditorial::postLikeButton( [ 'before' => '<div class="entry-after after-single after-like">', 'after' => '</div>' ] );
+
 gThemeEditorial::refList( [
 	'before' => '<div class="entry-after after-single after-reflist">',
 	'after'  => '</div>',
