@@ -147,6 +147,11 @@ class gThemeComments extends gThemeModuleCore
 			call_user_func_array( $callback, [ 'comments-title', 'h3' ] );
 	}
 
+	public static function title_callback_simple( $class = 'comments-title', $tag = 'h3' )
+	{
+		gThemeHTML::h3( _x( 'Comments', 'Modules: Comments Title', GTHEME_TEXTDOMAIN ), $class );
+	}
+
 	public static function title_callback( $class = 'comments-title', $tag = 'h3' )
 	{
 		$comments = get_comments_number();
