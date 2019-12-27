@@ -1,8 +1,6 @@
 <?php defined( 'ABSPATH' ) or die( header( 'HTTP/1.0 403 Forbidden' ) );
 
-echo '<div class="container -main -singular -fullwidthpage"><div class="row justify-content-center">';
 gThemeTemplate::wrapOpen( 'fullwidthpage' );
-
 
 	if ( have_posts() ) {
 
@@ -20,4 +18,3 @@ gThemeTemplate::wrapOpen( 'fullwidthpage' );
 
 gThemeTemplate::wrapClose( 'fullwidthpage' );
 // gThemeTemplate::sidebar( 'singular' );
-echo '</div></div>';

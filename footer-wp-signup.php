@@ -3,7 +3,6 @@
 gThemeContent::wrapClose( 'signup' );
 
 gThemeTemplate::wrapClose( 'signup' );
-echo '</div></div>';
 
 get_template_part( 'end', 'signup' );
 

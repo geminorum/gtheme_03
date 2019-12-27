@@ -1,6 +1,5 @@
 <?php defined( 'ABSPATH' ) or die( header( 'HTTP/1.0 403 Forbidden' ) );
 
-echo '<div class="container -main -singular"><div class="row justify-content-center">';
 gThemeTemplate::wrapOpen( 'singular' );
 
 	gThemeNavigation::breadcrumb( [ 'home' => 'home' ] );
@@ -21,4 +20,3 @@ gThemeTemplate::wrapOpen( 'singular' );
 
 gThemeTemplate::wrapClose( 'singular' );
 gThemeTemplate::sidebar( 'singular' );
-echo '</div></div>';

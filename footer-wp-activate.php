@@ -3,7 +3,6 @@
 gThemeContent::wrapClose( 'activate' );
 
 gThemeTemplate::wrapClose( 'activate' );
-echo '</div></div>';
 
 get_template_part( 'end', 'activate' );
 

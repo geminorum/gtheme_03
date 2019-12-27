@@ -10,9 +10,7 @@
 
 // template
 // echo "\n\n".'<!-- TEMPLATE: START -->'."\n\n";
-	echo '<div class="wrapper -main">';
-		include gtheme_template_path();
-	echo '</div>'."\n";
+	include gtheme_template_path();
 // echo "\n\n".'<!-- TEMPLATE: END -->'."\n\n";
 
 // end

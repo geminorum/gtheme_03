@@ -1,6 +1,5 @@
 <?php defined( 'ABSPATH' ) or die( header( 'HTTP/1.0 403 Forbidden' ) );
 
-echo '<div class="container -main -singular -systempage"><div class="row justify-content-center">';
 gThemeTemplate::wrapOpen( 'systempage' );
 
 	if ( have_posts() ) {
@@ -19,4 +18,3 @@ gThemeTemplate::wrapOpen( 'systempage' );
 
 gThemeTemplate::wrapClose( 'systempage' );
 gThemeTemplate::sidebar( 'systempage' );
-echo '</div></div>';
