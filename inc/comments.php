@@ -319,6 +319,9 @@ class gThemeComments extends gThemeModuleCore
 
 	public static function renderForm( $post = NULL )
 	{
+		if ( gThemeUtilities::isPrint() )
+			return;
+
 		$callback = gThemeOptions::info( 'comments_form_callback', [ 'gThemeComments', 'form_callback' ] );
 
 		if ( is_callable( $callback ) )
