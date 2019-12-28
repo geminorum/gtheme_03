@@ -247,6 +247,20 @@ class gThemeEditorial extends gThemeModuleCore
 		return \geminorum\gEditorial\Templates\Meta::metaLead( $atts );
 	}
 
+	public static function highlight( $atts = [] )
+	{
+		if ( ! array_key_exists( 'default', $atts ) )
+			$atts['default'] = FALSE;
+
+		if ( ! self::availableEditorial( 'meta' ) )
+			return $atts['default'];
+
+		if ( ! is_callable( [ 'geminorum\\gEditorial\\Templates\\Meta', 'metaHighlight' ] ) )
+			return $atts['default'];
+
+		return \geminorum\gEditorial\Templates\Meta::metaHighlight( $atts );
+	}
+
 	public static function getMeta( $field, $atts = [] )
 	{
 		if ( ! array_key_exists( 'default', $atts ) )
