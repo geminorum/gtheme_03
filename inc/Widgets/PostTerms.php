@@ -36,8 +36,8 @@ class gThemeWidgetPostTerms extends gThemeWidget
 			$taxonomies = [ $instance['taxonomy'] ];
 		}
 
-		$html = '';
-
+		$html    = '';
+		$default = get_option( 'default_category' );
 		foreach ( $taxonomies as $taxonomy ) {
 
 			$terms = get_the_terms( $post, $taxonomy );
@@ -46,6 +46,10 @@ class gThemeWidgetPostTerms extends gThemeWidget
 				continue;
 
 			foreach ( $terms as $term ) {
+
+				if ( 'category' == $taxonomy && $term->term_id == $default )
+					continue;
+
 				$html.= '<li>'.gThemeHTML::link(
 					sanitize_term_field( 'name', $term->name, $term->term_id, $term->taxonomy, 'display' ),
 					get_term_link( $term->term_id, $term->taxonomy )
