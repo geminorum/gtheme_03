@@ -53,7 +53,7 @@ class gThemeAttachment extends gThemeModuleCore
 			'before' => '<div class="entry-attachment entry-attachment-media">',
 			'after'  => '</div>',
 			'id'     => NULL,
-			'tag'    => 'big',
+			'tag'    => gThemeOptions::info( 'attachment_file_size', 'big' ),
 			'cover'  => TRUE, // audio cover
 			'echo'   => TRUE,
 			'extra'  => [],
