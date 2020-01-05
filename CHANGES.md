@@ -1,3 +1,40 @@
+### 3.20.0
+* main/constants: people taxonomy constant
+* module/attachment: customize image tag on media page
+* module/bootstrap: comment callback for bs4
+* module/comments: before/after action hooks for comments
+* module/comments: skip form on print
+* module/comments: title callback simple
+* module/content: better anchors for comments link action
+* module/content: byline as post action
+* module/content: custom tag for wrap
+* module/content: loop index class for posts
+* module/content: more args on header
+* module/content: print link for previews
+* module/content: wrap title on page links
+* module/editorial: highlight meta helper
+* module/filters: stylesheet fallback for child themes
+* module/image: area label for parent links
+* module/image: default css class helper
+* module/navigation: hide on print class
+* module/shortcodes: :new: person picture shortcode
+* module/shortcodes: content as custom caption on person images
+* module/shortcodes: customize image tag on gallery slider
+* module/template: custom wrap open/close
+* module/template: new default avatar
+* module/theme: more action hooks
+* partial/entry: deafult like button support
+* partial/home: fallback for blog with no homepage
+* root/base: simplify wrapper/container divs
+* root/content: better handling entries
+* root/content: better handling entries
+* root/content: better handling entries
+* root/home: new default part
+* root/row: inline sub-template
+* widget/search terms: strip hashtags from criteria
+* widget/the term: better handling tax conditionals
+* widget/the term: more control over disabled constant
+
 ### 3.19.5
 * module/editor: more general styles
 * module/editorial: list attachments
