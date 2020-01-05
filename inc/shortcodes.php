@@ -190,7 +190,7 @@ class gThemeShortCodes extends gThemeModuleCore
 			'order'   => 'ASC',
 			'orderby' => 'menu_order ID',
 			'id'      => get_the_ID(),
-			'size'    => 'big',
+			'size'    => gThemeOptions::info( 'gallery_file_size', 'big' ),
 			'include' => '',
 			'exclude' => '',
 			'link'    => '', // 'file', 'none', empty
