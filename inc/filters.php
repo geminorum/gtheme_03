@@ -112,9 +112,8 @@ class gThemeFilters extends gThemeModuleCore
 			echo self::getStyleLink( $singular );
 		}
 
-		// FIXME: also check if Bootstrap
-		// if ( gThemeWordPress::isDev() && ! gThemeUtilities::isPrint() )
-		// 	gThemeUtilities::linkStyleSheet( GTHEME_URL.'/css/main.dev'.( gThemeUtilities::isRTL() ? '-rtl' : '' ).'.css', GTHEME_VERSION, 'all' );
+		if ( gThemeWordPress::isDev() && ! gThemeUtilities::isPrint() )
+			gThemeUtilities::linkStyleSheet( GTHEME_URL.'/css/main.dev'.( gThemeUtilities::isRTL() ? '-rtl' : '' ).'.css', GTHEME_VERSION, 'all' );
 
 		if ( $singular )
 			echo '<link rel="pingback" href="'.get_bloginfo( 'pingback_url', 'display' ).'" />'."\n";
