@@ -1,0 +1,126 @@
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+/// Blocks: Comments 04 - 2019-12-13
+
+////////////////////////////////////////////////////////////////////////////////
+$spacer: 1rem !default;
+$theme-brand-border: $gray-light !default;
+
+////////////////////////////////////////////////////////////////////////////////
+.entry-comments {
+  .comments-title,
+  .comment-reply-title {
+    font-size: $h5-font-size;
+  }
+
+  ol {
+    list-style-type: none !important;
+    margin: 0;
+    padding: 0;
+
+    ol {
+      margin-top: $spacer * 1;
+      margin-left: $spacer * 2.5;
+    }
+
+    li.comment {
+      margin-bottom: $spacer * 1;
+    }
+  }
+
+  .comment-list {
+    + .comment-form {
+      margin-top: $spacer * 2;
+    }
+  }
+
+  .comment {
+    .comment-form {
+      margin-top: $spacer * .5;
+      margin-left: $spacer * 2.5;
+    }
+  }
+
+  .comment-avatar {
+    float: left;
+    clear: left;
+    margin: $spacer;
+    // padding: $spacer * .5;
+  }
+
+  .comment-body {
+    border: 1px dotted $theme-brand-border;
+    padding: $spacer $spacer 0 $spacer;
+  }
+
+  #cancel-comment-reply-link {
+    @include theme-link-color;
+    font-size: smaller;
+    margin-left: $spacer * .5;
+
+    &::before {
+      content: "|";
+      color: lighten($theme-brand-border, 10);
+      margin-right: $spacer * .5;
+    }
+  }
+
+  .comment-meta {
+    a {
+      @include theme-link-color;
+    }
+
+    .comment-time {
+      margin-left: $spacer * .5;
+
+      &::before {
+        content: "|";
+        color: lighten($theme-brand-border, 10);
+        margin-right: $spacer * .5;
+      }
+    }
+  }
+
+  .comment-content {
+    font-size: smaller;
+
+    p:last-of-type {
+      // margin-bottom: 0;
+    }
+  }
+
+  .comment-actions {
+    border-top: 1px dashed lighten($theme-brand-border, 10);
+    padding: $spacer * .25;
+  }
+
+  .comment-awaiting-moderation {
+    margin-bottom: - $spacer * 1.5;
+    margin-left: $spacer * .5;
+    font-size: smaller;
+  }
+
+  .quicktags-toolbar {
+    margin-bottom: $spacer * .5;
+
+    .button {
+      @extend .btn;
+      @extend .btn-light;
+
+      margin-right: $spacer * .5;
+    }
+
+    .button-small {
+      @extend .btn-sm;
+    }
+  }
+
+  input#email,
+  input#url {
+    /*rtl:ignore*/
+    direction: ltr;
+  }
+}
+
+////////////////////////////////////////////////////////////////////////////////

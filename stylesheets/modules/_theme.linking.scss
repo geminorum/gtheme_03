@@ -4,6 +4,16 @@
 /// Modules: Theme: Linking ----------------------------------------------------
 
 ////////////////////////////////////////////////////////////////////////////////
+@mixin theme-link-color( $color: $gray-light ) {
+  color: $color;
+
+  &:hover {
+    color: darken($color, 75%);
+    text-decoration: none;
+  }
+}
+
+////////////////////////////////////////////////////////////////////////////////
 @mixin theme-linking-init($link: $link-color, $hover: $link-hover-color, $heading: $headings-color) {
   a {
     color: $link;
