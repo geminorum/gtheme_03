@@ -54,25 +54,25 @@
     "gulp-sass": "^4.0.2",
     "gulp-size": "^3.0.0",
     "gulp-sourcemaps": "^2.6.5",
-    "gulp-wp-pot": "^2.3.5",
+    "gulp-wp-pot": "^2.3.6",
     "js-yaml": "^3.13.1",
     "parse-changelog": "^1.0.2",
     "prettyjson": "^1.2.1",
     "rtlcss": "^2.4.1",
     "semistandard": "^14.2.0",
-    "stylelint": "^12.0.0",
-    "stylelint-config-wordpress": "^15.0.0",
+    "stylelint": "^12.0.1",
+    "stylelint-config-wordpress": "^16.0.0",
     "xtend": "^4.0.2"
   },
   "optionalDependencies": {
-    "jquery": "^3.4.1",
     "bootstrap": "^4.4.1",
     "genericons-neue": "^4.0.5",
+    "jquery": "^3.4.1",
     "minireset.css": "^0.0.6",
     "paper-css": "^0.4.1",
     "popper.js": "^1.16.0",
     "screenfull": "^5.0.0",
-    "vazir-font": "^21.2.0"
+    "vazir-font": "^21.2.1"
   },
   "browserslist": [
     "extends @wordpress/browserslist-config"
