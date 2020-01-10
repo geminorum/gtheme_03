@@ -781,18 +781,19 @@ $('#text-unjustify').click(function (e) {
 			add_action( 'wp_footer', [ __CLASS__, 'addtoany_footer' ] );
 
 		$premalink = get_permalink();
+		$linkname  = self::title_attr( FALSE, NULL, '%s' );
 
-		$query = [
+		$url = add_query_arg( [
 			'linkurl'  => urlencode( $premalink ),
-			'linkname' => self::title_attr( FALSE, NULL, '%s' ),
-		];
+			'linkname' => urlencode( $linkname ),
+		], 'http://www.addtoany.com/share_save' );
 
 		echo $before;
 		printf( '<a class="a2a_dd" href="%1$s" rel="nofollow" data-a2a-url="%3$s" data-a2a-title="%4$s">%2$s</a>',
-			add_query_arg( $query, 'http://www.addtoany.com/share_save' ),
-			( $text ? $text : _x( 'Share This', 'Modules: Content: Addtoany', GTHEME_TEXTDOMAIN ) ),
+			esc_url( $url ),
+			( $text ?: _x( 'Share This', 'Modules: Content: Addtoany', GTHEME_TEXTDOMAIN ) ),
 			$premalink,
-			esc_attr( $query['linkname'] )
+			esc_attr( $linkname )
 		);
 		echo $after;
 	}
