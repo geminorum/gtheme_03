@@ -208,17 +208,18 @@ class gThemeTerms extends gThemeModuleCore
 	public static function defaults( $extra = [] )
 	{
 		return array_merge( [
-			'dashboard'         => _x( 'Dashboard', 'System Tags Defaults', GTHEME_TEXTDOMAIN ),
-			'featured'          => _x( 'Featured', 'System Tags Defaults', GTHEME_TEXTDOMAIN ),
-			'latest'            => _x( 'Latest', 'System Tags Defaults', GTHEME_TEXTDOMAIN ),
-			'tile'              => _x( 'Tile', 'System Tags Defaults', GTHEME_TEXTDOMAIN ),
-			'full-article'      => _x( 'Full Article', 'System Tags Defaults', GTHEME_TEXTDOMAIN ),
-			'poster'            => _x( 'Poster Entry', 'System Tags Defaults', GTHEME_TEXTDOMAIN ),
-			'hide-image-single' => _x( 'Hide Single Image', 'System Tags Defaults', GTHEME_TEXTDOMAIN ),
-			'no-front'          => _x( 'Not on FrontPage', 'System Tags Defaults', GTHEME_TEXTDOMAIN ),
-			'no-related'        => _x( 'Not on Related', 'System Tags Defaults', GTHEME_TEXTDOMAIN ),
-			'no-feed'           => _x( 'Not on Feed', 'System Tags Defaults', GTHEME_TEXTDOMAIN ),
-			'insert-people'     => _x( 'Insert People', 'System Tags Defaults', GTHEME_TEXTDOMAIN ),
+			'dashboard'           => _x( 'Dashboard', 'System Tags Defaults', GTHEME_TEXTDOMAIN ),
+			'featured'            => _x( 'Featured', 'System Tags Defaults', GTHEME_TEXTDOMAIN ),
+			'latest'              => _x( 'Latest', 'System Tags Defaults', GTHEME_TEXTDOMAIN ),
+			'tile'                => _x( 'Tile', 'System Tags Defaults', GTHEME_TEXTDOMAIN ),
+			'full-article'        => _x( 'Full Article', 'System Tags Defaults', GTHEME_TEXTDOMAIN ),
+			'poster'              => _x( 'Poster Entry', 'System Tags Defaults', GTHEME_TEXTDOMAIN ),
+			'hide-image-single'   => _x( 'Hide Single Image', 'System Tags Defaults', GTHEME_TEXTDOMAIN ),
+			'disable-like-button' => _x( 'Disable Like Button', 'System Tags Defaults', GTHEME_TEXTDOMAIN ),
+			'no-front'            => _x( 'Not on FrontPage', 'System Tags Defaults', GTHEME_TEXTDOMAIN ),
+			'no-related'          => _x( 'Not on Related', 'System Tags Defaults', GTHEME_TEXTDOMAIN ),
+			'no-feed'             => _x( 'Not on Feed', 'System Tags Defaults', GTHEME_TEXTDOMAIN ),
+			'insert-people'       => _x( 'Insert People', 'System Tags Defaults', GTHEME_TEXTDOMAIN ),
 		], $extra );
 	}
 

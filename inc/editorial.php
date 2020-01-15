@@ -89,7 +89,7 @@ class gThemeEditorial extends gThemeModuleCore
 		return TRUE;
 	}
 
-	public static function postLikeButton( $atts = [] )
+	public static function postLikeButton( $atts = [], $check_systemtags = 'disable-like-button' )
 	{
 		$args = self::atts( [
 			'post'    => NULL,
@@ -103,6 +103,9 @@ class gThemeEditorial extends gThemeModuleCore
 			return $args['default'];
 
 		if ( ! $post = get_post( $args['post'] ) )
+			return $args['default'];
+
+		if ( $check_systemtags && gThemeTerms::has( $check_systemtags, $post ) )
 			return $args['default'];
 
 		if ( ! $html = gEditorial()->like->get_button( $post->ID ) )
