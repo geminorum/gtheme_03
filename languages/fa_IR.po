@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: gTheme 3\n"
 "Report-Msgid-Bugs-To: https://github.com/geminorum/gtheme_03/issues\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2019-12-13 03:57+0330\n"
+"PO-Revision-Date: 2020-01-15 08:49+0330\n"
 "Last-Translator: geminorum <contact@geminorum.ir>\n"
 "Language-Team: geminorum <contact@geminorum.ir>\n"
 "Language: fa_IR\n"
@@ -276,44 +276,44 @@ msgctxt "Modules: Comments: Action String"
 msgid "Edit This"
 msgstr "ویرایش کنید"
 
-#: inc/comments.php:351
+#: inc/comments.php:354
 msgctxt "Modules: Comments: Comment Form String"
 msgid "(Required)"
 msgstr "(ضروری)"
 
-#: inc/comments.php:352
+#: inc/comments.php:355
 msgctxt "Modules: Comments: Comment Form String"
 msgid "Name"
 msgstr "نام"
 
-#: inc/comments.php:353
+#: inc/comments.php:356
 msgctxt "Modules: Comments: Comment Form String"
 msgid "Email"
 msgstr "ایمیل"
 
-#: inc/comments.php:354
+#: inc/comments.php:357
 msgctxt "Modules: Comments: Comment Form String"
 msgid "Website"
 msgstr "وب‌گاه"
 
-#: inc/comments.php:355
+#: inc/comments.php:358
 msgctxt "Modules: Comments: Comment Form String"
 msgid "Comment"
 msgstr "دیدگاه"
 
-#: inc/comments.php:356
+#: inc/comments.php:359
 msgctxt "Modules: Comments: Comment Form String"
 msgid ""
 "Save my name, email, and site URL in my browser for next time I post a "
 "comment."
 msgstr "برای دیدگاه‌های بعدی؛ نام، ایمیل و وب‌گاه من در مرورگر نگهداری شود."
 
-#: inc/comments.php:358
+#: inc/comments.php:361
 msgctxt "Modules: Comments: Comment Form String"
 msgid "You must be <a href=\"%s\">logged in</a> to post a comment."
 msgstr "برای ارسال دیدگاه باید <a href=\"%s\">وارد</a> شده باشید."
 
-#: inc/comments.php:359
+#: inc/comments.php:362
 msgctxt "Modules: Comments: Comment Form String"
 msgid ""
 "<a href=\"%1$s\" aria-label=\"%2$s\">Logged in as %3$s</a>. <a href=\"%4$s"
@@ -322,27 +322,27 @@ msgstr ""
 "<a href=\"%1$s\" aria-label=\"%2$s\">ارسال با شناسه %3$s</a>. <a href=\"%4$s"
 "\">خروج؟</a>"
 
-#: inc/comments.php:360
+#: inc/comments.php:363
 msgctxt "Modules: Comments: Comment Form String"
 msgid "Logged in as %s. Edit your profile."
 msgstr "هم‌اکنون با نام %s شناخته شده‌اید. نمایه خود را ویرایش کنید."
 
-#: inc/comments.php:361
+#: inc/comments.php:364
 msgctxt "Modules: Comments: Comment Form String"
 msgid "Leave a Reply"
 msgstr "پاسخ دهید"
 
-#: inc/comments.php:362
+#: inc/comments.php:365
 msgctxt "Modules: Comments: Comment Form String"
 msgid "Leave a Reply to %s"
 msgstr "به %s پاسخ دهید"
 
-#: inc/comments.php:363
+#: inc/comments.php:366
 msgctxt "Modules: Comments: Comment Form String"
 msgid "Cancel reply"
 msgstr "انصراف"
 
-#: inc/comments.php:364
+#: inc/comments.php:367
 msgctxt "Modules: Comments: Comment Form String"
 msgid "Post Comment"
 msgstr "ارسال دیدگاه"
@@ -389,136 +389,136 @@ msgctxt "Content: Title Attr"
 msgid "Short link for &ndash;%s&ndash;"
 msgstr "پیوند کوتاه به &ndash;%s&ndash;"
 
-#: inc/content.php:461, inc/content.php:469
+#: inc/content.php:466, inc/content.php:474
 msgctxt "Modules: Content: Action"
 msgid "Share This"
 msgstr "همخوان کنید"
 
-#: inc/content.php:476
+#: inc/content.php:481
 msgctxt "Modules: Content: Action"
 msgid "Print Version"
 msgstr "نسخهٔ چاپی"
 
-#: inc/content.php:487
+#: inc/content.php:492
 msgctxt "Modules: Content: Action"
 msgid "Short Link"
 msgstr "پیوند کوتاه"
 
-#: inc/content.php:528
+#: inc/content.php:533
 msgctxt "Modules: Content: Action"
 msgid "<a href=\"%3$s\" class=\"%1$s\">Your Comment</a>"
 msgstr "<a href=\"%3$s\" class=\"%1$s\">دیدگاه شما</a>"
 
-#: inc/content.php:529
+#: inc/content.php:534
 msgctxt "Modules: Content: Action"
 msgid "<a href=\"%3$s\" class=\"%1$s\">One Comment</a>"
 msgstr "<a href=\"%3$s\" class=\"%1$s\">یک دیدگاه</a>"
 
-#: inc/content.php:530
+#: inc/content.php:535
 msgctxt "Modules: Content: Action"
 msgid "<a href=\"%3$s\" class=\"%1$s\">%2$s Comments</a>"
 msgstr "<a href=\"%3$s\" class=\"%1$s\">%2$s دیدگاه</a>"
 
-#: inc/content.php:539
+#: inc/content.php:544
 msgctxt "Modules: Content: Action"
 msgid ""
 " <small><small>(<a href=\"%1$s\" title=\"%2$s\" class=\"%3$s\"><abbr title="
 "\"Really Simple Syndication\">RSS</abbr></a>)</small></small>"
 msgstr ""
 
-#: inc/content.php:541
+#: inc/content.php:546
 msgctxt "Modules: Content: Action"
 msgid "Feed for this post's comments"
 msgstr "خوراک برای دیدگاه‌های این نوشته"
 
-#: inc/content.php:554
+#: inc/content.php:559
 msgctxt "Modules: Content: Action"
 msgid "Edit"
 msgstr "ویرایش"
 
-#: inc/content.php:566, inc/content.php:582
+#: inc/content.php:571, inc/content.php:587
 msgctxt "Options: Separator: Term"
 msgid ", "
 msgstr "، "
 
-#: inc/content.php:690
+#: inc/content.php:695
 msgctxt "Options: Text Size Increase"
 msgid "[ A+ ]"
 msgstr "[ الف+ ]"
 
-#: inc/content.php:693
+#: inc/content.php:698
 msgctxt "Options: Text Size Decrease"
 msgid "[ A- ]"
 msgstr "[ الف– ]"
 
-#: inc/content.php:696
+#: inc/content.php:701
 msgctxt "Options: Text Size Sep"
 msgid " / "
 msgstr " \\ "
 
 # @ gtheme
-#: inc/content.php:701
+#: inc/content.php:706
 msgid "Increase font size"
 msgstr "اندازه قلم درشت‌تر"
 
 # @ gtheme
-#: inc/content.php:708
+#: inc/content.php:713
 msgid "Decrease font size"
 msgstr "اندازه قلم کوچک‌تر"
 
-#: inc/content.php:722
+#: inc/content.php:727
 msgctxt "Options: Text Justify"
 msgid "[ Ju ]"
 msgstr "[ همـ ]"
 
-#: inc/content.php:725
+#: inc/content.php:730
 msgctxt "Options: Text Unjustify"
 msgid "[ uJ ]"
 msgstr "[ ناهمـ ]"
 
-#: inc/content.php:728
+#: inc/content.php:733
 msgctxt "Options: Text Justify Sep"
 msgid " / "
 msgstr " \\ "
 
 # @ gtheme
-#: inc/content.php:733
+#: inc/content.php:738
 msgid "Justify paragraphs"
 msgstr "هم‌چین کردن متن"
 
 # @ gtheme
-#: inc/content.php:740
+#: inc/content.php:745
 msgid "Un-justify paragraphs"
 msgstr "غیر هم‌چین کردن متن"
 
-#: inc/content.php:788
+#: inc/content.php:794
 msgctxt "Modules: Content: Addtoany"
 msgid "Share This"
 msgstr "همخوان کنید"
 
-#: inc/content.php:812
+#: inc/content.php:818
 msgctxt "Modules: Content: Addtoany"
 msgid "Check this out %s"
 msgstr "نگاهی بیاندازید به %s"
 
-#: inc/content.php:813
+#: inc/content.php:819
 msgctxt "Modules: Content: Addtoany"
 msgid ""
 "Click the link:\n"
 "%s"
 msgstr "روی پیوند کلیک کنید: %s"
 
-#: inc/content.php:1049
+#: inc/content.php:1055
 msgctxt "Modules: Content: Link Pages"
 msgid "Next page"
 msgstr "صفحه بعدی"
 
-#: inc/content.php:1050
+#: inc/content.php:1056
 msgctxt "Modules: Content: Link Pages"
 msgid "Previous page"
 msgstr "صفحه قبلی"
 
-#: inc/content.php:1062
+#: inc/content.php:1068
 msgctxt "Modules: Content: Link Pages"
 msgid "Pages:"
 msgstr "صفحه‌ها:"
@@ -1161,7 +1161,7 @@ msgctxt "System Tag Tax Labels: Name"
 msgid "System Tags"
 msgstr "برچسب‌های راه‌بری"
 
-#: inc/terms.php:189, inc/terms.php:245
+#: inc/terms.php:189, inc/terms.php:246
 msgctxt "System Tag Tax Labels: Menu Name"
 msgid "System Tags"
 msgstr "راه‌بری"
@@ -1280,61 +1280,66 @@ msgstr "پنهان‌سازی تصویر در صفحه تکی"
 
 #: inc/terms.php:218
 msgctxt "System Tags Defaults"
+msgid "Disable Like Button"
+msgstr "غیرفعال‌سازی دکمه پسند"
+
+#: inc/terms.php:219
+msgctxt "System Tags Defaults"
 msgid "Not on FrontPage"
 msgstr "عدم نمایش در صفحه نخست"
 
-#: inc/terms.php:219
+#: inc/terms.php:220
 msgctxt "System Tags Defaults"
 msgid "Not on Related"
 msgstr "عدم نمایش در مرتبط‌ها"
 
-#: inc/terms.php:220
+#: inc/terms.php:221
 msgctxt "System Tags Defaults"
 msgid "Not on Feed"
 msgstr "عدم نمایش در خوراک"
 
-#: inc/terms.php:221
+#: inc/terms.php:222
 msgctxt "System Tags Defaults"
 msgid "Insert People"
 msgstr "جای‌گذاری تصویر افراد"
 
-#: inc/terms.php:274
+#: inc/terms.php:275
 msgctxt "Modules: Terms"
 msgid "Currently no primary terms are defined."
 msgstr "در حال حاضر، رده‌های اصلی تعریف نشده‌اند."
 
-#: inc/terms.php:279
+#: inc/terms.php:280
 msgctxt "Modules: Terms"
 msgid "Primary Terms are: %s"
 msgstr "رده‌های اصلی: %s"
 
-#: inc/terms.php:298
+#: inc/terms.php:299
 msgctxt "Modules: Terms"
 msgid "Primary Term"
 msgstr "رده اصلی"
 
-#: inc/terms.php:329
+#: inc/terms.php:330
 msgctxt "Modules: Terms"
 msgid "Install Default System Tags"
 msgstr "نصب برچسب‌های راه‌بری پیش‌فرض"
 
-#: inc/terms.php:335
+#: inc/terms.php:336
 msgctxt "Modules: Terms"
 msgid "Error while adding default system tags."
 msgstr "خطایی هنگام افزودن برچسب‌های راه‌بری پیش‌فرض اتفاق افتاده است."
 
-#: inc/terms.php:338
+#: inc/terms.php:339
 msgctxt "Modules: Terms"
 msgid "Default system tags added."
 msgstr "برچسب‌های راه‌بری پیش‌فرض افزوده شد."
 
-#: inc/terms.php:351
+#: inc/terms.php:352
 msgctxt "Modules: Terms"
 msgid "Empty Before Last Month"
 msgstr "خالی کردن قبل از ماه گذشته"
 
 # @ gtheme
-#: inc/terms.php:408
+#: inc/terms.php:409
 msgid "Connected Posts"
 msgstr "نوشته‌های مرتبط"
 
