@@ -1,3 +1,8 @@
+### 3.20.1
+* module/content: properly escape a2a link
+* module/editorial: disable like button system tag
+* widget/post terms: exclude uncategorized
+
 ### 3.20.0
 * main/constants: people taxonomy constant
 * module/attachment: customize image tag on media page
