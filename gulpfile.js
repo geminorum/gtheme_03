@@ -20,7 +20,7 @@
   // var banner = config.banner.join('\n');
 
   try {
-    env = extend(config.env, yaml.safeLoad(fs.readFileSync('./environment.yml', { encoding: 'utf-8' }), { 'json': true }));
+    env = extend(config.env, yaml.safeLoad(fs.readFileSync('./environment.yml', { encoding: 'utf-8' }), { json: true }));
   } catch (e) {
     log.warn('no environment.yml loaded!');
   }

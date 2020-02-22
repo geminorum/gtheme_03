@@ -23,7 +23,7 @@
     "build": "gulp build",
     "ready": "gulp ready",
     "refresh": "gulp dev:rtl",
-    "locale": "gulp pot",
+    "i18n:gulp": "gulp pot",
     "watch": "gulp watch:styles",
     "patch": "gulp bump --patch",
     "minor": "gulp bump",
@@ -58,9 +58,9 @@
     "js-yaml": "^3.13.1",
     "parse-changelog": "^1.0.2",
     "prettyjson": "^1.2.1",
-    "rtlcss": "^2.4.1",
+    "rtlcss": "^2.5.0",
     "semistandard": "^14.2.0",
-    "stylelint": "^13.0.0",
+    "stylelint": "^13.1.0",
     "stylelint-config-wordpress": "^16.0.0",
     "xtend": "^4.0.2"
   },
@@ -70,9 +70,9 @@
     "jquery": "^3.4.1",
     "minireset.css": "^0.0.6",
     "paper-css": "^0.4.1",
-    "popper.js": "^1.16.0",
-    "screenfull": "^5.0.0",
-    "vazir-font": "^21.2.1"
+    "popper.js": "^1.16.1",
+    "screenfull": "^5.0.1",
+    "vazir-font": "^22.0.0"
   },
   "browserslist": [
     "extends @wordpress/browserslist-config"
