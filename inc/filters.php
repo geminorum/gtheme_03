@@ -80,15 +80,7 @@ class gThemeFilters extends gThemeModuleCore
 
 		if ( ! $print ) {
 
-			if ( $theme_color = gThemeOptions::info( 'theme_color' ) ) {
-
-				// @REF: https://generatewp.com/easy-custom-mobile-chrome-address-bar-colors-wordpress/
-				echo '<meta name="theme-color" content="'.$theme_color.'" />'."\n";
-				echo '<meta name="msapplication-navbutton-color" content="'.$theme_color.'">'."\n";
-				echo '<meta name="apple-mobile-web-app-capable" content="yes">'."\n";
-				echo '<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">'."\n";
-			}
-
+			gThemeThird::htmlThemeColor( gThemeOptions::info( 'theme_color' ) );
 			gThemeSocial::doHead();
 		}
 

@@ -145,7 +145,6 @@ class gThemeShortCodes extends gThemeModuleCore
 		foreach ( $attachments as $id => $attachment ) {
 
 			if ( 'file' == $args['link'] ) {
-				// $url = wp_get_attachment_url( $id );
 				// geting the 'big' file, not 'raw' or full url
 				list( $url, $width, $height ) = wp_get_attachment_image_src( $id, $args['file_size'] );
 			} else if ( 'none' == $args['link'] ) {
