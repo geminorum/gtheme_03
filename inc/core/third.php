@@ -25,4 +25,20 @@ class gThemeThird extends gThemeBaseCore
 
 		return $url ? trailingslashit( $base.$handle ) : '@'.$handle;
 	}
+
+	// @REF: https://generatewp.com/easy-custom-mobile-chrome-address-bar-colors-wordpress/
+	// @REF: `rest_parse_hex_color()`
+	public static function htmlThemeColor( $color )
+	{
+		if ( ! $color )
+			return;
+
+		if ( ! preg_match( '|^#([A-Fa-f0-9]{3}){1,2}$|', $color, $matches ) )
+			return;
+
+		echo '<meta name="theme-color" content="'.$color.'" />'."\n";
+		echo '<meta name="msapplication-navbutton-color" content="'.$color.'">'."\n";
+		echo '<meta name="apple-mobile-web-app-capable" content="yes">'."\n";
+		echo '<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">'."\n";
+	}
 }
