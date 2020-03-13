@@ -1,7 +1,43 @@
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
-/// Modules: General: Sizing ---------------------------------------------------
+/// Modules: General: Sizing
+
+
+////////////////////////////////////////////////////////////////////////////////
+// @REF: [Responsive Aspect-Ratio SCSS Mixin](https://codepen.io/jakob-e/pen/WvrJwN)
+// @include aspect-ratio($ratio or $width, $height);
+// .class { @include aspect-ratio(); } // No arguments defaults to a 1:1 ratio
+// .class { @include aspect-ratio(16, 9); } // Width and height
+// .class { @include aspect-ratio(1.777778); } // Ratio (calculated width/height)
+// .class { @include aspect-ratio(4px, 3px); } // Comparable units
+// .class { @include aspect-ratio($ratio: 1.2); } // Keywords
+@mixin theme-aspect-ratio($arglist... /*$ratio or $width, $height*/) {
+  $map : keywords($arglist);
+  $height: map-get($map, height) or theme-nth-value($arglist, 2);
+  $width: map-get($map, width) or theme-nth-value($arglist, 1);
+  $ratio: map-get($map, ratio) or if($width and $height, $width/$height, theme-nth-value($arglist, 1)) or 1;
+  $padding: 1/$ratio * 100%;
+
+  &::before,
+  &::after {
+    content: "";
+    display: table;
+    clear: both;
+    width: 1px;
+    margin-left: -1px;
+  }
+
+  &::before {
+    float: left;
+    padding-bottom: $padding;
+  }
+}
+
+// helper function: return null rather than throwing an error if index is outside list range
+@function theme-nth-value($list, $index) {
+  @return if(length($list) >= $index, nth($list, $index), null);
+}
 
 ////////////////////////////////////////////////////////////////////////////////
 // [Convert px to em](https://gist.github.com/ocean90/1552031)
