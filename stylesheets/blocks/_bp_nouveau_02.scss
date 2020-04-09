@@ -291,6 +291,13 @@
       vertical-align: middle;
     }
 
+    .password-input-wrapper {
+      input[type="password"],
+      input[type="text"] {
+        width: calc(100% - (22px + 1rem));
+      }
+    }
+
     .wp-editor-wrap {
       margin-top: 1rem;
     }
