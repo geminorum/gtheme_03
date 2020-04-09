@@ -15,7 +15,7 @@ class gThemeImage extends gThemeModuleCore
 			'image_attachment_terms' => FALSE, // image for terms on admin media editor
 			'responsive_class'       => FALSE, // extracts and appends css class into content images
 			'media_object_sizes'     => TRUE, // tells gnetwork to not generate default image sizes
-			'no_images_srcset_sizes' => TRUE, // removes core filter for srcset/sizes
+			'no_filter_content_tags' => TRUE, // removes core filter for srcset/sizes/loading
 		], $args ) );
 
 		if ( $core_post_thumbnails )
@@ -58,8 +58,12 @@ class gThemeImage extends gThemeModuleCore
 			add_filter( 'attachment_fields_to_save', [ $this, 'terms_attachment_fields_to_save' ], 9, 2 );
 		}
 
-		if ( $no_images_srcset_sizes )
+		if ( $no_filter_content_tags ) {
 			remove_filter( 'the_content', 'wp_make_content_images_responsive' );
+			remove_filter( 'the_content', 'wp_filter_content_tags' );
+			remove_filter( 'the_excerpt', 'wp_filter_content_tags' );
+			remove_filter( 'widget_text_content', 'wp_filter_content_tags' );
+		}
 
 		if ( ! is_admin() )
 			return;
