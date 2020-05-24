@@ -57,7 +57,7 @@
   },
   "pot": {
     "package": "gTheme",
-    "domain": "GTHEME_TEXTDOMAIN",
+    "domain": "gtheme",
     "metadataFile": "style.css",
     "bugReport": "https://github.com/geminorum/gtheme_03/issues",
     "commentKeyword": "translators:",
@@ -67,7 +67,7 @@
   },
   "textdomain": {
     "force": true,
-    "text_domain": "GTHEME_TEXTDOMAIN",
+    "text_domain": "gtheme",
     "keywords": [
       "__:1,2d",
       "_e:1,2d",

@@ -24,6 +24,8 @@
     "ready": "gulp ready",
     "refresh": "gulp dev:rtl",
     "i18n:gulp": "gulp pot",
+    "i18n:pot": "wp i18n make-pot . --exclude=\".temp,.github,assets/vendor,js/vendor,blocks/**/src,gulpfile.js\" --file-comment='' --headers='{\"Last-Translator\":\"NULL\",\"Language-Team\":\"NULL\",\"Report-Msgid-Bugs-To\":\"https://github.com/geminorum/gtheme_03/issues\"}' --skip-plugins --skip-themes --skip-packages",
+    "i18n:json": "wp i18n make-json languages --no-purge --skip-plugins --skip-themes --skip-packages",
     "watch": "gulp watch:styles",
     "patch": "gulp bump --patch",
     "minor": "gulp bump",
