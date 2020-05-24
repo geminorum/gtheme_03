@@ -235,7 +235,7 @@ class gThemeContent extends gThemeModuleCore
 		$template = gThemeOptions::info( 'template_read_more', ' <a %6$s href="%1$s" aria-label="%3$s" class="%4$s">%2$s</a>%5$s' );
 		$text     = gThemeOptions::info( 'read_more_text', _x( 'Read more&nbsp;<span class="excerpt-link-hellip">&hellip;</span>', 'Content: Read More Text', 'gtheme' ) );
 		/* translators: %s: post title */
-		$title    = gThemeOptions::info( 'read_more_title', _x( 'Continue reading &ldquo;%s&rdquo; &hellip;', 'Content: Read More Title', 'gtheme' ) ),  );
+		$title    = gThemeOptions::info( 'read_more_title', _x( 'Continue reading &ldquo;%s&rdquo; &hellip;', 'Content: Read More Title', 'gtheme' ) );
 
 		return vsprintf( $template, [
 			esc_url( $link ),
