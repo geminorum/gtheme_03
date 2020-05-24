@@ -1,0 +1,39 @@
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+/// Blocks: Bootstrap RTL 03 - 2020-01-13
+// TESTED with Bootstrap 4.4.1
+// NOTE: must load after bootstrap
+// NOTE: must used with RTLCSS
+
+////////////////////////////////////////////////////////////////////////////////
+.breadcrumb-item {
+  display: list-item; // should not be `flex`
+}
+
+////////////////////////////////////////////////////////////////////////////////
+.bs-tooltip-right {
+  .arrow {
+    right: 0;
+    left: auto;
+
+    &::before {
+      left: 0;
+      right: auto;
+      border-width: ($tooltip-arrow-width / 2) 0 ($tooltip-arrow-width / 2) $tooltip-arrow-height;
+      border-left-color: $tooltip-arrow-color;
+    }
+  }
+}
+
+.bs-tooltip-left {
+  .arrow {
+    left: 0;
+
+    &::before {
+      right: 0;
+      border-width: ($tooltip-arrow-width / 2) $tooltip-arrow-height ($tooltip-arrow-width / 2) 0;
+      border-right-color: $tooltip-arrow-color;
+    }
+  }
+}
