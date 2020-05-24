@@ -190,7 +190,7 @@ class gThemeWidget extends WP_Widget
 	public function form_content( $instance, $default = '', $field = 'content', $label = NULL )
 	{
 		if ( is_null( $label ) )
-			$label = _x( 'Custom HTML:', 'Widget: Setting', GTHEME_TEXTDOMAIN );
+			$label = _x( 'Custom HTML:', 'Widget: Setting', 'gtheme' );
 
 		echo '<p>'.gThemeHTML::tag( 'label', [
 			'for' => $this->get_field_id( $field ),
@@ -209,7 +209,7 @@ class gThemeWidget extends WP_Widget
 	public function form_number( $instance, $default = '10', $field = 'number', $label = NULL )
 	{
 		if ( is_null( $label ) )
-			$label = _x( 'Number of posts to show:', 'Widget: Setting', GTHEME_TEXTDOMAIN );
+			$label = _x( 'Number of posts to show:', 'Widget: Setting', 'gtheme' );
 
 		$html = gThemeHTML::tag( 'input', [
 			'type'  => 'number',
@@ -237,7 +237,7 @@ class gThemeWidget extends WP_Widget
 
 		echo '<p>'.gThemeHTML::tag( 'label', [
 			'for' => $this->get_field_id( $field ),
-		], _x( 'Context:', 'Widget: Setting', GTHEME_TEXTDOMAIN ).$html ).'</p>';
+		], _x( 'Context:', 'Widget: Setting', 'gtheme' ).$html ).'</p>';
 	}
 
 	public function form_class( $instance, $default = '', $field = 'class' )
@@ -253,7 +253,7 @@ class gThemeWidget extends WP_Widget
 
 		echo '<p>'.gThemeHTML::tag( 'label', [
 			'for' => $this->get_field_id( $field ),
-		], _x( 'CSS Class:', 'Widget: Setting', GTHEME_TEXTDOMAIN ).$html ).'</p>';
+		], _x( 'CSS Class:', 'Widget: Setting', 'gtheme' ).$html ).'</p>';
 	}
 
 	public function form_post_type( $instance, $default = 'post', $field = 'post_type', $any = TRUE )
@@ -265,7 +265,7 @@ class gThemeWidget extends WP_Widget
 			$html.= gThemeHTML::tag( 'option', [
 				'value'    => 'any',
 				'selected' => $type == 'any',
-			], _x( '&ndash; (Any)', 'Widget: Setting', GTHEME_TEXTDOMAIN ) );
+			], _x( '&ndash; (Any)', 'Widget: Setting', 'gtheme' ) );
 
 		foreach ( gThemeWordPress::getPostTypes() as $name => $title )
 			$html.= gThemeHTML::tag( 'option', [
@@ -281,7 +281,7 @@ class gThemeWidget extends WP_Widget
 
 		echo '<p>'.gThemeHTML::tag( 'label', [
 			'for' => $this->get_field_id( $field ),
-		], _x( 'PostType:', 'Widget: Setting', GTHEME_TEXTDOMAIN ).$html ).'</p>';
+		], _x( 'PostType:', 'Widget: Setting', 'gtheme' ).$html ).'</p>';
 	}
 
 	public function form_taxonomy( $instance, $default = 'all', $field = 'taxonomy', $post_type_field = 'post_type', $post_type_default = 'any', $option_all = 'all' )
@@ -293,7 +293,7 @@ class gThemeWidget extends WP_Widget
 		if ( $option_all )
 			$html.= gThemeHTML::tag( 'option', [
 				'value' => $option_all,
-			], _x( '&mdash; All Taxonomies &mdash;', 'Widget: Setting', GTHEME_TEXTDOMAIN ) );
+			], _x( '&mdash; All Taxonomies &mdash;', 'Widget: Setting', 'gtheme' ) );
 
 		foreach ( gThemeWordPress::getTaxonomies( 0, [], $post_type ) as $name => $title )
 			$html.= gThemeHTML::tag( 'option', [
@@ -309,7 +309,7 @@ class gThemeWidget extends WP_Widget
 
 		echo '<p>'.gThemeHTML::tag( 'label', [
 			'for' => $this->get_field_id( $field ),
-		], _x( 'Taxonomy:', 'Widget: Setting', GTHEME_TEXTDOMAIN ).$html ).'</p>';
+		], _x( 'Taxonomy:', 'Widget: Setting', 'gtheme' ).$html ).'</p>';
 	}
 
 	public function form_title( $instance, $default = '', $field = 'title' )
@@ -324,7 +324,7 @@ class gThemeWidget extends WP_Widget
 
 		echo '<p>'.gThemeHTML::tag( 'label', [
 			'for' => $this->get_field_id( $field ),
-		], _x( 'Title:', 'Widget: Setting', GTHEME_TEXTDOMAIN ).$html ).'</p>';
+		], _x( 'Title:', 'Widget: Setting', 'gtheme' ).$html ).'</p>';
 	}
 
 	public function form_title_link( $instance, $default = '', $field = 'title_link' )
@@ -340,13 +340,13 @@ class gThemeWidget extends WP_Widget
 
 		echo '<p>'.gThemeHTML::tag( 'label', [
 			'for' => $this->get_field_id( $field ),
-		], _x( 'Title Link:', 'Widget: Setting', GTHEME_TEXTDOMAIN ).$html ).'</p>';
+		], _x( 'Title Link:', 'Widget: Setting', 'gtheme' ).$html ).'</p>';
 	}
 
 	public function form_custom_link( $instance, $default = '', $field = 'custom_link', $label = NULL )
 	{
 		if ( is_null( $label ) )
-			$label = _x( 'Custom Link:', 'Widget: Setting', GTHEME_TEXTDOMAIN );
+			$label = _x( 'Custom Link:', 'Widget: Setting', 'gtheme' );
 
 		$html = gThemeHTML::tag( 'input', [
 			'type'  => 'url',
@@ -365,7 +365,7 @@ class gThemeWidget extends WP_Widget
 	public function form_custom_code( $instance, $default = '', $field = 'custom_code', $label = NULL )
 	{
 		if ( is_null( $label ) )
-			$label = _x( 'Custom Code:', 'Widget: Setting', GTHEME_TEXTDOMAIN );
+			$label = _x( 'Custom Code:', 'Widget: Setting', 'gtheme' );
 
 		$html = gThemeHTML::tag( 'input', [
 			'type'  => 'text',
@@ -384,7 +384,7 @@ class gThemeWidget extends WP_Widget
 	public function form_custom_empty( $instance, $default = '', $field = 'empty', $label = NULL )
 	{
 		if ( is_null( $label ) )
-			$label = _x( 'Empty Message:', 'Widget: Setting', GTHEME_TEXTDOMAIN );
+			$label = _x( 'Empty Message:', 'Widget: Setting', 'gtheme' );
 
 		$html = gThemeHTML::tag( 'input', [
 			'type'  => 'text',
@@ -411,7 +411,7 @@ class gThemeWidget extends WP_Widget
 
 		echo '<p>'.gThemeHTML::tag( 'label', [
 			'for' => $this->get_field_id( $field ),
-		], _x( 'Avatar Size:', 'Widget: Setting', GTHEME_TEXTDOMAIN ).$html ).'</p>';
+		], _x( 'Avatar Size:', 'Widget: Setting', 'gtheme' ).$html ).'</p>';
 	}
 
 	public function form_image_size( $instance, $default = 'thumbnail', $field = 'image_size', $post_type = 'post' )
@@ -441,17 +441,17 @@ class gThemeWidget extends WP_Widget
 
 			echo '<p>'.gThemeHTML::tag( 'label', [
 				'for' => $this->get_field_id( $field ),
-			], _x( 'Image Size:', 'Widget: Setting', GTHEME_TEXTDOMAIN ).$html ).'</p>';
+			], _x( 'Image Size:', 'Widget: Setting', 'gtheme' ).$html ).'</p>';
 
 		} else {
-			echo '<p>'._x( 'No Image Size Available!', 'Widget: Setting', GTHEME_TEXTDOMAIN ).'</p>';
+			echo '<p>'._x( 'No Image Size Available!', 'Widget: Setting', 'gtheme' ).'</p>';
 		}
 	}
 
 	public function form_checkbox( $instance, $default = FALSE, $field = 'checked', $label = NULL )
 	{
 		if ( is_null( $label ) )
-			$label = _x( 'Checked', 'Widget: Setting', GTHEME_TEXTDOMAIN );
+			$label = _x( 'Checked', 'Widget: Setting', 'gtheme' );
 
 		$html = gThemeHTML::tag( 'input', [
 			'type'    => 'checkbox',
@@ -472,7 +472,7 @@ class gThemeWidget extends WP_Widget
 		$page_id   = isset( $instance[$field] ) ? $instance[$field] : $default;
 
 		if ( is_null( $label ) )
-			$label = _x( 'Page:', 'Widget: Setting', GTHEME_TEXTDOMAIN );
+			$label = _x( 'Page:', 'Widget: Setting', 'gtheme' );
 
 		$html = wp_dropdown_pages( [
 			'post_type'        => $post_type,
@@ -480,7 +480,7 @@ class gThemeWidget extends WP_Widget
 			'name'             => $this->get_field_name( $field ),
 			'id'               => $this->get_field_id( $field ),
 			'class'            => 'widefat',
-			'show_option_none' => __( '&mdash; Select &mdash;', GTHEME_TEXTDOMAIN ),
+			'show_option_none' => __( '&mdash; Select &mdash;', 'gtheme' ),
 			'sort_column'      => 'menu_order, post_title',
 			'echo'             => FALSE,
 		] );
@@ -501,7 +501,7 @@ class gThemeWidget extends WP_Widget
 		$html = gThemeHTML::tag( 'option', [
 			'value'    => '0',
 			'selected' => $term_id == '0',
-		], __( '&mdash; Select &mdash;', GTHEME_TEXTDOMAIN ) );
+		], __( '&mdash; Select &mdash;', 'gtheme' ) );
 
 		foreach ( get_terms( [ 'taxonomy' => $taxonomy, 'hide_empty' => FALSE ] ) as $term )
 			$html.= gThemeHTML::tag( 'option', [
@@ -517,6 +517,6 @@ class gThemeWidget extends WP_Widget
 
 		echo '<p>'.gThemeHTML::tag( 'label', [
 			'for' => $this->get_field_id( $field ),
-		], _x( 'Term:', 'Widget: Setting', GTHEME_TEXTDOMAIN ).$html ).'</p>';
+		], _x( 'Term:', 'Widget: Setting', 'gtheme' ).$html ).'</p>';
 	}
 }

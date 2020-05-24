@@ -41,8 +41,8 @@ class gThemeSettings extends gThemeModuleCore
 	{
 		$hook = add_submenu_page(
 			$this->_settings_parent,
-			gThemeOptions::info( 'settings_title', _x( 'gTheme Settings', 'Admin Settings Page Title', GTHEME_TEXTDOMAIN ) ),
-			gThemeOptions::info( 'menu_title', _x( 'Theme Settings', 'Admin Menu Title', GTHEME_TEXTDOMAIN ) ),
+			gThemeOptions::info( 'settings_title', _x( 'gTheme Settings', 'Admin Settings Page Title', 'gtheme' ) ),
+			gThemeOptions::info( 'menu_title', _x( 'Theme Settings', 'Admin Menu Title', 'gtheme' ) ),
 			gThemeOptions::info( 'settings_access', 'edit_theme_options' ),
 			gThemeOptions::info( 'settings_page', 'gtheme-theme' ),
 			array( $this, 'admin_settings' )
@@ -57,17 +57,17 @@ class gThemeSettings extends gThemeModuleCore
 
 		$sub = isset( $_GET['sub'] ) ? trim( $_GET['sub'] ) : 'general';
 		$subs = apply_filters( 'gtheme_settings_subs', [
-			'overview' => _x( 'Overview', 'Modules: Menu Name', GTHEME_TEXTDOMAIN ),
-			'general'  => _x( 'General', 'Modules: Menu Name', GTHEME_TEXTDOMAIN ),
+			'overview' => _x( 'Overview', 'Modules: Menu Name', 'gtheme' ),
+			'general'  => _x( 'General', 'Modules: Menu Name', 'gtheme' ),
 		] );
 
 		$messages = apply_filters( 'gtheme_settings_messages', [
-			'error'   => self::error( _x( 'Settings not updated.', 'Settings Module', GTHEME_TEXTDOMAIN ) ),
-			'updated' => self::updated( _x( 'Settings updated.', 'Settings Module', GTHEME_TEXTDOMAIN ) ),
+			'error'   => self::error( _x( 'Settings not updated.', 'Settings Module', 'gtheme' ) ),
+			'updated' => self::updated( _x( 'Settings updated.', 'Settings Module', 'gtheme' ) ),
 		] );
 
 		echo '<div class="wrap"><h1 class="wp-heading-inline settings-title">'.
-			gThemeOptions::info( 'settings_title', _x( 'gTheme Settings', 'Admin Settings Page Title', GTHEME_TEXTDOMAIN ) )
+			gThemeOptions::info( 'settings_title', _x( 'gTheme Settings', 'Admin Settings Page Title', 'gtheme' ) )
 			.'</h1> <a href="https://geminorum.ir/wordpress/gtheme_03" class="page-title-action settings-title-action" target="_blank">'
 			.GTHEME_VERSION.'</a><hr class="wp-header-end">';
 
@@ -107,56 +107,56 @@ class gThemeSettings extends gThemeModuleCore
 		$options  = gThemeOptions::getOptions();
 
 		echo '<form method="post" action="">';
-			echo '<h3>'._x( 'General Settings', 'Settings Module', GTHEME_TEXTDOMAIN ).'</h3>';
+			echo '<h3>'._x( 'General Settings', 'Settings Module', 'gtheme' ).'</h3>';
 			echo '<table class="form-table">';
 
 			if ( $theme_groups = gThemeOptions::info( 'theme_groups', FALSE ) )
 				$this->do_settings_field( [
-					'title'   => _x( 'Theme Group', 'Settings Module', GTHEME_TEXTDOMAIN ),
+					'title'   => _x( 'Theme Group', 'Settings Module', 'gtheme' ),
 					'type'    => 'select',
 					'field'   => 'theme_group',
 					'values'  => $theme_groups,
 					'default' => ( isset( $options['theme_group'] ) ? $options['theme_group'] : $defaults['theme_group'] ),
-					'desc'    => _x( 'Current site\'s theme group.', 'Settings Module', GTHEME_TEXTDOMAIN ),
+					'desc'    => _x( 'Current site\'s theme group.', 'Settings Module', 'gtheme' ),
 				], TRUE );
 
 			$this->do_settings_field( [
-				'title'   => _x( 'Site User', 'Settings Module', GTHEME_TEXTDOMAIN ),
+				'title'   => _x( 'Site User', 'Settings Module', 'gtheme' ),
 				'type'    => 'select',
 				'field'   => 'default_user',
 				'values'  => self::getUsers(),
 				'default' => ( isset( $options['default_user'] ) ? $options['default_user'] : $defaults['default_user'] ),
-				'desc'    => _x( 'Site default user. For hiding the editoris!', 'Settings Module', GTHEME_TEXTDOMAIN ),
+				'desc'    => _x( 'Site default user. For hiding the editoris!', 'Settings Module', 'gtheme' ),
 			], TRUE );
 
 			$this->do_settings_field( [
-				'title'   => _x( 'FrontPage Title', 'Settings Module', GTHEME_TEXTDOMAIN ),
+				'title'   => _x( 'FrontPage Title', 'Settings Module', 'gtheme' ),
 				'type'    => 'text',
 				'field'   => 'frontpage_title',
 				'default' => ( isset( $options['frontpage_title'] ) ? $options['frontpage_title'] : $defaults['frontpage_title'] ),
-				'desc'    => _x( 'The title used on frontpage. Blank to use the build-in text.', 'Settings Module', GTHEME_TEXTDOMAIN ),
+				'desc'    => _x( 'The title used on frontpage. Blank to use the build-in text.', 'Settings Module', 'gtheme' ),
 			], TRUE );
 
 			$this->do_settings_field( [
-				'title'   => _x( 'FrontPage Description', 'Settings Module', GTHEME_TEXTDOMAIN ),
+				'title'   => _x( 'FrontPage Description', 'Settings Module', 'gtheme' ),
 				'type'    => 'text',
 				'field'   => 'frontpage_desc',
 				'default' => ( isset( $options['frontpage_desc'] ) ? $options['frontpage_desc'] : $defaults['frontpage_desc'] ),
-				'desc'    => _x( 'The description meta tag used on frontpage. Blank to use the build-in text.', 'Settings Module', GTHEME_TEXTDOMAIN ),
+				'desc'    => _x( 'The description meta tag used on frontpage. Blank to use the build-in text.', 'Settings Module', 'gtheme' ),
 			], TRUE );
 
 			$this->do_settings_field( [
-				'title'   => _x( 'Extra Body Class', 'Settings Module', GTHEME_TEXTDOMAIN ),
+				'title'   => _x( 'Extra Body Class', 'Settings Module', 'gtheme' ),
 				'type'    => 'text',
 				'field'   => 'body_class_extra',
 				'default' => ( isset( $options['body_class_extra'] ) ? $options['body_class_extra'] : $defaults['body_class_extra'] ),
-				'desc'    => _x( 'Additional classes to append to the html body tag. Seperate with space.', 'Settings Module', GTHEME_TEXTDOMAIN ),
+				'desc'    => _x( 'Additional classes to append to the html body tag. Seperate with space.', 'Settings Module', 'gtheme' ),
 				'dir'     => 'ltr',
 			], TRUE );
 
 			if ( $legend = gThemeOptions::info( 'settings_legend', FALSE ) )
 				$this->do_settings_field( [
-					'title'  => _x( 'Legend', 'Settings Module', GTHEME_TEXTDOMAIN ),
+					'title'  => _x( 'Legend', 'Settings Module', 'gtheme' ),
 					'type'   => 'custom',
 					'field'  => 'custom',
 					'values' => $legend,
@@ -218,14 +218,14 @@ class gThemeSettings extends gThemeModuleCore
 				'id'    => 'gtheme-flush',
 				'title' => '<span class="ab-icon dashicons dashicons-backup" style="margin:2px 0 0 0;"></span>',
 				'href'  => add_query_arg( 'flush', '', gThemeURL::current() ),
-				'meta'  => [ 'title' => _x( 'Flush', 'Settings Module', GTHEME_TEXTDOMAIN ) ],
+				'meta'  => [ 'title' => _x( 'Flush', 'Settings Module', 'gtheme' ) ],
 			] );
 
 		if ( current_user_can( 'edit_posts' ) )
 			$wp_admin_bar->add_node( [
 				'parent' => 'site-name',
 				'id'     => 'all-posts',
-				'title'  => _x( 'All Posts', 'Settings Module', GTHEME_TEXTDOMAIN ),
+				'title'  => _x( 'All Posts', 'Settings Module', 'gtheme' ),
 				'href'   => admin_url( 'edit.php' ),
 			] );
 
@@ -237,9 +237,9 @@ class gThemeSettings extends gThemeModuleCore
 		$wp_admin_bar->add_node( [
 			'parent' => 'appearance',
 			'id'     => 'gtheme',
-			'title'  => gThemeOptions::info( 'menu_title', _x( 'Theme Settings', 'Admin Menu Title', GTHEME_TEXTDOMAIN ) ),
+			'title'  => gThemeOptions::info( 'menu_title', _x( 'Theme Settings', 'Admin Menu Title', 'gtheme' ) ),
 			'href'   => admin_url( $this->_settings_uri ),
-			'meta'   => [ 'title' => gThemeOptions::info( 'settings_title', _x( 'gTheme Settings', 'Admin Settings Page Title', GTHEME_TEXTDOMAIN ) ) ],
+			'meta'   => [ 'title' => gThemeOptions::info( 'settings_title', _x( 'gTheme Settings', 'Admin Settings Page Title', 'gtheme' ) ) ],
 		] );
 
 		if ( ! gThemeWordPress::isDev() )
@@ -250,7 +250,7 @@ class gThemeSettings extends gThemeModuleCore
 			'title'  => gtheme_template_base() ? esc_html( gtheme_template_base() ) : '[EMPTY]',
 			'parent' => 'top-secondary',
 			'href'   => FALSE,
-			'meta'   => [ 'title' => _x( 'Theme Template Base', 'Modules: Settings', GTHEME_TEXTDOMAIN ) ],
+			'meta'   => [ 'title' => _x( 'Theme Template Base', 'Modules: Settings', 'gtheme' ) ],
 		] );
 	}
 }

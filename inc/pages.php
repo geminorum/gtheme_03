@@ -40,7 +40,8 @@ class gThemePages extends gThemeModuleCore
 			? $defaults[$flipped[$post->ID]]
 			: $flipped[$post->ID];
 
-		$states['gtheme_page'] = sprintf( _x( 'Theme: %s', 'Modules: Pages: Page State', GTHEME_TEXTDOMAIN ), $title );
+		/* translators: %s: page theme */
+		$states['gtheme_page'] = sprintf( _x( 'Theme: %s', 'Modules: Pages: Page State', 'gtheme' ), $title );
 
 		return $states;
 	}
@@ -54,18 +55,18 @@ class gThemePages extends gThemeModuleCore
 	public static function defaults( $extra = [] )
 	{
 		return array_merge( [
-			'not-found'  => _x( '404: Not Found', 'Modules: Pages: Default Pages', GTHEME_TEXTDOMAIN ),
-			'about'      => _x( 'About', 'Modules: Pages: Default Pages', GTHEME_TEXTDOMAIN ),
-			'contact'    => _x( 'Contact', 'Modules: Pages: Default Pages', GTHEME_TEXTDOMAIN ),
-			'search'     => _x( 'Search', 'Modules: Pages: Default Pages', GTHEME_TEXTDOMAIN ),
-			'archives'   => _x( 'Archives', 'Modules: Pages: Default Pages', GTHEME_TEXTDOMAIN ),
-			'latest'     => _x( 'Latest Posts', 'Modules: Pages: Default Pages', GTHEME_TEXTDOMAIN ),
-			'social'     => _x( 'Social Profiles', 'Modules: Pages: Default Pages', GTHEME_TEXTDOMAIN ),
-			'contribute' => _x( 'Contribute', 'Modules: Pages: Default Pages', GTHEME_TEXTDOMAIN ),
-			'advertise'  => _x( 'Advertise here', 'Modules: Pages: Default Pages', GTHEME_TEXTDOMAIN ),
-			'copyright'  => _x( 'Copyright Policy', 'Modules: Pages: Default Pages', GTHEME_TEXTDOMAIN ),
-			'terms'      => _x( 'Terms of Use', 'Modules: Pages: Default Pages', GTHEME_TEXTDOMAIN ),
-			'privacy'    => _x( 'Privacy Policy', 'Modules: Pages: Default Pages', GTHEME_TEXTDOMAIN ),
+			'not-found'  => _x( '404: Not Found', 'Modules: Pages: Default Pages', 'gtheme' ),
+			'about'      => _x( 'About', 'Modules: Pages: Default Pages', 'gtheme' ),
+			'contact'    => _x( 'Contact', 'Modules: Pages: Default Pages', 'gtheme' ),
+			'search'     => _x( 'Search', 'Modules: Pages: Default Pages', 'gtheme' ),
+			'archives'   => _x( 'Archives', 'Modules: Pages: Default Pages', 'gtheme' ),
+			'latest'     => _x( 'Latest Posts', 'Modules: Pages: Default Pages', 'gtheme' ),
+			'social'     => _x( 'Social Profiles', 'Modules: Pages: Default Pages', 'gtheme' ),
+			'contribute' => _x( 'Contribute', 'Modules: Pages: Default Pages', 'gtheme' ),
+			'advertise'  => _x( 'Advertise here', 'Modules: Pages: Default Pages', 'gtheme' ),
+			'copyright'  => _x( 'Copyright Policy', 'Modules: Pages: Default Pages', 'gtheme' ),
+			'terms'      => _x( 'Terms of Use', 'Modules: Pages: Default Pages', 'gtheme' ),
+			'privacy'    => _x( 'Privacy Policy', 'Modules: Pages: Default Pages', 'gtheme' ),
 		], $extra );
 	}
 
@@ -133,7 +134,7 @@ class gThemePages extends gThemeModuleCore
 
 	public function subs( $subs )
 	{
-		return array_merge( $subs, [ 'pages' => _x( 'Pages', 'Modules: Menu Name', GTHEME_TEXTDOMAIN ) ] );
+		return array_merge( $subs, [ 'pages' => _x( 'Pages', 'Modules: Menu Name', 'gtheme' ) ] );
 	}
 
 	public function settings_sub_html( $uri, $sub = 'general' )
@@ -142,7 +143,7 @@ class gThemePages extends gThemeModuleCore
 		$options  = gThemeOptions::getOption( 'pages', [] );
 
 		echo '<form method="post" action="">';
-			echo '<h3>'._x( 'Site Page Settings', 'Modules: Pages: Form Title', GTHEME_TEXTDOMAIN ).'</h3>';
+			echo '<h3>'._x( 'Site Page Settings', 'Modules: Pages: Form Title', 'gtheme' ).'</h3>';
 			echo '<table class="form-table">';
 
 				foreach ( $defaults as $page => $title )
@@ -158,8 +159,8 @@ class gThemePages extends gThemeModuleCore
 			echo '<p class="submit">';
 
 				$this->settings_buttons( 'pages', FALSE );
-				echo get_submit_button( _x( 'Create Default Pages', 'Modules: Pages', GTHEME_TEXTDOMAIN ), 'secondary', 'create-default-pages', FALSE, self::getButtonConfirm() ).'&nbsp;&nbsp;';
-				echo get_submit_button( _x( 'Create Default Menus', 'Modules: Pages', GTHEME_TEXTDOMAIN ), 'secondary', 'create-default-menus', FALSE, self::getButtonConfirm() ).'&nbsp;&nbsp;';
+				echo get_submit_button( _x( 'Create Default Pages', 'Modules: Pages', 'gtheme' ), 'secondary', 'create-default-pages', FALSE, self::getButtonConfirm() ).'&nbsp;&nbsp;';
+				echo get_submit_button( _x( 'Create Default Menus', 'Modules: Pages', 'gtheme' ), 'secondary', 'create-default-menus', FALSE, self::getButtonConfirm() ).'&nbsp;&nbsp;';
 
 			echo '</p>';
 			wp_nonce_field( 'gtheme-pages', '_gtheme_pages' );
@@ -215,7 +216,7 @@ class gThemePages extends gThemeModuleCore
 				} else if ( ! empty( $_POST['create-default-pages'] ) ) {
 
 					$defaults = gThemeOptions::info( 'pages_list', self::defaults() );
-					$content  = gThemeOptions::info( 'pages_pre_text', _x( '[ This page is being completed ]', 'Options: Page Pre-Text', GTHEME_TEXTDOMAIN ) );
+					$content  = gThemeOptions::info( 'pages_pre_text', _x( '[ This page is being completed ]', 'Options: Page Pre-Text', 'gtheme' ) );
 					$user     = gThemeOptions::getOption( 'default_user', 0 );
 					$count    = 0;
 

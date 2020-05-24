@@ -227,7 +227,7 @@ class gThemeUtilities extends gThemeBaseCore
 			$template = '<div class="alert alert-%1$s alert-dismissible" role="alert">'
 						.'<button type="button" class="close" data-dismiss="alert">'
 						.'<span aria-hidden="true">&times;</span><span class="screen-reader-text sr-only">'
-						._x( 'Close', 'Alert button (screen reader only)', GTHEME_TEXTDOMAIN )
+						._x( 'Close', 'Alert button (screen reader only)', 'gtheme' )
 						.'</span></button>%2$s</div>'; // bootstrap dismissible alert
 
 		$html = sprintf( $template, $class, $notice );
@@ -245,12 +245,12 @@ class gThemeUtilities extends gThemeBaseCore
 	public static function joinItems( $items )
 	{
 		return
-			_x( '&rdquo;', 'Utilities: Join Items Helper', GTHEME_TEXTDOMAIN )
-			.join( _x( '&ldquo; and &rdquo;', 'Utilities: Join Items Helper', GTHEME_TEXTDOMAIN ),
+			_x( '&rdquo;', 'Utilities: Join Items Helper', 'gtheme' )
+			.join( _x( '&ldquo; and &rdquo;', 'Utilities: Join Items Helper', 'gtheme' ),
 				array_filter( array_merge( [
-					join( _x( '&ldquo;, &rdquo;', 'Utilities: Join Items Helper', GTHEME_TEXTDOMAIN ),
+					join( _x( '&ldquo;, &rdquo;', 'Utilities: Join Items Helper', 'gtheme' ),
 					array_slice( $items, 0, -1 ) ) ],
 					array_slice( $items, -1 ) ) ) )
-			._x( '&ldquo;', 'Utilities: Join Items Helper', GTHEME_TEXTDOMAIN ).'.';
+			._x( '&ldquo;', 'Utilities: Join Items Helper', 'gtheme' ).'.';
 	}
 }

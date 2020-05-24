@@ -308,7 +308,7 @@ class gThemeShortCodes extends gThemeModuleCore
 		$args = shortcode_atts( [
 			'parent'    => ( $this->panel_parent ? $this->panel_parent : 'panel-group-'.$this->panel_group_count ),
 			'id'        => 'panel-'.$this->panel_count,
-			'title'     => _x( 'Untitled', 'Panel Shortcode Title', GTHEME_TEXTDOMAIN ),
+			'title'     => _x( 'Untitled', 'Panel Shortcode Title', 'gtheme' ),
 			'title_tag' => 'h4',
 			'context'   => 'default',
 			'expanded'  => FALSE,
@@ -383,7 +383,7 @@ class gThemeShortCodes extends gThemeModuleCore
 
 		$args = shortcode_atts( [
 			'id'      => 'tab-'.$this->tabs_count.'-'.count( $this->tabs_nav ),
-			'title'   => _x( 'Untitled', 'Tab Shortcode Title', GTHEME_TEXTDOMAIN ),
+			'title'   => _x( 'Untitled', 'Tab Shortcode Title', 'gtheme' ),
 			'context' => 'default',
 			'active'  => FALSE,
 		], $atts, $tag );
@@ -548,7 +548,7 @@ class gThemeShortCodes extends gThemeModuleCore
 			'posttype' => 'post',
 			'taxonomy' => 'post_tag',
 			'number'   => 10,
-			'title'    => _x( 'Related Posts', 'Modules: ShortCodes: Defaults', GTHEME_TEXTDOMAIN ), // FALSE to disable
+			'title'    => _x( 'Related Posts', 'Modules: ShortCodes: Defaults', 'gtheme' ), // FALSE to disable
 			'context'  => NULL,
 			'wrap'     => TRUE,
 			'before'   => '',

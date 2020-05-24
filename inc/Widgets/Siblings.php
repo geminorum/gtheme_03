@@ -8,8 +8,8 @@ class gThemeWidgetSiblings extends gThemeWidget
 		return [
 			'name'  => 'siblings',
 			'class' => 'siblings',
-			'title' => _x( 'Theme: Siblings', 'Widget: Title', GTHEME_TEXTDOMAIN ),
-			'desc'  => _x( 'Displays the list of current post\'s siblings.', 'Widget: Description', GTHEME_TEXTDOMAIN ),
+			'title' => _x( 'Theme: Siblings', 'Widget: Title', 'gtheme' ),
+			'desc'  => _x( 'Displays the list of current post\'s siblings.', 'Widget: Description', 'gtheme' ),
 		];
 	}
 

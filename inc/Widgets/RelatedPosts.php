@@ -8,8 +8,8 @@ class gThemeWidgetRelatedPosts extends gThemeWidget
 		return [
 			'name'  => 'related_posts',
 			'class' => 'related-posts',
-			'title' => _x( 'Theme: Related Posts', 'Widget: Title', GTHEME_TEXTDOMAIN ),
-			'desc'  => _x( 'Displays the related posts based on terms in a taxonomy.', 'Widget: Description', GTHEME_TEXTDOMAIN ),
+			'title' => _x( 'Theme: Related Posts', 'Widget: Title', 'gtheme' ),
+			'desc'  => _x( 'Displays the related posts based on terms in a taxonomy.', 'Widget: Description', 'gtheme' ),
 			'flush' => [
 				'save_post',
 				'deleted_post',

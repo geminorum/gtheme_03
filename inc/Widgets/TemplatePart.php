@@ -8,8 +8,8 @@ class gThemeWidgetTemplatePart extends gThemeWidget
 		return [
 			'name'  => 'template_part',
 			'class' => 'template-part',
-			'title' => _x( 'Theme: Template Part', 'Widget: Title', GTHEME_TEXTDOMAIN ),
-			'desc'  => _x( 'Include selected template part into sidebars.', 'Widget: Description', GTHEME_TEXTDOMAIN ),
+			'title' => _x( 'Theme: Template Part', 'Widget: Title', 'gtheme' ),
+			'desc'  => _x( 'Include selected template part into sidebars.', 'Widget: Description', 'gtheme' ),
 		];
 	}
 

@@ -18,8 +18,8 @@ class gThemeBanners extends gThemeModuleCore
 	public static function defaults( $extra = [] )
 	{
 		return array_merge( [
-			'first'  => _x( 'First', 'Banner Groups', GTHEME_TEXTDOMAIN ),
-			'second' => _x( 'Second', 'Banner Groups', GTHEME_TEXTDOMAIN ),
+			'first'  => _x( 'First', 'Banner Groups', 'gtheme' ),
+			'second' => _x( 'Second', 'Banner Groups', 'gtheme' ),
 		], $extra );
 	}
 
@@ -122,7 +122,7 @@ class gThemeBanners extends gThemeModuleCore
 
 	public function subs( $subs )
 	{
-		return array_merge( $subs, [ 'banners' => _x( 'Banners', 'Modules: Menu Name', GTHEME_TEXTDOMAIN ) ] );
+		return array_merge( $subs, [ 'banners' => _x( 'Banners', 'Modules: Menu Name', 'gtheme' ) ] );
 	}
 
 	public function load( $sub )
@@ -206,22 +206,22 @@ class gThemeBanners extends gThemeModuleCore
 		$banners = gThemeOptions::getOption( 'banners', [] );
 
 		echo '<form method="post" action="">';
-			echo '<h3>'._x( 'Custom Banners', 'Modules: Banners', GTHEME_TEXTDOMAIN ).'</h3>';
+			echo '<h3>'._x( 'Custom Banners', 'Modules: Banners', 'gtheme' ).'</h3>';
 
 			if ( $legend ) {
 				echo '<table class="form-table"><tbody><tr valign="top">';
-				echo '<th scope="row"><label>'._x( 'Legend', 'Modules: Banners', GTHEME_TEXTDOMAIN );
+				echo '<th scope="row"><label>'._x( 'Legend', 'Modules: Banners', 'gtheme' );
 				echo '</label></th><td>'.$legend;
-					gThemeHTML::desc( _x( 'Your theme extra information', 'Modules: Banners', GTHEME_TEXTDOMAIN ) );
+					gThemeHTML::desc( _x( 'Your theme extra information', 'Modules: Banners', 'gtheme' ) );
 				echo '</td></tr></tbody></table>';
 			}
 
 			echo '<table id="repeatable-fieldset-one" width="100%"><thead><tr>';
-				echo '<th width="10%">'._x( 'Group', 'Modules: Banners', GTHEME_TEXTDOMAIN ).'</th>';
-				echo '<th width="5%">'._x( 'Ord.', 'Modules: Banners', GTHEME_TEXTDOMAIN ).'</th>';
-				echo '<th>'._x( 'Title', 'Modules: Banners', GTHEME_TEXTDOMAIN ).'</th>';
-				echo '<th width="20%">'._x( 'URL', 'Modules: Banners', GTHEME_TEXTDOMAIN ).'</th>';
-				echo '<th width="20%">'._x( 'Image', 'Modules: Banners', GTHEME_TEXTDOMAIN ).'</th>';
+				echo '<th width="10%">'._x( 'Group', 'Modules: Banners', 'gtheme' ).'</th>';
+				echo '<th width="5%">'._x( 'Ord.', 'Modules: Banners', 'gtheme' ).'</th>';
+				echo '<th>'._x( 'Title', 'Modules: Banners', 'gtheme' ).'</th>';
+				echo '<th width="20%">'._x( 'URL', 'Modules: Banners', 'gtheme' ).'</th>';
+				echo '<th width="20%">'._x( 'Image', 'Modules: Banners', 'gtheme' ).'</th>';
 				echo '<th style="width:30px;"></th>';
 			echo '</tr></thead><tbody>';
 
@@ -310,8 +310,8 @@ class gThemeBanners extends gThemeModuleCore
 
 		echo '</tbody></table>';
 
-		echo '<p class="submit"><a id="add-row" class="button" href="#">'._x( 'Add Another', 'Modules: Banners', GTHEME_TEXTDOMAIN ).'</a>&nbsp;&nbsp;';
-		echo '<input type="submit" class="button-primary" name="submitform" value="&nbsp;&nbsp;'._x( 'Save', 'Modules: Banners', GTHEME_TEXTDOMAIN ).'&nbsp;&nbsp;" /></p>';
+		echo '<p class="submit"><a id="add-row" class="button" href="#">'._x( 'Add Another', 'Modules: Banners', 'gtheme' ).'</a>&nbsp;&nbsp;';
+		echo '<input type="submit" class="button-primary" name="submitform" value="&nbsp;&nbsp;'._x( 'Save', 'Modules: Banners', 'gtheme' ).'&nbsp;&nbsp;" /></p>';
 
 		wp_nonce_field( 'gtheme-banners', '_gtheme_banners' );
 

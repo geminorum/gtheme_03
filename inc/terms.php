@@ -41,7 +41,7 @@ class gThemeTerms extends gThemeModuleCore
 
 	public function subs( $subs )
 	{
-		return array_merge( $subs, [ 'primaryterms' => _x( 'Primary Terms', 'Modules: Menu Name', GTHEME_TEXTDOMAIN ) ] );
+		return array_merge( $subs, [ 'primaryterms' => _x( 'Primary Terms', 'Modules: Menu Name', 'gtheme' ) ] );
 	}
 
 	public function load( $sub )
@@ -109,7 +109,7 @@ class gThemeTerms extends gThemeModuleCore
 				echo $legend;
 
 			echo '<table class="form-table">';
-				echo '<tr><th scope="row">'._x( 'Primary Terms', 'Modules: Terms', GTHEME_TEXTDOMAIN ).'</th><td>';
+				echo '<tr><th scope="row">'._x( 'Primary Terms', 'Modules: Terms', 'gtheme' ).'</th><td>';
 
 				foreach ( gThemeWordPress::getTerms( $taxonomy, FALSE, TRUE ) as $term ) {
 
@@ -146,7 +146,7 @@ class gThemeTerms extends gThemeModuleCore
 			echo '<p class="submit">';
 
 				$this->settings_buttons( 'primaryterms', FALSE );
-				echo get_submit_button( _x( 'Create Default Primary Terms', 'Modules: Terms', GTHEME_TEXTDOMAIN ), 'secondary', 'create-default-primaryterms', FALSE, self::getButtonConfirm() ).'&nbsp;&nbsp;';
+				echo get_submit_button( _x( 'Create Default Primary Terms', 'Modules: Terms', 'gtheme' ), 'secondary', 'create-default-primaryterms', FALSE, self::getButtonConfirm() ).'&nbsp;&nbsp;';
 
 			echo '</p>';
 			wp_nonce_field( 'gtheme-primaryterms', '_gtheme_primaryterms' );
@@ -185,41 +185,41 @@ class gThemeTerms extends gThemeModuleCore
 	private function get_systemtags_labels()
 	{
 		return [
-			'name'                  => _x( 'System Tags', 'System Tag Tax Labels: Name', GTHEME_TEXTDOMAIN ),
-			'menu_name'             => _x( 'System Tags', 'System Tag Tax Labels: Menu Name', GTHEME_TEXTDOMAIN ),
-			'singular_name'         => _x( 'System Tag', 'System Tag Tax Labels: Singular Name', GTHEME_TEXTDOMAIN ),
-			'search_items'          => _x( 'Search System Tags', 'System Tag Tax Labels', GTHEME_TEXTDOMAIN ),
-			'all_items'             => _x( 'All System Tags', 'System Tag Tax Labels', GTHEME_TEXTDOMAIN ),
-			'parent_item'           => _x( 'Parent System Tag', 'System Tag Tax Labels', GTHEME_TEXTDOMAIN ),
-			'parent_item_colon'     => _x( 'Parent System Tag:', 'System Tag Tax Labels', GTHEME_TEXTDOMAIN ),
-			'edit_item'             => _x( 'Edit System Tag', 'System Tag Tax Labels', GTHEME_TEXTDOMAIN ),
-			'view_item'             => _x( 'View System Tag', 'System Tag Tax Labels', GTHEME_TEXTDOMAIN ),
-			'update_item'           => _x( 'Update System Tag', 'System Tag Tax Labels', GTHEME_TEXTDOMAIN ),
-			'add_new_item'          => _x( 'Add New System Tag', 'System Tag Tax Labels', GTHEME_TEXTDOMAIN ),
-			'new_item_name'         => _x( 'New System Tag Name', 'System Tag Tax Labels', GTHEME_TEXTDOMAIN ),
-			'not_found'             => _x( 'No system tags found.', 'System Tag Tax Labels', GTHEME_TEXTDOMAIN ),
-			'no_terms'              => _x( 'No system tags', 'System Tag Tax Labels', GTHEME_TEXTDOMAIN ),
-			'items_list_navigation' => _x( 'System Tags list navigation', 'System Tag Tax Labels', GTHEME_TEXTDOMAIN ),
-			'items_list'            => _x( 'System Tags list', 'System Tag Tax Labels', GTHEME_TEXTDOMAIN ),
-			'back_to_items'         => _x( '&larr; Back to System Tags', 'System Tag Tax Labels', GTHEME_TEXTDOMAIN ),
+			'name'                  => _x( 'System Tags', 'System Tag Tax Labels: Name', 'gtheme' ),
+			'menu_name'             => _x( 'System Tags', 'System Tag Tax Labels: Menu Name', 'gtheme' ),
+			'singular_name'         => _x( 'System Tag', 'System Tag Tax Labels: Singular Name', 'gtheme' ),
+			'search_items'          => _x( 'Search System Tags', 'System Tag Tax Labels', 'gtheme' ),
+			'all_items'             => _x( 'All System Tags', 'System Tag Tax Labels', 'gtheme' ),
+			'parent_item'           => _x( 'Parent System Tag', 'System Tag Tax Labels', 'gtheme' ),
+			'parent_item_colon'     => _x( 'Parent System Tag:', 'System Tag Tax Labels', 'gtheme' ),
+			'edit_item'             => _x( 'Edit System Tag', 'System Tag Tax Labels', 'gtheme' ),
+			'view_item'             => _x( 'View System Tag', 'System Tag Tax Labels', 'gtheme' ),
+			'update_item'           => _x( 'Update System Tag', 'System Tag Tax Labels', 'gtheme' ),
+			'add_new_item'          => _x( 'Add New System Tag', 'System Tag Tax Labels', 'gtheme' ),
+			'new_item_name'         => _x( 'New System Tag Name', 'System Tag Tax Labels', 'gtheme' ),
+			'not_found'             => _x( 'No system tags found.', 'System Tag Tax Labels', 'gtheme' ),
+			'no_terms'              => _x( 'No system tags', 'System Tag Tax Labels', 'gtheme' ),
+			'items_list_navigation' => _x( 'System Tags list navigation', 'System Tag Tax Labels', 'gtheme' ),
+			'items_list'            => _x( 'System Tags list', 'System Tag Tax Labels', 'gtheme' ),
+			'back_to_items'         => _x( '&larr; Back to System Tags', 'System Tag Tax Labels', 'gtheme' ),
 		];
 	}
 
 	public static function defaults( $extra = [] )
 	{
 		return array_merge( [
-			'dashboard'           => _x( 'Dashboard', 'System Tags Defaults', GTHEME_TEXTDOMAIN ),
-			'featured'            => _x( 'Featured', 'System Tags Defaults', GTHEME_TEXTDOMAIN ),
-			'latest'              => _x( 'Latest', 'System Tags Defaults', GTHEME_TEXTDOMAIN ),
-			'tile'                => _x( 'Tile', 'System Tags Defaults', GTHEME_TEXTDOMAIN ),
-			'full-article'        => _x( 'Full Article', 'System Tags Defaults', GTHEME_TEXTDOMAIN ),
-			'poster'              => _x( 'Poster Entry', 'System Tags Defaults', GTHEME_TEXTDOMAIN ),
-			'hide-image-single'   => _x( 'Hide Single Image', 'System Tags Defaults', GTHEME_TEXTDOMAIN ),
-			'disable-like-button' => _x( 'Disable Like Button', 'System Tags Defaults', GTHEME_TEXTDOMAIN ),
-			'no-front'            => _x( 'Not on FrontPage', 'System Tags Defaults', GTHEME_TEXTDOMAIN ),
-			'no-related'          => _x( 'Not on Related', 'System Tags Defaults', GTHEME_TEXTDOMAIN ),
-			'no-feed'             => _x( 'Not on Feed', 'System Tags Defaults', GTHEME_TEXTDOMAIN ),
-			'insert-people'       => _x( 'Insert People', 'System Tags Defaults', GTHEME_TEXTDOMAIN ),
+			'dashboard'           => _x( 'Dashboard', 'System Tags Defaults', 'gtheme' ),
+			'featured'            => _x( 'Featured', 'System Tags Defaults', 'gtheme' ),
+			'latest'              => _x( 'Latest', 'System Tags Defaults', 'gtheme' ),
+			'tile'                => _x( 'Tile', 'System Tags Defaults', 'gtheme' ),
+			'full-article'        => _x( 'Full Article', 'System Tags Defaults', 'gtheme' ),
+			'poster'              => _x( 'Poster Entry', 'System Tags Defaults', 'gtheme' ),
+			'hide-image-single'   => _x( 'Hide Single Image', 'System Tags Defaults', 'gtheme' ),
+			'disable-like-button' => _x( 'Disable Like Button', 'System Tags Defaults', 'gtheme' ),
+			'no-front'            => _x( 'Not on FrontPage', 'System Tags Defaults', 'gtheme' ),
+			'no-related'          => _x( 'Not on Related', 'System Tags Defaults', 'gtheme' ),
+			'no-feed'             => _x( 'Not on Feed', 'System Tags Defaults', 'gtheme' ),
+			'insert-people'       => _x( 'Insert People', 'System Tags Defaults', 'gtheme' ),
 		], $extra );
 	}
 
@@ -243,7 +243,7 @@ class gThemeTerms extends gThemeModuleCore
 
 		return [
 			'icon'  => 'admin-generic',
-			'title' => _x( 'System Tags', 'System Tag Tax Labels: Menu Name', GTHEME_TEXTDOMAIN ),
+			'title' => _x( 'System Tags', 'System Tag Tax Labels: Menu Name', 'gtheme' ),
 			'edit'  => NULL,
 		];
 	}
@@ -272,12 +272,13 @@ class gThemeTerms extends gThemeModuleCore
 
 		if ( empty( $primaries ) ) {
 
-			$desc = _x( 'Currently no primary terms are defined.', 'Modules: Terms', GTHEME_TEXTDOMAIN );
+			$desc = _x( 'Currently no primary terms are defined.', 'Modules: Terms', 'gtheme' );
 
 		} else {
 
 			$list = gThemeTaxonomy::listTerms( $taxonomy, NULL, [ 'include' => $primaries ] );
-			$desc = sprintf( _x( 'Primary Terms are: %s', 'Modules: Terms', GTHEME_TEXTDOMAIN ), gThemeUtilities::joinItems( $list ) );
+			/* translators: %s: terms list */
+			$desc = sprintf( _x( 'Primary Terms are: %s', 'Modules: Terms', 'gtheme' ), gThemeUtilities::joinItems( $list ) );
 		}
 
 		echo '<br />';
@@ -296,7 +297,7 @@ class gThemeTerms extends gThemeModuleCore
 			return $name;
 
 		if ( in_array( $term->term_id, $primaries ) )
-			$name.= sprintf( ' — [%s]', _x( 'Primary Term', 'Modules: Terms', GTHEME_TEXTDOMAIN ) );
+			$name.= sprintf( ' — [%s]', _x( 'Primary Term', 'Modules: Terms', 'gtheme' ) );
 
 		return $name;
 	}
@@ -327,16 +328,16 @@ class gThemeTerms extends gThemeModuleCore
 	public function after_system_tags_table( $taxonomy )
 	{
 		$name   = 'gtheme_action';
-		$title  = _x( 'Install Default System Tags', 'Modules: Terms', GTHEME_TEXTDOMAIN );
+		$title  = _x( 'Install Default System Tags', 'Modules: Terms', 'gtheme' );
 		$action = add_query_arg( $name, 'install_systemtags' );
 
 		if ( isset( $_GET[$name] ) ) {
 
 			if ( 'error_systemtags' == $_GET[$name] )
-				$title = _x( 'Error while adding default system tags.', 'Modules: Terms', GTHEME_TEXTDOMAIN );
+				$title = _x( 'Error while adding default system tags.', 'Modules: Terms', 'gtheme' );
 
 			else if ( 'added_systemtags' == $_GET[$name] )
-				$title = _x( 'Default system tags added.', 'Modules: Terms', GTHEME_TEXTDOMAIN );
+				$title = _x( 'Default system tags added.', 'Modules: Terms', 'gtheme' );
 		}
 
 		echo '<div class="form-field"><p>';
@@ -349,7 +350,7 @@ class gThemeTerms extends gThemeModuleCore
 		if ( $taxonomy != GTHEME_SYSTEMTAGS )
 			return $actions;
 
-		return array_merge( $actions, [ 'empty_lastmonth' => _x( 'Empty Before Last Month', 'Modules: Terms', GTHEME_TEXTDOMAIN ) ] );
+		return array_merge( $actions, [ 'empty_lastmonth' => _x( 'Empty Before Last Month', 'Modules: Terms', 'gtheme' ) ] );
 	}
 
 	public function taxonomy_bulk_callback( $callback, $action, $taxonomy )
@@ -406,7 +407,7 @@ class gThemeTerms extends gThemeModuleCore
 			'from'       => 'post',
 			'to'         => 'post',
 			'reciprocal' => TRUE,
-			'title'      => __( 'Connected Posts', GTHEME_TEXTDOMAIN ),
+			'title'      => __( 'Connected Posts', 'gtheme' ),
 		] );
 	}
 

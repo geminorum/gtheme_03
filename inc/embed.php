@@ -52,7 +52,7 @@ class gThemeEmbed extends gThemeModuleCore
 	{
 		$data['provider_name'] = gThemeOptions::info( 'frontpage_title', get_bloginfo( 'name' ) );
 
-		$data['title'] = gThemeContent::getHeader( $post->post_title, gThemeOptions::info( 'embed_sep', _x( '; ', 'Options: Separator: Embed', GTHEME_TEXTDOMAIN ) ), FALSE );
+		$data['title'] = gThemeContent::getHeader( $post->post_title, gThemeOptions::info( 'embed_sep', _x( '; ', 'Options: Separator: Embed', 'gtheme' ) ), FALSE );
 
 		$data['author_name'] = strip_tags( gThemeContent::byline( $post, '', '', FALSE ) );
 		$data['author_url']  = $data['provider_url']; // FIXME: WTF?!

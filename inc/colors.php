@@ -27,27 +27,27 @@ class gThemeColors extends gThemeModuleCore
 	{
 		return array_merge( [
 			[
-				'name'  => _x( 'Gray Darker', 'Editor Custom Palette', GTHEME_TEXTDOMAIN ),
+				'name'  => _x( 'Gray Darker', 'Editor Custom Palette', 'gtheme' ),
 				'slug'  => 'gray-darker',
 				'color' => '#222',
 			],
 			[
-				'name'  => _x( 'Gray Dark', 'Editor Custom Palette', GTHEME_TEXTDOMAIN ),
+				'name'  => _x( 'Gray Dark', 'Editor Custom Palette', 'gtheme' ),
 				'slug'  => 'gray-dark',
 				'color' => '#333',
 			],
 			[
-				'name'  => _x( 'Gray', 'Editor Custom Palette', GTHEME_TEXTDOMAIN ),
+				'name'  => _x( 'Gray', 'Editor Custom Palette', 'gtheme' ),
 				'slug'  => 'gray',
 				'color' => '#555',
 			],
 			[
-				'name'  => _x( 'Gray Light', 'Editor Custom Palette', GTHEME_TEXTDOMAIN ),
+				'name'  => _x( 'Gray Light', 'Editor Custom Palette', 'gtheme' ),
 				'slug'  => 'gray-light',
 				'color' => '#777',
 			],
 			[
-				'name'  => _x( 'Gray Lighter', 'Editor Custom Palette', GTHEME_TEXTDOMAIN ),
+				'name'  => _x( 'Gray Lighter', 'Editor Custom Palette', 'gtheme' ),
 				'slug'  => 'gray-lighter',
 				'color' => '#eee',
 			],
@@ -66,7 +66,7 @@ class gThemeColors extends gThemeModuleCore
 
 		if ( $accent = self::getAccentColorDefault() ) {
 			$defaults[] = [
-	 			'name'  => esc_html_x( 'Accent Color', 'Colors', GTHEME_TEXTDOMAIN ),
+	 			'name'  => esc_html_x( 'Accent Color', 'Colors', 'gtheme' ),
 	 			'slug'  => GTHEME.'-accent',
 	 			'color' => esc_html( get_theme_mod( 'accent_color', $accent ) ),
 	 		];
@@ -109,8 +109,8 @@ class gThemeColors extends gThemeModuleCore
 		$wp_customize->add_control( new \WP_Customize_Color_Control(
 			$wp_customize, 'accent_color', [
 				'section'     => 'colors',
-				'label'       => esc_html_x( 'Accent Color', 'Colors', GTHEME_TEXTDOMAIN ),
-				'description' => esc_html_x( 'Add a color to use within the block editor color palette.', 'Colors', GTHEME_TEXTDOMAIN ),
+				'label'       => esc_html_x( 'Accent Color', 'Colors', 'gtheme' ),
+				'description' => esc_html_x( 'Add a color to use within the block editor color palette.', 'Colors', 'gtheme' ),
 		] ) );
 	}
 }

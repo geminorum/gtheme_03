@@ -8,8 +8,8 @@ class gThemeWidgetSearchTerms extends gThemeWidget
 		return [
 			'name'  => 'search_terms',
 			'class' => 'search-terms',
-			'title' => _x( 'Theme: Search Terms', 'Widget: Title', GTHEME_TEXTDOMAIN ),
-			'desc'  => _x( 'Displays the results of current search criteria on selected taxonomies.', 'Widget: Description', GTHEME_TEXTDOMAIN ),
+			'title' => _x( 'Theme: Search Terms', 'Widget: Title', 'gtheme' ),
+			'desc'  => _x( 'Displays the results of current search criteria on selected taxonomies.', 'Widget: Description', 'gtheme' ),
 		];
 	}
 
@@ -83,7 +83,7 @@ class gThemeWidgetSearchTerms extends gThemeWidget
 
 		$this->form_taxonomy( $instance );
 
-		$this->form_checkbox( $instance, FALSE, 'strip_hashtags', _x( 'Strip Hash-tags', 'Widget: Setting', GTHEME_TEXTDOMAIN ) );
+		$this->form_checkbox( $instance, FALSE, 'strip_hashtags', _x( 'Strip Hash-tags', 'Widget: Setting', 'gtheme' ) );
 
 		$this->after_form( $instance );
 	}

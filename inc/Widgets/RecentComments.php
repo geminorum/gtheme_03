@@ -8,8 +8,8 @@ class gThemeWidgetRecentComments extends gThemeWidget
 		return [
 			'name'  => 'recent_comments',
 			'class' => 'recent-comments',
-			'title' => _x( 'Theme: Recent Comments', 'Widget: Title', GTHEME_TEXTDOMAIN ),
-			'desc'  => _x( 'Displays the most recent comments.', 'Widget: Description', GTHEME_TEXTDOMAIN ),
+			'title' => _x( 'Theme: Recent Comments', 'Widget: Title', 'gtheme' ),
+			'desc'  => _x( 'Displays the most recent comments.', 'Widget: Description', 'gtheme' ),
 			'flush' => [
 				'comment_post',
 				'edit_comment',

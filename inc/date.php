@@ -26,7 +26,7 @@ class gThemeDate extends gThemeModuleCore
 			'after'     => '',
 			'context'   => 'single',
 			'prefix'    => 'entry',
-			'format'    => gThemeOptions::info( 'date_format_byline', _x( 'j M Y', 'Options: Defaults: Date Format: Byline', GTHEME_TEXTDOMAIN ) ),
+			'format'    => gThemeOptions::info( 'date_format_byline', _x( 'j M Y', 'Options: Defaults: Date Format: Byline', 'gtheme' ) ),
 			'template'  => gThemeOptions::info( 'template_the_date', '<span class="date"><a href="%1$s"%2$s><time class="%5$s-time do-timeago" datetime="%3$s">%4$s</time></a></span>' ),
 			'shortlink' => TRUE,
 			'title'     => NULL,

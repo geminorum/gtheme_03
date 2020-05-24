@@ -299,7 +299,8 @@ class gThemeImage extends gThemeModuleCore
 
 				$id      = 'attachments-'.$post->ID.'-gtheme-size-'.$name;
 				$checked = ( isset( $images[$name] ) && $images[$name] == $post->ID ) ? ' checked="checked"' : '';
-				$label   = sprintf( _x( '%1$s <small>(%2$s&times;%3$s)</small>', 'Image Module: Media Tag Checkbox Label', GTHEME_TEXTDOMAIN ),
+				/* translators: %1$s: size name, %2$s: size height, %3$s: size width */
+				$label   = sprintf( _x( '%1$s <small>(%2$s&times;%3$s)</small>', 'Image Module: Media Tag Checkbox Label', 'gtheme' ),
 					$size['n'], number_format_i18n( $size['h'] ), number_format_i18n( $size['w'] ) );
 
 				$html.= '<li><label for="'.$id.'"><input style="width:10px;vertical-align:bottom;"'
@@ -314,7 +315,7 @@ class gThemeImage extends gThemeModuleCore
 					'<input type="hidden" name="attachments['.$post->ID.']" value="dummy" />';
 
 			$fields['gtheme_image_sizes'] = [
-				'label' => __( 'Media Tags', GTHEME_TEXTDOMAIN ),
+				'label' => __( 'Media Tags', 'gtheme' ),
 				'input' => 'html',
 				'html'  => $html,
 			];
@@ -384,7 +385,7 @@ class gThemeImage extends gThemeModuleCore
 		$dropdown = wp_dropdown_categories( [
 			'taxonomy'         => gThemeOptions::info( 'support_images_terms_taxonomy', 'category' ),
 			'selected'         => ( FALSE === $selected ? 0 : $selected ),
-			'show_option_none' => __( '&mdash; Select a Term &mdash;', GTHEME_TEXTDOMAIN ),
+			'show_option_none' => __( '&mdash; Select a Term &mdash;', 'gtheme' ),
 			'name'             => 'attachments['.$post->ID.'][gtheme_images_terms]',
 			'id'               => $id,
 			'show_count'       => 0,
@@ -394,7 +395,7 @@ class gThemeImage extends gThemeModuleCore
 		] );
 
 		$form_fields['gtheme_images_terms']['tr'] = '<tr><th class="label" valign="top" scope="row"><label for="'.$id.'"><span>'
-			.__( 'Assign for', GTHEME_TEXTDOMAIN ).'</span></label></th><td class="field">'
+			.__( 'Assign for', 'gtheme' ).'</span></label></th><td class="field">'
 			.$dropdown.'</td></tr>';
 
 		return $form_fields;
@@ -686,7 +687,8 @@ class gThemeImage extends gThemeModuleCore
 					$args['link'] = get_permalink( $args['post_id'] );
 
 					if ( is_null( $args['link_label'] ) )
-						$args['link_label'] = sprintf( _x( 'Read more about %s', 'Modules: Image: Link Label', GTHEME_TEXTDOMAIN ), get_the_title( $args['post_id'] ) );
+						/* translators: %s: post title */
+						$args['link_label'] = sprintf( _x( 'Read more about %s', 'Modules: Image: Link Label', 'gtheme' ), get_the_title( $args['post_id'] ) );
 
 				} else if ( 'attachment' == $args['link'] ) {
 

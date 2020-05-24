@@ -34,10 +34,10 @@ class gThemeSearch extends gThemeModuleCore
 
 		$html = '<form role="search" method="get" class="form search-form -simple search-form-'.$context.' -print-hide" action="'.esc_url( self::getAction() ).'">';
 
-			$html.= '<span class="screen-reader-text sr-only"><label>'._x( 'Search for:', 'label', GTHEME_TEXTDOMAIN ).'</label></span>';
+			$html.= '<span class="screen-reader-text sr-only"><label>'._x( 'Search for:', 'label', 'gtheme' ).'</label></span>';
 
-			$html.= '<input type="search" class="form-control search-field" placeholder="'.esc_attr_x( 'Search &hellip;', 'placeholder', GTHEME_TEXTDOMAIN );
-			$html.= '" value="'.$query.'" name="'.self::getKey().'" title="'.esc_attr_x( 'Search for:', 'label', GTHEME_TEXTDOMAIN ).'" />';
+			$html.= '<input type="search" class="form-control search-field" placeholder="'.esc_attr_x( 'Search &hellip;', 'placeholder', 'gtheme' );
+			$html.= '" value="'.$query.'" name="'.self::getKey().'" title="'.esc_attr_x( 'Search for:', 'label', 'gtheme' ).'" />';
 
 			$html.= $extra;
 
@@ -52,11 +52,11 @@ class gThemeSearch extends gThemeModuleCore
 	public static function formExpanding( $placeholder = NULL, $class = '' )
 	{
 		if ( is_null( $placeholder ) )
-			$placeholder = __( 'Search &hellip;', GTHEME_TEXTDOMAIN );
+			$placeholder = __( 'Search &hellip;', 'gtheme' );
 
 		echo '<form class="form search-form -expanding '.$class.'" role="search" method="get" action="'.esc_url( self::getAction() ).'">';
 		echo '<div class="form-group">';
-			echo '<label for="search" class="screen-reader-text sr-only">'._x( 'Search for:', 'label', GTHEME_TEXTDOMAIN ).'</label>';
+			echo '<label for="search" class="screen-reader-text sr-only">'._x( 'Search for:', 'label', 'gtheme' ).'</label>';
 			echo '<input id="search" type="text" class="form-control" name="'.self::getKey().'" value="'.esc_attr( self::query() ).'"';
 			if ( $placeholder )
 				echo ' placeholder="'.$placeholder.'" ';
@@ -73,18 +73,18 @@ class gThemeSearch extends gThemeModuleCore
 		$html.= $context.' -print-hide" action="'.esc_url( self::getAction() ).'">';
 
 			$html.= '<span class="screen-reader-text sr-only"><label>';
-			$html.= _x( 'Search for:', 'label', GTHEME_TEXTDOMAIN ).'</label></span>';
+			$html.= _x( 'Search for:', 'label', 'gtheme' ).'</label></span>';
 
 			$html.= '<div class="input-group">';
 
 				$html.= '<input type="search" class="form-control search-field" placeholder="';
-				$html.= esc_attr_x( 'Search &hellip;', 'placeholder', GTHEME_TEXTDOMAIN );
+				$html.= esc_attr_x( 'Search &hellip;', 'placeholder', 'gtheme' );
 				$html.= '" value="'.$query.'" name="'.self::getKey().'" title="';
-				$html.= esc_attr_x( 'Search for:', 'label', GTHEME_TEXTDOMAIN ).'" />';
+				$html.= esc_attr_x( 'Search for:', 'label', 'gtheme' ).'" />';
 
 				$html.= '<span class="input-group-btn input-group-append">';
 					$html.= '<button type="submit" class="btn btn-default btn-outline-secondary search-submit" />';
-					$html.= _x( 'Search', 'submit button', GTHEME_TEXTDOMAIN ).'</button>';
+					$html.= _x( 'Search', 'submit button', 'gtheme' ).'</button>';
 				$html.= '</span>';
 
 			$html.= '</div>';
@@ -104,7 +104,7 @@ class gThemeSearch extends gThemeModuleCore
 			$html.= '<div class="input-group">';
 
 			$html.= '<label for="search-terms" class="accessibly-hidden screen-reader-text sr-only">';
-				$html.= _x( 'Search for:', 'buddypress: label', GTHEME_TEXTDOMAIN );
+				$html.= _x( 'Search for:', 'buddypress: label', 'gtheme' );
 			$html.= '</label>';
 
 			$html.= '<input type="text" id="search-terms" class="form-control" name="search-terms" value="';
@@ -112,13 +112,13 @@ class gThemeSearch extends gThemeModuleCore
 			// $html.= esc_attr( self::query( 'search-terms' ) );
 			$html.= esc_attr( get_search_query() );
 
-			$html.= '" placeholder="'.esc_attr_x( 'Search &hellip;', 'buddypress: placeholder', GTHEME_TEXTDOMAIN ).'" />';
+			$html.= '" placeholder="'.esc_attr_x( 'Search &hellip;', 'buddypress: placeholder', 'gtheme' ).'" />';
 
 			$html.= bp_search_form_type_select();
 
 			$html.= '<span class="input-group-btn input-group-append">';
 				$html.= '<button type="submit" class="btn btn-default" name="search-submit" id="search-submit">';
-				$html.= _x( 'Search', 'buddypress: submit button', GTHEME_TEXTDOMAIN );
+				$html.= _x( 'Search', 'buddypress: submit button', 'gtheme' );
 			$html.= '</button></span></div>';
 
 			$html.= wp_nonce_field( 'bp_search_form', '_wpnonce', TRUE, FALSE );

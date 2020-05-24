@@ -140,7 +140,7 @@ final class gThemeCore
 
 	public function after_setup_theme()
 	{
-		load_theme_textdomain( GTHEME_TEXTDOMAIN, GTHEME_DIR.'/languages' );
+		load_theme_textdomain( 'gtheme', GTHEME_DIR.'/languages' );
 
 		$this->init_modules( $this->modules, gThemeOptions::info( 'module_args', [] ) );
 	}

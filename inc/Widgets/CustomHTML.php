@@ -8,8 +8,8 @@ class gThemeWidgetCustomHTML extends gThemeWidget
 		return [
 			'name'  => 'custom_html',
 			'class' => 'custom-html',
-			'title' => _x( 'Theme: Custom HTML', 'Widget: Title', GTHEME_TEXTDOMAIN ),
-			'desc'  => _x( 'Displays arbitrary HTML code with support for shortcodes and embeds.', 'Widget: Description', GTHEME_TEXTDOMAIN ),
+			'title' => _x( 'Theme: Custom HTML', 'Widget: Title', 'gtheme' ),
+			'desc'  => _x( 'Displays arbitrary HTML code with support for shortcodes and embeds.', 'Widget: Description', 'gtheme' ),
 		];
 	}
 
@@ -86,11 +86,11 @@ class gThemeWidgetCustomHTML extends gThemeWidget
 
 		echo '<div class="-group">';
 
-		$this->form_checkbox( $instance, FALSE, 'embeds', _x( 'Process Embeds', 'Widget: Setting', GTHEME_TEXTDOMAIN ) );
-		$this->form_checkbox( $instance, FALSE, 'shortcodes', _x( 'Process Shortcodes', 'Widget: Setting', GTHEME_TEXTDOMAIN ) );
-		$this->form_checkbox( $instance, FALSE, 'filters', _x( 'Process Filters', 'Widget: Setting', GTHEME_TEXTDOMAIN ) );
-		$this->form_checkbox( $instance, FALSE, 'legacy', _x( 'Process Filters (Legacy)', 'Widget: Setting', GTHEME_TEXTDOMAIN ) );
-		$this->form_checkbox( $instance, FALSE, 'autop', _x( 'Automatic Paragraphs', 'Widget: Setting', GTHEME_TEXTDOMAIN ) );
+		$this->form_checkbox( $instance, FALSE, 'embeds', _x( 'Process Embeds', 'Widget: Setting', 'gtheme' ) );
+		$this->form_checkbox( $instance, FALSE, 'shortcodes', _x( 'Process Shortcodes', 'Widget: Setting', 'gtheme' ) );
+		$this->form_checkbox( $instance, FALSE, 'filters', _x( 'Process Filters', 'Widget: Setting', 'gtheme' ) );
+		$this->form_checkbox( $instance, FALSE, 'legacy', _x( 'Process Filters (Legacy)', 'Widget: Setting', 'gtheme' ) );
+		$this->form_checkbox( $instance, FALSE, 'autop', _x( 'Automatic Paragraphs', 'Widget: Setting', 'gtheme' ) );
 
 		echo '</div>';
 

@@ -21,13 +21,13 @@ class gThemeCounts extends gThemeModuleCore
 	{
 		return array_merge( [
 			'dashboard' => [
-				'title' => _x( 'Dashboard', 'Modules: Counts', GTHEME_TEXTDOMAIN ),
-				'desc'  => _x( 'Dashboard Count', 'Modules: Counts', GTHEME_TEXTDOMAIN ),
+				'title' => _x( 'Dashboard', 'Modules: Counts', 'gtheme' ),
+				'desc'  => _x( 'Dashboard Count', 'Modules: Counts', 'gtheme' ),
 				'def'   => 5,
 			],
 			'latest' => [
-				'title' => _x( 'Latest Posts', 'Modules: Counts', GTHEME_TEXTDOMAIN ),
-				'desc'  => _x( 'Latest Posts Count', 'Modules: Counts', GTHEME_TEXTDOMAIN ),
+				'title' => _x( 'Latest Posts', 'Modules: Counts', 'gtheme' ),
+				'desc'  => _x( 'Latest Posts Count', 'Modules: Counts', 'gtheme' ),
 				'def'   => 5,
 			],
 		], $extra );
@@ -91,7 +91,7 @@ class gThemeCounts extends gThemeModuleCore
 
 	public function subs( $subs )
 	{
-		return array_merge( $subs, [ 'counts' => _x( 'Counts', 'Modules: Menu Name', GTHEME_TEXTDOMAIN ) ] );
+		return array_merge( $subs, [ 'counts' => _x( 'Counts', 'Modules: Menu Name', 'gtheme' ) ] );
 	}
 
 	public function settings_sub_html( $uri, $sub = 'general' )
@@ -100,7 +100,7 @@ class gThemeCounts extends gThemeModuleCore
 		$options  = gThemeOptions::getOption( 'counts', [] );
 
 		echo '<form method="post" action="">';
-			echo '<h3>'._x( 'Item Counts', 'Modules: Counts', GTHEME_TEXTDOMAIN ).'</h3>';
+			echo '<h3>'._x( 'Item Counts', 'Modules: Counts', 'gtheme' ).'</h3>';
 			echo '<table class="form-table">';
 
 				foreach ( $defaults as $count => $default ) {

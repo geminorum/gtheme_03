@@ -8,8 +8,8 @@ class gThemeWidgetTheTerm extends gThemeWidget
 		return [
 			'name'  => 'the_term',
 			'class' => 'the-term',
-			'title' => _x( 'Theme: The Term', 'Widget: Title', GTHEME_TEXTDOMAIN ),
-			'desc'  => _x( 'Displays the current term info based on the query.', 'Widget: Description', GTHEME_TEXTDOMAIN ),
+			'title' => _x( 'Theme: The Term', 'Widget: Title', 'gtheme' ),
+			'desc'  => _x( 'Displays the current term info based on the query.', 'Widget: Description', 'gtheme' ),
 		];
 	}
 
@@ -135,11 +135,11 @@ class gThemeWidgetTheTerm extends gThemeWidget
 		$this->form_title_link( $instance );
 		$this->form_class( $instance );
 		$this->form_taxonomy( $instance );
-		gThemeHTML::desc( _x( '&ldquo;All taxonomies option&rdquo; only works on archive pages.', 'Widget: Setting', GTHEME_TEXTDOMAIN ) );
+		gThemeHTML::desc( _x( '&ldquo;All taxonomies option&rdquo; only works on archive pages.', 'Widget: Setting', 'gtheme' ) );
 
-		$this->form_checkbox( $instance, TRUE, 'meta_image', _x( 'Display Meta Image', 'Widget: Setting', GTHEME_TEXTDOMAIN ) );
-		$this->form_checkbox( $instance, TRUE, 'hide_no_desc', _x( 'Hide if no Description', 'Widget: Setting', GTHEME_TEXTDOMAIN ) );
-		$this->form_checkbox( $instance, TRUE, 'content_actions', _x( 'Fire Before & After Actions', 'Widget: Setting', GTHEME_TEXTDOMAIN ) );
+		$this->form_checkbox( $instance, TRUE, 'meta_image', _x( 'Display Meta Image', 'Widget: Setting', 'gtheme' ) );
+		$this->form_checkbox( $instance, TRUE, 'hide_no_desc', _x( 'Hide if no Description', 'Widget: Setting', 'gtheme' ) );
+		$this->form_checkbox( $instance, TRUE, 'content_actions', _x( 'Fire Before & After Actions', 'Widget: Setting', 'gtheme' ) );
 
 		$this->after_form( $instance );
 	}

@@ -33,9 +33,9 @@ class gThemeMenu extends gThemeModuleCore
 	public static function defaults( $extra = [] )
 	{
 		return array_merge( [
-			'primary'   => _x( 'Primary Navigation', 'Modules: Menu: Defaults', GTHEME_TEXTDOMAIN ),
-			'secondary' => _x( 'Secondary Navigation', 'Modules: Menu: Defaults', GTHEME_TEXTDOMAIN ),
-			'tertiary'  => _x( 'Tertiary Navigation', 'Modules: Menu: Defaults', GTHEME_TEXTDOMAIN ),
+			'primary'   => _x( 'Primary Navigation', 'Modules: Menu: Defaults', 'gtheme' ),
+			'secondary' => _x( 'Secondary Navigation', 'Modules: Menu: Defaults', 'gtheme' ),
+			'tertiary'  => _x( 'Tertiary Navigation', 'Modules: Menu: Defaults', 'gtheme' ),
 		], $extra );
 	}
 

@@ -22,10 +22,10 @@ class gThemeSideBar extends gThemeModuleCore
 	public static function defaults( $extra = [] )
 	{
 		return array_merge( [
-			'side-index'      => _x( 'Index: Side', 'Modules: Sidebar: Defaults', GTHEME_TEXTDOMAIN ),
-			'side-singular'   => _x( 'Singular: Side', 'Modules: Sidebar: Defaults', GTHEME_TEXTDOMAIN ),
-			'side-systempage' => _x( 'System Page: Side', 'Modules: Sidebar: Defaults', GTHEME_TEXTDOMAIN ),
-			'after-singular'  => _x( 'Singular: After Entry', 'Modules: Sidebar: Defaults', GTHEME_TEXTDOMAIN ),
+			'side-index'      => _x( 'Index: Side', 'Modules: Sidebar: Defaults', 'gtheme' ),
+			'side-singular'   => _x( 'Singular: Side', 'Modules: Sidebar: Defaults', 'gtheme' ),
+			'side-systempage' => _x( 'System Page: Side', 'Modules: Sidebar: Defaults', 'gtheme' ),
+			'after-singular'  => _x( 'Singular: After Entry', 'Modules: Sidebar: Defaults', 'gtheme' ),
 		], $extra );
 	}
 

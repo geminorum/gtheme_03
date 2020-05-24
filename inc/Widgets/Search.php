@@ -8,8 +8,8 @@ class gThemeWidgetSearch extends gThemeWidget
 		return [
 			'name'  => 'search',
 			'class' => 'search',
-			'title' => _x( 'Theme: Search', 'Widget: Title', GTHEME_TEXTDOMAIN ),
-			'desc'  => _x( 'Displays search form.', 'Widget: Description', GTHEME_TEXTDOMAIN ),
+			'title' => _x( 'Theme: Search', 'Widget: Title', 'gtheme' ),
+			'desc'  => _x( 'Displays search form.', 'Widget: Description', 'gtheme' ),
 		];
 	}
 

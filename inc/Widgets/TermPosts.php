@@ -8,8 +8,8 @@ class gThemeWidgetTermPosts extends gThemeWidget
 		return [
 			'name'  => 'term_posts',
 			'class' => 'term-posts',
-			'title' => _x( 'Theme: Term Posts', 'Widget: Title', GTHEME_TEXTDOMAIN ),
-			'desc'  => _x( 'Displays the latest posts from a single term.', 'Widget: Description', GTHEME_TEXTDOMAIN ),
+			'title' => _x( 'Theme: Term Posts', 'Widget: Title', 'gtheme' ),
+			'desc'  => _x( 'Displays the latest posts from a single term.', 'Widget: Description', 'gtheme' ),
 			'flush' => [
 				'save_post',
 				'deleted_post',

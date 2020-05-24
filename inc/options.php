@@ -1,4 +1,4 @@
-<?php defined( 'ABSPATH' ) or die( header( 'HTTP/1.0 403 Forbidden' ) );
+'gtheme'<?php defined( 'ABSPATH' ) or die( header( 'HTTP/1.0 403 Forbidden' ) );
 
 class gThemeOptions extends gThemeModuleCore
 {
@@ -9,15 +9,15 @@ class gThemeOptions extends gThemeModuleCore
 
 		$defaults = [
 			'name'      => 'gtheme',
-			'title'     => _x( 'gTheme', 'Theme Title', GTHEME_TEXTDOMAIN ),
+			'title'     => _x( 'gTheme', 'Theme Title', 'gtheme' ),
 			'sub_title' => FALSE, // 'gTheme Child',
 
 			'blog_name'  => $blog_name,
-			'logo_title' => _x( 'Home', 'Logo Title', GTHEME_TEXTDOMAIN ),
+			'logo_title' => _x( 'Home', 'Logo Title', 'gtheme' ),
 
 			// SETTINGS PAGE
-			// 'settings_title' => _x( 'gTheme Settings', 'Admin Settings Page Title', GTHEME_TEXTDOMAIN ),
-			// 'menu_title'     => _x( 'Theme Settings', 'Admin Menu Title', GTHEME_TEXTDOMAIN ),
+			// 'settings_title' => _x( 'gTheme Settings', 'Admin Settings Page Title', 'gtheme' ),
+			// 'menu_title'     => _x( 'Theme Settings', 'Admin Menu Title', 'gtheme' ),
 			// 'settings_page'  => 'gtheme-theme',
 
 			// ACCESSES
@@ -36,7 +36,7 @@ class gThemeOptions extends gThemeModuleCore
 				// 'bootstrap-4'     => TRUE,
 			],
 
-			// 'theme_groups' => FALSE, // [ 'main' => _x( 'Main' 'Options: Theme Group', GTHEME_TEXTDOMAIN ) ],
+			// 'theme_groups' => FALSE, // [ 'main' => _x( 'Main' 'Options: Theme Group', 'gtheme' ) ],
 			'module_args'  => [],
 
 			// MENUS
@@ -67,7 +67,7 @@ class gThemeOptions extends gThemeModuleCore
 
 			// PAGES API
 			// 'pages_list'     => gThemePages::defaults(),
-			// 'pages_pre_text' => _x( '[ This page is being completed ]', 'Options: Page Pre-Text', GTHEME_TEXTDOMAIN ),
+			// 'pages_pre_text' => _x( '[ This page is being completed ]', 'Options: Page Pre-Text', 'gtheme' ),
 			// 'pages_nav_menu' => 'primary',
 
 			// PRIMARY TERMS API
@@ -75,25 +75,25 @@ class gThemeOptions extends gThemeModuleCore
 			// 'primary_terms_taxonomy' => 'category',
 			// 'primary_terms_defaults' => [],
 
-			'default_sep'        => ' ', // _x( ' ', 'Options: Separator: Default', GTHEME_TEXTDOMAIN ),
-			// 'title_sep'          => _x( ' &raquo; ', 'Options: Separator: Title', GTHEME_TEXTDOMAIN ),
-			// 'nav_sep'            => _x( ' &laquo; ', 'Options: Separator: Nav', GTHEME_TEXTDOMAIN ),
-			// 'byline_sep'         => _x( ' | ', 'Options: Separator: Byline', GTHEME_TEXTDOMAIN ),
-			// 'term_sep'           => _x( ', ', 'Options: Separator: Term', GTHEME_TEXTDOMAIN ),
-			// 'embed_sep'          => _x( '; ', 'Options: Separator: Embed', GTHEME_TEXTDOMAIN ),
-			// 'feed_sep'           => _x( '; ', 'Options: Separator: Feed', GTHEME_TEXTDOMAIN ),
-			// 'comment_action_sep' => _x( ' | ', 'Options: Separator: Comment Action', GTHEME_TEXTDOMAIN ),
+			'default_sep'        => ' ', // _x( ' ', 'Options: Separator: Default', 'gtheme' ),
+			// 'title_sep'          => _x( ' &raquo; ', 'Options: Separator: Title', 'gtheme' ),
+			// 'nav_sep'            => _x( ' &laquo; ', 'Options: Separator: Nav', 'gtheme' ),
+			// 'byline_sep'         => _x( ' | ', 'Options: Separator: Byline', 'gtheme' ),
+			// 'term_sep'           => _x( ', ', 'Options: Separator: Term', 'gtheme' ),
+			// 'embed_sep'          => _x( '; ', 'Options: Separator: Embed', 'gtheme' ),
+			// 'feed_sep'           => _x( '; ', 'Options: Separator: Feed', 'gtheme' ),
+			// 'comment_action_sep' => _x( ' | ', 'Options: Separator: Comment Action', 'gtheme' ),
 
-			// 'text_size_increase' => _x( '[ A+ ]', 'Options: Text Size Increase', GTHEME_TEXTDOMAIN ),
-			// 'text_size_decrease' => _x( '[ A- ]', 'Options: Text Size Decrease', GTHEME_TEXTDOMAIN ),
-			// 'text_size_sep'      => _x( ' / ', 'Options: Text Size Sep', GTHEME_TEXTDOMAIN ),
+			// 'text_size_increase' => _x( '[ A+ ]', 'Options: Text Size Increase', 'gtheme' ),
+			// 'text_size_decrease' => _x( '[ A- ]', 'Options: Text Size Decrease', 'gtheme' ),
+			// 'text_size_sep'      => _x( ' / ', 'Options: Text Size Sep', 'gtheme' ),
 
-			// 'text_justify'     => _x( '[ Ju ]', 'Options: Text Justify', GTHEME_TEXTDOMAIN ),
-			// 'text_unjustify'   => _x( '[ uJ ]', 'Options: Text Unjustify', GTHEME_TEXTDOMAIN ),
-			// 'text_justify_sep' => _x( ' / ', 'Options: Text Justify Sep', GTHEME_TEXTDOMAIN ),
+			// 'text_justify'     => _x( '[ Ju ]', 'Options: Text Justify', 'gtheme' ),
+			// 'text_unjustify'   => _x( '[ uJ ]', 'Options: Text Unjustify', 'gtheme' ),
+			// 'text_justify_sep' => _x( ' / ', 'Options: Text Justify Sep', 'gtheme' ),
 
-			'source_before' => _x( 'Source: ', 'Options: Source Before', GTHEME_TEXTDOMAIN ),
-			'reflist_title' => sprintf( '<h4 class="-title" id="footnotes">%s</h4>', _x( 'Footnotes', 'Options: Reflist Title', GTHEME_TEXTDOMAIN ) ),
+			'source_before' => _x( 'Source: ', 'Options: Source Before', 'gtheme' ),
+			'reflist_title' => sprintf( '<h4 class="-title" id="footnotes">%s</h4>', _x( 'Footnotes', 'Options: Reflist Title', 'gtheme' ) ),
 
 			'excerpt_length' => 40,
 			'excerpt_more'   => '&nbsp;&hellip;', // FALSE: empty / TRUE: continueReading()
@@ -127,7 +127,7 @@ class gThemeOptions extends gThemeModuleCore
 			'frontpage_desc'  => self::getOption( 'frontpage_desc', get_bloginfo( 'description', 'display' ) ), // FALSE to disable
 
 			// 'default_image_src' => FALSE, // GTHEME_URL.'/images/document-large.png', // FIXME: MUST DEP
-			'copyright'         => self::getOption( 'copyright', __( '&copy; All rights reserved.', GTHEME_TEXTDOMAIN ) ),
+			'copyright'         => self::getOption( 'copyright', __( '&copy; All rights reserved.', 'gtheme' ) ),
 			// 'copyright_append_site_modified' => TRUE,
 			// 'copyright_link_site_modified'   => '/archives/latest',
 
@@ -144,8 +144,8 @@ class gThemeOptions extends gThemeModuleCore
 			// 'comment_form_strings'    => [],
 			// 'comment_nav_strings'     => [],
 			// 'comment_action_strings'  => [],
-			// 'comments_closed'         => __( 'Comments are closed.', GTHEME_TEXTDOMAIN ), // set FALSE to hide the text
-			// 'comment_awaiting'        => __( 'Your comment is awaiting moderation.', GTHEME_TEXTDOMAIN ), // set FALSE to hide the text
+			// 'comments_closed'         => __( 'Comments are closed.', 'gtheme' ), // set FALSE to hide the text
+			// 'comment_awaiting'        => __( 'Your comment is awaiting moderation.', 'gtheme' ), // set FALSE to hide the text
 
 			// AVATARS
 			// 'comment_avatar_size' => 75, // wp core is 32
@@ -157,7 +157,7 @@ class gThemeOptions extends gThemeModuleCore
 			// 'system_tags_defaults' => gThemeTerms::defaults(),
 
 			// EDITOR
-			// 'default_content'   => _x( '[content not available yet]', 'Editor Default Content', GTHEME_TEXTDOMAIN ),
+			// 'default_content'   => _x( '[content not available yet]', 'Editor Default Content', 'gtheme' ),
 			// 'mce_buttons'       => [], // 'superscript', 'subscript'
 			// 'mce_buttons_2'     => [ 'styleselect' ],
 			// 'mce_style_formats' => gThemeEditor::defaultFormats(),
@@ -204,9 +204,9 @@ class gThemeOptions extends gThemeModuleCore
 
 			// DATE
 			// 'date_posttypes'      => [ 'post' ],
-			// 'date_format_byline'  => _x( 'j M Y', 'Options: Defaults: Date Format: Byline', GTHEME_TEXTDOMAIN ), // used on post by line
-			// 'date_format_content' => _x( 'Y/j/m', 'Options: Defaults: Date Format: Content', GTHEME_TEXTDOMAIN ),  // not used yet!
-			// 'date_format_day'     => _x( 'j M Y', 'Options: Defaults: Date Format: Day', GTHEME_TEXTDOMAIN ), // day navigation
+			// 'date_format_byline'  => _x( 'j M Y', 'Options: Defaults: Date Format: Byline', 'gtheme' ), // used on post by line
+			// 'date_format_content' => _x( 'Y/j/m', 'Options: Defaults: Date Format: Content', 'gtheme' ),  // not used yet!
+			// 'date_format_day'     => _x( 'j M Y', 'Options: Defaults: Date Format: Day', 'gtheme' ), // day navigation
 
 			// PRINT
 			// 'print_posttypes' => [ 'post' ],
@@ -228,7 +228,7 @@ class gThemeOptions extends gThemeModuleCore
 	{
 		return array_merge( [
 			'raw' => self::registerImage( [
-				'name'        => _x( 'Raw', 'Media Tag Titles', GTHEME_TEXTDOMAIN ),
+				'name'        => _x( 'Raw', 'Media Tag Titles', 'gtheme' ),
 				'description' => '',
 				'width'       => 9999,
 				'height'      => 9999,
@@ -239,7 +239,7 @@ class gThemeOptions extends gThemeModuleCore
 				'insert'      => FALSE,
 			] ),
 			'big' => self::registerImage( [
-				'name'        => _x( 'Big', 'Media Tag Titles', GTHEME_TEXTDOMAIN ),
+				'name'        => _x( 'Big', 'Media Tag Titles', 'gtheme' ),
 				'description' => '',
 				'width'       => 1280,
 				'height'      => 720,
@@ -250,7 +250,7 @@ class gThemeOptions extends gThemeModuleCore
 				'insert'      => TRUE,
 			] ),
 			'single' => self::registerImage( [
-				'name'        => _x( 'Single', 'Media Tag Titles', GTHEME_TEXTDOMAIN ),
+				'name'        => _x( 'Single', 'Media Tag Titles', 'gtheme' ),
 				'description' => '',
 				'width'       => 1000,
 				'height'      => 1000,

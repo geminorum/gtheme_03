@@ -8,8 +8,8 @@ class gThemeWidgetChildren extends gThemeWidget
 		return [
 			'name'  => 'children',
 			'class' => 'children',
-			'title' => _x( 'Theme: Children', 'Widget: Title', GTHEME_TEXTDOMAIN ),
-			'desc'  => _x( 'Displays the list of current post\'s children.', 'Widget: Description', GTHEME_TEXTDOMAIN ),
+			'title' => _x( 'Theme: Children', 'Widget: Title', 'gtheme' ),
+			'desc'  => _x( 'Displays the list of current post\'s children.', 'Widget: Description', 'gtheme' ),
 		];
 	}
 

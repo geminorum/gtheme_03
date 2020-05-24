@@ -134,47 +134,47 @@ class gThemeEditor extends gThemeModuleCore
 	{
 		return array_merge( [
 			[
-				'title'   => _x( 'Blockquote', 'Editor Custom Class', GTHEME_TEXTDOMAIN ),
+				'title'   => _x( 'Blockquote', 'Editor Custom Class', 'gtheme' ),
 				'block'   => 'blockquote',
 				'classes' => 'entry-quote',
 			],
 			[
-				'title'    => _x( 'Unordered List', 'Editor Custom Class', GTHEME_TEXTDOMAIN ),
+				'title'    => _x( 'Unordered List', 'Editor Custom Class', 'gtheme' ),
 				'selector' => 'ul', // http://wordpress.stackexchange.com/a/85071
 				'classes'  => 'entry-list',
 			],
 			[
-				'title'    => _x( 'Ordered List', 'Editor Custom Class', GTHEME_TEXTDOMAIN ),
+				'title'    => _x( 'Ordered List', 'Editor Custom Class', 'gtheme' ),
 				'selector' => 'ol',
 				'classes'  => 'entry-list',
 			],
 			[
-				'title'   => _x( 'Note', 'Editor Custom Class', GTHEME_TEXTDOMAIN ),
+				'title'   => _x( 'Note', 'Editor Custom Class', 'gtheme' ),
 				'block'   => 'p',
 				'classes' => 'entry-note',
 			],
 			[
-				'title'   => _x( 'Source', 'Editor Custom Class', GTHEME_TEXTDOMAIN ),
+				'title'   => _x( 'Source', 'Editor Custom Class', 'gtheme' ),
 				'block'   => 'p',
 				'classes' => 'entry-source',
 			],
 			[
-				'title'   => _x( 'Greeting', 'Editor Custom Class', GTHEME_TEXTDOMAIN ),
+				'title'   => _x( 'Greeting', 'Editor Custom Class', 'gtheme' ),
 				'block'   => 'p',
 				'classes' => 'entry-greeting',
 			],
 			[
-				'title'   => _x( 'Signature', 'Editor Custom Class', GTHEME_TEXTDOMAIN ),
+				'title'   => _x( 'Signature', 'Editor Custom Class', 'gtheme' ),
 				'block'   => 'p',
 				'classes' => 'entry-signature',
 			],
 			[
-				'title'   => _x( 'Poem', 'Editor Custom Class', GTHEME_TEXTDOMAIN ),
+				'title'   => _x( 'Poem', 'Editor Custom Class', 'gtheme' ),
 				'block'   => 'p',
 				'classes' => 'wrap-poem',
 			],
 			[
-				'title'   => _x( 'Question', 'Editor Custom Class', GTHEME_TEXTDOMAIN ),
+				'title'   => _x( 'Question', 'Editor Custom Class', 'gtheme' ),
 				'block'   => 'p',
 				'classes' => 'wrap-question',
 			],
@@ -183,7 +183,7 @@ class gThemeEditor extends gThemeModuleCore
 
 	public function default_content( $post_content, $post )
 	{
-		$default = gThemeOptions::info( 'default_content', _x( '[content not available yet]', 'Editor Default Content', GTHEME_TEXTDOMAIN ) );
+		$default = gThemeOptions::info( 'default_content', _x( '[content not available yet]', 'Editor Default Content', 'gtheme' ) );
 		return is_null( $default ) ? $post_content : $default;
 	}
 }

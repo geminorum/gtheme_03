@@ -134,8 +134,9 @@ class gThemeAttachment extends gThemeModuleCore
 			'before'   => '<div class="entry-backlink">',
 			'after'    => '</div>',
 			'id'       => NULL,
-			'template' => _x( '&larr; Back to &ldquo;%s&rdquo;', 'Module: Attachment: Backlink Template', GTHEME_TEXTDOMAIN ),
-			'empty'    => _x( '&larr; Back', 'Module: Attachment: Backlink Empty Title', GTHEME_TEXTDOMAIN ),
+			/* translators: %s: post title */
+			'template' => _x( '&larr; Back to &ldquo;%s&rdquo;', 'Module: Attachment: Backlink Template', 'gtheme' ),
+			'empty'    => _x( '&larr; Back', 'Module: Attachment: Backlink Empty Title', 'gtheme' ),
 			'echo'     => TRUE,
 		], $atts );
 
@@ -170,7 +171,7 @@ class gThemeAttachment extends gThemeModuleCore
 			'id'     => NULL,
 			'title'  => NULL,
 			'class'  => NULL,
-			'link'   => _x( 'Download Attachment', 'Module: Attachment: Link', GTHEME_TEXTDOMAIN ),
+			'link'   => _x( 'Download Attachment', 'Module: Attachment: Link', 'gtheme' ),
 			'echo'   => TRUE,
 		], $atts );
 

@@ -24,10 +24,10 @@ class gThemeNavigation extends gThemeModuleCore
 		} else if ( is_singular() || is_single() ) {
 
 			$classes[] = 'post-navigation';
-			$title = _x( 'Post Navigation', 'Modules: Navigation: Screen Reader Title', GTHEME_TEXTDOMAIN );
+			$title = _x( 'Post Navigation', 'Modules: Navigation: Screen Reader Title', 'gtheme' );
 
-			$prev_text = _x( '<span aria-hidden="true">&larr;</span>&nbsp;%title', 'Modules: Navigation: Post Navigation: Previous', GTHEME_TEXTDOMAIN );
-			$next_text = _x( '%title&nbsp;<span aria-hidden="true">&rarr;</span>', 'Modules: Navigation: Post Navigation: Next', GTHEME_TEXTDOMAIN );
+			$prev_text = _x( '<span aria-hidden="true">&larr;</span>&nbsp;%title', 'Modules: Navigation: Post Navigation: Previous', 'gtheme' );
+			$next_text = _x( '%title&nbsp;<span aria-hidden="true">&rarr;</span>', 'Modules: Navigation: Post Navigation: Next', 'gtheme' );
 
 			// TODO: support row templaets
 			$prev = get_adjacent_post_link( '%link', $prev_text, $in_same_term, '', TRUE,  $taxonomy );
@@ -36,10 +36,10 @@ class gThemeNavigation extends gThemeModuleCore
 		} else if ( $max_num_pages > 1 && ( is_home() || is_front_page() || is_archive() || is_search() ) ) {
 
 			$classes[] = 'paging-navigation';
-			$title = _x( 'Posts Navigation', 'Modules: Navigation: Screen Reader Title', GTHEME_TEXTDOMAIN );
+			$title = _x( 'Posts Navigation', 'Modules: Navigation: Screen Reader Title', 'gtheme' );
 
-			$prev_text = _x( '<span aria-hidden="true">&larr;</span>&nbsp;Older', 'Modules: Navigation: Posts Navigation: Previous', GTHEME_TEXTDOMAIN );
-			$next_text = _x( 'Newer&nbsp;<span aria-hidden="true">&rarr;</span>', 'Modules: Navigation: Posts Navigation: Next', GTHEME_TEXTDOMAIN );
+			$prev_text = _x( '<span aria-hidden="true">&larr;</span>&nbsp;Older', 'Modules: Navigation: Posts Navigation: Previous', 'gtheme' );
+			$next_text = _x( 'Newer&nbsp;<span aria-hidden="true">&rarr;</span>', 'Modules: Navigation: Posts Navigation: Next', 'gtheme' );
 
 			// intentionally reversed!
 			$prev = get_next_posts_link( $prev_text );
@@ -81,8 +81,8 @@ class gThemeNavigation extends gThemeModuleCore
 		$big = 999999999;
 
 		$args = array_merge( self::atts( [
-			'prev_text' => _x( '<span aria-hidden="true">&larr;</span>', 'Modules: Navigation: Pagination: Previous', GTHEME_TEXTDOMAIN ),
-			'next_text' => _x( '<span aria-hidden="true">&rarr;</span>', 'Modules: Navigation: Pagination: Next', GTHEME_TEXTDOMAIN ),
+			'prev_text' => _x( '<span aria-hidden="true">&larr;</span>', 'Modules: Navigation: Pagination: Previous', 'gtheme' ),
+			'next_text' => _x( '<span aria-hidden="true">&rarr;</span>', 'Modules: Navigation: Pagination: Next', 'gtheme' ),
 			'end_size'  => 1, // how many numbers on either the start and the end list edges / default 1
 			'mid_size'  => 4, // how many numbers to either side of the current pages / default 2
 		], $atts ), [
@@ -99,7 +99,7 @@ class gThemeNavigation extends gThemeModuleCore
 		echo '<nav>';
 
 			printf( '<h2 class="screen-reader-text sr-only">%s</h2>',
-				_x( 'Navigation', 'Modules: Navigation: Screen Reader Title', GTHEME_TEXTDOMAIN ) );
+				_x( 'Navigation', 'Modules: Navigation: Screen Reader Title', 'gtheme' ) );
 
 			echo '<ul class="pagination">';
 
@@ -189,12 +189,13 @@ class gThemeNavigation extends gThemeModuleCore
 			$single_html = '';
 
 			if ( is_preview() )
-				$single_html.= _x( '(Preview)', 'Modules: Navigation: Breadcrumbs', GTHEME_TEXTDOMAIN );
+				$single_html.= _x( '(Preview)', 'Modules: Navigation: Breadcrumbs', 'gtheme' );
 
 			if ( $args['page_is'] && in_the_loop() ) { // CAUTION : must be in the loop after the_post()
 
 				if ( ! empty( $page ) && 1 != $numpages ) //&& $page > 1 )
-					$single_html.= sprintf( _x( 'Page <strong>%s</strong> of %s', 'Modules: Navigation: Breadcrumbs', GTHEME_TEXTDOMAIN ),
+					/* translators: %1$s: page number, %2$s: page total */
+					$single_html.= sprintf( _x( 'Page <strong>%1$s</strong> of %2$s', 'Modules: Navigation: Breadcrumbs', 'gtheme' ),
 						number_format_i18n( $page ),
 						number_format_i18n( $numpages ) );
 			}
@@ -248,7 +249,8 @@ class gThemeNavigation extends gThemeModuleCore
 			$crumbs[] = apply_filters( 'gtheme_navigation_crumb_archive', $crumb, $args );
 
 		if ( is_paged() ) {
-			$template = empty( $args['strings']['paged'] ) ? _x( 'Page <strong>%s</strong>', 'Modules: Navigation: Breadcrumbs', GTHEME_TEXTDOMAIN ) : $args['strings']['paged'];
+			/* translators: %s: page number */
+			$template = empty( $args['strings']['paged'] ) ? _x( 'Page <strong>%s</strong>', 'Modules: Navigation: Breadcrumbs', 'gtheme' ) : $args['strings']['paged'];
 			$crumbs[] = sprintf( $template, number_format_i18n( get_query_var( 'paged' ) ) );
 		}
 
@@ -309,30 +311,34 @@ class gThemeNavigation extends gThemeModuleCore
 
 		if ( is_404() )
 			return empty( $args['strings']['404'] )
-				? _x( 'Not Found', 'Modules: Navigation: Breadcrumbs', GTHEME_TEXTDOMAIN )
+				? _x( 'Not Found', 'Modules: Navigation: Breadcrumbs', 'gtheme' )
 				: $args['strings']['404'];
 
 		if ( is_category() )
 			return sprintf( ( empty( $args['strings']['category'] )
-				? _x( 'Category Archives for <strong>%s</strong>', 'Modules: Navigation: Breadcrumbs', GTHEME_TEXTDOMAIN )
+				/* translators: %s: category title */
+				? _x( 'Category Archives for <strong>%s</strong>', 'Modules: Navigation: Breadcrumbs', 'gtheme' )
 				: $args['strings']['category'] ),
 			single_term_title( '', FALSE ) );
 
 		if ( is_tag() )
 			return sprintf( ( empty( $args['strings']['tag'] )
-				? _x( 'Tag Archives for <strong>%s</strong>', 'Modules: Navigation: Breadcrumbs', GTHEME_TEXTDOMAIN )
+				/* translators: %s: tag title */
+				? _x( 'Tag Archives for <strong>%s</strong>', 'Modules: Navigation: Breadcrumbs', 'gtheme' )
 				: $args['strings']['tag'] ),
 			single_term_title( '', FALSE ) );
 
 		if ( is_tax( GTHEME_PEOPLE_TAXONOMY ) )
 			return sprintf( ( empty( $args['strings'][GTHEME_PEOPLE_TAXONOMY] )
-				? _x( 'People Archives for <strong>%s</strong>', 'Modules: Navigation: Breadcrumbs', GTHEME_TEXTDOMAIN )
+				/* translators: %s: person title */
+				? _x( 'People Archives for <strong>%s</strong>', 'Modules: Navigation: Breadcrumbs', 'gtheme' )
 				: $args['strings'][GTHEME_PEOPLE_TAXONOMY] ),
 			single_term_title( '', FALSE ) );
 
 		if ( is_post_type_archive() )
 			return sprintf( ( empty( $args['strings']['posttype'] )
-				? _x( 'Archives for <strong>%s</strong>', 'Modules: Navigation: Breadcrumbs', GTHEME_TEXTDOMAIN )
+				/* translators: %s: posttype title */
+				? _x( 'Archives for <strong>%s</strong>', 'Modules: Navigation: Breadcrumbs', 'gtheme' )
 				: $args['strings']['posttype'] ),
 			post_type_archive_title( '', FALSE ) );
 
@@ -341,9 +347,10 @@ class gThemeNavigation extends gThemeModuleCore
 			$tax = get_taxonomy( get_queried_object()->taxonomy );
 
 			return sprintf( ( empty( $args['strings']['tax'] )
-				? _x( '%s Archives for <strong>%s</strong>', 'Modules: Navigation: Breadcrumbs', GTHEME_TEXTDOMAIN )
+				/* translators: %1$s: tax singular name, %2$s: tax plural name, %3$s: term title */
+				? _x( '%1$s Archives for <strong>%3$s</strong>', 'Modules: Navigation: Breadcrumbs', 'gtheme' )
 				: $args['strings']['tax'] ),
-			$tax->labels->singular_name, single_term_title( '', FALSE ) );
+			$tax->labels->singular_name, $tax->labels->name, single_term_title( '', FALSE ) );
 		}
 
 		if ( is_author() ) {
@@ -355,37 +362,42 @@ class gThemeNavigation extends gThemeModuleCore
 				return FALSE;
 
 			return sprintf( ( empty( $args['strings']['author'] )
-				? _x( 'Author Archives for <strong>%s</strong>', 'Modules: Navigation: Breadcrumbs', GTHEME_TEXTDOMAIN )
+				/* translators: %s: display name */
+				? _x( 'Author Archives for <strong>%s</strong>', 'Modules: Navigation: Breadcrumbs', 'gtheme' )
 				: $args['strings']['author'] ),
 			get_the_author_meta( 'display_name', $author ) );
 		}
 
 		if ( is_search() )
 			return sprintf( ( empty( $args['strings']['search'] )
-				? _x( 'Search Results for <strong>%s</strong>', 'Modules: Navigation: Breadcrumbs', GTHEME_TEXTDOMAIN )
+				/* translators: %s: search query */
+				? _x( 'Search Results for <strong>%s</strong>', 'Modules: Navigation: Breadcrumbs', 'gtheme' )
 				: $args['strings']['search'] ),
 			''.get_search_query().'' );
 
 		if ( is_day() )
 			return sprintf( ( empty( $args['strings']['day'] )
-				? _x( 'Daily Archives for <strong>%s</strong>', 'Modules: Navigation: Breadcrumbs', GTHEME_TEXTDOMAIN )
+				/* translators: %s: date */
+				? _x( 'Daily Archives for <strong>%s</strong>', 'Modules: Navigation: Breadcrumbs', 'gtheme' )
 				: $args['strings']['day'] ),
-			get_the_date( gThemeOptions::info( 'date_format_day', _x( 'j M Y', 'Options: Defaults: Date Format: Day', GTHEME_TEXTDOMAIN ) ) ) );
+			get_the_date( gThemeOptions::info( 'date_format_day', _x( 'j M Y', 'Options: Defaults: Date Format: Day', 'gtheme' ) ) ) );
 
 		if ( is_month() )
 			return sprintf( ( empty( $args['strings']['month'] )
-				? _x( 'Monthly Archives for <strong>%s</strong>', 'Modules: Navigation: Breadcrumbs', GTHEME_TEXTDOMAIN )
+				/* translators: %s: date */
+				? _x( 'Monthly Archives for <strong>%s</strong>', 'Modules: Navigation: Breadcrumbs', 'gtheme' )
 				: $args['strings']['month'] ),
 			get_the_date( 'F Y' ) );
 
 		if ( is_year() )
 			return sprintf( ( empty( $args['strings']['year'] )
-				? _x( 'Yearly Archives for <strong>%s</strong>', 'Modules: Navigation: Breadcrumbs', GTHEME_TEXTDOMAIN )
+				/* translators: %s: date */
+				? _x( 'Yearly Archives for <strong>%s</strong>', 'Modules: Navigation: Breadcrumbs', 'gtheme' )
 				: $args['strings']['year'] ),
 			get_the_date( 'Y' ) );
 
 		return empty( $args['strings']['archive'] )
-			? _x( 'Archives', 'Modules: Navigation: Breadcrumbs', GTHEME_TEXTDOMAIN )
+			? _x( 'Archives', 'Modules: Navigation: Breadcrumbs', 'gtheme' )
 			: $args['strings']['archive'];
 	}
 

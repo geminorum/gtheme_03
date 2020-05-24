@@ -117,14 +117,14 @@ class gThemeSocial extends gThemeModuleCore
 
 					if ( $title = single_post_title( '', FALSE ) )
 						$output = $title
-							.gThemeOptions::info( 'title_sep', _x( ' &raquo; ', 'Options: Separator: Title', GTHEME_TEXTDOMAIN ) )
+							.gThemeOptions::info( 'title_sep', _x( ' &raquo; ', 'Options: Separator: Title', 'gtheme' ) )
 							.gThemeOptions::info( 'blog_title' );
 
 				} else if ( is_tax() || is_tag() || is_category() ) {
 
 					if ( $title = single_term_title( '', FALSE ) )
 						$output = $title
-							.gThemeOptions::info( 'title_sep', _x( ' &raquo; ', 'Options: Separator: Title', GTHEME_TEXTDOMAIN ) )
+							.gThemeOptions::info( 'title_sep', _x( ' &raquo; ', 'Options: Separator: Title', 'gtheme' ) )
 							.gThemeOptions::info( 'blog_title' );
 				}
 

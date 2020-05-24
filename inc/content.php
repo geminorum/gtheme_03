@@ -33,7 +33,7 @@ class gThemeContent extends gThemeModuleCore
 
 	public static function notFoundMessage( $before = '<p class="not-found">', $after = '</p>' )
 	{
-		$default = _x( 'It looks like nothing was found at this location. Maybe try one of the links below or a search?', 'Content: Not Found Message', GTHEME_TEXTDOMAIN );
+		$default = _x( 'It looks like nothing was found at this location. Maybe try one of the links below or a search?', 'Content: Not Found Message', 'gtheme' );
 
 		if ( $message = gThemeOptions::info( 'message_notfound', $default ) )
 			echo $before.gThemeText::wordWrap( $message ).$after;
@@ -174,7 +174,7 @@ class gThemeContent extends gThemeModuleCore
 		gThemeDate::once( [
 			'before' => $before,
 			'after'  => $after,
-			'format' => gThemeOptions::info( 'date_format_content', _x( 'Y/j/m', 'Options: Defaults: Date Format: Content', GTHEME_TEXTDOMAIN ) ),
+			'format' => gThemeOptions::info( 'date_format_content', _x( 'Y/j/m', 'Options: Defaults: Date Format: Content', 'gtheme' ) ),
 			'echo'   => TRUE,
 		] );
 	}
@@ -216,10 +216,10 @@ class gThemeContent extends gThemeModuleCore
 		return self::continueReading( $edit, $scope, $permalink, $title_att );
 	}
 
-	public static function continueReading( $edit = '', $scope = '', $link = FALSE, $title = FALSE )
+	public static function continueReading( $edit = '', $scope = '', $link = FALSE, $post_title = FALSE )
 	{
-		if ( FALSE === $title )
-			$title = strip_tags( get_the_title() );
+		if ( FALSE === $post_title )
+			$post_title = strip_tags( get_the_title() );
 
 		if ( FALSE === $link )
 			$link = get_permalink();
@@ -227,19 +227,20 @@ class gThemeContent extends gThemeModuleCore
 		if ( ! empty( $edit ) )
 			$edit = vsprintf( ' <a href="%1$s" title="%3$s" class="%4$s">%2$s</a>', [
 				$edit,
-				_x( 'Edit', 'Content: Read More Edit', GTHEME_TEXTDOMAIN ),
-				_x( 'Jump to edit page', 'Content: Read More Edit Title', GTHEME_TEXTDOMAIN ),
+				_x( 'Edit', 'Content: Read More Edit', 'gtheme' ),
+				_x( 'Jump to edit page', 'Content: Read More Edit Title', 'gtheme' ),
 				'post-edit-link',
 			] );
 
 		$template = gThemeOptions::info( 'template_read_more', ' <a %6$s href="%1$s" aria-label="%3$s" class="%4$s">%2$s</a>%5$s' );
-		$text     = gThemeOptions::info( 'read_more_text', _x( 'Read more&nbsp;<span class="excerpt-link-hellip">&hellip;</span>', 'Content: Read More Text', GTHEME_TEXTDOMAIN ) );
-		$title    = sprintf( gThemeOptions::info( 'read_more_title', _x( 'Continue reading &ldquo;%s&rdquo; &hellip;', 'Content: Read More Title', GTHEME_TEXTDOMAIN ) ), $title );
+		$text     = gThemeOptions::info( 'read_more_text', _x( 'Read more&nbsp;<span class="excerpt-link-hellip">&hellip;</span>', 'Content: Read More Text', 'gtheme' ) );
+		/* translators: %s: post title */
+		$title    = gThemeOptions::info( 'read_more_title', _x( 'Continue reading &ldquo;%s&rdquo; &hellip;', 'Content: Read More Title', 'gtheme' ) ),  );
 
 		return vsprintf( $template, [
 			esc_url( $link ),
 			$text,
-			esc_attr( $title ),
+			esc_attr( sprintf( $title, $post_title ) ),
 			'excerpt-link',
 			$edit,
 			$scope,
@@ -259,10 +260,12 @@ class gThemeContent extends gThemeModuleCore
 			return $empty;
 
 		if ( is_null( $template ) )
-			$attr = _x( 'Permanent link to &ndash;%s&ndash;', 'Content: Title Attr',GTHEME_TEXTDOMAIN );
+			/* translators: %s: post title */
+			$attr = _x( 'Permanent link to &ndash;%s&ndash;', 'Content: Title Attr','gtheme' );
 
 		else if ( FALSE === $template )
-			$attr = _x( 'Short link for &ndash;%s&ndash;', 'Content: Title Attr', GTHEME_TEXTDOMAIN );
+			/* translators: %s: post title */
+			$attr = _x( 'Short link for &ndash;%s&ndash;', 'Content: Title Attr', 'gtheme' );
 
 		else
 			$attr = $template;
@@ -463,7 +466,7 @@ class gThemeContent extends gThemeModuleCore
 
 				self::addtoany(
 					sprintf( $before, 'addtoany post-share-link' ), $after,
-					( $icon ? self::getGenericon( 'share' ) : _x( 'Share This', 'Modules: Content: Action', GTHEME_TEXTDOMAIN ) )
+					( $icon ? self::getGenericon( 'share' ) : _x( 'Share This', 'Modules: Content: Action', 'gtheme' ) )
 				);
 
 			break;
@@ -471,14 +474,14 @@ class gThemeContent extends gThemeModuleCore
 
 				self::addthis(
 					sprintf( $before, 'addthis post-share-link' ), $after,
-					( $icon ? self::getGenericon( 'share' ) : _x( 'Share This', 'Modules: Content: Action', GTHEME_TEXTDOMAIN ) )
+					( $icon ? self::getGenericon( 'share' ) : _x( 'Share This', 'Modules: Content: Action', 'gtheme' ) )
 				);
 
 			break;
 			case 'printlink':
 
 				self::printLink(
-					( $icon ? self::getGenericon( 'print' ) : _x( 'Print Version', 'Modules: Content: Action', GTHEME_TEXTDOMAIN ) ),
+					( $icon ? self::getGenericon( 'print' ) : _x( 'Print Version', 'Modules: Content: Action', 'gtheme' ) ),
 					NULL,
 					sprintf( $before, '-action -printlink' ),
 					$after,
@@ -489,7 +492,7 @@ class gThemeContent extends gThemeModuleCore
 			case 'shortlink':
 
 				self::shortlink(
-					( $icon ? self::getGenericon( 'link' ) : _x( 'Short Link', 'Modules: Content: Action', GTHEME_TEXTDOMAIN ) ),
+					( $icon ? self::getGenericon( 'link' ) : _x( 'Short Link', 'Modules: Content: Action', 'gtheme' ) ),
 					NULL,
 					sprintf( $before, '-action -shortlink' ),
 					$after,
@@ -506,9 +509,9 @@ class gThemeContent extends gThemeModuleCore
 
 					// if ( ! post_password_required() && ( comments_open() || '0' != get_comments_number() ) )
 					// 	comments_popup_link(
-					// 		_x( 'Leave a comment', 'Modules: Content: Action', GTHEME_TEXTDOMAIN ),
-					// 		_x( '1 Comment', 'Modules: Content: Action', GTHEME_TEXTDOMAIN ),
-					// 		_x( '% Comments', 'Modules: Content: Action', GTHEME_TEXTDOMAIN )
+					// 		_x( 'Leave a comment', 'Modules: Content: Action', 'gtheme' ),
+					// 		_x( '1 Comment', 'Modules: Content: Action', 'gtheme' ),
+					// 		_x( '% Comments', 'Modules: Content: Action', 'gtheme' )
 					// 	);
 
 					if ( is_singular() || is_single() ) {
@@ -530,9 +533,12 @@ class gThemeContent extends gThemeModuleCore
 
 					else
 						comments_number(
-							sprintf( _x( '<a href="%3$s" class="%1$s">Your Comment</a>', 'Modules: Content: Action', GTHEME_TEXTDOMAIN ), $class, '', $respond ),
-							sprintf( _x( '<a href="%3$s" class="%1$s">One Comment</a>', 'Modules: Content: Action', GTHEME_TEXTDOMAIN ), $class, '', $comments ),
-							sprintf( _x( '<a href="%3$s" class="%1$s">%2$s Comments</a>', 'Modules: Content: Action', GTHEME_TEXTDOMAIN ), $class, '%', $comments )
+							/* translators: %1$s: class name, %2$s: comments number, %3$s: comment url */
+							sprintf( _x( '<a href="%3$s" class="%1$s">Your Comment</a>', 'Modules: Content: Action', 'gtheme' ), $class, '', $respond ),
+							/* translators: %1$s: class name, %2$s: comments number, %3$s: comment url */
+							sprintf( _x( '<a href="%3$s" class="%1$s">One Comment</a>', 'Modules: Content: Action', 'gtheme' ), $class, '', $comments ),
+							/* translators: %1$s: class name, %2$s: comments number, %3$s: comment url */
+							sprintf( _x( '<a href="%3$s" class="%1$s">%2$s Comments</a>', 'Modules: Content: Action', 'gtheme' ), $class, '%', $comments )
 						);
 
 					if ( 'comments_link_feed' == $action ) {
@@ -541,9 +547,10 @@ class gThemeContent extends gThemeModuleCore
 							printf( '<a href="%2$s" class="%1$s">%3$s</a>', 'comments-link-rss', get_post_comments_feed_link(), self::getGenericon( 'feed' ) );
 
 						else
-							printf( _x( ' <small><small>(<a href="%1$s" title="%2$s" class="%3$s"><abbr title="Really Simple Syndication">RSS</abbr></a>)</small></small>', 'Modules: Content: Action', GTHEME_TEXTDOMAIN ),
+							/* translators: %1$s: comments rss link, %2$s: title attr, %3$s: class name */
+							printf( _x( ' <small><small>(<a href="%1$s" title="%2$s" class="%3$s"><abbr title="Really Simple Syndication">RSS</abbr></a>)</small></small>', 'Modules: Content: Action', 'gtheme' ),
 								get_post_comments_feed_link(),
-								_x( 'Feed for this post\'s comments', 'Modules: Content: Action', GTHEME_TEXTDOMAIN ),
+								_x( 'Feed for this post\'s comments', 'Modules: Content: Action', 'gtheme' ),
 								'comments-link-rss'
 							);
 					}
@@ -556,7 +563,7 @@ class gThemeContent extends gThemeModuleCore
 			case 'edit':
 
 				edit_post_link(
-					( $icon ? self::getGenericon( 'edit' ) : _x( 'Edit', 'Modules: Content: Action', GTHEME_TEXTDOMAIN ) ),
+					( $icon ? self::getGenericon( 'edit' ) : _x( 'Edit', 'Modules: Content: Action', 'gtheme' ) ),
 					sprintf( $before, 'post-edit-link post-edit-link-li' ),
 					$after
 				);
@@ -568,7 +575,7 @@ class gThemeContent extends gThemeModuleCore
 					the_tags(
 						sprintf( $before, 'tag-links' ).
 						gThemeOptions::info( 'before_tag_list', '' ),
-						gThemeOptions::info( 'term_sep', _x( ', ', 'Options: Separator: Term', GTHEME_TEXTDOMAIN ) ),
+						gThemeOptions::info( 'term_sep', _x( ', ', 'Options: Separator: Term', 'gtheme' ) ),
 						$after
 					);
 
@@ -584,7 +591,7 @@ class gThemeContent extends gThemeModuleCore
 				if ( is_object_in_taxonomy( get_post_type(), 'category' ) )
 					echo sprintf( $before, 'cat-links' )
 						.gThemeOptions::info( 'before_cat_list', '' )
-						.get_the_category_list( gThemeOptions::info( 'term_sep', _x( ', ', 'Options: Separator: Term', GTHEME_TEXTDOMAIN ) ) )
+						.get_the_category_list( gThemeOptions::info( 'term_sep', _x( ', ', 'Options: Separator: Term', 'gtheme' ) ) )
 						.$after;
 
 			break;
@@ -692,25 +699,25 @@ class gThemeContent extends gThemeModuleCore
 	{
 
 		if ( 'def' == $increase )
-			$increase = gThemeOptions::info( 'text_size_increase', _x( '[ A+ ]', 'Options: Text Size Increase', GTHEME_TEXTDOMAIN ) );
+			$increase = gThemeOptions::info( 'text_size_increase', _x( '[ A+ ]', 'Options: Text Size Increase', 'gtheme' ) );
 
 		if ( 'def' == $decrease )
-			$decrease = gThemeOptions::info( 'text_size_decrease', _x( '[ A- ]', 'Options: Text Size Decrease', GTHEME_TEXTDOMAIN ) );
+			$decrease = gThemeOptions::info( 'text_size_decrease', _x( '[ A- ]', 'Options: Text Size Decrease', 'gtheme' ) );
 
 		if ( 'def' == $sep )
-			$sep = gThemeOptions::info( 'text_size_sep', _x( ' / ', 'Options: Text Size Sep', GTHEME_TEXTDOMAIN ) );
+			$sep = gThemeOptions::info( 'text_size_sep', _x( ' / ', 'Options: Text Size Sep', 'gtheme' ) );
 
 		echo $b;
 
 		echo '<a id="gtheme-fontsize-plus" class="fontsize-button increase-font" href="#" title="';
-			_e( 'Increase font size', GTHEME_TEXTDOMAIN );
+			_e( 'Increase font size', 'gtheme' );
 		echo '">'.$increase.'</a>';
 
 		if ( $sep )
 			printf( '<a id="gtheme-fontsize-default" class="fontsize-button" href="#">%s</a>', $sep );
 
 		echo '<a id="gtheme-fontsize-minus" class="fontsize-button decrease-font" href="#" title="';
-			_e( 'Decrease font size', GTHEME_TEXTDOMAIN );
+			_e( 'Decrease font size', 'gtheme' );
 		echo '">'.$decrease.'</a>';
 
 		echo $a;
@@ -724,25 +731,25 @@ class gThemeContent extends gThemeModuleCore
 		}
 
 		if ( 'def' == $justify )
-			$justify = gThemeOptions::info( 'text_justify', _x( '[ Ju ]', 'Options: Text Justify', GTHEME_TEXTDOMAIN ) );
+			$justify = gThemeOptions::info( 'text_justify', _x( '[ Ju ]', 'Options: Text Justify', 'gtheme' ) );
 
 		if ( 'def' == $unjustify )
-			$unjustify = gThemeOptions::info( 'text_unjustify', _x( '[ uJ ]', 'Options: Text Unjustify', GTHEME_TEXTDOMAIN ) );
+			$unjustify = gThemeOptions::info( 'text_unjustify', _x( '[ uJ ]', 'Options: Text Unjustify', 'gtheme' ) );
 
 		if ( 'def' == $sep )
-			$sep = gThemeOptions::info( 'text_justify_sep', _x( ' / ', 'Options: Text Justify Sep', GTHEME_TEXTDOMAIN ) );
+			$sep = gThemeOptions::info( 'text_justify_sep', _x( ' / ', 'Options: Text Justify Sep', 'gtheme' ) );
 
 		echo $b;
 
 		echo '<a id="text-justify" class="text-justify-button hidden" href="#" title="';
-			_e( 'Justify paragraphs', GTHEME_TEXTDOMAIN );
+			_e( 'Justify paragraphs', 'gtheme' );
 		echo '">'.$justify.'</a>';
 
 		if ( $sep )
 			printf( '%s', $sep );
 
 		echo '<a id="text-unjustify" class="text-justify-button" href="#" title="';
-			_e( 'Un-justify paragraphs', GTHEME_TEXTDOMAIN );
+			_e( 'Un-justify paragraphs', 'gtheme' );
 		echo '">'.$unjustify.'</a>';
 
 		echo $a;
@@ -791,7 +798,7 @@ $('#text-unjustify').click(function (e) {
 		echo $before;
 		printf( '<a class="a2a_dd" href="%1$s" rel="nofollow" data-a2a-url="%3$s" data-a2a-title="%4$s">%2$s</a>',
 			esc_url( $url ),
-			( $text ?: _x( 'Share This', 'Modules: Content: Addtoany', GTHEME_TEXTDOMAIN ) ),
+			( $text ?: _x( 'Share This', 'Modules: Content: Addtoany', 'gtheme' ) ),
 			$premalink,
 			esc_attr( $linkname )
 		);
@@ -805,6 +812,11 @@ $('#text-unjustify').click(function (e) {
 		else
 			$twitter_template = '${title} ${link}';
 
+		/* translators: %s: post title */
+		$check = sprintf( _x( 'Check this out %s', 'Modules: Content: Addtoany', 'gtheme' ), '${title}' );
+		/* translators: %s: post link */
+		$click = sprintf( _x( "Click the link:\n%s", 'Modules: Content: Addtoany', 'gtheme' ), '${link}' );
+
 		?><script type="text/javascript">
 var a2a_config = a2a_config || {};
 a2a_config.linkname = '<?php echo esc_js( self::title_attr( FALSE, NULL, '%s' ) ); ?>';
@@ -815,8 +827,8 @@ a2a_config.prioritize = ["email", "twitter", "facebook", "evernote", "tumblr", "
 a2a_config.templates = {
 	twitter: "<?php echo $twitter_template; ?>",
 	email: {
-		subject: "<?php echo esc_js( sprintf( _x( 'Check this out %s', 'Modules: Content: Addtoany', GTHEME_TEXTDOMAIN ), '${title}' ) ); ?>",
-		body: "<?php echo esc_js( sprintf( _x( "Click the link:\n%s", 'Modules: Content: Addtoany', GTHEME_TEXTDOMAIN ), '${link}' ) ); ?>"
+		subject: "<?php echo esc_js( $check ); ?>",
+		body: "<?php echo esc_js( $click ); ?>"
 	}
 };
 if(typeof(ga)!='undefined'){a2a_config.track_links = 'ga';}
@@ -1052,8 +1064,8 @@ addthis_config.services_custom = [
 			'link_after'       => '',
 			'next_or_number'   => 'number',
 			'separator'        => '',
-			'nextpagelink'     => _x( 'Next page', 'Modules: Content: Link Pages', GTHEME_TEXTDOMAIN ),
-			'previouspagelink' => _x( 'Previous page', 'Modules: Content: Link Pages', GTHEME_TEXTDOMAIN ),
+			'nextpagelink'     => _x( 'Next page', 'Modules: Content: Link Pages', 'gtheme' ),
+			'previouspagelink' => _x( 'Previous page', 'Modules: Content: Link Pages', 'gtheme' ),
 			'pagelink'         => '%',
 		], $atts );
 
@@ -1065,7 +1077,7 @@ addthis_config.services_custom = [
 		$args = self::atts( [
 			'before' => '<div class="entry-pages">',
 			'after'  => '</div>',
-			'title'  => _x( 'Pages:', 'Modules: Content: Link Pages', GTHEME_TEXTDOMAIN ),
+			'title'  => _x( 'Pages:', 'Modules: Content: Link Pages', 'gtheme' ),
 			'echo'   => TRUE,
 		], $atts );
 

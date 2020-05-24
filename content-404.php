@@ -4,7 +4,7 @@ gThemeContent::wrapOpen( '404' );
 
 	gThemeContent::header( [
 		'context' => '404',
-		'title'   => __( 'Oops! That page can&rsquo;t be found.', GTHEME_TEXTDOMAIN ),
+		'title'   => __( 'Oops! That page can&rsquo;t be found.', 'gtheme' ),
 		'link'    => FALSE,
 		'meta'    => FALSE,
 		'anchor'  => FALSE,

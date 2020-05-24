@@ -124,7 +124,8 @@ class gThemeTemplate extends gThemeModuleCore
 
 		return vsprintf( $template, [
 			esc_url( get_author_posts_url( $user->ID, $user->user_nicename ) ),
-			esc_attr( sprintf( _x( 'Posts by %s', 'Modules: Template: Author', GTHEME_TEXTDOMAIN ), $display_name ) ),
+			/* translators: %s: display name */
+			esc_attr( sprintf( _x( 'Posts by %s', 'Modules: Template: Author', 'gtheme' ), $display_name ) ),
 			$display_name,
 		] );
 	}
@@ -206,7 +207,7 @@ class gThemeTemplate extends gThemeModuleCore
 		// TODO: if $mode == child
 
 		foreach ( $terms as $term )
-			return self::term_parents( $term, gThemeOptions::info( 'nav_sep', _x( ' &laquo; ', 'Options: Separator: Nav', GTHEME_TEXTDOMAIN ) ), $taxonomy );
+			return self::term_parents( $term, gThemeOptions::info( 'nav_sep', _x( ' &laquo; ', 'Options: Separator: Nav', 'gtheme' ) ), $taxonomy );
 	}
 
 	public static function avatar( $id_or_email, $size = NULL )
@@ -243,7 +244,7 @@ class gThemeTemplate extends gThemeModuleCore
 			$copyright.= gThemeEditorial::siteModified( [
 				'link'   => gThemeOptions::info( 'copyright_link_site_modified', FALSE ),
 				'title'  => FALSE,
-				'before' => ' '._x( 'Last updated on', 'Root: End: Before Site Modified', GTHEME_TEXTDOMAIN ).' ',
+				'before' => ' '._x( 'Last updated on', 'Root: End: Before Site Modified', 'gtheme' ).' ',
 			], FALSE );
 
 		if ( $p )

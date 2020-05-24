@@ -8,8 +8,8 @@ class gThemeWidgetRecentPosts extends gThemeWidget
 		return [
 			'name'  => 'recent_posts',
 			'class' => 'recent-posts',
-			'title' => _x( 'Theme: Recent Posts', 'Widget: Title', GTHEME_TEXTDOMAIN ),
-			'desc'  => _x( 'Displays the most recent posts.', 'Widget: Description', GTHEME_TEXTDOMAIN ),
+			'title' => _x( 'Theme: Recent Posts', 'Widget: Title', 'gtheme' ),
+			'desc'  => _x( 'Displays the most recent posts.', 'Widget: Description', 'gtheme' ),
 			'flush' => [
 				'save_post',
 				'deleted_post',

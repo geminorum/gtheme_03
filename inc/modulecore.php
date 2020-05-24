@@ -215,7 +215,7 @@ class gThemeModuleCore extends gThemeBaseCore
 	// HELPER
 	public static function getUsers()
 	{
-		$users = [ 0 => __( '&mdash; Select &mdash;', GTHEME_TEXTDOMAIN ) ];
+		$users = [ 0 => __( '&mdash; Select &mdash;', 'gtheme' ) ];
 
 		foreach ( get_users( [ 'orderby' => 'display_name' ] ) as $user )
 			$users[$user->ID] = $user->display_name;
@@ -245,10 +245,10 @@ class gThemeModuleCore extends gThemeBaseCore
 		if ( FALSE !== $wrap )
 			echo '<p class="submit gtheme-settings-buttons '.$wrap.'">';
 
-		echo get_submit_button( _x( 'Save Changes', 'Module Core', GTHEME_TEXTDOMAIN ), 'primary', 'submit', FALSE, [ 'default' => 'default' ] ).'&nbsp;&nbsp;';
+		echo get_submit_button( _x( 'Save Changes', 'Module Core', 'gtheme' ), 'primary', 'submit', FALSE, [ 'default' => 'default' ] ).'&nbsp;&nbsp;';
 
 		// FIXME: working but also needs the action
-		// echo get_submit_button( _x( 'Reset Settings', 'Module Core', GTHEME_TEXTDOMAIN ), 'secondary', 'reset', FALSE, self::getButtonConfirm() ).'&nbsp;&nbsp;';
+		// echo get_submit_button( _x( 'Reset Settings', 'Module Core', 'gtheme' ), 'secondary', 'reset', FALSE, self::getButtonConfirm() ).'&nbsp;&nbsp;';
 
 		if ( FALSE !== $wrap )
 			echo '</p>';
@@ -257,7 +257,7 @@ class gThemeModuleCore extends gThemeBaseCore
 	public static function getButtonConfirm( $message = NULL )
 	{
 		if ( is_null( $message ) )
-			$message = _x( 'Are you sure? This operation can not be undone.', 'Module Core', GTHEME_TEXTDOMAIN );
+			$message = _x( 'Are you sure? This operation can not be undone.', 'Module Core', 'gtheme' );
 
 		return [ 'onclick' => sprintf( 'return confirm(\'%s\')', esc_attr( $message ) ) ];
 	}
@@ -475,7 +475,7 @@ class gThemeModuleCore extends gThemeBaseCore
 					'id'               => $id,
 					'class'            => $args['field_class'],
 					'exclude'          => implode( ',', $exclude ),
-					'show_option_none' => __( '&mdash; Select Page &mdash;', GTHEME_TEXTDOMAIN ),
+					'show_option_none' => __( '&mdash; Select Page &mdash;', 'gtheme' ),
 					'sort_column'      => 'menu_order',
 					'sort_order'       => 'asc',
 					'post_status'      => [ 'publish', 'future', 'draft' ],
@@ -521,7 +521,7 @@ class gThemeModuleCore extends gThemeBaseCore
 			break;
 			default:
 
-				_e( 'Error: settings type undefined.', GTHEME_TEXTDOMAIN );
+				_e( 'Error: settings type undefined.', 'gtheme' );
 		}
 
 		if ( $args['after'] )

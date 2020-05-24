@@ -88,12 +88,12 @@ class gThemeAdmin extends gThemeModuleCore
 	// disable avatar select on admin settings
 	public function default_avatar_select( $avatar_list )
 	{
-		return '<br />'.gThemeHTML::notice( _x( '<strong>The default avatar is overrided by the active theme.</strong>', 'Modules: Admin', GTHEME_TEXTDOMAIN ), 'notice-info inline', FALSE );
+		return '<br />'.gThemeHTML::notice( _x( '<strong>The default avatar is overrided by the active theme.</strong>', 'Modules: Admin', 'gtheme' ), 'notice-info inline', FALSE );
 	}
 
 	public static function default_page_template_title( $label, $context )
 	{
 		return gThemeOptions::info( 'default_template_title',
-			_x( 'Default Template', 'Modules: Admin', GTHEME_TEXTDOMAIN ) );
+			_x( 'Default Template', 'Modules: Admin', 'gtheme' ) );
 	}
 }
