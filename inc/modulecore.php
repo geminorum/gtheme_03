@@ -46,6 +46,19 @@ class gThemeModuleCore extends gThemeBaseCore
 			add_filter( $hook, [ $this, $method ], $priority, $args );
 	}
 
+	protected function remove_filter( $list )
+	{
+		foreach ( $list as $filter ) {
+
+			list( $tag, $function_to_remove, $priority ) = $filter;
+
+			if ( is_null( $priority ) )
+				$priority = 10;
+
+			remove_filter( $tag, $function_to_remove, $priority );
+		}
+	}
+
 	protected static function sanitize_hook( $hook )
 	{
 		return trim( str_ireplace( [ '-', '.', '/' ], '_', $hook ) );
