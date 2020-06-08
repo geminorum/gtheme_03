@@ -478,6 +478,14 @@ class gThemeContent extends gThemeModuleCore
 				);
 
 			break;
+			case 'pocket_button':
+
+				self::pocket(
+					sprintf( $before, 'pocket post-share-button' ), $after,
+					_x( 'Pocket', 'Modules: Content: Action', 'gtheme' )
+				);
+
+			break;
 			case 'printlink':
 
 				self::printLink(
@@ -871,6 +879,30 @@ addthis_config.services_custom = [
 ];
 </script>
 <script type="text/javascript" src="//static.addtoany.com/menu/page.js"></script><?php
+	}
+
+	// @REF: https://getpocket.com/publisher/button_docs
+	public static function pocket( $before = '', $after = '', $text = NULL, $footer = TRUE )
+	{
+		if ( $footer && ( is_singular() || is_single() ) )
+			add_action( 'wp_footer', [ __CLASS__, 'pocket_footer' ], 5 );
+
+		echo $before.gThemeHTML::tag( 'a', [
+			'href'  => 'https://getpocket.com/save',
+			'class' => 'pocket-btn',
+			'data'  => [
+				'save-url'     => get_permalink(),
+				'lang'         => 'fa',
+				'pocket-label' => $text ?: 'pocket',
+				'pocket-count' => 'none', // horizontal/vertical
+				// 'pocket-align' => 'left', // only useful when using a button with count
+			],
+		], NULL ).$after;
+	}
+
+	public static function pocket_footer()
+	{
+		?><script type="text/javascript">!function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");</script><?php
 	}
 
 	// for embed/twitter-feed
