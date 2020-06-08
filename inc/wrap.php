@@ -80,7 +80,7 @@ class gThemeWrap extends gThemeModuleCore
 		if ( 'index' == self::$base_template )
 			self::$base_template = FALSE;
 
-		if ( 'buddypress' == self::$base_template )
+		if ( in_array( self::$base_template, [ 'buddypress', 'bbpress' ] ) )
 			defined( 'GTHEME_IS_SYSTEM_PAGE' )
 				or define( 'GTHEME_IS_SYSTEM_PAGE', TRUE );
 
