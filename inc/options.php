@@ -109,6 +109,7 @@ class gThemeOptions extends gThemeModuleCore
 
 			'rtl'    => is_rtl(),
 			'locale' => get_locale(),
+			'lang'   => gThemeUtilities::getISO639(),
 
 			// FEEDS
 			// 'feed_str_replace' => gThemeFeed::defaultReplace(),

@@ -868,7 +868,7 @@ if(typeof(ga)!='undefined'){a2a_config.track_links = 'ga';}
 		?><script type="text/javascript">
 var addthis_config = addthis_config || {};
 addthis_config.username = '';
-addthis_config.ui_language = 'fa';
+addthis_config.ui_language = '<?php echo gThemeOptions::info( 'lang', 'en' ); ?>';
 addthis_config.data_track_clickback = false;
 addthis_config.services_custom = [
 	{
@@ -892,7 +892,7 @@ addthis_config.services_custom = [
 			'class' => 'pocket-btn',
 			'data'  => [
 				'save-url'     => get_permalink(),
-				'lang'         => 'fa',
+				'lang'         => gThemeOptions::info( 'lang', 'en' ),
 				'pocket-label' => $text ?: 'pocket',
 				'pocket-count' => 'none', // horizontal/vertical
 				// 'pocket-align' => 'left', // only useful when using a button with count

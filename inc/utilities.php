@@ -253,4 +253,19 @@ class gThemeUtilities extends gThemeBaseCore
 					array_slice( $items, -1 ) ) ) )
 			._x( '&ldquo;', 'Utilities: Join Items Helper', 'gtheme' ).'.';
 	}
+
+	// @REF: https://en.wikipedia.org/wiki/ISO_639
+	// @REF: http://stackoverflow.com/a/16838443
+	// @REF: `bp_core_register_common_scripts()`
+	public static function getISO639( $locale = NULL )
+	{
+		if ( is_null( $locale ) )
+			$locale = get_locale();
+
+		if ( ! $locale )
+			return 'en';
+
+		$ISO639 = str_replace( '_', '-', strtolower( $locale ) );
+		return substr( $ISO639, 0, strpos( $ISO639, '-' ) );
+	}
 }
