@@ -153,7 +153,7 @@ class gThemeUtilities extends gThemeBaseCore
 
 	public static function home( $display = FALSE )
 	{
-		$home = gThemeOptions::info( 'home_url_override', esc_url( home_url( '/' ) ) );
+		$home = gThemeOptions::info( 'home_url_override', gThemeOptions::getHomeURL() );
 		return $display ? gThemeURL::prepTitle( $home ) : $home;
 	}
 

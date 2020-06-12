@@ -8,7 +8,7 @@ class gThemeSearch extends gThemeModuleCore
 		if ( defined( 'GNETWORK_SEARCH_REDIRECT' ) && GNETWORK_SEARCH_REDIRECT )
 			return GNETWORK_SEARCH_URL;
 
-		return home_url( '/' );
+		return GTHEME_HOME;
 	}
 
 	public static function getKey()

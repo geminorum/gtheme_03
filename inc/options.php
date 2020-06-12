@@ -167,7 +167,7 @@ class gThemeOptions extends gThemeModuleCore
 			// FIXME: DEPRECATED: use PAGES API
 			// 'search_page' => self::getOption( 'search_page', 0 ),
 
-			// 'home_url_override' => '', // full escaped url to overrided home page / comment to disable
+			// 'home_url_override' => '', // full url to overrided home page / @SEE: `gThemeOptions::getHomeURL()`
 			// 'empty_search_query' => '', // string to use on search input form / comment to use default
 
 			// 'post_actions_icons' => FALSE, // NEEDS: genericons css
@@ -223,6 +223,11 @@ class gThemeOptions extends gThemeModuleCore
 			return $defaults[$option];
 
 		return $default;
+	}
+
+	public static function getHomeURL()
+	{
+		return apply_filters( 'gtheme_home_url', defined( 'GNETWORK_BASE' ) ? constant( 'GNETWORK_BASE' ) : GTHEME_HOME );
 	}
 
 	public static function getDefaultImages( $extra = [] )

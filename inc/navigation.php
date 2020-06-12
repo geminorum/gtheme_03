@@ -285,15 +285,15 @@ class gThemeNavigation extends gThemeModuleCore
 			$args['home_title'] = gThemeOptions::info( 'logo_title', '' );
 
 		if ( 'home' == $args['home'] ) {
-			$crumbs[] = '<a href="'.esc_url( home_url( '/' ) ).'" rel="home" title="'.esc_attr( $args['home_title'] ).'">'.gThemeOptions::info( 'blog_title' ).'</a>';
+			$crumbs[] = '<a href="'.esc_url( GTHEME_HOME ).'" rel="home" title="'.esc_attr( $args['home_title'] ).'">'.gThemeOptions::info( 'blog_title' ).'</a>';
 
 		} else if ( 'network' == $args['home'] ) {
 
 			if ( is_main_site() ) {
-				$crumbs[] = '<a href="'.esc_url( home_url( '/' ) ).'" rel="home" title="'.esc_attr( $args['home_title'] ).'">'.gThemeOptions::info( 'blog_title' ).'</a>';
+				$crumbs[] = '<a href="'.esc_url( GTHEME_HOME ).'" rel="home" title="'.esc_attr( $args['home_title'] ).'">'.gThemeOptions::info( 'blog_title' ).'</a>';
 			} else {
 				$crumbs[] = '<a href="'.esc_url( gThemeUtilities::home() ).'" title="'.esc_attr( $args['home_title'] ).'">'.gThemeOptions::info( 'blog_name' ).'</a>';
-				$crumbs[] = '<a href="'.esc_url( home_url( '/' ) ).'" rel="home" title="'.esc_attr( gThemeOptions::getOption( 'frontpage_desc', '' ) ).'">'.gThemeOptions::info( 'blog_title' ).'</a>';
+				$crumbs[] = '<a href="'.esc_url( GTHEME_HOME ).'" rel="home" title="'.esc_attr( gThemeOptions::getOption( 'frontpage_desc', '' ) ).'">'.gThemeOptions::info( 'blog_title' ).'</a>';
 			}
 
 		} else {

@@ -79,7 +79,7 @@ class gThemeTemplate extends gThemeModuleCore
 
 		echo $before;
 
-		echo '<center><a href="'.gThemeUtilities::home().'">';
+		echo '<center><a href="'.esc_url( gThemeUtilities::home() ).'">';
 		echo '<img src="'.$src.'" class="header-image';
 		echo '" width="'.esc_attr( $image->width );
 		echo '" height="'.esc_attr( $image->height );

@@ -11,6 +11,7 @@ $gtheme_constants = [
 	'GTHEME_URL'           => get_template_directory_uri(),
 	'GTHEME_CHILD_DIR'     => get_stylesheet_directory(),
 	'GTHEME_CHILD_URL'     => get_stylesheet_directory_uri(),
+	'GTHEME_HOME'          => home_url( '/' ),
 
 	'GTHEME_PRINT_QUERY'       => 'print', // @SEE: gEditorial Paper
 	'GTHEME_SYSTEMTAGS'        => 'system_tags',
