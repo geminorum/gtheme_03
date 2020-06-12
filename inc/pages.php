@@ -92,9 +92,9 @@ class gThemePages extends gThemeModuleCore
 	{
 		$args = self::atts( [
 			'title'   => NULL,
-			'attr'    => FALSE,
+			'attr'    => FALSE, // or `title`
 			'url'     => FALSE,
-			'def'     => '#',
+			'def'     => '#', // or FALSE for disable linking
 			'class'   => FALSE,
 			'before'  => '',
 			'after'   => '',
@@ -104,21 +104,27 @@ class gThemePages extends gThemeModuleCore
 			'data'    => FALSE,
 		], $atts );
 
+		$page  = self::get( $name );
+		$title = $page ? get_the_title( $page ) : '';
+
 		if ( $args['url'] )
 			$args['def'] = $args['url'];
 
-		else if ( $page = self::get( $name, 0 ) )
-			$args['def'] = get_permalink( $page );
+		else if ( $page )
+			$args['def'] = gThemeContent::getPostLink( $page );
 
-		if ( is_null( $args['title'] ) && $page )
-			$args['title'] = get_the_title( $page );
+		if ( is_null( $args['title'] ) )
+			$args['title'] = $title;
+
+		if ( 'title' == $args['attr'] )
+			$args['attr'] = $args['def'] ? $title : FALSE;
 
 		if ( $args['title'] ) {
 
-			$html = $args['before'].gThemeHTML::tag( 'a', [
-				'href'  => $args['def'],
+			$html = $args['before'].gThemeHTML::tag( $args['def'] ? 'a' : 'span', [
+				'href'  => $args['def'] ?: FALSE,
 				'class' => $args['class'],
-				'title' => $args['attr'],
+				'title' => $args['attr'] ?: FALSE,
 				'data'  => $args['data'],
 			], $args['title'] ).$args['after'];
 
