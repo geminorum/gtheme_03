@@ -61,6 +61,30 @@ class gThemeTemplate extends gThemeModuleCore
 		echo $logo;
 	}
 
+	public static function about( $before = '', $after = '', $custom = NULL, $page = 'about' )
+	{
+		$group = gThemeOptions::getGroup();
+		$title = gThemeOptions::getOption( 'frontpage_desc', FALSE );
+
+		if ( 'main' == $group ) {
+
+			gThemePages::link( $page, [
+				'title'  => $custom ?: $title,
+				'attr'   => 'title', // target page title
+				'rel'    => 'about',
+				'def'    => FALSE, // disable link if target page does not exist
+				'before' => $before,
+				'after'  => $after,
+			] );
+
+		} else if ( $title || $custom ) {
+
+			echo $before.'<a href="'.esc_url( GTHEME_HOME ).'" title="'.esc_attr_x( 'Front Page', 'Modules: Template: Title Attr', 'gtheme' ).'">';
+				echo $custom ?: esc_html( $title );
+			echo '</a>'.$after;
+		}
+	}
+
 	public static function description( $before = '<p class="site-description -description">', $after = '</p>' )
 	{
 		$desc = gThemeOptions::info( 'frontpage_desc' );
