@@ -307,6 +307,9 @@ class gThemeFilters extends gThemeModuleCore
 			$this->current_post_class = ( 'odd' == $this->current_post_class ) ? 'even' : 'odd';
 		}
 
+		if ( $additional = gThemeOptions::info( 'additional_post_class', FALSE ) )
+			$classes[] = $additional;
+
 		return $classes;
 	}
 

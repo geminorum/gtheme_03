@@ -15,6 +15,8 @@ class gThemeOptions extends gThemeModuleCore
 			'blog_name'  => $blog_name,
 			'logo_title' => _x( 'Home', 'Logo Title', 'gtheme' ),
 
+			// 'additional_post_class' => '',
+
 			// SETTINGS PAGE
 			// 'settings_title' => _x( 'gTheme Settings', 'Admin Settings Page Title', 'gtheme' ),
 			// 'menu_title'     => _x( 'Theme Settings', 'Admin Menu Title', 'gtheme' ),
