@@ -4,7 +4,7 @@ class gThemeBootstrap extends gThemeModuleCore
 {
 
 	// BS4
-	public static function navbarOpen( $brand = NULL, $class = 'navbar-expand-md' )
+	public static function navbarOpen( $brand = NULL, $class = 'navbar-expand-md', $additional = '' )
 	{
 		$target = 'navbar';
 		$fixed  = gThemeOptions::info( 'bootstrap_navbar_fixed', FALSE );
@@ -12,6 +12,7 @@ class gThemeBootstrap extends gThemeModuleCore
 
 		echo '<nav class="navbar navbar-'.$scheme.' bg-'.$scheme.( $fixed ? ' fixed-top ' : ' ' ).$class.'">';
 
+			echo $additional;
 			self::navbarBrand( $brand );
 
 			echo '<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#'
@@ -25,6 +26,7 @@ class gThemeBootstrap extends gThemeModuleCore
 	// BS4
 	public static function navbarClose( $additional = '', $dark = FALSE )
 	{
+		echo $additional;
 		echo '</div></nav>';
 	}
 
