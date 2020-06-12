@@ -115,7 +115,7 @@ class gThemeContent extends gThemeModuleCore
 
 	public static function byline( $post = NULL, $before = '', $after = '', $echo = TRUE, $fallback = NULL )
 	{
-		if ( ! $post = get_post( $post ) )
+		if ( ! $post = self::getPost( $post ) )
 			return '';
 
 		// dummy post
@@ -179,11 +179,55 @@ class gThemeContent extends gThemeModuleCore
 		] );
 	}
 
+	// simplified `get_post()`
+	public static function getPost( $post = NULL, $output = OBJECT, $filter = 'raw' )
+	{
+		if ( $post instanceof \WP_Post )
+			return $post;
+
+		return get_post( $post, $output, $filter );
+	}
+
+	public static function getPostLink( $post, $fallback = NULL, $statuses = NULL )
+	{
+		if ( ! $post = self::getPost( $post ) )
+			return FALSE;
+
+		$status = get_post_status( $post );
+
+		if ( is_null( $statuses ) )
+			$statuses = [ 'publish', 'inherit' ]; // MAYBE: `apply_filters()`
+
+		if ( ! in_array( $status, (array) $statuses, TRUE ) )
+			return $fallback;
+
+		return apply_filters( 'the_permalink', get_permalink( $post ), $post );
+	}
+
+	public static function getPostTitle( $post, $fallback = NULL )
+	{
+		if ( ! $post = self::getPost( $post ) )
+			return Plugin::na( FALSE );
+
+		$title = apply_filters( 'the_title', $post->post_title, $post->ID );
+
+		if ( ! empty( $title ) )
+			return $title;
+
+		if ( FALSE === $fallback )
+			return '';
+
+		if ( is_null( $fallback ) )
+			return _x( '(untitled)', 'Modules: Content: Post Title', 'gtheme' );
+
+		return $fallback;
+	}
+
 	// core duplicate for performance concerns
 	// @REF: `get_post_class()`
 	public static function getPostClass( $class = '', $post_id = NULL )
 	{
-		$post = get_post( $post_id );
+		$post = self::getPost( $post_id );
 
 		$classes = $class
 			? array_map( [ 'gThemeHTML', 'sanitizeClass' ], gThemeHTML::attrClass( $class ) )
@@ -652,7 +696,7 @@ class gThemeContent extends gThemeModuleCore
 
 	public static function printLink( $text, $post = NULL, $before = '', $after = '', $title = NULL )
 	{
-		if ( ! $post = get_post( $post ) )
+		if ( ! $post = self::getPost( $post ) )
 			return;
 
 		if ( ! in_array( $post->post_type, (array) gThemeOptions::info( 'print_posttypes', [ 'post' ] ) ) )
@@ -956,7 +1000,7 @@ addthis_config.services_custom = [
 			'anchor'      => FALSE, // permalink anchor for the post
 		], $atts );
 
-		if ( ! $post = get_post( $args['post'] ) )
+		if ( ! $post = self::getPost( $args['post'] ) )
 			return;
 
 		if ( is_null( $args['title'] ) )
