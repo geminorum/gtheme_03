@@ -50,6 +50,9 @@ class gThemeBootstrap_Walker_NavBar extends Walker_Nav_Menu
 			$classes = empty( $item->classes ) ? [] : (array) $item->classes;
 			// $classes[] = 'menu-item-'.$item->ID;
 
+			// BS4
+			$classes[] = 'nav-link';
+
 			if ( $args->has_children )
 				$classes[] = 'dropdown';
 

@@ -3,8 +3,8 @@
 echo '<nav class="wrapper -navbar"><div class="container -nav">';
 
 	echo '<div class="-branding">';
-		gThemeTemplate::logo( 'navbar', '<h1><a href="%1$s" title="%3$s" rel="home">%2$s</a></h1>' );
-		gThemeTemplate::description();
+		gThemeTemplate::logo( 'navbar', '<h1><a class="navbar-brand" href="%1$s" title="%3$s" rel="home">%2$s</a></h1>' );
+		gThemeTemplate::about( '<small class="navbar-text">', '</small>' );
 	echo '</div>';
 
 	echo '<div class="-rule"></div>';

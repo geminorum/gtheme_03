@@ -62,10 +62,10 @@ class gThemeBootstrap extends gThemeModuleCore
 			$brand = gThemeTemplate::logo( 'navbar', '<img src="'.GTHEME_CHILD_URL.'/images/logo.png" alt="%2$s" />', FALSE );
 
 		if ( FALSE !== $brand )
-			vprintf( '<a class="navbar-brand" href="%1$s" title="%3$s">%2$s</a>', [
-				gThemeUtilities::home(),
-				$brand,
+			vprintf( '<a class="navbar-brand" href="%1$s" title="%2$s">%3$s</a>', [
+				esc_url( gThemeUtilities::home() ),
 				esc_attr( gThemeOptions::info( 'logo_title', '' ) ),
+				$brand,
 			] );
 	}
 

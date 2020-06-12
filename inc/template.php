@@ -6,6 +6,7 @@ class gThemeTemplate extends gThemeModuleCore
 	public static function wrapOpen( $context = 'index', $extra = [] )
 	{
 		$columns = self::atts( [
+			'404'           => 'col-sm-6',
 			'index'         => 'col-sm-8',
 			'singular'      => 'col-sm-8',
 			'systempage'    => 'col-sm-6',
