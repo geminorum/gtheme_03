@@ -1,22 +1,26 @@
 <?php defined( 'ABSPATH' ) or die( header( 'HTTP/1.0 403 Forbidden' ) );
 
-gThemeTemplate::wrapOpen( 'singular' );
+if ( have_posts() ) {
 
-	gThemeNavigation::breadcrumb( [ 'home' => 'home' ] );
+	gThemeTemplate::wrapOpen( 'singular' );
+		gThemeNavigation::breadcrumb( [ 'home' => 'home' ] );
 
-	if ( have_posts() ) {
 
-		while ( have_posts() ) {
-			the_post();
-			gThemeContent::post();
-		}
-
-		// gThemeNavigation::content( 'singular' );
-
-	} else {
-
-		get_template_part( 'content', '404' );
+	while ( have_posts() ) {
+		the_post();
+		gThemeContent::post();
 	}
 
-gThemeTemplate::wrapClose( 'singular' );
+		// gThemeNavigation::content( 'singular' );
+	gThemeTemplate::wrapClose( 'singular' );
+
+} else {
+
+	gThemeTemplate::wrapOpen( '404' );
+
+		get_template_part( 'content', '404' );
+
+	gThemeTemplate::wrapClose( '404' );
+}
+
 gThemeTemplate::sidebar( 'singular' );
