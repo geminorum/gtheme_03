@@ -16,7 +16,7 @@ class gThemeContent extends gThemeModuleCore
 		if ( is_null( $tag ) )
 			$tag = gThemeOptions::info( 'content_wrap_tag', 'article' );
 
-		echo '<'.$tag.( $post_id ? ' id="post-'.$post_id.'"' : '' ).' class="'.join( ' ', self::getPostClass( $classes, $post_id ) ).'">';
+		echo '<'.$tag.( $post_id ? ' id="post-'.$post_id.'"' : '' ).' class="'.gThemeHTML::prepClass( self::getPostClass( $classes, $post_id ) ).'">';
 
 		do_action( 'gtheme_content_wrap_open', $context );
 	}

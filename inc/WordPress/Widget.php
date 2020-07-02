@@ -169,7 +169,7 @@ class gThemeWidget extends WP_Widget
 		if ( self::MODULE )
 			$classes[] = '-'.self::MODULE;
 
-		$html = '<div class="'.join( ' ', $classes ).'">';
+		$html = '<div class="'.gThemeHTML::prepClass( $classes ).'">';
 
 		if ( ! $echo )
 			return $html;

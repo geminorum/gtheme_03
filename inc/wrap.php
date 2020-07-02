@@ -126,7 +126,7 @@ class gThemeWrap extends gThemeModuleCore
 		else
 			$atts = '';
 
-		echo '<html'.$atts.' class="'.join( ' ', $classes ).'">'."\n".$after."\n";
+		echo '<html'.$atts.' class="'.gThemeHTML::prepClass( $classes ).'">'."\n".$after."\n";
 	}
 
 	// USED IN: head.php

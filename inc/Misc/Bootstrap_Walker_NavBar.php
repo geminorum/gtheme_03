@@ -29,11 +29,10 @@ class gThemeBootstrap_Walker_NavBar extends Walker_Nav_Menu
 
 		} else if ( 0 === $depth && 0 === strcasecmp( $item->xfn, 'yamm' ) ) {
 
-			// https://github.com/geedmo/yamm3
-			// CAUTION: #navbar must have .yamm
-			$output.= $indent.'<li class="dropdown yamm-fw '
-					.( empty( $item->classes ) ? '' : esc_attr( join( ' ', (array) $item->classes ) ) ).'">'
-					.'<a href="'.esc_url( $item->url ).'" class="dropdown-toggle" data-toggle="dropdown">'.esc_attr( $item->title ).'</a>'
+			// @REF: https://geedmo.github.io/yamm/
+			// CAUTION: #navbar must have `.yamm`
+			$output.= $indent.'<li class="'.gThemeHTML::prepClass( 'dropdown', 'yamm-fw', $item->classes ).'">'
+					.'<a href="'.esc_url( $item->url ).'" class="dropdown-toggle" data-toggle="dropdown" data-display="static">'.esc_attr( $item->title ).'</a>'
 					.'<ul class="dropdown-menu"><li>'
 					.'<div class="yamm-content">';
 
@@ -59,8 +58,8 @@ class gThemeBootstrap_Walker_NavBar extends Walker_Nav_Menu
 			if ( in_array( 'current-menu-item', $classes ) )
 				$classes[] = 'active';
 
-			$class = join( ' ', apply_filters( 'nav_menu_css_class', array_filter( $classes ), $item, $args, $depth ) );
-			$class = $class ? ' class="'.esc_attr( $class ).'"' : '';
+			$class = apply_filters( 'nav_menu_css_class', array_filter( $classes ), $item, $args, $depth );
+			$class = empty( $class ) ? '' : ' class="'.gThemeHTML::prepClass( $class ).'"';
 
 			// $id = apply_filters( 'nav_menu_item_id', 'menu-item-'.$item->ID, $item, $args, $depth );
 			// $id = $id ? ' id="'.esc_attr( $id ).'"' : '';
