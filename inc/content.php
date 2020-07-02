@@ -655,7 +655,12 @@ class gThemeContent extends gThemeModuleCore
 			break;
 			case 'categories':
 
-				if ( is_object_in_taxonomy( get_post_type(), 'category' ) )
+				$posttype = get_post_type();
+
+				if ( 'entry' == $posttype && is_object_in_taxonomy( $posttype, 'entry_section' ) )
+					gThemeTerms::theList( 'entry_section', sprintf( $before, 'entry-section-term' ), $after );
+
+				else if ( is_object_in_taxonomy( $posttype, 'category' ) )
 					gThemeTerms::theList( 'category', sprintf( $before, 'category-term' ), $after );
 
 			break;
