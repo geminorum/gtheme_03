@@ -247,6 +247,12 @@ class gThemeContent extends gThemeModuleCore
 		else if ( ! empty( $post->post_password ) )
 			$classes[] = 'post-password-protected';
 
+		if ( $format = get_post_format( $post ) )
+			$classes[] = gThemeHTML::sanitizeClass( 'format-'.$format );
+
+		else
+			$classes[] = 'format-standard';
+
 		$classes[] = 'hentry';
 
 		// core default filter
