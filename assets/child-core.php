@@ -7,5 +7,16 @@ if ( ! class_exists( 'gThemeChildCore' ) ) { class gThemeChildCore
 		$this->setup_actions();
 	}
 
-	public function setup_actions() {}
+	public function setup_actions()
+	{
+		self::_load_textdomain();
+	}
+
+	// @REF: https://developer.wordpress.org/reference/functions/load_child_theme_textdomain/#comment-1552
+	protected function _load_textdomain()
+	{
+		add_action( 'after_setup_theme', function() {
+			load_child_theme_textdomain( 'gtheme', GTHEME_CHILD_DIR.'/languages' );
+		} );
+	}
 } }
