@@ -40,7 +40,7 @@ class gThemeDate extends gThemeModuleCore
 		if ( ! $post = get_post( $args['post'] ) )
 			return '';
 
-		if ( ! in_array( $post->post_type, (array) gThemeOptions::info( 'date_posttypes', [ 'post' ] ) ) )
+		if ( ! in_array( $post->post_type, (array) gThemeOptions::info( 'date_posttypes', [ 'post', 'entry' ] ) ) )
 			return '';
 
 		$link = $args['shortlink']

@@ -710,7 +710,7 @@ class gThemeContent extends gThemeModuleCore
 		if ( ! $post = self::getPost( $post ) )
 			return;
 
-		if ( ! in_array( $post->post_type, (array) gThemeOptions::info( 'print_posttypes', [ 'post' ] ) ) )
+		if ( ! in_array( $post->post_type, (array) gThemeOptions::info( 'print_posttypes', [ 'post', 'entry' ] ) ) )
 			return;
 
 		if ( ! $permalink = get_permalink( $post ) )
