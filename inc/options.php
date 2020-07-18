@@ -131,7 +131,7 @@ class gThemeOptions extends gThemeModuleCore
 			'frontpage_desc'  => self::getOption( 'frontpage_desc', get_bloginfo( 'description', 'display' ) ), // FALSE to disable
 
 			// 'default_image_src' => FALSE, // GTHEME_URL.'/images/document-large.png', // FIXME: MUST DEP
-			'copyright'         => self::getOption( 'copyright', __( '&copy; All rights reserved.', 'gtheme' ) ),
+			// 'copyright'         => '', // empty to fallback, FALSE to disable
 			// 'copyright_append_site_modified' => TRUE,
 			// 'copyright_link_site_modified'   => '/archives/latest',
 

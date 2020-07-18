@@ -258,10 +258,24 @@ class gThemeTemplate extends gThemeModuleCore
 			echo get_avatar( $id_or_email, $size, $default );
 	}
 
+	public static function getCopyright( $context = NULL )
+	{
+		if ( $option = gThemeOptions::getOption( 'copyright' ) )
+			return $option;
+
+		if ( $info = gThemeOptions::info( 'copyright', NULL ) ) // FALSE to disable
+			return $info;
+
+		if ( FALSE !== $info )
+			return apply_filters( 'gtheme_copyright', __( '&copy; All rights reserved.', 'gtheme' ), $context );
+
+		return FALSE;
+	}
+
 	// ANCESTOR : gtheme_copyright()
 	public static function copyright( $before = '<p class="copyright text-muted credit">', $after = '</p>', $p = FALSE )
 	{
-		$copyright = gThemeOptions::info( 'copyright', FALSE );
+		$copyright = self::getCopyright( 'default' );
 
 		if ( FALSE === $copyright )
 			return;
@@ -284,7 +298,7 @@ class gThemeTemplate extends gThemeModuleCore
 
 	public static function copyrightAMP()
 	{
-		if ( ! $copyright = gThemeOptions::info( 'copyright', FALSE ) )
+		if ( ! $copyright = self::getCopyright( 'amp' ) )
 			return;
 
 		echo gThemeText::autoP( gThemeText::wordWrap( $copyright ), FALSE );
