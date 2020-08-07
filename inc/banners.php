@@ -18,8 +18,8 @@ class gThemeBanners extends gThemeModuleCore
 	public static function defaults( $extra = [] )
 	{
 		return array_merge( [
-			'first'  => _x( 'First', 'Banner Groups', 'gtheme' ),
-			'second' => _x( 'Second', 'Banner Groups', 'gtheme' ),
+			'dashboard' => _x( 'Dashboard', 'Banner Groups', 'gtheme' ),
+			'sponsors'  => _x( 'Sponsors', 'Banner Groups', 'gtheme' ),
 		], $extra );
 	}
 
@@ -33,61 +33,55 @@ class gThemeBanners extends gThemeModuleCore
 		self::html( $banner, $atts );
 	}
 
+	public static function getGroup( $group )
+	{
+		return wp_list_filter( gThemeOptions::getOption( 'banners', [] ), [ 'group' => $group ] );
+	}
+
 	public static function group( $group, $atts = [] )
 	{
-		$banners = gThemeOptions::getOption( 'banners', [] );
-		$saved   = [];
+		if ( ! $banners = self::getGroup( $group ) )
+			return FALSE;
 
-		foreach ( $banners as $banner )
-			if ( isset( $banner['group'] )
-				&& $group == $banner['group'] )
-					$saved[] = $banner;
+		$args = self::atts( [
+			'before'    => '',
+			'after'     => '',
+			'tag'       => 'li',
+			'tag_start' => '',
+			'tag_end'   => '',
+		], $atts );
 
-		if ( count( $saved ) ) {
+		echo $args['before'];
 
-			$args = self::atts( [
-				'before'    => '',
-				'after'     => '',
-				'tag'       => 'li',
-				'tag_start' => '',
-				'tag_end'   => '',
-			], $atts );
+		foreach ( $banners as $banner ) {
 
-			echo $args['before'];
+			if ( $args['tag'] )
+				echo '<'.$args['tag'].'>';
 
-			foreach ( $saved as $banner ) {
+			echo $args['tag_start'];
 
-				if ( $args['tag'] )
-					echo '<'.$args['tag'].'>';
+			self::html( $banner, $atts );
 
-				echo $args['tag_start'];
+			echo $args['tag_end'];
 
-				self::html( $banner, $atts );
-
-				echo $args['tag_end'];
-
-				if ( $args['tag'] )
-					echo '</'.$args['tag'].'>';
-			}
-
-			echo $args['after'];
+			if ( $args['tag'] )
+				echo '</'.$args['tag'].'>';
 		}
+
+		echo $args['after'];
 	}
 
 	// ANCESTOR: gtheme_get_banner()
 	public static function get( $group, $order = 0 )
 	{
-		$banners = gThemeOptions::getOption( 'banners', [] );
+		if ( ! $banners = self::getGroup( $group ) )
+			return FALSE;
 
-		foreach ( $banners as $banner ) {
-			if ( isset( $banner['group'] ) && $group == $banner['group'] ) {
-				if ( isset( $banner['order'] ) && $order == $banner['order'] ) {
-					return $banner;
-				}
-			}
-		}
+		$ordered = gThemeArraay::reKey( $banners, 'order' );
 
-		return FALSE;
+		return array_key_exists( $order, $ordered )
+			? $ordered[$order]
+			: FALSE;
 	}
 
 	// ANCESTOR: gtheme_banner()
@@ -332,6 +326,5 @@ jQuery(document).ready(function($){
 	});
 });
 </script><?php
-
 	}
 }
