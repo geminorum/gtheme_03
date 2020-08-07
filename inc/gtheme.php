@@ -20,6 +20,7 @@ final class gThemeCore
 	{
 		$modules = [
 			'core/base'      => '',
+			'core/arraay'    => '',
 			'core/html'      => '',
 			'core/number'    => '',
 			'core/third'     => '',
