@@ -114,6 +114,21 @@ class gThemeBanners extends gThemeModuleCore
 			echo $html;
 	}
 
+	// @REF: https://github.com/jsor/jcarousel
+	public static function paginatedCarousel( $group = 'dashboard', $atts = [] )
+	{
+		$args = array_merge( [
+			'before' => '<div class="wrap-jcarousel-paginated -group-'.$group.'"><div class="-carousel"><ul>',
+			'after'  => '</ul></div><div class="-pagination"></div></div>',
+		], $atts );
+
+		if ( FALSE === self::group( $group, $args ) )
+			return;
+
+		wp_register_script( 'jquery-jcarousel', GTHEME_URL.'/js/vendor/jquery.jcarousel.min.js', [ 'jquery' ], '0.3.9', TRUE );
+		wp_enqueue_script( 'jcarousel-paginated', GTHEME_URL.'/js/jcarousel.paginated'.( SCRIPT_DEBUG ? '' : '.min' ).'.js', [ 'jquery', 'jquery-jcarousel' ], GTHEME_VERSION, TRUE );
+	}
+
 	public function subs( $subs )
 	{
 		return array_merge( $subs, [ 'banners' => _x( 'Banners', 'Modules: Menu Name', 'gtheme' ) ] );
