@@ -38,7 +38,7 @@ class gThemeBootstrap_Walker_NavBar extends Walker_Nav_Menu
 					$output.= '<div class="dropdown-menu"><div class="yamm-content">';
 
 					ob_start();
-						get_template_part( 'partials/menu', esc_attr( $item->attr_title ) );
+						get_template_part( 'partials/megamenu', esc_attr( $item->attr_title ) );
 					$output.= ob_get_clean();
 
 			$output.= '</div></div>';
