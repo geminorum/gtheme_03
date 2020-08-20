@@ -1,32 +1,53 @@
-<?php
-
+<?php //////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 // NOTE: SAMPLE
 
-if ( ! $ltr ) {
+////////////////////////////////////////////////////////////////////////////////
+$direction = $ltr ? '' : '-rtl';
 
-	$css = [
-		'main.screen-rtl.css',
-		// '../../gtheme_03/css/main.screen-rtl.css',
+// supported groups other than `main`
+$groups = [
+	// 'news',
+	// 'dev',
+];
 
-		'../../../plugins/gnetwork/assets/css/front.all-rtl.css',
-		'../../../plugins/geditorial/assets/css/front.all-rtl.css',
+$styles = [
+	// works with setting `GNETWORK_DISABLE_FRONT_STYLES`
+	"../../../plugins/gnetwork/assets/css/front.all{$direction}.css",
 
-		'../../../plugins/gnetwork/assets/css/signup.all-rtl.css',
-		'../../../plugins/gnetwork/assets/css/activate.all-rtl.css',
-	];
+	// works with setting `GEDITORIAL_DISABLE_FRONT_STYLES`
+	"../../../plugins/geditorial/assets/css/front.all{$direction}.css", // or by module, see below
+	// "../../../plugins/geditorial/assets/css/front.headings{$direction}.css",
+	// "../../../plugins/geditorial/assets/css/front.like{$direction}.css",
+	// "../../../plugins/geditorial/assets/css/front.entry{$direction}.css",
+];
+
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+if ( in_array( $group, $groups ) ) {
+
+	$styles = array_merge( [
+
+		"{$group}.screen{$direction}.css",
+		// "../../gtheme_03/css/{$group}.screen{$direction}.css",
+
+	], $styles );
 
 } else {
 
-	$css = [
-		'main.screen.css',
-		// '../../gtheme_03/css/main.screen.css',
+	$styles = array_merge( [
 
-		'../../../plugins/gnetwork/assets/css/front.all.css',
-		'../../../plugins/geditorial/assets/css/front.all.css',
+		"main.screen{$direction}.css",
+		// "../../gtheme_03/css/main.screen{$direction}.css",
 
-		'../../../plugins/gnetwork/assets/css/signup.all.css',
-		'../../../plugins/gnetwork/assets/css/activate.all.css',
-	];
+		// only on main group which typically is on the main site of the network
+		"../../../plugins/gnetwork/assets/css/signup.all{$direction}.css",
+		"../../../plugins/gnetwork/assets/css/activate.all{$direction}.css",
+
+	], $styles );
 }
 
-include_css( $css );
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+include_css( $styles );
