@@ -31,16 +31,17 @@ class gThemeBootstrap_Walker_NavBar extends Walker_Nav_Menu
 
 			// @REF: https://geedmo.github.io/yamm/
 			// CAUTION: #navbar must have `.yamm`
-			$output.= $indent.'<li class="'.gThemeHTML::prepClass( 'dropdown', 'yamm-fw', $item->classes ).'">'
-					.'<a href="'.esc_url( $item->url ).'" class="dropdown-toggle" data-toggle="dropdown" data-display="static">'.esc_attr( $item->title ).'</a>'
-					.'<ul class="dropdown-menu"><li>'
-					.'<div class="yamm-content">';
+			// NOTE: bootstrap does not allow urls on dropdown
 
-			ob_start();
-				get_template_part( 'menu', esc_attr( $item->attr_title ) );
-			$output.= ob_get_clean();
+			$output.= $indent.'<li class="'.gThemeHTML::prepClass( 'nav-link', 'dropdown', 'yamm-fw', $item->classes ).'">';
+				$output.= '<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-display="static">'.esc_attr( $item->title ).'</a>';
+					$output.= '<div class="dropdown-menu"><div class="yamm-content">';
 
-			$output.= '</div></li></ul>';
+					ob_start();
+						get_template_part( 'partials/menu', esc_attr( $item->attr_title ) );
+					$output.= ob_get_clean();
+
+			$output.= '</div></div>';
 
 		} else {
 
