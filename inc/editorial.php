@@ -210,6 +210,7 @@ class gThemeEditorial extends gThemeModuleCore
 		if ( ! $post = get_post( $args['post'] ) )
 			return $args['default'];
 
+		// check if it's is_callable
 		if ( ! $html = gEditorial()->estimated->get_estimated( $post->ID, $args['prefix'] ) )
 			return $args['default'];
 

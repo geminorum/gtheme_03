@@ -358,8 +358,7 @@ class gThemeOptions extends gThemeModuleCore
 		if ( FALSE === $gtheme_options )
 			$gtheme_options = [];
 
-		if ( !isset( $gtheme_options[$name] ) )
-			// $gtheme_options[$name] = $default;
+		if ( ! array_key_exists( $name, $gtheme_options ) )
 			return $default;
 
 		return $gtheme_options[$name];

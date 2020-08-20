@@ -211,7 +211,7 @@ class gThemeBanners extends gThemeModuleCore
 	public function settings_sub_html( $uri, $sub = 'general' )
 	{
 		$legend  = gThemeOptions::info( 'banners_legend' );
-		$groups  = gThemeOptions::info( 'banner_groups', gThemeBanners::defaults() );
+		$groups  = gThemeOptions::info( 'banner_groups', self::defaults() );
 		$banners = gThemeOptions::getOption( 'banners', [] );
 
 		echo '<form method="post" action="">';

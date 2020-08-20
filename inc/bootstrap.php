@@ -24,7 +24,7 @@ class gThemeBootstrap extends gThemeModuleCore
 	}
 
 	// BS4
-	public static function navbarClose( $additional = '', $dark = FALSE )
+	public static function navbarClose( $additional = '' )
 	{
 		echo $additional;
 		echo '</div></nav>';
