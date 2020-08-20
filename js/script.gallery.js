@@ -4,7 +4,7 @@ jQuery(function ($) {
   $('.-gallery').imagesLoaded(function () {
     $('.-gallery-spinner').fadeOut(500, function () {
       $('.-gallery').animate({
-        'opacity': '1'
+        opacity: '1'
       }, 500);
     });
   });
