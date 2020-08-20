@@ -8,7 +8,11 @@
 ////////////////////////////////////////////////////////////////////////////////
 // Default Image Styles
 // it's better to be empty and child override it
-@mixin theme-images-default() {}
+@mixin theme-images-default() {
+  &.no-border {
+    @include theme-images-noborder();
+  }
+}
 
 // @mixin theme-images-default() {
 //   background-color: $gray-light;
@@ -25,7 +29,6 @@
 }
 
 @mixin theme-images-caption {
-
   position: relative;
   margin-bottom: $theme-grid-gutter;
   max-width: 100%;

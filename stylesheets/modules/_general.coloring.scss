@@ -4,6 +4,13 @@
 /// Modules: General: Coloring -------------------------------------------------
 
 ////////////////////////////////////////////////////////////////////////////////
+// @REF: https://stackoverflow.com/a/54750277/
+// @SEE: `from_hex(hex_string, alpha = nil);`
+@function theme-coloring-toRGBa ($color, $alpha) {
+  @return "rgba(" + red($color) + ", " + green($color) + ", " + blue($color) + ", " + $alpha + ")";
+}
+
+////////////////////////////////////////////////////////////////////////////////
 /// Generate color and box-shadow in a loop
 // @REF: http://creative-punch.net/2014/01/using-sass-generate-color-box-shadow-loop/
 // @REF: http://codepen.io/CreativePunch/pen/piErg
