@@ -92,9 +92,10 @@ class gThemeBanners extends gThemeModuleCore
 			'h'           => 'auto',
 			'c'           => '#fff',
 			'img_class'   => gThemeImage::cssClass(),
+			'img_style'   => FALSE,
+			'img_loading' => 'lazy', // FALSE to disable
 			'a_class'     => 'gtheme-banner',
-			'img_style'   => '',
-			'a_style'     => '',
+			'a_style'     => FALSE,
 			'placeholder' => TRUE,
 		], $atts );
 
@@ -102,13 +103,24 @@ class gThemeBanners extends gThemeModuleCore
 		$title = empty( $banner['title'] ) ? '' : $banner['title'];
 
 		if ( ! empty( $banner['image'] ) && 'http://' != $banner['image'] )
-			$html.= '<img src="'.$banner['image'].'" alt="'.$title.'" class="'.$args['img_class'].'" style="'.$args['img_style'].'" />';
+			$html.= gThemeHTML::tag( 'img', [
+				'src'     => $banner['image'],
+				'class'   => $args['img_class'],
+				'style'   => $args['img_style'],
+				'loading' => $args['img_loading'],
+				'alt'     => $title,
+			] );
 
 		else if ( $args['placeholder'] )
 			$html.= '<div style="display:block;width:'.$args['w'].';height:'.$args['h'].';background-color:'.$args['c'].';" ></div>';
 
 		if ( ! empty( $banner['url'] ) && 'http://' != $banner['url'] )
-			$html = '<a href="'.$banner['url'].'" title="'.$title.'" class="'.$args['a_class'].'" style="'.$args['a_style'].'">'.$html.'</a>';
+			$html = gThemeHTML::tag( 'a', [
+				'href'  => $banner['url'],
+				'class' => $args['a_class'],
+				'style' => $args['a_style'],
+				'title' => $title,
+			], $html );
 
 		if ( ! empty( $html ) )
 			echo $html;
