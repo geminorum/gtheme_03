@@ -3,20 +3,33 @@
 class gThemeTemplate extends gThemeModuleCore
 {
 
-	public static function wrapOpen( $context = 'index', $extra = [] )
+	public static function wrapOpen( $context = 'index', $extra = [], $posttype = NULL )
 	{
-		$columns = self::atts( [
+		$columns = array_merge( [
 			'404'           => 'col-sm-6',
 			'index'         => 'col-sm-8',
 			'singular'      => 'col-sm-8',
+			'attachment'    => 'col-sm-8',
 			'systempage'    => 'col-sm-6',
 			'fullwidthpage' => 'col-sm-12',
 			'signup'        => 'col-sm-12',
 			'activate'      => 'col-sm-12',
+			'bbpress'       => 'col-sm-12',
+			'buddypress'    => 'col-sm-12',
 		], gThemeOptions::info( 'template_columns', [] ) );
 
-		if ( array_key_exists( $context, $columns ) )
+		if ( is_null( $posttype ) )
+			$posttype = get_post_type();
+
+		if ( ! $posttype && is_post_type_archive() )
+			$posttype = get_queried_object()->name;
+
+		if ( $posttype && array_key_exists( $context.'-'.$posttype, $columns ) )
+			$column = $columns[$context.'-'.$posttype];
+
+		else if ( array_key_exists( $context, $columns ) )
 			$column = $columns[$context];
+
 		else
 			$column = gThemeOptions::info( 'template_column_fallback', 'col-sm-8' );
 
@@ -27,13 +40,20 @@ class gThemeTemplate extends gThemeModuleCore
 			$context,
 		] );
 
-		do_action( 'gtheme_template_wrap_open', $context );
+		do_action( 'gtheme_template_wrap_open', $context, $posttype );
 	}
 
-	public static function wrapClose( $context = 'index' )
+	public static function wrapClose( $context = 'index', $additional = '', $posttype = NULL )
 	{
-		do_action( 'gtheme_template_wrap_close', $context );
+		if ( is_null( $posttype ) )
+			$posttype = get_post_type();
 
+		if ( ! $posttype && is_post_type_archive() )
+			$posttype = get_queried_object()->name;
+
+		do_action( 'gtheme_template_wrap_close', $context, $posttype );
+
+		echo $additional;
 		echo gThemeOptions::info( 'template_wrap_close', '</div>' );
 	}
 
