@@ -144,6 +144,43 @@ class gThemeBanners extends gThemeModuleCore
 		wp_enqueue_script( 'jcarousel-paginated', GTHEME_URL.'/js/jcarousel.paginated'.( SCRIPT_DEBUG ? '' : '.min' ).'.js', [ 'jquery', 'jquery-jcarousel' ], GTHEME_VERSION, TRUE );
 	}
 
+	// NOTE: needs no additional styles or scripts
+	public static function bootstrapCarousel( $group = 'dashboard', $atts = [] )
+	{
+		if ( ! $banners = self::getGroup( $group ) )
+			return;
+
+		$html = $indi = '';
+		$id   = $group.'CarouselBanners';
+
+		$controls = '<a class="carousel-control-prev" href="#'.$id.'" role="button" data-slide="prev">';
+		$controls.= '<span class="carousel-control-prev-icon" aria-hidden="true"></span>';
+		$controls.= '<span class="sr-only">'._x( 'Previous', 'Carousel Control', 'gtheme' ).'</span></a>';
+		$controls.= '<a class="carousel-control-next" href="#'.$id.'" role="button" data-slide="next">';
+		$controls.= '<span class="carousel-control-next-icon" aria-hidden="true"></span>';
+		$controls.= '<span class="sr-only">'._x( 'Next', 'Carousel Control', 'gtheme' ).'</span></a>';
+
+		$args = array_merge( [
+			'a_class'   => 'd-block w-100',
+			'img_class' => 'd-block w-100',
+			'echo'      => FALSE,
+		], $atts );
+
+		foreach ( $banners as $offset => $banner ) {
+
+			if ( ! $item = self::html( $banner, $args ) )
+				continue;
+
+			$html.= '<div class="carousel-item'.( $offset ? '' : ' active' ).'">'.$item.'</div>';
+			$indi.= '<li data-target="#'.$id.'" data-slide-to="'.$offset.'"'.( $offset ? '' : ' class="active"' ).'></li>';
+		}
+
+		echo '<div id="'.$id.'" class="carousel slide w-100 mx-3" data-ride="carousel">';
+		echo '<ol class="carousel-indicators">'.$indi.'</ol>';
+		echo '<div class="carousel-inner">'.$html.'</div>';
+		echo $controls.'</div>';
+	}
+
 	public function subs( $subs )
 	{
 		return array_merge( $subs, [ 'banners' => _x( 'Banners', 'Modules: Menu Name', 'gtheme' ) ] );
