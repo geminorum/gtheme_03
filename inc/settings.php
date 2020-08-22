@@ -247,7 +247,7 @@ class gThemeSettings extends gThemeModuleCore
 
 		$wp_admin_bar->add_node( [
 			'id'     => 'gtheme-template-base',
-			'title'  => gtheme_template_base() ? esc_html( gtheme_template_base() ) : '[EMPTY]',
+			'title'  => gtheme_template_base() ?: '[EMPTY]',
 			'parent' => 'top-secondary',
 			'href'   => FALSE,
 			'meta'   => [ 'title' => _x( 'Theme Template Base', 'Modules: Settings', 'gtheme' ) ],

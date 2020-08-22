@@ -39,7 +39,7 @@ class gThemeOptions extends gThemeModuleCore
 				// 'bootstrap-4'     => TRUE,
 			],
 
-			// 'theme_groups' => FALSE, // [ 'main' => _x( 'Main' 'Options: Theme Group', 'gtheme' ) ],
+			// 'theme_groups' => FALSE, // [ 'main' => _x( 'Main', 'Options: Theme Group', 'gtheme' ) ], // FALSE to disable UI
 			'module_args'  => [],
 
 			// MENUS

@@ -130,6 +130,7 @@ class gThemeBanners extends gThemeModuleCore
 	}
 
 	// @REF: https://github.com/jsor/jcarousel
+	// NOTE: needs additional styles, see blocks for `jcarousel`
 	public static function paginatedCarousel( $group = 'dashboard', $atts = [] )
 	{
 		$args = array_merge( [
