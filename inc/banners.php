@@ -97,6 +97,7 @@ class gThemeBanners extends gThemeModuleCore
 			'a_class'     => 'gtheme-banner',
 			'a_style'     => FALSE,
 			'placeholder' => TRUE,
+			'echo'        => TRUE,
 		], $atts );
 
 		$html  = '';
@@ -122,8 +123,10 @@ class gThemeBanners extends gThemeModuleCore
 				'title' => $title,
 			], $html );
 
-		if ( ! empty( $html ) )
-			echo $html;
+		if ( ! $args['echo'] )
+			return $html;
+
+		echo $html;
 	}
 
 	// @REF: https://github.com/jsor/jcarousel
