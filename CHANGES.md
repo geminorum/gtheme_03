@@ -1,3 +1,33 @@
+### 3.20.2
+* assest/css: better handling direction/group on css includes
+* assets/child: textdomain for the child
+* module/banners: better handling html tags
+* module/banners: bootstrap carousel support for groups
+* module/banners: helpers revised
+* module/banners: optional return of banner html helper
+* module/banners: paginated carousel
+* module/bootstrap: additional markup within collapse
+* module/bootstrap: rethinking mega-menus
+* module/content: format in post class
+* module/content: pocket button action
+* module/content: post link/title helpers
+* module/content: support for entry section as category action
+* module/filters: additional post class
+* module/image: skip core filter for img tags
+* module/options: home url helper
+* module/options: support for theme info on lang in iso639
+* module/pages: link helper revised
+* module/template: about helper
+* module/template: filtering copyright text
+* module/template: posttype as suffix to contexts on wrap open/close
+* partial/entry: default content structure for event posttype
+* partial/entry: default content structure for publication posttype
+* partial/home: default dashboard with paginated carousel
+* root/404: root part for 404
+* root/bbpress: initial support
+* root/content: page template for non-page systempages
+* root/end: rethinking partials
+
 ### 3.20.1
 * module/content: properly escape a2a link
 * module/editorial: disable like button system tag
