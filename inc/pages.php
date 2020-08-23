@@ -93,7 +93,7 @@ class gThemePages extends gThemeModuleCore
 		$args = self::atts( [
 			'title'   => NULL,
 			'attr'    => FALSE, // or `title`
-			'url'     => FALSE,
+			'url'     => apply_filters( 'gtheme_pages_link_url', FALSE, $name, $atts ),
 			'def'     => '#', // or FALSE for disable linking
 			'class'   => FALSE,
 			'before'  => '',
