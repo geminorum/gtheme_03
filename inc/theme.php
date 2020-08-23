@@ -16,7 +16,7 @@ class gThemeTheme extends gThemeModuleCore
 			'post_formats'      => FALSE,
 			'custom_background' => FALSE,
 			'custom_header'     => FALSE, // @REF: https://developer.wordpress.org/themes/functionality/custom-headers/
-			'custom_logo'       => FALSE,
+			'custom_logo'       => TRUE,
 			'custom_fontsizes'  => FALSE,
 			'html5'             => TRUE,
 			'js'                => FALSE,
@@ -101,14 +101,7 @@ class gThemeTheme extends gThemeModuleCore
 		}
 
 		if ( $custom_logo )
-			add_theme_support( 'custom-logo',
-				gThemeOptions::info( 'support_custom_logo', [
-					'width'       => NULL,
-					'height'      => NULL,
-					'flex-width'  => TRUE,
-					'flex-height' => TRUE,
-					'header-text' => gThemeOptions::info( 'blog_name', '' ),
-			] ) );
+			$this->_support_custom_logo();
 
 		if ( $custom_fontsizes ) {
 
@@ -183,6 +176,26 @@ class gThemeTheme extends gThemeModuleCore
 		if ( $alignwide_support ) {
 			add_theme_support( 'align-wide' );
 		}
+	}
+
+	// @REF: https://developer.wordpress.org/themes/functionality/custom-logo/
+	private function _support_custom_logo()
+	{
+		if ( ! $atts = gThemeOptions::info( 'support_custom_logo' ) )
+			return FALSE;
+
+		$args = self::atts( [
+			'width'       => NULL,
+			'height'      => NULL,
+			'flex-width'  => TRUE,
+			'flex-height' => TRUE,
+			'header-text' => [
+				gThemeOptions::info( 'blog_name', '' ), // site-title
+				gThemeOptions::info( 'frontpage_desc', '' ), // site-description
+			],
+		], is_array( $atts ) ? $atts : [] );
+
+		return add_theme_support( 'custom-logo', $args );
 	}
 
 	public function cleanup()
