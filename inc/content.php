@@ -681,6 +681,14 @@ class gThemeContent extends gThemeModuleCore
 				] );
 
 			break;
+			case 'editorial_published':
+
+				gThemeEditorial::meta( 'published', [
+					'before' => sprintf( $before, 'entry-published' ),
+					'after'  => $after,
+				] );
+
+			break;
 			case 'editorial_label':
 
 				gThemeEditorial::label( [
