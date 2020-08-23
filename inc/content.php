@@ -493,7 +493,7 @@ class gThemeContent extends gThemeModuleCore
 			case 'textsize_buttons_nosep':
 
 				self::text_size_buttons(
-					sprintf( $before, 'textsize-buttons hidden-print' ), $after,
+					sprintf( $before, 'textsize-buttons hide-if-no-js hidden-print' ), $after,
 					( 'textsize_buttons_nosep' == $action ? FALSE : 'def' ),
 					( $icon ? self::getGenericon( 'zoom' ) : 'def' ),
 					( $icon ? self::getGenericon( 'unzoom' ) : 'def' )
@@ -504,7 +504,7 @@ class gThemeContent extends gThemeModuleCore
 			case 'textjustify_buttons_nosep':
 
 				self::justify_buttons(
-					sprintf( $before, 'textjustify-buttons hidden-print' ), $after,
+					sprintf( $before, 'textjustify-buttons hide-if-no-js hidden-print' ), $after,
 					( 'textjustify_buttons_nosep' == $action ? FALSE : 'def' ),
 					( $icon ? self::getGenericon( 'minimize' ) : 'def' ),
 					( $icon ? self::getGenericon( 'previous' ) : 'def' )
@@ -515,7 +515,7 @@ class gThemeContent extends gThemeModuleCore
 			case 'addtoany':
 
 				self::addtoany(
-					sprintf( $before, 'addtoany post-share-link' ), $after,
+					sprintf( $before, 'addtoany post-share-link hide-if-no-js hidden-print' ), $after,
 					( $icon ? self::getGenericon( 'share' ) : _x( 'Share This', 'Modules: Content: Action', 'gtheme' ) )
 				);
 
@@ -523,7 +523,7 @@ class gThemeContent extends gThemeModuleCore
 			case 'addthis':
 
 				self::addthis(
-					sprintf( $before, 'addthis post-share-link' ), $after,
+					sprintf( $before, 'addthis post-share-link hide-if-no-js hidden-print' ), $after,
 					( $icon ? self::getGenericon( 'share' ) : _x( 'Share This', 'Modules: Content: Action', 'gtheme' ) )
 				);
 
@@ -531,7 +531,7 @@ class gThemeContent extends gThemeModuleCore
 			case 'pocket_button':
 
 				self::pocket(
-					sprintf( $before, 'pocket post-share-button' ), $after,
+					sprintf( $before, 'pocket post-share-button hide-if-no-js hidden-print' ), $after,
 					_x( 'Pocket', 'Modules: Content: Action', 'gtheme' )
 				);
 
@@ -541,8 +541,7 @@ class gThemeContent extends gThemeModuleCore
 				self::printLink(
 					( $icon ? self::getGenericon( 'print' ) : _x( 'Print Version', 'Modules: Content: Action', 'gtheme' ) ),
 					NULL,
-					sprintf( $before, '-action -printlink' ),
-					$after,
+					sprintf( $before, '-action -printlink hidden-print' ), $after,
 					FALSE // self::title_attr( FALSE, '', FALSE )
 				);
 
@@ -552,8 +551,7 @@ class gThemeContent extends gThemeModuleCore
 				self::shortlink(
 					( $icon ? self::getGenericon( 'link' ) : _x( 'Short Link', 'Modules: Content: Action', 'gtheme' ) ),
 					NULL,
-					sprintf( $before, '-action -shortlink' ),
-					$after,
+					sprintf( $before, '-action -shortlink hidden-print' ), $after,
 					self::title_attr( FALSE, NULL, FALSE )
 				);
 
@@ -622,8 +620,7 @@ class gThemeContent extends gThemeModuleCore
 
 				edit_post_link(
 					( $icon ? self::getGenericon( 'edit' ) : _x( 'Edit', 'Modules: Content: Action', 'gtheme' ) ),
-					sprintf( $before, 'post-edit-link post-edit-link-li' ),
-					$after
+					sprintf( $before, 'post-edit-link post-edit-link-li hidden-print' ), $after
 				);
 
 			break;
@@ -682,6 +679,8 @@ class gThemeContent extends gThemeModuleCore
 
 			break;
 			case 'editorial_published':
+
+				// TODO: make link to search with meta
 
 				gThemeEditorial::meta( 'published', [
 					'before' => sprintf( $before, 'entry-published' ),
@@ -748,7 +747,7 @@ class gThemeContent extends gThemeModuleCore
 
 	public static function shortlink( $text, $post = NULL, $before = '', $after = '', $title = NULL )
 	{
-		if ( ! $post = get_post() )
+		if ( ! $post = self::getPost( $post ) )
 			return;
 
 		if ( ! $shortlink = wp_get_shortlink( $post->ID ) )
