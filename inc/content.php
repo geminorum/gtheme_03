@@ -459,6 +459,7 @@ class gThemeContent extends gThemeModuleCore
 				'printlink',
 				'addtoany',
 				'shortlink',
+				'bootstrap_qrcode',
 				'comments_link',
 				'edit_post_link',
 				'editorial_estimated',
@@ -565,6 +566,15 @@ class gThemeContent extends gThemeModuleCore
 					sprintf( $before, '-action -shortlink hidden-print' ), $after,
 					self::getTitleAttr( FALSE )
 				);
+
+			break;
+			case 'bootstrap_qrcode':
+
+				self::bootstrapQRCode(
+					( $icon ? self::getGenericon( 'fullscreen' ) : _x( 'QR-Code', 'Modules: Content: Action', 'gtheme' ) ),
+					NULL,
+					sprintf( $before, '-action -qrcode -bootstrap-qrcode hide-if-no-js hidden-print dropdown' ), $after,
+					self::getTitleAttr( _x( 'QR-Code for &ndash;%s&ndash;', 'Content: Title Attr', 'gtheme' ) )
 				);
 
 			break;
@@ -774,6 +784,49 @@ class gThemeContent extends gThemeModuleCore
 				'id'     => $post->ID,
 			],
 		], $text ).$after;
+	}
+
+	// @REF: http://nicholaelaw.github.io/demo-qr-code-in-tooltip/
+	// @REF: https://qr-creator.com/plugin.php
+	// NOTE: needs bootstrap for dropdown
+	public static function bootstrapQRCode( $text, $post = NULL, $before = '', $after = '', $title = NULL )
+	{
+		if ( ! $post = self::getPost( $post ) )
+			return;
+
+		if ( $shortlink = wp_get_shortlink( $post->ID ) )
+			$url = $shortlink;
+
+		else if ( $premalink = get_permalink( $post ) )
+			$url = $premalink;
+
+		$rtl     = gThemeOptions::info( 'rtl', FALSE );
+		$float   = gThemeOptions::info( 'bootstrap_qrcode_float', $rtl ? 'left' : 'right' );
+		$size    = gThemeOptions::info( 'bootstrap_qrcode_size', 148 );
+		$loading = gThemeOptions::info( 'bootstrap_qrcode_loading', sprintf( '<small>%s</small>', _x( 'Loading&hellip;', 'Qr-Code', 'gtheme' ) ) );
+
+		$dropdown = '<div class="dropdown-menu dropdown-menu-'.$float.' ';
+		$dropdown.= 'p-0 text-center bg-white rounded-0 -qrcode-wrap" style="width:'.( $size + 2 ).'px;height:'.( $size + 2 ).'px;min-width:unset"';
+		if ( $title ) $dropdown.= ' data-toggle="tooltip" data-placement="bottom" title="'.esc_attr( $title ).'"';
+		$dropdown.= '>'.$loading.'</div>';
+
+		echo $before.gThemeHTML::tag( 'a', [
+			'href'  => $url, // MAYBE: direct link to qrcode image
+			'title' => self::getTitleAttr( ( $shortlink ? FALSE : NULL ), NULL, $post, FALSE ),
+			'class' => 'bootstrap-qrcode-toggle',
+			'rel'   => 'qrcode',
+			'data'  => [
+				'toggle'      => 'dropdown',
+				'display'     => 'static',
+				'id'          => $post->ID,
+				'qrcode-url'  => $url,
+				'qrcode-size' => $size,
+			],
+		], $text ).$dropdown.$after;
+
+		wp_enqueue_script( 'gtheme-bootstrap-qrcode',
+			GTHEME_URL.'/js/script.bootstrap-qrcode'.( SCRIPT_DEBUG ? '' : '.min' ).'.js',
+			[ 'jquery', ], GTHEME_VERSION, TRUE );
 	}
 
 	// @SEE : https://code.tutsplus.com/tutorials/creating-a-wordpress-post-text-size-changer-using-jquery--wp-28403
