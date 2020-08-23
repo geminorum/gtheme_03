@@ -14,12 +14,7 @@ class gThemeBootstrap extends gThemeModuleCore
 
 			echo $additional;
 			self::navbarBrand( $brand );
-
-			echo '<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#'
-				.$target.'" aria-controls="'.$target.'" aria-expanded="false" aria-label="'
-				.__( 'Toggle navigation', 'gtheme' ).'">'
-				.'<span class="navbar-toggler-icon"></span></button>';
-
+			self::navbarToggler( $target );
 			echo '<div class="collapse navbar-collapse" id="'.$target.'">';
 	}
 
@@ -28,6 +23,16 @@ class gThemeBootstrap extends gThemeModuleCore
 	{
 		echo $additional;
 		echo '</div></nav>';
+	}
+
+	// BS4
+	public static function navbarToggler( $target = 'navbar' )
+	{
+		echo '<button class="navbar-toggler -print-hide" type="button" data-toggle="collapse" data-target="#'
+			.$target.'" aria-controls="'.$target
+			.'" aria-expanded="false" aria-label="'
+			.__( 'Toggle navigation', 'gtheme' )
+			.'"><span class="navbar-toggler-icon"></span></button>';
 	}
 
 	// BS3
