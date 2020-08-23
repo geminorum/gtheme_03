@@ -95,7 +95,7 @@ class gThemePages extends gThemeModuleCore
 			'attr'    => FALSE, // or `title`
 			'url'     => apply_filters( 'gtheme_pages_link_url', FALSE, $name, $atts ),
 			'def'     => '#', // or FALSE for disable linking
-			'class'   => FALSE,
+			'class'   => sprintf( 'theme-pages-link-%s', $name ),
 			'before'  => '',
 			'after'   => '',
 			'echo'    => TRUE,
