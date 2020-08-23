@@ -9,6 +9,12 @@
 body {
   background: $body-bg;
   color: $body-color;
+
+  overflow: hidden;
+
+  &.theme-preload-ended {
+    overflow: auto;
+  }
 }
 
 a {

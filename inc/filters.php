@@ -218,6 +218,8 @@ class gThemeFilters extends gThemeModuleCore
 		window.setTimeout(disableSpinner, 600);
 	};
 	var disableSpinner = function(){
+		var body = document.querySelector("body");
+		body.classList.add("theme-preload-ended");
 		var spinner = document.getElementById("preloadspinner");
 		if (spinner.classList) spinner.classList.add("fade-out");
 		else spinner.className += " fade-out";
