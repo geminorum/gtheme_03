@@ -106,7 +106,7 @@ class gThemeContent extends gThemeModuleCore
 
 		echo gThemeHTML::tag( 'a', [
 			'href'  => apply_filters( 'the_permalink', get_permalink( $post ), $post ),
-			'title' => self::title_attr( FALSE, $title ),
+			'title' => self::getTitleAttr( NULL, $title, $post ),
 			'class' => '-link -permalink',
 		], gThemeText::wordWrap( $title ) );
 
@@ -297,17 +297,21 @@ class gThemeContent extends gThemeModuleCore
 		] );
 	}
 
-	// OLD: gtheme_the_title_attribute()
-	public static function title_attr( $echo = TRUE, $title = NULL, $template = NULL, $empty = '' )
+	// OLD: `gtheme_the_title_attribute()`
+	// OLD: `gThemeContent::title_attr()`
+	// `$template`: `FALSE` for shortlink, `NULL` for permanent
+	public static function getTitleAttr( $template = NULL, $title = NULL, $post = NULL, $empty = '' )
 	{
 		if ( FALSE === $title )
 			return '';
 
-		if ( is_null( $title ) )
-			$title = trim( strip_tags( get_the_title() ) );
+		$post = self::getPost( $post );
 
-		if ( 0 === strlen( $title ) )
+		if ( ! $post && ! $title )
 			return $empty;
+
+		if ( is_null( $title ) )
+			$title = trim( strip_tags( get_the_title( $post ) ) );
 
 		if ( is_null( $template ) )
 			/* translators: %s: post title */
@@ -320,12 +324,19 @@ class gThemeContent extends gThemeModuleCore
 		else
 			$attr = $template;
 
-		$result = esc_attr( sprintf( $attr, $title ) );
+		return sprintf( $attr, $title );
+	}
+
+	// FIXME: DEPRECATED, BACK-COMP ONLY
+	// CAUTION: used in child themes
+	public static function title_attr( $echo = TRUE, $title = NULL, $template = NULL, $empty = '' )
+	{
+		$attr = self::getTitleAttr( $template, $title, NULL, $empty );
 
 		if ( ! $echo )
-			return $result;
+			return esc_attr( $attr );
 
-		echo $result;
+		echo esc_attr( $attr );
 	}
 
 	public static function isRestricted()
@@ -542,7 +553,7 @@ class gThemeContent extends gThemeModuleCore
 					( $icon ? self::getGenericon( 'print' ) : _x( 'Print Version', 'Modules: Content: Action', 'gtheme' ) ),
 					NULL,
 					sprintf( $before, '-action -printlink hidden-print' ), $after,
-					FALSE // self::title_attr( FALSE, '', FALSE )
+					FALSE // self::getTitleAttr( FALSE )
 				);
 
 			break;
@@ -552,7 +563,8 @@ class gThemeContent extends gThemeModuleCore
 					( $icon ? self::getGenericon( 'link' ) : _x( 'Short Link', 'Modules: Content: Action', 'gtheme' ) ),
 					NULL,
 					sprintf( $before, '-action -shortlink hidden-print' ), $after,
-					self::title_attr( FALSE, NULL, FALSE )
+					self::getTitleAttr( FALSE )
+				);
 				);
 
 			break;
@@ -858,7 +870,7 @@ $('#text-unjustify').click(function (e) {
 			add_action( 'wp_footer', [ __CLASS__, 'addtoany_footer' ] );
 
 		$premalink = get_permalink();
-		$linkname  = self::title_attr( FALSE, NULL, '%s' );
+		$linkname  = self::getTitleAttr( '%s' );
 
 		$url = add_query_arg( [
 			'linkurl'  => urlencode( $premalink ),
@@ -889,7 +901,7 @@ $('#text-unjustify').click(function (e) {
 
 		?><script type="text/javascript">
 var a2a_config = a2a_config || {};
-a2a_config.linkname = '<?php echo esc_js( self::title_attr( FALSE, NULL, '%s' ) ); ?>';
+a2a_config.linkname = '<?php echo esc_js( self::getTitleAttr( '%s' ) ); ?>';
 a2a_config.linkurl = '<?php echo esc_js( esc_url_raw( get_permalink() ) ); ?>';
 a2a_config.onclick = true;
 a2a_config.locale = "fa";
@@ -1090,7 +1102,7 @@ addthis_config.services_custom = [
 			}
 
 			if ( $args['title_attr'] )
-				echo ' title="'.self::title_attr( FALSE, $args['title_attr'], $title_template ).'"';
+				echo ' title="'.self::getTitleAttr( $title_template, $args['title_attr'], $post ).'"';
 
 			echo '>'.gThemeText::wordWrap( $args['title'], 2 ).'</a>';
 

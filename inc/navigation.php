@@ -206,7 +206,7 @@ class gThemeNavigation extends gThemeModuleCore
 
 		if ( $args['post_title'] && ( $post_title = get_the_title( $post ) ) )
 			$crumbs[] = '<a href="'.esc_url( apply_filters( 'the_permalink', get_permalink( $post ), $post ) )
-				.'" title="'.gThemeContent::title_attr( FALSE, $post_title ).'">'.$post_title.'</a>';
+				.'" title="'.gThemeContent::getTitleAttr( NULL, $post_title, $post ).'">'.$post_title.'</a>';
 
 		$crumbs = array_filter( $crumbs );
 		$count  = count( $crumbs );
