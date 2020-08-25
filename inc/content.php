@@ -457,9 +457,9 @@ class gThemeContent extends gThemeModuleCore
 		if ( TRUE === $list )
 			$actions = gThemeOptions::info( 'post_actions', [
 				'printlink',
-				'addtoany',
 				'shortlink',
 				'bootstrap_qrcode',
+				'addtoany',
 				'comments_link',
 				'edit_post_link',
 				'editorial_estimated',

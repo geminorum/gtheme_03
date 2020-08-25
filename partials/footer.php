@@ -2,6 +2,6 @@
 
 gThemeMenu::navNetwork( '<div class="wrapper -footer"><div class="container -footer">', '</div></div>' );
 
-echo '<div class="wrapper -copyright"><div class="container -copyright">';
+echo '<div class="wrapper -copyright"><div class="container -copyright text-center">';
 	gThemeTemplate::copyright();
 echo '</div></div>'."\n";

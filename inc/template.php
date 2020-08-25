@@ -86,7 +86,7 @@ class gThemeTemplate extends gThemeModuleCore
 	public static function about( $before = '', $after = '', $custom = NULL, $page = 'about' )
 	{
 		$group = gThemeOptions::getGroup();
-		$title = gThemeOptions::getOption( 'frontpage_desc', FALSE );
+		$title = gThemeOptions::info( 'frontpage_desc' );
 
 		if ( 'main' == $group ) {
 
@@ -109,9 +109,7 @@ class gThemeTemplate extends gThemeModuleCore
 
 	public static function description( $before = '<p class="site-description -description">', $after = '</p>' )
 	{
-		$desc = gThemeOptions::info( 'frontpage_desc' );
-
-		if ( $desc )
+		if ( $desc = gThemeOptions::info( 'frontpage_desc' ) )
 			echo $before.$desc.$after;
 	}
 

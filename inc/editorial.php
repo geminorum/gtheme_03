@@ -377,8 +377,11 @@ class gThemeEditorial extends gThemeModuleCore
 		return \geminorum\gEditorial\Templates\Magazine::theIssue( $atts );
 	}
 
+	// FIXME: DEPRECATED
 	public static function issueMeta( $field, $atts = [] )
 	{
+		self::_dep( 'gThemeEditorial::getMeta()' );
+
 		if ( ! array_key_exists( 'default', $atts ) )
 			$atts['default'] = FALSE;
 
@@ -434,6 +437,7 @@ class gThemeEditorial extends gThemeModuleCore
 		return TRUE;
 	}
 
+	// FIXME: DEPRECATED
 	public static function reshareSource( $atts = [] )
 	{
 		self::_dep( 'gThemeEditorial::source()' );

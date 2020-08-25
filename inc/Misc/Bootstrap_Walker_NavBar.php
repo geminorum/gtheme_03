@@ -33,8 +33,8 @@ class gThemeBootstrap_Walker_NavBar extends Walker_Nav_Menu
 			// CAUTION: #navbar must have `.yamm`
 			// NOTE: bootstrap does not allow urls on dropdown
 
-			$output.= $indent.'<li class="'.gThemeHTML::prepClass( 'nav-link', 'dropdown', 'yamm-fw', $item->classes ).'">';
-				$output.= '<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-display="static">'.esc_attr( $item->title ).'</a>';
+			$output.= $indent.'<li class="'.gThemeHTML::prepClass( 'nav-item', 'dropdown', 'yamm-fw', $item->classes ).'">';
+				$output.= '<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" data-display="static">'.esc_attr( $item->title ).'</a>';
 					$output.= '<div class="dropdown-menu"><div class="yamm-content">';
 
 					ob_start();
@@ -51,7 +51,7 @@ class gThemeBootstrap_Walker_NavBar extends Walker_Nav_Menu
 			// $classes[] = 'menu-item-'.$item->ID;
 
 			// BS4
-			$classes[] = 'nav-link';
+			$classes[] = 'nav-item';
 
 			if ( $args->has_children )
 				$classes[] = 'dropdown';
@@ -70,6 +70,9 @@ class gThemeBootstrap_Walker_NavBar extends Walker_Nav_Menu
 
 			$atts = [];
 
+			// BS4
+			$atts['class'] = 'nav-link';
+
 			$atts['title']  = ! empty( $item->attr_title )  ? $item->attr_title  : '';
 			$atts['target'] = ! empty( $item->target )      ? $item->target      : '';
 			// $atts['rel']    = ! empty( $item->xfn )         ? $item->xfn         : ''; // we use this for glyphicons
@@ -77,7 +80,7 @@ class gThemeBootstrap_Walker_NavBar extends Walker_Nav_Menu
 
 			if ( $args->has_children && $depth === 0 ) {
 				$atts['data-toggle']   = 'dropdown';
-				$atts['class']         = 'dropdown-toggle';
+				$atts['class']         = $atts['class'].' dropdown-toggle';
 				$atts['aria-haspopup'] = 'true';
 			}
 
