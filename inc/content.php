@@ -471,27 +471,23 @@ class gThemeContent extends gThemeModuleCore
 			$posttype = gThemeOptions::info( sprintf( 'post_actions_for_%s', $post->post_type ), NULL );
 
 			if ( FALSE === $posttype )
-				return; // bailed!
+				return; // bailing!
 
 			if ( is_null( $posttype ) )
 				$posttype = gThemeOptions::info( 'post_actions', NULL );
 
 			if ( FALSE === $posttype )
-				return; // bailed!
+				return; // bailing!
 
-			if ( ! is_null( $posttype ) )
-				$actions = $posttype;
-
-			else
-				$actions = [
-					'printlink',
-					'shortlink',
-					'bootstrap_qrcode',
-					'addtoany',
-					'comments_link',
-					'edit_post_link',
-					'editorial_estimated',
-				];
+			$actions = $posttype ?: [
+				'printlink',
+				'shortlink',
+				'bootstrap_qrcode',
+				'addtoany',
+				'comments_link',
+				'edit_post_link',
+				'editorial_estimated',
+			];
 		}
 
 		if ( is_null( $icon ) )
