@@ -96,6 +96,21 @@ class gThemeEditorial extends gThemeModuleCore
 		return TRUE;
 	}
 
+	public static function course( $atts = [], $echo = TRUE )
+	{
+		if ( ! self::availableEditorial( 'course' ) )
+			return NULL;
+
+		$html = gEditorial()->course->course_shortcode( $atts );
+
+		if ( ! $echo )
+			return $html;
+
+		echo $html;
+
+		return TRUE;
+	}
+
 	public static function postLikeButton( $atts = [], $check_systemtags = 'disable-like-button' )
 	{
 		$args = self::atts( [
