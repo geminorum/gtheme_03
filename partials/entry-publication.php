@@ -13,6 +13,10 @@ gThemeEditorial::bookCover( [
 
 gThemeContent::content();
 
-// FIXME: list connected posts
+gThemeEditorial::publication( [
+	'before' => '<div class="clearfix"></div><div class="entry-after after-publication after-rows">',
+	'after'  => '</div>',
+	'title'  => FALSE,
+] );
 
 gThemeNavigation::content( 'singular' );

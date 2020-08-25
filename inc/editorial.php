@@ -74,12 +74,19 @@ class gThemeEditorial extends gThemeModuleCore
 		return TRUE;
 	}
 
+	// FIXME: DEPRECATED
 	public static function publications( $atts = [], $echo = TRUE )
+	{
+		self::_dep( 'gThemeEditorial::publication()' );
+		return self::publication( $atts, $echo );
+	}
+
+	public static function publication( $atts = [], $echo = TRUE )
 	{
 		if ( ! self::availableEditorial( 'book' ) )
 			return NULL;
 
-		$html = gEditorial()->book->publications_shortcode( $atts );
+		$html = gEditorial()->book->publication_shortcode( $atts );
 
 		if ( ! $echo )
 			return $html;
