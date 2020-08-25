@@ -181,8 +181,8 @@ class gThemeNavigation extends gThemeModuleCore
 		else if ( $args['taxonomy'] && 'parents' == $args['term'] )
 			$crumbs = array_merge( $crumbs, gThemeTerms::getWithParents( $args['taxonomy'], $post ) );
 
-		if ( FALSE !== $args['label'] && function_exists( 'gmeta_label' ) )
-			$crumbs[] = gmeta_label( '', '', FALSE, [ 'echo' => FALSE ] );
+		if ( FALSE !== $args['label'] )
+			$crumbs[] = gThemeEditorial::label( [ 'id' => $post, 'echo' => FALSE ] );
 
 		if ( is_singular() || is_single() ) {
 
