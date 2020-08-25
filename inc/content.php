@@ -444,32 +444,55 @@ class gThemeContent extends gThemeModuleCore
 		echo $b.$excerpt.$a;
 	}
 
-	// FIXME: must accept `$post`
+	// FIXME: DEPRECATED
 	public static function postActions( $before = '<li class="-action entry-action %s">', $after = '</li>', $list = TRUE, $icon = NULL )
 	{
-		if ( ! $post = get_post() )
+		self::_dev_dep( 'gThemeContent::renderActions()' );
+		return self::renderActions( NULL, $before, $after, $list, $icon );
+	}
+
+	public static function renderActions( $post = NULL, $before = '<li class="-action entry-action %s">', $after = '</li>', $list = TRUE, $icon = NULL )
+	{
+		if ( ! $post = get_post( $post ) )
 			return;
 
 		// dummy post
 		if ( ! $post->ID )
 			return;
 
-		if ( TRUE === $list )
-			$actions = gThemeOptions::info( 'post_actions', [
-				'printlink',
-				'shortlink',
-				'bootstrap_qrcode',
-				'addtoany',
-				'comments_link',
-				'edit_post_link',
-				'editorial_estimated',
-			] );
+		$actions = [];
 
-		else if ( is_array( $list ) )
+		if ( is_array( $list ) ) {
+
 			$actions = $list;
 
-		else
-			$actions = [];
+		} else if ( TRUE === $list ) {
+
+			$posttype = gThemeOptions::info( sprintf( 'post_actions_for_%s', $post->post_type ), NULL );
+
+			if ( FALSE === $posttype )
+				return; // bailed!
+
+			if ( is_null( $posttype ) )
+				$posttype = gThemeOptions::info( 'post_actions', NULL );
+
+			if ( FALSE === $posttype )
+				return; // bailed!
+
+			if ( ! is_null( $posttype ) )
+				$actions = $posttype;
+
+			else
+				$actions = [
+					'printlink',
+					'shortlink',
+					'bootstrap_qrcode',
+					'addtoany',
+					'comments_link',
+					'edit_post_link',
+					'editorial_estimated',
+				];
+		}
 
 		if ( is_null( $icon ) )
 			$icon = gThemeOptions::info( 'post_actions_icons', FALSE );
@@ -1184,7 +1207,7 @@ addthis_config.services_custom = [
 
 		if ( $args['actions'] || ( is_null( $args['actions'] ) && ! is_page() ) ) {
 			echo '<ul class="-actions -actions-header '.$args['prefix'].'-actions actions-'.$args['context'].' -inline">';
-				self::postActions( '<li class="-action '.$args['prefix'].'-action %s">', '</li>', $args['actions'], $args['action_icon'] );
+				self::renderActions( $post, '<li class="-action '.$args['prefix'].'-action %s">', '</li>', $args['actions'], $args['action_icon'] );
 			echo '</ul>';
 		}
 
@@ -1195,6 +1218,7 @@ addthis_config.services_custom = [
 	public static function footer( $atts = [] )
 	{
 		$args = self::atts( [
+			'post'        => NULL,
 			'context'     => 'single',
 			'prefix'      => 'entry',
 			'actions'     => gThemeOptions::info( 'post_actions_footer', [ 'byline', 'categories', 'date' ] ),
@@ -1207,10 +1231,13 @@ addthis_config.services_custom = [
 			'link'        => TRUE, // disable linking compeletly
 		], $atts );
 
+		if ( ! $post = self::getPost( $args['post'] ) )
+			return;
+
 		if ( $args['actions'] ) {
 			echo '<footer class="footer-class footer-'.$args['context'].' '.$args['prefix'].'-footer">';
 				echo '<ul class="-actions -actions-footer '.$args['prefix'].'-actions actions-'.$args['context'].' -inline">';
-					self::postActions( '<li class="-action '.$args['prefix'].'-action %s">', '</li>', $args['actions'], $args['action_icon'] );
+					self::renderActions( $post, '<li class="-action '.$args['prefix'].'-action %s">', '</li>', $args['actions'], $args['action_icon'] );
 				echo '</ul>';
 			echo '</footer>';
 		}
