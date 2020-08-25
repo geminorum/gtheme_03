@@ -8,10 +8,10 @@ class gThemeImage extends gThemeModuleCore
 	public function setup_actions( $args = [] )
 	{
 		extract( self::atts( [
-			'core_post_thumbnails'   => FALSE, // enables WordPress core thumbnail for posts
+			'core_post_thumbnails'   => TRUE, // WordPress core thumbnail for posts
 			'amp_post_thumbnails'    => defined( 'AMP__VERSION' ), // filters amp featured image
 			'image_size_tags'        => TRUE, // registers theme's image sizes
-			'image_attachment_tags'  => TRUE, // displays ui for theme's image sizes
+			'image_attachment_tags'  => FALSE, // displays ui for theme's image sizes
 			'image_attachment_terms' => FALSE, // image for terms on admin media editor
 			'responsive_class'       => FALSE, // extracts and appends css class into content images
 			'media_object_sizes'     => TRUE, // tells gnetwork to not generate default image sizes
