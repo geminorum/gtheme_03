@@ -52,15 +52,23 @@ class gThemeWidget extends WP_Widget
 		$this->widget_cache( $args, $instance );
 	}
 
+	// override this for diffrent types of caching
+	protected function widget_cache_key( $instance = [] )
+	{
+		return $this->alt_option_name;
+	}
+
 	public function widget_cache( $args, $instance, $prefix = '' )
 	{
 		if ( $this->is_preview() )
 			return $this->widget_html( $args, $instance );
 
-		if ( gThemeWordPress::isFlush() )
-			delete_transient( $this->alt_option_name );
+		$key = $this->widget_cache_key( $instance );
 
-		if ( FALSE === ( $cache = get_transient( $this->alt_option_name ) ) )
+		if ( gThemeWordPress::isFlush() )
+			delete_transient( $key );
+
+		if ( FALSE === ( $cache = get_transient( $key ) ) )
 			$cache = [];
 
 		if ( ! isset( $args['widget_id'] ) )
@@ -77,13 +85,14 @@ class gThemeWidget extends WP_Widget
 		else
 			return ob_end_flush();
 
-		set_transient( $this->alt_option_name, $cache, GTHEME_CACHETTL );
+		set_transient( $key, $cache, GTHEME_CACHETTL );
 	}
 
 	// FIXME: DROP THIS
 	public function widget_cache_OLD( $args, $instance, $prefix = '' )
 	{
-		$cache = $this->is_preview() ? [] : wp_cache_get( $this->alt_option_name, 'widget' );
+		$key   = $this->widget_cache_key( $instance );
+		$cache = $this->is_preview() ? [] : wp_cache_get( $key, 'widget' );
 
 		if ( ! isset( $args['widget_id'] ) )
 			$args['widget_id'] = $this->id;
@@ -98,7 +107,7 @@ class gThemeWidget extends WP_Widget
 		if ( $this->widget_html( $args, $instance ) ) {
 			if ( ! $this->is_preview() ) {
 				$cache[$args['widget_id'].$prefix] = ob_get_flush();
-				wp_cache_set( $this->alt_option_name, $cache, 'widget' );
+				wp_cache_set( $key, $cache, 'widget' );
 			} else {
 				ob_end_flush();
 			}
@@ -156,10 +165,12 @@ class gThemeWidget extends WP_Widget
 		echo $html;
 	}
 
+	// NOTE: may not flush properly with no instance info
 	public function flush_widget_cache()
 	{
-		// wp_cache_delete( $this->alt_option_name, 'widget' );
-		delete_transient( $this->alt_option_name );
+		$key = $this->widget_cache_key();
+		// wp_cache_delete( $key, 'widget' );
+		delete_transient( $key );
 	}
 
 	public function before_form( $instance, $echo = TRUE )
