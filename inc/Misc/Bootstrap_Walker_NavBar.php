@@ -33,7 +33,12 @@ class gThemeBootstrap_Walker_NavBar extends Walker_Nav_Menu
 			// CAUTION: #navbar must have `.yamm`
 			// NOTE: bootstrap does not allow urls on dropdown
 
-			$output.= $indent.'<li class="'.gThemeHTML::prepClass( 'nav-item', 'dropdown', 'yamm-fw', $item->classes ).'">';
+			$classes   = empty( $item->classes ) ? [] : (array) $item->classes;
+			$classes[] = 'nav-item'; // BS4
+			$classes[] = 'dropdown'; // mega-menu
+			$classes[] = 'yamm-fw';  // mega-menu
+
+			$output.= $indent.'<li class="'.gThemeHTML::prepClass( apply_filters( 'nav_menu_css_class', array_filter( $classes ), $item, $args, $depth ) ).'">';
 				$output.= '<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" data-display="static">'.esc_attr( $item->title ).'</a>';
 					$output.= '<div class="dropdown-menu"><div class="yamm-content">';
 
