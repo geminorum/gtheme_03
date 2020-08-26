@@ -131,19 +131,23 @@ class gThemeFilters extends gThemeModuleCore
 			self::deferredStyles( $html );
 	}
 
-	public static function preloadStyles( $group = NULL )
+	public static function preloadStyles( $target = NULL )
 	{
-		if ( is_null( $group ) )
-			$group = gThemeOptions::getGroup();
+		if ( is_null( $target ) )
+			$target = gThemeOptions::getGroup();
 
-		$file = $group.'.preload'
-			.( gThemeUtilities::isRTL() ? '-rtl' : '' )
-			// .( SCRIPT_DEBUG ? '' : '.min' )
-			.'.css';
+		$rtl   = gThemeUtilities::isRTL() ? '-rtl' : '';
+		$group = $target.'.preload'.$rtl.'.css';
+		$main  = 'main.preload'.$rtl.'.css';
 
-		$path = file_exists( GTHEME_CHILD_DIR.'/css/'.$file )
-			? GTHEME_CHILD_DIR.'/css/'.$file
-			: GTHEME_DIR.'/css/'.$file;
+		if ( file_exists( GTHEME_CHILD_DIR.'/css/'.$group ) )
+			$path = GTHEME_CHILD_DIR.'/css/'.$group;
+
+		else if ( file_exists( GTHEME_CHILD_DIR.'/css/'.$main ) )
+			$path = GTHEME_CHILD_DIR.'/css/'.$main;
+
+		else
+			$path = GTHEME_DIR.'/css/'.$main;
 
 		echo '<style type="text/css">';
 			readfile( $path );
