@@ -101,31 +101,33 @@ class gThemeSideBar extends gThemeModuleCore
 		if ( empty( $sidebars ) )
 			return;
 
-		$sidebar_args_func = gThemeOptions::info( 'sidebar_args_func', [ __CLASS__, 'parseArgs' ] );
+		$callback = gThemeOptions::info( 'sidebar_args_callback', [ __CLASS__, 'parseArgs' ] );
 
-		foreach ( $sidebars as $sidebar_id => $sidebar_title ) {
+		foreach ( $sidebars as $id => $name ) {
 
-			$args = [ 'id' => $sidebar_id ];
-
-			if ( is_array( $sidebar_title ) )
-				$args = array_merge( $args, $sidebar_title );
+			if ( is_array( $name ) )
+				$args = array_merge( self::parseArgs( $id ), $name );
 
 			else
-				$args = call_user_func_array( $sidebar_args_func, [ $sidebar_id, $sidebar_title ] );
+				$args = call_user_func_array( $callback, [ $id, $name ] );
 
 			register_sidebar( $args );
 		}
 	}
 
-	public static function parseArgs( $sidebar_id, $sidebar_title )
+	public static function parseArgs( $sidebar, $name = FALSE, $description = '', $extra = '' )
 	{
+		$tag   = gThemeOptions::info( 'sidebar_args_html_tag', 'section' );
+		$title = gThemeOptions::info( 'sidebar_args_html_title', 'h3' );
+
 		return [
-			'id'            => $sidebar_id,
-			'name'          => $sidebar_title,
-			'before_widget' => '<section id="%1$s" class="widget gtheme-widget widget-'.$sidebar_id.' %2$s">',
-			'after_widget'  => "</section>",
-			'before_title'  => '<h3 class="-title widget-title widget-'.$sidebar_id.'-title">',
-			'after_title'   => '</h3>',
+			'id'            => $sidebar,
+			'name'          => $name ?: $sidebar,
+			'before_widget' => '<'.$tag.' id="%1$s" class="widget gtheme-widget widget-'.$sidebar.' '.$extra.' %2$s"><div class="-wrap">',
+			'after_widget'  => '</div></'.$tag.'>',
+			'before_title'  => '<'.$title.' class="-title widget-title widget-'.$sidebar.'-title">',
+			'after_title'   => '</'.$title.'>',
+			'description'   => $description,
 		];
 	}
 
