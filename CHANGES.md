@@ -1,3 +1,19 @@
+### 3.20.3
+* module/bootstrap: separated navbar toggler
+* module/content: bootstrap qrcode content action
+* module/content: editorial published as content action
+* module/content: entry actions revised
+* module/content: rethinking title attr helper
+* module/content: simplifying the logic on post action filters
+* module/editorial: publication shortcode wrapper
+* module/editorial: shortcode helper for courses/lessons
+* module/filters: overflow handling on preload
+* module/image: image tags are disabled by default
+* module/navigation: switch to new meta helper for label
+* module/pages: dynamic class for page links
+* module/pages: filter to override page links
+* module/theme: logic separation for custom logo support
+
 ### 3.20.2
 * assest/css: better handling direction/group on css includes
 * assets/child: textdomain for the child
