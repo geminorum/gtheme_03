@@ -16,7 +16,7 @@ class gThemeSideBar extends gThemeModuleCore
 			add_action( 'widgets_init', [ $this, 'widgets_init' ], 18 );
 
 		if ( $primary_cats_sidebar )
-			add_action( 'widgets_init', [ $this, 'widgets_init_categories' ] );
+			add_action( 'widgets_init', [ $this, 'widgets_init_primaries' ] );
 	}
 
 	public static function defaults( $extra = [] )
@@ -131,25 +131,27 @@ class gThemeSideBar extends gThemeModuleCore
 		];
 	}
 
-	// DRAFT
-	// create widgetized sidebars for each category
-	// http://bavotasan.com/2012/create-widgetized-sidebars-for-each-category-in-wordpress/
-	public function widgets_init_categories()
+	// TODO: add display helper
+	// creates widgetized sidebars for each category
+	// @REF: https://bavotasan.com/2012/create-widgetized-sidebars-for-each-category-in-wordpress/
+	public function widgets_init_primaries()
 	{
-		// must use primary cats
-		$categories = get_categories( [ 'hide_empty' => 0 ] );
+		$primaries = gThemeOptions::getOption( 'terms', [] );
 
-		foreach ( $categories as $category ) {
-			if ( 0 == $category->parent )
-				register_sidebar( [
-					'name'          => $category->cat_name,
-					'id'            => $category->category_nicename . '-sidebar',
-					'description'   => 'This is the ' . $category->cat_name . ' widgetized area',
-					'before_widget' => '<aside id="%1$s" class="widget %2$s">',
-					'after_widget'  => '</aside>',
-					'before_title'  => '<h3 class="widget-title">',
-					'after_title'   => '</h3>',
-				] );
+		if ( empty( $primaries ) )
+			return;
+
+		$taxonomy = gThemeOptions::info( 'primary_terms_taxonomy', 'category' );
+		$terms    = gThemeTaxonomy::listTerms( $taxonomy, 'all', [ 'include' => $primaries ] );
+
+		foreach ( $terms as $term ) {
+
+			/* translators: %s: primary term title */
+			$name = sprintf( _x( 'Theme: %s Widget', 'Modules: Sidebar', 'gtheme' ), $term->name );
+			/* translators: %s: primary term title */
+			$desc = sprintf( _x( 'This is the %s widgetized area', 'Modules: Sidebar', 'gtheme' ), $term->name );
+
+			register_sidebar( self::parseArgs( $term->slug.'-sidebar', $name, $desc ) );
 		}
 	}
 
