@@ -26,19 +26,19 @@ class gThemeWidgetRecentPosts extends gThemeWidget
 		if ( empty( $instance['number'] ) || ! $number = absint( $instance['number'] ) )
 			$number = 10;
 
+		$singular = is_singular( $post_type ) || is_single( $post_type );
+
 		$query_args = [
 			'posts_per_page' => $number,
 			'post_type'      => $post_type,
 			'post_status'    => 'publish',
+			'post__not_in'   => $singular ? [ get_queried_object_id() ] : '', // TODO: make optional
 
 			'ignore_sticky_posts'    => TRUE,
 			'no_found_rows'          => TRUE,
 			'update_post_term_cache' => FALSE,
 			'update_post_meta_cache' => FALSE,
 		];
-
-		if ( is_singular() || is_single() )
-			$query_args['post__not_in'] = [ get_queried_object_id() ];
 
 		$row_query = new \WP_Query( $query_args );
 
@@ -64,7 +64,7 @@ class gThemeWidgetRecentPosts extends gThemeWidget
 			echo '</ul></div>';
 			$this->after_widget( $args, $instance );
 
-			return TRUE;
+			return ! $singular; // avoid caching if it's singular
 		}
 
 		return FALSE;
