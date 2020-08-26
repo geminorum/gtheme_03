@@ -1,13 +1,13 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: gTheme 3 3.20.1\n"
+"Project-Id-Version: gTheme 3 3.20.3\n"
 "Report-Msgid-Bugs-To: https://github.com/geminorum/gtheme_03/issues\n"
 "Last-Translator: NULL\n"
 "Language-Team: NULL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2020-08-22T02:47:00+00:00\n"
+"POT-Creation-Date: 2020-08-26T08:24:24+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.4.0\n"
 "X-Domain: gtheme\n"
@@ -161,17 +161,17 @@ msgctxt "Modules: Banners"
 msgid "Save"
 msgstr ""
 
-#: inc/bootstrap.php:20
-#: inc/bootstrap.php:46
+#: inc/bootstrap.php:34
+#: inc/bootstrap.php:51
 msgid "Toggle navigation"
 msgstr ""
 
-#: inc/bootstrap.php:94
+#: inc/bootstrap.php:99
 #: inc/search.php:55
 msgid "Search &hellip;"
 msgstr ""
 
-#: inc/bootstrap.php:97
+#: inc/bootstrap.php:102
 #: inc/search.php:37
 #: inc/search.php:40
 #: inc/search.php:59
@@ -408,154 +408,169 @@ msgid "Continue reading &ldquo;%s&rdquo; &hellip;"
 msgstr ""
 
 #. translators: %s: post title
-#: inc/content.php:314
+#: inc/content.php:318
 msgctxt "Content: Title Attr"
 msgid "Permanent link to &ndash;%s&ndash;"
 msgstr ""
 
 #. translators: %s: post title
-#: inc/content.php:318
+#: inc/content.php:322
 msgctxt "Content: Title Attr"
 msgid "Short link for &ndash;%s&ndash;"
 msgstr ""
 
-#: inc/content.php:519
-#: inc/content.php:527
+#: inc/content.php:550
+#: inc/content.php:558
 msgctxt "Modules: Content: Action"
 msgid "Share This"
 msgstr ""
 
-#: inc/content.php:535
+#: inc/content.php:566
 msgctxt "Modules: Content: Action"
 msgid "Pocket"
 msgstr ""
 
-#: inc/content.php:542
+#: inc/content.php:573
 msgctxt "Modules: Content: Action"
 msgid "Print Version"
 msgstr ""
 
-#: inc/content.php:553
+#: inc/content.php:583
 msgctxt "Modules: Content: Action"
 msgid "Short Link"
 msgstr ""
 
+#: inc/content.php:593
+msgctxt "Modules: Content: Action"
+msgid "QR-Code"
+msgstr ""
+
+#: inc/content.php:596
+msgctxt "Content: Title Attr"
+msgid "QR-Code for &ndash;%s&ndash;"
+msgstr ""
+
 #. translators: %1$s: class name, %2$s: comments number, %3$s: comment url
-#: inc/content.php:595
+#: inc/content.php:634
 msgctxt "Modules: Content: Action"
 msgid "<a href=\"%3$s\" class=\"%1$s\">Your Comment</a>"
 msgstr ""
 
 #. translators: %1$s: class name, %2$s: comments number, %3$s: comment url
-#: inc/content.php:597
+#: inc/content.php:636
 msgctxt "Modules: Content: Action"
 msgid "<a href=\"%3$s\" class=\"%1$s\">One Comment</a>"
 msgstr ""
 
 #. translators: %1$s: class name, %2$s: comments number, %3$s: comment url
-#: inc/content.php:599
+#: inc/content.php:638
 msgctxt "Modules: Content: Action"
 msgid "<a href=\"%3$s\" class=\"%1$s\">%2$s Comments</a>"
 msgstr ""
 
 #. translators: %1$s: comments rss link, %2$s: title attr, %3$s: class name
-#: inc/content.php:609
+#: inc/content.php:648
 msgctxt "Modules: Content: Action"
 msgid " <small><small>(<a href=\"%1$s\" title=\"%2$s\" class=\"%3$s\"><abbr title=\"Really Simple Syndication\">RSS</abbr></a>)</small></small>"
 msgstr ""
 
-#: inc/content.php:611
+#: inc/content.php:650
 msgctxt "Modules: Content: Action"
 msgid "Feed for this post's comments"
 msgstr ""
 
-#: inc/content.php:624
+#: inc/content.php:663
 msgctxt "Modules: Content: Action"
 msgid "Edit"
 msgstr ""
 
-#: inc/content.php:636
-#: inc/content.php:652
+#: inc/content.php:674
+#: inc/content.php:690
 msgctxt "Options: Separator: Term"
 msgid ", "
 msgstr ""
 
-#: inc/content.php:765
+#: inc/content.php:825
+msgctxt "Qr-Code"
+msgid "Loading&hellip;"
+msgstr ""
+
+#: inc/content.php:856
 msgctxt "Options: Text Size Increase"
 msgid "[ A+ ]"
 msgstr ""
 
-#: inc/content.php:768
+#: inc/content.php:859
 msgctxt "Options: Text Size Decrease"
 msgid "[ A- ]"
 msgstr ""
 
-#: inc/content.php:771
+#: inc/content.php:862
 msgctxt "Options: Text Size Sep"
 msgid " / "
 msgstr ""
 
-#: inc/content.php:776
+#: inc/content.php:867
 msgid "Increase font size"
 msgstr ""
 
-#: inc/content.php:783
+#: inc/content.php:874
 msgid "Decrease font size"
 msgstr ""
 
-#: inc/content.php:797
+#: inc/content.php:888
 msgctxt "Options: Text Justify"
 msgid "[ Ju ]"
 msgstr ""
 
-#: inc/content.php:800
+#: inc/content.php:891
 msgctxt "Options: Text Unjustify"
 msgid "[ uJ ]"
 msgstr ""
 
-#: inc/content.php:803
+#: inc/content.php:894
 msgctxt "Options: Text Justify Sep"
 msgid " / "
 msgstr ""
 
-#: inc/content.php:808
+#: inc/content.php:899
 msgid "Justify paragraphs"
 msgstr ""
 
-#: inc/content.php:815
+#: inc/content.php:906
 msgid "Un-justify paragraphs"
 msgstr ""
 
-#: inc/content.php:864
+#: inc/content.php:955
 msgctxt "Modules: Content: Addtoany"
 msgid "Share This"
 msgstr ""
 
 #. translators: %s: post title
-#: inc/content.php:879
+#: inc/content.php:970
 msgctxt "Modules: Content: Addtoany"
 msgid "Check this out %s"
 msgstr ""
 
 #. translators: %s: post link
-#: inc/content.php:881
+#: inc/content.php:972
 msgctxt "Modules: Content: Addtoany"
 msgid ""
 "Click the link:\n"
 "%s"
 msgstr ""
 
-#: inc/content.php:1154
+#: inc/content.php:1249
 msgctxt "Modules: Content: Link Pages"
 msgid "Next page"
 msgstr ""
 
-#: inc/content.php:1155
+#: inc/content.php:1250
 msgctxt "Modules: Content: Link Pages"
 msgid "Previous page"
 msgstr ""
 
-#: inc/content.php:1167
+#: inc/content.php:1262
 msgctxt "Modules: Content: Link Pages"
 msgid "Pages:"
 msgstr ""
@@ -1162,21 +1177,21 @@ msgid "Front Page"
 msgstr ""
 
 #. translators: %s: display name
-#: inc/template.php:176
+#: inc/template.php:174
 msgctxt "Modules: Template: Author"
 msgid "Posts by %s"
 msgstr ""
 
-#: inc/template.php:258
+#: inc/template.php:256
 msgctxt "Options: Separator: Nav"
 msgid " &laquo; "
 msgstr ""
 
-#: inc/template.php:292
+#: inc/template.php:290
 msgid "&copy; All rights reserved."
 msgstr ""
 
-#: inc/template.php:309
+#: inc/template.php:307
 msgctxt "Root: End: Before Site Modified"
 msgid "Last updated on"
 msgstr ""
@@ -1382,42 +1397,42 @@ msgstr ""
 msgid "Connected Posts"
 msgstr ""
 
-#: inc/theme.php:120
+#: inc/theme.php:113
 msgctxt "Editor Custom Font Sizes"
 msgid "Small"
 msgstr ""
 
-#: inc/theme.php:121
+#: inc/theme.php:114
 msgctxt "Editor Custom Font Sizes"
 msgid "S"
 msgstr ""
 
-#: inc/theme.php:126
+#: inc/theme.php:119
 msgctxt "Editor Custom Font Sizes"
 msgid "Regular"
 msgstr ""
 
-#: inc/theme.php:127
+#: inc/theme.php:120
 msgctxt "Editor Custom Font Sizes"
 msgid "M"
 msgstr ""
 
-#: inc/theme.php:132
+#: inc/theme.php:125
 msgctxt "Editor Custom Font Sizes"
 msgid "Large"
 msgstr ""
 
-#: inc/theme.php:133
+#: inc/theme.php:126
 msgctxt "Editor Custom Font Sizes"
 msgid "L"
 msgstr ""
 
-#: inc/theme.php:138
+#: inc/theme.php:131
 msgctxt "Editor Custom Font Sizes"
 msgid "Larger"
 msgstr ""
 
-#: inc/theme.php:139
+#: inc/theme.php:132
 msgctxt "Editor Custom Font Sizes"
 msgid "XL"
 msgstr ""

@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gTheme 3\n"
 "Report-Msgid-Bugs-To: https://github.com/geminorum/gtheme_03/issues\n"
-"POT-Creation-Date: 2020-08-22T02:47:00+00:00\n"
-"PO-Revision-Date: 2020-08-22 07:17+0430\n"
+"POT-Creation-Date: 2020-08-26T08:24:24+00:00\n"
+"PO-Revision-Date: 2020-08-26 12:56+0430\n"
 "Last-Translator: geminorum <contact@geminorum.ir>\n"
 "Language-Team: geminorum <contact@geminorum.ir>\n"
 "Language: fa_IR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.4\n"
+"X-Generator: Poedit 2.4.1\n"
 "X-Textdomain-Support: yes\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -167,16 +167,16 @@ msgctxt "Modules: Banners"
 msgid "Save"
 msgstr "ذخیره"
 
-#: inc/bootstrap.php:20 inc/bootstrap.php:46
+#: inc/bootstrap.php:34 inc/bootstrap.php:51
 msgid "Toggle navigation"
 msgstr "برای تغییر وضعیت کلیک کنید"
 
-#: inc/bootstrap.php:94 inc/search.php:55
+#: inc/bootstrap.php:99 inc/search.php:55
 msgid "Search &hellip;"
 msgstr "جست‌وجو &hellip;"
 
 # @ gtheme
-#: inc/bootstrap.php:97 inc/search.php:37 inc/search.php:40 inc/search.php:59
+#: inc/bootstrap.php:102 inc/search.php:37 inc/search.php:40 inc/search.php:59
 #: inc/search.php:76 inc/search.php:83
 msgctxt "label"
 msgid "Search for:"
@@ -422,158 +422,173 @@ msgid "Continue reading &ldquo;%s&rdquo; &hellip;"
 msgstr "ادامهٔ &raquo;%s&laquo; را مطالعه کنید &hellip;"
 
 #. translators: %s: post title
-#: inc/content.php:314
+#: inc/content.php:318
 msgctxt "Content: Title Attr"
 msgid "Permanent link to &ndash;%s&ndash;"
 msgstr "پیوند پایدار به &ndash;%s&ndash;"
 
 #. translators: %s: post title
-#: inc/content.php:318
+#: inc/content.php:322
 msgctxt "Content: Title Attr"
 msgid "Short link for &ndash;%s&ndash;"
 msgstr "پیوند کوتاه به &ndash;%s&ndash;"
 
-#: inc/content.php:519 inc/content.php:527
+#: inc/content.php:550 inc/content.php:558
 msgctxt "Modules: Content: Action"
 msgid "Share This"
 msgstr "همخوان کنید"
 
-#: inc/content.php:535
+#: inc/content.php:566
 msgctxt "Modules: Content: Action"
 msgid "Pocket"
 msgstr "پاکت"
 
-#: inc/content.php:542
+#: inc/content.php:573
 msgctxt "Modules: Content: Action"
 msgid "Print Version"
 msgstr "نسخهٔ چاپی"
 
-#: inc/content.php:553
+#: inc/content.php:583
 msgctxt "Modules: Content: Action"
 msgid "Short Link"
 msgstr "پیوند کوتاه"
 
+#: inc/content.php:593
+msgctxt "Modules: Content: Action"
+msgid "QR-Code"
+msgstr "بارکد"
+
+#: inc/content.php:596
+msgctxt "Content: Title Attr"
+msgid "QR-Code for &ndash;%s&ndash;"
+msgstr "کیوآرکد برای &ndash;%s&ndash;"
+
 #. translators: %1$s: class name, %2$s: comments number, %3$s: comment url
-#: inc/content.php:595
+#: inc/content.php:634
 msgctxt "Modules: Content: Action"
 msgid "<a href=\"%3$s\" class=\"%1$s\">Your Comment</a>"
 msgstr "<a href=\"%3$s\" class=\"%1$s\">دیدگاه شما</a>"
 
 #. translators: %1$s: class name, %2$s: comments number, %3$s: comment url
-#: inc/content.php:597
+#: inc/content.php:636
 msgctxt "Modules: Content: Action"
 msgid "<a href=\"%3$s\" class=\"%1$s\">One Comment</a>"
 msgstr "<a href=\"%3$s\" class=\"%1$s\">یک دیدگاه</a>"
 
 #. translators: %1$s: class name, %2$s: comments number, %3$s: comment url
-#: inc/content.php:599
+#: inc/content.php:638
 msgctxt "Modules: Content: Action"
 msgid "<a href=\"%3$s\" class=\"%1$s\">%2$s Comments</a>"
 msgstr "<a href=\"%3$s\" class=\"%1$s\">%2$s دیدگاه</a>"
 
 #. translators: %1$s: comments rss link, %2$s: title attr, %3$s: class name
-#: inc/content.php:609
+#: inc/content.php:648
 msgctxt "Modules: Content: Action"
 msgid ""
 " <small><small>(<a href=\"%1$s\" title=\"%2$s\" class=\"%3$s\"><abbr title="
 "\"Really Simple Syndication\">RSS</abbr></a>)</small></small>"
 msgstr ""
 
-#: inc/content.php:611
+#: inc/content.php:650
 msgctxt "Modules: Content: Action"
 msgid "Feed for this post's comments"
 msgstr "خوراک برای دیدگاه‌های این نوشته"
 
-#: inc/content.php:624
+#: inc/content.php:663
 msgctxt "Modules: Content: Action"
 msgid "Edit"
 msgstr "ویرایش"
 
-#: inc/content.php:636 inc/content.php:652
+#: inc/content.php:674 inc/content.php:690
 msgctxt "Options: Separator: Term"
 msgid ", "
 msgstr "، "
 
-#: inc/content.php:765
+#: inc/content.php:825
+msgctxt "Qr-Code"
+msgid "Loading&hellip;"
+msgstr "بارگذاری&hellip;"
+
+#: inc/content.php:856
 msgctxt "Options: Text Size Increase"
 msgid "[ A+ ]"
 msgstr "[ الف+ ]"
 
-#: inc/content.php:768
+#: inc/content.php:859
 msgctxt "Options: Text Size Decrease"
 msgid "[ A- ]"
 msgstr "[ الف– ]"
 
-#: inc/content.php:771
+#: inc/content.php:862
 msgctxt "Options: Text Size Sep"
 msgid " / "
 msgstr " \\ "
 
 # @ gtheme
-#: inc/content.php:776
+#: inc/content.php:867
 msgid "Increase font size"
 msgstr "اندازه قلم درشت‌تر"
 
 # @ gtheme
-#: inc/content.php:783
+#: inc/content.php:874
 msgid "Decrease font size"
 msgstr "اندازه قلم کوچک‌تر"
 
-#: inc/content.php:797
+#: inc/content.php:888
 msgctxt "Options: Text Justify"
 msgid "[ Ju ]"
 msgstr "[ همـ ]"
 
-#: inc/content.php:800
+#: inc/content.php:891
 msgctxt "Options: Text Unjustify"
 msgid "[ uJ ]"
 msgstr "[ ناهمـ ]"
 
-#: inc/content.php:803
+#: inc/content.php:894
 msgctxt "Options: Text Justify Sep"
 msgid " / "
 msgstr " \\ "
 
 # @ gtheme
-#: inc/content.php:808
+#: inc/content.php:899
 msgid "Justify paragraphs"
 msgstr "هم‌چین کردن متن"
 
 # @ gtheme
-#: inc/content.php:815
+#: inc/content.php:906
 msgid "Un-justify paragraphs"
 msgstr "غیر هم‌چین کردن متن"
 
-#: inc/content.php:864
+#: inc/content.php:955
 msgctxt "Modules: Content: Addtoany"
 msgid "Share This"
 msgstr "همخوان کنید"
 
 #. translators: %s: post title
-#: inc/content.php:879
+#: inc/content.php:970
 msgctxt "Modules: Content: Addtoany"
 msgid "Check this out %s"
 msgstr "نگاهی بیاندازید به %s"
 
 #. translators: %s: post link
-#: inc/content.php:881
+#: inc/content.php:972
 msgctxt "Modules: Content: Addtoany"
 msgid ""
 "Click the link:\n"
 "%s"
 msgstr "روی پیوند کلیک کنید: %s"
 
-#: inc/content.php:1154
+#: inc/content.php:1249
 msgctxt "Modules: Content: Link Pages"
 msgid "Next page"
 msgstr "صفحه بعدی"
 
-#: inc/content.php:1155
+#: inc/content.php:1250
 msgctxt "Modules: Content: Link Pages"
 msgid "Previous page"
 msgstr "صفحه قبلی"
 
-#: inc/content.php:1167
+#: inc/content.php:1262
 msgctxt "Modules: Content: Link Pages"
 msgid "Pages:"
 msgstr "صفحه‌ها:"
@@ -1198,21 +1213,21 @@ msgid "Front Page"
 msgstr "صفحه نخست"
 
 #. translators: %s: display name
-#: inc/template.php:176
+#: inc/template.php:174
 msgctxt "Modules: Template: Author"
 msgid "Posts by %s"
 msgstr "نوشته‌های %s"
 
-#: inc/template.php:258
+#: inc/template.php:256
 msgctxt "Options: Separator: Nav"
 msgid " &laquo; "
 msgstr " &raquo; "
 
-#: inc/template.php:292
+#: inc/template.php:290
 msgid "&copy; All rights reserved."
 msgstr "تمام حقوق محفوظ است."
 
-#: inc/template.php:309
+#: inc/template.php:307
 msgctxt "Root: End: Before Site Modified"
 msgid "Last updated on"
 msgstr "آخرین به‌روزرسانی در"
@@ -1420,42 +1435,42 @@ msgstr "خالی کردن قبل از ماه گذشته"
 msgid "Connected Posts"
 msgstr "نوشته‌های مرتبط"
 
-#: inc/theme.php:120
+#: inc/theme.php:113
 msgctxt "Editor Custom Font Sizes"
 msgid "Small"
 msgstr "کوچک"
 
-#: inc/theme.php:121
+#: inc/theme.php:114
 msgctxt "Editor Custom Font Sizes"
 msgid "S"
 msgstr "کـ"
 
-#: inc/theme.php:126
+#: inc/theme.php:119
 msgctxt "Editor Custom Font Sizes"
 msgid "Regular"
 msgstr "معمولی"
 
-#: inc/theme.php:127
+#: inc/theme.php:120
 msgctxt "Editor Custom Font Sizes"
 msgid "M"
 msgstr "مـ"
 
-#: inc/theme.php:132
+#: inc/theme.php:125
 msgctxt "Editor Custom Font Sizes"
 msgid "Large"
 msgstr "بزرگ"
 
-#: inc/theme.php:133
+#: inc/theme.php:126
 msgctxt "Editor Custom Font Sizes"
 msgid "L"
 msgstr "بـ"
 
-#: inc/theme.php:138
+#: inc/theme.php:131
 msgctxt "Editor Custom Font Sizes"
 msgid "Larger"
 msgstr "بزرگتر"
 
-#: inc/theme.php:139
+#: inc/theme.php:132
 msgctxt "Editor Custom Font Sizes"
 msgid "XL"
 msgstr "بـ تـ"
