@@ -131,11 +131,11 @@ class gThemeBanners extends gThemeModuleCore
 
 	// @REF: https://github.com/jsor/jcarousel
 	// NOTE: needs additional styles, see blocks for `jcarousel`
-	public static function paginatedCarousel( $group = 'dashboard', $atts = [] )
+	public static function paginatedCarousel( $group = 'dashboard', $atts = [], $before = '', $after = '' )
 	{
 		$args = array_merge( [
-			'before' => '<div class="wrap-jcarousel-paginated -group-'.$group.'"><div class="-carousel"><ul>',
-			'after'  => '</ul></div><div class="-pagination"></div></div>',
+			'before' => $before.'<div class="wrap-jcarousel-paginated -group-'.$group.'"><div class="-carousel"><ul>',
+			'after'  => '</ul></div><div class="-pagination"></div></div>'.$after,
 		], $atts );
 
 		if ( FALSE === self::group( $group, $args ) )
@@ -146,7 +146,7 @@ class gThemeBanners extends gThemeModuleCore
 	}
 
 	// NOTE: needs no additional styles or scripts
-	public static function bootstrapCarousel( $group = 'dashboard', $atts = [] )
+	public static function bootstrapCarousel( $group = 'dashboard', $atts = [], $before = '', $after = '' )
 	{
 		if ( ! $banners = self::getGroup( $group ) )
 			return;
@@ -176,10 +176,10 @@ class gThemeBanners extends gThemeModuleCore
 			$indi.= '<li data-target="#'.$id.'" data-slide-to="'.$offset.'"'.( $offset ? '' : ' class="active"' ).'></li>';
 		}
 
-		echo '<div id="'.$id.'" class="carousel slide w-100 mx-3" data-ride="carousel">';
+		echo $before.'<div id="'.$id.'" class="carousel slide w-100" data-ride="carousel">';
 		echo '<ol class="carousel-indicators">'.$indi.'</ol>';
 		echo '<div class="carousel-inner">'.$html.'</div>';
-		echo $controls.'</div>';
+		echo $controls.'</div>'.$after;
 	}
 
 	public function subs( $subs )
