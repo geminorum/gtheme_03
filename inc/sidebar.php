@@ -66,23 +66,36 @@ class gThemeSideBar extends gThemeModuleCore
 
 	public function widgets_init()
 	{
+		$this->_register_widgets();
+		$this->_register_sidebars();
+	}
+
+	private function _get_widget_extend_map()
+	{
+		return [
+			'gThemeWidgetSearch'         => 'WP_Widget_Search',
+			'gThemeWidgetRecentPosts'    => 'WP_Widget_Recent_Posts',
+			'gThemeWidgetRecentComments' => 'WP_Widget_Recent_Comments',
+		];
+	}
+
+	private function _register_widgets()
+	{
 		global $wp_widget_factory;
+
+		$map = $this->_get_widget_extend_map();
 
 		foreach ( self::widgets() as $widget ) {
 
-			if ( 'gThemeWidgetSearch' == $widget )
-				$wp_widget_factory->widgets['WP_Widget_Search'] = new gThemeWidgetSearch();
-
-			else if ( 'gThemeWidgetRecentPosts' == $widget )
-				$wp_widget_factory->widgets['WP_Widget_Recent_Posts'] = new gThemeWidgetRecentPosts();
-
-			else if ( 'gThemeWidgetRecentComments' == $widget )
-				$wp_widget_factory->widgets['WP_Widget_Recent_Comments'] = new gThemeWidgetRecentComments();
-
+			if ( array_key_exists( $widget, $map ) )
+				$wp_widget_factory->widgets[$map[$widget]] = new $widget();
 			else
 				$wp_widget_factory->widgets[$widget] = new $widget();
 		}
+	}
 
+	private function _register_sidebars()
+	{
 		$sidebars = apply_filters( 'gtheme_sidebars', gThemeOptions::info( 'sidebars', self::defaults() ) );
 
 		if ( empty( $sidebars ) )
