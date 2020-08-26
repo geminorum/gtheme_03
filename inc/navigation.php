@@ -151,7 +151,10 @@ class gThemeNavigation extends gThemeModuleCore
 	// bootstrap 3 compatible markup
 	public static function breadcrumbSingle( $atts = [] )
 	{
-		global $post, $page, $numpages;
+		global $page, $numpages;
+
+		if ( ! $post = get_post() )
+			return;
 
 		$args = self::atts( [
 			'home'       => FALSE, // 'home' // 'network' // 'custom string'
@@ -171,7 +174,7 @@ class gThemeNavigation extends gThemeModuleCore
 			$args['taxonomy'] = gThemeOptions::info( 'primary_terms_taxonomy', 'category' );
 
 		else if ( is_null( $args['taxonomy'] ) )
-			$args['taxonomy'] = gThemeTerms::getMainTaxonomy( $post, 'category' );
+			$args['taxonomy'] = gThemeTerms::getMainTaxonomy( $post->post_type, 'category' );
 
 		$crumbs = self::crumbHome( $args );
 
