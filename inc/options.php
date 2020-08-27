@@ -166,7 +166,9 @@ class gThemeOptions extends gThemeModuleCore
 			// 'mce_buttons_2'     => [ 'styleselect' ],
 			// 'mce_style_formats' => gThemeEditor::defaultFormats(),
 
+			// FIXME: DEPRECATED: use `gtheme_settings_legend` action
 			// 'settings_legend' => FALSE, // html content to appear after settings
+
 			// FIXME: DEPRECATED: use PAGES API
 			// 'search_page' => self::getOption( 'search_page', 0 ),
 

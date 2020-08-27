@@ -154,6 +154,7 @@ class gThemeSettings extends gThemeModuleCore
 				'dir'     => 'ltr',
 			], TRUE );
 
+			// FIXME: DEPRECATED
 			if ( $legend = gThemeOptions::info( 'settings_legend', FALSE ) )
 				$this->do_settings_field( [
 					'title'  => _x( 'Legend', 'Settings Module', 'gtheme' ),
@@ -161,6 +162,13 @@ class gThemeSettings extends gThemeModuleCore
 					'field'  => 'custom',
 					'values' => $legend,
 				], TRUE );
+
+			$this->do_settings_field( [
+				'title'  => _x( 'Legend', 'Settings Module', 'gtheme' ),
+				'type'   => 'action_hook',
+				'field'  => 'action_hook',
+				'values' => 'gtheme_settings_legend',
+			], TRUE );
 
 			echo '</table>';
 
