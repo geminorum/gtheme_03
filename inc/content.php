@@ -1126,7 +1126,11 @@ addthis_config.services_custom = [
 		if ( $args['wrap_tag'] )
 			echo '<'.$args['wrap_tag'].' class="-header header-class header-'.$args['context'].' '.$args['prefix'].'-header'.( $args['amp'] ? ' amp-wp-article-header' : '' ).'">';
 
+		do_action( 'gtheme_content_header_open', $post, $args );
+
 		echo '<div class="-titles titles-class '.$args['prefix'].'-titles">';
+
+		do_action( 'gtheme_content_header_before', $post, $args );
 
 		if ( $args['meta'] )
 			gThemeEditorial::meta( 'over-title', [
@@ -1195,6 +1199,8 @@ addthis_config.services_custom = [
 				'after'   => '</'.$args['meta_tag'].'>',
 			] );
 
+		do_action( 'gtheme_content_header_close', $post, $args );
+
 		echo '</div>';
 
 		if ( $args['byline'] ) {
@@ -1206,6 +1212,8 @@ addthis_config.services_custom = [
 				self::renderActions( $post, '<li class="-action '.$args['prefix'].'-action %s">', '</li>', $args['actions'], $args['action_icon'] );
 			echo '</ul>';
 		}
+
+		do_action( 'gtheme_content_header_end', $post, $args );
 
 		if ( $args['wrap_close'] && $args['wrap_tag'] )
 			echo '</'.$args['wrap_tag'].'>'."\n";
