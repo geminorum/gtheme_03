@@ -453,7 +453,7 @@ class gThemeContent extends gThemeModuleCore
 
 	public static function renderActions( $post = NULL, $before = '<li class="-action entry-action %s">', $after = '</li>', $list = TRUE, $icon = NULL )
 	{
-		if ( ! $post = get_post( $post ) )
+		if ( ! $post = self::getPost( $post ) )
 			return;
 
 		// dummy post
@@ -500,24 +500,34 @@ class gThemeContent extends gThemeModuleCore
 			if ( is_array( $action ) ) {
 
 				if ( is_callable( $action ) )
-					call_user_func_array( $action, [ $before, $after, $icon ] );
+					call_user_func_array( $action, [ $before, $after, $icon, $post ] );
 
 			} else {
 
-				self::doAction( $action, $before, $after, $icon );
+				self::renderSingleAction( $action, $before, $after, $icon, $post );
 			}
 		}
 
 		do_action( 'gtheme_action_links', $before, $after, $actions, $icon );
 	}
 
+	// FIXME: DEPRECATED
 	public static function doAction( $action, $before, $after, $icon = FALSE )
 	{
+		self::_dev_dep( 'gThemeContent::renderSingleAction()' );
+		return self::renderSingleAction( $action, $before, $after, $icon );
+	}
+
+	public static function renderSingleAction( $action, $before, $after, $icon = FALSE, $post = NULL )
+	{
+		if ( ! $post = self::getPost( $post ) )
+			return;
+
 		switch ( $action ) {
 
 			case 'byline':
 
-				self::byline( NULL, sprintf( $before, '-action -byline' ), $after );
+				self::byline( $post, sprintf( $before, '-action -byline' ), $after );
 
 			break;
 			case 'textsize_buttons':
@@ -545,60 +555,53 @@ class gThemeContent extends gThemeModuleCore
 			case 'a2a_dd':
 			case 'addtoany':
 
-				self::addtoany(
-					sprintf( $before, 'addtoany post-share-link hide-if-no-js hidden-print' ), $after,
-					( $icon ? self::getGenericon( 'share' ) : _x( 'Share This', 'Modules: Content: Action', 'gtheme' ) )
+				self::addtoany( ( $icon ? self::getGenericon( 'share' ) : _x( 'Share This', 'Modules: Content: Action', 'gtheme' ) ),
+					$post, sprintf( $before, 'addtoany post-share-link hide-if-no-js hidden-print' ), $after
 				);
 
 			break;
 			case 'addthis':
 
-				self::addthis(
-					sprintf( $before, 'addthis post-share-link hide-if-no-js hidden-print' ), $after,
-					( $icon ? self::getGenericon( 'share' ) : _x( 'Share This', 'Modules: Content: Action', 'gtheme' ) )
+				self::addthis( ( $icon ? self::getGenericon( 'share' ) : _x( 'Share This', 'Modules: Content: Action', 'gtheme' ) ),
+					$post, sprintf( $before, 'addthis post-share-link hide-if-no-js hidden-print' ), $after
 				);
 
 			break;
 			case 'pocket_button':
 
-				self::pocket(
-					sprintf( $before, 'pocket post-share-button hide-if-no-js hidden-print' ), $after,
-					_x( 'Pocket', 'Modules: Content: Action', 'gtheme' )
+				self::pocket( _x( 'Pocket', 'Modules: Content: Action', 'gtheme' ),
+					$post, sprintf( $before, 'pocket post-share-button hide-if-no-js hidden-print' ), $after
 				);
 
 			break;
 			case 'printlink':
 
-				self::printLink(
-					( $icon ? self::getGenericon( 'print' ) : _x( 'Print Version', 'Modules: Content: Action', 'gtheme' ) ),
-					NULL,
-					sprintf( $before, '-action -printlink hidden-print' ), $after,
+				self::printLink( ( $icon ? self::getGenericon( 'print' ) : _x( 'Print Version', 'Modules: Content: Action', 'gtheme' ) ),
+					$post, sprintf( $before, '-action -printlink hidden-print' ), $after,
 					FALSE // self::getTitleAttr( FALSE )
 				);
 
 			break;
 			case 'shortlink':
 
-				self::shortlink(
-					( $icon ? self::getGenericon( 'link' ) : _x( 'Short Link', 'Modules: Content: Action', 'gtheme' ) ),
-					NULL,
-					sprintf( $before, '-action -shortlink hidden-print' ), $after,
+				self::shortlink( ( $icon ? self::getGenericon( 'link' ) : _x( 'Short Link', 'Modules: Content: Action', 'gtheme' ) ),
+					$post, sprintf( $before, '-action -shortlink hidden-print' ), $after,
 					self::getTitleAttr( FALSE )
 				);
 
 			break;
 			case 'bootstrap_qrcode':
 
-				self::bootstrapQRCode(
-					( $icon ? self::getGenericon( 'fullscreen' ) : _x( 'QR-Code', 'Modules: Content: Action', 'gtheme' ) ),
-					NULL,
-					sprintf( $before, '-action -qrcode -bootstrap-qrcode hide-if-no-js hidden-print dropdown' ), $after,
+				self::bootstrapQRCode( ( $icon ? self::getGenericon( 'fullscreen' ) : _x( 'QR-Code', 'Modules: Content: Action', 'gtheme' ) ),
+					$post, sprintf( $before, '-action -qrcode -bootstrap-qrcode hide-if-no-js hidden-print dropdown' ), $after,
 					self::getTitleAttr( _x( 'QR-Code for &ndash;%s&ndash;', 'Content: Title Attr', 'gtheme' ) )
 				);
 
 			break;
 			case 'comments_link':
 			case 'comments_link_feed':
+
+				// FIXME: separate the logic
 
 				if ( comments_open() ) {
 
@@ -619,34 +622,35 @@ class gThemeContent extends gThemeModuleCore
 
 					} else {
 
-						$link     = get_permalink();
+						$link     = get_permalink( $post );
 						$respond  = $link.'#respond';
 						$comments = $link.'#comments';
 						$class    = ''; // hastip
 					}
 
 					if ( $icon )
-						printf( '<a href="%2$s" class="%1$s">%3$s</a>', $class, ( get_comments_number() ? $comments : $respond ), self::getGenericon( 'comment' ) );
+						printf( '<a href="%2$s" class="%1$s">%3$s</a>', $class, ( get_comments_number( $post ) ? $comments : $respond ), self::getGenericon( 'comment' ) );
 
 					else
-						comments_number(
+						echo get_comments_number_text(
 							/* translators: %1$s: class name, %2$s: comments number, %3$s: comment url */
 							sprintf( _x( '<a href="%3$s" class="%1$s">Your Comment</a>', 'Modules: Content: Action', 'gtheme' ), $class, '', $respond ),
 							/* translators: %1$s: class name, %2$s: comments number, %3$s: comment url */
 							sprintf( _x( '<a href="%3$s" class="%1$s">One Comment</a>', 'Modules: Content: Action', 'gtheme' ), $class, '', $comments ),
 							/* translators: %1$s: class name, %2$s: comments number, %3$s: comment url */
-							sprintf( _x( '<a href="%3$s" class="%1$s">%2$s Comments</a>', 'Modules: Content: Action', 'gtheme' ), $class, '%', $comments )
+							sprintf( _x( '<a href="%3$s" class="%1$s">%2$s Comments</a>', 'Modules: Content: Action', 'gtheme' ), $class, '%', $comments ),
+							$post
 						);
 
 					if ( 'comments_link_feed' == $action ) {
 
 						if ( $icon )
-							printf( '<a href="%2$s" class="%1$s">%3$s</a>', 'comments-link-rss', get_post_comments_feed_link(), self::getGenericon( 'feed' ) );
+							printf( '<a href="%2$s" class="%1$s">%3$s</a>', 'comments-link-rss', get_post_comments_feed_link( $post->ID ), self::getGenericon( 'feed' ) );
 
 						else
 							/* translators: %1$s: comments rss link, %2$s: title attr, %3$s: class name */
 							printf( _x( ' <small><small>(<a href="%1$s" title="%2$s" class="%3$s"><abbr title="Really Simple Syndication">RSS</abbr></a>)</small></small>', 'Modules: Content: Action', 'gtheme' ),
-								get_post_comments_feed_link(),
+								get_post_comments_feed_link( $post->ID ),
 								_x( 'Feed for this post\'s comments', 'Modules: Content: Action', 'gtheme' ),
 								'comments-link-rss'
 							);
@@ -661,56 +665,62 @@ class gThemeContent extends gThemeModuleCore
 
 				edit_post_link(
 					( $icon ? self::getGenericon( 'edit' ) : _x( 'Edit', 'Modules: Content: Action', 'gtheme' ) ),
-					sprintf( $before, 'post-edit-link post-edit-link-li hidden-print' ), $after
+					sprintf( $before, 'post-edit-link post-edit-link-li hidden-print' ), $after, $post
 				);
 
 			break;
 			case 'tag_list': // DEPRECATED
 
-				if ( is_object_in_taxonomy( get_post_type(), 'post_tag' ) )
-					the_tags(
-						sprintf( $before, 'tag-links' ).
-						gThemeOptions::info( 'before_tag_list', '' ),
+				if ( is_object_in_taxonomy( $post->post_type, 'post_tag' ) ) {
+
+					$html = get_the_tag_list(
+						sprintf( $before, 'tag-links' ).gThemeOptions::info( 'before_tag_list', '' ),
 						gThemeOptions::info( 'term_sep', _x( ', ', 'Options: Separator: Term', 'gtheme' ) ),
-						$after
+						$after,
+						$post->ID
 					);
+
+					if ( ! is_wp_error( $html ) )
+						echo $html;
+				}
 
 			break;
 			case 'tags':
 
-				if ( is_object_in_taxonomy( get_post_type(), 'post_tag' ) )
-					gThemeTerms::theList( 'post_tag', sprintf( $before, 'tag-term' ), $after );
+				if ( is_object_in_taxonomy( $post->post_type, 'post_tag' ) )
+					gThemeTerms::theList( 'post_tag', sprintf( $before, 'tag-term' ), $after, $post );
 
 			break;
 			case 'cat_list': // DEPRECATED
 
-				if ( is_object_in_taxonomy( get_post_type(), 'category' ) )
-					echo sprintf( $before, 'cat-links' )
-						.gThemeOptions::info( 'before_cat_list', '' )
-						.get_the_category_list( gThemeOptions::info( 'term_sep', _x( ', ', 'Options: Separator: Term', 'gtheme' ) ) )
-						.$after;
+				if ( is_object_in_taxonomy( $post->post_type, 'category' ) ) {
+
+					$html = get_the_category_list( gThemeOptions::info( 'term_sep', _x( ', ', 'Options: Separator: Term', 'gtheme' ) ), '', $post->ID );
+
+					if ( $html )
+						echo sprintf( $before, 'cat-links' ).gThemeOptions::info( 'before_cat_list', '' ).$html.$after;
+				}
 
 			break;
 			case 'categories':
 
-				$posttype = get_post_type();
+				if ( $taxonomy = gThemeTerms::getMainTaxonomy( $post->post_type, FALSE ) )
+					gThemeTerms::theList( $taxonomy, sprintf( $before, $taxonomy.'-term' ), $after, $post, TRUE );
 
-				if ( $taxonomy = gThemeTerms::getMainTaxonomy( $posttype, FALSE ) )
-					gThemeTerms::theList( $taxonomy, sprintf( $before, $taxonomy.'-term' ), $after );
-
-				else if ( is_object_in_taxonomy( $posttype, 'category' ) )
-					gThemeTerms::theList( 'category', sprintf( $before, 'category-term' ), $after );
+				else if ( is_object_in_taxonomy( $post->post_type, 'category' ) )
+					gThemeTerms::theList( 'category', sprintf( $before, 'category-term' ), $after, $post, TRUE );
 
 			break;
 			case 'primary_term':
 
-				gThemeTerms::linkPrimary( sprintf( $before, 'primary-term' ), $after );
+				gThemeTerms::linkPrimary( sprintf( $before, 'primary-term' ), $after, $post );
 
 			break;
 			case 'the_date':
 			case 'date':
 
 				gThemeDate::date( [
+					'post'     => $post,
 					'before'   => sprintf( $before, 'the-date' ),
 					'after'    => $after,
 					'text'     => $icon ? self::getGenericon( 'edit' ) : NULL,
@@ -724,22 +734,25 @@ class gThemeContent extends gThemeModuleCore
 				// TODO: make link to search with meta
 
 				gThemeEditorial::meta( 'published', [
-					'before' => sprintf( $before, 'entry-published' ),
-					'after'  => $after,
+					'post_id' => $post->ID,
+					'before'  => sprintf( $before, 'entry-published' ),
+					'after'   => $after,
 				] );
 
 			break;
 			case 'editorial_label':
 
 				gThemeEditorial::label( [
-					'before' => sprintf( $before, 'entry-label' ),
-					'after'  => $after,
+					'post_id' => $post->ID,
+					'before'  => sprintf( $before, 'entry-label' ),
+					'after'   => $after,
 				] );
 
 			break;
 			case 'editorial_estimated';
 
 				gThemeEditorial::estimated( [
+					'post'    => $post,
 					'before' => sprintf( $before, 'entry-estimated' ),
 					'after'  => $after,
 					'prefix' => '',
@@ -936,13 +949,13 @@ $('#text-unjustify').click(function (e) {
 	}
 
 	// @REF: https://www.addtoany.com/buttons/customize/
-	public static function addtoany( $before = '', $after = '', $text = NULL, $footer = TRUE )
+	public static function addtoany( $text = NULL, $post = NULL, $before = '', $after = '', $footer = TRUE )
 	{
 		if ( $footer && ( is_singular() || is_single() ) )
 			add_action( 'wp_footer', [ __CLASS__, 'addtoany_footer' ] );
 
-		$premalink = get_permalink();
-		$linkname  = self::getTitleAttr( '%s' );
+		$premalink = get_permalink( $post );
+		$linkname  = self::getTitleAttr( '%s', NULL, $post );
 
 		$url = add_query_arg( [
 			'linkurl'  => urlencode( $premalink ),
@@ -994,15 +1007,14 @@ if(typeof(ga)!='undefined'){a2a_config.track_links = 'ga';}
 	// @SEE: http://www.addthis.com/academy/the-addthis_share-variable/
 	// @SEE: http://www.addthis.com/academy/setting-the-url-title-to-share/
 	// @SEE: http://www.addthis.com/academy/specifying-the-image-posted-to-pinterest/
-	public static function addthis( $b = '', $a = '', $text = NULL, $footer = TRUE )
+	public static function addthis( $text = '', $post = NULL, $b = '', $a = '', $footer = TRUE )
 	{
 		if ( $footer && ( is_singular() || is_single() ) )
 			add_action( 'wp_footer', [ __CLASS__, 'addthis_footer' ], 5 );
 
 		echo $b;
-		echo '<div class="addthis_sharing_toolbox" data-url="'.get_permalink().'" data-title="';
-			the_title_attribute();
-		echo '" data-image=""></div>';
+		echo '<div class="addthis_sharing_toolbox" data-url="'.get_permalink( $post ).'" data-title="'
+				.self::getTitleAttr( '%s', NULL, $post ).'" data-image="">'.$text.'</div>';
 		echo $a;
 	}
 
@@ -1028,7 +1040,7 @@ addthis_config.services_custom = [
 	}
 
 	// @REF: https://getpocket.com/publisher/button_docs
-	public static function pocket( $before = '', $after = '', $text = NULL, $footer = TRUE )
+	public static function pocket( $text = NULL, $post = NULL, $before = '', $after = '', $footer = TRUE )
 	{
 		if ( $footer && ( is_singular() || is_single() ) )
 			add_action( 'wp_footer', [ __CLASS__, 'pocket_footer' ], 5 );
@@ -1037,7 +1049,7 @@ addthis_config.services_custom = [
 			'href'  => 'https://getpocket.com/save',
 			'class' => 'pocket-btn',
 			'data'  => [
-				'save-url'     => get_permalink(),
+				'save-url'     => get_permalink( $post ),
 				'lang'         => gThemeOptions::info( 'lang', 'en' ),
 				'pocket-label' => $text ?: 'pocket',
 				'pocket-count' => 'none', // horizontal/vertical
