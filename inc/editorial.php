@@ -232,6 +232,9 @@ class gThemeEditorial extends gThemeModuleCore
 		if ( ! is_callable( [ 'geminorum\\gEditorial\\Templates\\Meta', 'metaLabel' ] ) )
 			return $atts['default'];
 
+		if ( ! array_key_exists( 'id', $atts ) )
+			$atts['id'] = array_key_exists( 'post_id', $atts ) ? $atts['post_id'] : NULL;
+
 		return \geminorum\gEditorial\Templates\Meta::metaLabel( $atts );
 	}
 
