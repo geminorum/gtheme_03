@@ -494,4 +494,20 @@ class gThemeEditorial extends gThemeModuleCore
 
 		return \geminorum\gEditorial\Templates\Terms::termImage( $atts );
 	}
+
+	// FIXME: must move to the actual module templates
+	public static function inquireQuestion( $post = NULL, $check = FALSE )
+	{
+		if ( $check && ( 'inquiry' != get_post_type( $post ) ) )
+			return;
+
+		$question = trim( get_the_excerpt( $post ) );
+
+		if ( ! $question )
+			return;
+
+		echo '<div class="entry-summary inquiry-question">';
+			echo wpautop( $question );
+		echo '</div>';
+	}
 }
