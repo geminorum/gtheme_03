@@ -327,4 +327,54 @@ class gThemeText extends gThemeBaseCore
 
 		return $return;
 	}
+
+	public static function has( $haystack, $needles, $operator = 'OR' )
+	{
+		if ( ! $haystack )
+			return FALSE;
+
+		if ( ! is_array( $needles ) )
+			return FALSE !== stripos( $haystack, $needles );
+
+		if ( 'OR' == $operator ) {
+			foreach ( $needles as $needle )
+				if ( FALSE !== stripos( $haystack, $needle ) )
+					return TRUE;
+
+			return FALSE;
+		}
+
+		$has = FALSE;
+
+		foreach ( $needles as $needle )
+			if ( FALSE !== stripos( $haystack, $needle ) )
+				$has = TRUE;
+
+		return $has;
+	}
+
+	public static function start( $haystack, $needles, $operator = 'OR' )
+	{
+		if ( ! $haystack )
+			return FALSE;
+
+		if ( ! is_array( $needles ) )
+			return 0 === stripos( $haystack, $needles );
+
+		if ( 'OR' == $operator ) {
+			foreach ( $needles as $needle )
+				if ( 0 === stripos( $haystack, $needle ) )
+					return TRUE;
+
+			return FALSE;
+		}
+
+		$start = FALSE;
+
+		foreach ( $needles as $needle )
+			if ( 0 === stripos( $haystack, $needle ) )
+				$start = TRUE;
+
+		return $start;
+	}
 }

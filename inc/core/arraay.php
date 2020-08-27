@@ -12,4 +12,14 @@ class gThemeArraay extends gThemeBaseCore
 
 		return $list;
 	}
+
+	// is associative or sequential?
+	// @REF: https://stackoverflow.com/a/173479
+	public static function isAssoc( $array )
+	{
+		if ( $array === array() )
+			return FALSE;
+
+		return array_keys( $array ) !== range( 0, count( $array ) - 1 );
+	}
 }

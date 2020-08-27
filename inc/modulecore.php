@@ -514,6 +514,18 @@ class gThemeModuleCore extends gThemeBaseCore
 					echo $value;
 
 			break;
+			case 'action_hook':
+
+				if ( ! empty( $args['values'] ) )
+					do_action( $args['values'], $args );
+
+			break;
+			case 'callback':
+
+				if ( is_callable( $args['values'] ) )
+					call_user_func_array( $args['values'], [ $args ] );
+
+			break;
 			case 'debug':
 
 				self::dump( $this->options );

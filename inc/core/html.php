@@ -58,19 +58,30 @@ class gThemeHTML extends gThemeBaseCore
 		if ( $html ) echo self::tag( 'h3', array( 'class' => $class ), ( $link ? self::link( $html, $link ) : $html ) );
 	}
 
-	public static function desc( $html, $block = TRUE, $class = '', $nl2br = TRUE )
+	public static function desc( $string, $block = TRUE, $class = '', $nl2br = TRUE )
 	{
-		if ( ! $html )
+		if ( is_array( $string ) ) {
+
+			$assoc = gThemeArraay::isAssoc( $string );
+
+			foreach ( $string as $desc_class => $desc_html )
+				self::desc( $desc_html, $block, $assoc ? $desc_class : $class, $nl2br );
+
+			return;
+		}
+
+		if ( ! $string = trim( $string ) )
 			return;
 
-		if ( $nl2br )
-			$html = nl2br( trim( $html ) );
+		$tag = $block ? 'p' : 'span';
 
-		$html = gThemeText::wordWrap( $html );
+		if ( gThemeText::start( $string, [ '<ul', '<ol', '<h3', '<h4', '<h5', '<h6' ] ) )
+			$tag = 'div';
 
-		echo $block
-			? '<p class="'.self::prepClass( 'description', '-description', $class ).'">'.$html.'</p>'
-			: '<span class="'.self::prepClass( 'description', '-description', $class ).'">'.$html.'</span>';
+		echo '<'.$tag.' class="'.self::prepClass( 'description', '-description', $class ).'">'
+			// .gThemeText::wordWrap( $nl2br ? nl2br( $string ) : $string ) // FIXME: messes with html attrs
+			.( $nl2br ? nl2br( $string ) : $string )
+		.'</'.$tag.'>';
 	}
 
 	public static function wrap( $html, $class = '', $block = TRUE )
