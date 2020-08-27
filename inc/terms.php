@@ -548,7 +548,7 @@ class gThemeTerms extends gThemeModuleCore
 		return TRUE;
 	}
 
-	public static function theList( $taxonomy, $before = '', $after = '', $post = NULL )
+	public static function theList( $taxonomy, $before = '', $after = '', $post = NULL, $parents_only = FALSE )
 	{
 		$terms = get_the_terms( $post, $taxonomy );
 
@@ -558,8 +558,13 @@ class gThemeTerms extends gThemeModuleCore
 		if ( ! $terms )
 			return FALSE;
 
-		foreach ( $terms as $term )
+		foreach ( $terms as $term ) {
+
+			if ( $parents_only && $term->parent )
+				continue;
+
 			echo self::getTermLink( $term, $before, $after );
+		}
 
 		return TRUE;
 	}
