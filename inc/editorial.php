@@ -96,12 +96,32 @@ class gThemeEditorial extends gThemeModuleCore
 		return TRUE;
 	}
 
-	public static function course( $atts = [], $echo = TRUE )
+	public static function courseLessonRowCallback( $post, $args, $term )
+	{
+		// @REF: https://developer.wordpress.org/?p=2837#comment-874
+		$GLOBALS['post'] = $post;
+		setup_postdata( $post );
+
+		ob_start();
+
+		echo '<li>';
+			get_template_part( 'row', 'lesson' );
+		echo '</li>';
+
+		return ob_get_clean();
+	}
+
+	public static function courseLessons( $atts = [], $echo = TRUE )
 	{
 		if ( ! self::availableEditorial( 'course' ) )
 			return NULL;
 
+		if ( ! array_key_exists( 'item_cb', $atts ) )
+			$atts['item_cb'] = [ __CLASS__, 'courseLessonRowCallback' ];
+
 		$html = gEditorial()->course->course_shortcode( $atts );
+
+		wp_reset_postdata(); // since callback used setup post data
 
 		if ( ! $echo )
 			return $html;
@@ -109,6 +129,20 @@ class gThemeEditorial extends gThemeModuleCore
 		echo $html;
 
 		return TRUE;
+	}
+
+	public static function course( $atts = [] )
+	{
+		if ( ! array_key_exists( 'default', $atts ) )
+			$atts['default'] = FALSE;
+
+		if ( ! self::availableEditorial( 'course' ) )
+			return $atts['default'];
+
+		if ( ! is_callable( [ 'geminorum\\gEditorial\\Templates\\Course', 'theCourse' ] ) )
+			return $atts['default'];
+
+		return \geminorum\gEditorial\Templates\Course::theCourse( $atts );
 	}
 
 	public static function postLikeButton( $atts = [], $check_systemtags = 'disable-like-button' )
