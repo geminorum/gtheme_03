@@ -1,3 +1,20 @@
+### 3.20.4
+* misc/bootstrap walker: applying core filter on mega-menu css classes
+* module/banners: extra before/after on group helpers
+* module/content: action hooks on header
+* module/content: render single action with custom post
+* module/editorial: course lessons list helper
+* module/editorial: inquire question helper
+* module/editorial: key fallback for label helper
+* module/filters: :warning: handling group fallbacks on preload styles
+* module/settings: action hook for settings legend
+* module/sidebar: logic separation on widgets init
+* module/sidebar: registering sidebars revised
+* module/sidebar: widgetized sidebars for primaries
+* module/terms: better handling main taxonomy for posttypes
+* module/terms: optional parents only on the list
+* widget/recent posts: avoid caching on singular
+
 ### 3.20.3
 * module/bootstrap: separated navbar toggler
 * module/content: bootstrap qrcode content action
