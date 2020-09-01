@@ -106,7 +106,7 @@ class gThemeFilters extends gThemeModuleCore
 			echo self::getStyleLink( $singular );
 		}
 
-		if ( gThemeWordPress::isDev() && ! gThemeUtilities::isPrint() )
+		if ( gThemeWordPress::isDev() && ! $print )
 			gThemeUtilities::linkStyleSheet( GTHEME_URL.'/css/main.dev'.( gThemeUtilities::isRTL() ? '-rtl' : '' ).'.css', GTHEME_VERSION, 'all' );
 
 		if ( $singular )
@@ -133,17 +133,17 @@ class gThemeFilters extends gThemeModuleCore
 			self::deferredStyles( $html );
 	}
 
-	public static function preloadStyles( $target = NULL )
+	public static function preloadStyles( $group = NULL )
 	{
-		if ( is_null( $target ) )
-			$target = gThemeOptions::getGroup();
+		if ( is_null( $group ) )
+			$group = gThemeOptions::getGroup();
 
-		$rtl   = gThemeUtilities::isRTL() ? '-rtl' : '';
-		$group = $target.'.preload'.$rtl.'.css';
-		$main  = 'main.preload'.$rtl.'.css';
+		$rtl    = gThemeUtilities::isRTL() ? '-rtl' : '';
+		$target = $group.'.preload'.$rtl.'.css';
+		$main   = 'main.preload'.$rtl.'.css';
 
-		if ( file_exists( GTHEME_CHILD_DIR.'/css/'.$group ) )
-			$path = GTHEME_CHILD_DIR.'/css/'.$group;
+		if ( file_exists( GTHEME_CHILD_DIR.'/css/'.$target ) )
+			$path = GTHEME_CHILD_DIR.'/css/'.$target;
 
 		else if ( file_exists( GTHEME_CHILD_DIR.'/css/'.$main ) )
 			$path = GTHEME_CHILD_DIR.'/css/'.$main;
@@ -188,7 +188,7 @@ class gThemeFilters extends gThemeModuleCore
 		} else if ( file_exists( GTHEME_CHILD_DIR.'/css/css.php' ) ) {
 
 			$args['dir']   = $rtl ? 'rtl' : 'ltr';
-			$args['group'] = gThemeOptions::getGroup();
+			$args['group'] = $group;
 
 			$url = GTHEME_CHILD_URL.'/css/';
 

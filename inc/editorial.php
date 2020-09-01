@@ -514,10 +514,10 @@ class gThemeEditorial extends gThemeModuleCore
 		if ( ! self::availableEditorial( 'book' ) )
 			return $atts['default'];
 
-		if ( ! is_callable( [ 'geminorum\\gEditorial\\Templates\\Book', 'metaSummary' ] ) )
+		if ( ! is_callable( [ 'geminorum\\gEditorial\\Templates\\Book', 'summary' ] ) )
 			return $atts['default'];
 
-		return \geminorum\gEditorial\Templates\Book::metaSummary( $atts );
+		return \geminorum\gEditorial\Templates\Book::summary( $atts );
 	}
 
 	public static function refList( $atts = [], $echo = TRUE )

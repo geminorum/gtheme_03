@@ -820,6 +820,7 @@ class gThemeContent extends gThemeModuleCore
 
 	// @REF: http://nicholaelaw.github.io/demo-qr-code-in-tooltip/
 	// @REF: https://qr-creator.com/plugin.php
+	// @REF: https://developers.google.com/chart/infographics/docs/qr_codes
 	// NOTE: needs bootstrap for dropdown
 	public static function bootstrapQRCode( $text, $post = NULL, $before = '', $after = '', $title = NULL )
 	{
