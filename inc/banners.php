@@ -33,9 +33,10 @@ class gThemeBanners extends gThemeModuleCore
 		self::html( $banner, $atts );
 	}
 
+	// NOTE: resets the returned array
 	public static function getGroup( $group )
 	{
-		return wp_list_filter( gThemeOptions::getOption( 'banners', [] ), [ 'group' => $group ] );
+		return array_values( wp_list_filter( gThemeOptions::getOption( 'banners', [] ), [ 'group' => $group ] ) );
 	}
 
 	public static function group( $group, $atts = [] )
