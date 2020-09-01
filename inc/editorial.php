@@ -460,10 +460,16 @@ class gThemeEditorial extends gThemeModuleCore
 		return \geminorum\gEditorial\Templates\Magazine::cover( $atts );
 	}
 
-	public static function bookCover( $atts = [] )
+	public static function bookCover( $atts = [], $check = FALSE )
 	{
 		if ( ! array_key_exists( 'default', $atts ) )
 			$atts['default'] = FALSE;
+
+		if ( ! array_key_exists( 'id', $atts ) )
+			$atts['id'] = NULL;
+
+		if ( $check && ( 'publication' != get_post_type( $atts['id'] ) ) )
+			return $atts['default'];
 
 		if ( ! self::availableEditorial( 'book' ) )
 			return $atts['default'];
