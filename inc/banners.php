@@ -48,6 +48,7 @@ class gThemeBanners extends gThemeModuleCore
 			'before'    => '',
 			'after'     => '',
 			'tag'       => 'li',
+			'tag_class' => '',
 			'tag_start' => '',
 			'tag_end'   => '',
 		], $atts );
@@ -57,7 +58,7 @@ class gThemeBanners extends gThemeModuleCore
 		foreach ( $banners as $banner ) {
 
 			if ( $args['tag'] )
-				echo '<'.$args['tag'].'>';
+				echo '<'.$args['tag'].( $args['tag_class'] ? ' class="'.$args['tag_class'].'"': '' ).'>';
 
 			echo $args['tag_start'];
 
