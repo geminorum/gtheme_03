@@ -86,6 +86,8 @@ class gThemeFilters extends gThemeModuleCore
 
 		if ( $singular && $print ) {
 
+			add_filter( 'show_admin_bar', '__return_false' );
+
 			echo self::getStyleLink( TRUE, TRUE );
 
 		} else if ( gThemeOptions::info( 'deferred_styles', FALSE )
