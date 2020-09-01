@@ -77,9 +77,10 @@ class gThemeWidgetRecentComments extends gThemeWidget
 	{
 		$instance = $old;
 
-		$instance['title']      = sanitize_text_field( $new['title'] );
-		$instance['title_link'] = strip_tags( $new['title_link'] );
-		$instance['class']      = strip_tags( $new['class'] );
+		$instance['title']       = sanitize_text_field( $new['title'] );
+		$instance['title_link']  = strip_tags( $new['title_link'] );
+		$instance['title_image'] = strip_tags( $new['title_image'] );
+		$instance['class']       = strip_tags( $new['class'] );
 
 		$instance['number']      = (int) $new['number'];
 		$instance['avatar_size'] = (int) $new['avatar_size'];
@@ -95,9 +96,11 @@ class gThemeWidgetRecentComments extends gThemeWidget
 
 		$this->form_title( $instance );
 		$this->form_title_link( $instance );
+		$this->form_title_image( $instance );
+		$this->form_class( $instance );
+
 		$this->form_avatar_size( $instance );
 		$this->form_number( $instance, '5' );
-		$this->form_class( $instance );
 
 		$this->after_form( $instance );
 	}

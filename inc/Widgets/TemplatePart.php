@@ -29,8 +29,9 @@ class gThemeWidgetTemplatePart extends gThemeWidget
 
 		$this->form_title( $instance );
 		$this->form_title_link( $instance );
-		$this->form_context( $instance );
+		$this->form_title_image( $instance );
 		$this->form_class( $instance );
+		$this->form_context( $instance );
 
 		$this->after_form( $instance );
 	}

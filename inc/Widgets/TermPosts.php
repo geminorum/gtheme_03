@@ -85,13 +85,14 @@ class gThemeWidgetTermPosts extends gThemeWidget
 	{
 		$instance = $old;
 
-		$instance['title']      = sanitize_text_field( $new['title'] );
-		$instance['title_link'] = strip_tags( $new['title_link'] );
-		$instance['term_id']    = strip_tags( $new['term_id'] );
-		$instance['taxonomy']   = strip_tags( $new['taxonomy'] );
-		$instance['post_type']  = strip_tags( $new['post_type'] );
-		$instance['context']    = strip_tags( $new['context'] );
-		$instance['class']      = strip_tags( $new['class'] );
+		$instance['title']       = sanitize_text_field( $new['title'] );
+		$instance['title_link']  = strip_tags( $new['title_link'] );
+		$instance['title_image'] = strip_tags( $new['title_image'] );
+		$instance['term_id']     = strip_tags( $new['term_id'] );
+		$instance['taxonomy']    = strip_tags( $new['taxonomy'] );
+		$instance['post_type']   = strip_tags( $new['post_type'] );
+		$instance['context']     = strip_tags( $new['context'] );
+		$instance['class']       = strip_tags( $new['class'] );
 
 		$instance['number'] = (int) $new['number'];
 
@@ -106,11 +107,12 @@ class gThemeWidgetTermPosts extends gThemeWidget
 
 		$this->form_title( $instance );
 		$this->form_title_link( $instance );
+		$this->form_title_image( $instance );
+		$this->form_class( $instance );
+		$this->form_context( $instance, 'recent' );
 		$this->form_post_type( $instance );
 		$this->form_taxonomy( $instance );
 		$this->form_term_id( $instance );
-		$this->form_context( $instance, 'recent' );
-		$this->form_class( $instance );
 		$this->form_number( $instance, '5' );
 
 		$this->after_form( $instance );

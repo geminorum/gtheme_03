@@ -113,10 +113,11 @@ class gThemeWidgetTheTerm extends gThemeWidget
 	{
 		$instance = $old;
 
-		$instance['title']      = sanitize_text_field( $new['title'] );
-		$instance['title_link'] = strip_tags( $new['title_link'] );
-		$instance['class']      = strip_tags( $new['class'] );
-		$instance['taxonomy']   = strip_tags( $new['taxonomy'] );
+		$instance['title']       = sanitize_text_field( $new['title'] );
+		$instance['title_link']  = strip_tags( $new['title_link'] );
+		$instance['title_image'] = strip_tags( $new['title_image'] );
+		$instance['class']       = strip_tags( $new['class'] );
+		$instance['taxonomy']    = strip_tags( $new['taxonomy'] );
 
 		$instance['meta_image']      = isset( $new['meta_image'] );
 		$instance['hide_no_desc']    = isset( $new['hide_no_desc'] );
@@ -133,7 +134,9 @@ class gThemeWidgetTheTerm extends gThemeWidget
 
 		$this->form_title( $instance );
 		$this->form_title_link( $instance );
+		$this->form_title_image( $instance );
 		$this->form_class( $instance );
+
 		$this->form_taxonomy( $instance );
 		gThemeHTML::desc( _x( '&ldquo;All taxonomies option&rdquo; only works on archive pages.', 'Widget: Setting', 'gtheme' ) );
 

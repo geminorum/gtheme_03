@@ -125,6 +125,7 @@ class gThemeWidget extends WP_Widget
 	{
 		$classes = isset( $instance['context'] ) && $instance['context'] ? 'context-'.sanitize_html_class( $instance['context'], 'general' ).' ' : '';
 		$classes.= isset( $instance['class'] ) && $instance['class'] ? $instance['class'].' ' : '';
+		$classes.= isset( $instance['title_image'] ) && $instance['title_image'] ? '-has-title-image ' : '';
 		$classes.= $extra_class.' ';
 
 		$html = preg_replace( '%{GTHEME_WIDGET_CLASSNAME}%', $classes, $args['before_widget'] );
@@ -153,6 +154,9 @@ class gThemeWidget extends WP_Widget
 
 		if ( ! $title )
 			return '';
+
+		if ( ! empty( $instance['title_image'] ) )
+			$title = gThemeHTML::img( $instance['title_image'], '-title-image', $title );
 
 		if ( ! empty( $instance['title_link'] ) )
 			$title = gThemeHTML::link( $title, $instance['title_link'] );
@@ -352,6 +356,22 @@ class gThemeWidget extends WP_Widget
 		echo '<p>'.gThemeHTML::tag( 'label', [
 			'for' => $this->get_field_id( $field ),
 		], _x( 'Title Link:', 'Widget: Setting', 'gtheme' ).$html ).'</p>';
+	}
+
+	public function form_title_image( $instance, $default = '', $field = 'title_image' )
+	{
+		$html = gThemeHTML::tag( 'input', [
+			'type'  => 'text',
+			'class' => 'widefat',
+			'name'  => $this->get_field_name( $field ),
+			'id'    => $this->get_field_id( $field ),
+			'value' => isset( $instance[$field] ) ? $instance[$field] : $default,
+			'dir'   => 'ltr',
+		] );
+
+		echo '<p>'.gThemeHTML::tag( 'label', [
+			'for' => $this->get_field_id( $field ),
+		], _x( 'Title Image:', 'Widget: Setting', 'gtheme' ).$html ).'</p>';
 	}
 
 	public function form_custom_link( $instance, $default = '', $field = 'custom_link', $label = NULL )

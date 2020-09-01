@@ -33,6 +33,8 @@ class gThemeWidgetChildren extends gThemeWidget
 
 		$this->form_title( $instance );
 		$this->form_title_link( $instance );
+		$this->form_title_image( $instance );
+
 		$this->form_post_type( $instance, 'page' );
 		$this->form_class( $instance );
 

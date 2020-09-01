@@ -104,12 +104,13 @@ class gThemeWidgetRelatedPosts extends gThemeWidget
 	{
 		$instance = $old;
 
-		$instance['title']      = sanitize_text_field( $new['title'] );
-		$instance['title_link'] = strip_tags( $new['title_link'] );
-		$instance['context']    = strip_tags( $new['context'] );
-		$instance['class']      = strip_tags( $new['class'] );
-		$instance['post_type']  = strip_tags( $new['post_type'] );
-		$instance['taxonomy']   = strip_tags( $new['taxonomy'] );
+		$instance['title']       = sanitize_text_field( $new['title'] );
+		$instance['title_link']  = strip_tags( $new['title_link'] );
+		$instance['title_image'] = strip_tags( $new['title_image'] );
+		$instance['context']     = strip_tags( $new['context'] );
+		$instance['class']       = strip_tags( $new['class'] );
+		$instance['post_type']   = strip_tags( $new['post_type'] );
+		$instance['taxonomy']    = strip_tags( $new['taxonomy'] );
 
 		$instance['number'] = (int) $new['number'];
 
@@ -124,10 +125,11 @@ class gThemeWidgetRelatedPosts extends gThemeWidget
 
 		$this->form_title( $instance );
 		$this->form_title_link( $instance );
+		$this->form_title_image( $instance );
+		$this->form_class( $instance );
+		$this->form_context( $instance, 'related' );
 		$this->form_post_type( $instance );
 		$this->form_taxonomy( $instance );
-		$this->form_context( $instance, 'related' );
-		$this->form_class( $instance );
 		$this->form_number( $instance, '5' );
 
 		$this->after_form( $instance );
