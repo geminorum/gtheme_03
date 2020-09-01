@@ -171,14 +171,17 @@ class gThemeFilters extends gThemeModuleCore
 
 		if ( $singular && $print ) {
 
-			$file = $group.'.print'
-				.( $rtl ? '-rtl' : '' )
-				// .( SCRIPT_DEBUG ? '' : '.min' )
-				.'.css';
+			$target = $group.'.print'.( $rtl ? '-rtl' : '' ).'.css';
+			$main   = 'main.print'.( $rtl ? '-rtl' : '' ).'.css';
 
-			$url = file_exists( GTHEME_CHILD_DIR.'/css/'.$file )
-				? GTHEME_CHILD_URL.'/css/'.$file
-				: GTHEME_URL.'/css/'.$file;
+			if ( file_exists( GTHEME_CHILD_DIR.'/css/'.$target ) )
+				$url = GTHEME_CHILD_URL.'/css/'.$target;
+
+			else if ( file_exists( GTHEME_CHILD_DIR.'/css/'.$main ) )
+				$url = GTHEME_CHILD_URL.'/css/'.$main;
+
+			else
+				$url = GTHEME_URL.'/css/'.$main;
 
 			$media = 'all'; // also for custom endpoint view
 
@@ -193,14 +196,17 @@ class gThemeFilters extends gThemeModuleCore
 
 		} else {
 
-			$file = $group.'.screen'
-				.( $rtl ? '-rtl' : '' )
-				// .( SCRIPT_DEBUG ? '' : '.min' )
-				.'.css';
+			$target = $group.'.screen'.( $rtl ? '-rtl' : '' ).'.css';
+			$main   = 'main.screen'.( $rtl ? '-rtl' : '' ).'.css';
 
-			$url = file_exists( GTHEME_CHILD_DIR.'/css/'.$file )
-				? GTHEME_CHILD_URL.'/css/'.$file
-				: GTHEME_URL.'/css/'.$file;
+			if ( file_exists( GTHEME_CHILD_DIR.'/css/'.$target ) )
+				$url = GTHEME_CHILD_URL.'/css/'.$target;
+
+			else if ( file_exists( GTHEME_CHILD_DIR.'/css/'.$main ) )
+				$url = GTHEME_CHILD_URL.'/css/'.$main;
+
+			else
+				$url = GTHEME_URL.'/css/'.$main;
 
 			$media = 'all';
 		}
