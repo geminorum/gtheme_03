@@ -133,7 +133,7 @@ class gThemeBanners extends gThemeModuleCore
 
 	// @REF: https://github.com/jsor/jcarousel
 	// NOTE: needs additional styles, see blocks for `jcarousel`
-	public static function paginatedCarousel( $group = 'dashboard', $atts = [], $before = '', $after = '' )
+	public static function paginatedCarousel( $group, $atts = [], $before = '', $after = '' )
 	{
 		$args = array_merge( [
 			'before' => $before.'<div class="wrap-jcarousel-paginated -group-'.$group.'"><div class="-carousel"><ul>',
@@ -148,7 +148,7 @@ class gThemeBanners extends gThemeModuleCore
 	}
 
 	// NOTE: needs no additional styles or scripts
-	public static function bootstrapCarousel( $group = 'dashboard', $atts = [], $before = '', $after = '' )
+	public static function bootstrapCarousel( $group, $atts = [], $before = '', $after = '' )
 	{
 		if ( ! $banners = self::getGroup( $group ) )
 			return;
