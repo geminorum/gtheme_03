@@ -178,10 +178,11 @@ class gThemeBanners extends gThemeModuleCore
 			$indi.= '<li data-target="#'.$id.'" data-slide-to="'.$offset.'"'.( $offset ? '' : ' class="active"' ).'></li>';
 		}
 
-		echo $before.'<div id="'.$id.'" class="carousel slide w-100" data-ride="carousel">';
+		echo $before.'<div class="wrap-bootstrap-carousel -group-'.$group.'">';
+		echo '<div id="'.$id.'" class="-carousel carousel slide w-100" data-ride="carousel">';
 		echo '<ol class="carousel-indicators">'.$indi.'</ol>';
 		echo '<div class="carousel-inner">'.$html.'</div>';
-		echo $controls.'</div>'.$after;
+		echo $controls.'</div></div>'.$after;
 	}
 
 	public function subs( $subs )
