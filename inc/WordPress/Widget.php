@@ -22,7 +22,7 @@ class gThemeWidget extends WP_Widget
 
 		parent::__construct( static::BASE.'_'.$args['name'], $args['title'], [
 			'description' => $args['desc'],
-			'classname'   => '{GTHEME_WIDGET_CLASSNAME}'.'widget-'.static::BASE.'-'.$args['class'],
+			'classname'   => '{GTHEME_WIDGET_CLASSNAME} '.'widget-'.static::BASE.'-'.$args['class'],
 		], $args['control'] );
 
 		$this->alt_option_name = 'widget_'.static::BASE.'_'.$args['name'];
@@ -121,14 +121,20 @@ class gThemeWidget extends WP_Widget
 		return FALSE;
 	}
 
-	public function before_widget( $args, $instance, $extra_class = '', $echo = TRUE )
+	public function before_widget( $args, $instance, $extra = '', $echo = TRUE )
 	{
-		$classes = isset( $instance['context'] ) && $instance['context'] ? 'context-'.sanitize_html_class( $instance['context'], 'general' ).' ' : '';
-		$classes.= isset( $instance['class'] ) && $instance['class'] ? $instance['class'].' ' : '';
-		$classes.= isset( $instance['title_image'] ) && $instance['title_image'] ? '-has-title-image ' : '';
-		$classes.= $extra_class.' ';
+		$classes = [];
 
-		$html = preg_replace( '%{GTHEME_WIDGET_CLASSNAME}%', $classes, $args['before_widget'] );
+		if ( ! empty( $instance['context'] ) )
+			$classes[] = 'context-'.$instance['context'];
+
+		if ( ! empty( $instance['class'] ) )
+			$classes[] = $instance['class'];
+
+		if ( ! empty( $instance['title_image'] ) )
+			$classes[] = '-has-title-image';
+
+		$html = preg_replace( '%{GTHEME_WIDGET_CLASSNAME}%', gThemeHTML::prepClass( $classes, $extra ), $args['before_widget'] );
 
 		if ( ! $echo )
 			return $html;
