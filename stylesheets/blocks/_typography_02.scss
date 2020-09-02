@@ -54,6 +54,7 @@ sub {
   @include theme-typography-heading-line($gray-light);
 }
 
+.entry-wrap.-hidden-title,
 .entry-wrap.-empty-title {
   margin-top: 1rem;
   padding-top: 0.5rem;

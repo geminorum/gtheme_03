@@ -29,11 +29,6 @@
     }
   }
 
-  // must be here: on print only styles
-  .-printlink {
-    display: none;
-  }
-
   h1 {
     // page-break-before: always; // messes when we have site logo
   }

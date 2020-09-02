@@ -52,6 +52,7 @@ a {
     justify-content: center;
 
     > div {
+      box-sizing: border-box; // here for preventing jumps
       border-radius: 100%;
       border-style: solid;
       border-width: $theme-preload-border;

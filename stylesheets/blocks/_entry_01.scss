@@ -4,8 +4,8 @@
 /// Blocks: Entry 01 - 2018-02-20
 
 ////////////////////////////////////////////////////////////////////////////////
-
 .entry-wrap {
+  &.-hidden-title .entry-header,
   &.-empty-title .entry-header {
     display: none;
   }

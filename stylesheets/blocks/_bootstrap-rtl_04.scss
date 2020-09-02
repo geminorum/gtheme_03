@@ -1,0 +1,50 @@
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+/// Blocks: Bootstrap RTL 04 - 2020-08-22
+// TESTED with Bootstrap 4.5.2
+// NOTE: must load after bootstrap
+// NOTE: must used with RTLCSS
+
+////////////////////////////////////////////////////////////////////////////////
+.breadcrumb-item {
+  display: list-item; // should not be `flex`
+}
+
+////////////////////////////////////////////////////////////////////////////////
+
+.carousel-control-prev-icon {
+  background-image: escape-svg($carousel-control-next-icon-bg);
+
+}
+
+.carousel-control-next-icon {
+  background-image: escape-svg($carousel-control-prev-icon-bg);
+}
+
+////////////////////////////////////////////////////////////////////////////////
+.bs-tooltip-right {
+  .arrow {
+    right: 0;
+    left: auto;
+
+    &::before {
+      left: 0;
+      right: auto;
+      border-width: ($tooltip-arrow-width / 2) 0 ($tooltip-arrow-width / 2) $tooltip-arrow-height;
+      border-left-color: $tooltip-arrow-color;
+    }
+  }
+}
+
+.bs-tooltip-left {
+  .arrow {
+    left: 0;
+
+    &::before {
+      right: 0;
+      border-width: ($tooltip-arrow-width / 2) $tooltip-arrow-height ($tooltip-arrow-width / 2) 0;
+      border-right-color: $tooltip-arrow-color;
+    }
+  }
+}
