@@ -185,6 +185,58 @@ class gThemeBanners extends gThemeModuleCore
 		echo $controls.'</div></div>'.$after;
 	}
 
+	// @REF: https://github.com/kenwheeler/slick/
+	// @REF: https://kenwheeler.github.io/slick/
+	// NOTE: needs additional styles, see blocks for `slick-slider`
+	public static function slickCarousel( $group, $atts = [], $before = '', $after = '', $count = NULL )
+	{
+		static $enqueued = FALSE;
+
+		$config = [
+			'slidesToShow'   => is_null( $count ) ? gThemeCounts::get( 'carousel_'.$group, 5 ) : $count,
+			'slidesToScroll' => 1,
+			'autoplaySpeed'  => 3000,
+			'autoplay'       => TRUE,
+			'arrows'         => FALSE,
+			'dots'           => FALSE,
+			// 'pauseOnHover'   => FALSE,
+			'responsive'     => [
+				[
+					'breakpoint' => 768,
+					'settings'   => [ 'slidesToShow' => 3 ],
+				],
+				[
+					'breakpoint' => 576, // 520,
+					'settings'   => [ 'slidesToShow'=> 2 ],
+				],
+			],
+		];
+
+		$args = array_merge( [
+			'before' => $before.'<div class="wrap-slick-carousel -group-'.$group.'"><div class="-carousel slick-slider" data-slick=\''.wp_json_encode( $config ).'\'>',
+			'after'  => '</div></div>'.$after,
+			'tag'    => 'div',
+		], $atts );
+
+		if ( FALSE === self::group( $group, $args ) )
+			return;
+
+		if ( $enqueued )
+			return;
+
+		$script = <<<'JS'
+jQuery(function(r){r(".wrap-slick-carousel .-carousel").slick({rtl:"rtl"===r("html").attr("dir")})});
+JS;
+
+		wp_enqueue_script( 'gtheme-slick', GTHEME_URL.'/js/vendor/slick-carousel.min.js', [], '1.8.1', TRUE );
+		wp_add_inline_script( 'gtheme-slick', $script );
+
+		// NOTE: for reference
+		// wp_enqueue_script( 'slick-carousel', GTHEME_URL.'/js/slick.carousel'.( SCRIPT_DEBUG ? '' : '.min' ).'.js', [ 'jquery', 'gtheme-slick' ], GTHEME_VERSION, TRUE );
+
+		$enqueued = TRUE;
+	}
+
 	public function subs( $subs )
 	{
 		return array_merge( $subs, [ 'banners' => _x( 'Banners', 'Modules: Menu Name', 'gtheme' ) ] );
