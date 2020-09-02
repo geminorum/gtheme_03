@@ -84,6 +84,12 @@ class gThemeHTML extends gThemeBaseCore
 		.'</'.$tag.'>';
 	}
 
+	public static function label( $input, $for = FALSE, $wrap = 'p' )
+	{
+		$html = self::tag( 'label', [ 'for' => $for ], $input );
+		echo $wrap ? self::tag( $wrap, $html ) : $html;
+	}
+
 	public static function wrap( $html, $class = '', $block = TRUE )
 	{
 		if ( ! $html )
