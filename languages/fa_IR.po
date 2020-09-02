@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gTheme 3\n"
 "Report-Msgid-Bugs-To: https://github.com/geminorum/gtheme_03/issues\n"
-"POT-Creation-Date: 2020-08-28T02:23:41+00:00\n"
-"PO-Revision-Date: 2020-08-28 06:54+0430\n"
+"POT-Creation-Date: 2020-09-02T21:07:39+00:00\n"
+"PO-Revision-Date: 2020-09-03 01:38+0430\n"
 "Last-Translator: geminorum <contact@geminorum.ir>\n"
 "Language-Team: geminorum <contact@geminorum.ir>\n"
 "Language: fa_IR\n"
@@ -102,67 +102,67 @@ msgctxt "Banner Groups"
 msgid "Sponsors"
 msgstr "حامیان"
 
-#: inc/banners.php:159
+#: inc/banners.php:161
 msgctxt "Carousel Control"
 msgid "Previous"
 msgstr "قبلی"
 
-#: inc/banners.php:162
+#: inc/banners.php:164
 msgctxt "Carousel Control"
 msgid "Next"
 msgstr "بعدی"
 
-#: inc/banners.php:187
+#: inc/banners.php:242
 msgctxt "Modules: Menu Name"
 msgid "Banners"
 msgstr "بنرها"
 
-#: inc/banners.php:271
+#: inc/banners.php:326
 msgctxt "Modules: Banners"
 msgid "Custom Banners"
 msgstr "بنرهای سفارشی"
 
-#: inc/banners.php:275
+#: inc/banners.php:330
 msgctxt "Modules: Banners"
 msgid "Legend"
 msgstr "توضیحات"
 
-#: inc/banners.php:277
+#: inc/banners.php:332
 msgctxt "Modules: Banners"
 msgid "Your theme extra information"
 msgstr "اطلاعات بیشتر پوسته شما"
 
-#: inc/banners.php:282
+#: inc/banners.php:337
 msgctxt "Modules: Banners"
 msgid "Group"
 msgstr "گروه"
 
-#: inc/banners.php:283
+#: inc/banners.php:338
 msgctxt "Modules: Banners"
 msgid "Ord."
 msgstr "تـ"
 
-#: inc/banners.php:284
+#: inc/banners.php:339
 msgctxt "Modules: Banners"
 msgid "Title"
 msgstr "عنوان"
 
-#: inc/banners.php:285
+#: inc/banners.php:340
 msgctxt "Modules: Banners"
 msgid "URL"
 msgstr "نشانی"
 
-#: inc/banners.php:286
+#: inc/banners.php:341
 msgctxt "Modules: Banners"
 msgid "Image"
 msgstr "تصویر"
 
-#: inc/banners.php:375
+#: inc/banners.php:430
 msgctxt "Modules: Banners"
 msgid "Add Another"
 msgstr "افزودن گزینه دیگر"
 
-#: inc/banners.php:376
+#: inc/banners.php:431
 msgctxt "Modules: Banners"
 msgid "Save"
 msgstr "ذخیره"
@@ -504,91 +504,91 @@ msgctxt "Options: Separator: Term"
 msgid ", "
 msgstr "، "
 
-#: inc/content.php:838
+#: inc/content.php:839
 msgctxt "Qr-Code"
 msgid "Loading&hellip;"
 msgstr "بارگذاری&hellip;"
 
-#: inc/content.php:869
+#: inc/content.php:870
 msgctxt "Options: Text Size Increase"
 msgid "[ A+ ]"
 msgstr "[ الف+ ]"
 
-#: inc/content.php:872
+#: inc/content.php:873
 msgctxt "Options: Text Size Decrease"
 msgid "[ A- ]"
 msgstr "[ الف– ]"
 
-#: inc/content.php:875
+#: inc/content.php:876
 msgctxt "Options: Text Size Sep"
 msgid " / "
 msgstr " \\ "
 
 # @ gtheme
-#: inc/content.php:880
+#: inc/content.php:881
 msgid "Increase font size"
 msgstr "اندازه قلم درشت‌تر"
 
 # @ gtheme
-#: inc/content.php:887
+#: inc/content.php:888
 msgid "Decrease font size"
 msgstr "اندازه قلم کوچک‌تر"
 
-#: inc/content.php:901
+#: inc/content.php:902
 msgctxt "Options: Text Justify"
 msgid "[ Ju ]"
 msgstr "[ همـ ]"
 
-#: inc/content.php:904
+#: inc/content.php:905
 msgctxt "Options: Text Unjustify"
 msgid "[ uJ ]"
 msgstr "[ ناهمـ ]"
 
-#: inc/content.php:907
+#: inc/content.php:908
 msgctxt "Options: Text Justify Sep"
 msgid " / "
 msgstr " \\ "
 
 # @ gtheme
-#: inc/content.php:912
+#: inc/content.php:913
 msgid "Justify paragraphs"
 msgstr "هم‌چین کردن متن"
 
 # @ gtheme
-#: inc/content.php:919
+#: inc/content.php:920
 msgid "Un-justify paragraphs"
 msgstr "غیر هم‌چین کردن متن"
 
-#: inc/content.php:968
+#: inc/content.php:969
 msgctxt "Modules: Content: Addtoany"
 msgid "Share This"
 msgstr "همخوان کنید"
 
 #. translators: %s: post title
-#: inc/content.php:983
+#: inc/content.php:984
 msgctxt "Modules: Content: Addtoany"
 msgid "Check this out %s"
 msgstr "نگاهی بیاندازید به %s"
 
 #. translators: %s: post link
-#: inc/content.php:985
+#: inc/content.php:986
 msgctxt "Modules: Content: Addtoany"
 msgid ""
 "Click the link:\n"
 "%s"
 msgstr "روی پیوند کلیک کنید: %s"
 
-#: inc/content.php:1269
+#: inc/content.php:1270
 msgctxt "Modules: Content: Link Pages"
 msgid "Next page"
 msgstr "صفحه بعدی"
 
-#: inc/content.php:1270
+#: inc/content.php:1271
 msgctxt "Modules: Content: Link Pages"
 msgid "Previous page"
 msgstr "صفحه قبلی"
 
-#: inc/content.php:1282
+#: inc/content.php:1283
 msgctxt "Modules: Content: Link Pages"
 msgid "Pages:"
 msgstr "صفحه‌ها:"
@@ -613,12 +613,12 @@ msgctxt "Modules: Counts"
 msgid "Latest Posts Count"
 msgstr "تعداد آخرین نوشته‌ها"
 
-#: inc/counts.php:94
+#: inc/counts.php:56
 msgctxt "Modules: Menu Name"
 msgid "Counts"
 msgstr "شمارها"
 
-#: inc/counts.php:103
+#: inc/counts.php:65
 msgctxt "Modules: Counts"
 msgid "Item Counts"
 msgstr "شمار نوشته‌ها"
@@ -734,8 +734,8 @@ msgid "Tertiary Navigation"
 msgstr "راه‌بری ثالث"
 
 # @ gtheme
-#: inc/modulecore.php:218 inc/WordPress/Widget.php:494
-#: inc/WordPress/Widget.php:515
+#: inc/modulecore.php:218 inc/WordPress/Widget.php:492
+#: inc/WordPress/Widget.php:513
 msgid "&mdash; Select &mdash;"
 msgstr "&mdash; انتخاب کنید &mdash;"
 
@@ -1533,27 +1533,27 @@ msgctxt "Widget: Description"
 msgid "Displays arbitrary HTML code with support for shortcodes and embeds."
 msgstr "کد HTML دلخواه را، همراه با پشتیبانی از شورت‌کدها و جاسازها نمایش می‌دهد."
 
-#: inc/Widgets/CustomHTML.php:89
+#: inc/Widgets/CustomHTML.php:91
 msgctxt "Widget: Setting"
 msgid "Process Embeds"
 msgstr "پردازش جاسازها"
 
-#: inc/Widgets/CustomHTML.php:90
+#: inc/Widgets/CustomHTML.php:92
 msgctxt "Widget: Setting"
 msgid "Process Shortcodes"
 msgstr "پردازش شورت‌کدها"
 
-#: inc/Widgets/CustomHTML.php:91
+#: inc/Widgets/CustomHTML.php:93
 msgctxt "Widget: Setting"
 msgid "Process Filters"
 msgstr "پردازش فیلترها"
 
-#: inc/Widgets/CustomHTML.php:92
+#: inc/Widgets/CustomHTML.php:94
 msgctxt "Widget: Setting"
 msgid "Process Filters (Legacy)"
 msgstr "پردازش فیلترها (قدیمی)"
 
-#: inc/Widgets/CustomHTML.php:93
+#: inc/Widgets/CustomHTML.php:95
 msgctxt "Widget: Setting"
 msgid "Automatic Paragraphs"
 msgstr "پاراگراف‌های خودکار"
@@ -1618,7 +1618,7 @@ msgctxt "Widget: Description"
 msgid "Displays the results of current search criteria on selected taxonomies."
 msgstr "نتایج جست‌وجوی رده‌ها را بر اساس عبارت فعلی نمایش می‌دهد."
 
-#: inc/Widgets/SearchTerms.php:86
+#: inc/Widgets/SearchTerms.php:88
 msgctxt "Widget: Setting"
 msgid "Strip Hash-tags"
 msgstr "پاک‌کردن هش‌تگ‌ها"
@@ -1663,57 +1663,57 @@ msgctxt "Widget: Description"
 msgid "Displays the current term info based on the query."
 msgstr "اطلاعات مربوط به ردهٔ فعال را نمایش می‌دهد."
 
-#: inc/Widgets/TheTerm.php:138
+#: inc/Widgets/TheTerm.php:141
 msgctxt "Widget: Setting"
 msgid "&ldquo;All taxonomies option&rdquo; only works on archive pages."
 msgstr "«همهٔ رده‌بندی‌ها» فقط در صفحات بایگانی کار می‌کند."
 
-#: inc/Widgets/TheTerm.php:140
+#: inc/Widgets/TheTerm.php:143
 msgctxt "Widget: Setting"
 msgid "Display Meta Image"
 msgstr "تصویر متا نمایش داده شود"
 
-#: inc/Widgets/TheTerm.php:141
+#: inc/Widgets/TheTerm.php:144
 msgctxt "Widget: Setting"
 msgid "Hide if no Description"
 msgstr "بدون توضیحات، پنهان شود"
 
-#: inc/Widgets/TheTerm.php:142
+#: inc/Widgets/TheTerm.php:145
 msgctxt "Widget: Setting"
 msgid "Fire Before & After Actions"
 msgstr "کنش‌های پیش و پس اجرا شود"
 
-#: inc/WordPress/Widget.php:204
+#: inc/WordPress/Widget.php:214
 msgctxt "Widget: Setting"
 msgid "Custom HTML:"
 msgstr "متن سفارشی:"
 
-#: inc/WordPress/Widget.php:223
+#: inc/WordPress/Widget.php:233
 msgctxt "Widget: Setting"
 msgid "Number of posts to show:"
 msgstr "تعداد نوشته‌هایی که نمایش داده می‌شود:"
 
-#: inc/WordPress/Widget.php:251
+#: inc/WordPress/Widget.php:257
 msgctxt "Widget: Setting"
 msgid "Context:"
 msgstr "زمینه:"
 
-#: inc/WordPress/Widget.php:267
+#: inc/WordPress/Widget.php:271
 msgctxt "Widget: Setting"
 msgid "CSS Class:"
 msgstr "کلاس:"
 
-#: inc/WordPress/Widget.php:279
+#: inc/WordPress/Widget.php:283
 msgctxt "Widget: Setting"
 msgid "&ndash; (Any)"
 msgstr "&ndash; (هرکدام)"
 
-#: inc/WordPress/Widget.php:295
+#: inc/WordPress/Widget.php:297
 msgctxt "Widget: Setting"
 msgid "PostType:"
 msgstr "نوع‌نوشته:"
 
-#: inc/WordPress/Widget.php:307
+#: inc/WordPress/Widget.php:309
 msgctxt "Widget: Setting"
 msgid "&mdash; All Taxonomies &mdash;"
 msgstr "&mdash; همهٔ رده‌بندی‌ها &mdash;"
@@ -1723,32 +1723,37 @@ msgctxt "Widget: Setting"
 msgid "Taxonomy:"
 msgstr "رده‌بندی:"
 
-#: inc/WordPress/Widget.php:338
+#: inc/WordPress/Widget.php:336
 msgctxt "Widget: Setting"
 msgid "Title:"
 msgstr "عنوان:"
 
-#: inc/WordPress/Widget.php:354
+#: inc/WordPress/Widget.php:350
 msgctxt "Widget: Setting"
 msgid "Title Link:"
 msgstr "پیوند عنوان:"
 
-#: inc/WordPress/Widget.php:360
+#: inc/WordPress/Widget.php:364
+msgctxt "Widget: Setting"
+msgid "Title Image:"
+msgstr "تصویر عنوان:"
+
+#: inc/WordPress/Widget.php:370
 msgctxt "Widget: Setting"
 msgid "Custom Link:"
 msgstr "پیوند سفارشی:"
 
-#: inc/WordPress/Widget.php:379
+#: inc/WordPress/Widget.php:387
 msgctxt "Widget: Setting"
 msgid "Custom Code:"
 msgstr "کد سفارشی:"
 
-#: inc/WordPress/Widget.php:398
+#: inc/WordPress/Widget.php:404
 msgctxt "Widget: Setting"
 msgid "Empty Message:"
 msgstr "پیام خالی:"
 
-#: inc/WordPress/Widget.php:425
+#: inc/WordPress/Widget.php:427
 msgctxt "Widget: Setting"
 msgid "Avatar Size:"
 msgstr "اندازه آواتار:"
@@ -1768,12 +1773,12 @@ msgctxt "Widget: Setting"
 msgid "Checked"
 msgstr "منتخب:"
 
-#: inc/WordPress/Widget.php:486
+#: inc/WordPress/Widget.php:484
 msgctxt "Widget: Setting"
 msgid "Page:"
 msgstr "برگه:"
 
-#: inc/WordPress/Widget.php:531
+#: inc/WordPress/Widget.php:527
 msgctxt "Widget: Setting"
 msgid "Term:"
 msgstr "رده:"

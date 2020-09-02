@@ -1,13 +1,13 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: gTheme 3 3.20.4\n"
+"Project-Id-Version: gTheme 3 3.20.5\n"
 "Report-Msgid-Bugs-To: https://github.com/geminorum/gtheme_03/issues\n"
 "Last-Translator: NULL\n"
 "Language-Team: NULL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2020-08-28T02:23:41+00:00\n"
+"POT-Creation-Date: 2020-09-02T21:07:39+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.4.0\n"
 "X-Domain: gtheme\n"
@@ -96,67 +96,67 @@ msgctxt "Banner Groups"
 msgid "Sponsors"
 msgstr ""
 
-#: inc/banners.php:159
+#: inc/banners.php:161
 msgctxt "Carousel Control"
 msgid "Previous"
 msgstr ""
 
-#: inc/banners.php:162
+#: inc/banners.php:164
 msgctxt "Carousel Control"
 msgid "Next"
 msgstr ""
 
-#: inc/banners.php:187
+#: inc/banners.php:242
 msgctxt "Modules: Menu Name"
 msgid "Banners"
 msgstr ""
 
-#: inc/banners.php:271
+#: inc/banners.php:326
 msgctxt "Modules: Banners"
 msgid "Custom Banners"
 msgstr ""
 
-#: inc/banners.php:275
+#: inc/banners.php:330
 msgctxt "Modules: Banners"
 msgid "Legend"
 msgstr ""
 
-#: inc/banners.php:277
+#: inc/banners.php:332
 msgctxt "Modules: Banners"
 msgid "Your theme extra information"
 msgstr ""
 
-#: inc/banners.php:282
+#: inc/banners.php:337
 msgctxt "Modules: Banners"
 msgid "Group"
 msgstr ""
 
-#: inc/banners.php:283
+#: inc/banners.php:338
 msgctxt "Modules: Banners"
 msgid "Ord."
 msgstr ""
 
-#: inc/banners.php:284
+#: inc/banners.php:339
 msgctxt "Modules: Banners"
 msgid "Title"
 msgstr ""
 
-#: inc/banners.php:285
+#: inc/banners.php:340
 msgctxt "Modules: Banners"
 msgid "URL"
 msgstr ""
 
-#: inc/banners.php:286
+#: inc/banners.php:341
 msgctxt "Modules: Banners"
 msgid "Image"
 msgstr ""
 
-#: inc/banners.php:375
+#: inc/banners.php:430
 msgctxt "Modules: Banners"
 msgid "Add Another"
 msgstr ""
 
-#: inc/banners.php:376
+#: inc/banners.php:431
 msgctxt "Modules: Banners"
 msgid "Save"
 msgstr ""
@@ -490,87 +490,87 @@ msgctxt "Options: Separator: Term"
 msgid ", "
 msgstr ""
 
-#: inc/content.php:838
+#: inc/content.php:839
 msgctxt "Qr-Code"
 msgid "Loading&hellip;"
 msgstr ""
 
-#: inc/content.php:869
+#: inc/content.php:870
 msgctxt "Options: Text Size Increase"
 msgid "[ A+ ]"
 msgstr ""
 
-#: inc/content.php:872
+#: inc/content.php:873
 msgctxt "Options: Text Size Decrease"
 msgid "[ A- ]"
 msgstr ""
 
-#: inc/content.php:875
+#: inc/content.php:876
 msgctxt "Options: Text Size Sep"
 msgid " / "
 msgstr ""
 
-#: inc/content.php:880
+#: inc/content.php:881
 msgid "Increase font size"
 msgstr ""
 
-#: inc/content.php:887
+#: inc/content.php:888
 msgid "Decrease font size"
 msgstr ""
 
-#: inc/content.php:901
+#: inc/content.php:902
 msgctxt "Options: Text Justify"
 msgid "[ Ju ]"
 msgstr ""
 
-#: inc/content.php:904
+#: inc/content.php:905
 msgctxt "Options: Text Unjustify"
 msgid "[ uJ ]"
 msgstr ""
 
-#: inc/content.php:907
+#: inc/content.php:908
 msgctxt "Options: Text Justify Sep"
 msgid " / "
 msgstr ""
 
-#: inc/content.php:912
+#: inc/content.php:913
 msgid "Justify paragraphs"
 msgstr ""
 
-#: inc/content.php:919
+#: inc/content.php:920
 msgid "Un-justify paragraphs"
 msgstr ""
 
-#: inc/content.php:968
+#: inc/content.php:969
 msgctxt "Modules: Content: Addtoany"
 msgid "Share This"
 msgstr ""
 
 #. translators: %s: post title
-#: inc/content.php:983
+#: inc/content.php:984
 msgctxt "Modules: Content: Addtoany"
 msgid "Check this out %s"
 msgstr ""
 
 #. translators: %s: post link
-#: inc/content.php:985
+#: inc/content.php:986
 msgctxt "Modules: Content: Addtoany"
 msgid ""
 "Click the link:\n"
 "%s"
 msgstr ""
 
-#: inc/content.php:1269
+#: inc/content.php:1270
 msgctxt "Modules: Content: Link Pages"
 msgid "Next page"
 msgstr ""
 
-#: inc/content.php:1270
+#: inc/content.php:1271
 msgctxt "Modules: Content: Link Pages"
 msgid "Previous page"
 msgstr ""
 
-#: inc/content.php:1282
+#: inc/content.php:1283
 msgctxt "Modules: Content: Link Pages"
 msgid "Pages:"
 msgstr ""
@@ -595,12 +595,12 @@ msgctxt "Modules: Counts"
 msgid "Latest Posts Count"
 msgstr ""
 
-#: inc/counts.php:94
+#: inc/counts.php:56
 msgctxt "Modules: Menu Name"
 msgid "Counts"
 msgstr ""
 
-#: inc/counts.php:103
+#: inc/counts.php:65
 msgctxt "Modules: Counts"
 msgid "Item Counts"
 msgstr ""
@@ -710,8 +710,8 @@ msgid "Tertiary Navigation"
 msgstr ""
 
 #: inc/modulecore.php:218
-#: inc/WordPress/Widget.php:494
-#: inc/WordPress/Widget.php:515
+#: inc/WordPress/Widget.php:492
+#: inc/WordPress/Widget.php:513
 msgid "&mdash; Select &mdash;"
 msgstr ""
 
@@ -1495,27 +1495,27 @@ msgctxt "Widget: Description"
 msgid "Displays arbitrary HTML code with support for shortcodes and embeds."
 msgstr ""
 
-#: inc/Widgets/CustomHTML.php:89
+#: inc/Widgets/CustomHTML.php:91
 msgctxt "Widget: Setting"
 msgid "Process Embeds"
 msgstr ""
 
-#: inc/Widgets/CustomHTML.php:90
+#: inc/Widgets/CustomHTML.php:92
 msgctxt "Widget: Setting"
 msgid "Process Shortcodes"
 msgstr ""
 
-#: inc/Widgets/CustomHTML.php:91
+#: inc/Widgets/CustomHTML.php:93
 msgctxt "Widget: Setting"
 msgid "Process Filters"
 msgstr ""
 
-#: inc/Widgets/CustomHTML.php:92
+#: inc/Widgets/CustomHTML.php:94
 msgctxt "Widget: Setting"
 msgid "Process Filters (Legacy)"
 msgstr ""
 
-#: inc/Widgets/CustomHTML.php:93
+#: inc/Widgets/CustomHTML.php:95
 msgctxt "Widget: Setting"
 msgid "Automatic Paragraphs"
 msgstr ""
@@ -1580,7 +1580,7 @@ msgctxt "Widget: Description"
 msgid "Displays the results of current search criteria on selected taxonomies."
 msgstr ""
 
-#: inc/Widgets/SearchTerms.php:86
+#: inc/Widgets/SearchTerms.php:88
 msgctxt "Widget: Setting"
 msgid "Strip Hash-tags"
 msgstr ""
@@ -1625,57 +1625,57 @@ msgctxt "Widget: Description"
 msgid "Displays the current term info based on the query."
 msgstr ""
 
-#: inc/Widgets/TheTerm.php:138
+#: inc/Widgets/TheTerm.php:141
 msgctxt "Widget: Setting"
 msgid "&ldquo;All taxonomies option&rdquo; only works on archive pages."
 msgstr ""
 
-#: inc/Widgets/TheTerm.php:140
+#: inc/Widgets/TheTerm.php:143
 msgctxt "Widget: Setting"
 msgid "Display Meta Image"
 msgstr ""
 
-#: inc/Widgets/TheTerm.php:141
+#: inc/Widgets/TheTerm.php:144
 msgctxt "Widget: Setting"
 msgid "Hide if no Description"
 msgstr ""
 
-#: inc/Widgets/TheTerm.php:142
+#: inc/Widgets/TheTerm.php:145
 msgctxt "Widget: Setting"
 msgid "Fire Before & After Actions"
 msgstr ""
 
-#: inc/WordPress/Widget.php:204
+#: inc/WordPress/Widget.php:214
 msgctxt "Widget: Setting"
 msgid "Custom HTML:"
 msgstr ""
 
-#: inc/WordPress/Widget.php:223
+#: inc/WordPress/Widget.php:233
 msgctxt "Widget: Setting"
 msgid "Number of posts to show:"
 msgstr ""
 
-#: inc/WordPress/Widget.php:251
+#: inc/WordPress/Widget.php:257
 msgctxt "Widget: Setting"
 msgid "Context:"
 msgstr ""
 
-#: inc/WordPress/Widget.php:267
+#: inc/WordPress/Widget.php:271
 msgctxt "Widget: Setting"
 msgid "CSS Class:"
 msgstr ""
 
-#: inc/WordPress/Widget.php:279
+#: inc/WordPress/Widget.php:283
 msgctxt "Widget: Setting"
 msgid "&ndash; (Any)"
 msgstr ""
 
-#: inc/WordPress/Widget.php:295
+#: inc/WordPress/Widget.php:297
 msgctxt "Widget: Setting"
 msgid "PostType:"
 msgstr ""
 
-#: inc/WordPress/Widget.php:307
+#: inc/WordPress/Widget.php:309
 msgctxt "Widget: Setting"
 msgid "&mdash; All Taxonomies &mdash;"
 msgstr ""
@@ -1685,32 +1685,37 @@ msgctxt "Widget: Setting"
 msgid "Taxonomy:"
 msgstr ""
 
-#: inc/WordPress/Widget.php:338
+#: inc/WordPress/Widget.php:336
 msgctxt "Widget: Setting"
 msgid "Title:"
 msgstr ""
 
-#: inc/WordPress/Widget.php:354
+#: inc/WordPress/Widget.php:350
 msgctxt "Widget: Setting"
 msgid "Title Link:"
 msgstr ""
 
-#: inc/WordPress/Widget.php:360
+#: inc/WordPress/Widget.php:364
+msgctxt "Widget: Setting"
+msgid "Title Image:"
+msgstr ""
+
+#: inc/WordPress/Widget.php:370
 msgctxt "Widget: Setting"
 msgid "Custom Link:"
 msgstr ""
 
-#: inc/WordPress/Widget.php:379
+#: inc/WordPress/Widget.php:387
 msgctxt "Widget: Setting"
 msgid "Custom Code:"
 msgstr ""
 
-#: inc/WordPress/Widget.php:398
+#: inc/WordPress/Widget.php:404
 msgctxt "Widget: Setting"
 msgid "Empty Message:"
 msgstr ""
 
-#: inc/WordPress/Widget.php:425
+#: inc/WordPress/Widget.php:427
 msgctxt "Widget: Setting"
 msgid "Avatar Size:"
 msgstr ""
@@ -1730,12 +1735,12 @@ msgctxt "Widget: Setting"
 msgid "Checked"
 msgstr ""
 
-#: inc/WordPress/Widget.php:486
+#: inc/WordPress/Widget.php:484
 msgctxt "Widget: Setting"
 msgid "Page:"
 msgstr ""
 
-#: inc/WordPress/Widget.php:531
+#: inc/WordPress/Widget.php:527
 msgctxt "Widget: Setting"
 msgid "Term:"
 msgstr ""
