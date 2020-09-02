@@ -37,7 +37,7 @@ class gThemeCounts extends gThemeModuleCore
 	{
 		$option_counts = gThemeOptions::getOption( 'counts', [] );
 
-		if ( count( $option_counts ) && isset( $option_counts[$name] ) )
+		if ( array_key_exists( $name, $option_counts ) )
 			return $option_counts[$name];
 
 		if ( ! is_null( $default ) )
@@ -45,48 +45,10 @@ class gThemeCounts extends gThemeModuleCore
 
 		$info_counts = gThemeOptions::info( 'counts', self::defaults() );
 
-		if ( count( $info_counts ) && isset( $info_counts[$name] )  )
+		if ( array_key_exists( $name, $info_counts ) )
 			return $info_counts[$name]['def'];
 
 		return 0;
-	}
-
-	public static function link( $name, $atts = [] )
-	{
-		$args = self::atts( [
-			'title'   => NULL,
-			'attr'    => FALSE,
-			'def'     => '#',
-			'class'   => FALSE,
-			'before'  => '',
-			'after'   => '',
-			'echo'    => TRUE,
-			'context' => NULL,
-			'rel'     => FALSE,
-		], $atts );
-
-		if ( $page = self::get( $name, 0 ) ) {
-			$args['def'] = get_permalink( $page );
-
-			if ( ! $args['title'] )
-				$args['title'] = get_the_title( $page );
-		}
-
-		if ( $args['title'] ) {
-			$html = $args['before'].gThemeHTML::tag( 'a', [
-				'href'  => $args['def'],
-				'class' => $args['class'],
-				'title' => $args['attr'],
-			], $args['title'] ).$args['after'];
-
-			if ( ! $args['echo'] )
-				return $html;
-
-			echo $html;
-
-		} else if ( ! $args['echo'] ) {
-			return FALSE;
-		}
 	}
 
 	public function subs( $subs )
