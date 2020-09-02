@@ -1,3 +1,19 @@
+### 3.20.5
+* main/widget: :new: title image for widgets
+* main/widget: avoid notice on empty page select
+* main/widget: prep css classes
+* main/widget: using html class for labels
+* moduel/banners: wrapper div for bootstrap carousel
+* module/banners: css class for group items
+* module/banners: mandatory group name on carousel helpers
+* module/banners: reseting the returned group items
+* module/banners: slick carousel support for groups
+* module/editorial: optional check for posttype on book cover
+* module/editorial: wrapper for book isbn barcode
+* module/editorial: wrapper for book meta summay
+* module/filters: :warning: handling group fallbacks on screen/print styles
+* module/filters: disable adminbar on print
+
 ### 3.20.4
 * misc/bootstrap walker: applying core filter on mega-menu css classes
 * module/banners: extra before/after on group helpers
