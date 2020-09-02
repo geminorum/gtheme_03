@@ -494,8 +494,10 @@ class gThemeWidget extends WP_Widget
 			'echo'             => FALSE,
 		] );
 
-		if ( ! $html )
+		if ( ! $html ) {
 			$html = '<br /><code>N/A</code>';
+			gThemeHTML::inputHidden( $this->get_field_name( $field ), $page_id );
+		}
 
 		gThemeHTML::label( $label.$html, $this->get_field_id( $field ) );
 	}
