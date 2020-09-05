@@ -1,13 +1,13 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: gTheme 3 3.20.5\n"
+"Project-Id-Version: gTheme 3 3.20.6\n"
 "Report-Msgid-Bugs-To: https://github.com/geminorum/gtheme_03/issues\n"
 "Last-Translator: NULL\n"
 "Language-Team: NULL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2020-09-02T21:07:39+00:00\n"
+"POT-Creation-Date: 2020-09-05T21:17:17+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.4.0\n"
 "X-Domain: gtheme\n"
@@ -167,16 +167,16 @@ msgid "Toggle navigation"
 msgstr ""
 
 #: inc/bootstrap.php:99
-#: inc/search.php:55
+#: inc/search.php:108
 msgid "Search &hellip;"
 msgstr ""
 
 #: inc/bootstrap.php:102
-#: inc/search.php:37
-#: inc/search.php:40
-#: inc/search.php:59
-#: inc/search.php:76
-#: inc/search.php:83
+#: inc/search.php:90
+#: inc/search.php:93
+#: inc/search.php:112
+#: inc/search.php:129
+#: inc/search.php:136
 msgctxt "label"
 msgid "Search for:"
 msgstr ""
@@ -996,28 +996,28 @@ msgctxt "Options: Page Pre-Text"
 msgid "[ This page is being completed ]"
 msgstr ""
 
-#: inc/search.php:39
-#: inc/search.php:81
+#: inc/search.php:92
+#: inc/search.php:134
 msgctxt "placeholder"
 msgid "Search &hellip;"
 msgstr ""
 
-#: inc/search.php:87
+#: inc/search.php:140
 msgctxt "submit button"
 msgid "Search"
 msgstr ""
 
-#: inc/search.php:107
+#: inc/search.php:160
 msgctxt "buddypress: label"
 msgid "Search for:"
 msgstr ""
 
-#: inc/search.php:115
+#: inc/search.php:168
 msgctxt "buddypress: placeholder"
 msgid "Search &hellip;"
 msgstr ""
 
-#: inc/search.php:121
+#: inc/search.php:174
 msgctxt "buddypress: submit button"
 msgid "Search"
 msgstr ""
@@ -1495,27 +1495,27 @@ msgctxt "Widget: Description"
 msgid "Displays arbitrary HTML code with support for shortcodes and embeds."
 msgstr ""
 
-#: inc/Widgets/CustomHTML.php:91
+#: inc/Widgets/CustomHTML.php:86
 msgctxt "Widget: Setting"
 msgid "Process Embeds"
 msgstr ""
 
-#: inc/Widgets/CustomHTML.php:92
+#: inc/Widgets/CustomHTML.php:87
 msgctxt "Widget: Setting"
 msgid "Process Shortcodes"
 msgstr ""
 
-#: inc/Widgets/CustomHTML.php:93
+#: inc/Widgets/CustomHTML.php:88
 msgctxt "Widget: Setting"
 msgid "Process Filters"
 msgstr ""
 
-#: inc/Widgets/CustomHTML.php:94
+#: inc/Widgets/CustomHTML.php:89
 msgctxt "Widget: Setting"
 msgid "Process Filters (Legacy)"
 msgstr ""
 
-#: inc/Widgets/CustomHTML.php:95
+#: inc/Widgets/CustomHTML.php:90
 msgctxt "Widget: Setting"
 msgid "Automatic Paragraphs"
 msgstr ""
@@ -1580,7 +1580,7 @@ msgctxt "Widget: Description"
 msgid "Displays the results of current search criteria on selected taxonomies."
 msgstr ""
 
-#: inc/Widgets/SearchTerms.php:88
+#: inc/Widgets/SearchTerms.php:90
 msgctxt "Widget: Setting"
 msgid "Strip Hash-tags"
 msgstr ""
