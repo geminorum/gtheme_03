@@ -1,3 +1,8 @@
+### 3.20.6
+* module/search: :new: form with action selector
+* widget/recent posts: optional empty message
+* widget/term posts: optional empty message
+
 ### 3.20.5
 * main/widget: :new: title image for widgets
 * main/widget: avoid notice on empty page select
