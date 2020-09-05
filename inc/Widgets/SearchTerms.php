@@ -21,6 +21,8 @@ class gThemeWidgetSearchTerms extends gThemeWidget
 		if ( ! $criteria = trim( get_search_query() ) )
 			return;
 
+		// FIXME: optional skip if paged
+
 		if ( empty( $instance['taxonomy'] ) || 'all' == $instance['taxonomy'] )
 			$taxonomies = get_taxonomies( [ 'public' => TRUE, 'show_ui' => TRUE ] );
 		else

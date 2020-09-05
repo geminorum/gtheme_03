@@ -58,17 +58,12 @@ class gThemeWidgetCustomHTML extends gThemeWidget
 		$instance['title_link']  = strip_tags( $new['title_link'] );
 		$instance['title_image'] = strip_tags( $new['title_image'] );
 		$instance['class']       = strip_tags( $new['class'] );
-
-		if ( current_user_can( 'unfiltered_html' ) )
-			$instance['content'] = $new['content'];
-		else
-			$instance['content'] = wp_kses_post( $new['content'] );
-
-		$instance['embeds']     = isset( $new['embeds'] );
-		$instance['shortcodes'] = isset( $new['shortcodes'] );
-		$instance['filters']    = isset( $new['filters'] );
-		$instance['legacy']     = isset( $new['legacy'] );
-		$instance['autop']      = isset( $new['autop'] );
+		$instance['content']     = trim( current_user_can( 'unfiltered_html' ) ? $new['content'] : wp_kses_post( $new['content'] ) );
+		$instance['embeds']      = isset( $new['embeds'] );
+		$instance['shortcodes']  = isset( $new['shortcodes'] );
+		$instance['filters']     = isset( $new['filters'] );
+		$instance['legacy']      = isset( $new['legacy'] );
+		$instance['autop']       = isset( $new['autop'] );
 
 		$this->flush_widget_cache();
 

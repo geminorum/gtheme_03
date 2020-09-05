@@ -405,7 +405,7 @@ class gThemeWidget extends WP_Widget
 
 		$html = gThemeHTML::tag( 'input', [
 			'type'  => 'text',
-			'class' => [ 'widefat', 'code' ],
+			'class' => [ 'widefat' ],
 			'name'  => $this->get_field_name( $field ),
 			'id'    => $this->get_field_id( $field ),
 			'value' => isset( $instance[$field] ) ? $instance[$field] : $default,
