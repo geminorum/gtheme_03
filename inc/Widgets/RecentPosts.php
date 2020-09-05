@@ -65,6 +65,15 @@ class gThemeWidgetRecentPosts extends gThemeWidget
 			$this->after_widget( $args, $instance );
 
 			return ! $singular; // avoid caching if it's singular
+
+		} else if ( $instance['empty'] ) {
+
+			$this->before_widget( $args, $instance );
+				$this->widget_title( $args, $instance );
+				gThemeHTML::desc( $instance['empty'], TRUE, '-empty' );
+			$this->after_widget( $args, $instance );
+
+			return ! $singular; // avoid caching if it's singular
 		}
 
 		return FALSE;
@@ -82,6 +91,7 @@ class gThemeWidgetRecentPosts extends gThemeWidget
 		$instance['class']       = strip_tags( $new['class'] );
 
 		$instance['number'] = (int) $new['number'];
+		$instance['empty']  = trim( current_user_can( 'unfiltered_html' ) ? $new['empty'] : wp_kses_post( $new['empty'] ) );
 
 		$this->flush_widget_cache();
 
@@ -99,6 +109,8 @@ class gThemeWidgetRecentPosts extends gThemeWidget
 		$this->form_context( $instance, 'recent' );
 		$this->form_post_type( $instance );
 		$this->form_number( $instance, '5' );
+
+		$this->form_custom_empty( $instance );
 
 		$this->after_form( $instance );
 	}
