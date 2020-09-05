@@ -28,6 +28,59 @@ class gThemeSearch extends gThemeModuleCore
 		return apply_filters( 'get_search_query', get_query_var( $query_var ) );
 	}
 
+	// EXAMPLE: for `search_form_actions`: `[ 'news' => [ 'action' => 'https://news.example.com/', 'title' => _x( 'News', 'Search Form Action', 'gtheme' ) ] ]`
+	public static function getActionSelector( $class = '', $name = 'search-action' )
+	{
+		if ( ! $actions = gThemeOptions::info( 'search_form_actions', [] ) )
+			return '';
+
+		$html = '';
+
+		foreach ( $actions as $id => $args ) {
+			$html.= '<div class="custom-control custom-radio custom-control-inline">';
+				$html.= '<input type="radio" id="action-'.$id.'" name="'.$name.'" class="custom-control-input" data-action="'.$args['action'].'" />';
+				$html.= '<label class="custom-control-label" for="action-'.$id.'">'.$args['title'].'</label>';
+			$html.= '</div>';
+		}
+
+		return gThemeHTML::wrap( $html, [ '-actions', $class ] );
+	}
+
+	public static function enqueueActionSelector( $name = 'search-action' )
+	{
+		// wp_enqueue_script( 'gtheme-search-actions', GTHEME_CHILD_URL.'/js/search.actions.js', [ 'jquery' ], GTHEME_CHILD_VERSION, TRUE ); return; // <---- NOTE THIS
+
+		$script = 'jQuery(function(t){t("input[type=radio][name='.$name.']").change(function(){var a=t(this).data("action"),n=t(this).closest("form");n.attr("action",a)})});';
+
+		// @REF: https://core.trac.wordpress.org/ticket/44551
+		// @REF: https://wordpress.stackexchange.com/a/311279
+		wp_register_script( 'gtheme-search-actions', '', [ 'jquery' ], '', TRUE );
+		wp_enqueue_script( 'gtheme-search-actions' ); // must register then enqueue
+		wp_add_inline_script( 'gtheme-search-actions', $script );
+	}
+
+	public static function formActions( $context = 'index', $class = '', $layout = NULL )
+	{
+		if ( is_null( $layout ) )
+			$layout = gThemeOptions::info( 'search_form_actions_layout', 'default' );
+
+		if ( FALSE === $layout )
+			return;
+
+		switch ( $layout ) {
+
+			case 'simple':
+				self::formSimple( $context, self::getActionSelector( $class ) );
+
+			break;
+			default:
+			case 'default':
+				self::form( $context, self::getActionSelector( $class ) );
+		}
+
+		self::enqueueActionSelector();
+	}
+
 	public static function formSimple( $context = 'index', $extra = '' )
 	{
 		$query = '404' == $context ? '' : esc_attr( self::query() );
