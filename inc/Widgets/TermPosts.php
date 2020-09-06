@@ -20,10 +20,10 @@ class gThemeWidgetTermPosts extends gThemeWidget
 
 	public function widget_html( $args, $instance )
 	{
-		$context   = isset( $instance['context'] ) ? $instance['context'] : 'recent';
-		$term_id   = isset( $instance['term_id'] ) ? $instance['term_id'] : FALSE;
-		$taxonomy  = isset( $instance['taxonomy'] ) ? $instance['taxonomy'] : 'post_tag';
-		$post_type = isset( $instance['post_type'] ) ? $instance['post_type'] : 'post';
+		$context  = isset( $instance['context'] ) ? $instance['context'] : 'recent';
+		$term_id  = isset( $instance['term_id'] ) ? $instance['term_id'] : FALSE;
+		$taxonomy = isset( $instance['taxonomy'] ) ? $instance['taxonomy'] : 'post_tag';
+		$posttype = isset( $instance['post_type'] ) ? $instance['post_type'] : 'post';
 
 		if ( ! $term_id )
 			return FALSE;
@@ -31,7 +31,7 @@ class gThemeWidgetTermPosts extends gThemeWidget
 		if ( empty( $instance['number'] ) || ! $number = absint( $instance['number'] ) )
 			$number = 10;
 
-		$singular = is_singular( $post_type ) || is_single( $post_type );
+		$singular = is_singular( $posttype ) || is_single( $posttype );
 
 		$query_args = [
 			'tax_query' => [ [
@@ -41,7 +41,7 @@ class gThemeWidgetTermPosts extends gThemeWidget
 				'operator' => 'IN',
 			] ],
 			'posts_per_page' => $number,
-			'post_type'      => $post_type,
+			'post_type'      => $posttype,
 			'post_status'    => 'publish',
 
 			'ignore_sticky_posts'    => TRUE,

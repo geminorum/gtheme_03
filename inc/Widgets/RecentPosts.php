@@ -20,25 +20,27 @@ class gThemeWidgetRecentPosts extends gThemeWidget
 
 	public function widget_html( $args, $instance )
 	{
-		$post_type = empty( $instance['post_type'] ) ? 'post' : $instance['post_type'];
-		$context   = isset( $instance['context'] ) ? $instance['context'] : 'recent';
+		$posttype = empty( $instance['post_type'] ) ? 'post' : $instance['post_type'];
+		$context  = isset( $instance['context'] ) ? $instance['context'] : 'recent';
 
 		if ( empty( $instance['number'] ) || ! $number = absint( $instance['number'] ) )
 			$number = 10;
 
-		$singular = is_singular( $post_type ) || is_single( $post_type );
+		$singular = is_singular( $posttype ) || is_single( $posttype );
 
 		$query_args = [
 			'posts_per_page' => $number,
-			'post_type'      => $post_type,
+			'post_type'      => $posttype,
 			'post_status'    => 'publish',
-			'post__not_in'   => $singular ? [ get_queried_object_id() ] : '', // TODO: make optional
 
 			'ignore_sticky_posts'    => TRUE,
 			'no_found_rows'          => TRUE,
 			'update_post_term_cache' => FALSE,
 			'update_post_meta_cache' => FALSE,
 		];
+
+		if ( $singular ) // TODO: make optional
+			$query_args['post__not_in'] = [ get_queried_object_id() ];
 
 		if ( ! empty( $instance['menu_order'] ) )
 			$query_args['orderby'] = 'menu_order date';
