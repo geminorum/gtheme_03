@@ -31,6 +31,8 @@ class gThemeWidgetTermPosts extends gThemeWidget
 		if ( empty( $instance['number'] ) || ! $number = absint( $instance['number'] ) )
 			$number = 10;
 
+		$singular = is_singular( $post_type ) || is_single( $post_type );
+
 		$query_args = [
 			'tax_query' => [ [
 				'taxonomy' => $taxonomy,
@@ -48,7 +50,7 @@ class gThemeWidgetTermPosts extends gThemeWidget
 			'update_post_meta_cache' => FALSE,
 		];
 
-		if ( is_singular() || is_single() )
+		if ( $singular )
 			$query_args['post__not_in'] = [ get_queried_object_id() ];
 
 		if ( ! empty( $instance['menu_order'] ) )
@@ -78,7 +80,7 @@ class gThemeWidgetTermPosts extends gThemeWidget
 			echo '</ul></div>';
 			$this->after_widget( $args, $instance );
 
-			return TRUE;
+			return ! $singular; // avoid caching if it's singular
 
 		} else if ( $instance['empty'] ) {
 
@@ -87,7 +89,7 @@ class gThemeWidgetTermPosts extends gThemeWidget
 				gThemeHTML::desc( $instance['empty'], TRUE, '-empty' );
 			$this->after_widget( $args, $instance );
 
-			return TRUE;
+			return ! $singular; // avoid caching if it's singular
 		}
 
 		return FALSE;
