@@ -40,6 +40,9 @@ class gThemeWidgetRecentPosts extends gThemeWidget
 			'update_post_meta_cache' => FALSE,
 		];
 
+		if ( ! empty( $instance['menu_order'] ) )
+			$query_args['orderby'] = 'menu_order date';
+
 		$row_query = new \WP_Query( $query_args );
 
 		if ( $row_query->have_posts() ) {
@@ -90,6 +93,8 @@ class gThemeWidgetRecentPosts extends gThemeWidget
 		$instance['context']     = strip_tags( $new['context'] );
 		$instance['class']       = strip_tags( $new['class'] );
 
+		$instance['menu_order'] = isset( $new['menu_order'] );
+
 		$instance['number'] = (int) $new['number'];
 		$instance['empty']  = trim( current_user_can( 'unfiltered_html' ) ? $new['empty'] : wp_kses_post( $new['empty'] ) );
 
@@ -108,6 +113,7 @@ class gThemeWidgetRecentPosts extends gThemeWidget
 		$this->form_class( $instance );
 		$this->form_context( $instance, 'recent' );
 		$this->form_post_type( $instance );
+		$this->form_checkbox( $instance, FALSE, 'menu_order', _x( 'Use Internal Order', 'Widget: Setting', 'gtheme' ) );
 		$this->form_number( $instance, '5' );
 
 		$this->form_custom_empty( $instance );
