@@ -1,3 +1,10 @@
+### 3.20.7
+* module/editor: :warning: handling group fallbacks on editor styles
+* module/sidebar: get count helper
+* widget/recent posts: optional order by menu order
+* widget/term posts: avoid cache on singluar posttype
+* widget/term posts: optional order by menu order
+
 ### 3.20.6
 * module/search: :new: form with action selector
 * widget/recent posts: optional empty message
