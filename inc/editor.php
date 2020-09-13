@@ -35,25 +35,30 @@ class gThemeEditor extends gThemeModuleCore
 			add_filter( 'default_content', [ $this, 'default_content' ], 10, 2 );
 	}
 
-	public static function style_url( $asset = 'editor', $group = NULL )
+	public static function getStyleURL( $asset = 'editor', $group = NULL )
 	{
 		if ( is_null( $group ) )
 			$group = gThemeOptions::getGroup();
 
-		$file = $group.'.'.$asset
-			.( gThemeUtilities::isRTL() ? '-rtl' : '' )
-			// .( SCRIPT_DEBUG ? '' : '.min' )
-			.'.css';
+		$rtl    = gThemeUtilities::isRTL() ? '-rtl' : '';
+		$target = $group.'.'.$asset.$rtl.'.css';
+		$main   = 'main.'.$asset.$rtl.'.css';
 
-		if ( file_exists( GTHEME_CHILD_DIR.'/css/'.$file ) )
-			return GTHEME_CHILD_URL.'/css/'.$file;
+		if ( file_exists( GTHEME_CHILD_DIR.'/css/'.$target ) )
+			$url = GTHEME_CHILD_URL.'/css/'.$target;
+
+		else if ( file_exists( GTHEME_CHILD_DIR.'/css/'.$main ) )
+			$url = GTHEME_CHILD_URL.'/css/'.$main;
+
 		else
-			return GTHEME_URL.'/css/'.$file;
+			$url = GTHEME_URL.'/css/'.$main;
+
+		return $url;
 	}
 
 	public function enqueue_block_editor_assets()
 	{
-		wp_enqueue_style( GTHEME.'-blocks-style', self::style_url( 'blocks' ), FALSE, GTHEME_CHILD_VERSION, 'all' );
+		wp_enqueue_style( GTHEME.'-blocks-style', self::getStyleURL( 'blocks' ), FALSE, GTHEME_CHILD_VERSION, 'all' );
 
 		$inline = gThemeColors::getAccentColorCSS();
 
@@ -82,7 +87,7 @@ class gThemeEditor extends gThemeModuleCore
 		if ( ! empty( $url ) )
 			$url.= ',';
 
-		return $url.self::style_url();
+		return $url.self::getStyleURL();
 	}
 
 	public function mce_buttons( $buttons )
