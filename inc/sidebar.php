@@ -287,4 +287,15 @@ class gThemeSideBar extends gThemeModuleCore
 
 		return FALSE;
 	}
+
+	// @REF: https://stackoverflow.com/a/4480386
+	public static function getCount( $sidebar, $fallback = 0 )
+	{
+		$sidebars =  wp_get_sidebars_widgets();
+
+		if ( ! array_key_exists( $sidebar, $sidebars ) )
+			return $fallback;
+
+		return count( $sidebars[$sidebar] );
+	}
 }
