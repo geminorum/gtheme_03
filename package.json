@@ -64,7 +64,7 @@
     "publish-release": "^1.6.1",
     "rtlcss": "^2.6.0",
     "semistandard": "^14.2.3",
-    "stylelint": "^13.7.0",
+    "stylelint": "^13.7.1",
     "stylelint-config-wordpress": "^17.0.0",
     "xtend": "^4.0.2"
   },
