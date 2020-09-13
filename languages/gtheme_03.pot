@@ -1,13 +1,13 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: gTheme 3 3.20.6\n"
+"Project-Id-Version: gTheme 3 3.20.7\n"
 "Report-Msgid-Bugs-To: https://github.com/geminorum/gtheme_03/issues\n"
 "Last-Translator: NULL\n"
 "Language-Team: NULL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2020-09-05T21:17:17+00:00\n"
+"POT-Creation-Date: 2020-09-13T12:15:41+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.4.0\n"
 "X-Domain: gtheme\n"
@@ -610,52 +610,52 @@ msgctxt "Options: Defaults: Date Format: Byline"
 msgid "j M Y"
 msgstr ""
 
-#: inc/editor.php:137
+#: inc/editor.php:142
 msgctxt "Editor Custom Class"
 msgid "Blockquote"
 msgstr ""
 
-#: inc/editor.php:142
+#: inc/editor.php:147
 msgctxt "Editor Custom Class"
 msgid "Unordered List"
 msgstr ""
 
-#: inc/editor.php:147
+#: inc/editor.php:152
 msgctxt "Editor Custom Class"
 msgid "Ordered List"
 msgstr ""
 
-#: inc/editor.php:152
+#: inc/editor.php:157
 msgctxt "Editor Custom Class"
 msgid "Note"
 msgstr ""
 
-#: inc/editor.php:157
+#: inc/editor.php:162
 msgctxt "Editor Custom Class"
 msgid "Source"
 msgstr ""
 
-#: inc/editor.php:162
+#: inc/editor.php:167
 msgctxt "Editor Custom Class"
 msgid "Greeting"
 msgstr ""
 
-#: inc/editor.php:167
+#: inc/editor.php:172
 msgctxt "Editor Custom Class"
 msgid "Signature"
 msgstr ""
 
-#: inc/editor.php:172
+#: inc/editor.php:177
 msgctxt "Editor Custom Class"
 msgid "Poem"
 msgstr ""
 
-#: inc/editor.php:177
+#: inc/editor.php:182
 msgctxt "Editor Custom Class"
 msgid "Question"
 msgstr ""
 
-#: inc/editor.php:186
+#: inc/editor.php:191
 msgctxt "Editor Default Content"
 msgid "[content not available yet]"
 msgstr ""
@@ -1548,6 +1548,12 @@ msgstr ""
 #: inc/Widgets/RecentPosts.php:12
 msgctxt "Widget: Description"
 msgid "Displays the most recent posts."
+msgstr ""
+
+#: inc/Widgets/RecentPosts.php:118
+#: inc/Widgets/TermPosts.php:133
+msgctxt "Widget: Setting"
+msgid "Use Internal Order"
 msgstr ""
 
 #: inc/Widgets/RelatedPosts.php:11

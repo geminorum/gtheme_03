@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gTheme 3\n"
 "Report-Msgid-Bugs-To: https://github.com/geminorum/gtheme_03/issues\n"
-"POT-Creation-Date: 2020-09-05T21:17:17+00:00\n"
-"PO-Revision-Date: 2020-09-06 01:47+0430\n"
+"POT-Creation-Date: 2020-09-13T12:15:41+00:00\n"
+"PO-Revision-Date: 2020-09-13 16:46+0430\n"
 "Last-Translator: geminorum <contact@geminorum.ir>\n"
 "Language-Team: geminorum <contact@geminorum.ir>\n"
 "Language: fa_IR\n"
@@ -629,54 +629,54 @@ msgid "j M Y"
 msgstr ""
 
 # @ gtheme
-#: inc/editor.php:137
+#: inc/editor.php:142
 msgctxt "Editor Custom Class"
 msgid "Blockquote"
 msgstr "نقل‌قول"
 
-#: inc/editor.php:142
+#: inc/editor.php:147
 msgctxt "Editor Custom Class"
 msgid "Unordered List"
 msgstr "فهرست بدون ترتیب"
 
-#: inc/editor.php:147
+#: inc/editor.php:152
 msgctxt "Editor Custom Class"
 msgid "Ordered List"
 msgstr "فهرست مرتب‌شده"
 
-#: inc/editor.php:152
+#: inc/editor.php:157
 msgctxt "Editor Custom Class"
 msgid "Note"
 msgstr "توضیح"
 
 # @ gtheme
-#: inc/editor.php:157
+#: inc/editor.php:162
 msgctxt "Editor Custom Class"
 msgid "Source"
 msgstr "منبع"
 
-#: inc/editor.php:162
+#: inc/editor.php:167
 msgctxt "Editor Custom Class"
 msgid "Greeting"
 msgstr "درود"
 
-#: inc/editor.php:167
+#: inc/editor.php:172
 msgctxt "Editor Custom Class"
 msgid "Signature"
 msgstr "امضاء"
 
-#: inc/editor.php:172
+#: inc/editor.php:177
 msgctxt "Editor Custom Class"
 msgid "Poem"
 msgstr "شعر"
 
-#: inc/editor.php:177
+#: inc/editor.php:182
 msgctxt "Editor Custom Class"
 msgid "Question"
 msgstr "سؤال"
 
 # @ gtheme
-#: inc/editor.php:186
+#: inc/editor.php:191
 msgctxt "Editor Default Content"
 msgid "[content not available yet]"
 msgstr "[این صفحه در حال تکمیل است.]"
@@ -1587,6 +1587,11 @@ msgstr "پوسته: آخرین نوشته‌ها"
 msgctxt "Widget: Description"
 msgid "Displays the most recent posts."
 msgstr "آخرین نوشته‌ها را نمایش می‌دهد."
+
+#: inc/Widgets/RecentPosts.php:118 inc/Widgets/TermPosts.php:133
+msgctxt "Widget: Setting"
+msgid "Use Internal Order"
+msgstr "استفاده از چینش داخلی"
 
 #: inc/Widgets/RelatedPosts.php:11
 msgctxt "Widget: Title"
