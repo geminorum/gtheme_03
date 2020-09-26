@@ -152,6 +152,14 @@ class gThemeContent extends gThemeModuleCore
 			}
 		}
 
+		if ( $html = apply_filters( 'gtheme_content_byline_empty', '', $post ) ) {
+
+			if ( $echo )
+				echo $before.$html.$after;
+
+			return $before.$html.$after;
+		}
+
 		if ( is_null( $fallback ) )
 			$fallback = gThemeOptions::info( 'byline_fallback', TRUE );
 
