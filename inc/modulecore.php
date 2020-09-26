@@ -181,12 +181,14 @@ class gThemeModuleCore extends gThemeBaseCore
 	}
 
 	// HELPER
+	// FIXME: DEPRECATED: USE: `gThemeHTML::error()`
 	public static function error( $message )
 	{
 		return gThemeUtilities::notice( $message, 'error fade', FALSE );
 	}
 
 	// HELPER
+	// FIXME: DEPRECATED: USE: `gThemeHTML::success()`
 	public static function updated( $message )
 	{
 		return gThemeUtilities::notice( $message, 'updated fade', FALSE );

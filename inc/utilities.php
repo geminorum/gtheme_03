@@ -219,8 +219,11 @@ class gThemeUtilities extends gThemeBaseCore
 		);
 	}
 
+	// FIXME: DEPRECATED: USE: `gThemeHTML::notice()`
 	public static function notice( $notice, $class = 'success updated fade', $echo = TRUE )
 	{
+		self::_dep( 'gThemeHTML::notice()' );
+
 		if ( is_admin() )
 			$template = '<div id="message" class="%1$s"><p>%2$s</p></div>';
 		else
