@@ -67,18 +67,21 @@ class gThemeSearch extends gThemeModuleCore
 		if ( FALSE === $layout )
 			return;
 
+		$actions = self::getActionSelector( $class );
+
 		switch ( $layout ) {
 
 			case 'simple':
-				self::formSimple( $context, self::getActionSelector( $class ) );
+				self::formSimple( $context, $actions );
 
 			break;
 			default:
 			case 'default':
-				self::form( $context, self::getActionSelector( $class ) );
+				self::form( $context, $actions );
 		}
 
-		self::enqueueActionSelector();
+		if ( $actions )
+			self::enqueueActionSelector();
 	}
 
 	public static function formSimple( $context = 'index', $extra = '' )
