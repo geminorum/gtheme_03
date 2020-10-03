@@ -66,6 +66,9 @@ class gThemeBootstrap extends gThemeModuleCore
 		else if ( 'logo' == $brand )
 			$brand = gThemeTemplate::logo( 'navbar', '<img src="'.GTHEME_CHILD_URL.'/images/logo.png" alt="%2$s" />', FALSE );
 
+		else if ( 'logo-title' == $brand )
+			$brand = gThemeTemplate::logo( 'navbar', '<img src="'.GTHEME_CHILD_URL.'/images/logo.png" alt="%2$s" /> <span title="%3$s">%2$s</span>', FALSE );
+
 		if ( FALSE !== $brand )
 			vprintf( '<a class="navbar-brand" href="%1$s" title="%2$s">%3$s</a>', [
 				esc_url( gThemeUtilities::home() ),
