@@ -514,6 +514,9 @@ class gThemeEditorial extends gThemeModuleCore
 		if ( ! self::availableEditorial( 'book' ) )
 			return $atts['default'];
 
+		if ( ! array_key_exists( 'fields', $atts ) )
+			$atts['fields'] = apply_filters( 'gtheme_editorial_book_summary_fields', NULL, $atts );
+
 		if ( ! is_callable( [ 'geminorum\\gEditorial\\Templates\\Book', 'summary' ] ) )
 			return $atts['default'];
 
