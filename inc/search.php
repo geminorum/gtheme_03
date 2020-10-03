@@ -28,6 +28,17 @@ class gThemeSearch extends gThemeModuleCore
 		return apply_filters( 'get_search_query', get_query_var( $query_var ) );
 	}
 
+	public static function getLink( $query = FALSE, $url = FALSE, $query_id = 's' )
+	{
+		if ( $url )
+			return $query ? add_query_arg( $query_id, urlencode( $query ), $url ) : $url;
+
+		if ( defined( 'GNETWORK_SEARCH_REDIRECT' ) && GNETWORK_SEARCH_REDIRECT )
+			return $query ? add_query_arg( GNETWORK_SEARCH_QUERYID, urlencode( $query ), GNETWORK_SEARCH_URL ) : GNETWORK_SEARCH_URL;
+
+		return get_search_link( $query );
+	}
+
 	// EXAMPLE: for `search_form_actions`: `[ 'news' => [ 'action' => 'https://news.example.com/', 'title' => _x( 'News', 'Search Form Action', 'gtheme' ) ] ]`
 	public static function getActionSelector( $class = '', $name = 'search-action' )
 	{
