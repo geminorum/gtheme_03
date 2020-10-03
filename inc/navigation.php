@@ -64,10 +64,12 @@ class gThemeNavigation extends gThemeModuleCore
 
 		$html.= '</ul>';
 
-		echo gThemeHTML::tag( 'nav', [
+		$html = gThemeHTML::tag( 'nav', [
 			'role'  => 'navigation',
 			'class' => $classes,
 		], $html );
+
+		echo apply_filters( 'gtheme_navigation_content', $html, $context );
 	}
 
 	public static function paginate( $atts = [], $query = NULL )
