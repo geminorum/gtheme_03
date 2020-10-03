@@ -608,14 +608,15 @@ class gThemeTerms extends gThemeModuleCore
 			return $fallback;
 
 		$map = gThemeOptions::info( 'post_main_taxonomy_map', [
-			'post'       => 'category',
-			'page'       => FALSE,
-			'entry'      => 'entry_section',
-			'course'     => 'course_category',
-			'place'      => 'place_category',
-			'video'      => 'video_category',
-			'channel'    => 'channel_category',
-			'collection' => 'collection_group',
+			'page'        => FALSE,
+			'post'        => 'category',
+			'entry'       => 'entry_section',
+			'course'      => 'course_category',
+			'place'       => 'place_category',
+			'video'       => 'video_category',
+			'channel'     => 'channel_category',
+			'collection'  => 'collection_group',
+			'publication' => 'publication_subject',
 		] );
 
 		return array_key_exists( $posttype, $map ) ? $map[$posttype] : $fallback;
