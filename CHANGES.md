@@ -1,3 +1,15 @@
+### 3.20.8
+* module/bootstrap: logo + title on navbar brand
+* module/content: filter for empty byline
+* module/editorial: filter book summary fields
+* module/navigation: filter navigation content
+* module/search: avoid js if no actions available
+* module/search: helper for search link
+* module/terms: subject as main taxonomy for publication posttype
+* partial/entry: default template for course posttype
+* partial/entry: default template for lesson posttype
+* partial/entry: meta summary for publication posttype
+
 ### 3.20.7
 * module/editor: :warning: handling group fallbacks on editor styles
 * module/sidebar: get count helper
