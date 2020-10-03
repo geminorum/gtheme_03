@@ -9,7 +9,7 @@ class gThemeWidgetPostTerms extends gThemeWidget
 			'name'  => 'post_terms',
 			'class' => 'post-terms',
 			'title' => _x( 'Theme: Post Terms', 'Widget: Title', 'gtheme' ),
-			'desc'  => _x( 'Displays the current post\'s assigned terms on selected taxonomy.', 'Widget: Description', 'gtheme' ),
+			'desc'  => _x( 'Displays the assigned terms of the current post.', 'Widget: Description', 'gtheme' ),
 		];
 	}
 
