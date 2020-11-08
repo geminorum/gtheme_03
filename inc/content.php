@@ -1084,12 +1084,12 @@ addthis_config.services_custom = [
 				'description' => FALSE,
 			] );
 
-			gThemeEditorial::meta( 'over-title', [ 'after' => $sep ] );
+			gThemeEditorial::metaOverTitle( NULL, [ 'after' => $sep ] );
 
 			if ( $title )
 				echo $title;
 
-			gThemeEditorial::meta( 'sub-title', [ 'before' => $sep ] );
+			gThemeEditorial::metaSubTitle( NULL, [ 'before' => $sep ] );
 
 			if ( $byline )
 				echo strip_tags( self::byline( NULL, ' — ', '', FALSE ) );
@@ -1154,7 +1154,7 @@ addthis_config.services_custom = [
 		do_action( 'gtheme_content_header_before', $post, $args );
 
 		if ( $args['meta'] )
-			gThemeEditorial::meta( 'over-title', [
+			gThemeEditorial::metaOverTitle( $post, [
 				'post_id' => $post->ID,
 				'before'  => '<'.$args['meta_tag'].' class="-overtitle overtitle '.$args['prefix'].'-overtitle"'.( $args['itemprop'] ? ' itemprop="alternativeHeadline"' : '' ).'>',
 				'after'   => '</'.$args['meta_tag'].'>',
@@ -1185,8 +1185,8 @@ addthis_config.services_custom = [
 
 			} else if ( 'meta' == $args['title_attr'] ) {
 
-				$overtitle = gThemeEditorial::getMeta( 'over-title', [ 'post_id' => $post->ID ] );
-				$subtitle  = gThemeEditorial::getMeta( 'sub-title', [ 'post_id' => $post->ID ] );
+				$overtitle = gThemeEditorial::metaOverTitle( $post, [ 'post_id' => $post->ID, 'echo' => FALSE ] );
+				$subtitle  = gThemeEditorial::metaSubTitle( $post, [ 'post_id' => $post->ID, 'echo' => FALSE ] );
 
 				$args['title_attr'] = $overtitle;
 
@@ -1214,7 +1214,7 @@ addthis_config.services_custom = [
 		echo '</'.$args['title_tag'].'>';
 
 		if ( $args['meta'] )
-			gThemeEditorial::meta( 'sub-title', [
+			gThemeEditorial::metaSubTitle( $post, [
 				'post_id' => $post->ID,
 				'before'  => '<'.$args['meta_tag'].' class="-subtitle subtitle '.$args['prefix'].'-subtitle"'.( $args['itemprop'] ? ' itemprop="alternativeHeadline"' : '' ).'>',
 				'after'   => '</'.$args['meta_tag'].'>',

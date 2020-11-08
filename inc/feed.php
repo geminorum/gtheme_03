@@ -67,9 +67,9 @@ class gThemeFeed extends gThemeModuleCore
 
 		ob_start();
 			gThemeEditorial::label( [ 'before' => '<div class="label">', 'after' => '</div>' ] );
-			gThemeEditorial::meta( 'over-title', [ 'before' => '<h4>', 'after' => '</h4>' ] );
+			gThemeEditorial::metaOverTitle( NULL, [ 'before' => '<h4>', 'after' => '</h4>' ] );
 			if ( $title = get_the_title_rss() ) echo '<h2>'.$title.'</h2>';
-			gThemeEditorial::meta( 'sub-title', [ 'before' => '<h4>', 'after' => '</h4>' ] );
+			gThemeEditorial::metaSubTitle( NULL, [ 'before' => '<h4>', 'after' => '</h4>' ] );
 			gThemeContent::byline( NULL, '<h4>', '</h4>' );
 		$header.= ob_get_clean();
 

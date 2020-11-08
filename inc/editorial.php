@@ -5,22 +5,7 @@ class gThemeEditorial extends gThemeModuleCore
 
 	public function setup_actions( $args = [] )
 	{
-		extract( self::atts( [
-			'word_wrap' => FALSE,
-		], $args ) );
-
-		if ( $word_wrap )
-			add_filter( 'gmeta_meta', [ $this, 'gmeta_meta' ], 12, 2 ); // FIXME: DEPRECATED on editorial meta
-
 		add_filter( 'geditorial_shortcode_attachement_download', [ $this, 'attachement_download' ], 9, 2 );
-	}
-
-	public function gmeta_meta( $meta, $field )
-	{
-		if ( $meta && in_array( $field, [ 'ot', 'st', 'over-title', 'sub-title' ] ) )
-			return gThemeText::wordWrap( $meta, 2 );
-
-		return $meta;
 	}
 
 	public function attachement_download( $filename, $post )
@@ -362,13 +347,10 @@ class gThemeEditorial extends gThemeModuleCore
 			'before'   => '',
 			'after'    => '',
 			'echo'     => TRUE,
-			'wordwrap' => NULL,
+			'wordwrap' => FALSE,
 		], $atts );
 
 		if ( $args['wordwrap'] )
-			$html = gThemeText::wordWrap( $html, 2 );
-
-		else if ( is_null( $args['wordwrap'] ) && in_array( $field, [ 'ot', 'st', 'over-title', 'sub-title' ] ) )
 			$html = gThemeText::wordWrap( $html, 2 );
 
 		$html = $args['before'].$html.$args['after'];
@@ -378,6 +360,74 @@ class gThemeEditorial extends gThemeModuleCore
 
 		echo $html;
 		return TRUE;
+	}
+
+	public static function metaOverTitle( $post = NULL, $atts = [], $fallback = 'over_title' )
+	{
+		if ( ! array_key_exists( 'default', $atts ) )
+			$atts['default'] = FALSE;
+
+		if ( ! $post = gThemeContent::getPost( $post ) )
+			return $atts['default'];
+
+		$defaults = [
+			'post'        => 'over_title',
+			'page'        => 'over_title',
+			'issue'       => 'over_title',
+			'entry'       => 'over_title',
+			'course'      => FALSE,
+			'lesson'      => 'over_title',
+			'place'       => 'parent_complex',
+			'video'       => 'over_title',
+			'channel'     => FALSE,
+			'collection'  => 'over_title',
+			'publication' => 'collection',
+		];
+
+		$map   = array_merge( $defaults, (array) gThemeOptions::info( 'editorial_overtitle_map', [] ) );
+		$field = array_key_exists( $post->post_type, $map ) ? $map[$post->post_type] : $fallback;
+
+		if ( ! $field )
+			return $atts['default'];
+
+		if ( ! array_key_exists( 'wordwrap', $atts ) )
+			$atts['wordwrap'] = TRUE;
+
+		return self::meta( $field, $atts );
+	}
+
+	public static function metaSubTitle( $post = NULL, $atts = [], $fallback = 'sub_title' )
+	{
+		if ( ! array_key_exists( 'default', $atts ) )
+			$atts['default'] = FALSE;
+
+		if ( ! $post = gThemeContent::getPost( $post ) )
+			return $atts['default'];
+
+		$defaults = [
+			'post'        => 'sub_title',
+			'page'        => 'sub_title',
+			'issue'       => 'sub_title',
+			'entry'       => 'sub_title',
+			'course'      => 'sub_title',
+			'lesson'      => 'sub_title',
+			'place'       => 'full_title',
+			'video'       => 'sub_title',
+			'channel'     => FALSE,
+			'collection'  => 'sub_title',
+			'publication' => 'sub_title',
+		];
+
+		$map   = array_merge( $defaults, (array) gThemeOptions::info( 'editorial_subtitle_map', [] ) );
+		$field = array_key_exists( $post->post_type, $map ) ? $map[$post->post_type] : $fallback;
+
+		if ( ! $field )
+			return $atts['default'];
+
+		if ( ! array_key_exists( 'wordwrap', $atts ) )
+			$atts['wordwrap'] = TRUE;
+
+		return self::meta( $field, $atts );
 	}
 
 	public static function issueRowCallback( $post, $args, $term )
