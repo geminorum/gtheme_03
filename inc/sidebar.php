@@ -133,7 +133,6 @@ class gThemeSideBar extends gThemeModuleCore
 		];
 	}
 
-	// TODO: add display helper
 	// creates widgetized sidebars for each category
 	// @REF: https://bavotasan.com/2012/create-widgetized-sidebars-for-each-category-in-wordpress/
 	public function widgets_init_primaries()
@@ -153,19 +152,37 @@ class gThemeSideBar extends gThemeModuleCore
 			/* translators: %s: primary term title */
 			$desc = sprintf( _x( 'This is the %s widgetized area', 'Modules: Sidebar', 'gtheme' ), $term->name );
 
-			register_sidebar( self::parseArgs( $term->slug.'-sidebar', $name, $desc ) );
+			register_sidebar( self::parseArgs( $term->slug.'-primaries', $name, $desc ) );
 		}
 	}
 
-	public static function category( $name = null )
+	public static function renderPrimary( $slug = NULL )
 	{
-		if ( ! is_category() )
-			return;
+		$primaries = gThemeOptions::getOption( 'terms', [] );
 
-		if ( is_null( $name ) )
-			$name = get_cat_name( get_query_var( 'cat' ) );
+		if ( empty( $primaries ) )
+			return FALSE;
 
-		dynamic_sidebar( sanitize_title( $name ).'-sidebar' );
+		$taxonomy = gThemeOptions::info( 'primary_terms_taxonomy', 'category' );
+
+		if ( 'category' == $taxonomy && is_category() )
+			$term = get_queried_object();
+
+		else if ( 'post_tag' == $taxonomy && is_tag() )
+			$term = get_queried_object();
+
+		else if ( is_tax( $taxonomy ) )
+			$term = get_queried_object();
+
+		else
+			return FALSE;
+
+		if ( ! in_array( $term->term_id, $primaries ) )
+			return FALSE;
+
+		dynamic_sidebar( $term->slug.'-primaries' );
+
+		return TRUE;
 	}
 
 	// https://gist.github.com/boonebgorges/3909373
