@@ -99,13 +99,13 @@ class gThemeBootstrap extends gThemeModuleCore
 	public static function navbarForm( $placeholder = NULL, $class = '' )
 	{
 		if ( is_null( $placeholder ) )
-			$placeholder = __( 'Search &hellip;', 'gtheme' );
+			$placeholder = gThemeSearch::getPlaceholder();
 
 		echo '<form class="navbar-form '.$class.'" role="search" method="get" action="'.gThemeSearch::getAction().'"><div class="form-group">';
 			echo '<label for="search" class="screen-reader-text sr-only">'._x( 'Search for:', 'label', 'gtheme' ).'</label>';
 			echo '<input id="search" type="text" class="form-control" name="'.gThemeSearch::getKey().'" value="'.esc_attr( gThemeSearch::query() ).'"';
 			if ( $placeholder )
-				echo ' placeholder="'.$placeholder.'" ';
+				echo ' placeholder="'.esc_attr( $placeholder ).'" ';
 		echo '/></div></form>';
 	}
 

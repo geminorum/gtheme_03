@@ -19,6 +19,11 @@ class gThemeSearch extends gThemeModuleCore
 		return 's';
 	}
 
+	public static function getPlaceholder()
+	{
+		return gThemeOptions::info( 'search_placeholder', _x( 'Search &hellip;', 'placeholder', 'gtheme' ) );
+	}
+
 	// ANCESTOR: get_search_query()
 	public static function query( $query_var = null )
 	{
@@ -103,7 +108,7 @@ class gThemeSearch extends gThemeModuleCore
 
 			$html.= '<span class="screen-reader-text sr-only"><label>'._x( 'Search for:', 'label', 'gtheme' ).'</label></span>';
 
-			$html.= '<input type="search" class="form-control search-field" placeholder="'.esc_attr_x( 'Search &hellip;', 'placeholder', 'gtheme' );
+			$html.= '<input type="search" class="form-control search-field" placeholder="'.esc_attr( self::getPlaceholder() );
 			$html.= '" value="'.$query.'" name="'.self::getKey().'" title="'.esc_attr_x( 'Search for:', 'label', 'gtheme' ).'" />';
 
 			$html.= $extra;
@@ -119,14 +124,14 @@ class gThemeSearch extends gThemeModuleCore
 	public static function formExpanding( $placeholder = NULL, $class = '' )
 	{
 		if ( is_null( $placeholder ) )
-			$placeholder = __( 'Search &hellip;', 'gtheme' );
+			$placeholder = self::getPlaceholder();
 
 		echo '<form class="form search-form -expanding '.$class.'" role="search" method="get" action="'.esc_url( self::getAction() ).'">';
 		echo '<div class="form-group">';
 			echo '<label for="search" class="screen-reader-text sr-only">'._x( 'Search for:', 'label', 'gtheme' ).'</label>';
 			echo '<input id="search" type="text" class="form-control" name="'.self::getKey().'" value="'.esc_attr( self::query() ).'"';
 			if ( $placeholder )
-				echo ' placeholder="'.$placeholder.'" ';
+				echo ' placeholder="'.esc_attr( $placeholder ).'" ';
 		echo '/>';
 		echo '<span class="glyphicon glyphicon-search form-control-feedback"></span>';
 		echo '</div></form>';
@@ -145,7 +150,7 @@ class gThemeSearch extends gThemeModuleCore
 			$html.= '<div class="input-group">';
 
 				$html.= '<input type="search" class="form-control search-field" placeholder="';
-				$html.= esc_attr_x( 'Search &hellip;', 'placeholder', 'gtheme' );
+				$html.= esc_attr( self::getPlaceholder() );
 				$html.= '" value="'.$query.'" name="'.self::getKey().'" title="';
 				$html.= esc_attr_x( 'Search for:', 'label', 'gtheme' ).'" />';
 
@@ -179,7 +184,7 @@ class gThemeSearch extends gThemeModuleCore
 			// $html.= esc_attr( self::query( 'search-terms' ) );
 			$html.= esc_attr( get_search_query() );
 
-			$html.= '" placeholder="'.esc_attr_x( 'Search &hellip;', 'buddypress: placeholder', 'gtheme' ).'" />';
+			$html.= '" placeholder="'.esc_attr( self::getPlaceholder() ).'" />';
 
 			$html.= bp_search_form_type_select();
 
