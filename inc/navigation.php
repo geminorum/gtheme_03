@@ -24,26 +24,30 @@ class gThemeNavigation extends gThemeModuleCore
 		} else if ( is_singular() || is_single() ) {
 
 			$classes[] = 'post-navigation';
-			$title = _x( 'Post Navigation', 'Modules: Navigation: Screen Reader Title', 'gtheme' );
 
-			$prev_text = _x( '<span aria-hidden="true">&larr;</span>&nbsp;%title', 'Modules: Navigation: Post Navigation: Previous', 'gtheme' );
-			$next_text = _x( '%title&nbsp;<span aria-hidden="true">&rarr;</span>', 'Modules: Navigation: Post Navigation: Next', 'gtheme' );
+			$strings = apply_filters( 'gtheme_navigation_content_singular_strings', [
+				'title' => _x( 'Post Navigation', 'Modules: Navigation: Screen Reader Title', 'gtheme' ),
+				'prev'  => _x( '<span aria-hidden="true">&larr;</span>&nbsp;%title', 'Modules: Navigation: Post Navigation: Previous', 'gtheme' ),
+				'next'  => _x( '%title&nbsp;<span aria-hidden="true">&rarr;</span>', 'Modules: Navigation: Post Navigation: Next', 'gtheme' ),
+			], $context, get_post_type(), $taxonomy );
 
-			// TODO: support row templaets
-			$prev = get_adjacent_post_link( '%link', $prev_text, $in_same_term, '', TRUE,  $taxonomy );
-			$next = get_adjacent_post_link( '%link', $next_text, $in_same_term, '', FALSE, $taxonomy );
+			// TODO: support row templates
+			$prev = get_adjacent_post_link( '%link', $strings['prev'], $in_same_term, '', TRUE,  $taxonomy );
+			$next = get_adjacent_post_link( '%link', $strings['next'], $in_same_term, '', FALSE, $taxonomy );
 
 		} else if ( $max_num_pages > 1 && ( is_home() || is_front_page() || is_archive() || is_search() ) ) {
 
 			$classes[] = 'paging-navigation';
-			$title = _x( 'Posts Navigation', 'Modules: Navigation: Screen Reader Title', 'gtheme' );
 
-			$prev_text = _x( '<span aria-hidden="true">&larr;</span>&nbsp;Older', 'Modules: Navigation: Posts Navigation: Previous', 'gtheme' );
-			$next_text = _x( 'Newer&nbsp;<span aria-hidden="true">&rarr;</span>', 'Modules: Navigation: Posts Navigation: Next', 'gtheme' );
+			$strings = apply_filters( 'gtheme_navigation_content_archive_strings', [
+				'title' => _x( 'Posts Navigation', 'Modules: Navigation: Screen Reader Title', 'gtheme' ),
+				'prev'  => _x( '<span aria-hidden="true">&larr;</span>&nbsp;Older', 'Modules: Navigation: Posts Navigation: Previous', 'gtheme' ),
+				'next'  => _x( 'Newer&nbsp;<span aria-hidden="true">&rarr;</span>', 'Modules: Navigation: Posts Navigation: Next', 'gtheme' ),
+			], $context );
 
 			// intentionally reversed!
-			$prev = get_next_posts_link( $prev_text );
-			$next = get_previous_posts_link( $next_text );
+			$prev = get_next_posts_link( $strings['prev'] );
+			$next = get_previous_posts_link( $strings['next'] );
 
 		} else {
 
@@ -53,7 +57,7 @@ class gThemeNavigation extends gThemeModuleCore
 		if ( ! $prev && ! $next )
 			return;
 
-		$html = sprintf( '<h2 class="screen-reader-text sr-only">%s</h2>', $title );
+		$html = sprintf( '<h2 class="screen-reader-text sr-only">%s</h2>', $strings['title'] );
 		$html.= '<ul class="pager nav-links">';
 
 		if ( $prev )
