@@ -19,9 +19,19 @@ class gThemeSearch extends gThemeModuleCore
 		return 's';
 	}
 
-	public static function getPlaceholder()
+	public static function getPlaceholderText()
 	{
-		return gThemeOptions::info( 'search_placeholder', _x( 'Search &hellip;', 'placeholder', 'gtheme' ) );
+		return gThemeOptions::info( 'search_placeholder_text', _x( 'Search &hellip;', 'Modules: Search: Placeholder', 'gtheme' ) );
+	}
+
+	public static function getSubmitText()
+	{
+		return gThemeOptions::info( 'search_submit_text', _x( 'Search', 'Modules: Search: Submit Text', 'gtheme' ) );
+	}
+
+	public static function getLabelText()
+	{
+		return gThemeOptions::info( 'search_label_text', _x( 'Search for:', 'Modules: Search: Label', 'gtheme' ) );
 	}
 
 	// ANCESTOR: get_search_query()
@@ -102,14 +112,15 @@ class gThemeSearch extends gThemeModuleCore
 
 	public static function formSimple( $context = 'index', $extra = '' )
 	{
+		$label = self::getLabelText();
 		$query = '404' == $context ? '' : esc_attr( self::query() );
 
 		$html = '<form role="search" method="get" class="form search-form -simple search-form-'.$context.' -print-hide" action="'.esc_url( self::getAction() ).'">';
 
-			$html.= '<span class="screen-reader-text sr-only"><label>'._x( 'Search for:', 'label', 'gtheme' ).'</label></span>';
+			$html.= '<span class="screen-reader-text sr-only"><label>'.$label.'</label></span>';
 
-			$html.= '<input type="search" class="form-control search-field" placeholder="'.esc_attr( self::getPlaceholder() );
-			$html.= '" value="'.$query.'" name="'.self::getKey().'" title="'.esc_attr_x( 'Search for:', 'label', 'gtheme' ).'" />';
+			$html.= '<input type="search" class="form-control search-field" placeholder="'.esc_attr( self::getPlaceholderText() );
+			$html.= '" value="'.$query.'" name="'.self::getKey().'" title="'.esc_attr( $label ).'" />';
 
 			$html.= $extra;
 
@@ -124,11 +135,11 @@ class gThemeSearch extends gThemeModuleCore
 	public static function formExpanding( $placeholder = NULL, $class = '' )
 	{
 		if ( is_null( $placeholder ) )
-			$placeholder = self::getPlaceholder();
+			$placeholder = self::getPlaceholderText();
 
 		echo '<form class="form search-form -expanding '.$class.'" role="search" method="get" action="'.esc_url( self::getAction() ).'">';
 		echo '<div class="form-group">';
-			echo '<label for="search" class="screen-reader-text sr-only">'._x( 'Search for:', 'label', 'gtheme' ).'</label>';
+			echo '<label for="search" class="screen-reader-text sr-only">'.self::getLabelText().'</label>';
 			echo '<input id="search" type="text" class="form-control" name="'.self::getKey().'" value="'.esc_attr( self::query() ).'"';
 			if ( $placeholder )
 				echo ' placeholder="'.esc_attr( $placeholder ).'" ';
@@ -139,24 +150,21 @@ class gThemeSearch extends gThemeModuleCore
 
 	public static function form( $context = 'index', $extra = '' )
 	{
+		$label = self::getLabelText();
 		$query = '404' == $context ? '' : esc_attr( self::query() );
 
 		$html = '<form role="search" method="get" class="form search-form search-form-';
 		$html.= $context.' -print-hide" action="'.esc_url( self::getAction() ).'">';
 
-			$html.= '<span class="screen-reader-text sr-only"><label>';
-			$html.= _x( 'Search for:', 'label', 'gtheme' ).'</label></span>';
+			$html.= '<span class="screen-reader-text sr-only"><label>'.$label.'</label></span>';
 
 			$html.= '<div class="input-group">';
 
-				$html.= '<input type="search" class="form-control search-field" placeholder="';
-				$html.= esc_attr( self::getPlaceholder() );
-				$html.= '" value="'.$query.'" name="'.self::getKey().'" title="';
-				$html.= esc_attr_x( 'Search for:', 'label', 'gtheme' ).'" />';
+				$html.= '<input type="search" class="form-control search-field" placeholder="'.esc_attr( self::getPlaceholderText() );
+				$html.= '" value="'.$query.'" name="'.self::getKey().'" title="'.esc_attr( $label ).'" />';
 
 				$html.= '<span class="input-group-btn input-group-append">';
-					$html.= '<button type="submit" class="btn btn-default btn-outline-secondary search-submit" />';
-					$html.= _x( 'Search', 'submit button', 'gtheme' ).'</button>';
+					$html.= '<button type="submit" class="btn btn-default btn-outline-secondary search-submit">'.self::getSubmitText().'</button>';
 				$html.= '</span>';
 
 			$html.= '</div>';
@@ -175,23 +183,20 @@ class gThemeSearch extends gThemeModuleCore
 
 			$html.= '<div class="input-group">';
 
-			$html.= '<label for="search-terms" class="accessibly-hidden screen-reader-text sr-only">';
-				$html.= _x( 'Search for:', 'buddypress: label', 'gtheme' );
-			$html.= '</label>';
+			$html.= '<label for="search-terms" class="accessibly-hidden screen-reader-text sr-only">'.self::getLabelText().'</label>';
 
 			$html.= '<input type="text" id="search-terms" class="form-control" name="search-terms" value="';
 
 			// $html.= esc_attr( self::query( 'search-terms' ) );
 			$html.= esc_attr( get_search_query() );
 
-			$html.= '" placeholder="'.esc_attr( self::getPlaceholder() ).'" />';
+			$html.= '" placeholder="'.esc_attr( self::getPlaceholderText() ).'" />';
 
 			$html.= bp_search_form_type_select();
 
 			$html.= '<span class="input-group-btn input-group-append">';
-				$html.= '<button type="submit" class="btn btn-default" name="search-submit" id="search-submit">';
-				$html.= _x( 'Search', 'buddypress: submit button', 'gtheme' );
-			$html.= '</button></span></div>';
+				$html.= '<button type="submit" class="btn btn-default" name="search-submit" id="search-submit">'.self::getSubmitText().'</button>';
+			$html.= '</span></div>';
 
 			$html.= wp_nonce_field( 'bp_search_form', '_wpnonce', TRUE, FALSE );
 		$html.= '</form>';
