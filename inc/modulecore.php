@@ -34,16 +34,22 @@ class gThemeModuleCore extends gThemeBaseCore
 		}
 	}
 
-	protected function action( $hook, $args = 1, $priority = 10, $suffix = FALSE )
+	protected function action( $hooks, $args = 1, $priority = 10, $suffix = FALSE )
 	{
-		if ( $method = self::sanitize_hook( ( $suffix ? $hook.'_'.$suffix : $hook ) ) )
-			add_action( $hook, [ $this, $method ], $priority, $args );
+		$hooks = (array) $hooks;
+
+		if ( $method = self::sanitize_hook( ( $suffix ? $hooks[0].'_'.$suffix : $hooks[0] ) ) )
+			foreach ( $hooks as $hook )
+				add_action( $hook, [ $this, $method ], $priority, $args );
 	}
 
-	protected function filter( $hook, $args = 1, $priority = 10, $suffix = FALSE )
+	protected function filter( $hooks, $args = 1, $priority = 10, $suffix = FALSE )
 	{
-		if ( $method = self::sanitize_hook( ( $suffix ? $hook.'_'.$suffix : $hook ) ) )
-			add_filter( $hook, [ $this, $method ], $priority, $args );
+		$hooks = (array) $hooks;
+
+		if ( $method = self::sanitize_hook( ( $suffix ? $hooks[0].'_'.$suffix : $hooks[0] ) ) )
+			foreach ( $hooks as $hook )
+				add_filter( $hook, [ $this, $method ], $priority, $args );
 	}
 
 	protected function remove_filter( $list )

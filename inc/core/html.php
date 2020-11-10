@@ -138,7 +138,7 @@ class gThemeHTML extends gThemeBaseCore
 
 	public static function joined( $items, $before = '', $after = '', $sep = '|' )
 	{
-		return count( $items ) ? ( $before.join( $sep, $items ).$after ) : '';
+		return count( $items ) ? ( $before.implode( $sep, $items ).$after ) : '';
 	}
 
 	public static function tag( $tag, $atts = array(), $content = FALSE, $sep = '' )
@@ -458,7 +458,7 @@ class gThemeHTML extends gThemeBaseCore
 	public static function dropdown( $list, $atts = array() )
 	{
 		$args = self::atts( array(
-			'id'         => '',
+			'id'         => FALSE,
 			'name'       => '',
 			'none_title' => NULL,
 			'none_value' => 0,
@@ -469,6 +469,7 @@ class gThemeHTML extends gThemeBaseCore
 			'prop'       => FALSE,
 			'value'      => FALSE,
 			'exclude'    => array(),
+			'data'       => array(),
 		), $atts );
 
 		$html = '';
@@ -511,6 +512,7 @@ class gThemeHTML extends gThemeBaseCore
 			'class'    => $args['class'],
 			'disabled' => $args['disabled'],
 			'dir'      => $args['dir'],
+			'data'     => $args['data'],
 		), $html );
 	}
 }

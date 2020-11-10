@@ -173,6 +173,7 @@ class gThemeTerms extends gThemeModuleCore
 			'rewrite'               => FALSE,
 			'query_var'             => FALSE,
 			'show_in_rest'          => TRUE, // for block editor
+			'rest_base'             => str_replace( '_', '-', GTHEME_SYSTEMTAGS ),
 			'capabilities'          => [
 				'manage_terms' => $manage,
 				'edit_terms'   => $manage,
@@ -607,7 +608,7 @@ class gThemeTerms extends gThemeModuleCore
 		if ( ! $posttype )
 			return $fallback;
 
-		$map = gThemeOptions::info( 'post_main_taxonomy_map', [
+		$defaults = [
 			'page'        => FALSE,
 			'post'        => 'category',
 			'entry'       => 'entry_section',
@@ -617,7 +618,9 @@ class gThemeTerms extends gThemeModuleCore
 			'channel'     => 'channel_category',
 			'collection'  => 'collection_group',
 			'publication' => 'publication_subject',
-		] );
+		];
+
+		$map = array_merge( $defaults, (array) gThemeOptions::info( 'post_main_taxonomy_map', [] ) );
 
 		return array_key_exists( $posttype, $map ) ? $map[$posttype] : $fallback;
 	}

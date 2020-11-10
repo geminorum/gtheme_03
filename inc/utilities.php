@@ -249,9 +249,9 @@ class gThemeUtilities extends gThemeBaseCore
 	{
 		return
 			_x( '&rdquo;', 'Utilities: Join Items Helper', 'gtheme' )
-			.join( _x( '&ldquo; and &rdquo;', 'Utilities: Join Items Helper', 'gtheme' ),
+			.implode( _x( '&ldquo; and &rdquo;', 'Utilities: Join Items Helper', 'gtheme' ),
 				array_filter( array_merge( [
-					join( _x( '&ldquo;, &rdquo;', 'Utilities: Join Items Helper', 'gtheme' ),
+					implode( _x( '&ldquo;, &rdquo;', 'Utilities: Join Items Helper', 'gtheme' ),
 					array_slice( $items, 0, -1 ) ) ],
 					array_slice( $items, -1 ) ) ) )
 			._x( '&ldquo;', 'Utilities: Join Items Helper', 'gtheme' ).'.';

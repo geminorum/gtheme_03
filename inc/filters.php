@@ -442,6 +442,9 @@ class gThemeFilters extends gThemeModuleCore
 
 	public function the_content_extra( $content )
 	{
+		// preg_replace('#<p>\s*+(<br\s*/*>)?\s*</p>#i', '', $content);
+		// preg_replace( '/<p>\s*+(<br\s*\/*>)?\s*<\/p>/i', '', $content);
+
 		// http://stackoverflow.com/a/3226746
 		// http://plugins.svn.wordpress.org/remove-double-space/tags/0.3/remove-double-space.php
 		if ( seems_utf8( $content ) )

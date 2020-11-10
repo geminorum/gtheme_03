@@ -121,13 +121,15 @@ class gThemeSideBar extends gThemeModuleCore
 		$title = gThemeOptions::info( 'sidebar_args_html_title', 'h3' );
 
 		return [
-			'id'            => $sidebar,
-			'name'          => $name ?: $sidebar,
-			'before_widget' => '<'.$tag.' id="%1$s" class="widget gtheme-widget widget-'.$sidebar.' '.$extra.' %2$s"><div class="-wrap">',
-			'after_widget'  => '</div></'.$tag.'>',
-			'before_title'  => '<'.$title.' class="-title widget-title widget-'.$sidebar.'-title">',
-			'after_title'   => '</'.$title.'>',
-			'description'   => $description,
+			'id'             => $sidebar,
+			'name'           => $name ?: $sidebar,
+			'before_widget'  => '<'.$tag.' id="%1$s" class="widget gtheme-widget widget-'.$sidebar.' '.$extra.' %2$s"><div class="-wrap">',
+			'after_widget'   => '</div></'.$tag.'>',
+			'before_title'   => '<'.$title.' class="-title widget-title widget-'.$sidebar.'-title">',
+			'after_title'    => '</'.$title.'>',
+			'description'    => $description,
+			'before_sidebar' => '', // `<div id="%1$s" class="%2$s">`
+			'after_sidebar'  => '',
 		];
 	}
 
