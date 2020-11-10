@@ -5,6 +5,8 @@ class gThemeTemplate extends gThemeModuleCore
 
 	public static function wrapOpen( $context = 'index', $extra = [], $posttype = NULL )
 	{
+		$base = gtheme_template_base();
+
 		$columns = array_merge( [
 			'404'           => 'col-sm-6',
 			'index'         => 'col-sm-8',
@@ -26,6 +28,9 @@ class gThemeTemplate extends gThemeModuleCore
 
 		if ( $posttype && array_key_exists( $context.'-'.$posttype, $columns ) )
 			$column = $columns[$context.'-'.$posttype];
+
+		else if ( $base && array_key_exists( $base, $columns ) )
+			$column = $columns[$base];
 
 		else if ( array_key_exists( $context, $columns ) )
 			$column = $columns[$context];
