@@ -43,15 +43,18 @@ class gThemeWidgetSearchTerms extends gThemeWidget
 		if ( empty( $query->terms ) )
 			return;
 
+		$title = count( $taxonomies ) > 1;
+
 		$this->before_widget( $args, $instance );
 		$this->widget_title( $args, $instance );
 		echo '<div class="-list-wrap search-terms"><ul>';
 
 		foreach ( $query->terms as $term ) {
-			echo '<li>'.gThemeHTML::link(
-				sanitize_term_field( 'name', $term->name, $term->term_id, $term->taxonomy, 'display' ),
-				get_term_link( $term->term_id, $term->taxonomy )
-			).'</li>';
+			echo '<li>'.gThemeHTML::tag( 'a', [
+				'href'  => get_term_link( $term->term_id, $term->taxonomy ),
+				'title' => $title ? get_taxonomy( $term->taxonomy )->labels->singular_name : FALSE,
+				'class' => [ '-term', '-taxonomy-'.$term->taxonomy ],
+			], sanitize_term_field( 'name', $term->name, $term->term_id, $term->taxonomy, 'display' ) ).'</li>';
 		}
 
 		echo '</ul></div>';
