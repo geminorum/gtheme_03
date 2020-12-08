@@ -1,3 +1,15 @@
+### 3.20.9
+* module/editorial: better handling over/sub titles
+* module/navigation: archive crumb revised
+* module/navigation: filter for strings on content method
+* module/options: group check in array
+* module/search: customize label/submit texts on search forms
+* module/search: customize placeholder on search forms
+* module/sidebar: widgetized sidebars for primaries
+* module/template: check for base before context on column classes
+* partal/entry: publication: navigation by subject
+* widget/search terms: singular name as title on multiple taxonomy setup
+
 ### 3.20.8
 * module/bootstrap: logo + title on navbar brand
 * module/content: filter for empty byline
