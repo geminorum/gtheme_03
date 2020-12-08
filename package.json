@@ -38,7 +38,7 @@
   "dependencies": {},
   "devDependencies": {
     "@wordpress/browserslist-config": "^2.7.0",
-    "autoprefixer": "^10.0.1",
+    "autoprefixer": "^10.0.4",
     "browserlist": "^1.0.1",
     "cssnano": "^4.1.10",
     "del": "^6.0.0",
@@ -51,26 +51,27 @@
     "gulp-exclude-gitignore": "^1.2.0",
     "gulp-if": "^3.0.0",
     "gulp-livereload": "^4.0.2",
-    "gulp-load-plugins": "^2.0.4",
+    "gulp-load-plugins": "^2.0.6",
     "gulp-postcss": "^9.0.0",
     "gulp-rename": "^2.0.0",
     "gulp-sass": "^4.1.0",
     "gulp-size": "^3.0.0",
-    "gulp-sourcemaps": "^2.6.5",
+    "gulp-sourcemaps": "^3.0.0",
     "gulp-wp-pot": "^2.5.0",
-    "js-yaml": "^3.14.0",
+    "js-yaml": "^3.14.1",
+    "node-sass": "^5.0.0",
     "parse-changelog": "^1.0.2",
-    "postcss": "^8.1.1",
+    "postcss": "^8.1.14",
     "prettyjson": "^1.2.1",
     "publish-release": "^1.6.1",
-    "rtlcss": "^2.6.0",
-    "semistandard": "^14.2.3",
-    "stylelint": "^13.7.2",
+    "rtlcss": "^2.6.2",
+    "semistandard": "^16.0.0",
+    "stylelint": "^13.8.0",
     "stylelint-config-wordpress": "^17.0.0",
     "xtend": "^4.0.2"
   },
   "optionalDependencies": {
-    "bootstrap": "^4.5.2",
+    "bootstrap": "^4.5.3",
     "genericons-neue": "^4.0.5",
     "jcarousel": "^0.3.9",
     "jquery": "^3.5.1",
@@ -79,7 +80,7 @@
     "popper.js": "^1.16.1",
     "screenfull": "^5.0.2",
     "slick-carousel": "^1.8.1",
-    "vazir-font": "^26.0.2"
+    "vazir-font": "^27.0.3"
   },
   "browserslist": [
     "extends @wordpress/browserslist-config"
