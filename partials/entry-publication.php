@@ -24,4 +24,4 @@ gThemeEditorial::publication( [
 	'title'  => FALSE,
 ] );
 
-gThemeNavigation::content( 'singular' );
+gThemeNavigation::content( 'singular', TRUE, 'publication_subject' );
