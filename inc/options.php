@@ -420,7 +420,7 @@ class gThemeOptions extends gThemeModuleCore
 
 	public static function isGroup( $group )
 	{
-		return $group == self::getGroup();
+		return in_array( self::getGroup(), (array) $group );
 	}
 
 	// FIXME: DEPRECATED: use gThemeCounts::get()
