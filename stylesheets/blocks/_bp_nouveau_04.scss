@@ -1,0 +1,92 @@
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+/// Blocks: BuddyPress Nouveau 04 - with-Style 2020-10-18
+
+////////////////////////////////////////////////////////////////////////////////
+$border-color: $gray-lighter !default;
+
+////////////////////////////////////////////////////////////////////////////////
+#buddypress {}
+
+////////////////////////////////////////////////////////////////////////////////
+.buddypress-wrap {
+  .bp-feedback {
+    box-shadow: none;
+    border: 1px solid #d6d6d6;
+
+    p {
+      margin: ($spacer * .5) 0;
+    }
+
+    &.custom-homepage-info {
+      padding: ($spacer * .5);
+    }
+  }
+
+  .select-wrap {
+    select {
+      padding: 2px 25px 2px 10px;
+      text-indent: 0;
+    }
+
+    span.select-arrow {
+      margin-right: 5px;
+    }
+  }
+
+  .single-headers {
+    #item-header-avatar {
+      a img {
+        max-width: 150px;
+        // max-width: 150px;
+      }
+    }
+  }
+
+
+  // form {
+  //   &.bp-dir-search-form,
+  //   &.bp-messages-search-form,
+  //   &[data-bp-search].bp-invites-search-form,
+  //   &#group-members-search {
+  //     // position: relative;
+  //
+  //     input[type="search"] {
+  //       width: 84% !important;
+  //     }
+  //
+  //     button[type="submit"] {
+  //       padding: 5px;
+  //       width: 16%;
+  //       // float: none;
+  //       // position: absolute;
+  //       // top: 2px;
+  //       // right: 0;
+  //     }
+  //   }
+  // }
+}
+
+// dir-search members-search bp-search
+
+// .buddypress-wrap form.bp-dir-search-form button[type="submit"],
+// .buddypress-wrap form.bp-messages-search-form button[type="submit"],
+// .buddypress-wrap form[data-bp-search].bp-invites-search-form button[type="submit"],
+// .buddypress-wrap form#group-members-search button[type="submit"]
+
+////////////////////////////////////////////////////////////////////////////////
+// idiotic global styles!!
+body #buddypress {
+  div,
+  dl,
+  li,
+  textarea,
+  select,
+  input[type="search"],
+  input[type="submit"],
+  input[type="reset"] {
+    border-radius: 0;
+    background-clip: initial;
+  }
+}

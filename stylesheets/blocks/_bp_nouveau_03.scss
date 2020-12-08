@@ -1,0 +1,156 @@
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+/// Blocks: BuddyPress Nouveau 03 - No-Style 2020-10-17
+
+////////////////////////////////////////////////////////////////////////////////
+$border-color: $gray-lighter !default;
+
+////////////////////////////////////////////////////////////////////////////////
+#buddypress {}
+
+////////////////////////////////////////////////////////////////////////////////
+.buddypress-wrap {
+  display: flex;
+  // border: 1px solid $border-color;
+  margin-bottom: $spacer;
+
+  // .users-header,
+  .single-headers {
+    width: 150px;
+    // padding-right: $spacer;
+    // border-right: 1px solid $border-color;
+
+    #item-header-avatar {
+
+    }
+
+    #item-header-content {
+      margin-top: ($spacer * .5);
+    }
+
+    .user-nicename {
+      /*rtl:ignore*/
+      direction: ltr;
+      /*rtl:ignore*/
+      text-align: left;
+      font-size: small;
+      padding: 0 ($spacer * .5) ($spacer * .5) ($spacer * .5);
+      border-bottom: 1px solid $border-color;
+    }
+
+    .action,
+    .item-meta {
+      font-size: smaller;
+      text-align: right;
+      padding-right: ($spacer * .5);
+    }
+
+    .action {
+      li {
+        margin-bottom: ($spacer * .5);
+      }
+
+      button {
+        border: none;
+        padding: 0;
+        margin: 0;
+        background: none;
+      }
+    }
+
+    .item-meta {
+      margin-top: $spacer;
+
+      .activity {
+        font-size: .6rem;
+        background-color: $border-color;
+        border-radius: 2px;
+        padding: ($spacer * .25) ($spacer * .5);
+      }
+    }
+  }
+
+  .screen-content {
+    flex-grow: 1;
+    padding-left: $spacer;
+  }
+
+  .bp-wrap {
+    flex-grow: 1;
+    display: flex;
+
+    .item-body {
+      flex-grow: 1;
+      padding-left: $spacer;
+    }
+  }
+
+  .main-navs {
+    min-width: 150px;
+    // background-color: $gray-lighter;
+    background-color: $border-color;
+    // border-right: 1px solid $border-color;
+    // padding: ($spacer * .5) $spacer;
+
+    ul {
+      // @include theme-list-reset();
+
+      li {
+        a {
+          display: block;
+          height: 100%;
+          width: 100%;
+          padding: ($spacer * .5) $spacer;
+
+          &:hover {
+            background: $gray-light;
+            text-decoration: none;
+          }
+        }
+
+        + li {
+          // margin-top: $spacer * .5;
+        }
+
+        span.count {
+          float: right;
+        }
+      }
+    }
+  }
+
+  .bp-subnavs {
+    // border-bottom: 1px solid $border-color;
+    padding: ($spacer * .5) $spacer;
+    margin-left: -$spacer;
+    margin-bottom: $spacer;
+
+    ul {
+      align-items: center;
+      line-height: 1;
+      font-size: 0.8rem;
+
+      @include theme-list-flex() {
+        &.last {
+          flex: 1 1 auto;
+        }
+
+        + li {
+          padding-left: .5rem;
+
+          &::before {
+            padding-right: .5rem;
+            color: $gray-light;
+            content: "|";
+            font-size: smaller;
+          }
+        }
+      }
+    }
+  }
+
+  // button {
+  //   @extend .btn;
+  // }
+}

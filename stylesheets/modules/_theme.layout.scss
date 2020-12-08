@@ -16,7 +16,13 @@
 
     &.no-js {
       .hide-if-no-js {
-        display: none;
+        display: none !important;
+      }
+    }
+
+    &:not(.no-js) {
+      .hide-if-js {
+        display: none !important;
       }
     }
   }
