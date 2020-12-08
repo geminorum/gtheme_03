@@ -435,7 +435,7 @@ JS;
 	echo '</form>';
 
 	?><script type="text/javascript">
-jQuery(document).ready(function($){
+jQuery(function ($) {
 	$('#add-row').on('click', function(){
 		var row = $('.empty-row.screen-reader-text').clone(true);
 		row.removeClass( 'empty-row screen-reader-text' );

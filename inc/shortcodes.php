@@ -249,7 +249,7 @@ class gThemeShortCodes extends gThemeModuleCore
 
 		$html.= '<script type="text/javascript">
 /* <![CDATA[ */
-			jQuery(document).ready(function($){
+			jQuery(function ($) {
 				$("#'.$selector.'").flexslider({
 					animation: "slide",
 					rtl: true
