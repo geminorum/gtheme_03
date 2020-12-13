@@ -259,7 +259,7 @@ class gThemeNavigation extends gThemeModuleCore
 		$crumbs = self::crumbHome( $args );
 
 		if ( $archive )
-			$crumbs[] = $crumb;
+			$crumbs[] = $archive;
 
 		if ( is_paged() ) {
 			/* translators: %s: page number */
