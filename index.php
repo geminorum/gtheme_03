@@ -16,6 +16,7 @@ if ( have_posts() ) {
 } else {
 
 	gThemeTemplate::wrapOpen( '404' );
+		gThemeNavigation::breadcrumb( [ 'home' => 'home', 'context' => '404' ] );
 
 		get_template_part( 'content', '404' );
 
