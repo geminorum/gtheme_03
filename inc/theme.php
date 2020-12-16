@@ -36,8 +36,10 @@ class gThemeTheme extends gThemeModuleCore
 		if ( $adminbar )
 			add_theme_support( 'admin-bar', [ 'callback' => '__return_false' ] );
 
-		if ( $wpcf7 && function_exists( 'wpcf7_enqueue_scripts' ) )
+		if ( $wpcf7 && function_exists( 'wpcf7_enqueue_scripts' ) ) {
 			add_action( 'wp_enqueue_scripts', [ $this, 'wp_enqueue_scripts_wpcf7' ], 5 );
+			add_filter( 'shortcode_atts_wpcf7', [ $this, 'shortcode_atts_wpcf7' ], 8 );
+		}
 
 		if ( $page_excerpt )
 			add_post_type_support( 'page', 'excerpt' );
@@ -245,6 +247,13 @@ class gThemeTheme extends gThemeModuleCore
 			add_filter( 'wpcf7_load_js', '__return_true', 12 );
 		else
 			add_filter( 'wpcf7_load_js', '__return_false', 12 );
+	}
+
+	public function shortcode_atts_wpcf7( $out )
+	{
+		wpcf7_enqueue_scripts();
+
+		return $out;
 	}
 
 	public function wp_enqueue_scripts()
