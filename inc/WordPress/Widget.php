@@ -123,7 +123,7 @@ class gThemeWidget extends WP_Widget
 		return FALSE;
 	}
 
-	public function before_widget( $args, $instance, $extra = '', $echo = TRUE )
+	public function before_widget( $args, $instance, $echo = TRUE, $extra = '' )
 	{
 		$classes = [];
 
@@ -152,7 +152,7 @@ class gThemeWidget extends WP_Widget
 		echo $args['after_widget'];
 	}
 
-	public function widget_title( $args, $instance, $default = '', $echo = TRUE )
+	public function widget_title( $args, $instance, $echo = TRUE, $default = '' )
 	{
 		$title = apply_filters( 'widget_title',
 			empty( $instance['title'] ) ? $default : $instance['title'],
