@@ -40,7 +40,7 @@ class gThemeEmbed extends gThemeModuleCore
 
 	public function the_excerpt_embed( $output )
 	{
-		return gThemeEditorial::lead( [ 'echo' => FALSE, 'default' => $output ] );
+		return gThemeEditorial::metaHTML( 'lead', [ 'echo' => FALSE, 'default' => $output ] );
 	}
 
 	public function embed_content_meta()

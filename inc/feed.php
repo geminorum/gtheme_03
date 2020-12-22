@@ -76,7 +76,7 @@ class gThemeFeed extends gThemeModuleCore
 		$header.= gThemeOptions::info( 'feed_content_header_after', '' );
 		$footer.= gThemeOptions::info( 'feed_content_footer_after', '' );
 
-		$lead = gThemeEditorial::lead( [
+		$lead = gThemeEditorial::metaHTML( 'lead', [
 			'before' => '<div class="lead">',
 			'after'  => '</div>',
 			'echo'   => FALSE,

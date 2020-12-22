@@ -7,7 +7,7 @@ gThemeImage::image( [
 ] );
 
 gThemeContent::header( [ 'context' => 'singular', 'byline' => TRUE, 'actions' => NULL ] );
-gThemeEditorial::lead( [ 'before' => '<div class="entry-lead">', 'after' => '</div>' ] );
+gThemeEditorial::metaHTML( 'lead', [ 'before' => '<div class="entry-lead">', 'after' => '</div>' ] );
 
 if ( gThemeTerms::has( 'insert-people' ) )
 	gThemeEditorial::personPicture( [ 'before' => '<div class="entry-person">', 'after' => '</div>' ] );

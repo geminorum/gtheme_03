@@ -281,21 +281,24 @@ class gThemeEditorial extends gThemeModuleCore
 		return \geminorum\gEditorial\Templates\Meta::metaAuthor( $atts );
 	}
 
+	// FIXME: DEPRECATED
 	public static function lead( $atts = [] )
 	{
-		if ( ! array_key_exists( 'default', $atts ) )
-			$atts['default'] = FALSE;
+		self::_dev_dep( 'gThemeEditorial::::metaHTML( \'lead\' )' );
 
-		if ( ! self::availableEditorial( 'meta' ) )
-			return $atts['default'];
-
-		if ( ! is_callable( [ 'geminorum\\gEditorial\\Templates\\Meta', 'metaLead' ] ) )
-			return $atts['default'];
-
-		return \geminorum\gEditorial\Templates\Meta::metaLead( $atts );
+		return self::metaHTML( 'lead', $atts );
 	}
 
+	// FIXME: DEPRECATED
 	public static function highlight( $atts = [] )
+	{
+		self::_dev_dep( 'gThemeEditorial::::metaHTML( \'highlight\' )' );
+
+		return self::metaHTML( 'highlight', $atts );
+	}
+
+	// for all html fields, like: `lead`, `highlight`, `dashboard`
+	public static function metaHTML( $field, $atts = [] )
 	{
 		if ( ! array_key_exists( 'default', $atts ) )
 			$atts['default'] = FALSE;
@@ -303,10 +306,10 @@ class gThemeEditorial extends gThemeModuleCore
 		if ( ! self::availableEditorial( 'meta' ) )
 			return $atts['default'];
 
-		if ( ! is_callable( [ 'geminorum\\gEditorial\\Templates\\Meta', 'metaHighlight' ] ) )
+		if ( ! is_callable( [ 'geminorum\\gEditorial\\Templates\\Meta', 'metaFieldHTML' ] ) )
 			return $atts['default'];
 
-		return \geminorum\gEditorial\Templates\Meta::metaHighlight( $atts );
+		return \geminorum\gEditorial\Templates\Meta::metaFieldHTML( $field, $atts );
 	}
 
 	public static function getMeta( $field, $atts = [] )
