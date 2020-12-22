@@ -60,7 +60,7 @@ $theme-fonts-repo: "../../gtheme_03/fonts" !default;
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
-/// Vazir v27.0.3
+/// Vazir v27.1.0
 // https://github.com/rastikerdar/vazir-font
 // http://rastikerdar.github.io/vazir-font/
 
@@ -69,7 +69,7 @@ $theme-fonts-repo: "../../gtheme_03/fonts" !default;
   $font-family-normal: "Vazir", "Tahoma", "Iranian Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif !global;
 
   $name: "Vazir";
-  $ver: "v27.0.3";
+  $ver: "v27.1.0";
   $weight: "normal";
 
   $base: $theme-fonts-base;
@@ -87,7 +87,7 @@ $theme-fonts-repo: "../../gtheme_03/fonts" !default;
   $font-family-bold: "Vazir", "Arial", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", "Helvetica", sans-serif !global;
 
   $name: "Vazir";
-  $ver: "v27.0.3";
+  $ver: "v27.1.0";
   $weight: "bold";
 
   $base: $theme-fonts-base;
@@ -105,7 +105,7 @@ $theme-fonts-repo: "../../gtheme_03/fonts" !default;
   $font-family-light: "Vazir", "Arial", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", "Helvetica", sans-serif !global;
 
   $name: "Vazir";
-  $ver: "v27.0.3";
+  $ver: "v27.1.0";
   $weight: "300";
 
   $base: $theme-fonts-base;
@@ -123,7 +123,7 @@ $theme-fonts-repo: "../../gtheme_03/fonts" !default;
   $font-family-medium: "Vazir", "Arial", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", "Helvetica", sans-serif !global;
 
   $name: "Vazir";
-  $ver: "v27.0.3";
+  $ver: "v27.1.0";
   $weight: "500";
 
   $base: $theme-fonts-base;
@@ -141,7 +141,7 @@ $theme-fonts-repo: "../../gtheme_03/fonts" !default;
   $font-family-thin: "Vazir", "Tahoma", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", "Helvetica", sans-serif !global;
 
   $name: "Vazir";
-  $ver: "v27.0.3";
+  $ver: "v27.1.0";
   $weight: "100";
 
   $base: $theme-fonts-base;
@@ -159,7 +159,7 @@ $theme-fonts-repo: "../../gtheme_03/fonts" !default;
   $font-family-heavy: "Vazir", "Tahoma", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", "Helvetica", sans-serif !global;
 
   $name: "Vazir";
-  $ver: "v27.0.3";
+  $ver: "v27.1.0";
   $weight: "900";
 
   $base: $theme-fonts-base;
@@ -369,6 +369,49 @@ $theme-fonts-repo: "../../gtheme_03/fonts" !default;
 // FIXME: back comp
 @mixin theme-fonts-Dirooz-CDN() {
   @include theme-fonts-Nahid-CDN;
+}
+
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+/// Parastoo v2.0.1
+// https://github.com/rastikerdar/parastoo-font
+// https://rastikerdar.github.io/parastoo-font/
+
+@mixin theme-fonts-Parastoo-CDN() {
+
+  $font-family-normal: "Parastoo", "Tahoma", "Iranian Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif !global;
+
+  $name: "Parastoo";
+  $ver: "v2.0.1";
+  $weight: "400";
+
+  $base: $theme-fonts-base;
+  $repo: "rastikerdar/parastoo-font";
+  $file: "dist/Parastoo";
+  $path: $base + "/" + $repo + "/" + $ver + "/" + $file;
+
+  @include _theme-fonts-fontface($name, $path, $weight) {
+    @include theme-fonts-unicoderange-Persian;
+  }
+}
+
+@mixin theme-fonts-Parastoo-Bold-CDN() {
+
+  $font-family-bold: "Parastoo", "Arial", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", "Helvetica", sans-serif !global;
+
+  $name: "Parastoo";
+  $ver: "v2.0.1";
+  $weight: "600";
+
+  $base: $theme-fonts-base;
+  $repo: "rastikerdar/parastoo-font";
+  $file: "dist/Parastoo-Bold";
+  $path: $base + "/" + $repo + "/" + $ver + "/" + $file;
+
+  @include _theme-fonts-fontface($name, $path, $weight) {
+    @include theme-fonts-unicoderange-Persian;
+  }
 }
 
 ////////////////////////////////////////////////////////////////////////////////
