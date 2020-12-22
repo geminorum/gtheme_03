@@ -58,6 +58,7 @@ class gThemeSideBar extends gThemeModuleCore
 			'gThemeWidgetRecentPosts',
 			'gThemeWidgetRecentComments',
 			'gThemeWidgetTemplatePart',
+			'gThemeWidgetBannerGroup',
 			'gThemeWidgetChildren',
 			'gThemeWidgetSiblings',
 			'gThemeWidgetTheTerm',

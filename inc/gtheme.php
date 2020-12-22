@@ -39,6 +39,7 @@ final class gThemeCore
 			'WordPress/Taxonomy' => '',
 			'WordPress/Widget'   => '',
 
+			'Widgets/BannerGroup'    => '',
 			'Widgets/PostTerms'      => '',
 			'Widgets/TermPosts'      => '',
 			'Widgets/RelatedPosts'   => '',
