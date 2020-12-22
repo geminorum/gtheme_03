@@ -19,7 +19,7 @@ echo '<article class="amp-wp-article">';
 
 	echo '<div class="amp-wp-article-content">';
 
-		gThemeEditorial::lead( [
+		gThemeEditorial::metaHTML( 'lead', [
 			'before' => '<div class="-lead">',
 			'after'  => '</div>',
 		] );
