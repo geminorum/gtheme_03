@@ -141,17 +141,19 @@ class gThemeBanners extends gThemeModuleCore
 		], $atts );
 
 		if ( FALSE === self::group( $group, $args ) )
-			return;
+			return FALSE;
 
 		wp_register_script( 'jquery-jcarousel', GTHEME_URL.'/js/vendor/jquery.jcarousel.min.js', [ 'jquery' ], '0.3.9', TRUE );
 		wp_enqueue_script( 'jcarousel-paginated', GTHEME_URL.'/js/jcarousel.paginated'.( SCRIPT_DEBUG ? '' : '.min' ).'.js', [ 'jquery', 'jquery-jcarousel' ], GTHEME_VERSION, TRUE );
+
+		return TRUE;
 	}
 
 	// NOTE: needs no additional styles or scripts
 	public static function bootstrapCarousel( $group, $atts = [], $before = '', $after = '' )
 	{
 		if ( ! $banners = self::getGroup( $group ) )
-			return;
+			return FALSE;
 
 		$html = $indi = '';
 		$id   = $group.'CarouselBanners';
@@ -183,6 +185,8 @@ class gThemeBanners extends gThemeModuleCore
 		echo '<ol class="carousel-indicators">'.$indi.'</ol>';
 		echo '<div class="carousel-inner">'.$html.'</div>';
 		echo $controls.'</div></div>'.$after;
+
+		return TRUE;
 	}
 
 	// @REF: https://github.com/kenwheeler/slick/
@@ -219,10 +223,10 @@ class gThemeBanners extends gThemeModuleCore
 		], $atts );
 
 		if ( FALSE === self::group( $group, $args ) )
-			return;
+			return FALSE;
 
 		if ( $enqueued )
-			return;
+			return TRUE;
 
 		$script = <<<'JS'
 jQuery(function(r){r(".wrap-slick-carousel .-carousel").slick({rtl:"rtl"===r("html").attr("dir")})});
@@ -235,6 +239,8 @@ JS;
 		// wp_enqueue_script( 'slick-carousel', GTHEME_URL.'/js/slick.carousel'.( SCRIPT_DEBUG ? '' : '.min' ).'.js', [ 'jquery', 'gtheme-slick' ], GTHEME_VERSION, TRUE );
 
 		$enqueued = TRUE;
+
+		return TRUE;
 	}
 
 	public function subs( $subs )
