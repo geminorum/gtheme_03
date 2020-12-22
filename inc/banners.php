@@ -23,6 +23,31 @@ class gThemeBanners extends gThemeModuleCore
 		], $extra );
 	}
 
+	public static function getGroups( $defaults = NULL )
+	{
+		if ( is_null( $defaults ) )
+			$defaults = self::defaults();
+
+		return gThemeOptions::info( 'banner_groups', $defaults );
+	}
+
+	// used on the widget
+	public static function getRenderers( $defaults = NULL )
+	{
+		if ( is_null( $defaults ) )
+			$defaults = [
+				'slick_carousel'     => _x( 'Slick Carousel', 'Modules: Banners: Renderer', 'gtheme' ),
+				'bootstrap_carousel' => _x( 'Bootstrap Carousel', 'Modules: Banners: Renderer', 'gtheme' ),
+			];
+
+		return gThemeOptions::info( 'banner_renderers', $defaults );
+	}
+
+	public static function defaultRenderer()
+	{
+		return gThemeOptions::info( 'banner_default_renderer', 'bootstrap_carousel' );
+	}
+
 	public static function banner( $group, $order = 0, $atts = [] )
 	{
 		$banner = self::get( $group, $order );
@@ -254,7 +279,7 @@ JS;
 
 			if ( ! empty( $_POST ) && wp_verify_nonce( $_POST['_gtheme_banners'], 'gtheme-banners' ) ) {
 
-				$banners = gThemeOptions::info( 'banner_groups', self::defaults() );
+				$banners = self::getGroups();
 				$old     = gThemeOptions::getOption( 'banners', [] );
 				$new     = [];
 
@@ -325,8 +350,8 @@ JS;
 	public function settings_sub_html( $uri, $sub = 'general' )
 	{
 		$legend  = gThemeOptions::info( 'banners_legend' );
-		$groups  = gThemeOptions::info( 'banner_groups', self::defaults() );
 		$banners = gThemeOptions::getOption( 'banners', [] );
+		$groups  = self::getGroups();
 
 		echo '<form method="post" action="">';
 			echo '<h3>'._x( 'Custom Banners', 'Modules: Banners', 'gtheme' ).'</h3>';
