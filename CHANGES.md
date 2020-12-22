@@ -1,3 +1,17 @@
+### 3.20.10
+* module/banners: custom id on bootstrap carousel
+* module/banners: explicit returns on banner helpers
+* module/banners: more banner helpers
+* module/editorial: general helper for html meta fields
+* module/navigation: :warning: correct crumb!
+* module/theme: wpcf7 scripts on non-contact page shortcodes
+* root/index: breadcrumb on 404
+* widget/banner group: :new: widget
+* widget/post row: :new: widget
+* widget/search terms: avoid filtred search query
+* widget/search terms: display empty terms
+* widget/search terms: search name and slugs
+
 ### 3.20.9
 * module/editorial: better handling over/sub titles
 * module/navigation: archive crumb revised
