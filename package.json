@@ -37,8 +37,9 @@
   },
   "dependencies": {},
   "devDependencies": {
+    "@selfisekai/gulp-sass": "^4.2.0",
     "@wordpress/browserslist-config": "^2.7.0",
-    "autoprefixer": "^10.0.4",
+    "autoprefixer": "^10.1.0",
     "browserlist": "^1.0.1",
     "cssnano": "^4.1.10",
     "del": "^6.0.0",
@@ -54,17 +55,17 @@
     "gulp-load-plugins": "^2.0.6",
     "gulp-postcss": "^9.0.0",
     "gulp-rename": "^2.0.0",
-    "gulp-sass": "^4.1.0",
     "gulp-size": "^3.0.0",
     "gulp-sourcemaps": "^3.0.0",
     "gulp-wp-pot": "^2.5.0",
     "js-yaml": "^3.14.1",
     "node-sass": "^5.0.0",
     "parse-changelog": "^1.0.2",
-    "postcss": "^8.1.14",
+    "postcss": "^8.2.1",
     "prettyjson": "^1.2.1",
     "publish-release": "^1.6.1",
-    "rtlcss": "^2.6.2",
+    "rtlcss": "^3.0.0",
+    "sass": "^1.30.0",
     "semistandard": "^16.0.0",
     "stylelint": "^13.8.0",
     "stylelint-config-wordpress": "^17.0.0",
@@ -80,7 +81,7 @@
     "popper.js": "^1.16.1",
     "screenfull": "^5.0.2",
     "slick-carousel": "^1.8.1",
-    "vazir-font": "^27.0.3"
+    "vazir-font": "^27.1.0"
   },
   "browserslist": [
     "extends @wordpress/browserslist-config"
