@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gTheme 3\n"
 "Report-Msgid-Bugs-To: https://github.com/geminorum/gtheme_03/issues\n"
-"POT-Creation-Date: 2020-12-08T00:15:25+00:00\n"
-"PO-Revision-Date: 2020-12-08 03:45+0330\n"
+"POT-Creation-Date: 2020-12-22T02:08:03+00:00\n"
+"PO-Revision-Date: 2020-12-22 05:41+0330\n"
 "Last-Translator: geminorum <contact@geminorum.ir>\n"
 "Language-Team: geminorum <contact@geminorum.ir>\n"
 "Language: fa_IR\n"
@@ -102,67 +102,77 @@ msgctxt "Banner Groups"
 msgid "Sponsors"
 msgstr "حامیان"
 
-#: inc/banners.php:161
+#: inc/banners.php:39
+msgctxt "Modules: Banners: Renderer"
+msgid "Slick Carousel"
+msgstr "چرخ‌و‌فلک اسلیک"
+
+#: inc/banners.php:40
+msgctxt "Modules: Banners: Renderer"
+msgid "Bootstrap Carousel"
+msgstr "چرخ‌وفلک بوتس‌ترپ"
+
+#: inc/banners.php:188
 msgctxt "Carousel Control"
 msgid "Previous"
 msgstr "قبلی"
 
-#: inc/banners.php:164
+#: inc/banners.php:191
 msgctxt "Carousel Control"
 msgid "Next"
 msgstr "بعدی"
 
-#: inc/banners.php:242
+#: inc/banners.php:273
 msgctxt "Modules: Menu Name"
 msgid "Banners"
 msgstr "بنرها"
 
-#: inc/banners.php:326
+#: inc/banners.php:357
 msgctxt "Modules: Banners"
 msgid "Custom Banners"
 msgstr "بنرهای سفارشی"
 
-#: inc/banners.php:330
+#: inc/banners.php:361
 msgctxt "Modules: Banners"
 msgid "Legend"
 msgstr "توضیحات"
 
-#: inc/banners.php:332
+#: inc/banners.php:363
 msgctxt "Modules: Banners"
 msgid "Your theme extra information"
 msgstr "اطلاعات بیشتر پوسته شما"
 
-#: inc/banners.php:337
+#: inc/banners.php:368
 msgctxt "Modules: Banners"
 msgid "Group"
 msgstr "گروه"
 
-#: inc/banners.php:338
+#: inc/banners.php:369
 msgctxt "Modules: Banners"
 msgid "Ord."
 msgstr "تـ"
 
-#: inc/banners.php:339
+#: inc/banners.php:370
 msgctxt "Modules: Banners"
 msgid "Title"
 msgstr "عنوان"
 
-#: inc/banners.php:340
+#: inc/banners.php:371
 msgctxt "Modules: Banners"
 msgid "URL"
 msgstr "نشانی"
 
-#: inc/banners.php:341
+#: inc/banners.php:372
 msgctxt "Modules: Banners"
 msgid "Image"
 msgstr "تصویر"
 
-#: inc/banners.php:430
+#: inc/banners.php:461
 msgctxt "Modules: Banners"
 msgid "Add Another"
 msgstr "افزودن گزینه دیگر"
 
-#: inc/banners.php:431
+#: inc/banners.php:462
 msgctxt "Modules: Banners"
 msgid "Save"
 msgstr "ذخیره"
@@ -723,8 +733,8 @@ msgid "Tertiary Navigation"
 msgstr "راه‌بری ثالث"
 
 # @ gtheme
-#: inc/modulecore.php:226 inc/WordPress/Widget.php:494
-#: inc/WordPress/Widget.php:515
+#: inc/modulecore.php:226 inc/WordPress/Widget.php:474
+#: inc/WordPress/Widget.php:512 inc/WordPress/Widget.php:533
 msgid "&mdash; Select &mdash;"
 msgstr "&mdash; انتخاب کنید &mdash;"
 
@@ -1172,33 +1182,33 @@ msgid "Related Posts"
 msgstr "نوشته‌های مرتبط"
 
 #: inc/sidebar.php:25
-msgctxt "Modules: Sidebar: Defaults"
+msgctxt "Sidebar Name"
 msgid "Index: Side"
 msgstr "اندیس: کناری"
 
 #: inc/sidebar.php:26
-msgctxt "Modules: Sidebar: Defaults"
+msgctxt "Sidebar Name"
 msgid "Singular: Side"
 msgstr "تک نوشته: کناری"
 
 #: inc/sidebar.php:27
-msgctxt "Modules: Sidebar: Defaults"
+msgctxt "Sidebar Name"
 msgid "System Page: Side"
 msgstr "برگه سیستم: کناری"
 
 #: inc/sidebar.php:28
-msgctxt "Modules: Sidebar: Defaults"
+msgctxt "Sidebar Name"
 msgid "Singular: After Entry"
 msgstr "تک‌نوشته: بعد از متن"
 
 #. translators: %s: primary term title
-#: inc/sidebar.php:152
+#: inc/sidebar.php:154
 msgctxt "Modules: Sidebar"
 msgid "Theme: %s Widget"
 msgstr "پوسته: ابزارک %s"
 
 #. translators: %s: primary term title
-#: inc/sidebar.php:154
+#: inc/sidebar.php:156
 msgctxt "Modules: Sidebar"
 msgid "This is the %s widgetized area"
 msgstr ""
@@ -1436,42 +1446,42 @@ msgstr "خالی کردن قبل از ماه گذشته"
 msgid "Connected Posts"
 msgstr "نوشته‌های مرتبط"
 
-#: inc/theme.php:117
+#: inc/theme.php:119
 msgctxt "Editor Custom Font Sizes"
 msgid "Small"
 msgstr "کوچک"
 
-#: inc/theme.php:118
+#: inc/theme.php:120
 msgctxt "Editor Custom Font Sizes"
 msgid "S"
 msgstr "کـ"
 
-#: inc/theme.php:123
+#: inc/theme.php:125
 msgctxt "Editor Custom Font Sizes"
 msgid "Regular"
 msgstr "معمولی"
 
-#: inc/theme.php:124
+#: inc/theme.php:126
 msgctxt "Editor Custom Font Sizes"
 msgid "M"
 msgstr "مـ"
 
-#: inc/theme.php:129
+#: inc/theme.php:131
 msgctxt "Editor Custom Font Sizes"
 msgid "Large"
 msgstr "بزرگ"
 
-#: inc/theme.php:130
+#: inc/theme.php:132
 msgctxt "Editor Custom Font Sizes"
 msgid "L"
 msgstr "بـ"
 
-#: inc/theme.php:135
+#: inc/theme.php:137
 msgctxt "Editor Custom Font Sizes"
 msgid "Larger"
 msgstr "بزرگتر"
 
-#: inc/theme.php:136
+#: inc/theme.php:138
 msgctxt "Editor Custom Font Sizes"
 msgid "XL"
 msgstr "بـ تـ"
@@ -1501,6 +1511,26 @@ msgstr "&ldquo;، &rdquo;"
 msgctxt "Utilities: Join Items Helper"
 msgid "&ldquo;"
 msgstr "&rdquo;"
+
+#: inc/Widgets/BannerGroup.php:11
+msgctxt "Widget: Title"
+msgid "Theme: Banner Group"
+msgstr "پوسته: گروه بنرها"
+
+#: inc/Widgets/BannerGroup.php:12
+msgctxt "Widget: Description"
+msgid "Displays banners from selected group into sidebars."
+msgstr ""
+
+#: inc/Widgets/BannerGroup.php:79
+msgctxt "Widget: BannerGroup"
+msgid "Group:"
+msgstr ""
+
+#: inc/Widgets/BannerGroup.php:80
+msgctxt "Widget: BannerGroup"
+msgid "Renderer:"
+msgstr ""
 
 #: inc/Widgets/Children.php:11
 msgctxt "Widget: Title"
@@ -1550,12 +1580,27 @@ msgstr "پاراگراف‌های خودکار"
 #: inc/Widgets/PostFeatured.php:11
 msgctxt "Widget: Title"
 msgid "Theme: Post Featured"
-msgstr ""
+msgstr "پوسته: تصویر برگزیده نوشته"
 
 #: inc/Widgets/PostFeatured.php:12
 msgctxt "Widget: Description"
 msgid "Displays the featured image of the current post."
 msgstr ""
+
+#: inc/Widgets/PostRow.php:13
+msgctxt "Widget: Title"
+msgid "Theme: Post Row"
+msgstr "پوسته: ردیف نوشته"
+
+#: inc/Widgets/PostRow.php:14
+msgctxt "Widget: Description"
+msgid "Displays selected post as row."
+msgstr ""
+
+#: inc/Widgets/PostRow.php:48
+msgctxt "Widget: PostRow"
+msgid "Post ID:"
+msgstr "شناسه نوشته:"
 
 #: inc/Widgets/PostTerms.php:11
 msgctxt "Widget: Title"
@@ -1622,7 +1667,7 @@ msgctxt "Widget: Description"
 msgid "Displays the results of current search criteria on selected taxonomies."
 msgstr "نتایج جست‌وجوی رده‌ها را بر اساس عبارت فعلی نمایش می‌دهد."
 
-#: inc/Widgets/SearchTerms.php:93
+#: inc/Widgets/SearchTerms.php:94
 msgctxt "Widget: Setting"
 msgid "Strip Hash-tags"
 msgstr "پاک‌کردن هش‌تگ‌ها"
@@ -1772,17 +1817,17 @@ msgctxt "Widget: Setting"
 msgid "No Image Size Available!"
 msgstr "اندازه‌ای برای تصاویر وجود ندارد!"
 
-#: inc/WordPress/Widget.php:467
+#: inc/WordPress/Widget.php:485
 msgctxt "Widget: Setting"
 msgid "Checked"
-msgstr "منتخب:"
+msgstr "منتخب"
 
-#: inc/WordPress/Widget.php:486
+#: inc/WordPress/Widget.php:504
 msgctxt "Widget: Setting"
 msgid "Page:"
 msgstr "برگه:"
 
-#: inc/WordPress/Widget.php:529
+#: inc/WordPress/Widget.php:547
 msgctxt "Widget: Setting"
 msgid "Term:"
 msgstr "رده:"
