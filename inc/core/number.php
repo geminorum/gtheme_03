@@ -15,6 +15,6 @@ class gThemeNumber extends gThemeBaseCore
 	{
 		$number = apply_filters( 'string_format_i18n_back', $text );
 
-		return $intval ? intval( $number ) : $number;
+		return $intval ? (int) $number : $number;
 	}
 }

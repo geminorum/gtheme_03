@@ -49,7 +49,9 @@ class gThemeWidget extends WP_Widget
 	// override this to bypass caching
 	public function widget( $args, $instance )
 	{
+		// TODO: add general action here
 		$this->widget_cache( $args, $instance );
+		// TODO: add general action here
 	}
 
 	// override this for diffrent types of caching
@@ -457,6 +459,24 @@ class gThemeWidget extends WP_Widget
 		} else {
 			echo '<p>'._x( 'No Image Size Available!', 'Widget: Setting', 'gtheme' ).'</p>';
 		}
+	}
+
+	public function form_dropdown( $instance, $values, $default = '', $field = 'selected', $label = NULL )
+	{
+		$selected = isset( $instance[$field] ) ? $instance[$field] : $default;
+
+		if ( is_null( $label ) )
+			$label = '';
+
+		$html = gThemeHTML::dropdown( $values, [
+			'id'         => $this->get_field_id( $field ),
+			'name'       => $this->get_field_name( $field ),
+			'none_title' => __( '&mdash; Select &mdash;', 'gtheme' ),
+			'class'      => 'widefat',
+			'selected'   => $selected,
+		] );
+
+		gThemeHTML::label( $label.$html, $this->get_field_id( $field ) );
 	}
 
 	public function form_checkbox( $instance, $default = FALSE, $field = 'checked', $label = NULL )

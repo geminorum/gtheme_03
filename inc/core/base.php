@@ -112,12 +112,12 @@ class gThemeBaseCore
 
 	public static function limit( $default = 25, $key = 'limit' )
 	{
-		return intval( self::req( $key, $default ) );
+		return (int) self::req( $key, $default );
 	}
 
 	public static function paged( $default = 1, $key = 'paged' )
 	{
-		return intval( self::req( $key, $default ) );
+		return (int) self::req( $key, $default );
 	}
 
 	public static function orderby( $default = 'title', $key = 'orderby' )
