@@ -69,7 +69,7 @@ class gThemeTerms extends gThemeModuleCore
 
 					foreach ( $_POST['gtheme_primaryterms'] as $term_id => $term_args ) {
 
-						$order = isset( $term_args['order'] ) && trim( $term_args['order'] ) ? intval( $term_args['order'] ) : FALSE;
+						$order = isset( $term_args['order'] ) && trim( $term_args['order'] ) ? (int) $term_args['order'] : FALSE;
 
 						if ( isset( $term_args['checked'] ) ) {
 
@@ -117,7 +117,7 @@ class gThemeTerms extends gThemeModuleCore
 						'type'    => 'checkbox',
 						'name'    => 'gtheme_primaryterms['.$term->term_id.'][checked]',
 						'id'      => 'gtheme_primaryterms-'.$term->term_id.'-checked',
-						'checked' => in_array( intval( $term->term_id ), $options ),
+						'checked' => in_array( (int) $term->term_id, $options ),
 					] );
 
 					$order = array_search( $term->term_id, $options );
@@ -395,7 +395,7 @@ class gThemeTerms extends gThemeModuleCore
 
 		foreach ( $posts as $post )
 			foreach ( $term_ids as $term_id )
-				if ( TRUE === wp_remove_object_terms( $post, intval( $term_id ), $taxonomy ) )
+				if ( TRUE === wp_remove_object_terms( $post, (int) $term_id, $taxonomy ) )
 					$count++;
 
 		return $count;

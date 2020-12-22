@@ -92,7 +92,7 @@ class gThemeShortCodes extends gThemeModuleCore
 			'nocaption' => '<svg class="-icon -icon-magnifier"><use xlink:href="#icon-magnifier"></use></svg>',
 		], $atts, $tag );
 
-		$id = intval( $args['id'] );
+		$id = (int) $args['id'];
 
 		$posts_args = [
 			'post_status'    => 'inherit',
@@ -195,7 +195,7 @@ class gThemeShortCodes extends gThemeModuleCore
 			'link'    => '', // 'file', 'none', empty
 		], $atts, $tag );
 
-		$id = intval( $args['id'] );
+		$id = (int) $args['id'];
 
 		$posts_args = [
 			'post_status'    => 'inherit',

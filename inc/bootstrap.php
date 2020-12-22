@@ -87,7 +87,7 @@ class gThemeBootstrap extends gThemeModuleCore
 			'depth'          => 2,
 			'container'      => '',
 			'item_spacing'   => 'discard',
-			'menu_class'     => 'nav navbar-nav menu-'.$location.' '.$class,
+			'menu_class'     => 'nav'.( $wrap ? ' navbar-nav' : '' ).' menu-'.$location.' '.$class,
 			'fallback_cb'    => 'wp_bootstrap_navwalker::fallback',
 			'walker'         => new gThemeBootstrap_Walker_NavBar(),
 		] );

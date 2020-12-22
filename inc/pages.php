@@ -8,7 +8,7 @@ class gThemePages extends gThemeModuleCore
 	public function setup_actions( $args = [] )
 	{
 		extract( self::atts( [
-			'admin' => FALSE,
+			'admin' => TRUE,
 		], $args ) );
 
 		if ( $admin && is_admin() ) {

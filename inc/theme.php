@@ -236,7 +236,7 @@ class gThemeTheme extends gThemeModuleCore
 		if ( ! empty( $content_width ) )
 			return FALSE;
 
-		return $content_width = intval( $width );
+		return $content_width = (int) $width;
 	}
 
 	public function wp_enqueue_scripts_wpcf7()

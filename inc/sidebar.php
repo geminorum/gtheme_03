@@ -22,10 +22,10 @@ class gThemeSideBar extends gThemeModuleCore
 	public static function defaults( $extra = [] )
 	{
 		return array_merge( [
-			'side-index'      => _x( 'Index: Side', 'Modules: Sidebar: Defaults', 'gtheme' ),
-			'side-singular'   => _x( 'Singular: Side', 'Modules: Sidebar: Defaults', 'gtheme' ),
-			'side-systempage' => _x( 'System Page: Side', 'Modules: Sidebar: Defaults', 'gtheme' ),
-			'after-singular'  => _x( 'Singular: After Entry', 'Modules: Sidebar: Defaults', 'gtheme' ),
+			'side-index'      => _x( 'Index: Side', 'Sidebar Name', 'gtheme' ),
+			'side-singular'   => _x( 'Singular: Side', 'Sidebar Name', 'gtheme' ),
+			'side-systempage' => _x( 'System Page: Side', 'Sidebar Name', 'gtheme' ),
+			'after-singular'  => _x( 'Singular: After Entry', 'Sidebar Name', 'gtheme' ),
 		], $extra );
 	}
 
@@ -312,7 +312,7 @@ class gThemeSideBar extends gThemeModuleCore
 	// @REF: https://stackoverflow.com/a/4480386
 	public static function getCount( $sidebar, $fallback = 0 )
 	{
-		$sidebars =  wp_get_sidebars_widgets();
+		$sidebars = wp_get_sidebars_widgets();
 
 		if ( ! array_key_exists( $sidebar, $sidebars ) )
 			return $fallback;

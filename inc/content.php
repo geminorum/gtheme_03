@@ -233,6 +233,7 @@ class gThemeContent extends gThemeModuleCore
 
 	// core duplicate for performance concerns
 	// @REF: `get_post_class()`
+	// TODO: add slugs form `gThemeTerms::getMainTaxonomy()`
 	public static function getPostClass( $class = '', $post_id = NULL )
 	{
 		$post = self::getPost( $post_id );

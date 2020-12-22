@@ -399,7 +399,7 @@ class gThemeNavigation extends gThemeModuleCore
 		} else if ( is_author() ) {
 
 			$default = gThemeOptions::getOption( 'default_user', 0 );
-			$author  = intval( get_query_var( 'author' ) );
+			$author  = (int) get_query_var( 'author' );
 
 			if ( $default == $author )
 				return FALSE;

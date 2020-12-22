@@ -316,7 +316,7 @@ JS;
 							$new[$i]['image'] = esc_url( $images[$i] );
 
 						if ( strlen( $orders[$i] ) > 0 )
-							$new[$i]['order'] = intval( $orders[$i] );
+							$new[$i]['order'] = (int) $orders[$i];
 						else
 							$new[$i]['order'] = $i;
 					}
