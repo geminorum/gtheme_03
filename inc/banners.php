@@ -175,13 +175,13 @@ class gThemeBanners extends gThemeModuleCore
 	}
 
 	// NOTE: needs no additional styles or scripts
-	public static function bootstrapCarousel( $group, $atts = [], $before = '', $after = '' )
+	public static function bootstrapCarousel( $group, $atts = [], $before = '', $after = '', $custom_id = NULL )
 	{
 		if ( ! $banners = self::getGroup( $group ) )
 			return FALSE;
 
 		$html = $indi = '';
-		$id   = $group.'CarouselBanners';
+		$id   = is_null( $custom_id ) ? ( $group.'CarouselBanners' ) : $custom_id;
 
 		$controls = '<a class="carousel-control-prev" href="#'.$id.'" role="button" data-slide="prev">';
 		$controls.= '<span class="carousel-control-prev-icon" aria-hidden="true"></span>';
