@@ -2,7 +2,7 @@
 
 echo '<nav ';
 	gThemeBootstrap::navbarClass( 'wrapper -navbar' );
-echo '><div class="container -nav">';
+echo '><div class="container container-wrap -nav">';
 
 	gThemeBootstrap::navbarHeader();
 

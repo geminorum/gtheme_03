@@ -3,4 +3,4 @@
 get_template_part( 'partials/navbar' );
 
 echo '<div class="wrapper -main">';
-echo '<div class="container -main"><div class="row justify-content-center">';
+echo '<div class="container container-wrap -main"><div class="row justify-content-center">';
