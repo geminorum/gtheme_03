@@ -1,3 +1,6 @@
+### 3.20.11
+* root/all: general selector for containers
+
 ### 3.20.10
 * module/banners: custom id on bootstrap carousel
 * module/banners: explicit returns on banner helpers
