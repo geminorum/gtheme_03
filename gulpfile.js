@@ -1,7 +1,7 @@
 (function () {
   const gulp = require('gulp');
   const plugins = require('gulp-load-plugins')();
-  const sass = require('@selfisekai/gulp-sass');
+  const sass = require('gulp-dart-sass');
   const cssnano = require('cssnano');
   const autoprefixer = require('autoprefixer');
   const rtlcss = require('rtlcss');
@@ -23,8 +23,6 @@
   } catch (e) {
     log.warn('no environment.yml loaded!');
   }
-
-  sass.compiler = require('sass');
 
   gulp.task('pot', function () {
     return gulp.src(config.input.php)
