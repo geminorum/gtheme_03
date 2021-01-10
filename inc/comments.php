@@ -354,7 +354,7 @@ class gThemeComments extends gThemeModuleCore
 			$required  = get_option( 'require_name_email' );
 			$html5     = (bool) current_theme_supports( 'html5', 'comment-form' );
 
-			$strings = gThemeOptions::info( 'comment_form_strings', [
+			$strings = self::atts( [
 				'required' => _x( '(Required)', 'Modules: Comments: Comment Form String', 'gtheme' ),
 				'name'     => _x( 'Name', 'Modules: Comments: Comment Form String', 'gtheme' ),
 				'email'    => _x( 'Email', 'Modules: Comments: Comment Form String', 'gtheme' ),
@@ -373,7 +373,7 @@ class gThemeComments extends gThemeModuleCore
 				'title_reply_to'     => _x( 'Leave a Reply to %s', 'Modules: Comments: Comment Form String', 'gtheme' ),
 				'cancel_reply_link'  => _x( 'Cancel reply', 'Modules: Comments: Comment Form String', 'gtheme' ),
 				'label_submit'       => _x( 'Post Comment', 'Modules: Comments: Comment Form String', 'gtheme' ),
-			] );
+			], gThemeOptions::info( 'comment_form_strings', [] ) );
 
 			$fields = [];
 
