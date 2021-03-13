@@ -128,7 +128,7 @@
     $('#zoom .close').on('click', close);
     $('#zoom .previous').on('click', openPrevious);
     $('#zoom .next').on('click', openNext);
-    $(document).keydown(function(event) {
+    $(document).on('keydown', function(event) {
       if (!openedImage) {
         return;
       }

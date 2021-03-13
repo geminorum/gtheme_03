@@ -938,7 +938,7 @@ class gThemeContent extends gThemeModuleCore
 		?><script type="text/javascript">jQuery(function ($) {
 $('#text-justify, #text-unjustify').removeAttr('href').css('cursor', 'pointer');
 
-$('#text-justify').click(function (e) {
+$('#text-justify').on('click', function (e) {
 	e.preventDefault();
 	$('.entry-content p').each(function () {
 		$(this).css('text-align', 'justify');
@@ -947,7 +947,7 @@ $('#text-justify').click(function (e) {
 	$('#text-justify').hide();
 });
 
-$('#text-unjustify').click(function (e) {
+$('#text-unjustify').on('click', function (e) {
 	e.preventDefault();
 	$('body.rtl .entry-content p').each(function () {
 		$(this).css('text-align', 'right');

@@ -2,14 +2,14 @@ jQuery(function ($) {
   // @SEE: `gThemeWrap::bodyClose()`
   // $('html').removeClass('no-js');
 
-  $('a.scroll').click(function (e) {
+  $('a.scroll').on('click', function (e) {
     e.preventDefault();
     $('html,body').animate({
       scrollTop: $(this.hash).offset().top
     }, 500);
   });
 
-  $('a.scroll-to-top').click(function (e) {
+  $('a.scroll-to-top').on('click', function (e) {
     e.preventDefault();
     $('html, body').animate({
       scrollTop: 0
@@ -21,7 +21,7 @@ jQuery(function ($) {
     $(this).addClass('error-image').hide();
   });
 
-  $('a[href="#"]').click(function (e) {
+  $('a[href="#"]').on('click', function (e) {
     e.preventDefault();
   });
 

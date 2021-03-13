@@ -9,7 +9,7 @@ jQuery(function ($) {
     });
   });
 
-  $('.-gallery-img').bind('mouseenter', function (e) {
+  $('.-gallery-img').on('mouseenter', function (e) {
     var img = this;
     lastDirection = getDir($(this), e);
 
@@ -20,7 +20,7 @@ jQuery(function ($) {
     }, 1);
   });
 
-  $('.-gallery-img').bind('mouseleave', function (e) {
+  $('.-gallery-img').on('mouseleave', function (e) {
     $(this).removeClass(lastDirection).removeClass('animated');
   });
 });
