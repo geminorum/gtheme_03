@@ -284,7 +284,7 @@ class gThemeEditorial extends gThemeModuleCore
 	// FIXME: DEPRECATED
 	public static function lead( $atts = [] )
 	{
-		self::_dev_dep( 'gThemeEditorial::::metaHTML( \'lead\' )' );
+		self::_dev_dep( 'gThemeEditorial::metaHTML( \'lead\' )' );
 
 		return self::metaHTML( 'lead', $atts );
 	}
@@ -292,7 +292,7 @@ class gThemeEditorial extends gThemeModuleCore
 	// FIXME: DEPRECATED
 	public static function highlight( $atts = [] )
 	{
-		self::_dev_dep( 'gThemeEditorial::::metaHTML( \'highlight\' )' );
+		self::_dev_dep( 'gThemeEditorial::metaHTML( \'highlight\' )' );
 
 		return self::metaHTML( 'highlight', $atts );
 	}

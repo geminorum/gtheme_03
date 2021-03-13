@@ -169,7 +169,7 @@ class gThemeTerms extends gThemeModuleCore
 			'show_tagcloud'         => FALSE,
 			'hierarchical'          => TRUE,
 			'meta_box_cb'           => $can ? [ 'gThemeTerms', 'checklistTerms' ] : FALSE,
-			'update_count_callback' => [ 'gThemeUtilities', 'update_count_callback' ],
+			'update_count_callback' => '_update_generic_term_count', // [ 'gThemeUtilities', 'update_count_callback' ],
 			'rewrite'               => FALSE,
 			'query_var'             => FALSE,
 			'show_in_rest'          => TRUE, // for block editor

@@ -3,6 +3,12 @@
 class gThemeBaseCore
 {
 
+	public static function define( $name, $value )
+	{
+		if ( ! defined( $name ) )
+			define( $name, $value );
+	}
+
 	public static function dump( $var, $safe = TRUE, $echo = TRUE )
 	{
 		$export = var_export( $var, TRUE );
