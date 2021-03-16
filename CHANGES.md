@@ -1,3 +1,7 @@
+### 3.20.12
+* module/comments: better filtering form strings
+* module/image: placeholder with aspect ratio
+
 ### 3.20.11
 * root/all: general selector for containers
 
