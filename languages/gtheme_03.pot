@@ -1,13 +1,13 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: gTheme 3 3.20.11\n"
+"Project-Id-Version: gTheme 3 3.20.12\n"
 "Report-Msgid-Bugs-To: https://github.com/geminorum/gtheme_03/issues\n"
 "Last-Translator: NULL\n"
 "Language-Team: NULL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2020-12-27T03:23:58+00:00\n"
+"POT-Creation-Date: 2021-03-16T18:26:54+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.4.0\n"
 "X-Domain: gtheme\n"
@@ -769,114 +769,114 @@ msgctxt "Modules: Navigation: Pagination: Next"
 msgid "<span aria-hidden=\"true\">&rarr;</span>"
 msgstr ""
 
-#: inc/navigation.php:108
+#: inc/navigation.php:109
 msgctxt "Modules: Navigation: Screen Reader Title"
 msgid "Navigation"
 msgstr ""
 
-#: inc/navigation.php:201
+#: inc/navigation.php:202
 msgctxt "Modules: Navigation: Breadcrumbs"
 msgid "(Preview)"
 msgstr ""
 
 #. translators: %1$s: page number, %2$s: page total
-#: inc/navigation.php:207
+#: inc/navigation.php:208
 msgctxt "Modules: Navigation: Breadcrumbs"
 msgid "Page <strong>%1$s</strong> of %2$s"
 msgstr ""
 
 #. translators: %s: page number
-#: inc/navigation.php:266
+#: inc/navigation.php:267
 msgctxt "Modules: Navigation: Breadcrumbs"
 msgid "Page <strong>%s</strong>"
 msgstr ""
 
-#: inc/navigation.php:331
+#: inc/navigation.php:332
 msgctxt "Modules: Navigation: Breadcrumbs"
 msgid "Not Found"
 msgstr ""
 
-#: inc/navigation.php:336
+#: inc/navigation.php:337
 msgctxt "Modules: Navigation: Breadcrumbs"
 msgid "All Categories"
 msgstr ""
 
 #. translators: %1$s: category title, %2$s: link markup start, %3$s: link markup end
-#: inc/navigation.php:341
+#: inc/navigation.php:342
 msgctxt "Modules: Navigation: Breadcrumbs"
 msgid "%2$sCategory%3$s Archives for <strong>%1$s</strong>"
 msgstr ""
 
-#: inc/navigation.php:347
+#: inc/navigation.php:348
 msgctxt "Modules: Navigation: Breadcrumbs"
 msgid "All Tags"
 msgstr ""
 
 #. translators: %1$s: tag title, %2$s: link markup start, %3$s: link markup end
-#: inc/navigation.php:352
+#: inc/navigation.php:353
 msgctxt "Modules: Navigation: Breadcrumbs"
 msgid "%2$sTag%3$s Archives for <strong>%1$s</strong>"
 msgstr ""
 
-#: inc/navigation.php:358
+#: inc/navigation.php:359
 msgctxt "Modules: Navigation: Breadcrumbs"
 msgid "All People"
 msgstr ""
 
 #. translators: %1$s: person title, %2$s: link markup start, %3$s: link markup end
-#: inc/navigation.php:363
+#: inc/navigation.php:364
 msgctxt "Modules: Navigation: Breadcrumbs"
 msgid "%2$sPeople%3$s Archives for <strong>%1$s</strong>"
 msgstr ""
 
 #. translators: %1$s: tax singular name, %2$s: tax plural name, %3$s: term title, %4$s: link markup start, %5$s: link markup end
-#: inc/navigation.php:381
+#: inc/navigation.php:382
 msgctxt "Modules: Navigation: Breadcrumbs"
 msgid "%4$s%1$s%5$s Archives for <strong>%3$s</strong>"
 msgstr ""
 
 #. translators: %s: posttype title
-#: inc/navigation.php:395
+#: inc/navigation.php:396
 msgctxt "Modules: Navigation: Breadcrumbs"
 msgid "Archives for <strong>%s</strong>"
 msgstr ""
 
 #. translators: %s: display name
-#: inc/navigation.php:409
+#: inc/navigation.php:410
 msgctxt "Modules: Navigation: Breadcrumbs"
 msgid "Author Archives for <strong>%s</strong>"
 msgstr ""
 
 #. translators: %s: search query
-#: inc/navigation.php:417
+#: inc/navigation.php:418
 msgctxt "Modules: Navigation: Breadcrumbs"
 msgid "Search Results for <strong>%s</strong>"
 msgstr ""
 
 #. translators: %s: date
-#: inc/navigation.php:425
+#: inc/navigation.php:426
 msgctxt "Modules: Navigation: Breadcrumbs"
 msgid "Daily Archives for <strong>%s</strong>"
 msgstr ""
 
-#: inc/navigation.php:427
+#: inc/navigation.php:428
 msgctxt "Options: Defaults: Date Format: Day"
 msgid "j M Y"
 msgstr ""
 
 #. translators: %s: date
-#: inc/navigation.php:433
+#: inc/navigation.php:434
 msgctxt "Modules: Navigation: Breadcrumbs"
 msgid "Monthly Archives for <strong>%s</strong>"
 msgstr ""
 
 #. translators: %s: date
-#: inc/navigation.php:441
+#: inc/navigation.php:442
 msgctxt "Modules: Navigation: Breadcrumbs"
 msgid "Yearly Archives for <strong>%s</strong>"
 msgstr ""
 
-#: inc/navigation.php:448
+#: inc/navigation.php:449
 msgctxt "Modules: Navigation: Breadcrumbs"
 msgid "Archives"
 msgstr ""
