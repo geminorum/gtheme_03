@@ -792,6 +792,42 @@ class gThemeImage extends gThemeModuleCore
 			echo $args['before'].$args['empty'].$args['after'];
 	}
 
+	public static function getPlaceHolder( $atts = [] )
+	{
+		if ( ! $src = gThemeOptions::info( 'image_placeholder' ) )
+			return FALSE;
+
+		return gThemeHTML::tag( 'img', [
+			'src'   => $src,
+			'alt'   => gThemeOptions::info( 'blog_name', '' ),
+			'class' => '-placeholder',
+		] );
+	}
+
+	public static function imageWithPlaceHolder( $atts = [] )
+	{
+		if ( ! $ratio = gThemeOptions::info( 'image_aspect_ratio', '5:3' ) )
+			return self::image( $atts );
+
+		if ( ! array_key_exists( 'empty', $atts ) && ( $empty = self::getPlaceHolder( $atts ) ) )
+			$atts['empty'] = $empty;
+
+		$echo = array_key_exists( 'echo', $atts ) ? $atts['echo'] : TRUE;
+
+		$atts['echo'] = FALSE;
+
+		$before = '<div class="entry-image-placeholder">';
+		$before.= '<svg viewBox="0 0 '.str_replace( ':', ' ', $ratio ).'" />';
+		$after  = '</div>';
+
+		$html = $before.self::image( $atts ).$after;
+
+		if ( ! $echo )
+			return $html;
+
+		echo $html;
+	}
+
 	// ANCESTOR: gtheme_empty_image()
 	public static function holder( $tag = 'raw', $extra_class = '', $force = FALSE )
 	{
