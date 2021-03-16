@@ -19,7 +19,7 @@
   // const banner = config.banner.join('\n');
 
   try {
-    env = extend(config.env, yaml.safeLoad(fs.readFileSync('./environment.yml', { encoding: 'utf-8' }), { json: true }));
+    env = extend(config.env, yaml.load(fs.readFileSync('./environment.yml', { encoding: 'utf-8' }), { json: true }));
   } catch (e) {
     log.warn('no environment.yml loaded!');
   }
@@ -77,9 +77,9 @@
   // seperated because of stripping rtl directives in compression
   gulp.task('ready:rtl', function () {
     return gulp.src(config.input.sass)
-      .pipe(sass(config.sass).on('error', sass.logError))
+      .pipe(sass.sync(config.sass).on('error', sass.logError))
+      .pipe(plugins.postcss([rtlcss()])) // divided to avoid cssnano messing with rtl directives
       .pipe(plugins.postcss([
-        rtlcss(),
         cssnano(config.cssnano.build),
         autoprefixer(config.autoprefixer.build)
       ]))
