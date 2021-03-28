@@ -746,6 +746,7 @@ class gThemeContent extends gThemeModuleCore
 					'post_id' => $post->ID,
 					'before'  => sprintf( $before, 'entry-published' ),
 					'after'   => $after,
+					'filter'  => [ 'gThemeL10N', 'str' ],
 				] );
 
 			break;
