@@ -229,14 +229,6 @@ class gThemeSettings extends gThemeModuleCore
 				'meta'  => [ 'title' => _x( 'Flush', 'Settings Module', 'gtheme' ) ],
 			] );
 
-		if ( current_user_can( 'edit_posts' ) )
-			$wp_admin_bar->add_node( [
-				'parent' => 'site-name',
-				'id'     => 'all-posts',
-				'title'  => _x( 'All Posts', 'Settings Module', 'gtheme' ),
-				'href'   => admin_url( 'edit.php' ),
-			] );
-
 		if ( ! current_user_can( gThemeOptions::info( 'settings_access', 'edit_theme_options' ) ) )
 			return;
 
