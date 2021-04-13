@@ -479,6 +479,7 @@ class gThemeTerms extends gThemeModuleCore
 			'class'       => gThemeHTML::attrClass( '-term-link', 'taxonomy-'.$term->taxonomy, $class ),
 			'title'       => $title,
 			'data-toggle' => $title ? 'tooltip' : FALSE,
+			'data-slug'   => $term->slug,
 		], $text ).$after;
 	}
 

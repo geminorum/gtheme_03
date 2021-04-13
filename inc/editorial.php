@@ -91,6 +91,7 @@ class gThemeEditorial extends gThemeModuleCore
 
 		echo '<li>';
 			get_template_part( 'row', 'lesson' );
+			echo '<span class="-dummy"></span>';
 		echo '</li>';
 
 		return ob_get_clean();
@@ -444,6 +445,7 @@ class gThemeEditorial extends gThemeModuleCore
 
 		echo '<li>';
 			get_template_part( 'row', 'issue' );
+			echo '<span class="-dummy"></span>';
 		echo '</li>';
 
 		return ob_get_clean();

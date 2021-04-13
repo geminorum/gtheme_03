@@ -99,6 +99,7 @@ class gThemeNavigation extends gThemeModuleCore
 			'total'   => isset( $query->max_num_pages ) ? $query->max_num_pages : 1,
 		] );
 
+		// @SEE: new filter: `paginate_links_output`
 		if ( ! $links = paginate_links( $args ) )
 			return;
 
