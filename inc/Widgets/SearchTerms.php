@@ -51,11 +51,18 @@ class gThemeWidgetSearchTerms extends gThemeWidget
 		echo '<div class="-list-wrap search-terms"><ul>';
 
 		foreach ( $query->terms as $term ) {
-			echo '<li>'.gThemeHTML::tag( 'a', [
+			echo '<li>';
+
+			if ( ! empty( $instance['prefix_with_name'] ) )
+				printf( '%s:&nbsp;', get_taxonomy( $term->taxonomy )->labels->singular_name );
+
+			echo gThemeHTML::tag( 'a', [
 				'href'  => get_term_link( $term->term_id, $term->taxonomy ),
-				'title' => $title ? get_taxonomy( $term->taxonomy )->labels->singular_name : FALSE,
+				'title' => $title && empty( $instance['prefix_with_name'] ) ? get_taxonomy( $term->taxonomy )->labels->singular_name : FALSE,
 				'class' => [ '-term', '-taxonomy-'.$term->taxonomy ],
-			], sanitize_term_field( 'name', $term->name, $term->term_id, $term->taxonomy, 'display' ) ).'</li>';
+			], sanitize_term_field( 'name', $term->name, $term->term_id, $term->taxonomy, 'display' ) );
+
+			echo '</li>';
 		}
 
 		echo '</ul></div>';
@@ -73,7 +80,8 @@ class gThemeWidgetSearchTerms extends gThemeWidget
 
 		$instance['taxonomy'] = strip_tags( $new['taxonomy'] );
 
-		$instance['strip_hashtags'] = isset( $new['strip_hashtags'] );
+		$instance['prefix_with_name'] = isset( $new['prefix_with_name'] );
+		$instance['strip_hashtags']   = isset( $new['strip_hashtags'] );
 
 		$this->flush_widget_cache();
 
@@ -91,6 +99,7 @@ class gThemeWidgetSearchTerms extends gThemeWidget
 
 		$this->form_taxonomy( $instance );
 
+		$this->form_checkbox( $instance, FALSE, 'prefix_with_name', _x( 'Prefix Terms with Taxonomy Name', 'Widget: Setting', 'gtheme' ) );
 		$this->form_checkbox( $instance, FALSE, 'strip_hashtags', _x( 'Strip Hash-tags', 'Widget: Setting', 'gtheme' ) );
 
 		$this->after_form( $instance );
