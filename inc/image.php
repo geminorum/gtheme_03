@@ -642,7 +642,7 @@ class gThemeImage extends gThemeModuleCore
 		$args['tag'] = apply_filters( 'post_thumbnail_size', $args['tag'], $args['post_id'] );
 
 		if ( ! $args['post_thumbnail_id'] )
-			return $args['empty'];
+			return apply_filters( 'post_thumbnail_html', $args['empty'], $args['post_id'], $args['post_thumbnail_id'], $args['tag'], $args['attr'] );
 
 		if ( $args['url'] ) {
 
@@ -651,7 +651,7 @@ class gThemeImage extends gThemeModuleCore
 		}
 
 		if ( ! $attachment = get_post( $args['post_thumbnail_id'] ) )
-			return $args['empty'];
+			return apply_filters( 'post_thumbnail_html', $args['empty'], $args['post_id'], $args['post_thumbnail_id'], $args['tag'], $args['attr'] );
 
 		// do_action( 'begin_fetch_post_thumbnail_html', $args['post_id'], $attachment->ID, $args['tag'] );
 
