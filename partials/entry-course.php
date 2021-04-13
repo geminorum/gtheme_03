@@ -12,9 +12,10 @@ gThemeImage::image( [
 
 gThemeContent::content();
 
-gThemeEditorial::course( [
+gThemeEditorial::courseLessons( [
 	'before' => '<div class="clearfix"></div><div class="entry-after after-course after-rows">',
 	'after'  => '</div>',
+	'order'  => 'DESC',
 	'title'  => FALSE,
 ] );
 
