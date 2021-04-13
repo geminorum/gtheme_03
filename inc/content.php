@@ -1112,6 +1112,8 @@ addthis_config.services_custom = [
 			'shortlink'   => gThemeOptions::info( 'content_header_shortlink', FALSE ),
 			'wrap_tag'    => 'header',
 			'wrap_close'  => TRUE,
+			'trim_title'  => FALSE, // or number of chars
+			'trim_meta'  => FALSE, // or number of chars
 			'itemprop'    => TRUE,
 			'link_rel'    => 'bookmark',
 			'title_tag'   => is_singular() ? 'h2' : 'h3',
@@ -1160,6 +1162,7 @@ addthis_config.services_custom = [
 				'post_id' => $post->ID,
 				'before'  => '<'.$args['meta_tag'].' class="-overtitle overtitle '.$args['prefix'].'-overtitle"'.( $args['itemprop'] ? ' itemprop="alternativeHeadline"' : '' ).'>',
 				'after'   => '</'.$args['meta_tag'].'>',
+				'trim'    => $args['trim_meta'],
 			] );
 
 		echo '<'.$args['title_tag'].' class="-title title '.$args['prefix'].'-title'.( $args['amp'] ? ' amp-wp-title' : '' ).'"';
@@ -1168,6 +1171,10 @@ addthis_config.services_custom = [
 			echo ' itemprop="headline"';
 
 		echo '>';
+
+		$title = $args['trim_title']
+			? gThemeUtilities::trimChars( $args['title'], $args['trim_title'] )
+			: $args['title'];
 
 		if ( $args['link'] ) {
 
@@ -1203,11 +1210,11 @@ addthis_config.services_custom = [
 			if ( $args['title_attr'] )
 				echo ' title="'.self::getTitleAttr( $title_template, $args['title_attr'], $post ).'"';
 
-			echo '>'.gThemeText::wordWrap( $args['title'], 2 ).'</a>';
+			echo '>'.gThemeText::wordWrap( $title, 2 ).'</a>';
 
 		} else {
 
-			echo gThemeText::wordWrap( $args['title'], 2 );
+			echo gThemeText::wordWrap( $title, 2 );
 		}
 
 		if ( $args['anchor'] )
@@ -1220,6 +1227,7 @@ addthis_config.services_custom = [
 				'post_id' => $post->ID,
 				'before'  => '<'.$args['meta_tag'].' class="-subtitle subtitle '.$args['prefix'].'-subtitle"'.( $args['itemprop'] ? ' itemprop="alternativeHeadline"' : '' ).'>',
 				'after'   => '</'.$args['meta_tag'].'>',
+				'trim'    => $args['trim_meta'],
 			] );
 
 		do_action( 'gtheme_content_header_close', $post, $args );

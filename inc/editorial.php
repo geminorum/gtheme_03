@@ -340,6 +340,7 @@ class gThemeEditorial extends gThemeModuleCore
 		$args = self::atts( [
 			'id'      => isset( $atts['post_id'] ) ? $atts['post_id'] : NULL,
 			'filter'  => FALSE,
+			'trim'    => FALSE,
 			'default' => FALSE,
 		], $atts );
 
