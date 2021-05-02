@@ -45,22 +45,25 @@ class gThemeWidgetRelatedPosts extends gThemeWidget
 		if ( is_wp_error( $terms ) || empty( $terms ) )
 			return TRUE;
 
+		$tax_query = [ [
+			'taxonomy' => $taxonomy,
+			'field'    => 'id',
+			'terms'    => $terms,
+			'operator' => 'IN',
+		] ];
+
+		if ( GTHEME_SYSTEMTAGS && taxonomy_exists( GTHEME_SYSTEMTAGS ) ) {
+			$tax_query['relation'] = 'AND';
+			$tax_query[] = [
+				'taxonomy' => GTHEME_SYSTEMTAGS,
+				'field'    => 'slug',
+				'terms'    => 'no-related',
+				'operator' => 'NOT IN',
+			];
+		}
+
 		$row_query = new \WP_Query( [
-			'tax_query' => [
-				[
-					'taxonomy' => $taxonomy,
-					'field'    => 'id',
-					'terms'    => $terms,
-					'operator' => 'IN',
-				],
-				'relation' => 'AND',
-				[
-					'taxonomy' => GTHEME_SYSTEMTAGS,
-					'field'    => 'slug',
-					'terms'    => 'no-related',
-					'operator' => 'NOT IN',
-				],
-			],
+			'tax_query'      => $tax_query,
 			'post_status'    => 'publish',
 			'post_type'      => $post_type,
 			'posts_per_page' => $number,

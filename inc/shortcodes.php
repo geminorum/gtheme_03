@@ -585,22 +585,25 @@ class gThemeShortCodes extends gThemeModuleCore
 			if ( is_wp_error( $terms ) || empty( $terms ) )
 				return $content;
 
+			$tax_query = [ [
+				'taxonomy' => $args['taxonomy'],
+				'field'    => 'id',
+				'terms'    => $terms,
+				'operator' => 'IN',
+			] ];
+
+			if ( GTHEME_SYSTEMTAGS && taxonomy_exists( GTHEME_SYSTEMTAGS ) ) {
+				$tax_query['relation'] = 'AND';
+				$tax_query[] = [
+					'taxonomy' => GTHEME_SYSTEMTAGS,
+					'field'    => 'slug',
+					'terms'    => 'no-related',
+					'operator' => 'NOT IN',
+				];
+			}
+
 			$query_args = array_merge( $query_args, [
-				'tax_query' => [
-					[
-						'taxonomy' => $args['taxonomy'],
-						'field'    => 'id',
-						'terms'    => $terms,
-						'operator' => 'IN',
-					],
-					'relation' => 'AND',
-					[
-						'taxonomy' => GTHEME_SYSTEMTAGS,
-						'field'    => 'slug',
-						'terms'    => 'no-related',
-						'operator' => 'NOT IN',
-					],
-				],
+				'tax_query'      => $tax_query,
 				'post_type'      => $args['posttype'],
 				'posts_per_page' => $args['number'],
 				'post__not_in'   => [ $post->ID ],
