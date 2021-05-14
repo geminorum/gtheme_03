@@ -60,6 +60,7 @@ class gThemeWidgetRecentPosts extends gThemeWidget
 				if ( trim( get_the_title() ) ) {
 					echo '<li>';
 						get_template_part( 'row', $context );
+						echo '<span class="-dummy"></span>';
 					echo '</li>';
 				}
 			}

@@ -1102,6 +1102,8 @@ addthis_config.services_custom = [
 	// ANCESTOR : gtheme_post_header()
 	public static function header( $atts = [] )
 	{
+		$singular = is_singular();
+
 		$args = self::atts( [
 			'post'        => NULL,
 			'context'     => 'single',
@@ -1116,12 +1118,12 @@ addthis_config.services_custom = [
 			'trim_meta'  => FALSE, // or number of chars
 			'itemprop'    => TRUE,
 			'link_rel'    => 'bookmark',
-			'title_tag'   => is_singular() ? 'h2' : 'h3',
+			'title_tag'   => $singular ? 'h2' : 'h3',
 			'meta_tag'    => 'h5',
 			'title'       => NULL,
 			'title_attr'  => NULL, // or FALSE to disable
 			'title_sep'   => ' / ', // used on meta as title attr
-			'amp'         => is_singular(),
+			'amp'         => $singular,
 			'meta'        => gThemeOptions::supports( 'geditorial-meta', TRUE ),
 			'link'        => TRUE, // default/custom/disable
 			'anchor'      => FALSE, // permalink anchor for the post

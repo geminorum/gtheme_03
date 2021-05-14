@@ -627,6 +627,7 @@ class gThemeShortCodes extends gThemeModuleCore
 			if ( trim( get_the_title() ) ) {
 				echo '<li>';
 					get_template_part( 'row', $args['context'] );
+					echo '<span class="-dummy"></span>';
 				echo '</li>';
 			}
 		}
