@@ -36,6 +36,7 @@ class gThemeWidgetRelatedPosts extends gThemeWidget
 		$context   = isset( $instance['context'] ) ? $instance['context'] : 'related';
 		$taxonomy  = isset( $instance['taxonomy'] ) ? $instance['taxonomy'] : 'post_tag';
 		$post_type = isset( $instance['post_type'] ) ? $instance['post_type'] : 'post';
+		$thumbnail = isset( $instance['has_thumbnail'] ) ? $instance['has_thumbnail'] : FALSE;
 
 		if ( empty( $instance['number'] ) || ! $number = absint( $instance['number'] ) )
 			$number = 10;
@@ -45,25 +46,13 @@ class gThemeWidgetRelatedPosts extends gThemeWidget
 		if ( is_wp_error( $terms ) || empty( $terms ) )
 			return TRUE;
 
-		$tax_query = [ [
-			'taxonomy' => $taxonomy,
-			'field'    => 'id',
-			'terms'    => $terms,
-			'operator' => 'IN',
-		] ];
-
-		if ( GTHEME_SYSTEMTAGS && taxonomy_exists( GTHEME_SYSTEMTAGS ) ) {
-			$tax_query['relation'] = 'AND';
-			$tax_query[] = [
-				'taxonomy' => GTHEME_SYSTEMTAGS,
-				'field'    => 'slug',
-				'terms'    => 'no-related',
-				'operator' => 'NOT IN',
-			];
-		}
-
-		$row_query = new \WP_Query( [
-			'tax_query'      => $tax_query,
+		$query_args = [
+			'tax_query'      => [ [
+				'taxonomy' => $taxonomy,
+				'field'    => 'id',
+				'terms'    => $terms,
+				'operator' => 'IN',
+			] ],
 			'post_status'    => 'publish',
 			'post_type'      => $post_type,
 			'posts_per_page' => $number,
@@ -73,7 +62,25 @@ class gThemeWidgetRelatedPosts extends gThemeWidget
 			'no_found_rows'          => TRUE,
 			'update_post_term_cache' => FALSE,
 			'update_post_meta_cache' => FALSE,
-		] );
+		];
+
+		if ( GTHEME_SYSTEMTAGS && taxonomy_exists( GTHEME_SYSTEMTAGS ) ) {
+			$query_args['tax_query']['relation'] = 'AND';
+			$query_args['tax_query'][] = [
+				'taxonomy' => GTHEME_SYSTEMTAGS,
+				'field'    => 'slug',
+				'terms'    => 'no-related',
+				'operator' => 'NOT IN',
+			];
+		}
+
+		if ( $thumbnail )
+			$query_args['meta_query'] = [ [
+				'key'     => '_thumbnail_id',
+				'compare' => 'EXISTS',
+			] ];
+
+		$row_query = new \WP_Query( $query_args );
 
 		if ( $row_query->have_posts() ) {
 
@@ -116,6 +123,8 @@ class gThemeWidgetRelatedPosts extends gThemeWidget
 		$instance['post_type']   = strip_tags( $new['post_type'] );
 		$instance['taxonomy']    = strip_tags( $new['taxonomy'] );
 
+		$instance['has_thumbnail'] = ! empty( $new['has_thumbnail'] );
+
 		$instance['number'] = (int) $new['number'];
 
 		$this->flush_widget_cache();
@@ -134,6 +143,7 @@ class gThemeWidgetRelatedPosts extends gThemeWidget
 		$this->form_context( $instance, 'related' );
 		$this->form_post_type( $instance );
 		$this->form_taxonomy( $instance );
+		$this->form_has_thumbnail( $instance );
 		$this->form_number( $instance, '5' );
 
 		$this->after_form( $instance );
