@@ -423,6 +423,27 @@ class gThemeOptions extends gThemeModuleCore
 		return in_array( self::getGroup(), (array) $group );
 	}
 
+	public static function getSwitchID( $identifier, $fallback = FALSE )
+	{
+		if ( ! $map = self::info( 'site_switch_map', FALSE ) )
+			return $fallback;
+
+		if ( ! array_key_exists( $identifier, $map ) )
+			return $fallback;
+
+		$stage = defined( 'WP_STAGE' ) ? WP_STAGE : 'production';
+
+		if ( ! array_key_exists( $stage, $map[$identifier] ) )
+			return $fallback;
+
+		$switch = (int) $map[$identifier][$stage];
+
+		if ( $switch == get_current_blog_id() )
+			return FALSE;
+
+		return $switch;
+	}
+
 	// FIXME: DEPRECATED: use gThemeCounts::get()
 	public static function count( $name, $def = 0 )
 	{
