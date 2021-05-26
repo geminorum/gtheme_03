@@ -527,12 +527,26 @@ class gThemeWidget extends WP_Widget
 		$taxonomy = isset( $instance[$taxonomy_field] ) ? $instance[$taxonomy_field] : $taxonomy_default;
 		$term_id  = isset( $instance[$field] ) ? $instance[$field] : $default;
 
+		if ( 'all' == $taxonomy )
+			return gThemeHTML::desc( '<br />'._x( 'Select taxonomy first!', 'Widget: Setting', 'gtheme' ), TRUE, '-empty' );
+
+		$terms = get_terms( [
+			'taxonomy'   => $taxonomy,
+			'hide_empty' => FALSE,
+		] );
+
+		if ( is_wp_error( $terms ) )
+			return gThemeHTML::desc( '<br />'._x( 'The taxonomy is not available!', 'Widget: Setting', 'gtheme' ), TRUE, '-empty' );
+
+		if ( empty( $terms ) )
+			return gThemeHTML::desc( '<br />'._x( 'No terms available!', 'Widget: Setting', 'gtheme' ), TRUE, '-empty' );
+
 		$html = gThemeHTML::tag( 'option', [
 			'value'    => '0',
 			'selected' => $term_id == '0',
 		], __( '&mdash; Select &mdash;', 'gtheme' ) );
 
-		foreach ( get_terms( [ 'taxonomy' => $taxonomy, 'hide_empty' => FALSE ] ) as $term )
+		foreach ( $terms as $term )
 			$html.= gThemeHTML::tag( 'option', [
 				'value'    => $term->term_id,
 				'selected' => $term_id == $term->term_id,

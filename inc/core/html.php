@@ -515,4 +515,9 @@ class gThemeHTML extends gThemeBaseCore
 			'data'     => $args['data'],
 		), $html );
 	}
+
+	public static function renderList( $items, $keys = FALSE, $list = 'ul' )
+	{
+		return $items ? self::tag( $list, '<li>'.implode( '</li><li>', $keys ? array_keys( $items ) : $items ).'</li>' ) : '';
+	}
 }
