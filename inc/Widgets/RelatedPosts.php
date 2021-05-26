@@ -86,7 +86,7 @@ class gThemeWidgetRelatedPosts extends gThemeWidget
 
 			$this->before_widget( $args, $instance );
 			$this->widget_title( $args, $instance );
-			echo '<div class="-list-wrap related-posts"><ul>';
+			echo '<div class="-list-wrap related-posts"><ul class="-items">';
 
 			while ( $row_query->have_posts() ) {
 

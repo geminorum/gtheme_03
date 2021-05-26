@@ -62,7 +62,7 @@ class gThemeWidgetTermPosts extends gThemeWidget
 
 			$this->before_widget( $args, $instance );
 			$this->widget_title( $args, $instance );
-			echo '<div class="-list-wrap term-posts"><ul>';
+			echo '<div class="-list-wrap term-posts"><ul class="-items">';
 
 			while ( $row_query->have_posts() ) {
 
@@ -103,7 +103,7 @@ class gThemeWidgetTermPosts extends gThemeWidget
 		$instance['title']       = sanitize_text_field( $new['title'] );
 		$instance['title_link']  = strip_tags( $new['title_link'] );
 		$instance['title_image'] = strip_tags( $new['title_image'] );
-		$instance['term_id']     = strip_tags( $new['term_id'] );
+		$instance['term_id']     = empty( $new['term_id'] ) ? 0 : (int) $new['term_id'];
 		$instance['taxonomy']    = strip_tags( $new['taxonomy'] );
 		$instance['post_type']   = strip_tags( $new['post_type'] );
 		$instance['context']     = strip_tags( $new['context'] );

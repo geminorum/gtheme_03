@@ -111,7 +111,7 @@ class gThemeNavigation extends gThemeModuleCore
 			echo '<ul class="pagination">';
 
 			foreach ( $links as $link )
-				printf( '<li>%s</li>', $link );
+				printf( '<li class="page-item">%s</li>', $link );
 
 		echo '</ul></nav>';
 	}

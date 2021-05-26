@@ -42,7 +42,7 @@ class gThemeWidgetRecentComments extends gThemeWidget
 
 			$this->before_widget( $args, $instance );
 			$this->widget_title( $args, $instance );
-			echo '<div class="-list-wrap recent-comments"><ul>';
+			echo '<div class="-list-wrap recent-comments"><ul class="-items">';
 
 			foreach ( (array) $comments as $comment ) {
 				echo '<li>';

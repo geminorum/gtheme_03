@@ -51,7 +51,7 @@ class gThemeWidgetRecentPosts extends gThemeWidget
 
 			$this->before_widget( $args, $instance );
 			$this->widget_title( $args, $instance );
-			echo '<div class="-list-wrap recent-posts"><ul>';
+			echo '<div class="-list-wrap recent-posts"><ul class="-items">';
 
 			while ( $row_query->have_posts() ) {
 
