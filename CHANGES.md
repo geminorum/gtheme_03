@@ -1,3 +1,20 @@
+### 3.20.13
+* module/bootstrap: customized logo for navbar brand
+* module/content: contexted loop as rows
+* module/content: l10n for entry published action
+* module/content: optional trim title/meta on headers
+* module/image: apply default filters on empty image results
+* module/options: switch id helper
+* module/settings: remove all posts node from adminbar
+* module/terms: check for system tags before tax queries
+* module/widget: form has thumbnail method
+* partial/ entry publication: list attachment as default
+* partial/entry course: list lessons descending after content
+* partial/page latest: default content for latest page
+* row/latest: default content for latest
+* widget/related posts: must has thumbnail option
+* widget/search terms: optional prefix terms with taxonomy labels
+
 ### 3.20.12
 * module/comments: better filtering form strings
 * module/image: placeholder with aspect ratio
