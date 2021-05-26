@@ -113,6 +113,51 @@ class gThemeContent extends gThemeModuleCore
 		echo $after;
 	}
 
+	public static function rows( $context, $before = '', $after = '', $extra = [], $count = NULL )
+	{
+		echo $before;
+
+		$cache = new gThemeFragmentCache( 'rows_'.$context );
+
+		if ( ! $cache->output() ) {
+
+			if ( is_null( $count ) )
+				$count = gThemeCounts::get( $context, get_option( 'posts_per_page', 10 ) );
+
+			$query = new \WP_Query( array_merge( [
+				'post_type'      => apply_filters( 'gtheme_content_rows_posttypes', gThemeOptions::info( 'rows_'.$context.'_posttypes', [ 'post' ] ), $context ),
+				'posts_per_page' => $count,
+			], $extra ) );
+
+			if( $query->have_posts() ) {
+
+				gtheme_reset_post_class();
+				echo '<div class="-list-wrap -rows -rows-'.$context.'"><ul class="-items">';
+
+				while ( $query->have_posts() ) {
+
+					$query->the_post();
+
+					echo '<li>';
+						get_template_part( 'row', $context );
+						echo '<span class="-dummy"></span>';
+					echo '</li>';
+				}
+
+				echo '</ul></div>';
+				wp_reset_postdata();
+			}
+
+			$cache->store( FALSE );
+
+		} else {
+
+			$cache->discard();
+		}
+
+		echo $after;
+	}
+
 	public static function byline( $post = NULL, $before = '', $after = '', $echo = TRUE, $fallback = NULL )
 	{
 		if ( ! $post = self::getPost( $post ) )
