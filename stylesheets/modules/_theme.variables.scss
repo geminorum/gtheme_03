@@ -4,13 +4,17 @@
 /// Modules: Theme: Variables --------------------------------------------------
 
 ////////////////////////////////////////////////////////////////////////////////
+@use "sass:math"; // @REF: https://sass-lang.com/d/slash-div
+
+////////////////////////////////////////////////////////////////////////////////
 $theme-baseline-size: 16px !default;
 $theme-font-size:     16px !default;
 $theme-line-height:   1.428571429 !default; // 20/14
 
 ////////////////////////////////////////////////////////////////////////////////
 $theme-container-width: 1440px !default;
-$theme-entry-width: $theme-container-width / 2 !default;
+// $theme-entry-width: $theme-container-width / 2 !default;
+$theme-entry-width: math.div($theme-container-width, 2) !default;
 $theme-grid-gutter: 20px !default;
 
 $theme-brand-color: #2868c7 !default;

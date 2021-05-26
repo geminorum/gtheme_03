@@ -76,6 +76,7 @@
 // Default Paragraph Styles
 // it's better to be empty and child override it
 @mixin theme-default-paragraph() {
+  // $paragraph-margin-bottom // BS4
   // font-size: $font-size-large;
 
   // line-height: $headings-line-height * 1.2;
