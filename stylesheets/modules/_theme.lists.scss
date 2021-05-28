@@ -4,6 +4,9 @@
 /// Modules: Theme: Lists ------------------------------------------------------
 
 ////////////////////////////////////////////////////////////////////////////////
+@use "sass:math"; // @REF: https://sass-lang.com/d/slash-div
+
+////////////////////////////////////////////////////////////////////////////////
 @mixin theme-list-reset() {
   @include theme-gutter-reset();
   list-style: none;
@@ -29,6 +32,7 @@
 
 @mixin theme-list-flex() {
   @include theme-list-reset();
+
   display: flex;
   flex-wrap: wrap;
   // align-items: center;
@@ -43,48 +47,48 @@
 ////////////////////////////////////////////////////////////////////////////////
 // $bs: $theme-bs-navbar-height, $ab: $theme-wp-adminbar-height
 // @REF: https://codepen.io/mtclmn/pen/OPQmbx
-@mixin theme-list-style-diamond( $gutter: $theme-grid-gutter, $color: $gray-light) {
+@mixin theme-list-style-diamond($gutter: $theme-grid-gutter, $color: $gray-light) {
   @include theme-list-reset();
 
   li {
     margin: 0;
-    margin-bottom: $gutter / 2;
+    margin-bottom: math.div($gutter, 2);
     padding-right: $gutter;
     position: relative;
 
     &::after {
       content: "";
-      height: $gutter / 4;
-      width: $gutter / 4;
+      height: math.div($gutter, 4);
+      width: math.div($gutter, 4);
       background: $color;
       display: block;
       position: absolute;
       transform: rotate(45deg);
-      top: $gutter / 3;
-      right: $gutter / 4;
+      top: math.div($gutter, 3);
+      right: math.div($gutter, 4);
     }
   }
 }
 
-@mixin theme-list-style-diamond-LTR( $gutter: $theme-grid-gutter, $color: $gray-light) {
+@mixin theme-list-style-diamond-LTR($gutter: $theme-grid-gutter, $color: $gray-light) {
   @include theme-list-reset();
 
   li {
     margin: 0;
-    margin-bottom: $gutter / 2;
+    margin-bottom: math.div($gutter, 2);
     padding-left: $gutter;
     position: relative;
 
     &::after {
       content: "";
-      height: $gutter / 4;
-      width: $gutter / 4;
+      height: math.div($gutter, 4);
+      width: math.div($gutter, 4);
       background: $color;
       display: block;
       position: absolute;
       transform: rotate(45deg);
-      top: $gutter / 3;
-      left: $gutter / 4;
+      top: math.div($gutter, 3);
+      left: math.div($gutter, 4);
     }
   }
 }

@@ -4,6 +4,7 @@
 /// Modules: Theme: Images -----------------------------------------------------
 
 ////////////////////////////////////////////////////////////////////////////////
+@use "sass:math"; // @REF: https://sass-lang.com/d/slash-div
 
 ////////////////////////////////////////////////////////////////////////////////
 // Default Image Styles
@@ -35,11 +36,11 @@
   height: auto;
 
   &.alignright {
-    margin: 0 0 ( $theme-grid-gutter / 4 ) $theme-grid-gutter !important;
+    margin: 0 0 math.div($theme-grid-gutter, 4) $theme-grid-gutter !important;
   }
 
   &.alignleft {
-    margin: 0 $theme-grid-gutter ( $theme-grid-gutter / 4 ) 0 !important;
+    margin: 0 $theme-grid-gutter math.div($theme-grid-gutter, 4) 0 !important;
   }
 
   > p {
@@ -48,7 +49,7 @@
     left: 10px;
 
     padding: 4px 5px;
-    margin: 0 ( $theme-grid-gutter / 2 ) 0 0;
+    margin: 0 math.div($theme-grid-gutter, 2) 0 0;
     text-indent: 0 !important;
 
     font-size: 0.89em;

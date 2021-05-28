@@ -4,6 +4,9 @@
 /// Blocks: Defaults 02 - 2019-06-20
 
 ////////////////////////////////////////////////////////////////////////////////
+@use "sass:math"; // @REF: https://sass-lang.com/d/slash-div
+
+////////////////////////////////////////////////////////////////////////////////
 .wrapper {
   // &.-main {}
   // &.-copyright {}
@@ -142,7 +145,7 @@
 
   .entry-content {
     &.entry-404 {
-      max-width: ( $theme-container-width / 2 );
+      max-width: math.div($theme-container-width, 2);
       margin: 0 auto;
       text-align: center;
     }
@@ -230,7 +233,7 @@
 .entry-after.after-reflist,
 .entry-comments {
   border-top: 1px dotted $gray-light;
-  max-width: ( $theme-container-width / 2 );
+  max-width: math.div($theme-container-width, 2);
   margin: 2rem auto 1rem;
 }
 

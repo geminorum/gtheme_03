@@ -5,6 +5,9 @@
 // FIXME: it's RTL ONLY
 
 ////////////////////////////////////////////////////////////////////////////////
+@use "sass:math"; // @REF: https://sass-lang.com/d/slash-div
+
+////////////////////////////////////////////////////////////////////////////////
 // default WP markup
 // @REF: https://clicknathan.com/web-design/css-for-all-available-wordpress-gallery-columns/
 .entry-content .gallery {
@@ -17,7 +20,7 @@
   }
 
   // width: 100%;
-  margin: 0 auto $theme-grid-gutter / 2;
+  margin: 0 auto math.div($theme-grid-gutter, 2);
   padding: 0;
   border: 0;
 

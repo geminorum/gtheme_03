@@ -5,6 +5,9 @@
 // for non Bootstrap
 
 ////////////////////////////////////////////////////////////////////////////////
+@use "sass:math"; // @REF: https://sass-lang.com/d/slash-div
+
+////////////////////////////////////////////////////////////////////////////////
 .breadcrumb {
   display: flex;
   flex-wrap: wrap;
@@ -52,7 +55,7 @@
   flex-wrap: nowrap;
   justify-content: center;
 
-  max-width: ( $theme-container-width / 2 );
+  max-width: math.div($theme-container-width, 2);
   margin: 1rem auto 0.5rem !important;
 
   > a,
