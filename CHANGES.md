@@ -8,7 +8,7 @@
 * module/settings: remove all posts node from adminbar
 * module/terms: check for system tags before tax queries
 * module/widget: form has thumbnail method
-* partial/ entry publication: list attachment as default
+* partial/entry publication: list attachment as default
 * partial/entry course: list lessons descending after content
 * partial/page latest: default content for latest page
 * row/latest: default content for latest
