@@ -40,6 +40,7 @@ final class gThemeCore
 			'WordPress/Widget'   => '',
 
 			'Widgets/BannerGroup'    => '',
+			'Widgets/PostFeatured'   => '',
 			'Widgets/PostRow'        => '',
 			'Widgets/PostTerms'      => '',
 			'Widgets/TermPosts'      => '',

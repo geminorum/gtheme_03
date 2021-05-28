@@ -52,6 +52,7 @@ class gThemeSideBar extends gThemeModuleCore
 			'gThemeWidgetCustomHTML',
 			'gThemeWidgetSearch',
 			'gThemeWidgetSearchTerms',
+			'gThemeWidgetPostFeatured',
 			'gThemeWidgetPostRow',
 			'gThemeWidgetPostTerms',
 			'gThemeWidgetTermPosts',
