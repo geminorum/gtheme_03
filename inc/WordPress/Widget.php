@@ -433,32 +433,31 @@ class gThemeWidget extends WP_Widget
 	{
 		$sizes = [];
 
-		foreach ( gThemeOptions::info( 'images', [] ) as $name => $size )
-			if ( isset( $size['p'] ) && in_array( $post_type, $size['p'] ) )
-				$sizes[$name] = $size['n'].' ('.number_format_i18n( $size['w'] ).'&nbsp;&times;&nbsp;'.number_format_i18n( $size['h'] ).')';
+		foreach ( wp_get_additional_image_sizes() as $name => $size )
+			$sizes[$name] = ( isset( $size['title'] ) ? $size['title'] : $name )
+				.' ('.number_format_i18n( $size['width'] )
+				.'&nbsp;&times;&nbsp;'
+				.number_format_i18n( $size['height'] ).')';
 
-		if ( count( $sizes ) ) {
+		if ( empty( $sizes ) )
+			return gThemeHTML::desc( '<br />'._x( 'No Image Size Available!', 'Widget: Setting', 'gtheme' ), TRUE, '-empty' );
 
-			$selected = isset( $instance[$field] ) ? $instance[$field] : $default;
-			$html     = '';
+		$selected = isset( $instance[$field] ) ? $instance[$field] : $default;
+		$html     = '';
 
-			foreach ( $sizes as $size => $title )
-				$html.= gThemeHTML::tag( 'option', [
-					'value'    => $size,
-					'selected' => $selected == $size,
-				], $title );
+		foreach ( $sizes as $size => $title )
+			$html.= gThemeHTML::tag( 'option', [
+				'value'    => $size,
+				'selected' => $selected == $size,
+			], $title );
 
-			$html = gThemeHTML::tag( 'select', [
-				'class' => 'widefat',
-				'name'  => $this->get_field_name( $field ),
-				'id'    => $this->get_field_id( $field ),
-			], $html );
+		$html = gThemeHTML::tag( 'select', [
+			'class' => 'widefat',
+			'name'  => $this->get_field_name( $field ),
+			'id'    => $this->get_field_id( $field ),
+		], $html );
 
-			gThemeHTML::label( _x( 'Image Size:', 'Widget: Setting', 'gtheme' ).$html, $this->get_field_id( $field ) );
-
-		} else {
-			echo '<p>'._x( 'No Image Size Available!', 'Widget: Setting', 'gtheme' ).'</p>';
-		}
+		gThemeHTML::label( _x( 'Image Size:', 'Widget: Setting', 'gtheme' ).$html, $this->get_field_id( $field ) );
 	}
 
 	public function form_dropdown( $instance, $values, $default = '', $field = 'selected', $label = NULL )
