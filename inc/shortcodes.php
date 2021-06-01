@@ -25,6 +25,7 @@ class gThemeShortCodes extends gThemeModuleCore
 	{
 		$this->shortcodes( [
 			'theme-image'    => 'shortcode_theme_image',
+			'theme-header'   => 'shortcode_theme_header',
 			'panels'         => 'shortcode_panels',
 			'panel'          => 'shortcode_panel',
 			'tabs'           => 'shortcode_tabs',
@@ -432,6 +433,15 @@ class gThemeShortCodes extends gThemeModuleCore
 			], $html );
 
 		return $html;
+	}
+
+	public function shortcode_theme_header( $atts, $content = NULL, $tag = '' )
+	{
+		ob_start();
+
+		gThemeContent::header( $atts );
+
+		return ob_get_clean();
 	}
 
 	public function shortcode_children( $atts, $content = NULL, $tag = '' )
