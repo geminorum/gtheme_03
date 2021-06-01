@@ -83,7 +83,7 @@ class gThemeWidgetTermPosts extends gThemeWidget
 
 			return ! $singular; // avoid caching if it's singular
 
-		} else if ( $instance['empty'] ) {
+		} else if ( ! empty( $instance['empty'] ) ) {
 
 			$this->before_widget( $args, $instance );
 				$this->widget_title( $args, $instance );
