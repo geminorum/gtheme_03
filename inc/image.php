@@ -92,7 +92,7 @@ class gThemeImage extends gThemeModuleCore
 
 		$size = gThemeOptions::info( 'thumbnail_image_size', 'single' );
 
-		if ( ! $post_thumbnail_id = self::getThumbID( $size, $post_id ) )
+		if ( ! $post_thumbnail_id = self::getThumbnailID( $size, $post_id ) )
 			return $html;
 
 		if ( ! $post_thumbnail_img = wp_get_attachment_image_src( $post_thumbnail_id, $size ) )
@@ -442,7 +442,7 @@ class gThemeImage extends gThemeModuleCore
 	{
 		$size = gThemeOptions::info( 'amp_image_size', 'single' );
 
-		if ( ! $featured_id = self::getThumbID( $size, $post->ID ) )
+		if ( ! $featured_id = self::getThumbnailID( $size, $post->ID ) )
 			return $data;
 
 		$featured_html = self::getImage( [
@@ -542,28 +542,33 @@ class gThemeImage extends gThemeModuleCore
 		$gThemeImagesMeta[$post_id] = $images;
 	}
 
-	// ANCESTOR : gtheme_get_image_id()
+	// FIXME: DEPRECATED
 	public static function getThumbID( $tag = 'raw', $post_id = NULL )
 	{
+		self::_dep( 'gThemeImage::getThumbnailID()' );
+		return self::getThumbnailID( $tag, $post_id );
+	}
+
+	// ANCESTOR : gtheme_get_image_id()
+	public static function getThumbnailID( $tag = 'raw', $post_id = NULL )
+	{
+		$thumbnail_id = FALSE;
+
 		if ( is_null( $post_id ) )
 			$post_id = get_the_ID();
 
 		$images = get_post_meta( $post_id, GTHEME_IMAGES_META, TRUE );
 
 		if ( isset( $images[$tag] ) )
-			return $images[$tag];
+			$thumbnail_id = $images[$tag];
 
-		if ( isset( $images['raw'] ) )
-			return $images['raw'];
+		else if ( isset( $images['raw'] ) )
+			$thumbnail_id = $images['raw'];
 
-		if ( ! gThemeOptions::info( 'post_thumbnail_fallback', TRUE ) )
-			return FALSE;
+		else if ( gThemeOptions::info( 'post_thumbnail_fallback', TRUE ) )
+			$thumbnail_id = get_post_thumbnail_id( $post_id );
 
-		// fallback
-		if ( $thumbnail = get_post_thumbnail_id( $post_id ) )
-			return $thumbnail;
-
-		return FALSE;
+		return apply_filters( 'gtheme_image_get_thumbnail_id', $thumbnail_id, $post_id );
 	}
 
 	public static function update_cache( $size = 'raw', $wp_query = NULL )
@@ -577,7 +582,7 @@ class gThemeImage extends gThemeModuleCore
 		$thumb_ids = [];
 
 		foreach ( $wp_query->posts as $post )
-			if ( $id = self::getThumbID( $size, $post->ID ) )
+			if ( $id = self::getThumbnailID( $size, $post->ID ) )
 				$thumb_ids[] = $id;
 
 		if ( ! empty( $thumb_ids ) )
@@ -637,7 +642,7 @@ class gThemeImage extends gThemeModuleCore
 			$args['post_id'] = get_the_ID();
 
 		if ( ! $args['post_thumbnail_id'] )
-			$args['post_thumbnail_id'] = self::getThumbID( $args['tag'], $args['post_id'] );
+			$args['post_thumbnail_id'] = self::getThumbnailID( $args['tag'], $args['post_id'] );
 
 		$args['tag'] = apply_filters( 'post_thumbnail_size', $args['tag'], $args['post_id'] );
 
@@ -670,7 +675,7 @@ class gThemeImage extends gThemeModuleCore
 				if ( is_array( $args['link'] ) ) {
 
 					foreach ( $args['link'] as $link_size ) {
-						if ( $link_size_thumbnail_id = self::getThumbID( $link_size, $args['post_id'] ) ) {
+						if ( $link_size_thumbnail_id = self::getThumbnailID( $link_size, $args['post_id'] ) ) {
 							if ( $link_attachment = get_post( $link_size_thumbnail_id ) ) {
 								$args['link'] = get_attachment_link( $link_attachment );
 								break;
