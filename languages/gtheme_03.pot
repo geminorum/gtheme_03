@@ -7,7 +7,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2021-05-26T01:32:58+00:00\n"
+"POT-Creation-Date: 2021-06-11T14:53:12+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.5.0\n"
 "X-Domain: gtheme\n"
@@ -376,196 +376,196 @@ msgctxt "Options: Defaults: Date Format: Content"
 msgid "Y/j/m"
 msgstr ""
 
-#: inc/content.php:274
+#: inc/content.php:278
 msgctxt "Modules: Content: Post Title"
 msgid "(untitled)"
 msgstr ""
 
-#: inc/content.php:334
+#: inc/content.php:338
 msgctxt "Content: Read More Edit"
 msgid "Edit"
 msgstr ""
 
-#: inc/content.php:335
+#: inc/content.php:339
 msgctxt "Content: Read More Edit Title"
 msgid "Jump to edit page"
 msgstr ""
 
-#: inc/content.php:340
+#: inc/content.php:344
 msgctxt "Content: Read More Text"
 msgid "Read more&nbsp;<span class=\"excerpt-link-hellip\">&hellip;</span>"
 msgstr ""
 
 #. translators: %s: post title
-#: inc/content.php:342
+#: inc/content.php:346
 msgctxt "Content: Read More Title"
 msgid "Continue reading &ldquo;%s&rdquo; &hellip;"
 msgstr ""
 
 #. translators: %s: post title
-#: inc/content.php:372
+#: inc/content.php:376
 msgctxt "Content: Title Attr"
 msgid "Permanent link to &ndash;%s&ndash;"
 msgstr ""
 
 #. translators: %s: post title
-#: inc/content.php:376
+#: inc/content.php:380
 msgctxt "Content: Title Attr"
 msgid "Short link for &ndash;%s&ndash;"
 msgstr ""
 
-#: inc/content.php:612
-#: inc/content.php:619
+#: inc/content.php:616
+#: inc/content.php:623
 msgctxt "Modules: Content: Action"
 msgid "Share This"
 msgstr ""
 
-#: inc/content.php:626
+#: inc/content.php:630
 msgctxt "Modules: Content: Action"
 msgid "Pocket"
 msgstr ""
 
-#: inc/content.php:633
+#: inc/content.php:637
 msgctxt "Modules: Content: Action"
 msgid "Print Version"
 msgstr ""
 
-#: inc/content.php:641
+#: inc/content.php:645
 msgctxt "Modules: Content: Action"
 msgid "Short Link"
 msgstr ""
 
-#: inc/content.php:649
+#: inc/content.php:653
 msgctxt "Modules: Content: Action"
 msgid "QR-Code"
 msgstr ""
 
-#: inc/content.php:651
+#: inc/content.php:655
 msgctxt "Content: Title Attr"
 msgid "QR-Code for &ndash;%s&ndash;"
 msgstr ""
 
 #. translators: %1$s: class name, %2$s: comments number, %3$s: comment url
-#: inc/content.php:691
+#: inc/content.php:695
 msgctxt "Modules: Content: Action"
 msgid "<a href=\"%3$s\" class=\"%1$s\">Your Comment</a>"
 msgstr ""
 
 #. translators: %1$s: class name, %2$s: comments number, %3$s: comment url
-#: inc/content.php:693
+#: inc/content.php:697
 msgctxt "Modules: Content: Action"
 msgid "<a href=\"%3$s\" class=\"%1$s\">One Comment</a>"
 msgstr ""
 
 #. translators: %1$s: class name, %2$s: comments number, %3$s: comment url
-#: inc/content.php:695
+#: inc/content.php:699
 msgctxt "Modules: Content: Action"
 msgid "<a href=\"%3$s\" class=\"%1$s\">%2$s Comments</a>"
 msgstr ""
 
 #. translators: %1$s: comments rss link, %2$s: title attr, %3$s: class name
-#: inc/content.php:706
+#: inc/content.php:710
 msgctxt "Modules: Content: Action"
 msgid " <small><small>(<a href=\"%1$s\" title=\"%2$s\" class=\"%3$s\"><abbr title=\"Really Simple Syndication\">RSS</abbr></a>)</small></small>"
 msgstr ""
 
-#: inc/content.php:708
+#: inc/content.php:712
 msgctxt "Modules: Content: Action"
 msgid "Feed for this post's comments"
 msgstr ""
 
-#: inc/content.php:721
+#: inc/content.php:725
 msgctxt "Modules: Content: Action"
 msgid "Edit"
 msgstr ""
 
-#: inc/content.php:732
-#: inc/content.php:752
+#: inc/content.php:736
+#: inc/content.php:756
 msgctxt "Options: Separator: Term"
 msgid ", "
 msgstr ""
 
-#: inc/content.php:894
+#: inc/content.php:898
 msgctxt "Qr-Code"
 msgid "Loading&hellip;"
 msgstr ""
 
-#: inc/content.php:925
+#: inc/content.php:929
 msgctxt "Options: Text Size Increase"
 msgid "[ A+ ]"
 msgstr ""
 
-#: inc/content.php:928
+#: inc/content.php:932
 msgctxt "Options: Text Size Decrease"
 msgid "[ A- ]"
 msgstr ""
 
-#: inc/content.php:931
+#: inc/content.php:935
 msgctxt "Options: Text Size Sep"
 msgid " / "
 msgstr ""
 
-#: inc/content.php:936
+#: inc/content.php:940
 msgid "Increase font size"
 msgstr ""
 
-#: inc/content.php:943
+#: inc/content.php:947
 msgid "Decrease font size"
 msgstr ""
 
-#: inc/content.php:957
+#: inc/content.php:961
 msgctxt "Options: Text Justify"
 msgid "[ Ju ]"
 msgstr ""
 
-#: inc/content.php:960
+#: inc/content.php:964
 msgctxt "Options: Text Unjustify"
 msgid "[ uJ ]"
 msgstr ""
 
-#: inc/content.php:963
+#: inc/content.php:967
 msgctxt "Options: Text Justify Sep"
 msgid " / "
 msgstr ""
 
-#: inc/content.php:968
+#: inc/content.php:972
 msgid "Justify paragraphs"
 msgstr ""
 
-#: inc/content.php:975
+#: inc/content.php:979
 msgid "Un-justify paragraphs"
 msgstr ""
 
-#: inc/content.php:1024
+#: inc/content.php:1028
 msgctxt "Modules: Content: Addtoany"
 msgid "Share This"
 msgstr ""
 
 #. translators: %s: post title
-#: inc/content.php:1039
+#: inc/content.php:1043
 msgctxt "Modules: Content: Addtoany"
 msgid "Check this out %s"
 msgstr ""
 
 #. translators: %s: post link
-#: inc/content.php:1041
+#: inc/content.php:1045
 msgctxt "Modules: Content: Addtoany"
 msgid ""
 "Click the link:\n"
 "%s"
 msgstr ""
 
-#: inc/content.php:1335
+#: inc/content.php:1339
 msgctxt "Modules: Content: Link Pages"
 msgid "Next page"
 msgstr ""
 
-#: inc/content.php:1336
+#: inc/content.php:1340
 msgctxt "Modules: Content: Link Pages"
 msgid "Previous page"
 msgstr ""
 
-#: inc/content.php:1348
+#: inc/content.php:1352
 msgctxt "Modules: Content: Link Pages"
 msgid "Pages:"
 msgstr ""
@@ -666,25 +666,25 @@ msgid "; "
 msgstr ""
 
 #. translators: %1$s: size name, %2$s: size height, %3$s: size width
-#: inc/image.php:303
+#: inc/image.php:316
 msgctxt "Image Module: Media Tag Checkbox Label"
 msgid "%1$s <small>(%2$s&times;%3$s)</small>"
 msgstr ""
 
-#: inc/image.php:318
+#: inc/image.php:331
 msgid "Media Tags"
 msgstr ""
 
-#: inc/image.php:388
+#: inc/image.php:401
 msgid "&mdash; Select a Term &mdash;"
 msgstr ""
 
-#: inc/image.php:398
+#: inc/image.php:411
 msgid "Assign for"
 msgstr ""
 
 #. translators: %s: post title
-#: inc/image.php:691
+#: inc/image.php:713
 msgctxt "Modules: Image: Link Label"
 msgid "Read more about %s"
 msgstr ""
@@ -705,9 +705,9 @@ msgid "Tertiary Navigation"
 msgstr ""
 
 #: inc/modulecore.php:226
-#: inc/WordPress/Widget.php:474
-#: inc/WordPress/Widget.php:512
-#: inc/WordPress/Widget.php:547
+#: inc/WordPress/Widget.php:473
+#: inc/WordPress/Widget.php:511
+#: inc/WordPress/Widget.php:546
 msgid "&mdash; Select &mdash;"
 msgstr ""
 
@@ -1126,17 +1126,17 @@ msgctxt "Modules: Settings"
 msgid "Theme Template Base"
 msgstr ""
 
-#: inc/shortcodes.php:311
+#: inc/shortcodes.php:312
 msgctxt "Panel Shortcode Title"
 msgid "Untitled"
 msgstr ""
 
-#: inc/shortcodes.php:386
+#: inc/shortcodes.php:387
 msgctxt "Tab Shortcode Title"
 msgid "Untitled"
 msgstr ""
 
-#: inc/shortcodes.php:551
+#: inc/shortcodes.php:561
 msgctxt "Modules: ShortCodes: Defaults"
 msgid "Related Posts"
 msgstr ""
@@ -1545,6 +1545,11 @@ msgctxt "Widget: Description"
 msgid "Displays the featured image of the current post."
 msgstr ""
 
+#: inc/Widgets/PostFeatured.php:69
+msgctxt "Widget: Setting"
+msgid "Link to Attachment Page"
+msgstr ""
+
 #: inc/Widgets/PostRow.php:13
 msgctxt "Widget: Title"
 msgid "Theme: Post Row"
@@ -1771,47 +1776,47 @@ msgctxt "Widget: Setting"
 msgid "Avatar Size:"
 msgstr ""
 
-#: inc/WordPress/Widget.php:457
-msgctxt "Widget: Setting"
-msgid "Image Size:"
-msgstr ""
-
-#: inc/WordPress/Widget.php:460
+#: inc/WordPress/Widget.php:443
 msgctxt "Widget: Setting"
 msgid "No Image Size Available!"
 msgstr ""
 
-#: inc/WordPress/Widget.php:485
+#: inc/WordPress/Widget.php:460
+msgctxt "Widget: Setting"
+msgid "Image Size:"
+msgstr ""
+
+#: inc/WordPress/Widget.php:484
 msgctxt "Widget: Setting"
 msgid "Checked"
 msgstr ""
 
-#: inc/WordPress/Widget.php:504
+#: inc/WordPress/Widget.php:503
 msgctxt "Widget: Setting"
 msgid "Page:"
 msgstr ""
 
-#: inc/WordPress/Widget.php:531
+#: inc/WordPress/Widget.php:530
 msgctxt "Widget: Setting"
 msgid "Select taxonomy first!"
 msgstr ""
 
-#: inc/WordPress/Widget.php:539
+#: inc/WordPress/Widget.php:538
 msgctxt "Widget: Setting"
 msgid "The taxonomy is not available!"
 msgstr ""
 
-#: inc/WordPress/Widget.php:542
+#: inc/WordPress/Widget.php:541
 msgctxt "Widget: Setting"
 msgid "No terms available!"
 msgstr ""
 
-#: inc/WordPress/Widget.php:561
+#: inc/WordPress/Widget.php:560
 msgctxt "Widget: Setting"
 msgid "Term:"
 msgstr ""
 
-#: inc/WordPress/Widget.php:567
+#: inc/WordPress/Widget.php:566
 msgctxt "Widget: Setting"
 msgid "Must has Thumbnail Image"
 msgstr ""
