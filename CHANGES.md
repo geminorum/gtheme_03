@@ -1,3 +1,11 @@
+### 3.20.14
+* module/content: handling dummy posts
+* module/image: check if thumbnail attachment exists
+* module/image: convert tags into thumbnails
+* module/image: filtering thumbnail id
+* module/shortcodes: :new: shortcode for content header
+* widget/post featured: :new: widget
+
 ### 3.20.13
 * module/bootstrap: customized logo for navbar brand
 * module/content: contexted loop as rows
