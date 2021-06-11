@@ -238,6 +238,10 @@ class gThemeContent extends gThemeModuleCore
 		if ( $post instanceof \WP_Post )
 			return $post;
 
+		// handling dummy posts!
+		if ( '-9999' == $post )
+			$post = NULL;
+
 		return get_post( $post, $output, $filter );
 	}
 
