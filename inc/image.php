@@ -49,8 +49,13 @@ class gThemeImage extends gThemeModuleCore
 		add_filter( 'wp_editor_set_quality', [ $this, 'wp_editor_set_quality' ], 10, 2 );
 
 		if ( $image_attachment_tags ) {
+
 			add_filter( 'attachment_fields_to_edit', [ $this, 'tags_attachment_fields_to_edit' ], 10, 2 );
 			add_filter( 'attachment_fields_to_save', [ $this, 'tags_attachment_fields_to_save' ], 10, 2 );
+
+		} else if ( $core_post_thumbnails && gThemeOptions::info( 'image_convert_tags_into_thumbnail', FALSE ) ) {
+
+			add_action( 'post_updated', [ $this, 'post_updated_convert_image_tags' ], 9, 3 );
 		}
 
 		if ( $image_attachment_terms ) {
@@ -276,6 +281,35 @@ class gThemeImage extends gThemeModuleCore
 		// 	error_log( print_r( compact( 'post_type', 'new_sizes', 'size_names' ), TRUE ) );
 
 		return array_merge( $size_names, $new_sizes );
+	}
+
+	// tries to convert image tags into core's thumbnails
+	public function post_updated_convert_image_tags( $post_id, $post_after, $post_before )
+	{
+		if ( ! $images = get_post_meta( $post_id, GTHEME_IMAGES_META, TRUE ) )
+			return;
+
+		if ( ! get_post_thumbnail_id( $post_id ) ) {
+
+			$thumbnail = FALSE;
+			$size      = gThemeOptions::info( 'thumbnail_image_size', 'single' );
+
+			if ( isset( $images[$size] ) )
+				$thumbnail = $images[$size];
+
+			else if ( isset( $images['raw'] ) )
+				$thumbnail = $images['raw'];
+
+			// check if attachment exists
+			if ( $thumbnail && ! get_post( $thumbnail ) )
+				$thumbnail = FALSE;
+
+			if ( $thumbnail )
+				update_post_meta( $post_id, '_thumbnail_id', $thumbnail );
+		}
+
+		// removes the old data
+		delete_post_meta( $post_id, GTHEME_IMAGES_META );
 	}
 
 	public function tags_attachment_fields_to_edit( $fields, $post )
