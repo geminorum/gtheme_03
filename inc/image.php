@@ -565,7 +565,11 @@ class gThemeImage extends gThemeModuleCore
 		else if ( isset( $images['raw'] ) )
 			$thumbnail_id = $images['raw'];
 
-		else if ( gThemeOptions::info( 'post_thumbnail_fallback', TRUE ) )
+		// check if attachment exists
+		if ( $thumbnail_id && ! get_post( $thumbnail_id ) )
+			$thumbnail_id = FALSE;
+
+		if ( ! $thumbnail_id && gThemeOptions::info( 'post_thumbnail_fallback', TRUE ) )
 			$thumbnail_id = get_post_thumbnail_id( $post_id );
 
 		return apply_filters( 'gtheme_image_get_thumbnail_id', $thumbnail_id, $post_id );
