@@ -24,17 +24,18 @@ class gThemeShortCodes extends gThemeModuleCore
 	public function init()
 	{
 		$this->shortcodes( [
-			'theme-image'    => 'shortcode_theme_image',
-			'theme-header'   => 'shortcode_theme_header',
-			'panels'         => 'shortcode_panels',
-			'panel'          => 'shortcode_panel',
-			'tabs'           => 'shortcode_tabs',
-			'tab'            => 'shortcode_tab',
-			'children'       => 'shortcode_children',
-			'siblings'       => 'shortcode_siblings',
-			'people-image'   => 'shortcode_person_picture',
-			'person-picture' => 'shortcode_person_picture',
-			'related-posts'  => 'shortcode_related_posts',
+			'theme-image'     => 'shortcode_theme_image',
+			'theme-header'    => 'shortcode_theme_header',
+			'theme-thumbnail' => 'shortcode_theme_thumbnail',
+			'panels'          => 'shortcode_panels',
+			'panel'           => 'shortcode_panel',
+			'tabs'            => 'shortcode_tabs',
+			'tab'             => 'shortcode_tab',
+			'children'        => 'shortcode_children',
+			'siblings'        => 'shortcode_siblings',
+			'people-image'    => 'shortcode_person_picture',
+			'person-picture'  => 'shortcode_person_picture',
+			'related-posts'   => 'shortcode_related_posts',
 			// 'slider'        => 'shortcode_gallery_slider',
 		] );
 	}
@@ -440,6 +441,15 @@ class gThemeShortCodes extends gThemeModuleCore
 		ob_start();
 
 		gThemeContent::header( $atts );
+
+		return ob_get_clean();
+	}
+
+	public function shortcode_theme_thumbnail( $atts, $content = NULL, $tag = '' )
+	{
+		ob_start();
+
+		gThemeImage::image( $atts );
 
 		return ob_get_clean();
 	}
