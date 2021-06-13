@@ -93,6 +93,10 @@ class gThemeWidgetSearchTerms extends gThemeWidget
 		$this->form_checkbox( $instance, FALSE, 'prefix_with_name', _x( 'Prefix Terms with Taxonomy Name', 'Widget: Setting', 'gtheme' ) );
 		$this->form_checkbox( $instance, FALSE, 'strip_hashtags', _x( 'Strip Hash-tags', 'Widget: Setting', 'gtheme' ) );
 
+		$this->form_open_widget( $instance );
+		$this->form_after_title( $instance );
+		$this->form_close_widget( $instance );
+
 		$this->after_form( $instance );
 	}
 }

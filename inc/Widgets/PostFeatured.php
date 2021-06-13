@@ -58,6 +58,10 @@ class gThemeWidgetPostFeatured extends gThemeWidget
 		$this->form_image_size( $instance, 'medium' );
 		$this->form_checkbox( $instance, FALSE, 'linked', _x( 'Link to Attachment Page', 'Widget: Setting', 'gtheme' ) );
 
+		$this->form_open_widget( $instance );
+		$this->form_after_title( $instance );
+		$this->form_close_widget( $instance );
+
 		$this->after_form( $instance );
 	}
 }

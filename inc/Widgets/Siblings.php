@@ -37,6 +37,10 @@ class gThemeWidgetSiblings extends gThemeWidget
 		$this->form_class( $instance );
 		$this->form_post_type( $instance, 'page' );
 
+		$this->form_open_widget( $instance );
+		$this->form_after_title( $instance );
+		$this->form_close_widget( $instance );
+
 		$this->after_form( $instance );
 	}
 }

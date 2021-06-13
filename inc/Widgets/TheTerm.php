@@ -136,6 +136,10 @@ class gThemeWidgetTheTerm extends gThemeWidget
 		$this->form_checkbox( $instance, TRUE, 'hide_no_desc', _x( 'Hide if no Description', 'Widget: Setting', 'gtheme' ) );
 		$this->form_checkbox( $instance, TRUE, 'content_actions', _x( 'Fire Before & After Actions', 'Widget: Setting', 'gtheme' ) );
 
+		$this->form_open_widget( $instance );
+		$this->form_after_title( $instance );
+		$this->form_close_widget( $instance );
+
 		$this->after_form( $instance );
 	}
 }

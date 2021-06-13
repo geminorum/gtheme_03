@@ -138,6 +138,9 @@ class gThemeWidget extends WP_Widget
 
 		$html = preg_replace( '%{GTHEME_WIDGET_CLASSNAME}%', gThemeHTML::prepClass( $classes, $extra ), $args['before_widget'] );
 
+		if ( ! empty( $instance['open_widget_html'] ) )
+			$html.= trim( $instance['open_widget_html'] );
+
 		if ( ! $echo )
 			return $html;
 
@@ -146,10 +149,15 @@ class gThemeWidget extends WP_Widget
 
 	public function after_widget( $args, $instance, $echo = TRUE )
 	{
-		if ( ! $echo )
-			return $args['after_widget'];
+		$html = $args['after_widget'];
 
-		echo $args['after_widget'];
+		if ( ! empty( $instance['close_widget_html'] ) )
+			$html = trim( $instance['close_widget_html'] ).$html;
+
+		if ( ! $echo )
+			return $html;
+
+		echo $html;
 	}
 
 	public function widget_title( $args, $instance, $echo = TRUE, $default = '' )
@@ -170,6 +178,9 @@ class gThemeWidget extends WP_Widget
 			$title = gThemeHTML::link( $title, $instance['title_link'] );
 
 		$html = $args['before_title'].$title.$args['after_title'];
+
+		if ( ! empty( $instance['after_title_html'] ) )
+			$html = trim( $instance['after_title_html'] ).$html;
 
 		if ( ! $echo )
 			return $html;
@@ -203,6 +214,9 @@ class gThemeWidget extends WP_Widget
 
 			'content'           => 'html',
 			'empty'             => 'html',
+			'open_widget_html'  => 'html',
+			'after_title_html'  => 'html',
+			'close_widget_html' => 'html',
 
 			'class'      => 'key',
 			'post_type'  => 'key',
@@ -279,6 +293,63 @@ class gThemeWidget extends WP_Widget
 
 		echo gThemeHTML::tag( 'textarea', [
 			'rows'  => '3',
+			'name'  => $this->get_field_name( $field ),
+			'id'    => $this->get_field_id( $field ),
+			'class' => 'widefat code textarea-autosize',
+		], isset( $instance[$field] ) ? $instance[$field] : $default );
+
+		echo '</p>';
+	}
+
+	public function form_open_widget( $instance, $default = '', $field = 'open_widget_html', $label = NULL )
+	{
+		if ( is_null( $label ) )
+			$label = _x( 'Custom HTML for Opening Widget:', 'Widget: Setting', 'gtheme' );
+
+		echo '<p>';
+
+		gThemeHTML::label( $label, $this->get_field_id( $field ), FALSE );
+
+		echo gThemeHTML::tag( 'textarea', [
+			'rows'  => '1',
+			'name'  => $this->get_field_name( $field ),
+			'id'    => $this->get_field_id( $field ),
+			'class' => 'widefat code textarea-autosize',
+		], isset( $instance[$field] ) ? $instance[$field] : $default );
+
+		echo '</p>';
+	}
+
+	public function form_close_widget( $instance, $default = '', $field = 'close_widget_html', $label = NULL )
+	{
+		if ( is_null( $label ) )
+			$label = _x( 'Custom HTML for Closing Widget:', 'Widget: Setting', 'gtheme' );
+
+		echo '<p>';
+
+		gThemeHTML::label( $label, $this->get_field_id( $field ), FALSE );
+
+		echo gThemeHTML::tag( 'textarea', [
+			'rows'  => '1',
+			'name'  => $this->get_field_name( $field ),
+			'id'    => $this->get_field_id( $field ),
+			'class' => 'widefat code textarea-autosize',
+		], isset( $instance[$field] ) ? $instance[$field] : $default );
+
+		echo '</p>';
+	}
+
+	public function form_after_title( $instance, $default = '', $field = 'after_title_html', $label = NULL )
+	{
+		if ( is_null( $label ) )
+			$label = _x( 'Custom HTML for After Title:', 'Widget: Setting', 'gtheme' );
+
+		echo '<p>';
+
+		gThemeHTML::label( $label, $this->get_field_id( $field ), FALSE );
+
+		echo gThemeHTML::tag( 'textarea', [
+			'rows'  => '1',
 			'name'  => $this->get_field_name( $field ),
 			'id'    => $this->get_field_id( $field ),
 			'class' => 'widefat code textarea-autosize',

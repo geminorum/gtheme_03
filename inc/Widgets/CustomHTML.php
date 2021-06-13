@@ -84,6 +84,10 @@ class gThemeWidgetCustomHTML extends gThemeWidget
 
 		echo '</div>';
 
+		$this->form_open_widget( $instance );
+		$this->form_after_title( $instance );
+		$this->form_close_widget( $instance );
+
 		$this->after_form( $instance );
 	}
 }

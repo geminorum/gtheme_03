@@ -106,6 +106,10 @@ class gThemeWidgetRecentPosts extends gThemeWidget
 
 		$this->form_custom_empty( $instance );
 
+		$this->form_open_widget( $instance );
+		$this->form_after_title( $instance );
+		$this->form_close_widget( $instance );
+
 		$this->after_form( $instance );
 	}
 }
