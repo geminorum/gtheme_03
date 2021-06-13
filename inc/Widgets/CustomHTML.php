@@ -52,22 +52,15 @@ class gThemeWidgetCustomHTML extends gThemeWidget
 
 	public function update( $new, $old )
 	{
-		$instance = $old;
-
-		$instance['title']       = sanitize_text_field( $new['title'] );
-		$instance['title_link']  = strip_tags( $new['title_link'] );
-		$instance['title_image'] = strip_tags( $new['title_image'] );
-		$instance['class']       = strip_tags( $new['class'] );
-		$instance['content']     = trim( current_user_can( 'unfiltered_html' ) ? $new['content'] : wp_kses_post( $new['content'] ) );
-		$instance['embeds']      = isset( $new['embeds'] );
-		$instance['shortcodes']  = isset( $new['shortcodes'] );
-		$instance['filters']     = isset( $new['filters'] );
-		$instance['legacy']      = isset( $new['legacy'] );
-		$instance['autop']       = isset( $new['autop'] );
-
 		$this->flush_widget_cache();
 
-		return $instance;
+		return $this->handle_update( $new, $old, [
+			'embeds',
+			'shortcodes',
+			'filters',
+			'legacy',
+			'autop',
+		] );
 	}
 
 	public function form( $instance )

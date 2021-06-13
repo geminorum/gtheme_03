@@ -43,18 +43,8 @@ class gThemeWidgetPostFeatured extends gThemeWidget
 
 	public function update( $new, $old )
 	{
-		$instance = $old;
-
-		$instance['title']       = sanitize_text_field( $new['title'] );
-		$instance['title_link']  = strip_tags( $new['title_link'] );
-		$instance['title_image'] = strip_tags( $new['title_image'] );
-		$instance['class']       = strip_tags( $new['class'] );
-		$instance['image_size']  = empty( $new['image_size'] ) ? 'medium' : strip_tags( $new['image_size'] );
-		$instance['linked']      = isset( $new['linked'] );
-
 		$this->flush_widget_cache();
-
-		return $instance;
+		return $this->handle_update( $new, $old, [ 'linked' ] );
 	}
 
 	public function form( $instance )

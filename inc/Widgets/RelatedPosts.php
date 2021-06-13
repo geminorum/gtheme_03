@@ -113,23 +113,8 @@ class gThemeWidgetRelatedPosts extends gThemeWidget
 
 	public function update( $new, $old )
 	{
-		$instance = $old;
-
-		$instance['title']       = sanitize_text_field( $new['title'] );
-		$instance['title_link']  = strip_tags( $new['title_link'] );
-		$instance['title_image'] = strip_tags( $new['title_image'] );
-		$instance['context']     = strip_tags( $new['context'] );
-		$instance['class']       = strip_tags( $new['class'] );
-		$instance['post_type']   = strip_tags( $new['post_type'] );
-		$instance['taxonomy']    = strip_tags( $new['taxonomy'] );
-
-		$instance['has_thumbnail'] = ! empty( $new['has_thumbnail'] );
-
-		$instance['number'] = (int) $new['number'];
-
 		$this->flush_widget_cache();
-
-		return $instance;
+		return $this->handle_update( $new, $old, [ 'has_thumbnail' ] );
 	}
 
 	public function form( $instance )

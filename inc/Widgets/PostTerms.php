@@ -68,22 +68,6 @@ class gThemeWidgetPostTerms extends gThemeWidget
 		$this->after_widget( $args, $instance );
 	}
 
-	public function update( $new, $old )
-	{
-		$instance = $old;
-
-		$instance['title']       = sanitize_text_field( $new['title'] );
-		$instance['title_link']  = strip_tags( $new['title_link'] );
-		$instance['title_image'] = strip_tags( $new['title_image'] );
-		$instance['class']       = strip_tags( $new['class'] );
-
-		$instance['taxonomy'] = strip_tags( $new['taxonomy'] );
-
-		$this->flush_widget_cache();
-
-		return $instance;
-	}
-
 	public function form( $instance )
 	{
 		$this->before_form( $instance );

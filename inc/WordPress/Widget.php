@@ -185,6 +185,64 @@ class gThemeWidget extends WP_Widget
 		delete_transient( $key );
 	}
 
+	public function update( $new, $old )
+	{
+		$this->flush_widget_cache();
+		return $this->handle_update( $new, $old );
+	}
+
+	public function handle_update( $new, $old, $checkboxes = [], $fields = [] )
+	{
+		gThemeHTML::_log($new, $old); // FIXME!
+
+		$fields = array_merge( [
+			'title' => 'text',
+
+			'title_link'  => 'url',
+			'title_image' => 'url',
+
+			'content'           => 'html',
+			'empty'             => 'html',
+
+			'class'      => 'key',
+			'post_type'  => 'key',
+			'posttype'   => 'key',
+			'taxonomy'   => 'key',
+			'context'    => 'key',
+			'image_size' => 'key',
+
+			'post_id'     => 'digit',
+			'term_id'     => 'digit',
+			'number'      => 'digit',
+			'avatar_size' => 'digit',
+		], $fields );
+
+		$instance   = $old;
+		$unfiltered = current_user_can( 'unfiltered_html' );
+
+		foreach ( $fields as $field => $type ) {
+
+			if ( ! array_key_exists( $field, $new ) )
+				continue;
+
+			switch ( $type ) {
+				case 'key':   $instance[$field] = strip_tags( $new[$field] ); break;
+				case 'digit': $instance[$field] = (int) $new[$field]; break;
+				case 'text':  $instance[$field] = sanitize_text_field( $new[$field] ); break;
+				case 'url':   $instance[$field] = strip_tags( $new[$field] ); break;
+				case 'html':  $instance[$field] = trim( $unfiltered ? $new[$field] : wp_kses_post( $new[$field] ) ); break;
+
+				default: $instance[$field] = strip_tags( $new[$type] );
+			}
+		}
+
+		// checkbox keys will not passed
+		foreach ( $checkboxes as $checkbox )
+			$instance[$checkbox] = isset( $new[$checkbox] );
+
+		return $instance;
+	}
+
 	public function before_form( $instance, $echo = TRUE )
 	{
 		$classes = [ static::BASE.'-wrap', '-wrap', '-admin-widgetform' ];

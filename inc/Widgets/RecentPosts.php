@@ -87,23 +87,8 @@ class gThemeWidgetRecentPosts extends gThemeWidget
 
 	public function update( $new, $old )
 	{
-		$instance = $old;
-
-		$instance['title']       = sanitize_text_field( $new['title'] );
-		$instance['title_link']  = strip_tags( $new['title_link'] );
-		$instance['title_image'] = strip_tags( $new['title_image'] );
-		$instance['post_type']   = strip_tags( $new['post_type'] );
-		$instance['context']     = strip_tags( $new['context'] );
-		$instance['class']       = strip_tags( $new['class'] );
-
-		$instance['menu_order'] = isset( $new['menu_order'] );
-
-		$instance['number'] = (int) $new['number'];
-		$instance['empty']  = trim( current_user_can( 'unfiltered_html' ) ? $new['empty'] : wp_kses_post( $new['empty'] ) );
-
 		$this->flush_widget_cache();
-
-		return $instance;
+		return $this->handle_update( $new, $old, [ 'menu_order' ] );
 	}
 
 	public function form( $instance )

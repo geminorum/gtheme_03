@@ -73,23 +73,6 @@ class gThemeWidgetRecentComments extends gThemeWidget
 		);
 	}
 
-	public function update( $new, $old )
-	{
-		$instance = $old;
-
-		$instance['title']       = sanitize_text_field( $new['title'] );
-		$instance['title_link']  = strip_tags( $new['title_link'] );
-		$instance['title_image'] = strip_tags( $new['title_image'] );
-		$instance['class']       = strip_tags( $new['class'] );
-
-		$instance['number']      = (int) $new['number'];
-		$instance['avatar_size'] = (int) $new['avatar_size'];
-
-		$this->flush_widget_cache();
-
-		return $instance;
-	}
-
 	public function form( $instance )
 	{
 		$this->before_form( $instance );

@@ -71,21 +71,12 @@ class gThemeWidgetSearchTerms extends gThemeWidget
 
 	public function update( $new, $old )
 	{
-		$instance = $old;
-
-		$instance['title']       = sanitize_text_field( $new['title'] );
-		$instance['title_link']  = strip_tags( $new['title_link'] );
-		$instance['title_image'] = strip_tags( $new['title_image'] );
-		$instance['class']       = strip_tags( $new['class'] );
-
-		$instance['taxonomy'] = strip_tags( $new['taxonomy'] );
-
-		$instance['prefix_with_name'] = isset( $new['prefix_with_name'] );
-		$instance['strip_hashtags']   = isset( $new['strip_hashtags'] );
-
 		$this->flush_widget_cache();
 
-		return $instance;
+		return $this->handle_update( $new, $old, [
+			'prefix_with_name',
+			'strip_hashtags',
+		] );
 	}
 
 	public function form( $instance )
