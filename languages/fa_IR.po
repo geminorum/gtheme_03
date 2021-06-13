@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gTheme 3\n"
 "Report-Msgid-Bugs-To: https://github.com/geminorum/gtheme_03/issues\n"
-"POT-Creation-Date: 2021-06-11T14:53:12+00:00\n"
-"PO-Revision-Date: 2021-06-11 19:25+0430\n"
+"POT-Creation-Date: 2021-06-13T23:04:19+04:30\n"
+"PO-Revision-Date: 2021-06-13 23:06+0430\n"
 "Last-Translator: geminorum <contact@geminorum.ir>\n"
 "Language-Team: geminorum <contact@geminorum.ir>\n"
 "Language: fa_IR\n"
@@ -691,28 +691,28 @@ msgid "; "
 msgstr "؛ "
 
 #. translators: %1$s: size name, %2$s: size height, %3$s: size width
-#: inc/image.php:316
+#: inc/image.php:337
 msgctxt "Image Module: Media Tag Checkbox Label"
 msgid "%1$s <small>(%2$s&times;%3$s)</small>"
 msgstr ""
 
 # @ gtheme
-#: inc/image.php:331
+#: inc/image.php:352
 msgid "Media Tags"
 msgstr "برچسب‌ها"
 
 # @ gtheme
-#: inc/image.php:401
+#: inc/image.php:422
 msgid "&mdash; Select a Term &mdash;"
 msgstr "&mdash; انتخاب کنید &mdash;"
 
 # @ gtheme
-#: inc/image.php:411
+#: inc/image.php:432
 msgid "Assign for"
 msgstr "تخصیص برای"
 
 #. translators: %s: post title
-#: inc/image.php:713
+#: inc/image.php:734
 msgctxt "Modules: Image: Link Label"
 msgid "Read more about %s"
 msgstr "درباره %s بیشتر بخوانید"
@@ -733,8 +733,8 @@ msgid "Tertiary Navigation"
 msgstr "راه‌بری ثالث"
 
 # @ gtheme
-#: inc/modulecore.php:226 inc/WordPress/Widget.php:473
-#: inc/WordPress/Widget.php:511 inc/WordPress/Widget.php:546
+#: inc/modulecore.php:226 inc/WordPress/Widget.php:602
+#: inc/WordPress/Widget.php:640 inc/WordPress/Widget.php:675
 msgid "&mdash; Select &mdash;"
 msgstr "&mdash; انتخاب کنید &mdash;"
 
@@ -1160,18 +1160,18 @@ msgid "Theme Template Base"
 msgstr "پایه قالب پوسته"
 
 # @ gtheme
-#: inc/shortcodes.php:312
+#: inc/shortcodes.php:313
 msgctxt "Panel Shortcode Title"
 msgid "Untitled"
 msgstr "بدون عنوان"
 
 # @ gtheme
-#: inc/shortcodes.php:387
+#: inc/shortcodes.php:388
 msgctxt "Tab Shortcode Title"
 msgid "Untitled"
 msgstr "بدون عنوان"
 
-#: inc/shortcodes.php:561
+#: inc/shortcodes.php:571
 msgctxt "Modules: ShortCodes: Defaults"
 msgid "Related Posts"
 msgstr "نوشته‌های مرتبط"
@@ -1547,27 +1547,27 @@ msgctxt "Widget: Description"
 msgid "Displays arbitrary HTML code with support for shortcodes and embeds."
 msgstr "کد HTML دلخواه را، همراه با پشتیبانی از شورت‌کدها و جاسازها نمایش می‌دهد."
 
-#: inc/Widgets/CustomHTML.php:86
+#: inc/Widgets/CustomHTML.php:79
 msgctxt "Widget: Setting"
 msgid "Process Embeds"
 msgstr "پردازش جاسازها"
 
-#: inc/Widgets/CustomHTML.php:87
+#: inc/Widgets/CustomHTML.php:80
 msgctxt "Widget: Setting"
 msgid "Process Shortcodes"
 msgstr "پردازش شورت‌کدها"
 
-#: inc/Widgets/CustomHTML.php:88
+#: inc/Widgets/CustomHTML.php:81
 msgctxt "Widget: Setting"
 msgid "Process Filters"
 msgstr "پردازش فیلترها"
 
-#: inc/Widgets/CustomHTML.php:89
+#: inc/Widgets/CustomHTML.php:82
 msgctxt "Widget: Setting"
 msgid "Process Filters (Legacy)"
 msgstr "پردازش فیلترها (قدیمی)"
 
-#: inc/Widgets/CustomHTML.php:90
+#: inc/Widgets/CustomHTML.php:83
 msgctxt "Widget: Setting"
 msgid "Automatic Paragraphs"
 msgstr "پاراگراف‌های خودکار"
@@ -1582,7 +1582,7 @@ msgctxt "Widget: Description"
 msgid "Displays the featured image of the current post."
 msgstr ""
 
-#: inc/Widgets/PostFeatured.php:69
+#: inc/Widgets/PostFeatured.php:59
 msgctxt "Widget: Setting"
 msgid "Link to Attachment Page"
 msgstr "پیوند به برگه‌ٔ پیوست"
@@ -1632,7 +1632,7 @@ msgctxt "Widget: Description"
 msgid "Displays the most recent posts."
 msgstr "آخرین نوشته‌ها را نمایش می‌دهد."
 
-#: inc/Widgets/RecentPosts.php:119 inc/Widgets/TermPosts.php:134
+#: inc/Widgets/RecentPosts.php:104 inc/Widgets/TermPosts.php:117
 msgctxt "Widget: Setting"
 msgid "Use Internal Order"
 msgstr "استفاده از چینش داخلی"
@@ -1667,12 +1667,12 @@ msgctxt "Widget: Description"
 msgid "Displays the results of current search criteria on selected taxonomies."
 msgstr "نتایج جست‌وجوی رده‌ها را بر اساس عبارت فعلی نمایش می‌دهد."
 
-#: inc/Widgets/SearchTerms.php:102
+#: inc/Widgets/SearchTerms.php:93
 msgctxt "Widget: Setting"
 msgid "Prefix Terms with Taxonomy Name"
 msgstr "عنوان رده‌بندی برای پیشوند رده‌ها"
 
-#: inc/Widgets/SearchTerms.php:103
+#: inc/Widgets/SearchTerms.php:94
 msgctxt "Widget: Setting"
 msgid "Strip Hash-tags"
 msgstr "پاک‌کردن هش‌تگ‌ها"
@@ -1717,142 +1717,157 @@ msgctxt "Widget: Description"
 msgid "Displays the current term info based on the query."
 msgstr "اطلاعات مربوط به ردهٔ فعال را نمایش می‌دهد."
 
-#: inc/Widgets/TheTerm.php:141
+#: inc/Widgets/TheTerm.php:133
 msgctxt "Widget: Setting"
 msgid "&ldquo;All taxonomies option&rdquo; only works on archive pages."
 msgstr "«همهٔ رده‌بندی‌ها» فقط در صفحات بایگانی کار می‌کند."
 
-#: inc/Widgets/TheTerm.php:143
+#: inc/Widgets/TheTerm.php:135
 msgctxt "Widget: Setting"
 msgid "Display Meta Image"
 msgstr "تصویر متا نمایش داده شود"
 
-#: inc/Widgets/TheTerm.php:144
+#: inc/Widgets/TheTerm.php:136
 msgctxt "Widget: Setting"
 msgid "Hide if no Description"
 msgstr "بدون توضیحات، پنهان شود"
 
-#: inc/Widgets/TheTerm.php:145
+#: inc/Widgets/TheTerm.php:137
 msgctxt "Widget: Setting"
 msgid "Fire Before & After Actions"
 msgstr "کنش‌های پیش و پس اجرا شود"
 
-#: inc/WordPress/Widget.php:216
+#: inc/WordPress/Widget.php:288
 msgctxt "Widget: Setting"
 msgid "Custom HTML:"
-msgstr "متن سفارشی:"
+msgstr "HTML سفارشی:"
 
-#: inc/WordPress/Widget.php:235
+#: inc/WordPress/Widget.php:307
+msgctxt "Widget: Setting"
+msgid "Custom HTML for Opening Widget:"
+msgstr "HTML سفارشی برای آغاز ابزارک:"
+
+#: inc/WordPress/Widget.php:326
+msgctxt "Widget: Setting"
+msgid "Custom HTML for Closing Widget:"
+msgstr "HTML سفارشی برای پایان ابزارک:"
+
+#: inc/WordPress/Widget.php:345
+msgctxt "Widget: Setting"
+msgid "Custom HTML for After Title:"
+msgstr "HTML سفارشی برای بعد از عنوان:"
+
+#: inc/WordPress/Widget.php:364
 msgctxt "Widget: Setting"
 msgid "Number of posts to show:"
 msgstr "تعداد نوشته‌هایی که نمایش داده می‌شود:"
 
-#: inc/WordPress/Widget.php:259
+#: inc/WordPress/Widget.php:388
 msgctxt "Widget: Setting"
 msgid "Context:"
 msgstr "زمینه:"
 
-#: inc/WordPress/Widget.php:273
+#: inc/WordPress/Widget.php:402
 msgctxt "Widget: Setting"
 msgid "CSS Class:"
 msgstr "کلاس:"
 
-#: inc/WordPress/Widget.php:285
+#: inc/WordPress/Widget.php:414
 msgctxt "Widget: Setting"
 msgid "&ndash; (Any)"
 msgstr "&ndash; (هرکدام)"
 
-#: inc/WordPress/Widget.php:299
+#: inc/WordPress/Widget.php:428
 msgctxt "Widget: Setting"
 msgid "PostType:"
 msgstr "نوع‌نوشته:"
 
-#: inc/WordPress/Widget.php:311
+#: inc/WordPress/Widget.php:440
 msgctxt "Widget: Setting"
 msgid "&mdash; All Taxonomies &mdash;"
 msgstr "&mdash; همهٔ رده‌بندی‌ها &mdash;"
 
-#: inc/WordPress/Widget.php:325
+#: inc/WordPress/Widget.php:454
 msgctxt "Widget: Setting"
 msgid "Taxonomy:"
 msgstr "رده‌بندی:"
 
-#: inc/WordPress/Widget.php:338
+#: inc/WordPress/Widget.php:467
 msgctxt "Widget: Setting"
 msgid "Title:"
 msgstr "عنوان:"
 
-#: inc/WordPress/Widget.php:352
+#: inc/WordPress/Widget.php:481
 msgctxt "Widget: Setting"
 msgid "Title Link:"
 msgstr "پیوند عنوان:"
 
-#: inc/WordPress/Widget.php:366
+#: inc/WordPress/Widget.php:495
 msgctxt "Widget: Setting"
 msgid "Title Image:"
 msgstr "تصویر عنوان:"
 
-#: inc/WordPress/Widget.php:372
+#: inc/WordPress/Widget.php:501
 msgctxt "Widget: Setting"
 msgid "Custom Link:"
 msgstr "پیوند سفارشی:"
 
-#: inc/WordPress/Widget.php:389
+#: inc/WordPress/Widget.php:518
 msgctxt "Widget: Setting"
 msgid "Custom Code:"
 msgstr "کد سفارشی:"
 
-#: inc/WordPress/Widget.php:406
+#: inc/WordPress/Widget.php:535
 msgctxt "Widget: Setting"
 msgid "Empty Message:"
 msgstr "پیام خالی:"
 
-#: inc/WordPress/Widget.php:429
+#: inc/WordPress/Widget.php:558
 msgctxt "Widget: Setting"
 msgid "Avatar Size:"
 msgstr "اندازه آواتار:"
 
-#: inc/WordPress/Widget.php:443
+#: inc/WordPress/Widget.php:572
 msgctxt "Widget: Setting"
 msgid "No Image Size Available!"
 msgstr "اندازه‌ای برای تصاویر وجود ندارد!"
 
-#: inc/WordPress/Widget.php:460
+#: inc/WordPress/Widget.php:589
 msgctxt "Widget: Setting"
 msgid "Image Size:"
 msgstr "اندازه تصویر:"
 
-#: inc/WordPress/Widget.php:484
+#: inc/WordPress/Widget.php:613
 msgctxt "Widget: Setting"
 msgid "Checked"
 msgstr "منتخب"
 
-#: inc/WordPress/Widget.php:503
+#: inc/WordPress/Widget.php:632
 msgctxt "Widget: Setting"
 msgid "Page:"
 msgstr "برگه:"
 
-#: inc/WordPress/Widget.php:530
+#: inc/WordPress/Widget.php:659
 msgctxt "Widget: Setting"
 msgid "Select taxonomy first!"
 msgstr "ابتدا رده‌بندی را انتخاب کنید!"
 
-#: inc/WordPress/Widget.php:538
+#: inc/WordPress/Widget.php:667
 msgctxt "Widget: Setting"
 msgid "The taxonomy is not available!"
 msgstr "رده‌بندی در دسترس نیست!"
 
-#: inc/WordPress/Widget.php:541
+#: inc/WordPress/Widget.php:670
 msgctxt "Widget: Setting"
 msgid "No terms available!"
 msgstr "رده‌ای در دسترس نیست!"
 
-#: inc/WordPress/Widget.php:560
+#: inc/WordPress/Widget.php:689
 msgctxt "Widget: Setting"
 msgid "Term:"
 msgstr "رده:"
 
-#: inc/WordPress/Widget.php:566
+#: inc/WordPress/Widget.php:695
 msgctxt "Widget: Setting"
 msgid "Must has Thumbnail Image"
 msgstr "باید تصویر بندانگشتی داشته باشد"
