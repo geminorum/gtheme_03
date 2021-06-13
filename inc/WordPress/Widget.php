@@ -204,8 +204,6 @@ class gThemeWidget extends WP_Widget
 
 	public function handle_update( $new, $old, $checkboxes = [], $fields = [] )
 	{
-		gThemeHTML::_log($new, $old); // FIXME!
-
 		$fields = array_merge( [
 			'title' => 'text',
 
