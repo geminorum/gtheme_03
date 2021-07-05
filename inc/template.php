@@ -7,8 +7,12 @@ class gThemeTemplate extends gThemeModuleCore
 	{
 		$base = gtheme_template_base();
 
+		// `array_merge` cannot handle numeric keys
+		if ( '404' == $context )
+			$context = 'notfound';
+
 		$columns = array_merge( [
-			'404'           => 'col-sm-6',
+			'notfound'      => 'col-sm-6', // `404` alias
 			'index'         => 'col-sm-8',
 			'singular'      => 'col-sm-8',
 			'attachment'    => 'col-sm-8',
