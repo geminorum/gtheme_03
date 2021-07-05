@@ -37,6 +37,7 @@ class gThemeWidgetRelatedPosts extends gThemeWidget
 		$taxonomy  = isset( $instance['taxonomy'] ) ? $instance['taxonomy'] : 'post_tag';
 		$post_type = isset( $instance['post_type'] ) ? $instance['post_type'] : 'post';
 		$thumbnail = isset( $instance['has_thumbnail'] ) ? $instance['has_thumbnail'] : FALSE;
+		$wrapitems = isset( $instance['wrap_as_items'] ) ? $instance['wrap_as_items'] : TRUE;
 
 		if ( empty( $instance['number'] ) || ! $number = absint( $instance['number'] ) )
 			$number = 10;
@@ -86,23 +87,29 @@ class gThemeWidgetRelatedPosts extends gThemeWidget
 
 			$this->before_widget( $args, $instance );
 			$this->widget_title( $args, $instance );
-			echo '<div class="-list-wrap related-posts"><ul class="-items">';
+			echo '<div class="-list-wrap related-posts">';
+
+			if ( $wrapitems )
+				echo '<ul class="-items">';
 
 			while ( $row_query->have_posts() ) {
 
 				$row_query->the_post();
 
 				if ( trim( get_the_title() ) ) {
-					echo '<li>';
+					echo '<'.( $wrapitems ? 'li' : 'div' ).'>';
 						get_template_part( 'row', $context );
 						echo '<span class="-dummy"></span>';
-					echo '</li>';
+					echo '</'.( $wrapitems ? 'li' : 'div' ).'>';
 				}
 			}
 
 			wp_reset_postdata();
 
-			echo '</ul></div>';
+			if ( $wrapitems )
+				echo '</ul>';
+
+			echo '</div>';
 			$this->after_widget( $args, $instance );
 
 			return TRUE;
@@ -114,7 +121,7 @@ class gThemeWidgetRelatedPosts extends gThemeWidget
 	public function update( $new, $old )
 	{
 		$this->flush_widget_cache();
-		return $this->handle_update( $new, $old, [ 'has_thumbnail' ] );
+		return $this->handle_update( $new, $old, [ 'has_thumbnail', 'wrap_as_items' ] );
 	}
 
 	public function form( $instance )
@@ -130,6 +137,7 @@ class gThemeWidgetRelatedPosts extends gThemeWidget
 		$this->form_taxonomy( $instance );
 		$this->form_has_thumbnail( $instance );
 		$this->form_number( $instance, '5' );
+		$this->form_wrap_as_items( $instance );
 
 		$this->form_open_widget( $instance );
 		$this->form_after_title( $instance );

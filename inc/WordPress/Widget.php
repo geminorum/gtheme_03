@@ -701,4 +701,19 @@ class gThemeWidget extends WP_Widget
 
 		gThemeHTML::label( $html.'&nbsp;'.$label, $this->get_field_id( $field ) );
 	}
+
+	public function form_wrap_as_items( $instance, $default = TRUE, $field = 'wrap_as_items', $label = NULL )
+	{
+		if ( is_null( $label ) )
+			$label = _x( 'Wrap as List Items', 'Widget: Setting', 'gtheme' );
+
+		$html = gThemeHTML::tag( 'input', [
+			'type'    => 'checkbox',
+			'name'  => $this->get_field_name( $field ),
+			'id'    => $this->get_field_id( $field ),
+			'checked' => isset( $instance[$field] ) ? $instance[$field] : $default,
+		] );
+
+		gThemeHTML::label( $html.'&nbsp;'.$label, $this->get_field_id( $field ) );
+	}
 }
