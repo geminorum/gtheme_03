@@ -847,9 +847,12 @@ class gThemeImage extends gThemeModuleCore
 		] );
 	}
 
-	public static function imageWithPlaceHolder( $atts = [] )
+	public static function imageWithPlaceHolder( $atts = [], $ratio = NULL )
 	{
-		if ( ! $ratio = gThemeOptions::info( 'image_aspect_ratio', '5:3' ) )
+		if ( is_null( $ratio ) )
+			$ratio = gThemeOptions::info( 'image_aspect_ratio', '5:3' );
+
+		if ( ! $ratio )
 			return self::image( $atts );
 
 		if ( ! array_key_exists( 'empty', $atts ) && ( $empty = self::getPlaceHolder( $atts ) ) )
