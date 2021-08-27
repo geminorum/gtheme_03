@@ -15,7 +15,7 @@ if ( ! class_exists( 'gThemeChildCore' ) ) { class gThemeChildCore
 	// @REF: https://developer.wordpress.org/reference/functions/load_child_theme_textdomain/#comment-1552
 	protected function _load_textdomain()
 	{
-		add_action( 'after_setup_theme', function() {
+		add_action( 'after_setup_theme', static function() {
 			load_child_theme_textdomain( 'gtheme', GTHEME_CHILD_DIR.'/languages' );
 		} );
 	}

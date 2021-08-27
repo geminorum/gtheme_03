@@ -49,7 +49,7 @@ class gThemeTheme extends gThemeModuleCore
 			$this->set_content_width( gThemeOptions::info( 'default_content_width', FALSE ) );
 
 			if ( gThemeOptions::info( 'full_content_width', FALSE ) )
-				add_action( 'template_redirect', function(){
+				add_action( 'template_redirect', static function() {
 					if ( is_page_template( 'fullwidthpage.php' ) )
 						$GLOBALS['content_width'] = gThemeOptions::info( 'full_content_width' );
 				} );
@@ -84,7 +84,7 @@ class gThemeTheme extends gThemeModuleCore
 			] ) );
 
 		else
-			add_action( 'init', function(){
+			add_action( 'init', static function() {
 				remove_post_type_support( 'post', 'post-formats' );
 			} );
 
@@ -170,7 +170,7 @@ class gThemeTheme extends gThemeModuleCore
 		}
 
 		if ( GTHEME_PRINT_QUERY && $print_support ) {
-			add_action( 'init', function() {
+			add_action( 'init', static function() {
 				add_rewrite_endpoint( GTHEME_PRINT_QUERY, EP_PERMALINK | EP_PAGES ); // FIXME: apply `print_posttypes` from info
 			} );
 		}

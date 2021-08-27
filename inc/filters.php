@@ -23,13 +23,13 @@ class gThemeFilters extends gThemeModuleCore
 			add_filter( 'document_title_separator', [ $this, 'document_title_separator' ] );
 			add_filter( 'document_title_parts', [ $this, 'document_title_parts' ], 8 );
 
-			add_filter( 'the_excerpt', function( $text ){
+			add_filter( 'the_excerpt', static function( $text ) {
 				return $text ? $text.gThemeContent::continueReading() : $text;
 			}, 5 );
 
 			// FALSE by default, we don't use this filter anyway
 			if ( $length = gThemeOptions::info( 'excerpt_length', FALSE ) )
-				add_filter( 'excerpt_length', function( $first ) use( $length ) {
+				add_filter( 'excerpt_length', static function( $first ) use ( $length ) {
 					return $length;
 				} );
 

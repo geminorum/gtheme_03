@@ -1,7 +1,7 @@
 <?php defined( 'ABSPATH' ) or die( header( 'HTTP/1.0 403 Forbidden' ) );
 
 // gMeta & gEditorialMeta
-if ( ! function_exists( 'gmeta' ) ) : function gmeta(){} endif; // DEPRECATED: use gThemeEditorial::meta()
+if ( ! function_exists( 'gmeta' ) ) : function gmeta() {} endif; // DEPRECATED: use gThemeEditorial::meta()
 if ( ! function_exists( 'gmeta_label' ) ) : function gmeta_label() {} endif; // DEPRECATED: use gThemeEditorial::label()
 if ( ! function_exists( 'gmeta_lead' ) ) : function gmeta_lead() {} endif; // DEPRECATED: use gThemeEditorial::metaHTML( 'lead' )
 if ( ! function_exists( 'gmeta_author' ) ) :
