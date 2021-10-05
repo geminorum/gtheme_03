@@ -122,6 +122,19 @@ class gThemeFilters extends gThemeModuleCore
 
 	public function gtheme_wrap_body_close()
 	{
+		list( $html, $main ) = self::getStyleLink( is_singular(), FALSE, NULL, TRUE );
+		$data = [ $main ];
+
+		foreach ( (array) gThemeOptions::info( 'stylesheets', [] ) as $stylesheet ) {
+			$html.= gThemeUtilities::linkStyleSheet( $stylesheet, FALSE, FALSE, FALSE );
+			$data[] = [ 'href' => $stylesheet, 'media' => FALSE ];
+		}
+
+		self::deferredStyles( $html, $data );
+	}
+
+	public function gtheme_wrap_body_close_OLD()
+	{
 		$html = '';
 
 		foreach ( (array) gThemeOptions::info( 'stylesheets', [] ) as $stylesheet )
@@ -130,7 +143,7 @@ class gThemeFilters extends gThemeModuleCore
 		$html.= self::getStyleLink( is_singular() );
 
 		if ( $html )
-			self::deferredStyles( $html );
+			self::deferredStyles_OLD( $html );
 	}
 
 	public static function preloadStyles( $group = NULL )
@@ -158,7 +171,7 @@ class gThemeFilters extends gThemeModuleCore
 		echo '<noscript><style type="text/css">body{overflow:auto;}#preloadspinner{display:none;z-index:-999999;}</style></noscript>'."\n";
 	}
 
-	public static function getStyleLink( $singular = FALSE, $print = FALSE, $group = NULL )
+	public static function getStyleLink( $singular = FALSE, $print = FALSE, $group = NULL, $data = FALSE )
 	{
 		$rtl  = gThemeUtilities::isRTL();
 		$args = [ 'ver' => GTHEME_CHILD_VERSION ];
@@ -211,11 +224,56 @@ class gThemeFilters extends gThemeModuleCore
 			$media = 'all';
 		}
 
-		return gThemeUtilities::linkStyleSheet( $url, $args, $media, FALSE );
+		$tag = gThemeUtilities::linkStyleSheet( $url, $args, $media, FALSE );
+
+		return $data ? [ $tag, [
+			'href'  => add_query_arg( $args, $url ),
+			'media' => $media,
+		] ] : $tag;
+	}
+
+	// @REF: https://stackoverflow.com/a/35644406
+	// @REF: https://developers.google.com/speed/docs/insights/OptimizeCSSDelivery
+	public static function deferredStyles( $html, $data = [] )
+	{
+		echo '<noscript id="theme-deferred-styles">'."\n".$html.'</noscript>';
+?><script type="text/javascript">
+(function(){
+	var data = <?php echo wp_json_encode( $data ); ?>;
+	var disableSpinner = function(){
+		var body = document.querySelector("body");
+		body.classList.add("theme-preload-ended");
+		var spinner = document.getElementById("preloadspinner");
+		if (spinner.classList) spinner.classList.add("fade-out");
+		else spinner.className += " fade-out";
+		<?php if ( SCRIPT_DEBUG ) echo 'console.log("spinner disabled");'; ?>
+	};
+	var loadDeferredStyles = function(){
+		var nojs = document.getElementById("theme-deferred-styles");
+		for (i = 0; i < data.length; i++) {
+			var link = document.createElement('link');
+			link.setAttribute("rel", "stylesheet");
+			link.setAttribute("type", "text/css");
+			if (data[i].media) link.setAttribute("media", data[i].media);
+			if (i===0) link.onload = disableSpinner;
+			link.setAttribute("href", data[i].href);
+			document.getElementsByTagName("head")[0].appendChild(link);
+		}
+		nojs.parentElement.removeChild(nojs);
+		<?php if ( SCRIPT_DEBUG ) echo 'console.log("styles inserted");'; ?>
+	};
+	var raf = window.requestAnimationFrame
+		|| window.mozRequestAnimationFrame
+		|| window.webkitRequestAnimationFrame
+		|| window.msRequestAnimationFrame;
+	if (raf) raf(function(){window.setTimeout(loadDeferredStyles, 0);});
+	else window.addEventListener('load', loadDeferredStyles);
+}());
+</script><?php
 	}
 
 	// @REF: https://developers.google.com/speed/docs/insights/OptimizeCSSDelivery
-	public static function deferredStyles( $tags )
+	public static function deferredStyles_OLD( $tags )
 	{
 		?><noscript id="deferred-styles"><?php echo "\n".$tags; ?></noscript>
 <script type="text/javascript">
