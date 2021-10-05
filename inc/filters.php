@@ -155,7 +155,7 @@ class gThemeFilters extends gThemeModuleCore
 			readfile( $path );
 		echo '</style>'."\n";
 
-		echo '<noscript><style type="text/css">#preloadspinner{display:none;z-index:-999999;}</style></noscript>'."\n";
+		echo '<noscript><style type="text/css">body{overflow:auto;}#preloadspinner{display:none;z-index:-999999;}</style></noscript>'."\n";
 	}
 
 	public static function getStyleLink( $singular = FALSE, $print = FALSE, $group = NULL )
