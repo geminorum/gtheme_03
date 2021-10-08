@@ -224,7 +224,14 @@ class gThemeEditorial extends gThemeModuleCore
 		return \geminorum\gEditorial\Templates\Meta::metaLabel( $atts );
 	}
 
+	// FIXME: DEPRECATED
 	public static function source( $atts = [] )
+	{
+		self::_dep( 'gThemeEditorial::theSource()' );
+		return self::theSource( $atts );
+	}
+
+	public static function theSource( $atts = [] )
 	{
 		if ( ! array_key_exists( 'default', $atts ) )
 			$atts['default'] = FALSE;

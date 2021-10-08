@@ -15,7 +15,7 @@ if ( gThemeTerms::has( 'insert-people' ) )
 gThemeContent::content();
 gThemeContent::navigation();
 
-gThemeEditorial::source( [
+gThemeEditorial::theSource( [
 	'before' => '<div class="entry-after after-single after-source">'.gThemeOptions::info( 'source_before', '' ),
 	'after'  => '</div>',
 ] );
