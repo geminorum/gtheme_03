@@ -84,6 +84,10 @@ class gThemeMenu extends gThemeModuleCore
 			'items_wrap'     => isset( $atts['items_wrap'] ) ? $atts['items_wrap'] : '<ul id="%1$s" class="%2$s">%3$s</ul>',
 		];
 
+		foreach ( [ 'before', 'after', 'link_before', 'link_after' ] as $key )
+			if ( array_key_exists( $key, $atts ) )
+				$args[$key] = $atts[$key];
+
 		$args['menu']       = $args['theme_location'];
 		$args['menu_class'] = 'menu-'.$args['theme_location'].' '.( isset( $atts['class'] ) ? $atts['class'] : 'clearfix' );
 
