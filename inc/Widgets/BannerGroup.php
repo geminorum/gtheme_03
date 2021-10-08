@@ -72,6 +72,15 @@ class gThemeWidgetBannerGroup extends gThemeWidget
 		return FALSE;
 	}
 
+	public function update( $new, $old )
+	{
+		$this->flush_widget_cache();
+		return $this->handle_update( $new, $old, [], [
+			'group'    => 'text',
+			'renderer' => 'text',
+		] );
+	}
+
 	public function form( $instance )
 	{
 		$this->before_form( $instance );
