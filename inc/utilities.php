@@ -229,7 +229,7 @@ class gThemeUtilities extends gThemeBaseCore
 		else
 			$template = '<div class="alert alert-%1$s alert-dismissible" role="alert">'
 						.'<button type="button" class="close" data-dismiss="alert">'
-						.'<span aria-hidden="true">&times;</span><span class="screen-reader-text sr-only">'
+						.'<span aria-hidden="true">&times;</span><span class="screen-reader-text sr-only visually-hidden">'
 						._x( 'Close', 'Alert button (screen reader only)', 'gtheme' )
 						.'</span></button>%2$s</div>'; // bootstrap dismissible alert
 

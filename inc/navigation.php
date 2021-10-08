@@ -57,7 +57,7 @@ class gThemeNavigation extends gThemeModuleCore
 		if ( ! $prev && ! $next )
 			return;
 
-		$html = sprintf( '<h2 class="screen-reader-text sr-only">%s</h2>', $strings['title'] );
+		$html = sprintf( '<h2 class="screen-reader-text sr-only visually-hidden">%s</h2>', $strings['title'] );
 		$html.= '<ul class="pager nav-links">';
 
 		if ( $prev )
@@ -105,7 +105,7 @@ class gThemeNavigation extends gThemeModuleCore
 
 		echo '<nav>';
 
-			printf( '<h2 class="screen-reader-text sr-only">%s</h2>',
+			printf( '<h2 class="screen-reader-text sr-only visually-hidden">%s</h2>',
 				_x( 'Navigation', 'Modules: Navigation: Screen Reader Title', 'gtheme' ) );
 
 			echo '<ul class="pagination">';

@@ -117,7 +117,7 @@ class gThemeSearch extends gThemeModuleCore
 
 		$html = '<form role="search" method="get" class="form search-form -simple search-form-'.$context.' -print-hide" action="'.esc_url( self::getAction() ).'">';
 
-			$html.= '<span class="screen-reader-text sr-only"><label>'.$label.'</label></span>';
+			$html.= '<span class="screen-reader-text sr-only visually-hidden"><label>'.$label.'</label></span>';
 
 			$html.= '<input type="search" class="form-control search-field" placeholder="'.esc_attr( self::getPlaceholderText() );
 			$html.= '" value="'.$query.'" name="'.self::getKey().'" title="'.esc_attr( $label ).'" />';
@@ -139,7 +139,7 @@ class gThemeSearch extends gThemeModuleCore
 
 		echo '<form class="form search-form -expanding '.$class.'" role="search" method="get" action="'.esc_url( self::getAction() ).'">';
 		echo '<div class="form-group">';
-			echo '<label for="search" class="screen-reader-text sr-only">'.self::getLabelText().'</label>';
+			echo '<label for="search" class="screen-reader-text sr-only visually-hidden">'.self::getLabelText().'</label>';
 			echo '<input id="search" type="text" class="form-control" name="'.self::getKey().'" value="'.esc_attr( self::query() ).'"';
 			if ( $placeholder )
 				echo ' placeholder="'.esc_attr( $placeholder ).'" ';
@@ -156,7 +156,7 @@ class gThemeSearch extends gThemeModuleCore
 		$html = '<form role="search" method="get" class="form search-form search-form-';
 		$html.= $context.' -print-hide" action="'.esc_url( self::getAction() ).'">';
 
-			$html.= '<span class="screen-reader-text sr-only"><label>'.$label.'</label></span>';
+			$html.= '<span class="screen-reader-text sr-only visually-hidden"><label>'.$label.'</label></span>';
 
 			$html.= '<div class="input-group">';
 
@@ -183,7 +183,7 @@ class gThemeSearch extends gThemeModuleCore
 
 			$html.= '<div class="input-group">';
 
-			$html.= '<label for="search-terms" class="accessibly-hidden screen-reader-text sr-only">'.self::getLabelText().'</label>';
+			$html.= '<label for="search-terms" class="accessibly-hidden screen-reader-text sr-only visually-hidden">'.self::getLabelText().'</label>';
 
 			$html.= '<input type="text" id="search-terms" class="form-control" name="search-terms" value="';
 

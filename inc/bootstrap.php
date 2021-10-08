@@ -48,7 +48,7 @@ class gThemeBootstrap extends gThemeModuleCore
 	{
 		echo '<div class="navbar-header">';
 			echo '<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#'.$target.'" aria-expanded="false">';
-				echo '<span class="screen-reader-text sr-only">'.__( 'Toggle navigation', 'gtheme' ).'</span>';
+				echo '<span class="screen-reader-text sr-only visually-hidden">'.__( 'Toggle navigation', 'gtheme' ).'</span>';
 				echo '<span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>';
 			echo '</button>';
 
@@ -91,6 +91,7 @@ class gThemeBootstrap extends gThemeModuleCore
 			'menu_class'     => 'nav'.( $wrap ? ' navbar-nav' : '' ).' menu-'.$location.' '.$class,
 			'fallback_cb'    => 'wp_bootstrap_navwalker::fallback',
 			'walker'         => new gThemeBootstrap_Walker_NavBar(),
+			'after'          => '<span class="-dummy"></span>',
 		] );
 
 		if ( $menu )
@@ -103,7 +104,7 @@ class gThemeBootstrap extends gThemeModuleCore
 			$placeholder = gThemeSearch::getPlaceholderText();
 
 		echo '<form class="navbar-form '.$class.'" role="search" method="get" action="'.gThemeSearch::getAction().'"><div class="form-group">';
-			echo '<label for="search" class="screen-reader-text sr-only">'.gThemeSearch::getLabelText().'</label>';
+			echo '<label for="search" class="screen-reader-text sr-only visually-hidden">'.gThemeSearch::getLabelText().'</label>';
 			echo '<input id="search" type="text" class="form-control" name="'.gThemeSearch::getKey().'" value="'.esc_attr( gThemeSearch::query() ).'"';
 			if ( $placeholder )
 				echo ' placeholder="'.esc_attr( $placeholder ).'" ';

@@ -175,6 +175,7 @@ class gThemeBanners extends gThemeModuleCore
 	}
 
 	// NOTE: needs no additional styles or scripts
+	// @SUPPORT BS4/BS5
 	public static function bootstrapCarousel( $group, $atts = [], $before = '', $after = '', $custom_id = NULL )
 	{
 		if ( ! $banners = self::getGroup( $group ) )
@@ -183,12 +184,12 @@ class gThemeBanners extends gThemeModuleCore
 		$html = $indi = '';
 		$id   = is_null( $custom_id ) ? ( $group.'CarouselBanners' ) : $custom_id;
 
-		$controls = '<a class="carousel-control-prev" href="#'.$id.'" role="button" data-slide="prev">';
+		$controls = '<a class="carousel-control-prev" href="#'.$id.'" role="button" data-slide="prev" data-bs-slide="prev">';
 		$controls.= '<span class="carousel-control-prev-icon" aria-hidden="true"></span>';
-		$controls.= '<span class="sr-only">'._x( 'Previous', 'Carousel Control', 'gtheme' ).'</span></a>';
-		$controls.= '<a class="carousel-control-next" href="#'.$id.'" role="button" data-slide="next">';
+		$controls.= '<span class="sr-only visually-hidden">'._x( 'Previous', 'Carousel Control', 'gtheme' ).'</span></a>';
+		$controls.= '<a class="carousel-control-next" href="#'.$id.'" role="button" data-slide="next" data-bs-slide="next">';
 		$controls.= '<span class="carousel-control-next-icon" aria-hidden="true"></span>';
-		$controls.= '<span class="sr-only">'._x( 'Next', 'Carousel Control', 'gtheme' ).'</span></a>';
+		$controls.= '<span class="sr-only visually-hidden">'._x( 'Next', 'Carousel Control', 'gtheme' ).'</span></a>';
 
 		$args = array_merge( [
 			'a_class'   => 'd-block w-100',
@@ -202,11 +203,11 @@ class gThemeBanners extends gThemeModuleCore
 				continue;
 
 			$html.= '<div class="carousel-item'.( $offset ? '' : ' active' ).'">'.$item.'</div>';
-			$indi.= '<li data-target="#'.$id.'" data-slide-to="'.$offset.'"'.( $offset ? '' : ' class="active"' ).'></li>';
+			$indi.= '<li data-target="#'.$id.'" data-slide-to="'.$offset.'" data-bs-target="#'.$id.'" data-bs-slide-to="'.$offset.'"'.( $offset ? '' : ' class="active"' ).'></li>';
 		}
 
 		echo $before.'<div class="wrap-bootstrap-carousel -group-'.$group.'">';
-		echo '<div id="'.$id.'" class="-carousel carousel slide w-100" data-ride="carousel">';
+		echo '<div id="'.$id.'" class="-carousel carousel slide w-100" data-ride="carousel" data-bs-ride="carousel">';
 		echo '<ol class="carousel-indicators">'.$indi.'</ol>';
 		echo '<div class="carousel-inner">'.$html.'</div>';
 		echo $controls.'</div></div>'.$after;
