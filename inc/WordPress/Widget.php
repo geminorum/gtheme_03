@@ -202,7 +202,7 @@ class gThemeWidget extends WP_Widget
 		return $this->handle_update( $new, $old );
 	}
 
-	public function handle_update( $new, $old, $checkboxes = [], $fields = [] )
+	public function handle_update( $new, $old, $checkboxes = [], $extra = [] )
 	{
 		$fields = array_merge( [
 			'title' => 'text',
@@ -227,7 +227,7 @@ class gThemeWidget extends WP_Widget
 			'term_id'     => 'digit',
 			'number'      => 'digit',
 			'avatar_size' => 'digit',
-		], $fields );
+		], $extra );
 
 		$instance   = $old;
 		$unfiltered = current_user_can( 'unfiltered_html' );
