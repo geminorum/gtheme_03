@@ -11,6 +11,7 @@
     "max-line-length": null,
     "comment-empty-line-before": null,
     "no-descending-specificity": null,
+    "selector-id-pattern": null,
     "selector-class-pattern": "^[a-z/-]+(-[a-z]+)*",
     "at-rule-empty-line-before": ["always", {
       "except": ["blockless-after-blockless", "first-nested"],
