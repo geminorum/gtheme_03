@@ -1,3 +1,14 @@
+### 3.20.16
+* core/widget: :warning: correct arg name
+* module/editorial: rename the source method
+* module/filters: deferred styles revised
+* module/filters: reset body overflow on non js with preload
+* module/image: custom ratio of placeholder
+* module/menu: pass extra before/after args into core method
+* module/template: alias for 404 as context
+* widget/banner group: correct handling options
+* widget/related posts: optional wrap as items
+
 ### 3.20.14
 * module/content: handling dummy posts
 * module/image: check if thumbnail attachment exists
