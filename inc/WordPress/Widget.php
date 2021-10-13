@@ -23,6 +23,9 @@ class gThemeWidget extends WP_Widget
 		parent::__construct( static::BASE.'_'.$args['name'], $args['title'], [
 			'description' => $args['desc'],
 			'classname'   => '{GTHEME_WIDGET_CLASSNAME} '.'widget-'.static::BASE.'-'.$args['class'],
+
+			'customize_selective_refresh' => TRUE,
+			'show_instance_in_rest'       => TRUE,
 		], $args['control'] );
 
 		$this->alt_option_name = 'widget_'.static::BASE.'_'.$args['name'];
@@ -64,6 +67,8 @@ class gThemeWidget extends WP_Widget
 	{
 		if ( $this->is_preview() )
 			return $this->widget_html( $args, $instance );
+
+		// TODO: check instance for cache disabled option and bypass!
 
 		$key = $this->widget_cache_key( $instance );
 

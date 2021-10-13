@@ -222,7 +222,7 @@ class gThemeTheme extends gThemeModuleCore
 
 		remove_filter( 'comment_text', 'make_clickable', 9 );
 		remove_filter( 'comment_text', 'capital_P_dangit', 31 );
-		foreach ( [ 'the_content', 'the_title', 'wp_title' ] as $filter )
+		foreach ( [ 'the_content', 'the_title', 'wp_title', 'document_title' ] as $filter )
 			remove_filter( $filter, 'capital_P_dangit', 11 );
 	}
 

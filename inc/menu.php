@@ -49,6 +49,7 @@ class gThemeMenu extends gThemeModuleCore
 	{
 		$args = array_merge( [
 			'location' => $location,
+			'after'    => '<span class="-dummy"></span>',
 		], $atts );
 
 		$key = GTHEME_FRAGMENTCACHE.'_'.md5( maybe_serialize( $args ) );
@@ -76,12 +77,12 @@ class gThemeMenu extends gThemeModuleCore
 	{
 		$args = [
 			'fallback_cb'    => '__return_null',
-			'item_spacing'   => 'discard',
 			'echo'           => isset( $atts['echo'] )       ? $atts['echo']       : TRUE,
 			'depth'          => isset( $atts['depth'] )      ? $atts['depth']      : 1,
 			'container'      => isset( $atts['container'] )  ? $atts['container']  : '', // 'nav',
 			'theme_location' => isset( $atts['location'] )   ? $atts['location']   : 'primary',
 			'items_wrap'     => isset( $atts['items_wrap'] ) ? $atts['items_wrap'] : '<ul id="%1$s" class="%2$s">%3$s</ul>',
+			'item_spacing'   => 'discard',
 		];
 
 		foreach ( [ 'before', 'after', 'link_before', 'link_after' ] as $key )
