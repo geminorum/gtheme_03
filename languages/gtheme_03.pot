@@ -1,13 +1,13 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: gTheme 3 3.20.15\n"
+"Project-Id-Version: gTheme 3 3.20.16\n"
 "Report-Msgid-Bugs-To: https://github.com/geminorum/gtheme_03/issues\n"
 "Last-Translator: NULL\n"
 "Language-Team: NULL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2021-06-13T23:51:28+04:30\n"
+"POT-Creation-Date: 2021-10-13T20:06:54+03:30\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.5.0\n"
 "X-Domain: gtheme\n"
@@ -106,67 +106,67 @@ msgctxt "Modules: Banners: Renderer"
 msgid "Bootstrap Carousel"
 msgstr ""
 
-#: inc/banners.php:188
+#: inc/banners.php:189
 msgctxt "Carousel Control"
 msgid "Previous"
 msgstr ""
 
-#: inc/banners.php:191
+#: inc/banners.php:192
 msgctxt "Carousel Control"
 msgid "Next"
 msgstr ""
 
-#: inc/banners.php:273
+#: inc/banners.php:274
 msgctxt "Modules: Menu Name"
 msgid "Banners"
 msgstr ""
 
-#: inc/banners.php:357
+#: inc/banners.php:358
 msgctxt "Modules: Banners"
 msgid "Custom Banners"
 msgstr ""
 
-#: inc/banners.php:361
+#: inc/banners.php:362
 msgctxt "Modules: Banners"
 msgid "Legend"
 msgstr ""
 
-#: inc/banners.php:363
+#: inc/banners.php:364
 msgctxt "Modules: Banners"
 msgid "Your theme extra information"
 msgstr ""
 
-#: inc/banners.php:368
+#: inc/banners.php:369
 msgctxt "Modules: Banners"
 msgid "Group"
 msgstr ""
 
-#: inc/banners.php:369
+#: inc/banners.php:370
 msgctxt "Modules: Banners"
 msgid "Ord."
 msgstr ""
 
-#: inc/banners.php:370
+#: inc/banners.php:371
 msgctxt "Modules: Banners"
 msgid "Title"
 msgstr ""
 
-#: inc/banners.php:371
+#: inc/banners.php:372
 msgctxt "Modules: Banners"
 msgid "URL"
 msgstr ""
 
-#: inc/banners.php:372
+#: inc/banners.php:373
 msgctxt "Modules: Banners"
 msgid "Image"
 msgstr ""
 
-#: inc/banners.php:461
+#: inc/banners.php:462
 msgctxt "Modules: Banners"
 msgid "Add Another"
 msgstr ""
 
-#: inc/banners.php:462
+#: inc/banners.php:463
 msgctxt "Modules: Banners"
 msgid "Save"
 msgstr ""
@@ -655,6 +655,16 @@ msgctxt "Editor Default Content"
 msgid "[content not available yet]"
 msgstr ""
 
+#: inc/editor.php:202
+msgctxt "Block pattern title"
+msgid "Quote with Avatar"
+msgstr ""
+
+#: inc/editor.php:204
+msgctxt "Block pattern description"
+msgid "A big quote with an avatar\"."
+msgstr ""
+
 #: inc/embed.php:55
 msgctxt "Options: Separator: Embed"
 msgid "; "
@@ -705,9 +715,9 @@ msgid "Tertiary Navigation"
 msgstr ""
 
 #: inc/modulecore.php:226
-#: inc/WordPress/Widget.php:600
-#: inc/WordPress/Widget.php:638
-#: inc/WordPress/Widget.php:673
+#: inc/WordPress/Widget.php:605
+#: inc/WordPress/Widget.php:643
+#: inc/WordPress/Widget.php:678
 msgid "&mdash; Select &mdash;"
 msgstr ""
 
@@ -1161,14 +1171,34 @@ msgctxt "Sidebar Name"
 msgid "Singular: After Entry"
 msgstr ""
 
+#: inc/sidebar.php:29
+msgctxt "Sidebar Name"
+msgid "Entry: Double: Before"
+msgstr ""
+
+#: inc/sidebar.php:30
+msgctxt "Sidebar Name"
+msgid "Entry: Double: Content"
+msgstr ""
+
+#: inc/sidebar.php:31
+msgctxt "Sidebar Name"
+msgid "Entry: Double: Side"
+msgstr ""
+
+#: inc/sidebar.php:32
+msgctxt "Sidebar Name"
+msgid "Entry: Double: After"
+msgstr ""
+
 #. translators: %s: primary term title
-#: inc/sidebar.php:154
+#: inc/sidebar.php:158
 msgctxt "Modules: Sidebar"
 msgid "Theme: %s Widget"
 msgstr ""
 
 #. translators: %s: primary term title
-#: inc/sidebar.php:156
+#: inc/sidebar.php:160
 msgctxt "Modules: Sidebar"
 msgid "This is the %s widgetized area"
 msgstr ""
@@ -1179,27 +1209,27 @@ msgctxt "Options: Separator: Title"
 msgid " &raquo; "
 msgstr ""
 
-#: inc/template.php:109
+#: inc/template.php:125
 msgctxt "Modules: Template: Title Attr"
 msgid "Front Page"
 msgstr ""
 
 #. translators: %s: display name
-#: inc/template.php:177
+#: inc/template.php:193
 msgctxt "Modules: Template: Author"
 msgid "Posts by %s"
 msgstr ""
 
-#: inc/template.php:259
+#: inc/template.php:275
 msgctxt "Options: Separator: Nav"
 msgid " &laquo; "
 msgstr ""
 
-#: inc/template.php:293
+#: inc/template.php:309
 msgid "&copy; All rights reserved."
 msgstr ""
 
-#: inc/template.php:310
+#: inc/template.php:326
 msgctxt "Root: End: Before Site Modified"
 msgid "Last updated on"
 msgstr ""
@@ -1480,12 +1510,12 @@ msgctxt "Widget: Description"
 msgid "Displays banners from selected group into sidebars."
 msgstr ""
 
-#: inc/Widgets/BannerGroup.php:79
+#: inc/Widgets/BannerGroup.php:88
 msgctxt "Widget: BannerGroup"
 msgid "Group:"
 msgstr ""
 
-#: inc/Widgets/BannerGroup.php:80
+#: inc/Widgets/BannerGroup.php:89
 msgctxt "Widget: BannerGroup"
 msgid "Renderer:"
 msgstr ""
@@ -1701,146 +1731,151 @@ msgctxt "Widget: Setting"
 msgid "Fire Before & After Actions"
 msgstr ""
 
-#: inc/WordPress/Widget.php:286
+#: inc/WordPress/Widget.php:291
 msgctxt "Widget: Setting"
 msgid "Custom HTML:"
 msgstr ""
 
-#: inc/WordPress/Widget.php:305
+#: inc/WordPress/Widget.php:310
 msgctxt "Widget: Setting"
 msgid "Custom HTML for Opening Widget:"
 msgstr ""
 
-#: inc/WordPress/Widget.php:324
+#: inc/WordPress/Widget.php:329
 msgctxt "Widget: Setting"
 msgid "Custom HTML for Closing Widget:"
 msgstr ""
 
-#: inc/WordPress/Widget.php:343
+#: inc/WordPress/Widget.php:348
 msgctxt "Widget: Setting"
 msgid "Custom HTML for After Title:"
 msgstr ""
 
-#: inc/WordPress/Widget.php:362
+#: inc/WordPress/Widget.php:367
 msgctxt "Widget: Setting"
 msgid "Number of posts to show:"
 msgstr ""
 
-#: inc/WordPress/Widget.php:386
+#: inc/WordPress/Widget.php:391
 msgctxt "Widget: Setting"
 msgid "Context:"
 msgstr ""
 
-#: inc/WordPress/Widget.php:400
+#: inc/WordPress/Widget.php:405
 msgctxt "Widget: Setting"
 msgid "CSS Class:"
 msgstr ""
 
-#: inc/WordPress/Widget.php:412
+#: inc/WordPress/Widget.php:417
 msgctxt "Widget: Setting"
 msgid "&ndash; (Any)"
 msgstr ""
 
-#: inc/WordPress/Widget.php:426
+#: inc/WordPress/Widget.php:431
 msgctxt "Widget: Setting"
 msgid "PostType:"
 msgstr ""
 
-#: inc/WordPress/Widget.php:438
+#: inc/WordPress/Widget.php:443
 msgctxt "Widget: Setting"
 msgid "&mdash; All Taxonomies &mdash;"
 msgstr ""
 
-#: inc/WordPress/Widget.php:452
+#: inc/WordPress/Widget.php:457
 msgctxt "Widget: Setting"
 msgid "Taxonomy:"
 msgstr ""
 
-#: inc/WordPress/Widget.php:465
+#: inc/WordPress/Widget.php:470
 msgctxt "Widget: Setting"
 msgid "Title:"
 msgstr ""
 
-#: inc/WordPress/Widget.php:479
+#: inc/WordPress/Widget.php:484
 msgctxt "Widget: Setting"
 msgid "Title Link:"
 msgstr ""
 
-#: inc/WordPress/Widget.php:493
+#: inc/WordPress/Widget.php:498
 msgctxt "Widget: Setting"
 msgid "Title Image:"
 msgstr ""
 
-#: inc/WordPress/Widget.php:499
+#: inc/WordPress/Widget.php:504
 msgctxt "Widget: Setting"
 msgid "Custom Link:"
 msgstr ""
 
-#: inc/WordPress/Widget.php:516
+#: inc/WordPress/Widget.php:521
 msgctxt "Widget: Setting"
 msgid "Custom Code:"
 msgstr ""
 
-#: inc/WordPress/Widget.php:533
+#: inc/WordPress/Widget.php:538
 msgctxt "Widget: Setting"
 msgid "Empty Message:"
 msgstr ""
 
-#: inc/WordPress/Widget.php:556
+#: inc/WordPress/Widget.php:561
 msgctxt "Widget: Setting"
 msgid "Avatar Size:"
 msgstr ""
 
-#: inc/WordPress/Widget.php:570
+#: inc/WordPress/Widget.php:575
 msgctxt "Widget: Setting"
 msgid "No Image Size Available!"
 msgstr ""
 
-#: inc/WordPress/Widget.php:587
+#: inc/WordPress/Widget.php:592
 msgctxt "Widget: Setting"
 msgid "Image Size:"
 msgstr ""
 
-#: inc/WordPress/Widget.php:611
+#: inc/WordPress/Widget.php:616
 msgctxt "Widget: Setting"
 msgid "Checked"
 msgstr ""
 
-#: inc/WordPress/Widget.php:630
+#: inc/WordPress/Widget.php:635
 msgctxt "Widget: Setting"
 msgid "Page:"
 msgstr ""
 
-#: inc/WordPress/Widget.php:657
+#: inc/WordPress/Widget.php:662
 msgctxt "Widget: Setting"
 msgid "Select taxonomy first!"
 msgstr ""
 
-#: inc/WordPress/Widget.php:665
+#: inc/WordPress/Widget.php:670
 msgctxt "Widget: Setting"
 msgid "The taxonomy is not available!"
 msgstr ""
 
-#: inc/WordPress/Widget.php:668
+#: inc/WordPress/Widget.php:673
 msgctxt "Widget: Setting"
 msgid "No terms available!"
 msgstr ""
 
-#: inc/WordPress/Widget.php:687
+#: inc/WordPress/Widget.php:692
 msgctxt "Widget: Setting"
 msgid "Term:"
 msgstr ""
 
-#: inc/WordPress/Widget.php:693
+#: inc/WordPress/Widget.php:698
 msgctxt "Widget: Setting"
 msgid "Must has Thumbnail Image"
+msgstr ""
+
+#: inc/WordPress/Widget.php:713
+msgctxt "Widget: Setting"
+msgid "Wrap as List Items"
 msgstr ""
 
 #. Template Name of the theme
 msgid "Latest Page"
 msgstr ""
 
-#: partials/entry-publication.php:22
+#: partials/entry-publication.php:33
 msgctxt "Partial: Entry: Publication"
 msgid "Attachments"
 msgstr ""
