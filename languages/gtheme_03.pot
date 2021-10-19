@@ -1,13 +1,13 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: gTheme 3 3.20.16\n"
+"Project-Id-Version: gTheme 3 3.21.0\n"
 "Report-Msgid-Bugs-To: https://github.com/geminorum/gtheme_03/issues\n"
 "Last-Translator: NULL\n"
 "Language-Team: NULL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2021-10-13T20:06:54+03:30\n"
+"POT-Creation-Date: 2021-10-19T21:29:31+03:30\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.5.0\n"
 "X-Domain: gtheme\n"
@@ -715,9 +715,9 @@ msgid "Tertiary Navigation"
 msgstr ""
 
 #: inc/modulecore.php:226
-#: inc/WordPress/Widget.php:605
-#: inc/WordPress/Widget.php:643
-#: inc/WordPress/Widget.php:678
+#: inc/WordPress/Widget.php:608
+#: inc/WordPress/Widget.php:646
+#: inc/WordPress/Widget.php:681
 msgid "&mdash; Select &mdash;"
 msgstr ""
 
@@ -1731,142 +1731,142 @@ msgctxt "Widget: Setting"
 msgid "Fire Before & After Actions"
 msgstr ""
 
-#: inc/WordPress/Widget.php:291
+#: inc/WordPress/Widget.php:294
 msgctxt "Widget: Setting"
 msgid "Custom HTML:"
 msgstr ""
 
-#: inc/WordPress/Widget.php:310
+#: inc/WordPress/Widget.php:313
 msgctxt "Widget: Setting"
 msgid "Custom HTML for Opening Widget:"
 msgstr ""
 
-#: inc/WordPress/Widget.php:329
+#: inc/WordPress/Widget.php:332
 msgctxt "Widget: Setting"
 msgid "Custom HTML for Closing Widget:"
 msgstr ""
 
-#: inc/WordPress/Widget.php:348
+#: inc/WordPress/Widget.php:351
 msgctxt "Widget: Setting"
 msgid "Custom HTML for After Title:"
 msgstr ""
 
-#: inc/WordPress/Widget.php:367
+#: inc/WordPress/Widget.php:370
 msgctxt "Widget: Setting"
 msgid "Number of posts to show:"
 msgstr ""
 
-#: inc/WordPress/Widget.php:391
+#: inc/WordPress/Widget.php:394
 msgctxt "Widget: Setting"
 msgid "Context:"
 msgstr ""
 
-#: inc/WordPress/Widget.php:405
+#: inc/WordPress/Widget.php:408
 msgctxt "Widget: Setting"
 msgid "CSS Class:"
 msgstr ""
 
-#: inc/WordPress/Widget.php:417
+#: inc/WordPress/Widget.php:420
 msgctxt "Widget: Setting"
 msgid "&ndash; (Any)"
 msgstr ""
 
-#: inc/WordPress/Widget.php:431
+#: inc/WordPress/Widget.php:434
 msgctxt "Widget: Setting"
 msgid "PostType:"
 msgstr ""
 
-#: inc/WordPress/Widget.php:443
+#: inc/WordPress/Widget.php:446
 msgctxt "Widget: Setting"
 msgid "&mdash; All Taxonomies &mdash;"
 msgstr ""
 
-#: inc/WordPress/Widget.php:457
+#: inc/WordPress/Widget.php:460
 msgctxt "Widget: Setting"
 msgid "Taxonomy:"
 msgstr ""
 
-#: inc/WordPress/Widget.php:470
+#: inc/WordPress/Widget.php:473
 msgctxt "Widget: Setting"
 msgid "Title:"
 msgstr ""
 
-#: inc/WordPress/Widget.php:484
+#: inc/WordPress/Widget.php:487
 msgctxt "Widget: Setting"
 msgid "Title Link:"
 msgstr ""
 
-#: inc/WordPress/Widget.php:498
+#: inc/WordPress/Widget.php:501
 msgctxt "Widget: Setting"
 msgid "Title Image:"
 msgstr ""
 
-#: inc/WordPress/Widget.php:504
+#: inc/WordPress/Widget.php:507
 msgctxt "Widget: Setting"
 msgid "Custom Link:"
 msgstr ""
 
-#: inc/WordPress/Widget.php:521
+#: inc/WordPress/Widget.php:524
 msgctxt "Widget: Setting"
 msgid "Custom Code:"
 msgstr ""
 
-#: inc/WordPress/Widget.php:538
+#: inc/WordPress/Widget.php:541
 msgctxt "Widget: Setting"
 msgid "Empty Message:"
 msgstr ""
 
-#: inc/WordPress/Widget.php:561
+#: inc/WordPress/Widget.php:564
 msgctxt "Widget: Setting"
 msgid "Avatar Size:"
 msgstr ""
 
-#: inc/WordPress/Widget.php:575
+#: inc/WordPress/Widget.php:578
 msgctxt "Widget: Setting"
 msgid "No Image Size Available!"
 msgstr ""
 
-#: inc/WordPress/Widget.php:592
+#: inc/WordPress/Widget.php:595
 msgctxt "Widget: Setting"
 msgid "Image Size:"
 msgstr ""
 
-#: inc/WordPress/Widget.php:616
+#: inc/WordPress/Widget.php:619
 msgctxt "Widget: Setting"
 msgid "Checked"
 msgstr ""
 
-#: inc/WordPress/Widget.php:635
+#: inc/WordPress/Widget.php:638
 msgctxt "Widget: Setting"
 msgid "Page:"
 msgstr ""
 
-#: inc/WordPress/Widget.php:662
+#: inc/WordPress/Widget.php:665
 msgctxt "Widget: Setting"
 msgid "Select taxonomy first!"
 msgstr ""
 
-#: inc/WordPress/Widget.php:670
+#: inc/WordPress/Widget.php:673
 msgctxt "Widget: Setting"
 msgid "The taxonomy is not available!"
 msgstr ""
 
-#: inc/WordPress/Widget.php:673
+#: inc/WordPress/Widget.php:676
 msgctxt "Widget: Setting"
 msgid "No terms available!"
 msgstr ""
 
-#: inc/WordPress/Widget.php:692
+#: inc/WordPress/Widget.php:695
 msgctxt "Widget: Setting"
 msgid "Term:"
 msgstr ""
 
-#: inc/WordPress/Widget.php:698
+#: inc/WordPress/Widget.php:701
 msgctxt "Widget: Setting"
 msgid "Must has Thumbnail Image"
 msgstr ""
 
-#: inc/WordPress/Widget.php:713
+#: inc/WordPress/Widget.php:716
 msgctxt "Widget: Setting"
 msgid "Wrap as List Items"
 msgstr ""
