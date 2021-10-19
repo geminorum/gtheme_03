@@ -214,6 +214,7 @@ class gThemeWidget extends WP_Widget
 
 			'title_link'  => 'url',
 			'title_image' => 'url',
+			'custom_link' => 'url',
 
 			'content'           => 'html',
 			'empty'             => 'html',
@@ -229,8 +230,10 @@ class gThemeWidget extends WP_Widget
 			'image_size' => 'key',
 
 			'post_id'     => 'digit',
+			'page_id'     => 'digit',
 			'term_id'     => 'digit',
 			'number'      => 'digit',
+			'trim_chars'  => 'digit',
 			'avatar_size' => 'digit',
 		], $extra );
 
