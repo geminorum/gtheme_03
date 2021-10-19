@@ -1,3 +1,11 @@
+###  
+* core/widget: avoid type url for relatives
+* core/widget: custom html after title
+* core/widget: support more defaults on updates
+* module/editorial: comp with new version 
+* module/sidebar: new default sidebars
+* module/template: custom logo helper
+
 ### 3.20.16
 * core/widget: :warning: correct arg name
 * module/editorial: rename the source method
