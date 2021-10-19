@@ -29,6 +29,21 @@ class gThemeEditorial extends gThemeModuleCore
 		return FALSE;
 	}
 
+	public static function socialite( $atts = [], $echo = TRUE )
+	{
+		if ( ! self::availableEditorial( 'socialite' ) )
+			return NULL;
+
+		$html = gEditorial()->socialite->socialite_shortcode( $atts );
+
+		if ( ! $echo )
+			return $html;
+
+		echo $html;
+
+		return TRUE;
+	}
+
 	public static function series( $atts = [], $echo = TRUE )
 	{
 		if ( ! self::availableEditorial( 'series' ) )
@@ -125,10 +140,10 @@ class gThemeEditorial extends gThemeModuleCore
 		if ( ! self::availableEditorial( 'course' ) )
 			return $atts['default'];
 
-		if ( ! is_callable( [ 'geminorum\\gEditorial\\Templates\\Course', 'theCourse' ] ) )
+		if ( ! is_callable( [ 'geminorum\\gEditorial\\Modules\\Course\\ModuleTemplate', 'theCourse' ] ) )
 			return $atts['default'];
 
-		return \geminorum\gEditorial\Templates\Course::theCourse( $atts );
+		return \geminorum\gEditorial\Modules\Course\ModuleTemplate::theCourse( $atts );
 	}
 
 	public static function postLikeButton( $atts = [], $check_systemtags = 'disable-like-button' )
@@ -215,13 +230,13 @@ class gThemeEditorial extends gThemeModuleCore
 		if ( ! self::availableEditorial( 'meta' ) )
 			return $atts['default'];
 
-		if ( ! is_callable( [ 'geminorum\\gEditorial\\Templates\\Meta', 'metaLabel' ] ) )
+		if ( ! is_callable( [ 'geminorum\\gEditorial\\Modules\\Meta\\ModuleTemplate', 'metaLabel' ] ) )
 			return $atts['default'];
 
 		if ( ! array_key_exists( 'id', $atts ) )
 			$atts['id'] = array_key_exists( 'post_id', $atts ) ? $atts['post_id'] : NULL;
 
-		return \geminorum\gEditorial\Templates\Meta::metaLabel( $atts );
+		return \geminorum\gEditorial\Modules\Meta\ModuleTemplate::metaLabel( $atts );
 	}
 
 	// FIXME: DEPRECATED
@@ -239,10 +254,24 @@ class gThemeEditorial extends gThemeModuleCore
 		if ( ! self::availableEditorial( 'meta' ) )
 			return $atts['default'];
 
-		if ( ! is_callable( [ 'geminorum\\gEditorial\\Templates\\Meta', 'metaSource' ] ) )
+		if ( ! is_callable( [ 'geminorum\\gEditorial\\Modules\\Meta\\ModuleTemplate', 'metaSource' ] ) )
 			return $atts['default'];
 
-		return \geminorum\gEditorial\Templates\Meta::metaSource( $atts );
+		return \geminorum\gEditorial\Modules\Meta\ModuleTemplate::metaSource( $atts );
+	}
+
+	public static function theAction( $atts = [] )
+	{
+		if ( ! array_key_exists( 'default', $atts ) )
+			$atts['default'] = FALSE;
+
+		if ( ! self::availableEditorial( 'meta' ) )
+			return $atts['default'];
+
+		if ( ! is_callable( [ 'geminorum\\gEditorial\\Modules\\Meta\\ModuleTemplate', 'metaAction' ] ) )
+			return $atts['default'];
+
+		return \geminorum\gEditorial\Modules\Meta\ModuleTemplate::metaAction( $atts );
 	}
 
 	public static function estimated( $atts = [] )
@@ -283,10 +312,10 @@ class gThemeEditorial extends gThemeModuleCore
 		if ( ! self::availableEditorial( 'meta' ) )
 			return $atts['default'];
 
-		if ( ! is_callable( [ 'geminorum\\gEditorial\\Templates\\Meta', 'metaAuthor' ] ) )
+		if ( ! is_callable( [ 'geminorum\\gEditorial\\Modules\\Meta\\ModuleTemplate', 'metaAuthor' ] ) )
 			return $atts['default'];
 
-		return \geminorum\gEditorial\Templates\Meta::metaAuthor( $atts );
+		return \geminorum\gEditorial\Modules\Meta\ModuleTemplate::metaAuthor( $atts );
 	}
 
 	// FIXME: DEPRECATED
@@ -314,10 +343,10 @@ class gThemeEditorial extends gThemeModuleCore
 		if ( ! self::availableEditorial( 'meta' ) )
 			return $atts['default'];
 
-		if ( ! is_callable( [ 'geminorum\\gEditorial\\Templates\\Meta', 'metaFieldHTML' ] ) )
+		if ( ! is_callable( [ 'geminorum\\gEditorial\\Modules\\Meta\\ModuleTemplate', 'metaFieldHTML' ] ) )
 			return $atts['default'];
 
-		return \geminorum\gEditorial\Templates\Meta::metaFieldHTML( $field, $atts );
+		return \geminorum\gEditorial\Modules\Meta\ModuleTemplate::metaFieldHTML( $field, $atts );
 	}
 
 	public static function getMeta( $field, $atts = [] )
@@ -342,7 +371,7 @@ class gThemeEditorial extends gThemeModuleCore
 		if ( ! self::availableEditorial( 'meta' ) )
 			return $atts['default'];
 
-		if ( ! is_callable( [ 'geminorum\\gEditorial\\Templates\\Meta', 'getMetaField' ] ) )
+		if ( ! is_callable( [ 'geminorum\\gEditorial\\Modules\\Meta\\ModuleTemplate', 'getMetaField' ] ) )
 			return $atts['default'];
 
 		$args = self::atts( [
@@ -352,7 +381,7 @@ class gThemeEditorial extends gThemeModuleCore
 			'default' => FALSE,
 		], $atts );
 
-		if ( ! $html = \geminorum\gEditorial\Templates\Meta::getMetaField( $field, $args ) )
+		if ( ! $html = \geminorum\gEditorial\Modules\Meta\ModuleTemplate::getMetaField( $field, $args ) )
 			return FALSE;
 
 		$args = self::atts( [
@@ -486,10 +515,10 @@ class gThemeEditorial extends gThemeModuleCore
 		if ( ! self::availableEditorial( 'magazine' ) )
 			return $atts['default'];
 
-		if ( ! is_callable( [ 'geminorum\\gEditorial\\Templates\\Magazine', 'theIssue' ] ) )
+		if ( ! is_callable( [ 'geminorum\\gEditorial\\Modules\\Magazine\\ModuleTemplate', 'theIssue' ] ) )
 			return $atts['default'];
 
-		return \geminorum\gEditorial\Templates\Magazine::theIssue( $atts );
+		return \geminorum\gEditorial\Modules\Magazine\ModuleTemplate::theIssue( $atts );
 	}
 
 	// FIXME: DEPRECATED
@@ -503,10 +532,10 @@ class gThemeEditorial extends gThemeModuleCore
 		if ( ! self::availableEditorial( 'magazine' ) )
 			return $atts['default'];
 
-		if ( ! is_callable( [ 'geminorum\\gEditorial\\Templates\\Magazine', 'theIssueMeta' ] ) )
+		if ( ! is_callable( [ 'geminorum\\gEditorial\\Modules\\Magazine\\ModuleTemplate', 'theIssueMeta' ] ) )
 			return $atts['default'];
 
-		return \geminorum\gEditorial\Templates\Magazine::theIssueMeta( $field, $atts );
+		return \geminorum\gEditorial\Modules\Magazine\ModuleTemplate::theIssueMeta( $field, $atts );
 	}
 
 	public static function issueCover( $atts = [] )
@@ -517,10 +546,10 @@ class gThemeEditorial extends gThemeModuleCore
 		if ( ! self::availableEditorial( 'magazine' ) )
 			return $atts['default'];
 
-		if ( ! is_callable( [ 'geminorum\\gEditorial\\Templates\\Magazine', 'cover' ] ) )
+		if ( ! is_callable( [ 'geminorum\\gEditorial\\Modules\\Magazine\\ModuleTemplate', 'cover' ] ) )
 			return $atts['default'];
 
-		return \geminorum\gEditorial\Templates\Magazine::cover( $atts );
+		return \geminorum\gEditorial\Modules\Magazine\ModuleTemplate::cover( $atts );
 	}
 
 	public static function bookCover( $atts = [], $check = FALSE )
@@ -537,10 +566,10 @@ class gThemeEditorial extends gThemeModuleCore
 		if ( ! self::availableEditorial( 'book' ) )
 			return $atts['default'];
 
-		if ( ! is_callable( [ 'geminorum\\gEditorial\\Templates\\Book', 'cover' ] ) )
+		if ( ! is_callable( [ 'geminorum\\gEditorial\\Modules\\Book\\ModuleTemplate', 'cover' ] ) )
 			return $atts['default'];
 
-		return \geminorum\gEditorial\Templates\Book::cover( $atts );
+		return \geminorum\gEditorial\Modules\Book\ModuleTemplate::cover( $atts );
 	}
 
 	public static function bookBarcodeISBN( $atts = [], $check = FALSE )
@@ -557,10 +586,10 @@ class gThemeEditorial extends gThemeModuleCore
 		if ( ! self::availableEditorial( 'book' ) )
 			return $atts['default'];
 
-		if ( ! is_callable( [ 'geminorum\\gEditorial\\Templates\\Book', 'barcodeISBN' ] ) )
+		if ( ! is_callable( [ 'geminorum\\gEditorial\\Modules\\Book\\ModuleTemplate', 'barcodeISBN' ] ) )
 			return $atts['default'];
 
-		return \geminorum\gEditorial\Templates\Book::barcodeISBN( $atts );
+		return \geminorum\gEditorial\Modules\Book\ModuleTemplate::barcodeISBN( $atts );
 	}
 
 	public static function bookMetaSummary( $atts = [], $check = FALSE )
@@ -580,10 +609,10 @@ class gThemeEditorial extends gThemeModuleCore
 		if ( ! array_key_exists( 'fields', $atts ) )
 			$atts['fields'] = apply_filters( 'gtheme_editorial_book_summary_fields', NULL, $atts );
 
-		if ( ! is_callable( [ 'geminorum\\gEditorial\\Templates\\Book', 'summary' ] ) )
+		if ( ! is_callable( [ 'geminorum\\gEditorial\\Modules\\Book\\ModuleTemplate', 'summary' ] ) )
 			return $atts['default'];
 
-		return \geminorum\gEditorial\Templates\Book::summary( $atts );
+		return \geminorum\gEditorial\Modules\Book\ModuleTemplate::summary( $atts );
 	}
 
 	public static function refList( $atts = [], $echo = TRUE )
@@ -604,8 +633,8 @@ class gThemeEditorial extends gThemeModuleCore
 	// FIXME: DEPRECATED
 	public static function reshareSource( $atts = [] )
 	{
-		self::_dep( 'gThemeEditorial::source()' );
-		return self::source( $atts );
+		self::_dep( 'gThemeEditorial::theSource()' );
+		return self::theSource( $atts );
 	}
 
 	public static function personPicture( $atts = [], $post = NULL )
@@ -616,7 +645,7 @@ class gThemeEditorial extends gThemeModuleCore
 		if ( ! self::availableEditorial( 'terms' ) )
 			return $atts['default'];
 
-		if ( ! is_callable( [ 'geminorum\\gEditorial\\Templates\\Terms', 'termImage' ] ) )
+		if ( ! is_callable( [ 'geminorum\\gEditorial\\Modules\\Terms\\ModuleTemplate', 'termImage' ] ) )
 			return $atts['default'];
 
 		if ( ! array_key_exists( 'taxonomy', $atts ) )
@@ -641,7 +670,7 @@ class gThemeEditorial extends gThemeModuleCore
 				$atts['figure'] = TRUE; // only on singular
 		}
 
-		return \geminorum\gEditorial\Templates\Terms::termImage( $atts );
+		return \geminorum\gEditorial\Modules\Terms\ModuleTemplate::termImage( $atts );
 	}
 
 	// FIXME: must move to the actual module templates
