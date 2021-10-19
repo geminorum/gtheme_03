@@ -504,8 +504,8 @@ class gThemeWidget extends WP_Widget
 			$label = _x( 'Custom Link:', 'Widget: Setting', 'gtheme' );
 
 		$html = gThemeHTML::tag( 'input', [
-			'type'  => 'url',
-			'class' => 'widefat',
+			'type'  => 'text', // `url` will not work on relatives
+			'class' => [ 'widefat', 'code' ],
 			'name'  => $this->get_field_name( $field ),
 			'id'    => $this->get_field_id( $field ),
 			'value' => isset( $instance[$field] ) ? $instance[$field] : $default,
