@@ -22,10 +22,14 @@ class gThemeSideBar extends gThemeModuleCore
 	public static function defaults( $extra = [] )
 	{
 		return array_merge( [
-			'side-index'      => _x( 'Index: Side', 'Sidebar Name', 'gtheme' ),
-			'side-singular'   => _x( 'Singular: Side', 'Sidebar Name', 'gtheme' ),
-			'side-systempage' => _x( 'System Page: Side', 'Sidebar Name', 'gtheme' ),
-			'after-singular'  => _x( 'Singular: After Entry', 'Sidebar Name', 'gtheme' ),
+			'side-index'           => _x( 'Index: Side', 'Sidebar Name', 'gtheme' ),
+			'side-singular'        => _x( 'Singular: Side', 'Sidebar Name', 'gtheme' ),
+			'side-systempage'      => _x( 'System Page: Side', 'Sidebar Name', 'gtheme' ),
+			'after-singular'       => _x( 'Singular: After Entry', 'Sidebar Name', 'gtheme' ),
+			'entry-double-before'  => _x( 'Entry: Double: Before', 'Sidebar Name', 'gtheme' ),
+			'entry-double-content' => _x( 'Entry: Double: Content', 'Sidebar Name', 'gtheme' ),
+			'entry-double-side'    => _x( 'Entry: Double: Side', 'Sidebar Name', 'gtheme' ),
+			'entry-double-after'   => _x( 'Entry: Double: After', 'Sidebar Name', 'gtheme' ),
 		], $extra );
 	}
 

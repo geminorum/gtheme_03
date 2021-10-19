@@ -1,6 +1,16 @@
 <?php defined( 'ABSPATH' ) or die( header( 'HTTP/1.0 403 Forbidden' ) );
 
-gThemeContent::header( [ 'context' => 'singular', 'byline' => TRUE, 'actions' => NULL ] );
+// Flow: Header -> Cover -> Summary/Content
+
+echo '<div class="entry-double-top"><div class="-wrap">';
+
+gThemeSideBar::sidebar( 'entry-double-before', '<div class="wrap-side sidebar-entry-double-before">', '</div>' );
+
+echo '</div></div><div class="-wrap splitrow"><div class="-side entry-double-head"><div class="-wrap">';
+
+gThemeContent::header( [ 'context' => 'singular', 'byline' => FALSE, 'actions' => NULL ] );
+
+echo '</div></div><div class="-side entry-double-main"><div class="-wrap">';
 
 gThemeEditorial::bookCover( [
 	'id'     => NULL, // current publication
@@ -11,11 +21,12 @@ gThemeEditorial::bookCover( [
 	'wrap'   => FALSE,
 ] );
 
-gThemeContent::content();
-
-gThemeEditorial::bookMetaSummary( [
-	'before' => '<div class="clearfix"></div><div class="entry-after after-meta-summary after-rows">',
-	'after'  => '</div>',
+gThemeEditorial::theAction( [
+	'link_class' => 'btn btn-outline-primary btn-lg btn-block', // `btn-block` is for BS4
+	'span_class' => 'btn btn-outline-primary btn-lg btn-block disabled',
+	'before'     => '<div class="clearfix"></div><div class="entry-after after-action after-rows d-grid gap-2">', // `d-grid gap-2` is for BS5
+	'after'      => '</div>',
+	'wrap'       => FALSE,
 ] );
 
 gThemeEditorial::attachments( [
@@ -32,4 +43,25 @@ gThemeEditorial::publication( [
 	'title'  => FALSE,
 ] );
 
+gThemeSideBar::sidebar( 'entry-double-content', '<div class="wrap-side sidebar-entry-double-content">', '</div>' );
+
+echo '</div></div><div class="-side entry-double-foot"><div class="-wrap">';
+
+gThemeEditorial::metaHTML( 'highlight', [ 'fallback' => 'cover_blurb' ] );
+
+gThemeContent::content();
+
+gThemeEditorial::bookMetaSummary( [
+	'before' => '<div class="clearfix"></div><div class="entry-after after-meta-summary after-rows">',
+	'after'  => '</div>',
+] );
+
+gThemeSideBar::sidebar( 'entry-double-side', '<div class="wrap-side sidebar-entry-double-side">', '</div>' );
+
+echo '</div></div></div><div class="entry-double-bottom"><div class="-wrap">';
+
+gThemeSideBar::sidebar( 'entry-double-after', '<div class="wrap-side sidebar-entry-double-after">', '</div>' );
+
 gThemeNavigation::content( 'singular', TRUE, 'publication_subject' );
+
+echo '</div></div>';
