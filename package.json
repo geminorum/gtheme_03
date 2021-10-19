@@ -65,7 +65,7 @@
     "postcss": "^8.3.9",
     "prettyjson": "^1.2.1",
     "publish-release": "^1.6.1",
-    "rtlcss": "^3.3.0",
+    "rtlcss": "^3.4.0",
     "semistandard": "^16.0.1",
     "stylelint": "^13.13.1",
     "xtend": "^4.0.2"
