@@ -185,7 +185,7 @@ class gThemeWidget extends WP_Widget
 		$html = $args['before_title'].$title.$args['after_title'];
 
 		if ( ! empty( $instance['after_title_html'] ) )
-			$html = trim( $instance['after_title_html'] ).$html;
+			$html.= trim( $instance['after_title_html'] );
 
 		if ( ! $echo )
 			return $html;
