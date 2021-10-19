@@ -1,8 +1,8 @@
-###  
+### 3.21.0
 * core/widget: avoid type url for relatives
 * core/widget: custom html after title
 * core/widget: support more defaults on updates
-* module/editorial: comp with new version 
+* module/editorial: comp with new version
 * module/sidebar: new default sidebars
 * module/template: custom logo helper
 
