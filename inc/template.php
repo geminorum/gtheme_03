@@ -92,6 +92,18 @@ class gThemeTemplate extends gThemeModuleCore
 		echo $logo;
 	}
 
+	public static function customLogo( $context = 'header', $before = '', $after = '', $fallback = NULL )
+	{
+		if ( $html = get_custom_logo() )
+			echo $before.$html.$after;
+
+		else if ( is_null( $fallback ) )
+			echo $before.self::logo( $context, NULL, FALSE ).$after;
+
+		else if ( $fallback )
+			echo $before.$fallback.$after;
+	}
+
 	public static function about( $before = '', $after = '', $custom = NULL, $page = 'about' )
 	{
 		$group = gThemeOptions::getGroup();
