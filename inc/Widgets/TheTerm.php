@@ -90,7 +90,7 @@ class gThemeWidgetTheTerm extends gThemeWidget
 			return;
 
 		$this->before_widget( $args, $instance, TRUE, ( $image ? '-has-image' : '' ) );
-		$this->widget_title( $args, $instance, $name );
+		$this->widget_title( $args, $instance, TRUE, $name );
 
 		// link image only on singular
 		if ( is_singular() || is_single() )
