@@ -444,6 +444,14 @@ class gThemeOptions extends gThemeModuleCore
 		return $switch;
 	}
 
+	public static function getColorScheme( $info = NULL, $fallback = 'light' )
+	{
+		if ( $info && ( $scheme = gThemeOptions::info( $info, FALSE ) ) )
+			return $scheme;
+
+		return gThemeOptions::info( 'color_scheme', $fallback );
+	}
+
 	// FIXME: DEPRECATED: use gThemeCounts::get()
 	public static function count( $name, $def = 0 )
 	{

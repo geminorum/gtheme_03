@@ -8,7 +8,7 @@ class gThemeBootstrap extends gThemeModuleCore
 	{
 		$target = 'navbar';
 		$fixed  = gThemeOptions::info( 'bootstrap_navbar_fixed', FALSE );
-		$scheme = gThemeOptions::info( 'bootstrap_color_scheme', 'dark' ); // dark/light
+		$scheme = gThemeOptions::getColorScheme( 'bootstrap_color_scheme', 'dark' ); // dark/light
 
 		echo '<nav class="navbar navbar-'.$scheme.' bg-'.$scheme.( $fixed ? ' fixed-top ' : ' ' ).$class.'">';
 
