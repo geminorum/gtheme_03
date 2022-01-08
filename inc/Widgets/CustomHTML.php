@@ -49,7 +49,7 @@ class gThemeWidgetCustomHTML extends gThemeWidget
 		echo '</div>';
 		$this->after_widget( $args, $instance );
 
-		return TRUE;
+		return empty( $instance['bypasscache'] );
 	}
 
 	public function update( $new, $old )
@@ -62,6 +62,7 @@ class gThemeWidgetCustomHTML extends gThemeWidget
 			'filters',
 			'legacy',
 			'autop',
+			'bypasscache',
 		] );
 	}
 
@@ -83,6 +84,7 @@ class gThemeWidgetCustomHTML extends gThemeWidget
 		$this->form_checkbox( $instance, FALSE, 'filters', _x( 'Process Filters', 'Widget: Setting', 'gtheme' ) );
 		$this->form_checkbox( $instance, FALSE, 'legacy', _x( 'Process Filters (Legacy)', 'Widget: Setting', 'gtheme' ) );
 		$this->form_checkbox( $instance, FALSE, 'autop', _x( 'Automatic Paragraphs', 'Widget: Setting', 'gtheme' ) );
+		$this->form_checkbox( $instance, FALSE, 'bypasscache', _x( 'Bypass Caching', 'Widget: Setting', 'gtheme' ) );
 
 		echo '</div>';
 
