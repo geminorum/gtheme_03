@@ -5,6 +5,8 @@ class gThemeWidgetPostRow extends gThemeWidget
 
 	// TODO: filter `widget_title`, for dynamic `{post_title}`
 
+	const WIDGET = 'post_row';
+
 	public static function setup()
 	{
 		return [

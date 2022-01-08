@@ -3,6 +3,8 @@
 class gThemeWidgetChildren extends gThemeWidget
 {
 
+	const WIDGET = 'children';
+
 	public static function setup()
 	{
 		return [

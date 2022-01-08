@@ -3,6 +3,8 @@
 class gThemeWidgetPostTerms extends gThemeWidget
 {
 
+	const WIDGET = 'post_terms';
+
 	public static function setup()
 	{
 		return [

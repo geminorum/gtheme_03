@@ -3,6 +3,8 @@
 class gThemeWidgetSiblings extends gThemeWidget
 {
 
+	const WIDGET = 'siblings';
+
 	public static function setup()
 	{
 		return [

@@ -3,6 +3,8 @@
 class gThemeWidgetTemplatePart extends gThemeWidget
 {
 
+	const WIDGET = 'template_part';
+
 	public static function setup()
 	{
 		return [

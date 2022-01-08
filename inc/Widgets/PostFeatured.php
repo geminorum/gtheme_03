@@ -3,6 +3,8 @@
 class gThemeWidgetPostFeatured extends gThemeWidget
 {
 
+	const WIDGET = 'post_featured';
+
 	public static function setup()
 	{
 		return [

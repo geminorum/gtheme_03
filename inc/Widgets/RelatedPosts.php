@@ -3,6 +3,8 @@
 class gThemeWidgetRelatedPosts extends gThemeWidget
 {
 
+	const WIDGET = 'related_posts';
+
 	public static function setup()
 	{
 		return [

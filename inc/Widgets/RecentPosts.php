@@ -3,6 +3,8 @@
 class gThemeWidgetRecentPosts extends gThemeWidget
 {
 
+	const WIDGET = 'recent_posts';
+
 	public static function setup()
 	{
 		return [

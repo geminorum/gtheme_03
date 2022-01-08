@@ -3,6 +3,8 @@
 class gThemeWidgetTheTerm extends gThemeWidget
 {
 
+	const WIDGET = 'the_term';
+
 	public static function setup()
 	{
 		return [

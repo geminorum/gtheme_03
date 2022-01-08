@@ -3,6 +3,8 @@
 class gThemeWidgetRecentComments extends gThemeWidget
 {
 
+	const WIDGET = 'recent_comments';
+
 	public static function setup()
 	{
 		return [

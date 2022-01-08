@@ -3,6 +3,8 @@
 class gThemeWidgetTermPosts extends gThemeWidget
 {
 
+	const WIDGET = 'term_posts';
+
 	public static function setup()
 	{
 		return [

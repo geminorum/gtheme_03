@@ -3,6 +3,8 @@
 class gThemeWidgetCustomHTML extends gThemeWidget
 {
 
+	const WIDGET = 'custom_html';
+
 	public static function setup()
 	{
 		return [

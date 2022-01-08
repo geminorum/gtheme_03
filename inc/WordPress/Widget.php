@@ -5,6 +5,16 @@ class gThemeWidget extends WP_Widget
 
 	const BASE   = 'gtheme';
 	const MODULE = FALSE;
+	const WIDGET = FALSE;
+
+	protected static function filters( $hook, ...$args )
+	{
+		return apply_filters( sprintf( '%s_widget_%s_%s',
+			static::BASE,
+			static::WIDGET,
+			$hook
+		), ...$args );
+	}
 
 	public function __construct()
 	{
@@ -29,6 +39,7 @@ class gThemeWidget extends WP_Widget
 		], $args['control'] );
 
 		$this->alt_option_name = 'widget_'.static::BASE.'_'.$args['name'];
+		$this->_widget_args    = $args;
 
 		foreach ( $args['flush'] as $action )
 			add_action( $action, [ $this, 'flush_widget_cache' ] );

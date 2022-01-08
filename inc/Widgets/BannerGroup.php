@@ -3,6 +3,8 @@
 class gThemeWidgetBannerGroup extends gThemeWidget
 {
 
+	const WIDGET = 'banner_group';
+
 	public static function setup()
 	{
 		return [

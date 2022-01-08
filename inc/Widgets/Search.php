@@ -3,6 +3,8 @@
 class gThemeWidgetSearch extends gThemeWidget
 {
 
+	const WIDGET = 'search';
+
 	public static function setup()
 	{
 		return [
