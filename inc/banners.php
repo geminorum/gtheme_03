@@ -251,22 +251,7 @@ class gThemeBanners extends gThemeModuleCore
 		if ( FALSE === self::group( $group, $args ) )
 			return FALSE;
 
-		if ( $enqueued )
-			return TRUE;
-
-		$script = <<<'JS'
-jQuery(function(r){r(".wrap-slick-carousel .-carousel").slick({rtl:"rtl"===r("html").attr("dir")})});
-JS;
-
-		wp_enqueue_script( 'gtheme-slick', GTHEME_URL.'/js/vendor/slick-carousel.min.js', [], '1.8.1', TRUE );
-		wp_add_inline_script( 'gtheme-slick', $script );
-
-		// NOTE: for reference
-		// wp_enqueue_script( 'slick-carousel', GTHEME_URL.'/js/slick.carousel'.( SCRIPT_DEBUG ? '' : '.min' ).'.js', [ 'jquery', 'gtheme-slick' ], GTHEME_VERSION, TRUE );
-
-		$enqueued = TRUE;
-
-		return TRUE;
+		return gThemeUtilities::enqueueSlick();
 	}
 
 	public function subs( $subs )
