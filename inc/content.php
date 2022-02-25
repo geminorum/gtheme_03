@@ -883,6 +883,8 @@ class gThemeContent extends gThemeModuleCore
 	// NOTE: needs bootstrap for dropdown
 	public static function bootstrapQRCode( $text, $post = NULL, $before = '', $after = '', $title = NULL )
 	{
+		static $enqueued = FALSE;
+
 		if ( ! $post = self::getPost( $post ) )
 			return;
 
@@ -916,9 +918,21 @@ class gThemeContent extends gThemeModuleCore
 			],
 		], $text ).$dropdown.$after;
 
-		wp_enqueue_script( 'gtheme-bootstrap-qrcode',
-			GTHEME_URL.'/js/script.bootstrap-qrcode'.( SCRIPT_DEBUG ? '' : '.min' ).'.js',
-			[ 'jquery', ], GTHEME_VERSION, TRUE );
+		if ( $enqueued )
+			return TRUE;
+
+		// wp_enqueue_script( 'gtheme-bootstrap-qrcode', GTHEME_URL.'/js/script.bootstrap-qrcode'.( SCRIPT_DEBUG ? '' : '.min' ).'.js', [ 'jquery', ], GTHEME_VERSION, TRUE );
+
+		$script = <<<'JS'
+jQuery(function(a){a(".-action.-bootstrap-qrcode").on("show.bs.dropdown",function(c){if(!a(this).data("qrcode")){c=a(this).find("a.bootstrap-qrcode-toggle");var b=c.data("qrcode-size");a(this).find(".-qrcode-wrap").html(a("<img />",{src:"https://chart.apis.google.com/chart?cht=qr&chs="+b+"x"+b+"&chld=L%7C2&chl="+encodeURIComponent(c.data("qrcode-url")),alt:"qrcode"}));a(this).data("qrcode",!0)}})});
+JS;
+		// @REF: https://core.trac.wordpress.org/ticket/44551
+		// @REF: https://wordpress.stackexchange.com/a/311279
+		wp_register_script( 'gtheme-bootstrap-qrcode', '', [ 'jquery' ], '', TRUE );
+		wp_enqueue_script( 'gtheme-bootstrap-qrcode' ); // must register then enqueue
+		wp_add_inline_script( 'gtheme-bootstrap-qrcode', $script );
+
+		$enqueued = TRUE;
 	}
 
 	// @SEE : https://code.tutsplus.com/tutorials/creating-a-wordpress-post-text-size-changer-using-jquery--wp-28403
