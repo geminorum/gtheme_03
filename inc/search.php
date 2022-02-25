@@ -76,7 +76,7 @@ class gThemeSearch extends gThemeModuleCore
 	{
 		// wp_enqueue_script( 'gtheme-search-actions', GTHEME_CHILD_URL.'/js/search.actions.js', [ 'jquery' ], GTHEME_CHILD_VERSION, TRUE ); return; // <---- NOTE THIS
 
-		$script = 'jQuery(function(t){t("input[type=radio][name='.$name.']").change(function(){var a=t(this).data("action"),n=t(this).closest("form");n.attr("action",a)})});';
+		$script = 'jQuery(function(t){t("input[type=radio][name='.$name.']").on("change",function(){var a=t(this).data("action"),n=t(this).closest("form");n.attr("action",a)})});';
 
 		// @REF: https://core.trac.wordpress.org/ticket/44551
 		// @REF: https://wordpress.stackexchange.com/a/311279
