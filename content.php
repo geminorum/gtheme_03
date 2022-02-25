@@ -27,7 +27,7 @@ if ( is_single() ) { // any posttype except attachment/page
 
 	gThemeContent::wrapOpen( 'index' );
 
-		get_template_part( 'partials/summary', gtheme_template_base() );
+		get_template_part( 'partials/summary', get_post_type() );
 
 	gThemeContent::wrapClose( 'index' );
 }
