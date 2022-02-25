@@ -221,6 +221,7 @@ class gThemeTerms extends gThemeModuleCore
 			'no-related'          => _x( 'Not on Related', 'System Tags Defaults', 'gtheme' ),
 			'no-feed'             => _x( 'Not on Feed', 'System Tags Defaults', 'gtheme' ),
 			'insert-people'       => _x( 'Insert People', 'System Tags Defaults', 'gtheme' ),
+			'must-read'           => _x( 'Must Read!', 'System Tags Defaults', 'gtheme' ), // @SEE: https://wordpress.org/plugins/must-read/
 		], $extra );
 	}
 
@@ -613,6 +614,7 @@ class gThemeTerms extends gThemeModuleCore
 			'page'        => FALSE,
 			'post'        => 'category',
 			'entry'       => 'entry_section',
+			'quote'       => 'quote_topic',
 			'course'      => 'course_category',
 			'place'       => 'place_category',
 			'video'       => 'video_category',

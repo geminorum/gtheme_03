@@ -317,7 +317,7 @@ class gThemeComments extends gThemeModuleCore
 
 		echo '<ul class="comment-actions list-inline '.$class.'">';
 			foreach ( $actions as $action_class => $action )
-				echo '<li class="'.$action_class.'">'.$action.'</li>';
+				echo '<li class="list-inline-item '.$action_class.'">'.$action.'</li>';
 		echo '</ul>';
 	}
 

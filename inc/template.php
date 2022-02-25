@@ -66,7 +66,6 @@ class gThemeTemplate extends gThemeModuleCore
 		echo gThemeOptions::info( 'template_wrap_close', '</div>' );
 	}
 
-	// @SEE: `get_custom_logo()`
 	// @REF: https://css-tricks.com/header-text-image-replacement/
 	// @REF: http://luigimontanez.com/2010/stop-using-text-indent-css-trick/
 	public static function logo( $context = 'header', $template = NULL, $echo = TRUE )

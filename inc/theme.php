@@ -191,10 +191,10 @@ class gThemeTheme extends gThemeModuleCore
 			'height'      => NULL,
 			'flex-width'  => TRUE,
 			'flex-height' => TRUE,
-			'header-text' => [
-				gThemeOptions::info( 'blog_name', '' ), // site-title
-				gThemeOptions::info( 'frontpage_desc', '' ), // site-description
-			],
+			// 'header-text' => [
+			// 	gThemeOptions::info( 'blog_name', '' ), // site-title
+			// 	gThemeOptions::info( 'frontpage_desc', '' ), // site-description
+			// ],
 		], is_array( $atts ) ? $atts : [] );
 
 		return add_theme_support( 'custom-logo', $args );

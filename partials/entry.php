@@ -1,6 +1,6 @@
 <?php defined( 'ABSPATH' ) or die( header( 'HTTP/1.0 403 Forbidden' ) );
 
-// Flow: Cover -> Header -> Summary/Content
+// Flow: (Cover) -> (Header/lead/Content) -> (sidebar)
 
 echo '<div class="entry-double-top"><div class="-wrap">';
 
@@ -14,9 +14,9 @@ gThemeImage::image( [
 	'empty' => FALSE,
 ] );
 
-gThemeContent::header( [ 'context' => 'singular', 'byline' => TRUE, 'actions' => NULL ] );
-
 echo '</div></div><div class="-side entry-double-main"><div class="-wrap">';
+
+gThemeContent::header( [ 'context' => 'singular', 'byline' => TRUE, 'actions' => NULL ] );
 
 gThemeEditorial::metaHTML( 'lead', [ 'before' => '<div class="entry-lead">', 'after' => '</div>' ] );
 
