@@ -1,3 +1,19 @@
+### 3.21.1
+* core/widget: :warning: passing new instance as base
+* core/widget: custom title on the form
+* module/banners: move up enqueue slick
+* module/content: inline qrcode script
+* module/options: general color scheme as info
+* module/search: deprecated jquery method
+* partial/band: :new: partial
+* partial/entry: move highlight after header
+* root/content: summary suffix based on posttype
+* root/row: new default row for hover
+* widget/custom html: optional bypass cache
+* widget/pack grid: :new: widget
+* widget/post row: check post publicly viewable
+* widget/the term: :warning: correct order of args
+
 ### 3.21.0
 * core/widget: avoid type url for relatives
 * core/widget: custom html after title
