@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
-/// Blocks: MediaElement.JS 01 - 2020-08-27
+/// Blocks: MediaElement.JS 01 - 2021-12-01
 // @REF: https://www.cssigniter.com/css-style-guide-for-the-default-wordpress-media-player/
 // @SEE: https://github.com/justintadlock/theme-mediaelement
 
@@ -17,10 +17,40 @@ video.wp-video-shortcode {
 }
 
 ////////////////////////////////////////////////////////////////////////////////
-.mejs-container {
+body.gtheme .mejs-container {
   /*rtl:ignore*/
   direction: ltr;
 
+  // Reduce height of the progress and audio bars
+  .mejs-time-buffering,
+  .mejs-time-current,
+  .mejs-time-float,
+  .mejs-time-float-corner,
+  .mejs-time-float-current,
+  .mejs-time-hovered,
+  .mejs-time-loaded,
+  .mejs-time-marker,
+  .mejs-time-total,
+  .mejs-horizontal-volume-total,
+  .mejs-time-handle-content {
+    height: 3px;
+  }
+
+  .mejs-time-handle-content {
+    top: -6px;
+  }
+
+  .mejs-time-total {
+    margin-top: 8px;
+  }
+
+  .mejs-horizontal-volume-total {
+    top: 19px;
+  }
+}
+
+////////////////////////////////////////////////////////////////////////////////
+body.theme-scheme-light .mejs-container {
   &,
   .mejs-controls,
   .mejs-embed,
@@ -56,39 +86,11 @@ video.wp-video-shortcode {
       background: $brand-info;
     }
   }
-
-  // Reduce height of the progress and audio bars
-  .mejs-time-buffering,
-  .mejs-time-current,
-  .mejs-time-float,
-  .mejs-time-float-corner,
-  .mejs-time-float-current,
-  .mejs-time-hovered,
-  .mejs-time-loaded,
-  .mejs-time-marker,
-  .mejs-time-total,
-  .mejs-horizontal-volume-total,
-  .mejs-time-handle-content {
-    height: 3px;
-  }
-
-  .mejs-time-handle-content {
-    top: -6px;
-  }
-
-  .mejs-time-total {
-    margin-top: 8px;
-  }
-
-  .mejs-horizontal-volume-total {
-    top: 19px;
-  }
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 // WordPress audio playlist styles
-
-.wp-playlist-light {
+body.theme-scheme-light .wp-playlist-light {
   // box-shadow: 3px 3px 0 #e2e2e2;
 
   // Captions - Track titles / subtitles, time

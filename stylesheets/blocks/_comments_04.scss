@@ -5,7 +5,7 @@
 
 ////////////////////////////////////////////////////////////////////////////////
 $spacer: 1rem !default;
-$theme-brand-border: $gray-light !default;
+$theme-color-border: $gray-light !default;
 
 ////////////////////////////////////////////////////////////////////////////////
 .entry-comments {
@@ -50,7 +50,7 @@ $theme-brand-border: $gray-light !default;
   }
 
   .comment-body {
-    border: 1px dotted $theme-brand-border;
+    border: 1px dotted $theme-color-border;
     padding: $spacer $spacer 0 $spacer;
   }
 
@@ -61,7 +61,7 @@ $theme-brand-border: $gray-light !default;
 
     &::before {
       content: "|";
-      color: lighten($theme-brand-border, 10);
+      color: lighten($theme-color-border, 10);
       margin-right: $spacer * .5;
     }
   }
@@ -76,7 +76,7 @@ $theme-brand-border: $gray-light !default;
 
       &::before {
         content: "|";
-        color: lighten($theme-brand-border, 10);
+        color: lighten($theme-color-border, 10);
         margin-right: $spacer * .5;
       }
     }
@@ -91,7 +91,7 @@ $theme-brand-border: $gray-light !default;
   }
 
   .comment-actions {
-    border-top: 1px dashed lighten($theme-brand-border, 10);
+    border-top: 1px dashed lighten($theme-color-border, 10);
     padding: $spacer * .25;
   }
 

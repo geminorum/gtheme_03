@@ -4,13 +4,16 @@
 /// Blocks: Contact-Form-7 01 - 2018-12-24
 
 ////////////////////////////////////////////////////////////////////////////////
+@use "sass:math"; // @REF: https://sass-lang.com/d/slash-div
+
+////////////////////////////////////////////////////////////////////////////////
 div.wpcf7 {
   margin: 0;
   padding: 0;
 
   .wpcf7-response-output {
     margin: $theme-grid-gutter;
-    padding: ($theme-grid-gutter/4) ($theme-grid-gutter/2);
+    padding: math.div($theme-grid-gutter, 4) math.div($theme-grid-gutter, 2);
     text-align: center;
     border-radius: 2px;
   }

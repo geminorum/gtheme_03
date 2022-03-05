@@ -38,8 +38,8 @@ body {
     font-family: $font-family-normal;
     font-size: $theme-font-size;
     line-height: $theme-line-height;
-    color: $theme-text-color;
-    background-color: $theme-background-color;
+    color: $theme-color-text;
+    background-color: $theme-color-background;
   }
 
   .editor-post-title__input {

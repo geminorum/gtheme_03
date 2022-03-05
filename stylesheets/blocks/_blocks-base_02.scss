@@ -7,8 +7,8 @@
 
 ////////////////////////////////////////////////////////////////////////////////
 body {
-  background-color: $theme-background-color;
-  color: $theme-text-color;
+  background-color: $theme-color-background;
+  color: $theme-color-text;
 }
 
 // /* Main column width */
@@ -28,11 +28,11 @@ body {
 
 
 .edit-post-visual-editor {
-  background-color: $theme-background-color;
+  background-color: $theme-color-background;
 
   .editor-post-title__input,
   .editor-block-list__block {
-    color: $theme-text-color;
+    color: $theme-color-text;
     // margin: 0 auto;
     // max-width: $theme-entry-width;
   }

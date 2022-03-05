@@ -7,6 +7,9 @@
 // NOTE: must used with RTLCSS
 
 ////////////////////////////////////////////////////////////////////////////////
+@use "sass:math"; // @REF: https://sass-lang.com/d/slash-div
+
+////////////////////////////////////////////////////////////////////////////////
 .breadcrumb-item {
   display: list-item; // should not be `flex`
 }
@@ -31,7 +34,7 @@
     &::before {
       left: 0;
       right: auto;
-      border-width: ($tooltip-arrow-width / 2) 0 ($tooltip-arrow-width / 2) $tooltip-arrow-height;
+      border-width: math.div($tooltip-arrow-width, 2) 0 math.div($tooltip-arrow-width, 2) $tooltip-arrow-height;
       border-left-color: $tooltip-arrow-color;
     }
   }
@@ -43,7 +46,7 @@
 
     &::before {
       right: 0;
-      border-width: ($tooltip-arrow-width / 2) $tooltip-arrow-height ($tooltip-arrow-width / 2) 0;
+      border-width: math.div($tooltip-arrow-width, 2) $tooltip-arrow-height math.div($tooltip-arrow-width, 2) 0;
       border-right-color: $tooltip-arrow-color;
     }
   }
