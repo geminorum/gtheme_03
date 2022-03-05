@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: gTheme 3 3.21.0\n"
+"Project-Id-Version: gTheme 3 3.21.1\n"
 "Report-Msgid-Bugs-To: https://github.com/geminorum/gtheme_03/issues\n"
 "Last-Translator: NULL\n"
 "Language-Team: NULL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2021-10-19T21:29:31+03:30\n"
+"POT-Creation-Date: 2022-03-05T21:11:38+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"X-Generator: WP-CLI 2.5.0\n"
+"X-Generator: WP-CLI 2.6.0\n"
 "X-Domain: gtheme\n"
 
 #. Theme Name of the theme
@@ -116,57 +116,57 @@ msgctxt "Carousel Control"
 msgid "Next"
 msgstr ""
 
-#: inc/banners.php:274
+#: inc/banners.php:257
 msgctxt "Modules: Menu Name"
 msgid "Banners"
 msgstr ""
 
-#: inc/banners.php:358
+#: inc/banners.php:341
 msgctxt "Modules: Banners"
 msgid "Custom Banners"
 msgstr ""
 
-#: inc/banners.php:362
+#: inc/banners.php:345
 msgctxt "Modules: Banners"
 msgid "Legend"
 msgstr ""
 
-#: inc/banners.php:364
+#: inc/banners.php:347
 msgctxt "Modules: Banners"
 msgid "Your theme extra information"
 msgstr ""
 
-#: inc/banners.php:369
+#: inc/banners.php:352
 msgctxt "Modules: Banners"
 msgid "Group"
 msgstr ""
 
-#: inc/banners.php:370
+#: inc/banners.php:353
 msgctxt "Modules: Banners"
 msgid "Ord."
 msgstr ""
 
-#: inc/banners.php:371
+#: inc/banners.php:354
 msgctxt "Modules: Banners"
 msgid "Title"
 msgstr ""
 
-#: inc/banners.php:372
+#: inc/banners.php:355
 msgctxt "Modules: Banners"
 msgid "URL"
 msgstr ""
 
-#: inc/banners.php:373
+#: inc/banners.php:356
 msgctxt "Modules: Banners"
 msgid "Image"
 msgstr ""
 
-#: inc/banners.php:462
+#: inc/banners.php:445
 msgctxt "Modules: Banners"
 msgid "Add Another"
 msgstr ""
 
-#: inc/banners.php:463
+#: inc/banners.php:446
 msgctxt "Modules: Banners"
 msgid "Save"
 msgstr ""
@@ -440,132 +440,133 @@ msgctxt "Modules: Content: Action"
 msgid "QR-Code"
 msgstr ""
 
-#: inc/content.php:655
+#. translators: %s: post title
+#: inc/content.php:656
 msgctxt "Content: Title Attr"
 msgid "QR-Code for &ndash;%s&ndash;"
 msgstr ""
 
 #. translators: %1$s: class name, %2$s: comments number, %3$s: comment url
-#: inc/content.php:695
+#: inc/content.php:696
 msgctxt "Modules: Content: Action"
 msgid "<a href=\"%3$s\" class=\"%1$s\">Your Comment</a>"
 msgstr ""
 
 #. translators: %1$s: class name, %2$s: comments number, %3$s: comment url
-#: inc/content.php:697
+#: inc/content.php:698
 msgctxt "Modules: Content: Action"
 msgid "<a href=\"%3$s\" class=\"%1$s\">One Comment</a>"
 msgstr ""
 
 #. translators: %1$s: class name, %2$s: comments number, %3$s: comment url
-#: inc/content.php:699
+#: inc/content.php:700
 msgctxt "Modules: Content: Action"
 msgid "<a href=\"%3$s\" class=\"%1$s\">%2$s Comments</a>"
 msgstr ""
 
 #. translators: %1$s: comments rss link, %2$s: title attr, %3$s: class name
-#: inc/content.php:710
+#: inc/content.php:711
 msgctxt "Modules: Content: Action"
 msgid " <small><small>(<a href=\"%1$s\" title=\"%2$s\" class=\"%3$s\"><abbr title=\"Really Simple Syndication\">RSS</abbr></a>)</small></small>"
 msgstr ""
 
-#: inc/content.php:712
+#: inc/content.php:713
 msgctxt "Modules: Content: Action"
 msgid "Feed for this post's comments"
 msgstr ""
 
-#: inc/content.php:725
+#: inc/content.php:726
 msgctxt "Modules: Content: Action"
 msgid "Edit"
 msgstr ""
 
-#: inc/content.php:736
-#: inc/content.php:756
+#: inc/content.php:737
+#: inc/content.php:757
 msgctxt "Options: Separator: Term"
 msgid ", "
 msgstr ""
 
-#: inc/content.php:898
+#: inc/content.php:901
 msgctxt "Qr-Code"
 msgid "Loading&hellip;"
 msgstr ""
 
-#: inc/content.php:929
+#: inc/content.php:944
 msgctxt "Options: Text Size Increase"
 msgid "[ A+ ]"
 msgstr ""
 
-#: inc/content.php:932
+#: inc/content.php:947
 msgctxt "Options: Text Size Decrease"
 msgid "[ A- ]"
 msgstr ""
 
-#: inc/content.php:935
+#: inc/content.php:950
 msgctxt "Options: Text Size Sep"
 msgid " / "
 msgstr ""
 
-#: inc/content.php:940
+#: inc/content.php:955
 msgid "Increase font size"
 msgstr ""
 
-#: inc/content.php:947
+#: inc/content.php:962
 msgid "Decrease font size"
 msgstr ""
 
-#: inc/content.php:961
+#: inc/content.php:976
 msgctxt "Options: Text Justify"
 msgid "[ Ju ]"
 msgstr ""
 
-#: inc/content.php:964
+#: inc/content.php:979
 msgctxt "Options: Text Unjustify"
 msgid "[ uJ ]"
 msgstr ""
 
-#: inc/content.php:967
+#: inc/content.php:982
 msgctxt "Options: Text Justify Sep"
 msgid " / "
 msgstr ""
 
-#: inc/content.php:972
+#: inc/content.php:987
 msgid "Justify paragraphs"
 msgstr ""
 
-#: inc/content.php:979
+#: inc/content.php:994
 msgid "Un-justify paragraphs"
 msgstr ""
 
-#: inc/content.php:1028
+#: inc/content.php:1043
 msgctxt "Modules: Content: Addtoany"
 msgid "Share This"
 msgstr ""
 
 #. translators: %s: post title
-#: inc/content.php:1043
+#: inc/content.php:1058
 msgctxt "Modules: Content: Addtoany"
 msgid "Check this out %s"
 msgstr ""
 
 #. translators: %s: post link
-#: inc/content.php:1045
+#: inc/content.php:1060
 msgctxt "Modules: Content: Addtoany"
 msgid ""
 "Click the link:\n"
 "%s"
 msgstr ""
 
-#: inc/content.php:1339
+#: inc/content.php:1354
 msgctxt "Modules: Content: Link Pages"
 msgid "Next page"
 msgstr ""
 
-#: inc/content.php:1340
+#: inc/content.php:1355
 msgctxt "Modules: Content: Link Pages"
 msgid "Previous page"
 msgstr ""
 
-#: inc/content.php:1352
+#: inc/content.php:1367
 msgctxt "Modules: Content: Link Pages"
 msgid "Pages:"
 msgstr ""
@@ -715,9 +716,9 @@ msgid "Tertiary Navigation"
 msgstr ""
 
 #: inc/modulecore.php:226
-#: inc/WordPress/Widget.php:608
-#: inc/WordPress/Widget.php:646
-#: inc/WordPress/Widget.php:681
+#: inc/WordPress/Widget.php:637
+#: inc/WordPress/Widget.php:675
+#: inc/WordPress/Widget.php:710
 msgid "&mdash; Select &mdash;"
 msgstr ""
 
@@ -1192,13 +1193,13 @@ msgid "Entry: Double: After"
 msgstr ""
 
 #. translators: %s: primary term title
-#: inc/sidebar.php:158
+#: inc/sidebar.php:159
 msgctxt "Modules: Sidebar"
 msgid "Theme: %s Widget"
 msgstr ""
 
 #. translators: %s: primary term title
-#: inc/sidebar.php:160
+#: inc/sidebar.php:161
 msgctxt "Modules: Sidebar"
 msgid "This is the %s widgetized area"
 msgstr ""
@@ -1209,27 +1210,27 @@ msgctxt "Options: Separator: Title"
 msgid " &raquo; "
 msgstr ""
 
-#: inc/template.php:125
+#: inc/template.php:124
 msgctxt "Modules: Template: Title Attr"
 msgid "Front Page"
 msgstr ""
 
 #. translators: %s: display name
-#: inc/template.php:193
+#: inc/template.php:192
 msgctxt "Modules: Template: Author"
 msgid "Posts by %s"
 msgstr ""
 
-#: inc/template.php:275
+#: inc/template.php:274
 msgctxt "Options: Separator: Nav"
 msgid " &laquo; "
 msgstr ""
 
-#: inc/template.php:309
+#: inc/template.php:308
 msgid "&copy; All rights reserved."
 msgstr ""
 
-#: inc/template.php:326
+#: inc/template.php:325
 msgctxt "Root: End: Before Site Modified"
 msgid "Last updated on"
 msgstr ""
@@ -1255,7 +1256,7 @@ msgid "System Tags"
 msgstr ""
 
 #: inc/terms.php:190
-#: inc/terms.php:247
+#: inc/terms.php:248
 msgctxt "System Tag Tax Labels: Menu Name"
 msgid "System Tags"
 msgstr ""
@@ -1395,43 +1396,48 @@ msgctxt "System Tags Defaults"
 msgid "Insert People"
 msgstr ""
 
-#: inc/terms.php:276
+#: inc/terms.php:224
+msgctxt "System Tags Defaults"
+msgid "Must Read!"
+msgstr ""
+
+#: inc/terms.php:277
 msgctxt "Modules: Terms"
 msgid "Currently no primary terms are defined."
 msgstr ""
 
 #. translators: %s: terms list
-#: inc/terms.php:282
+#: inc/terms.php:283
 msgctxt "Modules: Terms"
 msgid "Primary Terms are: %s"
 msgstr ""
 
-#: inc/terms.php:301
+#: inc/terms.php:302
 msgctxt "Modules: Terms"
 msgid "Primary Term"
 msgstr ""
 
-#: inc/terms.php:332
+#: inc/terms.php:333
 msgctxt "Modules: Terms"
 msgid "Install Default System Tags"
 msgstr ""
 
-#: inc/terms.php:338
+#: inc/terms.php:339
 msgctxt "Modules: Terms"
 msgid "Error while adding default system tags."
 msgstr ""
 
-#: inc/terms.php:341
+#: inc/terms.php:342
 msgctxt "Modules: Terms"
 msgid "Default system tags added."
 msgstr ""
 
-#: inc/terms.php:354
+#: inc/terms.php:355
 msgctxt "Modules: Terms"
 msgid "Empty Before Last Month"
 msgstr ""
 
-#: inc/terms.php:411
+#: inc/terms.php:412
 msgid "Connected Posts"
 msgstr ""
 
@@ -1475,398 +1481,428 @@ msgctxt "Editor Custom Font Sizes"
 msgid "XL"
 msgstr ""
 
-#: inc/utilities.php:233
+#: inc/utilities.php:280
 msgctxt "Alert button (screen reader only)"
 msgid "Close"
 msgstr ""
 
-#: inc/utilities.php:251
+#: inc/utilities.php:298
 msgctxt "Utilities: Join Items Helper"
 msgid "&rdquo;"
 msgstr ""
 
-#: inc/utilities.php:252
+#: inc/utilities.php:299
 msgctxt "Utilities: Join Items Helper"
 msgid "&ldquo; and &rdquo;"
 msgstr ""
 
-#: inc/utilities.php:254
+#: inc/utilities.php:301
 msgctxt "Utilities: Join Items Helper"
 msgid "&ldquo;, &rdquo;"
 msgstr ""
 
-#: inc/utilities.php:257
+#: inc/utilities.php:304
 msgctxt "Utilities: Join Items Helper"
 msgid "&ldquo;"
 msgstr ""
 
-#: inc/Widgets/BannerGroup.php:11
+#: inc/Widgets/BannerGroup.php:13
 msgctxt "Widget: Title"
 msgid "Theme: Banner Group"
 msgstr ""
 
-#: inc/Widgets/BannerGroup.php:12
+#: inc/Widgets/BannerGroup.php:14
 msgctxt "Widget: Description"
 msgid "Displays banners from selected group into sidebars."
 msgstr ""
 
-#: inc/Widgets/BannerGroup.php:88
+#: inc/Widgets/BannerGroup.php:90
 msgctxt "Widget: BannerGroup"
 msgid "Group:"
 msgstr ""
 
-#: inc/Widgets/BannerGroup.php:89
+#: inc/Widgets/BannerGroup.php:91
 msgctxt "Widget: BannerGroup"
 msgid "Renderer:"
 msgstr ""
 
-#: inc/Widgets/Children.php:11
+#: inc/Widgets/Children.php:13
 msgctxt "Widget: Title"
 msgid "Theme: Children"
 msgstr ""
 
-#: inc/Widgets/Children.php:12
+#: inc/Widgets/Children.php:14
 msgctxt "Widget: Description"
 msgid "Displays the list of current post's children."
 msgstr ""
 
-#: inc/Widgets/CustomHTML.php:11
+#: inc/Widgets/CustomHTML.php:13
 msgctxt "Widget: Title"
 msgid "Theme: Custom HTML"
 msgstr ""
 
-#: inc/Widgets/CustomHTML.php:12
+#: inc/Widgets/CustomHTML.php:14
 msgctxt "Widget: Description"
 msgid "Displays arbitrary HTML code with support for shortcodes and embeds."
 msgstr ""
 
-#: inc/Widgets/CustomHTML.php:79
+#: inc/Widgets/CustomHTML.php:82
 msgctxt "Widget: Setting"
 msgid "Process Embeds"
 msgstr ""
 
-#: inc/Widgets/CustomHTML.php:80
+#: inc/Widgets/CustomHTML.php:83
 msgctxt "Widget: Setting"
 msgid "Process Shortcodes"
 msgstr ""
 
-#: inc/Widgets/CustomHTML.php:81
+#: inc/Widgets/CustomHTML.php:84
 msgctxt "Widget: Setting"
 msgid "Process Filters"
 msgstr ""
 
-#: inc/Widgets/CustomHTML.php:82
+#: inc/Widgets/CustomHTML.php:85
 msgctxt "Widget: Setting"
 msgid "Process Filters (Legacy)"
 msgstr ""
 
-#: inc/Widgets/CustomHTML.php:83
+#: inc/Widgets/CustomHTML.php:86
 msgctxt "Widget: Setting"
 msgid "Automatic Paragraphs"
 msgstr ""
 
-#: inc/Widgets/PostFeatured.php:11
+#: inc/Widgets/CustomHTML.php:87
+msgctxt "Widget: Setting"
+msgid "Bypass Caching"
+msgstr ""
+
+#: inc/Widgets/PackGrid.php:13
+msgctxt "Widget: Title"
+msgid "Theme: Pack Grid"
+msgstr ""
+
+#: inc/Widgets/PackGrid.php:14
+msgctxt "Widget: Description"
+msgid "Displays selected post thumb-nails as packed grid."
+msgstr ""
+
+#: inc/Widgets/PackGrid.php:81
+msgctxt "Widget: PackGrid"
+msgid "Post IDs:"
+msgstr ""
+
+#: inc/Widgets/PackGrid.php:82
+msgctxt "Widget: PackGrid"
+msgid "Attachment IDs:"
+msgstr ""
+
+#: inc/Widgets/PostFeatured.php:13
 msgctxt "Widget: Title"
 msgid "Theme: Post Featured"
 msgstr ""
 
-#: inc/Widgets/PostFeatured.php:12
+#: inc/Widgets/PostFeatured.php:14
 msgctxt "Widget: Description"
 msgid "Displays the featured image of the current post."
 msgstr ""
 
-#: inc/Widgets/PostFeatured.php:59
+#: inc/Widgets/PostFeatured.php:61
 msgctxt "Widget: Setting"
 msgid "Link to Attachment Page"
 msgstr ""
 
-#: inc/Widgets/PostRow.php:13
+#: inc/Widgets/PostRow.php:15
 msgctxt "Widget: Title"
 msgid "Theme: Post Row"
 msgstr ""
 
-#: inc/Widgets/PostRow.php:14
+#: inc/Widgets/PostRow.php:16
 msgctxt "Widget: Description"
 msgid "Displays selected post as row."
 msgstr ""
 
-#: inc/Widgets/PostRow.php:48
+#: inc/Widgets/PostRow.php:51
 msgctxt "Widget: PostRow"
 msgid "Post ID:"
 msgstr ""
 
-#: inc/Widgets/PostTerms.php:11
+#: inc/Widgets/PostTerms.php:13
 msgctxt "Widget: Title"
 msgid "Theme: Post Terms"
 msgstr ""
 
-#: inc/Widgets/PostTerms.php:12
+#: inc/Widgets/PostTerms.php:14
 msgctxt "Widget: Description"
 msgid "Displays the assigned terms of the current post."
 msgstr ""
 
-#: inc/Widgets/RecentComments.php:11
+#: inc/Widgets/RecentComments.php:13
 msgctxt "Widget: Title"
 msgid "Theme: Recent Comments"
 msgstr ""
 
-#: inc/Widgets/RecentComments.php:12
+#: inc/Widgets/RecentComments.php:14
 msgctxt "Widget: Description"
 msgid "Displays the most recent comments."
 msgstr ""
 
-#: inc/Widgets/RecentPosts.php:11
+#: inc/Widgets/RecentPosts.php:13
 msgctxt "Widget: Title"
 msgid "Theme: Recent Posts"
 msgstr ""
 
-#: inc/Widgets/RecentPosts.php:12
+#: inc/Widgets/RecentPosts.php:14
 msgctxt "Widget: Description"
 msgid "Displays the most recent posts."
 msgstr ""
 
-#: inc/Widgets/RecentPosts.php:104
-#: inc/Widgets/TermPosts.php:117
+#: inc/Widgets/RecentPosts.php:106
+#: inc/Widgets/TermPosts.php:119
 msgctxt "Widget: Setting"
 msgid "Use Internal Order"
 msgstr ""
 
-#: inc/Widgets/RelatedPosts.php:11
+#: inc/Widgets/RelatedPosts.php:13
 msgctxt "Widget: Title"
 msgid "Theme: Related Posts"
 msgstr ""
 
-#: inc/Widgets/RelatedPosts.php:12
+#: inc/Widgets/RelatedPosts.php:14
 msgctxt "Widget: Description"
 msgid "Displays the related posts based on terms in a taxonomy."
 msgstr ""
 
-#: inc/Widgets/Search.php:11
+#: inc/Widgets/Search.php:13
 msgctxt "Widget: Title"
 msgid "Theme: Search"
 msgstr ""
 
-#: inc/Widgets/Search.php:12
+#: inc/Widgets/Search.php:14
 msgctxt "Widget: Description"
 msgid "Displays search form."
 msgstr ""
 
-#: inc/Widgets/SearchTerms.php:11
+#: inc/Widgets/SearchTerms.php:13
 msgctxt "Widget: Title"
 msgid "Theme: Search Terms"
 msgstr ""
 
-#: inc/Widgets/SearchTerms.php:12
+#: inc/Widgets/SearchTerms.php:14
 msgctxt "Widget: Description"
 msgid "Displays the results of current search criteria on selected taxonomies."
 msgstr ""
 
-#: inc/Widgets/SearchTerms.php:93
+#: inc/Widgets/SearchTerms.php:95
 msgctxt "Widget: Setting"
 msgid "Prefix Terms with Taxonomy Name"
 msgstr ""
 
-#: inc/Widgets/SearchTerms.php:94
+#: inc/Widgets/SearchTerms.php:96
 msgctxt "Widget: Setting"
 msgid "Strip Hash-tags"
 msgstr ""
 
-#: inc/Widgets/Siblings.php:11
+#: inc/Widgets/Siblings.php:13
 msgctxt "Widget: Title"
 msgid "Theme: Siblings"
 msgstr ""
 
-#: inc/Widgets/Siblings.php:12
+#: inc/Widgets/Siblings.php:14
 msgctxt "Widget: Description"
 msgid "Displays the list of current post's siblings."
 msgstr ""
 
-#: inc/Widgets/TemplatePart.php:11
+#: inc/Widgets/TemplatePart.php:13
 msgctxt "Widget: Title"
 msgid "Theme: Template Part"
 msgstr ""
 
-#: inc/Widgets/TemplatePart.php:12
+#: inc/Widgets/TemplatePart.php:14
 msgctxt "Widget: Description"
 msgid "Include selected template part into sidebars."
 msgstr ""
 
-#: inc/Widgets/TermPosts.php:11
+#: inc/Widgets/TermPosts.php:13
 msgctxt "Widget: Title"
 msgid "Theme: Term Posts"
 msgstr ""
 
-#: inc/Widgets/TermPosts.php:12
+#: inc/Widgets/TermPosts.php:14
 msgctxt "Widget: Description"
 msgid "Displays the latest posts from a single term."
 msgstr ""
 
-#: inc/Widgets/TheTerm.php:11
+#: inc/Widgets/TheTerm.php:13
 msgctxt "Widget: Title"
 msgid "Theme: The Term"
 msgstr ""
 
-#: inc/Widgets/TheTerm.php:12
+#: inc/Widgets/TheTerm.php:14
 msgctxt "Widget: Description"
 msgid "Displays the current term info based on the query."
 msgstr ""
 
-#: inc/Widgets/TheTerm.php:133
+#: inc/Widgets/TheTerm.php:135
 msgctxt "Widget: Setting"
 msgid "&ldquo;All taxonomies option&rdquo; only works on archive pages."
 msgstr ""
 
-#: inc/Widgets/TheTerm.php:135
+#: inc/Widgets/TheTerm.php:137
 msgctxt "Widget: Setting"
 msgid "Display Meta Image"
 msgstr ""
 
-#: inc/Widgets/TheTerm.php:136
+#: inc/Widgets/TheTerm.php:138
 msgctxt "Widget: Setting"
 msgid "Hide if no Description"
 msgstr ""
 
-#: inc/Widgets/TheTerm.php:137
+#: inc/Widgets/TheTerm.php:139
 msgctxt "Widget: Setting"
 msgid "Fire Before & After Actions"
 msgstr ""
 
-#: inc/WordPress/Widget.php:294
+#: inc/WordPress/Widget.php:306
 msgctxt "Widget: Setting"
 msgid "Custom HTML:"
 msgstr ""
 
-#: inc/WordPress/Widget.php:313
+#: inc/WordPress/Widget.php:325
 msgctxt "Widget: Setting"
 msgid "Custom HTML for Opening Widget:"
 msgstr ""
 
-#: inc/WordPress/Widget.php:332
+#: inc/WordPress/Widget.php:344
 msgctxt "Widget: Setting"
 msgid "Custom HTML for Closing Widget:"
 msgstr ""
 
-#: inc/WordPress/Widget.php:351
+#: inc/WordPress/Widget.php:363
 msgctxt "Widget: Setting"
 msgid "Custom HTML for After Title:"
 msgstr ""
 
-#: inc/WordPress/Widget.php:370
+#: inc/WordPress/Widget.php:382
 msgctxt "Widget: Setting"
 msgid "Number of posts to show:"
 msgstr ""
 
-#: inc/WordPress/Widget.php:394
+#: inc/WordPress/Widget.php:406
 msgctxt "Widget: Setting"
 msgid "Context:"
 msgstr ""
 
-#: inc/WordPress/Widget.php:408
+#: inc/WordPress/Widget.php:420
 msgctxt "Widget: Setting"
 msgid "CSS Class:"
 msgstr ""
 
-#: inc/WordPress/Widget.php:420
+#: inc/WordPress/Widget.php:432
 msgctxt "Widget: Setting"
 msgid "&ndash; (Any)"
 msgstr ""
 
-#: inc/WordPress/Widget.php:434
+#: inc/WordPress/Widget.php:446
 msgctxt "Widget: Setting"
 msgid "PostType:"
 msgstr ""
 
-#: inc/WordPress/Widget.php:446
+#: inc/WordPress/Widget.php:458
 msgctxt "Widget: Setting"
 msgid "&mdash; All Taxonomies &mdash;"
 msgstr ""
 
-#: inc/WordPress/Widget.php:460
+#: inc/WordPress/Widget.php:472
 msgctxt "Widget: Setting"
 msgid "Taxonomy:"
 msgstr ""
 
-#: inc/WordPress/Widget.php:473
+#: inc/WordPress/Widget.php:485
 msgctxt "Widget: Setting"
 msgid "Title:"
 msgstr ""
 
-#: inc/WordPress/Widget.php:487
+#: inc/WordPress/Widget.php:499
 msgctxt "Widget: Setting"
 msgid "Title Link:"
 msgstr ""
 
-#: inc/WordPress/Widget.php:501
+#: inc/WordPress/Widget.php:513
 msgctxt "Widget: Setting"
 msgid "Title Image:"
 msgstr ""
 
-#: inc/WordPress/Widget.php:507
+#: inc/WordPress/Widget.php:519
 msgctxt "Widget: Setting"
 msgid "Custom Link:"
 msgstr ""
 
-#: inc/WordPress/Widget.php:524
+#: inc/WordPress/Widget.php:536
 msgctxt "Widget: Setting"
 msgid "Custom Code:"
 msgstr ""
 
-#: inc/WordPress/Widget.php:541
+#: inc/WordPress/Widget.php:553
+msgctxt "Widget: Setting"
+msgid "Custom Title:"
+msgstr ""
+
+#: inc/WordPress/Widget.php:570
 msgctxt "Widget: Setting"
 msgid "Empty Message:"
 msgstr ""
 
-#: inc/WordPress/Widget.php:564
+#: inc/WordPress/Widget.php:593
 msgctxt "Widget: Setting"
 msgid "Avatar Size:"
 msgstr ""
 
-#: inc/WordPress/Widget.php:578
+#: inc/WordPress/Widget.php:607
 msgctxt "Widget: Setting"
 msgid "No Image Size Available!"
 msgstr ""
 
-#: inc/WordPress/Widget.php:595
+#: inc/WordPress/Widget.php:624
 msgctxt "Widget: Setting"
 msgid "Image Size:"
 msgstr ""
 
-#: inc/WordPress/Widget.php:619
+#: inc/WordPress/Widget.php:648
 msgctxt "Widget: Setting"
 msgid "Checked"
 msgstr ""
 
-#: inc/WordPress/Widget.php:638
+#: inc/WordPress/Widget.php:667
 msgctxt "Widget: Setting"
 msgid "Page:"
 msgstr ""
 
-#: inc/WordPress/Widget.php:665
+#: inc/WordPress/Widget.php:694
 msgctxt "Widget: Setting"
 msgid "Select taxonomy first!"
 msgstr ""
 
-#: inc/WordPress/Widget.php:673
+#: inc/WordPress/Widget.php:702
 msgctxt "Widget: Setting"
 msgid "The taxonomy is not available!"
 msgstr ""
 
-#: inc/WordPress/Widget.php:676
+#: inc/WordPress/Widget.php:705
 msgctxt "Widget: Setting"
 msgid "No terms available!"
 msgstr ""
 
-#: inc/WordPress/Widget.php:695
+#: inc/WordPress/Widget.php:724
 msgctxt "Widget: Setting"
 msgid "Term:"
 msgstr ""
 
-#: inc/WordPress/Widget.php:701
+#: inc/WordPress/Widget.php:730
 msgctxt "Widget: Setting"
 msgid "Must has Thumbnail Image"
 msgstr ""
 
-#: inc/WordPress/Widget.php:716
+#: inc/WordPress/Widget.php:745
 msgctxt "Widget: Setting"
 msgid "Wrap as List Items"
 msgstr ""
@@ -1875,7 +1911,7 @@ msgstr ""
 msgid "Latest Page"
 msgstr ""
 
-#: partials/entry-publication.php:33
+#: partials/entry-publication.php:39
 msgctxt "Partial: Entry: Publication"
 msgid "Attachments"
 msgstr ""
