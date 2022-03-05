@@ -235,4 +235,25 @@ class gThemeWordPress extends gThemeBaseCore
 	{
 		self::redirect( wp_login_url( $location, TRUE ), $status );
 	}
+
+	// @REF: `is_plugin_active()`
+	public static function isPluginActive( $plugin, $network_check = TRUE )
+	{
+		if ( in_array( $plugin, (array) apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) )
+			return TRUE;
+
+		if ( $network_check && self::isPluginActiveForNetwork( $plugin ) )
+			return TRUE;
+
+		return FALSE;
+	}
+
+	// @REF: `is_plugin_active_for_network()`
+	public static function isPluginActiveForNetwork( $plugin, $network = NULL )
+	{
+		if ( is_multisite() )
+			return (bool) in_array( $plugin, (array) get_network_option( $network, 'active_sitewide_plugins' ) );
+
+		return FALSE;
+	}
 }
