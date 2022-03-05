@@ -249,7 +249,7 @@ class gThemeWidget extends WP_Widget
 			'avatar_size' => 'digit',
 		], $extra );
 
-		$instance   = $old;
+		$instance   = $new; // apparently all necessary fields will pass on the new
 		$unfiltered = current_user_can( 'unfiltered_html' );
 
 		foreach ( $fields as $field => $type ) {
