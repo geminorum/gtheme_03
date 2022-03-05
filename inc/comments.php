@@ -377,7 +377,7 @@ class gThemeComments extends gThemeModuleCore
 
 			$fields = [];
 
-			$fields['author'] = '<div class="form-group comment-form-author"><label for="author">'
+			$fields['author'] = '<div class="-form-group form-group comment-form-author"><label for="author" class="form-label">'
 				.$strings['name']
 				.( $required ? ' <span class="required">'.$strings['required'].'</span>' : '' )
 				.'</label>'
@@ -392,7 +392,7 @@ class gThemeComments extends gThemeModuleCore
 					'value'        => $commenter['comment_author'],
 				] ).'</div>';
 
-			$fields['email'] = '<div class="form-group comment-form-email"><label for="email">'
+			$fields['email'] = '<div class="-form-group form-group comment-form-email"><label for="email" class="form-label">'
 				.$strings['email']
 				.( $required ? ' <span class="required">'.$strings['required'].'</span>' : '' )
 				.'</label>'
@@ -408,7 +408,7 @@ class gThemeComments extends gThemeModuleCore
 					// 'placeholder'        => $strings['email'], // NOTE: problem with rtl
 				] ).'</div>';
 
-			$fields['url'] = '<div class="form-group comment-form-url"><label for="url">'
+			$fields['url'] = '<div class="-form-group form-group comment-form-url"><label for="url" class="form-label">'
 				.$strings['url']
 				.'</label>'
 				.gThemeHTML::tag( 'input', [
@@ -423,11 +423,12 @@ class gThemeComments extends gThemeModuleCore
 				] ).'</div>';
 
 			if ( has_action( 'set_comment_cookies', 'wp_set_comment_cookies' ) && get_option( 'show_comments_cookies_opt_in' ) )
-				$fields['cookies'] = '<div class="checkbox comment-form-cookies-consent"><label for="wp-comment-cookies-consent">'
+				$fields['cookies'] = '<div class="-form-group checkbox comment-form-cookies-consent"><label for="wp-comment-cookies-consent" class="form-check-label">'
 					.gThemeHTML::tag( 'input', [
 						'type'    => 'checkbox',
 						'id'      => 'wp-comment-cookies-consent',
 						'name'    => 'wp-comment-cookies-consent',
+						'class'   => 'form-check-input', // BS5
 						'value'   => 'yes',
 						'checked' => ! empty( $commenter['comment_author_email'] ),
 					] ).' '.$strings['cookies'].'</label></div>';
@@ -435,7 +436,7 @@ class gThemeComments extends gThemeModuleCore
 			$defaults = [
 				'fields' => apply_filters( 'comment_form_default_fields', $fields ),
 
-				'comment_field' => '<div class="form-group comment-form-comment"><label for="comment" class="screen-reader-text sr-only visually-hidden">'
+				'comment_field' => '<div class="-form-group form-group comment-form-comment"><label for="comment" class="screen-reader-text sr-only visually-hidden">'
 					.$strings['comment'].'</label>'
 					.gThemeHTML::tag( 'textarea', [
 						'required'    => TRUE,

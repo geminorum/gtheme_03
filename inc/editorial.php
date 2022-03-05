@@ -422,7 +422,7 @@ class gThemeEditorial extends gThemeModuleCore
 			'video'       => 'over_title',
 			'channel'     => FALSE,
 			'collection'  => 'over_title',
-			'publication' => 'collection',
+			'publication' => 'publication_tagline',
 		];
 
 		$map   = array_merge( $defaults, (array) gThemeOptions::info( 'editorial_overtitle_map', [] ) );

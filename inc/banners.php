@@ -220,8 +220,6 @@ class gThemeBanners extends gThemeModuleCore
 	// NOTE: needs additional styles, see blocks for `slick-slider`
 	public static function slickCarousel( $group, $atts = [], $before = '', $after = '', $count = NULL )
 	{
-		static $enqueued = FALSE;
-
 		$config = [
 			'slidesToShow'   => is_null( $count ) ? gThemeCounts::get( 'carousel_'.$group, 5 ) : $count,
 			'slidesToScroll' => 1,

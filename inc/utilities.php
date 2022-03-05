@@ -10,6 +10,7 @@ class gThemeUtilities extends gThemeBaseCore
 		if ( $enqueued )
 			return TRUE;
 
+		// `jQuery(function(r){r(".wrap-slick-carousel .-carousel").slick({rtl:"rtl"===r("html").attr("dir")})});`
 		$script = <<<'JS'
 jQuery(function(r){r(".wrap-slick-carousel .-carousel").slick()});
 JS;
@@ -20,9 +21,7 @@ JS;
 		// NOTE: for reference
 		// wp_enqueue_script( 'slick-carousel', GTHEME_URL.'/js/slick.carousel'.( SCRIPT_DEBUG ? '' : '.min' ).'.js', [ 'jquery', 'gtheme-slick' ], GTHEME_VERSION, TRUE );
 
-		$enqueued = TRUE;
-
-		return TRUE;
+		return $enqueued = TRUE;
 	}
 
 	public static function enqueueAutosize( $ver = '4.0.2' )
