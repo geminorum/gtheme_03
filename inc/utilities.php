@@ -84,6 +84,32 @@ JS;
 		return apply_filters( 'gtheme_prep_contact', $prepared, $value, $title );
 	}
 
+	public static function getSeparated( $string, $delimiters = NULL, $limit = NULL, $delimiter = '|' )
+	{
+		if ( is_array( $string ) )
+			return $string;
+
+		if ( is_null( $delimiters ) )
+			$delimiters = [
+				// '/',
+				'،',
+				'؛',
+				';',
+				',',
+				// '-',
+				// '_',
+				'|',
+			];
+
+		$string = str_ireplace( $delimiters, $delimiter, $string );
+
+		$seperated = is_null( $limit )
+			? explode( $delimiter, $string )
+			: explode( $delimiter, $string, $limit );
+
+		return gThemeArraay::prepString( $seperated );
+	}
+
 	// FIXME: DEPRECATED
 	public static function wordWrap( $text, $min = 2 )
 	{

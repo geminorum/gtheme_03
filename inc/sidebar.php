@@ -68,6 +68,7 @@ class gThemeSideBar extends gThemeModuleCore
 			'gThemeWidgetChildren',
 			'gThemeWidgetSiblings',
 			'gThemeWidgetTheTerm',
+			'gThemeWidgetPackGrid',
 		] );
 	}
 

@@ -54,6 +54,7 @@ final class gThemeCore
 			'Widgets/Siblings'       => '',
 			'Widgets/TheTerm'        => '',
 			'Widgets/CustomHTML'     => '',
+			'Widgets/PackGrid'       => '',
 
 			'template'   => 'gThemeTemplate',
 			'options'    => 'gThemeOptions',
