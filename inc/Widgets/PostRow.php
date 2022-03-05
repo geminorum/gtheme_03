@@ -25,7 +25,8 @@ class gThemeWidgetPostRow extends gThemeWidget
 		if ( ! $post = get_post( $instance['post_id'] ) )
 			return FALSE;
 
-		// TODO: check if the post is private
+		if ( ! is_post_publicly_viewable( $post ) )
+			return FALSE;
 
 		$context = empty( $instance['context'] ) ? '' : $instance['context'];
 
