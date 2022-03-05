@@ -10,6 +10,12 @@ echo '</div></div><div class="-wrap splitrow"><div class="-side entry-double-hea
 
 gThemeContent::header( [ 'context' => 'singular', 'byline' => FALSE, 'actions' => NULL ] );
 
+gThemeEditorial::metaHTML( 'highlight', [
+	'before'   => '<div class="entry-highlight">',
+	'after'    => '</div>',
+	'fallback' => 'cover_blurb'
+] );
+
 echo '</div></div><div class="-side entry-double-main"><div class="-wrap">';
 
 gThemeEditorial::bookCover( [
@@ -46,8 +52,6 @@ gThemeEditorial::publication( [
 gThemeSideBar::sidebar( 'entry-double-content', '<div class="wrap-side sidebar-entry-double-content">', '</div>' );
 
 echo '</div></div><div class="-side entry-double-foot"><div class="-wrap">';
-
-gThemeEditorial::metaHTML( 'highlight', [ 'fallback' => 'cover_blurb' ] );
 
 gThemeContent::content();
 
