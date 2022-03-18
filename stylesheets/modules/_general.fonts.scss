@@ -15,9 +15,10 @@ $theme-fonts-repo: "../../gtheme_03/fonts" !default;
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 /// Native Fonts
+// @REF: https://make.wordpress.org/core/2016/07/07/native-fonts-in-4-6/
 
 @mixin theme-fonts-core-native() {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Tahoma, Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Tahoma, Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 
 @mixin theme-fonts-core-code() {
@@ -31,7 +32,8 @@ $theme-fonts-repo: "../../gtheme_03/fonts" !default;
 ////////////////////////////////////////////////////////////////////////////////
 
 @mixin theme-fonts-unicoderange-Persian() {
-  unicode-range: u+0600-06ff, u+200c-200e, u+2010-2011, u+fb50-fdff, u+fe80-fefc;
+  // unicode-range: u+0600-06ff, u+200c-200e, u+2010-2011, u+fb50-fdff, u+fe80-fefc;
+  unicode-range: "U+0600-06ff", "U+200c-200e", "U+2010-2011", "U+fb50-fdff", "U+fe80-fefc";
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -57,6 +59,189 @@ $theme-fonts-repo: "../../gtheme_03/fonts" !default;
   }
 }
 
+@mixin _theme-fonts-fontface-Woff2($name, $path, $weight) {
+  @at-root {
+    @font-face {
+      font-family: "#{$name}";
+      font-weight: #{$weight};
+      src: url($path + ".woff2") format("woff2");
+      font-display: swap; // @REF: https://css-tricks.com/font-display-masses/
+
+      @content;
+    }
+  }
+}
+
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+/// VazirMatn v32.1
+// https://github.com/rastikerdar/vazirmatn
+// http://rastikerdar.github.io/vazirmatn/
+// https://rastikerdar.github.io/vazirmatn/fa/docs/HELP-fa
+
+@mixin theme-fonts-VazirMatn-Thin-CDN() {
+
+  $font-family-thin: "Vazirmatn", "Tahoma", "Iranian Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif !global;
+
+  $name: "Vazirmatn";
+  $ver: "v32.1";
+  $weight: "100";
+
+  $base: "https://cdn.jsdelivr.net/gh";
+  $repo: "rastikerdar/vazirmatn";
+  $file: "fonts/webfonts/Vazirmatn-Thin";
+  $path: $base + "/" + $repo + "@" + $ver + "/" + $file;
+
+  @include _theme-fonts-fontface-Woff2($name, $path, $weight) {
+    @include theme-fonts-unicoderange-Persian;
+  }
+}
+
+@mixin theme-fonts-VazirMatn-ExtraLight-CDN() {
+
+  $font-family-extralight: "Vazirmatn", "Tahoma", "Iranian Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif !global;
+
+  $name: "Vazirmatn";
+  $ver: "v32.1";
+  $weight: "200";
+
+  $base: "https://cdn.jsdelivr.net/gh";
+  $repo: "rastikerdar/vazirmatn";
+  $file: "fonts/webfonts/Vazirmatn-ExtraLight";
+  $path: $base + "/" + $repo + "@" + $ver + "/" + $file;
+
+  @include _theme-fonts-fontface-Woff2($name, $path, $weight) {
+    @include theme-fonts-unicoderange-Persian;
+  }
+}
+
+@mixin theme-fonts-VazirMatn-Light-CDN() {
+
+  $font-family-light: "Vazirmatn", "Tahoma", "Iranian Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif !global;
+
+  $name: "Vazirmatn";
+  $ver: "v32.1";
+  $weight: "300";
+
+  $base: "https://cdn.jsdelivr.net/gh";
+  $repo: "rastikerdar/vazirmatn";
+  $file: "fonts/webfonts/Vazirmatn-Light";
+  $path: $base + "/" + $repo + "@" + $ver + "/" + $file;
+
+  @include _theme-fonts-fontface-Woff2($name, $path, $weight) {
+    @include theme-fonts-unicoderange-Persian;
+  }
+}
+
+@mixin theme-fonts-VazirMatn-Regular-CDN() {
+
+  $font-family-regular: "Vazirmatn", "Tahoma", "Iranian Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif !global;
+
+  $name: "Vazirmatn";
+  $ver: "v32.1";
+  $weight: "400";
+
+  $base: "https://cdn.jsdelivr.net/gh";
+  $repo: "rastikerdar/vazirmatn";
+  $file: "fonts/webfonts/Vazirmatn-Regular";
+  $path: $base + "/" + $repo + "@" + $ver + "/" + $file;
+
+  @include _theme-fonts-fontface-Woff2($name, $path, $weight) {
+    @include theme-fonts-unicoderange-Persian;
+  }
+}
+
+@mixin theme-fonts-VazirMatn-Medium-CDN() {
+
+  $font-family-medium: "Vazirmatn", "Tahoma", "Iranian Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif !global;
+
+  $name: "Vazirmatn";
+  $ver: "v32.1";
+  $weight: "500";
+
+  $base: "https://cdn.jsdelivr.net/gh";
+  $repo: "rastikerdar/vazirmatn";
+  $file: "fonts/webfonts/Vazirmatn-Medium";
+  $path: $base + "/" + $repo + "@" + $ver + "/" + $file;
+
+  @include _theme-fonts-fontface-Woff2($name, $path, $weight) {
+    @include theme-fonts-unicoderange-Persian;
+  }
+}
+
+@mixin theme-fonts-VazirMatn-SemiBold-CDN() {
+
+  $font-family-semibold: "Vazirmatn", "Tahoma", "Iranian Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif !global;
+
+  $name: "Vazirmatn";
+  $ver: "v32.1";
+  $weight: "600";
+
+  $base: "https://cdn.jsdelivr.net/gh";
+  $repo: "rastikerdar/vazirmatn";
+  $file: "fonts/webfonts/Vazirmatn-SemiBold";
+  $path: $base + "/" + $repo + "@" + $ver + "/" + $file;
+
+  @include _theme-fonts-fontface-Woff2($name, $path, $weight) {
+    @include theme-fonts-unicoderange-Persian;
+  }
+}
+
+@mixin theme-fonts-VazirMatn-Bold-CDN() {
+
+  $font-family-bold: "Vazirmatn", "Tahoma", "Iranian Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif !global;
+
+  $name: "Vazirmatn";
+  $ver: "v32.1";
+  $weight: "700";
+
+  $base: "https://cdn.jsdelivr.net/gh";
+  $repo: "rastikerdar/vazirmatn";
+  $file: "fonts/webfonts/Vazirmatn-Bold";
+  $path: $base + "/" + $repo + "@" + $ver + "/" + $file;
+
+  @include _theme-fonts-fontface-Woff2($name, $path, $weight) {
+    @include theme-fonts-unicoderange-Persian;
+  }
+}
+
+@mixin theme-fonts-VazirMatn-ExtraBold-CDN() {
+
+  $font-family-extrabold: "Vazirmatn", "Tahoma", "Iranian Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif !global;
+
+  $name: "Vazirmatn";
+  $ver: "v32.1";
+  $weight: "800";
+
+  $base: "https://cdn.jsdelivr.net/gh";
+  $repo: "rastikerdar/vazirmatn";
+  $file: "fonts/webfonts/Vazirmatn-ExtraBold";
+  $path: $base + "/" + $repo + "@" + $ver + "/" + $file;
+
+  @include _theme-fonts-fontface-Woff2($name, $path, $weight) {
+    @include theme-fonts-unicoderange-Persian;
+  }
+}
+
+@mixin theme-fonts-VazirMatn-Black-CDN() {
+
+  $font-family-black: "Vazirmatn", "Tahoma", "Iranian Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif !global;
+
+  $name: "Vazirmatn";
+  $ver: "v32.1";
+  $weight: "900";
+
+  $base: "https://cdn.jsdelivr.net/gh";
+  $repo: "rastikerdar/vazirmatn";
+  $file: "fonts/webfonts/Vazirmatn-Black";
+  $path: $base + "/" + $repo + "@" + $ver + "/" + $file;
+
+  @include _theme-fonts-fontface-Woff2($name, $path, $weight) {
+    @include theme-fonts-unicoderange-Persian;
+  }
+}
+
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
@@ -65,6 +250,7 @@ $theme-fonts-repo: "../../gtheme_03/fonts" !default;
 // http://rastikerdar.github.io/vazir-font/
 
 @mixin theme-fonts-Vazir-CDN() {
+  @warn "DEPRECATED: Modules: Fonts: Vazir font out-dated!";
 
   $font-family-normal: "Vazir", "Tahoma", "Iranian Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif !global;
 
@@ -83,6 +269,7 @@ $theme-fonts-repo: "../../gtheme_03/fonts" !default;
 }
 
 @mixin theme-fonts-Vazir-Bold-CDN() {
+  @warn "DEPRECATED: Modules: Fonts: Vazir font out-dated!";
 
   $font-family-bold: "Vazir", "Arial", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", "Helvetica", sans-serif !global;
 
@@ -101,6 +288,7 @@ $theme-fonts-repo: "../../gtheme_03/fonts" !default;
 }
 
 @mixin theme-fonts-Vazir-Light-CDN() {
+  @warn "DEPRECATED: Modules: Fonts: Vazir font out-dated!";
 
   $font-family-light: "Vazir", "Arial", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", "Helvetica", sans-serif !global;
 
@@ -119,6 +307,7 @@ $theme-fonts-repo: "../../gtheme_03/fonts" !default;
 }
 
 @mixin theme-fonts-Vazir-Medium-CDN() {
+  @warn "DEPRECATED: Modules: Fonts: Vazir font out-dated!";
 
   $font-family-medium: "Vazir", "Arial", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", "Helvetica", sans-serif !global;
 
@@ -137,6 +326,7 @@ $theme-fonts-repo: "../../gtheme_03/fonts" !default;
 }
 
 @mixin theme-fonts-Vazir-Thin-CDN() {
+  @warn "DEPRECATED: Modules: Fonts: Vazir font out-dated!";
 
   $font-family-thin: "Vazir", "Tahoma", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", "Helvetica", sans-serif !global;
 
@@ -155,6 +345,7 @@ $theme-fonts-repo: "../../gtheme_03/fonts" !default;
 }
 
 @mixin theme-fonts-Vazir-Heavy-CDN() {
+  @warn "DEPRECATED: Modules: Fonts: Vazir font out-dated!";
 
   $font-family-heavy: "Vazir", "Tahoma", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", "Helvetica", sans-serif !global;
 
@@ -177,7 +368,7 @@ $theme-fonts-repo: "../../gtheme_03/fonts" !default;
   $font-family-code: "Vazir Code", "monospaced" !global;
 
   $name: "Vazir Code";
-  $ver: "v1.1.1";
+  $ver: "v1.1.2";
   $weight: "normal";
 
   $base : $theme-fonts-base;
@@ -421,7 +612,9 @@ $theme-fonts-repo: "../../gtheme_03/fonts" !default;
 // http://www.google.com/webfonts/earlyaccess
 // http://openfontlibrary.org/en/font/droid-arabic-naskh
 
-@mixin theme-fonts-DroidArabicNaskh($base: $theme-fonts-repo) {
+@mixin theme-fonts-DroidArabicNaskh($base: $theme-fonts-repo) {}
+
+@mixin theme-fonts-DroidArabicNaskh_DISABLED($base: $theme-fonts-repo) {
   @include theme-fonts-DroidArabicNaskh-Normal($base);
   @include theme-fonts-DroidArabicNaskh-Bold($base);
 }
@@ -487,7 +680,9 @@ $theme-fonts-repo: "../../gtheme_03/fonts" !default;
 // https://www.google.com/get/noto/
 // https://github.com/googlei18n/noto-fonts
 
-@mixin theme-fonts-NotoNaskhArabic($base: $theme-fonts-repo) {
+@mixin theme-fonts-NotoNaskhArabic($base: $theme-fonts-repo) {}
+
+@mixin theme-fonts-NotoNaskhArabic_DISABLED($base: $theme-fonts-repo) {
   @include theme-fonts-NotoNaskhArabic-Normal($base);
   @include theme-fonts-NotoNaskhArabic-Bold($base);
 }
@@ -552,7 +747,9 @@ $theme-fonts-repo: "../../gtheme_03/fonts" !default;
 /// Droid Arabic Kufi (Arabic) v6
 // http://www.google.com/fonts/earlyaccess
 
-@mixin theme-fonts-DroidArabicKufi($base: $theme-fonts-repo) {
+@mixin theme-fonts-DroidArabicKufi($base: $theme-fonts-repo) {}
+
+@mixin theme-fonts-DroidArabicKufi_DISABLED($base: $theme-fonts-repo) {
 
   $name: "Droid Arabic Kufi";
   $folder: "droidarabickufi";
@@ -606,7 +803,9 @@ $theme-fonts-repo: "../../gtheme_03/fonts" !default;
 // http://goo.gl/WhRr3a
 // http://weblogma.com/
 
-@mixin theme-fonts-WeblogmaYekan($base: $theme-fonts-repo) {
+@mixin theme-fonts-WeblogmaYekan($base: $theme-fonts-repo) {}
+
+@mixin theme-fonts-WeblogmaYekan_DISABLED($base: $theme-fonts-repo) {
 
   $name: "Weblogma Yekan";
   $folder: "weblogmayekan";
