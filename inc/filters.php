@@ -12,6 +12,7 @@ class gThemeFilters extends gThemeModuleCore
 			'default_editor'     => FALSE,
 			'disable_autoembed'  => FALSE, // gNetwork does it
 			'overwrite_author'   => TRUE,
+			'dns_prefetch'       => TRUE, // @via gNetwork Optimize
 		], $args ) );
 
 		if ( ! is_admin() ) {
@@ -67,6 +68,12 @@ class gThemeFilters extends gThemeModuleCore
 				add_filter( 'the_author', [ $this, 'the_author' ], 15 );
 				add_filter( 'the_author_posts_link', [ $this, 'the_author_posts_link' ], 15 );
 			}
+
+			if ( $dns_prefetch )
+				add_action( 'init', function() {
+					do_action( 'gnetwork_optimize_dns_prefetch_domains',
+						gThemeOptions::info( 'dns_prefetch_domains', [] ) );
+				} );
 		}
 	}
 
