@@ -250,9 +250,9 @@ JS;
 		}
 	}
 
-	public static function linkStyleSheet( $url, $version = GTHEME_CHILD_VERSION, $media = FALSE, $echo = TRUE )
+	public static function linkStyleSheet( $url, $version = GTHEME_CHILD_VERSION, $media = FALSE, $verbose = TRUE )
 	{
-		return gThemeHTML::linkStyleSheet( $url, $version, $media, $echo );
+		return gThemeHTML::linkStyleSheet( $url, $version, $media, $verbose );
 	}
 
 	// http://stackoverflow.com/a/9241873
@@ -267,7 +267,7 @@ JS;
 	}
 
 	// FIXME: DEPRECATED: USE: `gThemeHTML::notice()`
-	public static function notice( $notice, $class = 'success updated fade', $echo = TRUE )
+	public static function notice( $notice, $class = 'success updated fade', $verbose = TRUE )
 	{
 		self::_dep( 'gThemeHTML::notice()' );
 
@@ -281,7 +281,7 @@ JS;
 						.'</span></button>%2$s</div>'; // bootstrap dismissible alert
 
 		$html = sprintf( $template, $class, $notice );
-		if ( ! $echo )
+		if ( ! $verbose )
 			return $html;
 		echo $html;
 	}

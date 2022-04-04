@@ -68,6 +68,7 @@ class gThemeImage extends gThemeModuleCore
 			remove_filter( 'the_content', 'wp_filter_content_tags' );
 			remove_filter( 'the_excerpt', 'wp_filter_content_tags' );
 			remove_filter( 'widget_text_content', 'wp_filter_content_tags' );
+			remove_filter( 'widget_block_content', 'wp_filter_content_tags' );
 		}
 
 		if ( ! is_admin() )
@@ -858,7 +859,7 @@ class gThemeImage extends gThemeModuleCore
 		if ( ! array_key_exists( 'empty', $atts ) && ( $empty = self::getPlaceHolder( $atts ) ) )
 			$atts['empty'] = $empty;
 
-		$echo = array_key_exists( 'echo', $atts ) ? $atts['echo'] : TRUE;
+		$verbose = array_key_exists( 'echo', $atts ) ? $atts['echo'] : TRUE;
 
 		$atts['echo'] = FALSE;
 
@@ -868,7 +869,7 @@ class gThemeImage extends gThemeModuleCore
 
 		$html = $before.self::image( $atts ).$after;
 
-		if ( ! $echo )
+		if ( ! $verbose )
 			return $html;
 
 		echo $html;

@@ -333,7 +333,7 @@ class gThemeHTML extends gThemeBaseCore
 		return $expecting;
 	}
 
-	public static function linkStyleSheet( $url, $version = NULL, $media = 'all', $echo = TRUE )
+	public static function linkStyleSheet( $url, $version = NULL, $media = 'all', $verbose = TRUE )
 	{
 		if ( is_array( $version ) )
 			$url = add_query_arg( $version, $url );
@@ -348,7 +348,7 @@ class gThemeHTML extends gThemeBaseCore
 			'media' => $media,
 		) )."\n";
 
-		if ( ! $echo )
+		if ( ! $verbose )
 			return $html;
 
 		echo $html;
@@ -374,34 +374,34 @@ class gThemeHTML extends gThemeBaseCore
 
 	// @REF: https://codex.wordpress.org/Plugin_API/Action_Reference/admin_notices
 	// CLASSES: notice-error, notice-warning, notice-success, notice-info, is-dismissible
-	public static function notice( $notice, $class = 'notice-success fade', $echo = TRUE )
+	public static function notice( $notice, $class = 'notice-success fade', $verbose = TRUE )
 	{
 		$html = sprintf( '<div class="notice %s is-dismissible"><p>%s</p></div>', $class, $notice );
 
-		if ( ! $echo )
+		if ( ! $verbose )
 			return $html;
 
 		echo $html;
 	}
 
-	public static function error( $message, $echo = FALSE )
+	public static function error( $message, $verbose = FALSE )
 	{
-		return self::notice( $message, 'notice-error fade', $echo );
+		return self::notice( $message, 'notice-error fade', $verbose );
 	}
 
-	public static function success( $message, $echo = FALSE )
+	public static function success( $message, $verbose = FALSE )
 	{
-		return self::notice( $message, 'notice-success fade', $echo );
+		return self::notice( $message, 'notice-success fade', $verbose );
 	}
 
-	public static function warning( $message, $echo = FALSE )
+	public static function warning( $message, $verbose = FALSE )
 	{
-		return self::notice( $message, 'notice-warning fade', $echo );
+		return self::notice( $message, 'notice-warning fade', $verbose );
 	}
 
-	public static function info( $message, $echo = FALSE )
+	public static function info( $message, $verbose = FALSE )
 	{
-		return self::notice( $message, 'notice-info fade', $echo );
+		return self::notice( $message, 'notice-info fade', $verbose );
 	}
 
 	public static function tableCode( $array, $reverse = FALSE, $caption = FALSE )

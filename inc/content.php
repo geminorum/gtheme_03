@@ -158,7 +158,7 @@ class gThemeContent extends gThemeModuleCore
 		echo $after;
 	}
 
-	public static function byline( $post = NULL, $before = '', $after = '', $echo = TRUE, $fallback = NULL )
+	public static function byline( $post = NULL, $before = '', $after = '', $verbose = TRUE, $fallback = NULL )
 	{
 		if ( ! $post = self::getPost( $post ) )
 			return '';
@@ -177,7 +177,7 @@ class gThemeContent extends gThemeModuleCore
 
 			if ( $html = \gPeopleRemoteTemplate::post_byline( $post, $args ) ) {
 
-				if ( $echo )
+				if ( $verbose )
 					echo $before.$html.$after;
 
 				return $before.$html.$after;
@@ -190,7 +190,7 @@ class gThemeContent extends gThemeModuleCore
 
 			if ( $html = gThemeEditorial::author( $args ) ) {
 
-				if ( $echo )
+				if ( $verbose )
 					echo $before.$html.$after;
 
 				return $before.$html.$after;
@@ -199,7 +199,7 @@ class gThemeContent extends gThemeModuleCore
 
 		if ( $html = apply_filters( 'gtheme_content_byline_empty', '', $post ) ) {
 
-			if ( $echo )
+			if ( $verbose )
 				echo $before.$html.$after;
 
 			return $before.$html.$after;
@@ -213,7 +213,7 @@ class gThemeContent extends gThemeModuleCore
 
 		if ( $html = gThemeTemplate::author( $post, FALSE ) ) {
 
-			if ( $echo )
+			if ( $verbose )
 				echo $before.$html.$after;
 
 			return $before.$html.$after;
@@ -387,11 +387,11 @@ class gThemeContent extends gThemeModuleCore
 
 	// FIXME: DEPRECATED, BACK-COMP ONLY
 	// CAUTION: used in child themes
-	public static function title_attr( $echo = TRUE, $title = NULL, $template = NULL, $empty = '' )
+	public static function title_attr( $verbose = TRUE, $title = NULL, $template = NULL, $empty = '' )
 	{
 		$attr = self::getTitleAttr( $template, $title, NULL, $empty );
 
-		if ( ! $echo )
+		if ( ! $verbose )
 			return esc_attr( $attr );
 
 		echo esc_attr( $attr );
@@ -446,7 +446,7 @@ class gThemeContent extends gThemeModuleCore
 
 	// FIXME: DEPRECATED: DROP THIS
 	// based on WP core : get_the_content()
-	public static function teaser_OLD( $fallback = TRUE, $echo = TRUE )
+	public static function teaser_OLD( $fallback = TRUE, $verbose = TRUE )
 	{
 		global $more, $page, $pages;
 
@@ -473,7 +473,7 @@ class gThemeContent extends gThemeModuleCore
 		$output = apply_filters( 'the_content', $content );
 		$output = str_replace(']]>', ']]&gt;', $output );
 
-		if ( ! $echo )
+		if ( ! $verbose )
 			return $output;
 		echo $output;
 	}
@@ -652,6 +652,7 @@ class gThemeContent extends gThemeModuleCore
 
 				self::bootstrapQRCode( ( $icon ? self::getGenericon( 'fullscreen' ) : _x( 'QR-Code', 'Modules: Content: Action', 'gtheme' ) ),
 					$post, sprintf( $before, '-action -qrcode -bootstrap-qrcode hide-if-no-js hidden-print dropdown' ), $after,
+					/* translators: %s: post title */
 					self::getTitleAttr( _x( 'QR-Code for &ndash;%s&ndash;', 'Content: Title Attr', 'gtheme' ) )
 				);
 

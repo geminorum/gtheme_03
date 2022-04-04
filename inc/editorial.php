@@ -29,14 +29,14 @@ class gThemeEditorial extends gThemeModuleCore
 		return FALSE;
 	}
 
-	public static function socialite( $atts = [], $echo = TRUE )
+	public static function socialite( $atts = [], $verbose = TRUE )
 	{
 		if ( ! self::availableEditorial( 'socialite' ) )
 			return NULL;
 
 		$html = gEditorial()->socialite->socialite_shortcode( $atts );
 
-		if ( ! $echo )
+		if ( ! $verbose )
 			return $html;
 
 		echo $html;
@@ -44,14 +44,14 @@ class gThemeEditorial extends gThemeModuleCore
 		return TRUE;
 	}
 
-	public static function series( $atts = [], $echo = TRUE )
+	public static function series( $atts = [], $verbose = TRUE )
 	{
 		if ( ! self::availableEditorial( 'series' ) )
 			return NULL;
 
 		$html = gEditorial()->series->series_shortcode( $atts );
 
-		if ( ! $echo )
+		if ( ! $verbose )
 			return $html;
 
 		echo $html;
@@ -59,14 +59,14 @@ class gThemeEditorial extends gThemeModuleCore
 		return TRUE;
 	}
 
-	public static function attachments( $atts = [], $echo = TRUE )
+	public static function attachments( $atts = [], $verbose = TRUE )
 	{
 		if ( ! self::availableEditorial( 'attachments' ) )
 			return NULL;
 
 		$html = gEditorial()->attachments->attachments_shortcode( $atts );
 
-		if ( ! $echo )
+		if ( ! $verbose )
 			return $html;
 
 		echo $html;
@@ -75,20 +75,20 @@ class gThemeEditorial extends gThemeModuleCore
 	}
 
 	// FIXME: DEPRECATED
-	public static function publications( $atts = [], $echo = TRUE )
+	public static function publications( $atts = [], $verbose = TRUE )
 	{
 		self::_dep( 'gThemeEditorial::publication()' );
-		return self::publication( $atts, $echo );
+		return self::publication( $atts, $verbose );
 	}
 
-	public static function publication( $atts = [], $echo = TRUE )
+	public static function publication( $atts = [], $verbose = TRUE )
 	{
 		if ( ! self::availableEditorial( 'book' ) )
 			return NULL;
 
 		$html = gEditorial()->book->publication_shortcode( $atts );
 
-		if ( ! $echo )
+		if ( ! $verbose )
 			return $html;
 
 		echo $html;
@@ -112,7 +112,7 @@ class gThemeEditorial extends gThemeModuleCore
 		return ob_get_clean();
 	}
 
-	public static function courseLessons( $atts = [], $echo = TRUE )
+	public static function courseLessons( $atts = [], $verbose = TRUE )
 	{
 		if ( ! self::availableEditorial( 'course' ) )
 			return NULL;
@@ -124,7 +124,7 @@ class gThemeEditorial extends gThemeModuleCore
 
 		wp_reset_postdata(); // since callback used setup post data
 
-		if ( ! $echo )
+		if ( ! $verbose )
 			return $html;
 
 		echo $html;
@@ -177,14 +177,14 @@ class gThemeEditorial extends gThemeModuleCore
 		return TRUE;
 	}
 
-	public static function siteModified( $atts = [], $echo = TRUE )
+	public static function siteModified( $atts = [], $verbose = TRUE )
 	{
 		if ( ! self::availableEditorial( 'modified' ) )
 			return NULL;
 
 		$html = gEditorial()->modified->site_modified_shortcode( $atts );
 
-		if ( ! $echo )
+		if ( ! $verbose )
 			return $html;
 
 		echo $html;
@@ -192,14 +192,14 @@ class gThemeEditorial extends gThemeModuleCore
 		return TRUE;
 	}
 
-	public static function postModified( $atts = [], $echo = TRUE )
+	public static function postModified( $atts = [], $verbose = TRUE )
 	{
 		if ( ! self::availableEditorial( 'modified' ) )
 			return NULL;
 
 		$html = gEditorial()->modified->post_modified_shortcode( $atts );
 
-		if ( ! $echo )
+		if ( ! $verbose )
 			return $html;
 
 		echo $html;
@@ -207,14 +207,14 @@ class gThemeEditorial extends gThemeModuleCore
 		return TRUE;
 	}
 
-	public static function listAttachments( $atts = [], $echo = TRUE )
+	public static function listAttachments( $atts = [], $verbose = TRUE )
 	{
 		if ( ! self::availableEditorial( 'attachments' ) )
 			return NULL;
 
 		$html = gEditorial()->attachments->attachments_shortcode( $atts );
 
-		if ( ! $echo )
+		if ( ! $verbose )
 			return $html;
 
 		echo $html;
@@ -487,7 +487,7 @@ class gThemeEditorial extends gThemeModuleCore
 		return ob_get_clean();
 	}
 
-	public static function issuePosts( $atts = [], $echo = TRUE )
+	public static function issuePosts( $atts = [], $verbose = TRUE )
 	{
 		if ( ! self::availableEditorial( 'magazine' ) )
 			return NULL;
@@ -499,7 +499,7 @@ class gThemeEditorial extends gThemeModuleCore
 
 		wp_reset_postdata(); // since callback used setup post data
 
-		if ( ! $echo )
+		if ( ! $verbose )
 			return $html;
 
 		echo $html;
@@ -615,14 +615,14 @@ class gThemeEditorial extends gThemeModuleCore
 		return \geminorum\gEditorial\Modules\Book\ModuleTemplate::summary( $atts );
 	}
 
-	public static function refList( $atts = [], $echo = TRUE )
+	public static function refList( $atts = [], $verbose = TRUE )
 	{
 		if ( ! self::availableNetwork( 'shortcodes' ) )
 			return NULL;
 
 		$html = gNetwork()->shortcodes->shortcode_reflist( array_merge( $atts, [ 'context' => 'single' ] ), NULL, 'reflist' );
 
-		if ( ! $echo )
+		if ( ! $verbose )
 			return $html;
 
 		echo $html;

@@ -13,7 +13,7 @@ gThemeContent::header( [ 'context' => 'singular', 'byline' => FALSE, 'actions' =
 gThemeEditorial::metaHTML( 'highlight', [
 	'before'   => '<div class="entry-highlight">',
 	'after'    => '</div>',
-	'fallback' => 'cover_blurb'
+	'fallback' => 'cover_blurb',
 ] );
 
 echo '</div></div><div class="-side entry-double-main"><div class="-wrap">';

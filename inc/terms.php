@@ -513,14 +513,14 @@ class gThemeTerms extends gThemeModuleCore
 		return $terms[0];
 	}
 
-	public static function linkPrimary( $before = '', $after = '', $post = NULL, $title = '', $echo = TRUE )
+	public static function linkPrimary( $before = '', $after = '', $post = NULL, $title = '', $verbose = TRUE )
 	{
 		if ( ! $term = self::getPrimary( $post ) )
 			return FALSE;
 
 		$link = self::getTermLink( $term, $before, $after, NULL, $title );
 
-		if ( ! $echo )
+		if ( ! $verbose )
 			return $link;
 
 		echo $link;
@@ -528,7 +528,7 @@ class gThemeTerms extends gThemeModuleCore
 		return TRUE;
 	}
 
-	public static function imagePrimary( $before = '', $after = '', $post = NULL, $title = 'name', $echo = TRUE )
+	public static function imagePrimary( $before = '', $after = '', $post = NULL, $title = 'name', $verbose = TRUE )
 	{
 		if ( ! $term = self::getPrimary( $post ) )
 			return FALSE;
@@ -543,7 +543,7 @@ class gThemeTerms extends gThemeModuleCore
 
 		$link = self::getTermLink( $term, $before, $after, $image, $title );
 
-		if ( ! $echo )
+		if ( ! $verbose )
 			return $link;
 
 		echo $link;

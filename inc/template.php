@@ -68,7 +68,7 @@ class gThemeTemplate extends gThemeModuleCore
 
 	// @REF: https://css-tricks.com/header-text-image-replacement/
 	// @REF: http://luigimontanez.com/2010/stop-using-text-indent-css-trick/
-	public static function logo( $context = 'header', $template = NULL, $echo = TRUE )
+	public static function logo( $context = 'header', $template = NULL, $verbose = TRUE )
 	{
 		if ( is_null( $template ) ) {
 			// $template = '<h1><a class="logo-class main-logo no-outline" href="'.gtheme_get_home().'" rel="home">'.get_bloginfo( 'name' ).'</a></h1>';
@@ -85,7 +85,7 @@ class gThemeTemplate extends gThemeModuleCore
 			esc_attr( gThemeOptions::info( 'logo_title', '' ) ),
 		] );
 
-		if ( ! $echo )
+		if ( ! $verbose )
 			return $logo;
 
 		echo $logo;
@@ -166,7 +166,7 @@ class gThemeTemplate extends gThemeModuleCore
 	// FIXME: DEPRECATED
 	// only for wp users
 	// @REF: `get_the_author_posts_link()`
-	public static function author( $post = NULL, $echo = TRUE )
+	public static function author( $post = NULL, $verbose = TRUE )
 	{
 		// self::_dep( 'gThemeContent::byline()' );
 
