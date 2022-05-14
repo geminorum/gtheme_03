@@ -71,6 +71,10 @@ class gThemeFilters extends gThemeModuleCore
 
 			if ( $dns_prefetch )
 				add_action( 'init', function() {
+
+					do_action( 'gnetwork_optimize_preconnect_domains',
+						gThemeOptions::info( 'preconnect_domains', [] ) );
+
 					do_action( 'gnetwork_optimize_dns_prefetch_domains',
 						gThemeOptions::info( 'dns_prefetch_domains', [] ) );
 				} );
