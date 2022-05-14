@@ -189,7 +189,7 @@ class gThemeNavigation extends gThemeModuleCore
 			$crumbs[] = gThemeTerms::linkPrimary( '', '', $post, '', FALSE );
 
 		else if ( $args['taxonomy'] && 'parents' == $args['term'] )
-			$crumbs = array_merge( $crumbs, gThemeTerms::getWithParents( $args['taxonomy'], $post ) );
+			$crumbs = array_merge( $crumbs, gThemeTerms::getWithParents( $args['taxonomy'], $post, TRUE ) );
 
 		if ( FALSE !== $args['label'] )
 			$crumbs[] = gThemeEditorial::label( [ 'id' => $post, 'echo' => FALSE ] );

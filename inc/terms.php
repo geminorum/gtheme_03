@@ -572,7 +572,7 @@ class gThemeTerms extends gThemeModuleCore
 		return TRUE;
 	}
 
-	public static function getWithParents( $taxonomy, $post = NULL )
+	public static function getWithParents( $taxonomy, $post = NULL, $exclude_default = FALSE )
 	{
 		if ( ! $post = get_post( $post ) )
 			return [];
@@ -585,7 +585,16 @@ class gThemeTerms extends gThemeModuleCore
 		if ( ! $terms || is_wp_error( $terms ) )
 			return [];
 
-		return self::getWithParentsCallback( $terms[0], $taxonomy );
+		if ( $exclude_default && ( $default = gThemeTaxonomy::getDefaultTermID( $taxonomy ) ) ) {
+
+			$terms = gThemeArraay::reKey( $terms, 'term_id' );
+			unset( $terms[$default] );
+
+			if ( empty( $terms ) )
+				return [];
+		}
+
+		return self::getWithParentsCallback( reset( $terms ), $taxonomy );
 	}
 
 	public static function getWithParentsCallback( $parent, $taxonomy, $parents = [] )
