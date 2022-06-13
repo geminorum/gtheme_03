@@ -1,3 +1,9 @@
+### 3.21.2
+* module/filters: dns prefetch support
+* module/filters: preconnect domains support
+* module/navigation: except default term on breadcrumbs
+* partial/summery: custom for publication
+
 ### 3.21.1
 * core/widget: :warning: passing new instance as base
 * core/widget: custom title on the form
