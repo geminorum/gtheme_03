@@ -7,7 +7,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2022-03-05T21:11:38+00:00\n"
+"POT-Creation-Date: 2022-06-13T13:33:30+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.6.0\n"
 "X-Domain: gtheme\n"
@@ -677,25 +677,25 @@ msgid "; "
 msgstr ""
 
 #. translators: %1$s: size name, %2$s: size height, %3$s: size width
-#: inc/image.php:337
+#: inc/image.php:338
 msgctxt "Image Module: Media Tag Checkbox Label"
 msgid "%1$s <small>(%2$s&times;%3$s)</small>"
 msgstr ""
 
-#: inc/image.php:352
+#: inc/image.php:353
 msgid "Media Tags"
 msgstr ""
 
-#: inc/image.php:422
+#: inc/image.php:423
 msgid "&mdash; Select a Term &mdash;"
 msgstr ""
 
-#: inc/image.php:432
+#: inc/image.php:433
 msgid "Assign for"
 msgstr ""
 
 #. translators: %s: post title
-#: inc/image.php:734
+#: inc/image.php:735
 msgctxt "Modules: Image: Link Label"
 msgid "Read more about %s"
 msgstr ""

@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gTheme 3\n"
 "Report-Msgid-Bugs-To: https://github.com/geminorum/gtheme_03/issues\n"
-"POT-Creation-Date: 2022-03-05T21:11:38+00:00\n"
-"PO-Revision-Date: 2022-03-06 00:44+0330\n"
+"POT-Creation-Date: 2022-06-13T13:33:30+00:00\n"
+"PO-Revision-Date: 2022-06-13 18:03+0430\n"
 "Last-Translator: geminorum <contact@geminorum.ir>\n"
 "Language-Team: geminorum <contact@geminorum.ir>\n"
 "Language: fa_IR\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.1\n"
 "X-Textdomain-Support: yes\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ..\n"
@@ -702,28 +702,28 @@ msgid "; "
 msgstr "؛ "
 
 #. translators: %1$s: size name, %2$s: size height, %3$s: size width
-#: inc/image.php:337
+#: inc/image.php:338
 msgctxt "Image Module: Media Tag Checkbox Label"
 msgid "%1$s <small>(%2$s&times;%3$s)</small>"
 msgstr ""
 
 # @ gtheme
-#: inc/image.php:352
+#: inc/image.php:353
 msgid "Media Tags"
 msgstr "برچسب‌ها"
 
 # @ gtheme
-#: inc/image.php:422
+#: inc/image.php:423
 msgid "&mdash; Select a Term &mdash;"
 msgstr "&mdash; انتخاب کنید &mdash;"
 
 # @ gtheme
-#: inc/image.php:432
+#: inc/image.php:433
 msgid "Assign for"
 msgstr "تخصیص برای"
 
 #. translators: %s: post title
-#: inc/image.php:734
+#: inc/image.php:735
 msgctxt "Modules: Image: Link Label"
 msgid "Read more about %s"
 msgstr "درباره %s بیشتر بخوانید"
