@@ -75,7 +75,7 @@ class gThemeContent extends gThemeModuleCore
 		if ( is_null( $edit ) )
 			$edit = gThemeOptions::info( 'read_more_edit', FALSE );
 
-		do_action( 'gtheme_content_before' );
+		// do_action( 'gtheme_content_before' );
 
 		echo $before;
 
@@ -89,7 +89,7 @@ class gThemeContent extends gThemeModuleCore
 
 		echo $after;
 
-		do_action( 'gtheme_content_after' );
+		// do_action( 'gtheme_content_after' );
 	}
 
 	public static function row( $before = '', $after = '', $empty = FALSE )

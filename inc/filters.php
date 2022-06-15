@@ -41,6 +41,7 @@ class gThemeFilters extends gThemeModuleCore
 				add_filter( 'get_the_excerpt', [ $this, 'get_the_excerpt' ] );
 			}
 
+			add_filter( 'the_content', [ $this, 'the_content_actions' ], 997 );
 			add_filter( 'the_content', [ $this, 'the_content' ], 15 );
 			add_filter( 'the_content_more_link', [ $this, 'the_content_more_link' ] );
 
@@ -481,6 +482,35 @@ class gThemeFilters extends gThemeModuleCore
 		}
 
 		return apply_filters( 'wp_trim_excerpt', $text, $raw );
+	}
+
+	public function the_content_actions( $content )
+	{
+		if ( defined( 'GTHEME_DISABLE_CONTENT_ACTIONS' )
+			&& GTHEME_DISABLE_CONTENT_ACTIONS )
+				return $content;
+
+		$before = $after = '';
+
+		if ( has_action( 'gtheme_content_before' ) ) {
+			ob_start();
+				do_action( 'gtheme_content_before', $content );
+			$before = ob_get_clean();
+
+			if ( trim( $before ) )
+				$before = '<div class="gtheme-wrap-actions content-before">'.$before.'</div>';
+		}
+
+		if ( has_action( 'gtheme_content_after' ) ) {
+			ob_start();
+				do_action( 'gtheme_content_after', $content );
+			$after = ob_get_clean();
+
+			if ( trim( $after ) )
+				$after = '<div class="gtheme-wrap-actions content-after">'.$after.'</div>';
+		}
+
+		return $before.$content.$after;
 	}
 
 	public function the_content( $content )
