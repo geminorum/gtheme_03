@@ -5,7 +5,28 @@ class gThemeEditorial extends gThemeModuleCore
 
 	public function setup_actions( $args = [] )
 	{
+		add_action( 'gtheme_content_before', [ $this, 'content_before' ], 20 );
+		add_filter( 'gnetwork_shortcodes_reflist_toc', [ $this, 'shortcodes_reflist_toc' ], 10, 2 );
 		add_filter( 'geditorial_shortcode_attachement_download', [ $this, 'attachement_download' ], 9, 2 );
+	}
+
+	public function content_before()
+	{
+		if ( ! gThemeUtilities::isPrint()
+			&& is_singular( gThemeOptions::info( 'headings_posttypes', [ 'entry', 'lesson' ] ) ) )
+				self::headingsTOC();
+	}
+
+	public function shortcodes_reflist_toc( $item, $toc )
+	{
+		if ( ! $title = gThemeOptions::info( 'reflist_title', FALSE ) )
+			return $item;
+
+		$item['slug']  = 'footnotes';
+		$item['niche'] = '4';
+		$item['title'] = strip_tags( $title );
+
+		return $item;
 	}
 
 	public function attachement_download( $filename, $post )
@@ -635,6 +656,15 @@ class gThemeEditorial extends gThemeModuleCore
 	{
 		self::_dep( 'gThemeEditorial::theSource()' );
 		return self::theSource( $atts );
+	}
+
+	// CAUTION: not working outside of `the_content` filter
+	public static function headingsTOC( $title = NULL, $class = '' )
+	{
+		if ( ! self::availableEditorial( 'headings' ) )
+			return FALSE;
+
+		gEditorial()->headings->render_headings( $title, $class );
 	}
 
 	public static function personPicture( $atts = [], $post = NULL )
