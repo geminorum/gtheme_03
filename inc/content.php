@@ -524,7 +524,7 @@ class gThemeContent extends gThemeModuleCore
 
 			$actions = $list;
 
-		} else if ( TRUE === $list ) {
+		} else if ( TRUE === $list || NULL === $list ) {
 
 			$posttype = gThemeOptions::info( sprintf( 'post_actions_for_%s', $post->post_type ), NULL );
 

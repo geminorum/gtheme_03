@@ -62,8 +62,8 @@ class gThemeSettings extends gThemeModuleCore
 		] );
 
 		$messages = apply_filters( 'gtheme_settings_messages', [
-			'error'   => self::error( _x( 'Settings not updated.', 'Settings Module', 'gtheme' ) ),
-			'updated' => self::updated( _x( 'Settings updated.', 'Settings Module', 'gtheme' ) ),
+			'error'   => gThemeHTML::error( _x( 'Settings not updated.', 'Settings Module', 'gtheme' ) ),
+			'updated' => gThemeHTML::success( _x( 'Settings updated.', 'Settings Module', 'gtheme' ) ),
 		] );
 
 		echo '<div class="wrap"><h1 class="wp-heading-inline settings-title">'.

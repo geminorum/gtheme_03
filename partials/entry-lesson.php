@@ -3,9 +3,9 @@
 gThemeContent::header( [ 'context' => 'singular', 'byline' => TRUE, 'actions' => NULL ] );
 
 gThemeImage::image( [
-	'tag'   => 'half',
-	'link'  => 'attachment',
-	'empty' => FALSE,
+	'tag'    => 'half',
+	'link'   => 'attachment',
+	'empty'  => FALSE,
 	'before' => '<div class="entry-cover alignleft">',
 	'after'  => '</div>',
 ] );
