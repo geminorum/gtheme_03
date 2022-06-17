@@ -243,6 +243,21 @@ class gThemeEditorial extends gThemeModuleCore
 		return TRUE;
 	}
 
+	public static function venuePlace( $atts = [], $verbose = TRUE )
+	{
+		if ( ! self::availableEditorial( 'venue' ) )
+			return NULL;
+
+		$html = gEditorial()->venue->place_shortcode( $atts );
+
+		if ( ! $verbose )
+			return $html;
+
+		echo $html;
+
+		return TRUE;
+	}
+
 	public static function label( $atts = [] )
 	{
 		if ( ! array_key_exists( 'default', $atts ) )
