@@ -3,9 +3,11 @@
     "@wordpress/stylelint-config/scss"
   ],
   "rules": {
+    "scss/comment-no-empty": null,
     "scss/at-import-partial-extension": null,
+    "no-invalid-position-at-import-rule": null,
     "declaration-property-unit-allowed-list": {
-      "line-height": [ "px" ]
+      "line-height": ["px"]
     },
     "block-no-empty": null,
     "max-line-length": null,
@@ -19,7 +21,7 @@
     }],
     "rule-empty-line-before": ["always", {
       "except": ["first-nested"],
-      "ignore": ["after-comment"]
+      "ignore": ["after-comment", "inside-block"]
     }],
     "number-leading-zero": null,
     "string-no-newline": null,
