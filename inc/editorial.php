@@ -258,6 +258,20 @@ class gThemeEditorial extends gThemeModuleCore
 		return TRUE;
 	}
 
+	public static function venueMap( $atts = [] )
+	{
+		if ( ! array_key_exists( 'default', $atts ) )
+			$atts['default'] = FALSE;
+
+		if ( ! self::availableEditorial( 'venue' ) )
+			return $atts['default'];
+
+		if ( ! is_callable( [ 'geminorum\\gEditorial\\Modules\\Venue\\ModuleTemplate', 'map' ] ) )
+			return $atts['default'];
+
+		return \geminorum\gEditorial\Modules\Venue\ModuleTemplate::map( $atts );
+	}
+
 	public static function label( $atts = [] )
 	{
 		if ( ! array_key_exists( 'default', $atts ) )
