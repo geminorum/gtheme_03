@@ -1,3 +1,11 @@
+### 3.21.3
+* module/editor: support body class on tinymce editor
+* module/editorial: support for headings module
+* module/editorial: venue map support
+* module/editorial: venue meta summary support
+* module/editorial: venue place support
+* module/filters: move theme content actions into the content filter
+
 ### 3.21.2
 * module/filters: dns prefetch support
 * module/filters: preconnect domains support
