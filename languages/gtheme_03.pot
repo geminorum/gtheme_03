@@ -1,13 +1,13 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: gTheme 3 3.21.1\n"
+"Project-Id-Version: gTheme 3 3.21.3\n"
 "Report-Msgid-Bugs-To: https://github.com/geminorum/gtheme_03/issues\n"
 "Last-Translator: NULL\n"
 "Language-Team: NULL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2022-06-13T13:33:30+00:00\n"
+"POT-Creation-Date: 2022-06-19T19:34:07+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.6.0\n"
 "X-Domain: gtheme\n"
@@ -606,62 +606,62 @@ msgctxt "Options: Defaults: Date Format: Byline"
 msgid "j M Y"
 msgstr ""
 
-#: inc/editor.php:142
+#: inc/editor.php:146
 msgctxt "Editor Custom Class"
 msgid "Blockquote"
 msgstr ""
 
-#: inc/editor.php:147
+#: inc/editor.php:151
 msgctxt "Editor Custom Class"
 msgid "Unordered List"
 msgstr ""
 
-#: inc/editor.php:152
+#: inc/editor.php:156
 msgctxt "Editor Custom Class"
 msgid "Ordered List"
 msgstr ""
 
-#: inc/editor.php:157
+#: inc/editor.php:161
 msgctxt "Editor Custom Class"
 msgid "Note"
 msgstr ""
 
-#: inc/editor.php:162
+#: inc/editor.php:166
 msgctxt "Editor Custom Class"
 msgid "Source"
 msgstr ""
 
-#: inc/editor.php:167
+#: inc/editor.php:171
 msgctxt "Editor Custom Class"
 msgid "Greeting"
 msgstr ""
 
-#: inc/editor.php:172
+#: inc/editor.php:176
 msgctxt "Editor Custom Class"
 msgid "Signature"
 msgstr ""
 
-#: inc/editor.php:177
+#: inc/editor.php:181
 msgctxt "Editor Custom Class"
 msgid "Poem"
 msgstr ""
 
-#: inc/editor.php:182
+#: inc/editor.php:186
 msgctxt "Editor Custom Class"
 msgid "Question"
 msgstr ""
 
-#: inc/editor.php:191
+#: inc/editor.php:195
 msgctxt "Editor Default Content"
 msgid "[content not available yet]"
 msgstr ""
 
-#: inc/editor.php:202
+#: inc/editor.php:206
 msgctxt "Block pattern title"
 msgid "Quote with Avatar"
 msgstr ""
 
-#: inc/editor.php:204
+#: inc/editor.php:208
 msgctxt "Block pattern description"
 msgid "A big quote with an avatar\"."
 msgstr ""
