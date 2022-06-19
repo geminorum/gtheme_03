@@ -317,7 +317,8 @@ class gThemeFilters extends gThemeModuleCore
 </script><?php
 	}
 
-	public function body_class( $classes, $class )
+	// NOTE: also used on editor module
+	public function body_class( $classes, $class = '' )
 	{
 		global $post, $pagenow;
 

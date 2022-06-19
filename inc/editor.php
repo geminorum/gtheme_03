@@ -132,6 +132,10 @@ class gThemeEditor extends gThemeModuleCore
 				$settings['style_formats'] = $style_formats;
 		}
 
+		// @REF: https://wordpress.stackexchange.com/a/128392
+		$settings['body_class'] = gThemeHTML::prepClass(
+			gTheme()->filters->body_class( gThemeHTML::attrClass( $settings['body_class'] ) ) );
+
 		return $settings;
 	}
 
