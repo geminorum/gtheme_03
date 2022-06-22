@@ -130,6 +130,14 @@ class gThemeSettings extends gThemeModuleCore
 			], TRUE );
 
 			$this->do_settings_field( [
+				'title'   => _x( 'Blog Title', 'Settings Module', 'gtheme' ),
+				'type'    => 'text',
+				'field'   => 'site_title',
+				'default' => ( isset( $options['site_title'] ) ? $options['site_title'] : $defaults['site_title'] ),
+				'desc'    => _x( 'The name used as Blog title. Blank to use the build-in text.', 'Settings Module', 'gtheme' ),
+			], TRUE );
+
+			$this->do_settings_field( [
 				'title'   => _x( 'FrontPage Title', 'Settings Module', 'gtheme' ),
 				'type'    => 'text',
 				'field'   => 'frontpage_title',
@@ -205,6 +213,7 @@ class gThemeSettings extends gThemeModuleCore
 		return [
 			'theme_group'      => 'main',
 			'default_user'     => 0,
+			'site_title'       => '',
 			'frontpage_title'  => '',
 			'frontpage_desc'   => '',
 			'body_class_extra' => '',

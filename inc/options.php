@@ -126,7 +126,8 @@ class gThemeOptions extends gThemeModuleCore
 			// 'twitter_site'    => FALSE,
 			// 'googlecse_cx'    => FALSE,
 
-			'blog_title'      => self::getOption( 'blog_title', $blog_name ), // used on page title other than frontpage
+			'site_crumb'      => $blog_name, // used on navigation breadcrumbs
+			'site_title'      => self::getOption( 'site_title', $blog_name ), // used on page title other than frontpage
 			'frontpage_title' => self::getOption( 'frontpage_title', FALSE ), // FALSE to default
 			'frontpage_desc'  => self::getOption( 'frontpage_desc', get_bloginfo( 'description', 'display' ) ), // FALSE to disable
 

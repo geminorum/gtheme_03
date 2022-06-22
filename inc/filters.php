@@ -424,8 +424,8 @@ class gThemeFilters extends gThemeModuleCore
 
 		} else {
 
-			if ( $blog = gThemeOptions::info( 'blog_title', FALSE ) )
-				$title['site'] = $blog;
+			if ( $site = gThemeOptions::info( 'site_title', FALSE ) )
+				$title['site'] = $site;
 		}
 
 		return $title;
