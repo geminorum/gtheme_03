@@ -158,6 +158,11 @@ class gThemeEditor extends gThemeModuleCore
 				'classes'  => 'entry-list',
 			],
 			[
+				'title'    => _x( 'Unmarked List', 'Editor Custom Class', 'gtheme' ),
+				'selector' => 'ul',
+				'classes'  => 'entry-list-unmarked',
+			],
+			[
 				'title'   => _x( 'Note', 'Editor Custom Class', 'gtheme' ),
 				'block'   => 'p',
 				'classes' => 'entry-note',
