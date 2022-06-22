@@ -537,6 +537,7 @@ class gThemeEditorial extends gThemeModuleCore
 		return ob_get_clean();
 	}
 
+	// TODO: rename to `magazineSupported()`
 	public static function issuePosts( $atts = [], $verbose = TRUE )
 	{
 		if ( ! self::availableEditorial( 'magazine' ) )

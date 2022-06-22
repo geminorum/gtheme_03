@@ -114,11 +114,11 @@ class gThemeEditor extends gThemeModuleCore
 		return $buttons;
 	}
 
-	// adds `styles` drop-down content or classes
-	// @SEE: http://www.tinymce.com/wiki.php/Configuration:formats
-	// @SEE: http://www.tinymce.com/tryit/custom_formats.php
 	public function tiny_mce_before_init( $settings )
 	{
+		// adds `styles` drop-down content or classes
+		// @SEE: http://www.tinymce.com/wiki.php/Configuration:formats
+		// @SEE: http://www.tinymce.com/tryit/custom_formats.php
 		$style_formats = gThemeOptions::info( 'mce_style_formats', self::defaultFormats() );
 
 		if ( count( $style_formats ) ) {
@@ -139,6 +139,7 @@ class gThemeEditor extends gThemeModuleCore
 		return $settings;
 	}
 
+	// @REF: http://wordpress.stackexchange.com/a/85071
 	public static function defaultFormats( $extra = [] )
 	{
 		return array_merge( [
@@ -149,7 +150,7 @@ class gThemeEditor extends gThemeModuleCore
 			],
 			[
 				'title'    => _x( 'Unordered List', 'Editor Custom Class', 'gtheme' ),
-				'selector' => 'ul', // http://wordpress.stackexchange.com/a/85071
+				'selector' => 'ul',
 				'classes'  => 'entry-list',
 			],
 			[
