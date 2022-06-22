@@ -886,6 +886,9 @@ class gThemeContent extends gThemeModuleCore
 	{
 		static $enqueued = FALSE;
 
+		if ( ! gThemeOptions::info( 'bootstrap_version' ) )
+			return;
+
 		if ( ! $post = self::getPost( $post ) )
 			return;
 
