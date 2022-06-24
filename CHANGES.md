@@ -1,3 +1,11 @@
+### 3.21.4
+* module/content: heading tags must be sequential
+* module/editor: unmarked list format
+* module/options: bootstrap version as theme info
+* module/settings: handling site title revised
+* module/template: switch to tokens on logo templates
+* partial/entry: heading tag for attachment list
+
 ### 3.21.3
 * module/editor: support body class on tinymce editor
 * module/editorial: support for headings module
