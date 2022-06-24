@@ -36,7 +36,7 @@ gThemeEditorial::theAction( [
 ] );
 
 gThemeEditorial::attachments( [
-	'title'     => gThemeOptions::info( 'entry_publication_attachments_title', _x( 'Attachments', 'Partial: Entry: Publication', 'gtheme' ) ),
+	'title'     => sprintf( '<h4 class="-title">%s</h4>', gThemeOptions::info( 'entry_publication_attachments_title', _x( 'Attachments', 'Partial: Entry: Publication', 'gtheme' ) ) ),
 	'mime_type' => gThemeOptions::info( 'entry_publication_attachments_mimetype', 'application/pdf' ),
 	'before'    => '<div class="clearfix"></div><div class="entry-after after-attachments after-rows">',
 	'after'     => '</div>',
