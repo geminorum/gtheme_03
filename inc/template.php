@@ -68,7 +68,7 @@ class gThemeTemplate extends gThemeModuleCore
 
 	// @REF: https://css-tricks.com/header-text-image-replacement/
 	// @REF: http://luigimontanez.com/2010/stop-using-text-indent-css-trick/
-	public static function logo( $context = 'header', $template = NULL, $verbose = TRUE )
+	public static function logo_OLD( $context = 'header', $template = NULL, $verbose = TRUE )
 	{
 		if ( is_null( $template ) ) {
 			// $template = '<h1><a class="logo-class main-logo no-outline" href="'.gtheme_get_home().'" rel="home">'.get_bloginfo( 'name' ).'</a></h1>';
@@ -89,6 +89,37 @@ class gThemeTemplate extends gThemeModuleCore
 			return $logo;
 
 		echo $logo;
+	}
+
+	public static function logo( $context = 'header', $template = NULL, $verbose = TRUE )
+	{
+		$default = gThemeOptions::info( 'template_logo',
+			'<a href="{{home_url}}" title="{{{logo_title}}}" rel="home"><img src="{{logo_url_png}}" alt="{{{site_name}}}" /></a>' );
+
+		if ( is_null( $template ) )
+			$template = gThemeOptions::info( 'template_logo_'.$context, $default );
+
+		// NOTE: the order is important on format to token conversion
+		$tokens = [
+			'home_url'     => gThemeUtilities::home(),
+			'site_name'    => gThemeOptions::info( 'blog_name', '' ),
+			'logo_title'   => gThemeOptions::info( 'logo_title', '' ),
+			'theme_group'  => gThemeOptions::getGroup(),                 // default is `main`
+			'logo_url_svg' => GTHEME_CHILD_URL.'/images/logo.svg',
+			'logo_url_png' => GTHEME_CHILD_URL.'/images/logo.png',
+			'site_locale'  => get_locale(),
+		];
+
+		// NOTE: back-comp: DROP THIS
+		if ( gThemeText::has( $template, [ '%1$s', '%2$s', '%3$s' ] ) )
+			$template = gThemeText::convertFormatToToken( $template, array_keys( $tokens ) );
+
+		$html = gThemeText::replaceTokens( $template, $tokens );
+
+		if ( ! $verbose )
+			return $html;
+
+		echo $html;
 	}
 
 	public static function customLogo( $context = 'header', $before = '', $after = '', $fallback = NULL )

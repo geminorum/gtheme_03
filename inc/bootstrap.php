@@ -65,13 +65,13 @@ class gThemeBootstrap extends gThemeModuleCore
 			$brand = gThemeOptions::info( 'blog_name', FALSE );
 
 		else if ( 'logo' == $brand )
-			$brand = gThemeTemplate::logo( 'navbar', '<img src="'.GTHEME_CHILD_URL.'/images/'.$filename.'" alt="%2$s" />', FALSE );
+			$brand = gThemeTemplate::logo( 'navbar', '<img src="'.GTHEME_CHILD_URL.'/images/'.$filename.'" alt="{{{site_name}}}" />', FALSE );
 
 		else if ( 'logo-title' == $brand )
-			$brand = gThemeTemplate::logo( 'navbar', '<img src="'.GTHEME_CHILD_URL.'/images/'.$filename.'" alt="%2$s" /> <span title="%3$s">%2$s</span>', FALSE );
+			$brand = gThemeTemplate::logo( 'navbar', '<img src="'.GTHEME_CHILD_URL.'/images/'.$filename.'" alt="{{{site_name}}}" /> <span title="{{{logo_title}}}">{{site_name}}</span>', FALSE );
 
 		if ( FALSE !== $brand )
-			vprintf( '<a class="navbar-brand" href="%1$s" title="%2$s">%3$s</a>', [
+			vprintf( '<a class="navbar-brand no-outline" href="%1$s" title="%2$s">%3$s</a>', [
 				esc_url( gThemeUtilities::home() ),
 				esc_attr( gThemeOptions::info( 'logo_title', '' ) ),
 				$brand,

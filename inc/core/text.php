@@ -377,4 +377,54 @@ class gThemeText extends gThemeBaseCore
 
 		return $start;
 	}
+
+	// @SOURCE: http://web.archive.org/web/20110215015142/http://www.phpwact.org/php/i18n/charsets#htmlspecialchars
+	// @SOURCE: `_wp_specialchars()`
+	// converts a number of special characters into their HTML entities
+	// specifically deals with: &, <, >, ", and '
+	public static function utf8SpecialChars( $string, $flags = ENT_COMPAT )
+	{
+		$string = (string) $string;
+
+		if ( 0 === strlen( $string ) )
+			return '';
+
+		if ( preg_match( '/[&<>"\']/', $string ) )
+			$string = @htmlspecialchars( $string, $flags, 'UTF-8' );
+
+		return $string;
+	}
+
+	// @SOURCE: `bp_core_replace_tokens_in_text()`
+	public static function replaceTokens( $string, $tokens )
+	{
+		$unescaped = $escaped = [];
+
+		foreach ( $tokens as $token => $value ) {
+
+			if ( ! is_string( $value ) && is_callable( $value ) )
+				$value = call_user_func( $value );
+
+			// tokens can not be objects or arrays
+			if ( ! is_scalar( $value ) )
+				continue;
+
+			$unescaped['{{{'.$token.'}}}'] = $value;
+			$escaped['{{'.$token.'}}']     = self::utf8SpecialChars( $value, ENT_QUOTES );
+		}
+
+		$string = strtr( $string, $unescaped );  // do first
+		$string = strtr( $string, $escaped );
+
+		return $string;
+	}
+
+	// NOTE: the order is important!
+	public static function convertFormatToToken( $template, $keys )
+	{
+		foreach ( $keys as $offset => $key )
+			$template = str_ireplace( '%'.( $offset + 1 ).'$s', '{{'.$key.'}}', $template );
+
+		return $template;
+	}
 }
