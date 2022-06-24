@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gTheme 3\n"
 "Report-Msgid-Bugs-To: https://github.com/geminorum/gtheme_03/issues\n"
-"POT-Creation-Date: 2022-06-19T19:34:07+00:00\n"
-"PO-Revision-Date: 2022-06-20 00:04+0430\n"
+"POT-Creation-Date: 2022-06-24T12:22:50+00:00\n"
+"PO-Revision-Date: 2022-06-24 16:54+0430\n"
 "Last-Translator: geminorum <contact@geminorum.ir>\n"
 "Language-Team: geminorum <contact@geminorum.ir>\n"
 "Language: fa_IR\n"
@@ -504,91 +504,91 @@ msgctxt "Options: Separator: Term"
 msgid ", "
 msgstr "، "
 
-#: inc/content.php:901
+#: inc/content.php:904
 msgctxt "Qr-Code"
 msgid "Loading&hellip;"
 msgstr "بارگذاری&hellip;"
 
-#: inc/content.php:944
+#: inc/content.php:947
 msgctxt "Options: Text Size Increase"
 msgid "[ A+ ]"
 msgstr "[ الف+ ]"
 
-#: inc/content.php:947
+#: inc/content.php:950
 msgctxt "Options: Text Size Decrease"
 msgid "[ A- ]"
 msgstr "[ الف– ]"
 
-#: inc/content.php:950
+#: inc/content.php:953
 msgctxt "Options: Text Size Sep"
 msgid " / "
 msgstr " \\ "
 
 # @ gtheme
-#: inc/content.php:955
+#: inc/content.php:958
 msgid "Increase font size"
 msgstr "اندازه قلم درشت‌تر"
 
 # @ gtheme
-#: inc/content.php:962
+#: inc/content.php:965
 msgid "Decrease font size"
 msgstr "اندازه قلم کوچک‌تر"
 
-#: inc/content.php:976
+#: inc/content.php:979
 msgctxt "Options: Text Justify"
 msgid "[ Ju ]"
 msgstr "[ همـ ]"
 
-#: inc/content.php:979
+#: inc/content.php:982
 msgctxt "Options: Text Unjustify"
 msgid "[ uJ ]"
 msgstr "[ ناهمـ ]"
 
-#: inc/content.php:982
+#: inc/content.php:985
 msgctxt "Options: Text Justify Sep"
 msgid " / "
 msgstr " \\ "
 
 # @ gtheme
-#: inc/content.php:987
+#: inc/content.php:990
 msgid "Justify paragraphs"
 msgstr "هم‌چین کردن متن"
 
 # @ gtheme
-#: inc/content.php:994
+#: inc/content.php:997
 msgid "Un-justify paragraphs"
 msgstr "غیر هم‌چین کردن متن"
 
-#: inc/content.php:1043
+#: inc/content.php:1046
 msgctxt "Modules: Content: Addtoany"
 msgid "Share This"
 msgstr "همخوان کنید"
 
 #. translators: %s: post title
-#: inc/content.php:1058
+#: inc/content.php:1061
 msgctxt "Modules: Content: Addtoany"
 msgid "Check this out %s"
 msgstr "نگاهی بیاندازید به %s"
 
 #. translators: %s: post link
-#: inc/content.php:1060
+#: inc/content.php:1063
 msgctxt "Modules: Content: Addtoany"
 msgid ""
 "Click the link:\n"
 "%s"
 msgstr "روی پیوند کلیک کنید: %s"
 
-#: inc/content.php:1354
+#: inc/content.php:1357
 msgctxt "Modules: Content: Link Pages"
 msgid "Next page"
 msgstr "صفحه بعدی"
 
-#: inc/content.php:1355
+#: inc/content.php:1358
 msgctxt "Modules: Content: Link Pages"
 msgid "Previous page"
 msgstr "صفحه قبلی"
 
-#: inc/content.php:1367
+#: inc/content.php:1370
 msgctxt "Modules: Content: Link Pages"
 msgid "Pages:"
 msgstr "صفحه‌ها:"
@@ -629,64 +629,69 @@ msgid "j M Y"
 msgstr ""
 
 # @ gtheme
-#: inc/editor.php:146
+#: inc/editor.php:147
 msgctxt "Editor Custom Class"
 msgid "Blockquote"
 msgstr "نقل‌قول"
 
-#: inc/editor.php:151
+#: inc/editor.php:152
 msgctxt "Editor Custom Class"
 msgid "Unordered List"
 msgstr "فهرست بدون ترتیب"
 
-#: inc/editor.php:156
+#: inc/editor.php:157
 msgctxt "Editor Custom Class"
 msgid "Ordered List"
 msgstr "فهرست مرتب‌شده"
 
-#: inc/editor.php:161
+#: inc/editor.php:162
+msgctxt "Editor Custom Class"
+msgid "Unmarked List"
+msgstr "فهرست بی‌نشان"
+
+#: inc/editor.php:167
 msgctxt "Editor Custom Class"
 msgid "Note"
 msgstr "توضیح"
 
 # @ gtheme
-#: inc/editor.php:166
+#: inc/editor.php:172
 msgctxt "Editor Custom Class"
 msgid "Source"
 msgstr "منبع"
 
-#: inc/editor.php:171
+#: inc/editor.php:177
 msgctxt "Editor Custom Class"
 msgid "Greeting"
 msgstr "درود"
 
-#: inc/editor.php:176
+#: inc/editor.php:182
 msgctxt "Editor Custom Class"
 msgid "Signature"
 msgstr "امضاء"
 
-#: inc/editor.php:181
+#: inc/editor.php:187
 msgctxt "Editor Custom Class"
 msgid "Poem"
 msgstr "شعر"
 
-#: inc/editor.php:186
+#: inc/editor.php:192
 msgctxt "Editor Custom Class"
 msgid "Question"
 msgstr "سؤال"
 
 # @ gtheme
-#: inc/editor.php:195
+#: inc/editor.php:201
 msgctxt "Editor Default Content"
 msgid "[content not available yet]"
 msgstr "[این صفحه در حال تکمیل است.]"
 
-#: inc/editor.php:206
+#: inc/editor.php:212
 msgctxt "Block pattern title"
 msgid "Quote with Avatar"
 msgstr ""
 
-#: inc/editor.php:208
+#: inc/editor.php:214
 msgctxt "Block pattern description"
 msgid "A big quote with an avatar\"."
 msgstr ""
@@ -933,30 +938,30 @@ msgctxt "Logo Title"
 msgid "Home"
 msgstr "خانه"
 
-#: inc/options.php:98
+#: inc/options.php:99
 msgctxt "Options: Source Before"
 msgid "Source: "
 msgstr "منبع: "
 
-#: inc/options.php:99
+#: inc/options.php:100
 msgctxt "Options: Reflist Title"
 msgid "Footnotes"
 msgstr "پانوشت‌ها"
 
 # @ gtheme
-#: inc/options.php:242
+#: inc/options.php:244
 msgctxt "Media Tag Titles"
 msgid "Raw"
 msgstr "خام"
 
 # @ gtheme
-#: inc/options.php:253
+#: inc/options.php:255
 msgctxt "Media Tag Titles"
 msgid "Big"
 msgstr "بزرگ"
 
 # @ gtheme
-#: inc/options.php:264
+#: inc/options.php:266
 msgctxt "Media Tag Titles"
 msgid "Single"
 msgstr "نوشته"
@@ -1068,13 +1073,13 @@ msgid "Search for:"
 msgstr "جست‌وجو برای:"
 
 # @ gtheme
-#: inc/settings.php:44 inc/settings.php:70 inc/settings.php:242
+#: inc/settings.php:44 inc/settings.php:70 inc/settings.php:251
 msgctxt "Admin Settings Page Title"
 msgid "gTheme Settings"
 msgstr "تنظیمات پوسته"
 
 # @ gtheme
-#: inc/settings.php:45 inc/settings.php:240
+#: inc/settings.php:45 inc/settings.php:249
 msgctxt "Admin Menu Title"
 msgid "Theme Settings"
 msgstr "تنظیمات پوسته"
@@ -1126,46 +1131,56 @@ msgstr "کاربر پیش‌فرض سایت. برای پنهان‌کردن اپ
 
 #: inc/settings.php:133
 msgctxt "Settings Module"
-msgid "FrontPage Title"
-msgstr "عنوان صفحه اصلی"
+msgid "Blog Title"
+msgstr "عنوان بلاگ"
 
 #: inc/settings.php:137
 msgctxt "Settings Module"
-msgid "The title used on frontpage. Blank to use the build-in text."
+msgid "The name used as Blog title. Blank to use the build-in text."
 msgstr ""
 
 #: inc/settings.php:141
 msgctxt "Settings Module"
+msgid "FrontPage Title"
+msgstr "عنوان صفحه اصلی"
+
+#: inc/settings.php:145
+msgctxt "Settings Module"
+msgid "The title used on frontpage. Blank to use the build-in text."
+msgstr ""
+
+#: inc/settings.php:149
+msgctxt "Settings Module"
 msgid "FrontPage Description"
 msgstr "توضیحات صفحه اصلی"
 
-#: inc/settings.php:145
+#: inc/settings.php:153
 msgctxt "Settings Module"
 msgid ""
 "The description meta tag used on frontpage. Blank to use the build-in text."
 msgstr ""
 
-#: inc/settings.php:149
+#: inc/settings.php:157
 msgctxt "Settings Module"
 msgid "Extra Body Class"
 msgstr "کلاس‌های اضافی برای بادی"
 
-#: inc/settings.php:153
+#: inc/settings.php:161
 msgctxt "Settings Module"
 msgid "Additional classes to append to the html body tag. Seperate with space."
 msgstr "کلاس‌های اضافی برای پیوست به بدنه HTML. با فاصله جدا شود."
 
-#: inc/settings.php:160 inc/settings.php:167
+#: inc/settings.php:168 inc/settings.php:175
 msgctxt "Settings Module"
 msgid "Legend"
 msgstr "توضیحات"
 
-#: inc/settings.php:229
+#: inc/settings.php:238
 msgctxt "Settings Module"
 msgid "Flush"
 msgstr "فلاش"
 
-#: inc/settings.php:253
+#: inc/settings.php:262
 msgctxt "Modules: Settings"
 msgid "Theme Template Base"
 msgstr "پایه قالب پوسته"
@@ -1244,27 +1259,27 @@ msgctxt "Options: Separator: Title"
 msgid " &raquo; "
 msgstr " &laquo; "
 
-#: inc/template.php:124
+#: inc/template.php:155
 msgctxt "Modules: Template: Title Attr"
 msgid "Front Page"
 msgstr "صفحه نخست"
 
 #. translators: %s: display name
-#: inc/template.php:192
+#: inc/template.php:223
 msgctxt "Modules: Template: Author"
 msgid "Posts by %s"
 msgstr "نوشته‌های %s"
 
-#: inc/template.php:274
+#: inc/template.php:305
 msgctxt "Options: Separator: Nav"
 msgid " &laquo; "
 msgstr " &raquo; "
 
-#: inc/template.php:308
+#: inc/template.php:339
 msgid "&copy; All rights reserved."
 msgstr "تمام حقوق محفوظ است."
 
-#: inc/template.php:325
+#: inc/template.php:356
 msgctxt "Root: End: Before Site Modified"
 msgid "Last updated on"
 msgstr "آخرین به‌روزرسانی در"
