@@ -6,6 +6,9 @@ php:
   - '7.1'
   - '7.2'
   - '7.3'
+  - '7.4'
+  - '8.0'
+  - '8.1'
 
 before_script:
   - if find . -name "*.php" ! -path "./vendor/*" -exec php -l {} 2>&1 \; | grep "syntax error, unexpected"; then exit 1; fi
