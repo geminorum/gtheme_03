@@ -38,9 +38,10 @@ class gThemeHTML extends gThemeBaseCore
 	}
 
 	// @REF: https://web.dev/native-lazy-loading/
+	// @SEE: https://www.smashingmagazine.com/2021/04/humble-img-element-core-web-vitals/
 	public static function img( $src, $class = '', $alt = '' )
 	{
-		return $src ? '<img src="'.$src.'" class="'.self::prepClass( $class ).'" alt="'.$alt.'" loading="lazy" />' : '';
+		return $src ? '<img src="'.$src.'" class="'.self::prepClass( $class ).'" alt="'.$alt.'" decoding="async" loading="lazy" />' : '';
 	}
 
 	public static function h1( $html, $class = FALSE, $link = FALSE )

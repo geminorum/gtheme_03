@@ -115,16 +115,17 @@ class gThemeBanners extends gThemeModuleCore
 	public static function html( $banner, $atts = [] )
 	{
 		$args = self::atts( [
-			'w'           => 'auto',
-			'h'           => 'auto',
-			'c'           => '#fff',
-			'img_class'   => gThemeImage::cssClass(),
-			'img_style'   => FALSE,
-			'img_loading' => 'lazy', // FALSE to disable
-			'a_class'     => 'gtheme-banner',
-			'a_style'     => FALSE,
-			'placeholder' => TRUE,
-			'echo'        => TRUE,
+			'w'            => 'auto',
+			'h'            => 'auto',
+			'c'            => '#fff',
+			'img_class'    => gThemeImage::cssClass(),
+			'img_style'    => FALSE,
+			'img_loading'  => 'lazy',                    // FALSE to disable
+			'img_decoding' => 'async',                   // FALSE to disable
+			'a_class'      => 'gtheme-banner',
+			'a_style'      => FALSE,
+			'placeholder'  => TRUE,
+			'echo'         => TRUE,
 		], $atts );
 
 		$html  = '';
@@ -132,11 +133,12 @@ class gThemeBanners extends gThemeModuleCore
 
 		if ( ! empty( $banner['image'] ) && 'http://' != $banner['image'] )
 			$html.= gThemeHTML::tag( 'img', [
-				'src'     => $banner['image'],
-				'class'   => $args['img_class'],
-				'style'   => $args['img_style'],
-				'loading' => $args['img_loading'],
-				'alt'     => $title,
+				'src'      => $banner['image'],
+				'class'    => $args['img_class'],
+				'style'    => $args['img_style'],
+				'loading'  => $args['img_loading'],
+				'decoding' => $args['img_decoding'],
+				'alt'      => $title,
 			] );
 
 		else if ( $args['placeholder'] )

@@ -317,11 +317,12 @@ class gThemeTemplate extends gThemeModuleCore
 
 		if ( gThemeWordPress::isDev() && $default )
 			echo gThemeHTML::tag( 'img', [
-				'src'     => $default,
-				'alt'     => '', // 'avatar',
-				'class'   => 'avatar avatar-'.$size.' photo avatar-default',
-				'loading' => 'lazy',
-				'style'   => 'max-width:'.$size.'px;max-height:'.$size.'px;',
+				'src'      => $default,
+				'alt'      => '',                                                // 'avatar',
+				'class'    => 'avatar avatar-'.$size.' photo avatar-default',
+				'loading'  => 'lazy',
+				'decoding' => 'async',
+				'style'    => 'max-width:'.$size.'px;max-height:'.$size.'px;',
 			] );
 		else
 			echo get_avatar( $id_or_email, $size, $default );

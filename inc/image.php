@@ -191,11 +191,12 @@ class gThemeImage extends gThemeModuleCore
 		list( $src, $width, $height ) = image_downsize( $id, $size );
 
 		return gThemeHTML::tag( 'img', [
-			'src'     => $src,
-			'alt'     => $alt ?: FALSE,
-			'class'   => apply_filters( 'get_image_tag_class', 'align'.$align, $id, $align, $size ),
-			'loading' => 'lazy',
-			'data'    => [
+			'src'      => $src,
+			'alt'      => $alt ?: FALSE,
+			'class'    => apply_filters( 'get_image_tag_class', 'align'.$align, $id, $align, $size ),
+			'loading'  => 'lazy',
+			'decoding' => 'async',
+			'data'     => [
 				'class'  => 'wp-image-'.$id, // WP core need this
 				'width'  => $width, // need this for `image_add_caption()`
 				// 'height' => $height,
@@ -650,6 +651,7 @@ class gThemeImage extends gThemeModuleCore
 			'alt'      => trim( strip_tags( get_post_meta( $attachment_id, '_wp_attachment_image_alt', TRUE ) ) ),
 			'class'    => self::cssClass(),
 			'loading'  => 'lazy',
+			'decoding' => 'async',
 			'data-url' => wp_get_attachment_url( $attachment_id ),
 		];
 
@@ -920,10 +922,11 @@ class gThemeImage extends gThemeModuleCore
 			return $image[0];
 
 		return $args['before'].gThemeHTML::tag( 'img', [
-			'src'     => $image[0],
-			'alt'     => $args['alt'],
-			'class'   => self::cssClass( '-featured' ),
-			'loading' => 'lazy',
+			'src'      => $image[0],
+			'alt'      => $args['alt'],
+			'class'    => self::cssClass( '-featured' ),
+			'loading'  => 'lazy',
+			'decoding' => 'async',
 		] ).$args['after'];
 	}
 }

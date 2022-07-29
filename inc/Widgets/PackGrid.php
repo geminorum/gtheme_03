@@ -59,7 +59,7 @@ class gThemeWidgetPackGrid extends gThemeWidget
 		echo '<div class="pack-grid__images">';
 
 			foreach ( $images as $image )
-				echo '<img class="pack-grid__image" src="'.$image.'" alt="" loading="lazy" />';
+				echo '<img class="pack-grid__image" src="'.$image.'" alt="" decoding="async" loading="lazy" />';
 
 		echo '</div>';
 		echo '<h3 class="pack-grid__title"><span>'.$title.'</span></h3>';
