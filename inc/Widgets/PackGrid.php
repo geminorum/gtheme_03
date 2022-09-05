@@ -44,6 +44,7 @@ class gThemeWidgetPackGrid extends gThemeWidget
 				if ( ! $thumbnail_img = wp_get_attachment_image_src( $attachemnt_id, $size ) )
 					continue;
 
+				// TODO: get alt
 				$images[] = $thumbnail_img[0];
 			}
 		}

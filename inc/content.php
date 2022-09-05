@@ -593,7 +593,7 @@ class gThemeContent extends gThemeModuleCore
 	// FIXME: DEPRECATED
 	public static function doAction( $action, $before, $after, $icon = FALSE )
 	{
-		self::_dev_dep( 'gThemeContent::renderSingleAction()' );
+		self::_dep( 'gThemeContent::renderSingleAction()' );
 		return self::renderSingleAction( $action, $before, $after, $icon );
 	}
 
@@ -654,6 +654,10 @@ class gThemeContent extends gThemeModuleCore
 
 			break;
 			case 'printlink':
+
+				// bail if disabled
+				if ( ! GTHEME_PRINT_QUERY )
+					break;
 
 				self::printLink( ( $icon ? self::getGenericon( 'print' ) : _x( 'Print Version', 'Modules: Content: Action', 'gtheme' ) ),
 					$post, sprintf( $before, '-action -printlink hidden-print' ), $after,
