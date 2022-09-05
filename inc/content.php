@@ -567,6 +567,11 @@ class gThemeContent extends gThemeModuleCore
 		if ( is_null( $icon ) )
 			$icon = gThemeOptions::info( 'post_actions_icons', FALSE );
 
+		$actions = apply_filters( 'gtheme_content_actions', $actions, $post, $icon );
+
+		if ( FALSE === $actions )
+			return; // bailing!
+
 		do_action( 'gtheme_action_links_before', $before, $after, $actions, $icon );
 
 		foreach ( $actions as $action ) {
@@ -576,7 +581,7 @@ class gThemeContent extends gThemeModuleCore
 				if ( is_callable( $action ) )
 					call_user_func_array( $action, [ $before, $after, $icon, $post ] );
 
-			} else {
+			} else if ( $action ) {
 
 				self::renderSingleAction( $action, $before, $after, $icon, $post );
 			}

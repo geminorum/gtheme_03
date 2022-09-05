@@ -8,7 +8,7 @@ gThemeSideBar::sidebar( 'entry-double-before', '<div class="wrap-side sidebar-en
 
 echo '</div></div><div class="-wrap splitrow"><div class="-side entry-double-head"><div class="-wrap">';
 
-gThemeContent::header( [ 'context' => 'singular', 'byline' => FALSE, 'actions' => NULL ] );
+gThemeContent::header( [ 'context' => 'singular', 'byline' => FALSE, 'actions' => FALSE ] );
 
 gThemeEditorial::metaHTML( 'highlight', [
 	'before'   => '<div class="entry-highlight">',
