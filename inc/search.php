@@ -113,7 +113,7 @@ class gThemeSearch extends gThemeModuleCore
 	public static function formSimple( $context = 'index', $extra = '' )
 	{
 		$label = self::getLabelText();
-		$query = '404' == $context ? '' : esc_attr( self::query() );
+		$query = ( '404' == $context || 'notfound' == $context ) ? '' : esc_attr( self::query() );
 
 		$html = '<form role="search" method="get" class="form search-form -simple search-form-'.$context.' -print-hide" action="'.esc_url( self::getAction() ).'">';
 
@@ -151,7 +151,7 @@ class gThemeSearch extends gThemeModuleCore
 	public static function form( $context = 'index', $extra = '' )
 	{
 		$label = self::getLabelText();
-		$query = '404' == $context ? '' : esc_attr( self::query() );
+		$query = ( '404' == $context || 'notfound' == $context ) ? '' : esc_attr( self::query() );
 
 		$html = '<form role="search" method="get" class="form search-form search-form-';
 		$html.= $context.' -print-hide" action="'.esc_url( self::getAction() ).'">';

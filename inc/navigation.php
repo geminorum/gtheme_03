@@ -328,9 +328,9 @@ class gThemeNavigation extends gThemeModuleCore
 
 		} else if ( is_404() ) {
 
-			$crumb = empty( $args['strings']['404'] )
+			$crumb = empty( $args['strings']['notfound'] )
 				? _x( 'Not Found', 'Modules: Navigation: Breadcrumbs', 'gtheme' )
-				: $args['strings']['404'];
+				: $args['strings']['notfound'];
 
 		} else if ( is_category() ) {
 

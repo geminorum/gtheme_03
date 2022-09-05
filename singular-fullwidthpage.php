@@ -13,7 +13,7 @@ gThemeTemplate::wrapOpen( 'fullwidthpage' );
 
 	} else {
 
-		get_template_part( 'content', '404' );
+		gThemeContent::notFound();
 	}
 
 gThemeTemplate::wrapClose( 'fullwidthpage' );

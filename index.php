@@ -15,12 +15,12 @@ if ( have_posts() ) {
 
 } else {
 
-	gThemeTemplate::wrapOpen( '404' );
-		gThemeNavigation::breadcrumb( [ 'home' => 'home', 'context' => '404' ] );
+	gThemeTemplate::wrapOpen( 'notfound' );
+		gThemeNavigation::breadcrumb( [ 'home' => 'home', 'context' => 'notfound' ] );
 
-		get_template_part( 'content', '404' );
+		gThemeContent::notFound();
 
-	gThemeTemplate::wrapClose( '404' );
+	gThemeTemplate::wrapClose( 'notfound' );
 }
 
 gThemeTemplate::sidebar( gtheme_template_base() );

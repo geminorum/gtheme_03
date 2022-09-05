@@ -16,11 +16,11 @@ if ( have_posts() ) {
 
 } else {
 
-	gThemeTemplate::wrapOpen( '404' );
+	gThemeTemplate::wrapOpen( 'notfound' );
 
-		get_template_part( 'content', '404' );
+		gThemeContent::notFound();
 
-	gThemeTemplate::wrapClose( '404' );
+	gThemeTemplate::wrapClose( 'notfound' );
 }
 
 gThemeTemplate::sidebar( 'singular' );
