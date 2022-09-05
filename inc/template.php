@@ -94,20 +94,21 @@ class gThemeTemplate extends gThemeModuleCore
 	public static function logo( $context = 'header', $template = NULL, $verbose = TRUE )
 	{
 		$default = gThemeOptions::info( 'template_logo',
-			'<a href="{{home_url}}" title="{{{logo_title}}}" rel="home"><img src="{{logo_url_png}}" alt="{{{site_name}}}" /></a>' );
+			'<a href="{{home_url}}" title="{{{logo_title}}}" rel="home"><img src="{{logo_url_png}}" alt="{{{site_name}}}" fetchpriority="{{fetchpriority}}" /></a>' );
 
 		if ( is_null( $template ) )
 			$template = gThemeOptions::info( 'template_logo_'.$context, $default );
 
 		// NOTE: the order is important on format to token conversion
 		$tokens = [
-			'home_url'     => gThemeUtilities::home(),
-			'site_name'    => gThemeOptions::info( 'blog_name', '' ),
-			'logo_title'   => gThemeOptions::info( 'logo_title', '' ),
-			'theme_group'  => gThemeOptions::getGroup(),                 // default is `main`
-			'logo_url_svg' => GTHEME_CHILD_URL.'/images/logo.svg',
-			'logo_url_png' => GTHEME_CHILD_URL.'/images/logo.png',
-			'site_locale'  => get_locale(),
+			'home_url'      => gThemeUtilities::home(),
+			'site_name'     => gThemeOptions::info( 'blog_name', '' ),
+			'logo_title'    => gThemeOptions::info( 'logo_title', '' ),
+			'theme_group'   => gThemeOptions::getGroup(),                 // default is `main`
+			'logo_url_svg'  => GTHEME_CHILD_URL.'/images/logo.svg',
+			'logo_url_png'  => GTHEME_CHILD_URL.'/images/logo.png',
+			'site_locale'   => get_locale(),
+			'fetchpriority' => 'high', // @REF: https://web.dev/priority-hints/#the-fetchpriority-attribute
 		];
 
 		// NOTE: back-comp: DROP THIS
