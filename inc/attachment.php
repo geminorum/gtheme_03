@@ -27,11 +27,15 @@ class gThemeAttachment extends gThemeModuleCore
 			'before' => '<div class="entry-summary entry-caption">',
 			'after'  => '</div>',
 			'id'     => NULL,
+			'prep'   => TRUE,
 			'echo'   => TRUE,
 		], $atts );
 
 		if ( ! $html = wp_get_attachment_caption( $args['id'] ) )
 			return FALSE;
+
+		if ( $args['prep'] )
+			$html = gThemeUtilities::prepDescription( $html );
 
 		if ( ! $args['echo'] )
 			return $args['before'].$html.$args['after'];
