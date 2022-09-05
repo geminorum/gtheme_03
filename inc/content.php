@@ -55,14 +55,16 @@ class gThemeContent extends gThemeModuleCore
 
 	public static function post( $context = NULL, $part = 'content' )
 	{
-		if ( is_null( $context ) )
-			$context = gtheme_template_base();
+		$base = gtheme_template_base();
 
-		do_action( 'gtheme_post_before', $context, $part );
+		if ( is_null( $context ) )
+			$context = $base;
+
+		do_action( 'gtheme_post_before', $context, $part, $base );
 
 		get_template_part( $part, $context );
 
-		do_action( 'gtheme_post_after', $context, $part );
+		do_action( 'gtheme_post_after', $context, $part, $base );
 	}
 
 	// http://www.billerickson.net/code/wp_query-arguments/
