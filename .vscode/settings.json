@@ -15,5 +15,11 @@
     "less",
     "postcss",
     "scss"
-  ]
+  ],
+  "git.ignoreLimitWarning": true,
+  "php.validate.enable": true,
+  "php.suggest.basic": true,
+  "php-docblocker.alignParams": true,
+  "php-docblocker.alignReturn": true,
+  "php-docblocker.useShortNames": true
 }
