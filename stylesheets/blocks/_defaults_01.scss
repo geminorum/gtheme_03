@@ -125,7 +125,8 @@
   }
 
   .entry-content {
-    &.entry-404 {
+    &.entry-404,
+    &.entry-notfound {
       max-width: math.div($theme-container-width, 2);
       margin: 0 auto;
       text-align: center;

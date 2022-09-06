@@ -97,6 +97,7 @@ $theme-color-border: $gray-light !default;
   .comment-actions {
     border-top: 1px dashed lighten($theme-color-border, 10);
     padding: $spacer * .25;
+    font-size: smaller;
   }
 
   .comment-awaiting-moderation {

@@ -125,12 +125,15 @@
   }
 
   .entry-actions {
+    font-size: smaller;
+
     &:empty {
       display: none;
     }
 
     &.-actions-header {
-      margin-top: -1rem !important;
+      margin-top: -.5rem !important;
+      margin-bottom: .5rem;
     }
 
     &.-actions-footer {
@@ -144,7 +147,8 @@
   }
 
   .entry-content {
-    &.entry-404 {
+    &.entry-404,
+    &.entry-notfound {
       max-width: math.div($theme-container-width, 2);
       margin: 0 auto;
       text-align: center;
