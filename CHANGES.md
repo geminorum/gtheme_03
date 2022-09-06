@@ -1,3 +1,10 @@
+### 3.21.5
+* module/attachment: prep caption html
+* module/content: filtering content actions
+* module/content: passing base into filter on post helper
+* module/template: support for fetch-priority
+* root/404: convert context to `notfound`
+
 ### 3.21.4
 * module/content: heading tags must be sequential
 * module/editor: unmarked list format
