@@ -7,7 +7,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2022-06-24T12:22:50+00:00\n"
+"POT-Creation-Date: 2022-09-05T19:18:48+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.6.0\n"
 "X-Domain: gtheme\n"
@@ -48,7 +48,7 @@ msgstr ""
 msgid "Contact Page"
 msgstr ""
 
-#: content-404.php:7
+#: content-notfound.php:7
 msgid "Oops! That page can&rsquo;t be found."
 msgstr ""
 
@@ -71,17 +71,17 @@ msgid "Default Template"
 msgstr ""
 
 #. translators: %s: post title
-#: inc/attachment.php:138
+#: inc/attachment.php:142
 msgctxt "Module: Attachment: Backlink Template"
 msgid "&larr; Back to &ldquo;%s&rdquo;"
 msgstr ""
 
-#: inc/attachment.php:139
+#: inc/attachment.php:143
 msgctxt "Module: Attachment: Backlink Empty Title"
 msgid "&larr; Back"
 msgstr ""
 
-#: inc/attachment.php:174
+#: inc/attachment.php:178
 msgctxt "Module: Attachment: Link"
 msgid "Download Attachment"
 msgstr ""
@@ -106,67 +106,67 @@ msgctxt "Modules: Banners: Renderer"
 msgid "Bootstrap Carousel"
 msgstr ""
 
-#: inc/banners.php:189
+#: inc/banners.php:191
 msgctxt "Carousel Control"
 msgid "Previous"
 msgstr ""
 
-#: inc/banners.php:192
+#: inc/banners.php:194
 msgctxt "Carousel Control"
 msgid "Next"
 msgstr ""
 
-#: inc/banners.php:257
+#: inc/banners.php:259
 msgctxt "Modules: Menu Name"
 msgid "Banners"
 msgstr ""
 
-#: inc/banners.php:341
+#: inc/banners.php:343
 msgctxt "Modules: Banners"
 msgid "Custom Banners"
 msgstr ""
 
-#: inc/banners.php:345
+#: inc/banners.php:347
 msgctxt "Modules: Banners"
 msgid "Legend"
 msgstr ""
 
-#: inc/banners.php:347
+#: inc/banners.php:349
 msgctxt "Modules: Banners"
 msgid "Your theme extra information"
 msgstr ""
 
-#: inc/banners.php:352
+#: inc/banners.php:354
 msgctxt "Modules: Banners"
 msgid "Group"
 msgstr ""
 
-#: inc/banners.php:353
+#: inc/banners.php:355
 msgctxt "Modules: Banners"
 msgid "Ord."
 msgstr ""
 
-#: inc/banners.php:354
+#: inc/banners.php:356
 msgctxt "Modules: Banners"
 msgid "Title"
 msgstr ""
 
-#: inc/banners.php:355
+#: inc/banners.php:357
 msgctxt "Modules: Banners"
 msgid "URL"
 msgstr ""
 
-#: inc/banners.php:356
+#: inc/banners.php:358
 msgctxt "Modules: Banners"
 msgid "Image"
 msgstr ""
 
-#: inc/banners.php:445
+#: inc/banners.php:447
 msgctxt "Modules: Banners"
 msgid "Add Another"
 msgstr ""
 
-#: inc/banners.php:446
+#: inc/banners.php:448
 msgctxt "Modules: Banners"
 msgid "Save"
 msgstr ""
@@ -371,202 +371,202 @@ msgctxt "Content: Not Found Message"
 msgid "It looks like nothing was found at this location. Maybe try one of the links below or a search?"
 msgstr ""
 
-#: inc/content.php:230
+#: inc/content.php:246
 msgctxt "Options: Defaults: Date Format: Content"
 msgid "Y/j/m"
 msgstr ""
 
-#: inc/content.php:278
+#: inc/content.php:294
 msgctxt "Modules: Content: Post Title"
 msgid "(untitled)"
 msgstr ""
 
-#: inc/content.php:338
+#: inc/content.php:354
 msgctxt "Content: Read More Edit"
 msgid "Edit"
 msgstr ""
 
-#: inc/content.php:339
+#: inc/content.php:355
 msgctxt "Content: Read More Edit Title"
 msgid "Jump to edit page"
 msgstr ""
 
-#: inc/content.php:344
+#: inc/content.php:360
 msgctxt "Content: Read More Text"
 msgid "Read more&nbsp;<span class=\"excerpt-link-hellip\">&hellip;</span>"
 msgstr ""
 
 #. translators: %s: post title
-#: inc/content.php:346
+#: inc/content.php:362
 msgctxt "Content: Read More Title"
 msgid "Continue reading &ldquo;%s&rdquo; &hellip;"
 msgstr ""
 
 #. translators: %s: post title
-#: inc/content.php:376
+#: inc/content.php:392
 msgctxt "Content: Title Attr"
 msgid "Permanent link to &ndash;%s&ndash;"
 msgstr ""
 
 #. translators: %s: post title
-#: inc/content.php:380
+#: inc/content.php:396
 msgctxt "Content: Title Attr"
 msgid "Short link for &ndash;%s&ndash;"
 msgstr ""
 
-#: inc/content.php:616
-#: inc/content.php:623
+#: inc/content.php:637
+#: inc/content.php:644
 msgctxt "Modules: Content: Action"
 msgid "Share This"
 msgstr ""
 
-#: inc/content.php:630
+#: inc/content.php:651
 msgctxt "Modules: Content: Action"
 msgid "Pocket"
 msgstr ""
 
-#: inc/content.php:637
+#: inc/content.php:662
 msgctxt "Modules: Content: Action"
 msgid "Print Version"
 msgstr ""
 
-#: inc/content.php:645
+#: inc/content.php:670
 msgctxt "Modules: Content: Action"
 msgid "Short Link"
 msgstr ""
 
-#: inc/content.php:653
+#: inc/content.php:678
 msgctxt "Modules: Content: Action"
 msgid "QR-Code"
 msgstr ""
 
 #. translators: %s: post title
-#: inc/content.php:656
+#: inc/content.php:681
 msgctxt "Content: Title Attr"
 msgid "QR-Code for &ndash;%s&ndash;"
 msgstr ""
 
 #. translators: %1$s: class name, %2$s: comments number, %3$s: comment url
-#: inc/content.php:696
+#: inc/content.php:721
 msgctxt "Modules: Content: Action"
 msgid "<a href=\"%3$s\" class=\"%1$s\">Your Comment</a>"
 msgstr ""
 
 #. translators: %1$s: class name, %2$s: comments number, %3$s: comment url
-#: inc/content.php:698
+#: inc/content.php:723
 msgctxt "Modules: Content: Action"
 msgid "<a href=\"%3$s\" class=\"%1$s\">One Comment</a>"
 msgstr ""
 
 #. translators: %1$s: class name, %2$s: comments number, %3$s: comment url
-#: inc/content.php:700
+#: inc/content.php:725
 msgctxt "Modules: Content: Action"
 msgid "<a href=\"%3$s\" class=\"%1$s\">%2$s Comments</a>"
 msgstr ""
 
 #. translators: %1$s: comments rss link, %2$s: title attr, %3$s: class name
-#: inc/content.php:711
+#: inc/content.php:736
 msgctxt "Modules: Content: Action"
 msgid " <small><small>(<a href=\"%1$s\" title=\"%2$s\" class=\"%3$s\"><abbr title=\"Really Simple Syndication\">RSS</abbr></a>)</small></small>"
 msgstr ""
 
-#: inc/content.php:713
+#: inc/content.php:738
 msgctxt "Modules: Content: Action"
 msgid "Feed for this post's comments"
 msgstr ""
 
-#: inc/content.php:726
+#: inc/content.php:751
 msgctxt "Modules: Content: Action"
 msgid "Edit"
 msgstr ""
 
-#: inc/content.php:737
-#: inc/content.php:757
+#: inc/content.php:762
+#: inc/content.php:782
 msgctxt "Options: Separator: Term"
 msgid ", "
 msgstr ""
 
-#: inc/content.php:904
+#: inc/content.php:929
 msgctxt "Qr-Code"
 msgid "Loading&hellip;"
 msgstr ""
 
-#: inc/content.php:947
+#: inc/content.php:972
 msgctxt "Options: Text Size Increase"
 msgid "[ A+ ]"
 msgstr ""
 
-#: inc/content.php:950
+#: inc/content.php:975
 msgctxt "Options: Text Size Decrease"
 msgid "[ A- ]"
 msgstr ""
 
-#: inc/content.php:953
+#: inc/content.php:978
 msgctxt "Options: Text Size Sep"
 msgid " / "
 msgstr ""
 
-#: inc/content.php:958
+#: inc/content.php:983
 msgid "Increase font size"
 msgstr ""
 
-#: inc/content.php:965
+#: inc/content.php:990
 msgid "Decrease font size"
 msgstr ""
 
-#: inc/content.php:979
+#: inc/content.php:1004
 msgctxt "Options: Text Justify"
 msgid "[ Ju ]"
 msgstr ""
 
-#: inc/content.php:982
+#: inc/content.php:1007
 msgctxt "Options: Text Unjustify"
 msgid "[ uJ ]"
 msgstr ""
 
-#: inc/content.php:985
+#: inc/content.php:1010
 msgctxt "Options: Text Justify Sep"
 msgid " / "
 msgstr ""
 
-#: inc/content.php:990
+#: inc/content.php:1015
 msgid "Justify paragraphs"
 msgstr ""
 
-#: inc/content.php:997
+#: inc/content.php:1022
 msgid "Un-justify paragraphs"
 msgstr ""
 
-#: inc/content.php:1046
+#: inc/content.php:1071
 msgctxt "Modules: Content: Addtoany"
 msgid "Share This"
 msgstr ""
 
 #. translators: %s: post title
-#: inc/content.php:1061
+#: inc/content.php:1086
 msgctxt "Modules: Content: Addtoany"
 msgid "Check this out %s"
 msgstr ""
 
 #. translators: %s: post link
-#: inc/content.php:1063
+#: inc/content.php:1088
 msgctxt "Modules: Content: Addtoany"
 msgid ""
 "Click the link:\n"
 "%s"
 msgstr ""
 
-#: inc/content.php:1357
+#: inc/content.php:1382
 msgctxt "Modules: Content: Link Pages"
 msgid "Next page"
 msgstr ""
 
-#: inc/content.php:1358
+#: inc/content.php:1383
 msgctxt "Modules: Content: Link Pages"
 msgid "Previous page"
 msgstr ""
 
-#: inc/content.php:1370
+#: inc/content.php:1395
 msgctxt "Modules: Content: Link Pages"
 msgid "Pages:"
 msgstr ""
@@ -682,25 +682,25 @@ msgid "; "
 msgstr ""
 
 #. translators: %1$s: size name, %2$s: size height, %3$s: size width
-#: inc/image.php:338
+#: inc/image.php:339
 msgctxt "Image Module: Media Tag Checkbox Label"
 msgid "%1$s <small>(%2$s&times;%3$s)</small>"
 msgstr ""
 
-#: inc/image.php:353
+#: inc/image.php:354
 msgid "Media Tags"
 msgstr ""
 
-#: inc/image.php:423
+#: inc/image.php:424
 msgid "&mdash; Select a Term &mdash;"
 msgstr ""
 
-#: inc/image.php:433
+#: inc/image.php:434
 msgid "Assign for"
 msgstr ""
 
 #. translators: %s: post title
-#: inc/image.php:735
+#: inc/image.php:737
 msgctxt "Modules: Image: Link Label"
 msgid "Read more about %s"
 msgstr ""
@@ -1162,7 +1162,7 @@ msgctxt "Tab Shortcode Title"
 msgid "Untitled"
 msgstr ""
 
-#: inc/shortcodes.php:571
+#: inc/shortcodes.php:573
 msgctxt "Modules: ShortCodes: Defaults"
 msgid "Related Posts"
 msgstr ""
@@ -1225,27 +1225,27 @@ msgctxt "Options: Separator: Title"
 msgid " &raquo; "
 msgstr ""
 
-#: inc/template.php:155
+#: inc/template.php:156
 msgctxt "Modules: Template: Title Attr"
 msgid "Front Page"
 msgstr ""
 
 #. translators: %s: display name
-#: inc/template.php:223
+#: inc/template.php:224
 msgctxt "Modules: Template: Author"
 msgid "Posts by %s"
 msgstr ""
 
-#: inc/template.php:305
+#: inc/template.php:306
 msgctxt "Options: Separator: Nav"
 msgid " &laquo; "
 msgstr ""
 
-#: inc/template.php:339
+#: inc/template.php:341
 msgid "&copy; All rights reserved."
 msgstr ""
 
-#: inc/template.php:356
+#: inc/template.php:358
 msgctxt "Root: End: Before Site Modified"
 msgid "Last updated on"
 msgstr ""
@@ -1601,12 +1601,12 @@ msgctxt "Widget: Description"
 msgid "Displays selected post thumb-nails as packed grid."
 msgstr ""
 
-#: inc/Widgets/PackGrid.php:81
+#: inc/Widgets/PackGrid.php:82
 msgctxt "Widget: PackGrid"
 msgid "Post IDs:"
 msgstr ""
 
-#: inc/Widgets/PackGrid.php:82
+#: inc/Widgets/PackGrid.php:83
 msgctxt "Widget: PackGrid"
 msgid "Attachment IDs:"
 msgstr ""
