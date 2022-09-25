@@ -195,13 +195,10 @@ class gThemeTemplate extends gThemeModuleCore
 		echo $after;
 	}
 
-	// FIXME: DEPRECATED
 	// only for wp users
 	// @REF: `get_the_author_posts_link()`
 	public static function author( $post = NULL, $verbose = TRUE )
 	{
-		// self::_dep( 'gThemeContent::byline()' );
-
 		if ( ! $post = get_post( $post ) )
 			return '';
 
@@ -215,11 +212,15 @@ class gThemeTemplate extends gThemeModuleCore
 		if ( ! $user = get_userdata( $post->post_author ) )
 			return '';
 
-		$template     = gThemeOptions::getOption( 'template_author_link', '<a href="%1$s" title="%2$s" rel="author">%3$s</a>' );
 		$display_name = get_the_author_meta( 'display_name', $user->ID ); // applying gMember filter
 
+		if ( ! $link = get_author_posts_url( $user->ID, $user->user_nicename ) )
+			return $display_name;
+
+		$template = gThemeOptions::getOption( 'template_author_link', '<a href="%1$s" title="%2$s" rel="author">%3$s</a>' );
+
 		return vsprintf( $template, [
-			esc_url( get_author_posts_url( $user->ID, $user->user_nicename ) ),
+			esc_url( $link ),
 			/* translators: %s: display name */
 			esc_attr( sprintf( _x( 'Posts by %s', 'Modules: Template: Author', 'gtheme' ), $display_name ) ),
 			$display_name,
