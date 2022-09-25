@@ -18,6 +18,7 @@ class gThemeMenu extends gThemeModuleCore
 
 		if ( ! is_admin() ) {
 			add_filter( 'nav_menu_css_class', [ $this, 'nav_menu_css_class' ], 10, 4 );
+			add_filter( 'nav_menu_link_attributes', [ $this, 'nav_menu_link_attributes' ], 10, 4 );
 			add_filter( 'nav_menu_item_id', '__return_empty_string', 12 );
 		}
 	}
@@ -108,6 +109,14 @@ class gThemeMenu extends gThemeModuleCore
 		return $tags;
 	}
 
+	public function nav_menu_link_attributes( $atts, $menu_item, $args, $depth = 0 )
+	{
+		if ( FALSE !== strpos( $args->menu_class, 'nav' ) )
+			$atts['class'] = 'nav-link';
+
+		return $atts;
+	}
+
 	public function nav_menu_css_class( $classes, $item, $args, $depth = 0 )
 	{
 		// we cache menus, so no active item!
@@ -129,6 +138,9 @@ class gThemeMenu extends gThemeModuleCore
 		// http://getbootstrap.com/components/#list-group
 		if ( FALSE !== strpos( $args->menu_class, 'list-group' ) )
 			$classes[] = 'list-group-item';
+
+		if ( FALSE !== strpos( $args->menu_class, 'nav' ) )
+			$classes[] = 'nav-item';
 
 		return $classes;
 	}
