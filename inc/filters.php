@@ -353,8 +353,8 @@ class gThemeFilters extends gThemeModuleCore
 		if ( ! gThemeUtilities::isRTL() )
 			$classes[] = 'ltr';
 
-		if ( is_page() )
-			$classes[] = sanitize_html_class( 'slug-'.get_post()->post_name );
+		if ( ! empty( $post ) && is_page() )
+			$classes[] = sanitize_html_class( 'slug-'.$post->post_name );
 
 		// $uri = explode( '/', $_SERVER['REQUEST_URI'] );
 
