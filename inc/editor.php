@@ -133,8 +133,8 @@ class gThemeEditor extends gThemeModuleCore
 		}
 
 		// @REF: https://wordpress.stackexchange.com/a/128392
-		$settings['body_class'] = gThemeHTML::prepClass(
-			gTheme()->filters->body_class( gThemeHTML::attrClass( $settings['body_class'] ) ) );
+		$body_class = empty( $settings['body_class'] ) ? [] : gThemeHTML::attrClass( $settings['body_class'] );
+		$settings['body_class'] = gThemeHTML::prepClass( gTheme()->filters->body_class( $body_class ) );
 
 		return $settings;
 	}
