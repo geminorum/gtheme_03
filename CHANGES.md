@@ -1,3 +1,11 @@
+### 3.21.6
+* module/bootstrap: navbar toggler for BS5
+* module/content: support bs5 dropdown on qr-code helper
+* module/editor: prep body class
+* module/filters: check for empty post on body class
+* module/menu: conditional css class for list items based on parent class
+* module/template: account for disabled author url
+
 ### 3.21.5
 * module/attachment: prep caption html
 * module/content: filtering content actions
