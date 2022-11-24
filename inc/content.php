@@ -930,7 +930,7 @@ class gThemeContent extends gThemeModuleCore
 
 		$dropdown = '<div class="dropdown-menu dropdown-menu-'.$float.' ';
 		$dropdown.= 'p-0 text-center bg-white rounded-0 -qrcode-wrap" style="width:'.( $size + 2 ).'px;height:'.( $size + 2 ).'px;min-width:unset"';
-		if ( $title ) $dropdown.= ' data-toggle="tooltip" data-placement="bottom" title="'.esc_attr( $title ).'"';
+		if ( $title ) $dropdown.= ' data-toggle="tooltip" data-bs-toggle="tooltip" data-placement="bottom" data-bs-placement="bottom" title="'.esc_attr( $title ).'"';
 		$dropdown.= '>'.$loading.'</div>';
 
 		echo $before.gThemeHTML::tag( 'a', [
@@ -940,6 +940,7 @@ class gThemeContent extends gThemeModuleCore
 			'rel'   => 'qrcode',
 			'data'  => [
 				'toggle'      => 'dropdown',
+				'bs-toggle'   => 'dropdown',
 				'display'     => 'static',
 				'id'          => $post->ID,
 				'qrcode-url'  => $url,
