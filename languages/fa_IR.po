@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gTheme 3\n"
 "Report-Msgid-Bugs-To: https://github.com/geminorum/gtheme_03/issues\n"
-"POT-Creation-Date: 2022-09-05T19:18:48+00:00\n"
-"PO-Revision-Date: 2022-09-05 23:49+0430\n"
+"POT-Creation-Date: 2022-11-24T18:50:41+00:00\n"
+"PO-Revision-Date: 2022-11-24 22:21+0330\n"
 "Last-Translator: geminorum <contact@geminorum.ir>\n"
 "Language-Team: geminorum <contact@geminorum.ir>\n"
 "Language: fa_IR\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.1.1\n"
+"X-Generator: Poedit 3.2\n"
 "X-Textdomain-Support: yes\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ..\n"
@@ -177,7 +177,7 @@ msgctxt "Modules: Banners"
 msgid "Save"
 msgstr "ذخیره"
 
-#: inc/bootstrap.php:34 inc/bootstrap.php:51
+#: inc/bootstrap.php:31 inc/bootstrap.php:48
 msgid "Toggle navigation"
 msgstr "برای تغییر وضعیت کلیک کنید"
 
@@ -509,86 +509,86 @@ msgctxt "Qr-Code"
 msgid "Loading&hellip;"
 msgstr "بارگذاری&hellip;"
 
-#: inc/content.php:972
+#: inc/content.php:973
 msgctxt "Options: Text Size Increase"
 msgid "[ A+ ]"
 msgstr "[ الف+ ]"
 
-#: inc/content.php:975
+#: inc/content.php:976
 msgctxt "Options: Text Size Decrease"
 msgid "[ A- ]"
 msgstr "[ الف– ]"
 
-#: inc/content.php:978
+#: inc/content.php:979
 msgctxt "Options: Text Size Sep"
 msgid " / "
 msgstr " \\ "
 
 # @ gtheme
-#: inc/content.php:983
+#: inc/content.php:984
 msgid "Increase font size"
 msgstr "اندازه قلم درشت‌تر"
 
 # @ gtheme
-#: inc/content.php:990
+#: inc/content.php:991
 msgid "Decrease font size"
 msgstr "اندازه قلم کوچک‌تر"
 
-#: inc/content.php:1004
+#: inc/content.php:1005
 msgctxt "Options: Text Justify"
 msgid "[ Ju ]"
 msgstr "[ همـ ]"
 
-#: inc/content.php:1007
+#: inc/content.php:1008
 msgctxt "Options: Text Unjustify"
 msgid "[ uJ ]"
 msgstr "[ ناهمـ ]"
 
-#: inc/content.php:1010
+#: inc/content.php:1011
 msgctxt "Options: Text Justify Sep"
 msgid " / "
 msgstr " \\ "
 
 # @ gtheme
-#: inc/content.php:1015
+#: inc/content.php:1016
 msgid "Justify paragraphs"
 msgstr "هم‌چین کردن متن"
 
 # @ gtheme
-#: inc/content.php:1022
+#: inc/content.php:1023
 msgid "Un-justify paragraphs"
 msgstr "غیر هم‌چین کردن متن"
 
-#: inc/content.php:1071
+#: inc/content.php:1072
 msgctxt "Modules: Content: Addtoany"
 msgid "Share This"
 msgstr "همخوان کنید"
 
 #. translators: %s: post title
-#: inc/content.php:1086
+#: inc/content.php:1087
 msgctxt "Modules: Content: Addtoany"
 msgid "Check this out %s"
 msgstr "نگاهی بیاندازید به %s"
 
 #. translators: %s: post link
-#: inc/content.php:1088
+#: inc/content.php:1089
 msgctxt "Modules: Content: Addtoany"
 msgid ""
 "Click the link:\n"
 "%s"
 msgstr "روی پیوند کلیک کنید: %s"
 
-#: inc/content.php:1382
+#: inc/content.php:1383
 msgctxt "Modules: Content: Link Pages"
 msgid "Next page"
 msgstr "صفحه بعدی"
 
-#: inc/content.php:1383
+#: inc/content.php:1384
 msgctxt "Modules: Content: Link Pages"
 msgid "Previous page"
 msgstr "صفحه قبلی"
 
-#: inc/content.php:1395
+#: inc/content.php:1396
 msgctxt "Modules: Content: Link Pages"
 msgid "Pages:"
 msgstr "صفحه‌ها:"
@@ -733,17 +733,17 @@ msgctxt "Modules: Image: Link Label"
 msgid "Read more about %s"
 msgstr "درباره %s بیشتر بخوانید"
 
-#: inc/menu.php:36
+#: inc/menu.php:37
 msgctxt "Modules: Menu: Defaults"
 msgid "Primary Navigation"
 msgstr "راه‌بری اولیه"
 
-#: inc/menu.php:37
+#: inc/menu.php:38
 msgctxt "Modules: Menu: Defaults"
 msgid "Secondary Navigation"
 msgstr "راه‌بری ثانویه"
 
-#: inc/menu.php:38
+#: inc/menu.php:39
 msgctxt "Modules: Menu: Defaults"
 msgid "Tertiary Navigation"
 msgstr "راه‌بری ثالث"
@@ -1254,7 +1254,7 @@ msgctxt "Modules: Sidebar"
 msgid "This is the %s widgetized area"
 msgstr ""
 
-#: inc/social.php:120 inc/social.php:127
+#: inc/social.php:121 inc/social.php:128
 msgctxt "Options: Separator: Title"
 msgid " &raquo; "
 msgstr " &laquo; "
@@ -1265,21 +1265,21 @@ msgid "Front Page"
 msgstr "صفحه نخست"
 
 #. translators: %s: display name
-#: inc/template.php:224
+#: inc/template.php:225
 msgctxt "Modules: Template: Author"
 msgid "Posts by %s"
 msgstr "نوشته‌های %s"
 
-#: inc/template.php:306
+#: inc/template.php:307
 msgctxt "Options: Separator: Nav"
 msgid " &laquo; "
 msgstr " &raquo; "
 
-#: inc/template.php:341
+#: inc/template.php:342
 msgid "&copy; All rights reserved."
 msgstr "تمام حقوق محفوظ است."
 
-#: inc/template.php:358
+#: inc/template.php:359
 msgctxt "Root: End: Before Site Modified"
 msgid "Last updated on"
 msgstr "آخرین به‌روزرسانی در"
