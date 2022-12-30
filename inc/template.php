@@ -6,12 +6,13 @@ class gThemeTemplate extends gThemeModuleCore
 	public static function wrapOpen( $context = 'index', $extra = [], $posttype = NULL )
 	{
 		$base = gtheme_template_base();
+		$full = gThemeOptions::info( 'template_column_fullpage', FALSE ); // all pages are full pages!
 
 		// `array_merge` cannot handle numeric keys
 		if ( '404' == $context )
 			$context = 'notfound';
 
-		$columns = array_merge( [
+		$columns = array_merge( $full ? [] : [
 			'notfound'      => 'col-sm-6', // `404` alias
 			'index'         => 'col-sm-8',
 			'singular'      => 'col-sm-8',
@@ -40,7 +41,7 @@ class gThemeTemplate extends gThemeModuleCore
 			$column = $columns[$context];
 
 		else
-			$column = gThemeOptions::info( 'template_column_fallback', 'col-sm-8' );
+			$column = gThemeOptions::info( 'template_column_fallback', $full ? '' : 'col-sm-8' );
 
 		$classes = [ 'wrap-content', 'wrap-content-'.$context ];
 
