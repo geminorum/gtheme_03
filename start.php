@@ -5,3 +5,5 @@ get_template_part( 'partials/navbar' );
 
 echo '<div class="wrapper -main">';
 echo '<div class="container container-wrap -main"><div class="row justify-content-center">';
+
+get_template_part( 'partials/start', gtheme_template_base() );
