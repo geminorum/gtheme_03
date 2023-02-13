@@ -11,12 +11,41 @@ class gThemePages extends gThemeModuleCore
 			'admin' => TRUE,
 		], $args ) );
 
-		if ( $admin && is_admin() ) {
-			add_filter( 'gtheme_settings_subs', [ $this, 'subs' ], 5 );
-			add_action( 'gtheme_settings_load', [ $this, 'load' ] );
+		if ( $admin ) {
 
-			add_filter( 'display_post_states', [ $this, 'display_post_states' ], 10, 2 );
+			if ( is_admin() ) {
+
+				add_filter( 'gtheme_settings_subs', [ $this, 'subs' ], 5 );
+				add_action( 'gtheme_settings_load', [ $this, 'load' ] );
+
+				add_filter( 'display_post_states', [ $this, 'display_post_states' ], 10, 2 );
+
+			} else {
+
+				add_filter( 'body_class', [ $this, 'body_class' ], 10, 2 );
+			}
 		}
+	}
+
+	public function body_class( $classes, $class )
+	{
+		if ( ! is_page() )
+			return $classes;
+
+		if ( ! $queried = get_queried_object_id() )
+			return $classes;
+
+		$option = gThemeOptions::getOption( 'pages', [] );
+
+		if ( empty( $option ) )
+			return $classes;
+
+		$flipped = array_flip( $option );
+
+		if ( array_key_exists( $queried, $flipped ) )
+			$classes[] = gThemeHTML::sanitizeClass( sprintf( 'theme-page--%s', $flipped[$queried] ) );
+
+		return $classes;
 	}
 
 	public function display_post_states( $states, $post )
