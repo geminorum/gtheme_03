@@ -817,11 +817,10 @@ class gThemeContent extends gThemeModuleCore
 
 				// TODO: make link to search with meta
 
-				gThemeEditorial::meta( 'published', [
-					'post_id' => $post->ID,
-					'before'  => sprintf( $before, 'entry-published' ),
-					'after'   => $after,
-					'filter'  => [ 'gThemeL10N', 'str' ],
+				gThemeEditorial::metaPublished( $post, [
+					'before' => sprintf( $before, 'entry-published' ),
+					'after'  => $after,
+					'filter' => [ 'gThemeL10N', 'str' ],
 				] );
 
 			break;
