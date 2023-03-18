@@ -33,8 +33,8 @@ class gThemeDate extends gThemeModuleCore
 			'text'      => NULL, // override text
 			'timeago'   => TRUE, // enqueue time ago script
 			'meta'      => TRUE,
-			'link'      => TRUE, // disable linking compeletly
-			'echo'      => TRUE, // disable linking compeletly
+			'link'      => TRUE, // custom or disable
+			'echo'      => TRUE,
 		], $atts );
 
 		if ( ! $post = get_post( $args['post'] ) )
@@ -43,20 +43,37 @@ class gThemeDate extends gThemeModuleCore
 		if ( ! in_array( $post->post_type, (array) gThemeOptions::info( 'date_posttypes', [ 'post', 'entry' ] ) ) )
 			return '';
 
-		$link = $args['shortlink']
-			? wp_get_shortlink( $post->ID )
-			: apply_filters( 'the_permalink', get_permalink( $post ), $post );
+		if ( ! $args['link'] )
+			$link = FALSE;
 
-		$html = vsprintf( $args['template'], [
-			esc_url( $link ),
-			// self::context( $post, 'y/n/j' ),
-			$args['shortlink'] ? ' rel="shortlink"' : '',
-			esc_attr( get_the_date( 'c', $post ) ),
-			esc_html( get_the_date( $args['format'], $post ) ),
-			$args['prefix'],
-		] );
+		else if ( TRUE === $args['link'] )
+			$link = $args['shortlink']
+				? wp_get_shortlink( $post->ID )
+				: apply_filters( 'the_permalink', get_permalink( $post ), $post );
 
-		if ( $args['timeago'] )
+		else
+			$link = $args['link'];
+
+		$override = apply_filters( 'gtheme_date_override_the_date', NULL, $post, $link, $args );
+
+		if ( FALSE === $override )
+			return '';
+
+		if ( is_null ( $override ) )
+			$html = vsprintf( $args['template'], [
+				esc_url( $link ),
+				// self::context( $post, 'y/n/j' ),
+				$args['shortlink'] ? ' rel="shortlink"' : '',
+				esc_attr( get_the_date( 'c', $post ) ),
+				esc_html( get_the_date( $args['format'], $post ) ),
+				$args['prefix'],
+			] );
+
+		else
+			$html = $override;
+
+		// only if not overrided
+		if ( $args['timeago'] && is_null ( $override ) )
 			gThemeUtilities::enqueueTimeAgo();
 
 		if ( ! $args['echo'] )
