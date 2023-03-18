@@ -6,6 +6,7 @@ class gThemeEditorial extends gThemeModuleCore
 	public function setup_actions( $args = [] )
 	{
 		add_action( 'gtheme_content_before', [ $this, 'content_before' ], 20 );
+		add_filter( 'gtheme_date_override_the_date', [ $this, 'date_override_the_date' ], 20, 4 );
 		add_filter( 'gnetwork_shortcodes_reflist_toc', [ $this, 'shortcodes_reflist_toc' ], 10, 2 );
 		add_filter( 'geditorial_shortcode_attachement_download', [ $this, 'attachement_download' ], 9, 2 );
 	}
@@ -15,6 +16,24 @@ class gThemeEditorial extends gThemeModuleCore
 		if ( ! gThemeUtilities::isPrint()
 			&& is_singular( gThemeOptions::info( 'headings_posttypes', [ 'entry', 'lesson' ] ) ) )
 				self::headingsTOC();
+	}
+
+	public function date_override_the_date( $override, $post, $link, $args )
+	{
+		// already filtered!
+		if ( ! is_null( $override ) )
+			return $override;
+
+		if ( ! $datestring = self::metaPublished( $post, [ 'echo' => FALSE ] ) )
+			return $override;
+
+		return vsprintf( $args['template'], [
+			esc_url( $link ),
+			'',
+			'',
+			esc_html( $datestring ),
+			$args['prefix'],
+		] );
 	}
 
 	public function shortcodes_reflist_toc( $item, $toc )
@@ -451,6 +470,33 @@ class gThemeEditorial extends gThemeModuleCore
 
 		echo $html;
 		return TRUE;
+	}
+
+	public static function metaPublished( $post = NULL, $atts = [], $fallback = 'published' )
+	{
+		if ( ! array_key_exists( 'default', $atts ) )
+			$atts['default'] = FALSE;
+
+		if ( ! $post = gThemeContent::getPost( $post ) )
+			return $atts['default'];
+
+		$defaults = [
+			'post'        => 'published',
+			'page'        => FALSE,
+			'video'       => 'creation_date',
+			'publication' => 'publication_date',
+		];
+
+		$map   = array_merge( $defaults, (array) gThemeOptions::info( 'editorial_datestring_map', [] ) );
+		$field = array_key_exists( $post->post_type, $map ) ? $map[$post->post_type] : $fallback;
+
+		if ( ! $field )
+			return $atts['default'];
+
+		if ( ! array_key_exists( 'wordwrap', $atts ) )
+			$atts['wordwrap'] = TRUE;
+
+		return self::meta( $field, $atts );
 	}
 
 	public static function metaOverTitle( $post = NULL, $atts = [], $fallback = 'over_title' )
