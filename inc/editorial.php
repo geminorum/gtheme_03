@@ -6,8 +6,10 @@ class gThemeEditorial extends gThemeModuleCore
 	public function setup_actions( $args = [] )
 	{
 		extract( self::atts( [
-			'insert_toc'   => FALSE,
-			'insert_media' => FALSE,
+			'insert_toc'    => FALSE,
+			'insert_media'  => FALSE,
+			'date_override' => TRUE,
+			'reflist_toc'   => TRUE,
 		], $args ) );
 
 		if ( $insert_toc )
@@ -16,8 +18,12 @@ class gThemeEditorial extends gThemeModuleCore
 		if ( $insert_media )
 			add_action( 'gtheme_content_before', [ $this, 'content_before_media' ], 80 );
 
-		add_filter( 'gtheme_date_override_the_date', [ $this, 'date_override_the_date' ], 20, 4 );
-		add_filter( 'gnetwork_shortcodes_reflist_toc', [ $this, 'shortcodes_reflist_toc' ], 10, 2 );
+		if ( $date_override )
+			add_filter( 'gtheme_date_override_the_date', [ $this, 'date_override_the_date' ], 20, 4 );
+
+		if ( $reflist_toc )
+			add_filter( 'gnetwork_shortcodes_reflist_toc', [ $this, 'shortcodes_reflist_toc' ], 10, 2 );
+
 		add_filter( 'geditorial_shortcode_attachement_download', [ $this, 'attachement_download' ], 9, 2 );
 	}
 

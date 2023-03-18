@@ -684,7 +684,7 @@ class gThemeFilters extends gThemeModuleCore
 	 */
 	public function wp_preload_resources( $preload_resources )
 	{
-		if ( $resources = gThemeOptions::info( 'resource_hints', [] ) )
+		if ( $resources = gThemeOptions::info( 'preload_resources', [] ) )
 			return array_merge( $preload_resources, $resources );
 
 		return $preload_resources;
