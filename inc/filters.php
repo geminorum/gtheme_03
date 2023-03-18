@@ -12,7 +12,8 @@ class gThemeFilters extends gThemeModuleCore
 			'default_editor'     => FALSE,
 			'disable_autoembed'  => FALSE, // gNetwork does it
 			'overwrite_author'   => TRUE,
-			'dns_prefetch'       => TRUE, // @via gNetwork Optimize
+			'resource_hints'     => TRUE,
+			'preload_resources'  => TRUE,
 		], $args ) );
 
 		if ( ! is_admin() ) {
@@ -70,15 +71,11 @@ class gThemeFilters extends gThemeModuleCore
 				add_filter( 'the_author_posts_link', [ $this, 'the_author_posts_link' ], 15 );
 			}
 
-			if ( $dns_prefetch )
-				add_action( 'init', function() {
+			if ( $resource_hints )
+				add_filter( 'wp_resource_hints', [ $this, 'wp_resource_hints' ], 12, 2 );
 
-					do_action( 'gnetwork_optimize_preconnect_domains',
-						gThemeOptions::info( 'preconnect_domains', [] ) );
-
-					do_action( 'gnetwork_optimize_dns_prefetch_domains',
-						gThemeOptions::info( 'dns_prefetch_domains', [] ) );
-				} );
+			if ( $preload_resources )
+				add_filter( 'wp_preload_resources', [ $this, 'wp_preload_resources' ], 12 );
 		}
 	}
 
@@ -651,6 +648,41 @@ class gThemeFilters extends gThemeModuleCore
 	public function the_author_posts_link( $link )
 	{
 		return gThemeContent::byline( NULL, '', '', FALSE );
+	}
+
+	/**
+	 * Filters domains and URLs for resource hints of relation type.
+	 *
+	 * @param  array $urls
+	 * @param  string $relation_type
+	 * @return array $urls
+	 */
+	public function wp_resource_hints( $urls, $relation_type )
+	{
+		if ( ! $resources = gThemeOptions::info( 'resource_hints', [] ) )
+			return $urls;
+
+		if ( array_key_exists( $relation_type, $resources ) )
+			$urls = array_merge( $urls, (array) $resources[$relation_type] );
+
+		return $urls;
+	}
+
+	/**
+	 * Filters domains and URLs for resource preloads.
+	 *
+	 * @link https://developer.mozilla.org/en-US/docs/Web/HTML/Link_types/preload
+	 * @link https://web.dev/preload-responsive-images/
+	 *
+	 * @param  array $preload_resources
+	 * @return array $preload_resources
+	 */
+	public function wp_preload_resources( $preload_resources )
+	{
+		if ( $resources = gThemeOptions::info( 'resource_hints', [] ) )
+			return array_merge( $preload_resources, $resources );
+
+		return $preload_resources;
 	}
 }
 
