@@ -5,13 +5,19 @@ class gThemeEditorial extends gThemeModuleCore
 
 	public function setup_actions( $args = [] )
 	{
-		add_action( 'gtheme_content_before', [ $this, 'content_before' ], 20 );
+		extract( self::atts( [
+			'insert_toc'   => FALSE,
+			'insert_media' => FALSE,
+		], $args ) );
+
+		if ( $insert_toc )
+			add_action( 'gtheme_content_before', [ $this, 'content_before_toc' ], 20 );
 		add_filter( 'gtheme_date_override_the_date', [ $this, 'date_override_the_date' ], 20, 4 );
 		add_filter( 'gnetwork_shortcodes_reflist_toc', [ $this, 'shortcodes_reflist_toc' ], 10, 2 );
 		add_filter( 'geditorial_shortcode_attachement_download', [ $this, 'attachement_download' ], 9, 2 );
 	}
 
-	public function content_before()
+	public function content_before_toc( $content )
 	{
 		if ( ! gThemeUtilities::isPrint()
 			&& is_singular( gThemeOptions::info( 'headings_posttypes', [ 'entry', 'lesson' ] ) ) )
