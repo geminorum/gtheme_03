@@ -4,9 +4,8 @@ class gThemeBootstrap extends gThemeModuleCore
 {
 
 	// BS4
-	public static function navbarOpen( $brand = NULL, $class = 'navbar-expand-md', $additional = '' )
+	public static function navbarOpen( $brand = NULL, $class = 'navbar-expand-md', $additional = '', $target = 'navbar' )
 	{
-		$target = 'navbar';
 		$fixed  = gThemeOptions::info( 'bootstrap_navbar_fixed', FALSE );
 		$scheme = gThemeOptions::getColorScheme( 'bootstrap_color_scheme', 'dark' ); // dark/light
 
@@ -26,9 +25,9 @@ class gThemeBootstrap extends gThemeModuleCore
 	}
 
 	// BS4/BS5
-	public static function navbarToggler( $target = 'navbar' )
+	public static function navbarToggler( $target = 'navbar', $class = '' )
 	{
-		echo '<button class="navbar-toggler -print-hide" type="button" data-toggle="collapse" data-bs-toggle="collapse" data-target="#'.$target.'" data-bs-target="#'.$target.'" aria-controls="'.$target.'" aria-expanded="false" aria-label="'.__( 'Toggle navigation', 'gtheme' ).'">';
+		echo '<button class="navbar-toggler '.$class.' -print-hide" type="button" data-toggle="collapse" data-bs-toggle="collapse" data-target="#'.$target.'" data-bs-target="#'.$target.'" aria-controls="'.$target.'" aria-expanded="false" aria-label="'.__( 'Toggle navigation', 'gtheme' ).'">';
 		echo '<span class="navbar-toggler-icon"></span></button>';
 	}
 
@@ -56,7 +55,7 @@ class gThemeBootstrap extends gThemeModuleCore
 
 	// BS3/BS4
 	// FIXME: default `$filename` must be: 'logo-navbar.png'
-	public static function navbarBrand( $brand = NULL, $filename = 'logo.png' )
+	public static function navbarBrand( $brand = NULL, $filename = 'logo.png', $class = '' )
 	{
 		if ( is_null( $brand ) )
 			$brand = gThemeOptions::info( 'blog_name', FALSE );
@@ -68,10 +67,11 @@ class gThemeBootstrap extends gThemeModuleCore
 			$brand = gThemeTemplate::logo( 'navbar', '<img src="'.GTHEME_CHILD_URL.'/images/'.$filename.'" alt="{{{site_name}}}" fetchpriority="high" /> <span title="{{{logo_title}}}">{{site_name}}</span>', FALSE );
 
 		if ( FALSE !== $brand )
-			vprintf( '<a class="navbar-brand no-outline" href="%1$s" title="%2$s">%3$s</a>', [
+			vprintf( '<a class="navbar-brand %4$s no-outline" href="%1$s" title="%2$s">%3$s</a>', [
 				esc_url( gThemeUtilities::home() ),
 				esc_attr( gThemeOptions::info( 'logo_title', '' ) ),
 				$brand,
+				$class,
 			] );
 	}
 

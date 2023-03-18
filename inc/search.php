@@ -110,7 +110,7 @@ class gThemeSearch extends gThemeModuleCore
 			self::enqueueActionSelector();
 	}
 
-	public static function formSimple( $context = 'index', $extra = '' )
+	public static function formSimple( $context = 'index', $extra = '', $field_class = '' )
 	{
 		$label = self::getLabelText();
 		$query = ( '404' == $context || 'notfound' == $context ) ? '' : esc_attr( self::query() );
@@ -119,7 +119,7 @@ class gThemeSearch extends gThemeModuleCore
 
 			$html.= '<span class="screen-reader-text sr-only visually-hidden"><label>'.$label.'</label></span>';
 
-			$html.= '<input type="search" class="form-control search-field" placeholder="'.esc_attr( self::getPlaceholderText() );
+			$html.= '<input type="search" class="form-control search-field '.$field_class.'" placeholder="'.esc_attr( self::getPlaceholderText() );
 			$html.= '" value="'.$query.'" name="'.self::getKey().'" title="'.esc_attr( $label ).'" />';
 
 			$html.= $extra;

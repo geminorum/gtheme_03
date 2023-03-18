@@ -5,6 +5,7 @@ class gThemeSocial extends gThemeModuleCore
 
 	// @REF: [The Open Graph protocol](http://ogp.me/)
 	// @SEE: http://scotch.io/quick-tips/all-search-and-social-media-meta-tags-starter-template
+	// @SEE: https://blog.logrocket.com/open-graph-sharable-social-media-previews/
 	public static function doHead()
 	{
 		if ( defined( 'GTHEME_IS_SYSTEM_PAGE' )

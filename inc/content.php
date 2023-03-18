@@ -91,7 +91,7 @@ class gThemeContent extends gThemeModuleCore
 		if ( is_null( $edit ) )
 			$edit = gThemeOptions::info( 'read_more_edit', FALSE );
 
-		// do_action( 'gtheme_content_before' );
+		do_action( 'gtheme_content_wrap_before' );
 
 		echo $before;
 
@@ -105,7 +105,7 @@ class gThemeContent extends gThemeModuleCore
 
 		echo $after;
 
-		// do_action( 'gtheme_content_after' );
+		do_action( 'gtheme_content_wrap_after' );
 	}
 
 	public static function row( $before = '', $after = '', $empty = FALSE )
@@ -494,6 +494,7 @@ class gThemeContent extends gThemeModuleCore
 		echo $output;
 	}
 
+	// TODO: support for gEditorial `Dashboard` Meta field
 	// ANCESTOR: gtheme_the_excerpt()
 	public static function excerpt( $atts = 'itemprop="description" ', $b = '<div class="entry-summary">', $a = '</div>', $only = FALSE, $excerpt_length = FALSE )
 	{

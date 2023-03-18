@@ -15,7 +15,7 @@ class gThemeOptions extends gThemeModuleCore
 			'blog_name'  => $blog_name,
 			'logo_title' => _x( 'Home', 'Logo Title', 'gtheme' ),
 
-			// 'bootstrap_version' => '4.6.1',
+			// 'bootstrap_version' => '4.6.2',
 			// 'additional_body_class' => '',
 			// 'additional_post_class' => '',
 
