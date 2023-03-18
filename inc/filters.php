@@ -14,6 +14,7 @@ class gThemeFilters extends gThemeModuleCore
 			'overwrite_author'   => TRUE,
 			'resource_hints'     => TRUE,
 			'preload_resources'  => TRUE,
+			'disable_postclass'  => TRUE,
 		], $args ) );
 
 		if ( ! is_admin() ) {
@@ -76,6 +77,10 @@ class gThemeFilters extends gThemeModuleCore
 
 			if ( $preload_resources )
 				add_filter( 'wp_preload_resources', [ $this, 'wp_preload_resources' ], 12 );
+
+			if ( $disable_postclass )
+				// @REF: https://core.trac.wordpress.org/ticket/37114
+				add_filter( 'post_class_taxonomies', '__return_empty_array' );
 		}
 	}
 
