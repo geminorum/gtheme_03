@@ -12,6 +12,10 @@ class gThemeEditorial extends gThemeModuleCore
 
 		if ( $insert_toc )
 			add_action( 'gtheme_content_before', [ $this, 'content_before_toc' ], 20 );
+
+		if ( $insert_media )
+			add_action( 'gtheme_content_before', [ $this, 'content_before_media' ], 80 );
+
 		add_filter( 'gtheme_date_override_the_date', [ $this, 'date_override_the_date' ], 20, 4 );
 		add_filter( 'gnetwork_shortcodes_reflist_toc', [ $this, 'shortcodes_reflist_toc' ], 10, 2 );
 		add_filter( 'geditorial_shortcode_attachement_download', [ $this, 'attachement_download' ], 9, 2 );
@@ -22,6 +26,15 @@ class gThemeEditorial extends gThemeModuleCore
 		if ( ! gThemeUtilities::isPrint()
 			&& is_singular( gThemeOptions::info( 'headings_posttypes', [ 'entry', 'lesson' ] ) ) )
 				self::headingsTOC();
+	}
+
+	public function content_before_media( $content )
+	{
+		if ( $video = self::getMeta( 'video_source_url' ) )
+			echo gThemeHTML::wrap( $video, '-video' );
+
+		if ( $audio = self::getMeta( 'audio_source_url' ) )
+			echo gThemeHTML::wrap( $audio, '-audio' );
 	}
 
 	public function date_override_the_date( $override, $post, $link, $args )
