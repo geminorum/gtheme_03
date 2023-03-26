@@ -1,3 +1,15 @@
+### 3.21.7
+* module/date: filter to override date-string
+* module/editorial: apply arguments on setup
+* module/editorial: auto insert embed before content
+* module/editorial: auto insert media sources before content
+* module/editorial: support for published metas
+* module/filters: disable taxonomy post classes
+* module/filters: migrate to wp resource hints/preload
+* module/pages: body class for theme pages
+* module/template: override column width via options
+* partial/start: :new: partial
+
 ### 3.21.6
 * module/bootstrap: navbar toggler for BS5
 * module/content: support bs5 dropdown on qr-code helper
