@@ -61,7 +61,8 @@ class gThemeURL extends gThemeBaseCore
 		if ( 0 !== strpos( $url, 'http://' ) && 0 !== strpos( $url, 'https://' ) )
 			return FALSE;
 
-		$url = filter_var( $url, FILTER_SANITIZE_STRING );
+		// $url = filter_var( $url, FILTER_SANITIZE_STRING );
+		$url = htmlspecialchars( $url, ENT_QUOTES, 'UTF-8' );
 
 		if ( FALSE !== filter_var( $url, FILTER_VALIDATE_URL ) )
 			return TRUE;

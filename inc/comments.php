@@ -130,9 +130,11 @@ class gThemeComments extends gThemeModuleCore
 			'next'     => _x( 'Newer Comments &larr;', 'Modules: Comments', 'gtheme' ),
 		] );
 
-		echo '<nav class="navigation comment-navigation '.$class.'" role="navigation">';
+		echo '<nav class="navigation comment-navigation '.$class.'">';
+
 		if ( $strings['title'] )
 			echo '<h4 class="screen-reader-text sr-only visually-hidden">'.$strings['title'].'</h4>';
+
 		echo '<div class="nav-previous">';
 			previous_comments_link( $strings['previous'] );
 		echo '</div><div class="nav-next">';

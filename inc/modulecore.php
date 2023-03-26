@@ -12,6 +12,8 @@ class gThemeModuleCore extends gThemeBaseCore
 	protected $args        = [];
 	protected $counter     = 0;
 
+	public $options = [];
+
 	public function __construct( $args = [] )
 	{
 		if ( ! $this->ajax && gThemeWordPress::isAJAX() )

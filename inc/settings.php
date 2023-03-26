@@ -5,6 +5,9 @@ class gThemeSettings extends gThemeModuleCore
 
 	protected $key = 'settings';
 
+	private $_settings_uri    = '';
+	private $_settings_parent = '';
+
 	public function setup_actions( $args = [] )
 	{
 		extract( self::atts( [

@@ -288,11 +288,11 @@ class gThemeHTML extends gThemeBaseCore
 	}
 
 	// like WP core but without filter and fallback
-	// ANCESTOR: sanitize_html_class()
+	// @source `sanitize_html_class()`
 	public static function sanitizeClass( $class )
 	{
 		// strip out any % encoded octets
-		$sanitized = preg_replace( '|%[a-fA-F0-9][a-fA-F0-9]|', '', $class );
+		$sanitized = preg_replace( '/%[a-fA-F0-9][a-fA-F0-9]/', '', $class );
 
 		// limit to A-Z,a-z,0-9,_,-
 		$sanitized = preg_replace( '/[^A-Za-z0-9_-]/', '', $sanitized );

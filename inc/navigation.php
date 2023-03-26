@@ -66,14 +66,7 @@ class gThemeNavigation extends gThemeModuleCore
 		if ( $next )
 			$html.= sprintf( '<li class="next nav-next">%1$s</li>', $next );
 
-		$html.= '</ul>';
-
-		$html = gThemeHTML::tag( 'nav', [
-			'role'  => 'navigation',
-			'class' => $classes,
-		], $html );
-
-		echo apply_filters( 'gtheme_navigation_content', $html, $context );
+		echo apply_filters( 'gtheme_navigation_content', gThemeHTML::tag( 'nav', [ 'class' => $classes ], $html.'</ul>' ), $context );
 	}
 
 	public static function paginate( $atts = [], $query = NULL )

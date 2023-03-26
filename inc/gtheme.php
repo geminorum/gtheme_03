@@ -1,5 +1,6 @@
 <?php defined( 'ABSPATH' ) or die( header( 'HTTP/1.0 403 Forbidden' ) );
 
+#[\AllowDynamicProperties] // TODO: implement the magic methods `__get()` and `__set()`
 final class gThemeCore
 {
 	private static $instance;
