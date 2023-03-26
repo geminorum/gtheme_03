@@ -7,6 +7,7 @@ class gThemeEditorial extends gThemeModuleCore
 	{
 		extract( self::atts( [
 			'insert_toc'    => FALSE,
+			'insert_embed'  => FALSE,
 			'insert_media'  => FALSE,
 			'date_override' => TRUE,
 			'reflist_toc'   => TRUE,
@@ -14,6 +15,9 @@ class gThemeEditorial extends gThemeModuleCore
 
 		if ( $insert_toc )
 			add_action( 'gtheme_content_before', [ $this, 'content_before_toc' ], 20 );
+
+		if ( $insert_embed )
+			add_action( 'gtheme_content_before', [ $this, 'content_before_embed' ], 50 );
 
 		if ( $insert_media )
 			add_action( 'gtheme_content_before', [ $this, 'content_before_media' ], 80 );
@@ -32,6 +36,12 @@ class gThemeEditorial extends gThemeModuleCore
 		if ( ! gThemeUtilities::isPrint()
 			&& is_singular( gThemeOptions::info( 'headings_posttypes', [ 'entry', 'lesson' ] ) ) )
 				self::headingsTOC();
+	}
+
+	public function content_before_embed( $content )
+	{
+		if ( $embed = self::getMeta( 'content_embed_url', [ 'fallback' => 'video_embed_url' ] ) )
+			echo gThemeHTML::wrap( $embed, '-embed' );
 	}
 
 	public function content_before_media( $content )
