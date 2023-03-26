@@ -33,3 +33,6 @@ css/* linguist-generated=true
 
 /package.json export-ignore
 /yarn.lock export-ignore
+
+/.vscode export-ignore
+/stylesheets export-ignore
