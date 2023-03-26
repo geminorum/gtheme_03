@@ -829,3 +829,66 @@ $theme-fonts-repo: "../../gtheme_03/fonts" !default;
     }
   }
 }
+
+
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+/// Sahl Naskh
+// Sahl (Arabic for even, easy, convenient) is a fork of Droid Arabic Naskh font,
+// fixing some of the issues in the original font.
+// @REF: https://github.com/khaledhosny/sahl-naskh
+
+@mixin theme-fonts-SahlNaskh-Normal($base: $theme-fonts-repo) {
+
+  $font-family-normal: "Sahl Naskh", "Tahoma", "Iranian Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif !global;
+
+  $name: "Sahl Naskh";
+  $folder: "sahlnaskh";
+  $file: "SahlNaskh-Regular";
+  $path: $base + "/" + $folder + "/" + $file;
+
+  @at-root {
+    @font-face {
+      font-family: "#{$name}";
+      font-style: normal;
+      font-weight: 400;
+      src: url($path + ".eot");
+      src:
+        url($path + ".eot?#iefix") format("embedded-opentype"),
+        url($path + ".woff2") format("woff2"),
+        url($path + ".woff") format("woff"),
+        url($path + ".ttf") format("truetype");
+
+      @include theme-fonts-unicoderange-Persian;
+      font-display: swap;
+    }
+  }
+}
+
+@mixin theme-fonts-SahlNaskh-Bold($base: $theme-fonts-repo) {
+
+  $font-family-bold: "Sahl Naskh", "Arial", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", "Helvetica", sans-serif !global;
+
+  $name: "Sahl Naskh";
+  $folder: "sahlnaskh";
+  $file: "SahlNaskh-Bold";
+  $path: $base + "/" + $folder + "/" + $file;
+
+  @at-root {
+    @font-face {
+      font-family: "#{$name}";
+      font-style: normal;
+      font-weight: 700;
+      src: url($path + ".eot");
+      src:
+        url($path + ".eot?#iefix") format("embedded-opentype"),
+        url($path + ".woff2") format("woff2"),
+        url($path + ".woff") format("woff"),
+        url($path + ".ttf") format("truetype");
+
+      @include theme-fonts-unicoderange-Persian;
+      font-display: swap;
+    }
+  }
+}

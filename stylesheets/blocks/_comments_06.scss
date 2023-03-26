@@ -1,0 +1,100 @@
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+/// Blocks: Comments 06 - 2022-09-25
+
+////////////////////////////////////////////////////////////////////////////////
+$spacer: 1rem !default;
+$theme-color-border: $gray-light !default;
+
+////////////////////////////////////////////////////////////////////////////////
+.entry-comments {
+}
+
+////////////////////////////////////////////////////////////////////////////////
+.comments-area {
+
+}
+
+.comments-feed {}
+
+.comments-title {
+  margin-bottom: $spacer;
+}
+
+.comment-reply-title {
+  margin: $spacer 0;
+
+  small {
+    float: right;
+    font-size: smaller;
+  }
+}
+
+.comment-list {
+  @include theme-list-reset;
+  margin-bottom: $spacer;
+
+  li.comment {
+    margin-bottom: $spacer;
+
+    .children {
+      @include theme-list-reset;
+      margin-top: $spacer;
+      margin-left: $spacer * 4.5;
+    }
+  }
+
+  .comment-avatar {
+    clear: left;
+    float: left;
+    margin: $spacer $spacer 1px;
+  }
+
+  .comment-body {
+    border: 1px dashed $theme-color-border;
+    padding: $spacer $spacer 0;
+    font-size: smaller;
+  }
+
+  .comment-time {
+    font-size: smaller;
+    font-weight: 400;
+  }
+
+  .comment-content {
+    p:last-of-type {
+      margin-bottom: 0;
+    }
+  }
+
+  p.comment-awaiting-moderation {
+    margin-top: $spacer * .5;
+    margin-bottom: 0;
+    font-size: smaller;
+  }
+
+  .comment-actions {
+    font-size: smaller;
+    text-align: right;
+    margin-bottom: $spacer * .5;
+  }
+}
+
+.comment-form {
+  .-form-group {
+    margin-bottom: $spacer;
+  }
+
+  .form-label {
+    margin-bottom: $spacer * .25;
+
+    .required {
+      font-size: smaller;
+    }
+  }
+
+  p.logged-in-as {}
+
+  p.form-submit {}
+}
