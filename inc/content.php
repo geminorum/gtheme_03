@@ -877,6 +877,7 @@ class gThemeContent extends gThemeModuleCore
 		echo $before.gThemeHTML::tag( 'a', [
 			'href'  => $printlink,
 			'title' => $title ?: FALSE,
+			'rel'   => 'print',
 			'data'  => [
 				'toggle' => 'tooltip',
 				'id'     => $post->ID,
