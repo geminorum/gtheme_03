@@ -1210,7 +1210,7 @@ addthis_config.services_custom = [
 			'trim_title'  => FALSE, // or number of chars
 			'trim_meta'   => FALSE, // or number of chars
 			'itemprop'    => TRUE,
-			'link_rel'    => 'bookmark',
+			'link_rel'    => NULL, // NULL for check shortlink arg, `FALSE` to disable
 			'title_tag'   => $singular ? 'h2' : 'h3',
 			'meta_tag'    => $singular ? 'h3' : 'h4',
 			'title'       => NULL,
@@ -1278,7 +1278,10 @@ addthis_config.services_custom = [
 			if ( $args['itemprop'] )
 				echo ' itemprop="url"';
 
-			if ( $args['link_rel'] )
+			if ( is_null( $args['link_rel'] ) )
+				echo ' rel="'.( $args['shortlink'] ? 'shortlink' : 'bookmark' ).'"'; // @SEE: https://www.seroundtable.com/google-ignores-rel-shortlink-24561.html
+
+			else if ( $args['link_rel'] )
 				echo ' rel="'.$args['link_rel'].'"';
 
 			$title_template = TRUE === $args['shortlink'] ? FALSE : NULL;
