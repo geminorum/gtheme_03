@@ -102,14 +102,15 @@ class gThemeTemplate extends gThemeModuleCore
 
 		// NOTE: the order is important on format to token conversion
 		$tokens = [
-			'home_url'      => gThemeUtilities::home(),
-			'site_name'     => gThemeOptions::info( 'blog_name', '' ),
-			'logo_title'    => gThemeOptions::info( 'logo_title', '' ),
-			'theme_group'   => gThemeOptions::getGroup(),                 // default is `main`
-			'logo_url_svg'  => GTHEME_CHILD_URL.'/images/logo.svg',
-			'logo_url_png'  => GTHEME_CHILD_URL.'/images/logo.png',
-			'site_locale'   => get_locale(),
-			'fetchpriority' => 'high', // @REF: https://web.dev/priority-hints/#the-fetchpriority-attribute
+			'home_url'       => gThemeUtilities::home(),
+			'about_page_url' => gThemeContent::getPostLink( gThemePages::get( 'about' ) ) ?: '',
+			'site_name'      => gThemeOptions::info( 'blog_name', '' ),
+			'logo_title'     => gThemeOptions::info( 'logo_title', '' ),
+			'theme_group'    => gThemeOptions::getGroup(),                 // default is `main`
+			'logo_url_svg'   => GTHEME_CHILD_URL.'/images/logo.svg',
+			'logo_url_png'   => GTHEME_CHILD_URL.'/images/logo.png',
+			'site_locale'    => get_locale(),
+			'fetchpriority'  => 'high',                                    // @REF: https://web.dev/priority-hints/#the-fetchpriority-attribute
 		];
 
 		// NOTE: back-comp: DROP THIS
