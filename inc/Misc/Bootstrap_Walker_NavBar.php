@@ -39,7 +39,7 @@ class gThemeBootstrap_Walker_NavBar extends Walker_Nav_Menu
 			$classes[] = 'yamm-fw';  // mega-menu
 
 			$output.= $indent.'<li class="'.gThemeHTML::prepClass( apply_filters( 'nav_menu_css_class', array_filter( $classes ), $item, $args, $depth ) ).'">';
-				$output.= '<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" data-display="static">'.esc_attr( $item->title ).'</a>';
+				$output.= '<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" data-bs-toggle="dropdown" data-display="static">'.esc_attr( $item->title ).'</a>';
 					$output.= '<div class="dropdown-menu"><div class="yamm-content">';
 
 					ob_start();
@@ -85,12 +85,14 @@ class gThemeBootstrap_Walker_NavBar extends Walker_Nav_Menu
 
 			if ( $args->has_children && $depth === 0 ) {
 				$atts['data-toggle']   = 'dropdown';
+				$atts['data-bs-oggle'] = 'dropdown';
 				$atts['class']         = $atts['class'].' dropdown-toggle';
 				$atts['aria-haspopup'] = 'true';
 			}
 
 			// if ( $atts['title'] ) {
 			// 	$atts['data-toggle']    = 'tooltip';
+			// 	$atts['data-bs-toggle'] = 'tooltip';
 			// 	$atts['data-placement'] = 'auto bottom';
 			// }
 

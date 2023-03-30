@@ -110,12 +110,12 @@ class gThemeSearch extends gThemeModuleCore
 			self::enqueueActionSelector();
 	}
 
-	public static function formSimple( $context = 'index', $extra = '', $field_class = '' )
+	public static function formSimple( $context = 'index', $extra = '', $field_class = '', $form_class = '' )
 	{
 		$label = self::getLabelText();
 		$query = ( '404' == $context || 'notfound' == $context ) ? '' : esc_attr( self::query() );
 
-		$html = '<form role="search" method="get" class="form search-form -simple search-form-'.$context.' -print-hide" action="'.esc_url( self::getAction() ).'">';
+		$html = '<form role="search" method="get" class="form search-form -simple search-form-'.$context.' '.$form_class.' -print-hide" action="'.esc_url( self::getAction() ).'">';
 
 			$html.= '<span class="screen-reader-text sr-only visually-hidden"><label>'.$label.'</label></span>';
 

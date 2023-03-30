@@ -3,6 +3,8 @@
 class gThemeAttachment extends gThemeModuleCore
 {
 
+	// TODO: filter `wp_get_attachment_link` to append: `attachment_download_prefix` @REF: https://core.trac.wordpress.org/ticket/41574
+
 	// used in caption shortcode
 	public static function normalizeCaption( $caption, $before = '', $after = '', $default = '' )
 	{
@@ -167,6 +169,7 @@ class gThemeAttachment extends gThemeModuleCore
 		echo $args['before'].$html.$args['after'];
 	}
 
+	// @REF: https://caniuse.com/download
 	public static function download( $atts = [] )
 	{
 		$args = self::atts( [

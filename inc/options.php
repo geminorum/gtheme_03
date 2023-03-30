@@ -205,7 +205,7 @@ class gThemeOptions extends gThemeModuleCore
 
 			// TEMPLATES
 			// 'template_logo'        => '<a class="navbar-brand no-outline" href="{{home_url}}" title="{{{logo_title}}}" rel="home"><h1 class="text-hide main-logo">{{site_name}}</h1></a>',
-			// 'template_term_link'   => '<a href="%1$s" title="%3$s" class="%4$s" data-html="true" data-toggle="tooltip" data-placement="top">%2$s</a>',
+			// 'template_term_link'   => '<a href="%1$s" title="%3$s" class="%4$s" data-html="true" data-toggle="tooltip" data-bs-toggle="tooltip" data-placement="top">%2$s</a>',
 			// 'template_author_link' => '<a href="%1$s" title="%2$s" rel="author">%3$s</a>', // FIXME: no gThemeAuthors yet! / RENAMED
 			// 'template_the_date'    => '<span class="date"><a href="%1$s"%2$s><time class="%5$s-time do-timeago" datetime="%3$s">%4$s</time></a></span>',
 			// 'template_read_more'   => ' <a %6$s href="%1$s" aria-label="%3$s" class="%4$s">%2$s</a>%5$s',

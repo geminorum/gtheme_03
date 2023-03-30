@@ -476,11 +476,12 @@ class gThemeTerms extends gThemeModuleCore
 			$text = sanitize_term_field( 'name', $term->name, $term->term_id, $term->taxonomy, 'display' );
 
 		return $before.gThemeHTML::tag( 'a', [
-			'href'        => get_term_link( $term ),
-			'class'       => gThemeHTML::attrClass( '-term-link', 'taxonomy-'.$term->taxonomy, $class ),
-			'title'       => $title,
-			'data-toggle' => $title ? 'tooltip' : FALSE,
-			'data-slug'   => $term->slug,
+			'href'           => get_term_link( $term ),
+			'class'          => gThemeHTML::attrClass( '-term-link', 'taxonomy-'.$term->taxonomy, $class ),
+			'title'          => $title,
+			'data-toggle'    => $title ? 'tooltip' : FALSE,
+			'data-bs-toggle' => $title ? 'tooltip' : FALSE,
+			'data-slug'      => $term->slug,
 		], $text ).$after;
 	}
 

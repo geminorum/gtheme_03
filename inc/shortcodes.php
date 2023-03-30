@@ -318,7 +318,7 @@ class gThemeShortCodes extends gThemeModuleCore
 
 		$html = '<div class="panel panel-'.$args['context'].'">';
 		$html.= '<div class="panel-heading" role="tab" id="'.$args['id'].'-wrap">';
-		$html.= '<'.$args['title_tag'].' class="panel-title"><a data-toggle="collapse" data-parent="#'.$args['parent'].'" href="#'.$args['id'].'" aria-expanded="'.( $args['expanded'] ? 'true' : 'false').'" aria-controls="'.$args['id'].'">';
+		$html.= '<'.$args['title_tag'].' class="panel-title"><a data-toggle="collapse" data-bs-toggle="collapse" data-parent="#'.$args['parent'].'" href="#'.$args['id'].'" aria-expanded="'.( $args['expanded'] ? 'true' : 'false').'" aria-controls="'.$args['id'].'">';
 		$html.= $args['title'].'</a></'.$args['title_tag'].'></div>';
 		$html.= '<div id="'.$args['id'].'" class="panel-collapse collapse'.( $args['expanded'] ? ' in' : '' ).'" role="tabpanel" aria-labelledby="'.$args['id'].'-wrap">';
 		$html.= '<div class="panel-body">'.$content.'</div></div></div>';
@@ -365,7 +365,7 @@ class gThemeShortCodes extends gThemeModuleCore
 			$html.= '<li role="presentation"';
 			$html.= ( $id == $this->tabs_active ? ' class="active"' : '' ).'>';
 			$html.= '<a href="#'.$id.'" aria-controls="'.$id;
-			$html.= '" role="tab" data-toggle="tab">'.$title.'</a></li>';
+			$html.= '" role="tab" data-toggle="tab" data-bs-toggle="tab">'.$title.'</a></li>';
 		}
 
 		$html.= '</ul><div class="tab-content">';

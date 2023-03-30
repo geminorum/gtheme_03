@@ -27,7 +27,7 @@ class gThemeHTML extends gThemeBaseCore
 			$content = apply_filters( 'number_format_i18n', $number );
 
 		return '<a class="-tel" href="'.self::sanitizePhoneNumber( $number )
-				.'"'.( $title ? ' data-toggle="tooltip" title="'.self::escape( $title ).'"' : '' )
+				.'"'.( $title ? ' data-toggle="tooltip" data-bs-toggle="tooltip" title="'.self::escape( $title ).'"' : '' )
 				.' data-tel-number="'.self::escape( $number ).'">'
 				.self::wrapLTR( $content ).'</a>';
 	}
