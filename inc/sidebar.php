@@ -133,8 +133,8 @@ class gThemeSideBar extends gThemeModuleCore
 			'name'           => $name ?: $sidebar,
 			'before_widget'  => '<'.$tag.' id="%1$s" class="widget gtheme-widget widget-'.$sidebar.' '.$extra.' %2$s"><div class="-wrap">',
 			'after_widget'   => '</div></'.$tag.'>',
-			'before_title'   => '<'.$title.' class="-title widget-title widget-'.$sidebar.'-title">',
-			'after_title'    => '</'.$title.'>',
+			'before_title'   => '<div class="-wrap-title"><'.$title.' class="-title widget-title widget-'.$sidebar.'-title">',
+			'after_title'    => '</'.$title.'></div>',
 			'description'    => $description,
 			'before_sidebar' => '', // `<div id="%1$s" class="%2$s">`
 			'after_sidebar'  => '',
@@ -308,7 +308,9 @@ class gThemeSideBar extends gThemeModuleCore
 	// check to see whether a widget has been registered
 	public static function widget_exists( $id_base )
 	{
-		foreach ( $GLOABLS['wp_widget_factory']->widgets as $widget )
+		global $wp_widget_factory;
+
+		foreach ( $wp_widget_factory->widgets as $widget )
 			if ( $id_base == $widget->id_base )
 				return TRUE;
 

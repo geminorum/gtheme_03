@@ -69,6 +69,7 @@ class gThemeImage extends gThemeModuleCore
 			remove_filter( 'the_excerpt', 'wp_filter_content_tags' );
 			remove_filter( 'widget_text_content', 'wp_filter_content_tags' );
 			remove_filter( 'widget_block_content', 'wp_filter_content_tags' );
+			add_filter( 'wp_img_tag_add_srcset_and_sizes_attr', '__return_false' );
 		}
 
 		if ( ! is_admin() )

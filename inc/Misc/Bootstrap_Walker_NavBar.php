@@ -4,7 +4,7 @@
 // ORIGINALLY BASED ON: wp_bootstrap_navwalker class v2.0.4 by Edward McIntyre
 // https://github.com/twittem/wp-bootstrap-navwalker
 // https://github.com/dupkey/bs4navwalker
-class gThemeBootstrap_Walker_NavBar extends Walker_Nav_Menu
+class gThemeBootstrap_Walker_NavBar extends \Walker_Nav_Menu
 {
 
 	public function start_lvl( &$output, $depth = 0, $args = [] )

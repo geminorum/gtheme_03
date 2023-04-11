@@ -59,7 +59,7 @@ class gThemeShortCodes extends gThemeModuleCore
 
 		return gThemeHTML::tag( 'figure', [
 			'id'    => $args['id'] ?: FALSE,
-			'class' => trim( $args['align'].' '.$args['class'] ),
+			'class' => [ $args['align'], $args['class'] ],
 		], do_shortcode( $content ).$caption );
 	}
 

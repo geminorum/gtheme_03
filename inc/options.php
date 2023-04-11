@@ -483,6 +483,10 @@ class gThemeOptions extends gThemeModuleCore
 	}
 }
 
+function gtheme_template_group( $fallback = 'main' ) {
+	return gThemeOptions::getGroup( $fallback );
+}
+
 // DEPRECATED / BACK COMP
 function gtheme_get_info( $info = FALSE, $default = FALSE ) { return gThemeOptions::info( $info, $default ); }
 function gtheme_get_option( $name, $default = FALSE ) { return gThemeOptions::getOption( $name, $default ); }
