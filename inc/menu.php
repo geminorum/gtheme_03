@@ -18,7 +18,7 @@ class gThemeMenu extends gThemeModuleCore
 
 		if ( ! is_admin() ) {
 			add_filter( 'nav_menu_css_class', [ $this, 'nav_menu_css_class' ], 10, 4 );
-			add_filter( 'nav_menu_link_attributes', [ $this, 'nav_menu_link_attributes' ], 10, 4 );
+			// add_filter( 'nav_menu_link_attributes', [ $this, 'nav_menu_link_attributes' ], 10, 4 );
 			add_filter( 'nav_menu_item_id', '__return_empty_string', 12 );
 		}
 	}
@@ -84,6 +84,9 @@ class gThemeMenu extends gThemeModuleCore
 			'theme_location' => isset( $atts['location'] )   ? $atts['location']   : 'primary',
 			'items_wrap'     => isset( $atts['items_wrap'] ) ? $atts['items_wrap'] : '<ul id="%1$s" class="%2$s">%3$s</ul>',
 			'item_spacing'   => 'discard',
+
+			/// Extra Args:
+			'theme_bs_version' => gThemeBootstrap::version(),
 		];
 
 		foreach ( [ 'before', 'after', 'link_before', 'link_after' ] as $key )
@@ -139,8 +142,8 @@ class gThemeMenu extends gThemeModuleCore
 		if ( FALSE !== strpos( $args->menu_class, 'list-group' ) )
 			$classes[] = 'list-group-item';
 
-		if ( FALSE !== strpos( $args->menu_class, 'nav' ) )
-			$classes[] = 'nav-item';
+		// if ( FALSE !== strpos( $args->menu_class, 'nav' ) )
+		// 	$classes[] = 'nav-item';
 
 		return $classes;
 	}
