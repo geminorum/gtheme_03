@@ -4,7 +4,7 @@
 
 echo '<div class="entry-double-top"><div class="-wrap">';
 
-gThemeSideBar::sidebar( 'entry-double-before', '<div class="wrap-side sidebar-entry-double-before">', '</div>' );
+gThemeSideBar::sidebar( 'entry-before', '<div class="wrap-side sidebar-entry-before">', '</div>' );
 
 echo '</div></div><div class="-wrap splitrow"><div class="-side entry-double-head"><div class="-wrap">';
 
@@ -49,7 +49,7 @@ gThemeEditorial::publication( [
 	'title'  => FALSE,
 ] );
 
-gThemeSideBar::sidebar( 'entry-double-content', '<div class="wrap-side sidebar-entry-double-content">', '</div>' );
+gThemeSideBar::sidebar( 'entry-content', '<div class="wrap-side sidebar-entry-content">', '</div>' );
 
 echo '</div></div><div class="-side entry-double-foot"><div class="-wrap">';
 
@@ -60,11 +60,11 @@ gThemeEditorial::bookMetaSummary( [
 	'after'  => '</div>',
 ] );
 
-gThemeSideBar::sidebar( 'entry-double-side', '<div class="wrap-side sidebar-entry-double-side">', '</div>' );
+gThemeSideBar::sidebar( 'entry-side', '<div class="wrap-side sidebar-entry-side">', '</div>' );
 
 echo '</div></div></div><div class="entry-double-bottom"><div class="-wrap">';
 
-gThemeSideBar::sidebar( 'entry-double-after', '<div class="wrap-side sidebar-entry-double-after">', '</div>' );
+gThemeSideBar::sidebar( 'entry-after', '<div class="wrap-side sidebar-entry-after">', '</div>' );
 
 gThemeNavigation::content( 'singular', TRUE, 'publication_subject' );
 
