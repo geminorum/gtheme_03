@@ -89,9 +89,17 @@ class gThemeText extends gThemeBaseCore
 
 	// removes paragraph from around images
 	// @SOURCE: https://css-tricks.com/?p=15293
+	public static function replaceImageP( $string, $tag = 'figure' )
+	{
+		return $tag && trim( $tag )
+			? preg_replace( '/<p>\s*(<a .*>)?\s*(<img .* \/>)\s*(<\/a>)?\s*<\/p>/iU', sprintf( '<%s>\1\2\3</%s>', $tag, $tag ), $string )
+			: preg_replace( '/<p>\s*(<a .*>)?\s*(<img .* \/>)\s*(<\/a>)?\s*<\/p>/iU', '\1\2\3', $string );
+	}
+
+	// DEPRECATED: use `Text::replaceImageP( $string, FALSE )`
 	public static function noImageP( $string )
 	{
-		return preg_replace( '/<p>\s*(<a .*>)?\s*(<img .* \/>)\s*(<\/a>)?\s*<\/p>/iU', '\1\2\3', $string );
+		return self::replaceImageP( $string, FALSE );
 	}
 
 	// like wp but without check for func_overload

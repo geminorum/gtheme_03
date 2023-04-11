@@ -531,9 +531,13 @@ class gThemeFilters extends gThemeModuleCore
 		if ( gThemeOptions::info( 'content_remove_empty_p', TRUE ) )
 			$content = gThemeText::noEmptyP( $content );
 
+		// replaces paragraph around images with figure
+		if ( gThemeOptions::info( 'content_replace_image_p', TRUE ) )
+			$content = gThemeText::replaceImageP( $content, 'figure' );
+
 		// removes paragraph around images
-		if ( gThemeOptions::info( 'content_remove_image_p', TRUE ) )
-			$content = gThemeText::noImageP( $content );
+		else if ( gThemeOptions::info( 'content_remove_image_p', TRUE ) )
+			$content = gThemeText::replaceImageP( $content, FALSE );
 
 		return $content;
 	}
