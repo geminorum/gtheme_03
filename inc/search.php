@@ -122,11 +122,26 @@ class gThemeSearch extends gThemeModuleCore
 			$html.= '<input type="search" class="form-control search-field '.$field_class.'" placeholder="'.esc_attr( self::getPlaceholderText() );
 			$html.= '" value="'.$query.'" name="'.self::getKey().'" title="'.esc_attr( $label ).'" />';
 
+			// TODO: fire action here
 			$html.= $extra;
 
 		$html.= '</form>';
 
 		echo $html;
+	}
+
+	public static function formSecondary( $context = 'index', $extra = '', $field_class = '', $form_class = '' )
+	{
+		$html = $extra;
+
+		// TODO: search exact checkbox
+		// TODO: select to title-only/content-only/isbn/byline
+		// - filter the options
+		$html = '';
+
+		$html = apply_filters( 'gtheme_search_form_secondary_extra', $html, $context, $extra );
+
+		self::formSimple( $context, $html, $field_class, $form_class );
 	}
 
 	// FIXME: DRAFT: NOT USED

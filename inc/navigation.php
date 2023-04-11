@@ -142,7 +142,7 @@ class gThemeNavigation extends gThemeModuleCore
 
 		// 404 has it's own search form
 		if ( is_search() && ! empty( $wp_query->found_posts ) && gThemeOptions::info( 'breadcrumb_search_form', TRUE ) )
-			gThemeSearch::form();
+			gThemeSearch::formSecondary();
 
 		do_action( 'gtheme_navigation_breadcrumb_after' );
 	}
