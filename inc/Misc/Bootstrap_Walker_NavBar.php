@@ -15,7 +15,9 @@ class gThemeBootstrap_Walker_NavBar extends Walker_Nav_Menu
 
 	public function start_el( &$output, $item, $depth = 0, $args = [], $id = 0 )
 	{
-		$indent = ( $depth ) ? str_repeat( "\t", $depth ) : '';
+		$args    = (object) $args;
+		$version = empty( $args->theme_bs_version ) ? FALSE : (int) $args->theme_bs_version;
+		$indent  = $depth ? str_repeat( "\t", $depth ) : '';
 
 		// sep on dropdown
 		if ( 0 == strcasecmp( $item->xfn, 'divider' ) ) {
@@ -55,8 +57,8 @@ class gThemeBootstrap_Walker_NavBar extends Walker_Nav_Menu
 			$classes = empty( $item->classes ) ? [] : (array) $item->classes;
 			// $classes[] = 'menu-item-'.$item->ID;
 
-			// BS4
-			$classes[] = 'nav-item';
+			if ( in_array( $version, [ 4, 5 ] ) )
+				$classes[] = 'nav-item';
 
 			if ( $args->has_children )
 				$classes[] = 'dropdown';
@@ -73,21 +75,22 @@ class gThemeBootstrap_Walker_NavBar extends Walker_Nav_Menu
 
 			$output.= $indent.'<li'.$id.$value.$class.'>';
 
-			$atts = [];
+			$atts = [
+				'class'  => '',
+				'title'  => empty( $item->attr_title ) ? ''  : $item->attr_title,
+				'target' => empty( $item->target )     ? ''  : $item->target,
+				'href'   => empty( $item->url )        ? '#' : $item->url,
+				// 'rel'    => empty( $item->xfn )        ? ''  : $item->xfn,          // we use this for glyphicons
+			];
 
-			// BS4
-			$atts['class'] = 'nav-link';
-
-			$atts['title']  = ! empty( $item->attr_title )  ? $item->attr_title  : '';
-			$atts['target'] = ! empty( $item->target )      ? $item->target      : '';
-			// $atts['rel']    = ! empty( $item->xfn )         ? $item->xfn         : ''; // we use this for glyphicons
-			$atts['href']   = ! empty( $item->url )         ? $item->url         : '#';
+			if ( in_array( $version, [ 4, 5 ] ) )
+				$atts['class'] = $atts['class'].' '.( $depth === 0 ? 'nav-link' : 'dropdown-item' );
 
 			if ( $args->has_children && $depth === 0 ) {
-				$atts['data-toggle']   = 'dropdown';
-				$atts['data-bs-oggle'] = 'dropdown';
-				$atts['class']         = $atts['class'].' dropdown-toggle';
-				$atts['aria-haspopup'] = 'true';
+				$atts['data-toggle']    = 'dropdown';
+				$atts['data-bs-toggle'] = 'dropdown';
+				$atts['class']          = $atts['class'].' dropdown-toggle';
+				$atts['aria-haspopup']  = 'true';
 			}
 
 			// if ( $atts['title'] ) {

@@ -3,6 +3,31 @@
 class gThemeBootstrap extends gThemeModuleCore
 {
 
+	/**
+	 * Retrieves bootstrap major version for the current theme.
+	 *
+	 * @return false|null|int $version
+	 */
+	public static function version()
+	{
+		if ( ! $version = gThemeOptions::info( 'bootstrap_version', NULL ) )
+			return $version; // FALSE for explicitly not using any version
+
+		if ( version_compare( $version, '6.0.0', '>=' ) )
+			return NULL; // not supported
+
+		if ( version_compare( $version, '5.0.0', '>=' ) )
+			return 5;
+
+		if ( version_compare( $version, '4.0.0', '>=' ) )
+			return 4;
+
+		if ( version_compare( $version, '3.0.0', '>=' ) )
+			return 3;
+
+		return NULL; // not supported
+	}
+
 	// BS4
 	public static function navbarOpen( $brand = NULL, $class = 'navbar-expand-md', $additional = '', $target = 'navbar' )
 	{
@@ -89,6 +114,9 @@ class gThemeBootstrap extends gThemeModuleCore
 			'fallback_cb'    => 'wp_bootstrap_navwalker::fallback',
 			'walker'         => new gThemeBootstrap_Walker_NavBar(),
 			'after'          => '<span class="-dummy"></span>',
+
+			/// Extra Args:
+			'theme_bs_version' => self::version(),
 		] );
 
 		if ( $menu )
