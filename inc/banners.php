@@ -204,7 +204,7 @@ class gThemeBanners extends gThemeModuleCore
 			if ( ! $item = self::html( $banner, $args ) )
 				continue;
 
-			$html.= '<div class="carousel-item'.( $offset ? '' : ' active' ).'">'.$item.'</div>';
+			$html.= '<div class="carousel-item'.( $offset ? '' : ' active' ).' banner-image">'.$item.'</div>';
 			$indi.= '<li data-target="#'.$id.'" data-slide-to="'.$offset.'" data-bs-target="#'.$id.'" data-bs-slide-to="'.$offset.'"'.( $offset ? '' : ' class="active"' ).'></li>';
 		}
 
