@@ -38,17 +38,17 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "@wordpress/browserslist-config": "^5.12.0",
-    "@wordpress/stylelint-config": "^21.12.0",
+    "@wordpress/browserslist-config": "^5.14.0",
+    "@wordpress/stylelint-config": "^21.14.0",
     "autoprefixer": "^10.4.14",
     "browserlist": "^1.0.1",
-    "cssnano": "^5.1.15",
+    "cssnano": "^6.0.0",
     "fancy-log": "^2.0.0",
     "gulp": "^4.0.2",
     "gulp-bump": "^3.2.0",
     "gulp-changed-in-place": "^2.3.0",
     "gulp-checktextdomain": "^2.3.0",
-    "gulp-dart-sass": "^1.0.2",
+    "gulp-dart-sass": "^1.1.0",
     "gulp-debug": "^4.0.0",
     "gulp-exclude-gitignore": "^1.2.0",
     "gulp-if": "^3.0.0",
@@ -64,9 +64,9 @@
     "postcss": "^8.4.21",
     "prettyjson": "^1.2.5",
     "publish-release": "^1.6.1",
-    "rtlcss": "^4.0.0",
+    "rtlcss": "^4.1.0",
     "semistandard": "^16.0.1",
-    "stylelint": "^15.3.0",
+    "stylelint": "^15.4.0",
     "xtend": "^4.0.2"
   },
   "optionalDependencies": {
@@ -79,7 +79,8 @@
     "popper.js": "^1.16.1",
     "screenfull": "^6.0.2",
     "slick-carousel": "^1.8.1",
-    "vazir-font": "^30.1.0"
+    "vazir-font": "^30.1.0",
+    "vazirmatn": "^33.0.3"
   },
   "browserslist": [
     "extends @wordpress/browserslist-config"
