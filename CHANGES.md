@@ -1,3 +1,12 @@
+### 3.21.8
+* module/bootstrap: version helper
+* module/content: rel for print-link on actions
+* module/content: rel for short-link on headers
+* module/filters: content replace image p with figure
+* module/search: form secondary after navigation
+* module/sidebar: entry sidebars revised
+* module/template: about page url token
+
 ### 3.21.7
 * module/date: filter to override date-string
 * module/editorial: apply arguments on setup
