@@ -1,13 +1,13 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: gTheme 3 3.21.6\n"
+"Project-Id-Version: gTheme 3 3.21.7\n"
 "Report-Msgid-Bugs-To: https://github.com/geminorum/gtheme_03/issues\n"
 "Last-Translator: NULL\n"
 "Language-Team: NULL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2023-03-26T20:47:17+00:00\n"
+"POT-Creation-Date: 2023-04-02T16:57:43+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.7.1\n"
 "X-Domain: gtheme\n"
@@ -71,17 +71,17 @@ msgid "Default Template"
 msgstr ""
 
 #. translators: %s: post title
-#: inc/attachment.php:142
+#: inc/attachment.php:144
 msgctxt "Module: Attachment: Backlink Template"
 msgid "&larr; Back to &ldquo;%s&rdquo;"
 msgstr ""
 
-#: inc/attachment.php:143
+#: inc/attachment.php:145
 msgctxt "Module: Attachment: Backlink Empty Title"
 msgid "&larr; Back"
 msgstr ""
 
-#: inc/attachment.php:178
+#: inc/attachment.php:181
 msgctxt "Module: Attachment: Link"
 msgid "Download Attachment"
 msgstr ""
@@ -486,87 +486,87 @@ msgctxt "Options: Separator: Term"
 msgid ", "
 msgstr ""
 
-#: inc/content.php:929
+#: inc/content.php:930
 msgctxt "Qr-Code"
 msgid "Loading&hellip;"
 msgstr ""
 
-#: inc/content.php:973
+#: inc/content.php:974
 msgctxt "Options: Text Size Increase"
 msgid "[ A+ ]"
 msgstr ""
 
-#: inc/content.php:976
+#: inc/content.php:977
 msgctxt "Options: Text Size Decrease"
 msgid "[ A- ]"
 msgstr ""
 
-#: inc/content.php:979
+#: inc/content.php:980
 msgctxt "Options: Text Size Sep"
 msgid " / "
 msgstr ""
 
-#: inc/content.php:984
+#: inc/content.php:985
 msgid "Increase font size"
 msgstr ""
 
-#: inc/content.php:991
+#: inc/content.php:992
 msgid "Decrease font size"
 msgstr ""
 
-#: inc/content.php:1005
+#: inc/content.php:1006
 msgctxt "Options: Text Justify"
 msgid "[ Ju ]"
 msgstr ""
 
-#: inc/content.php:1008
+#: inc/content.php:1009
 msgctxt "Options: Text Unjustify"
 msgid "[ uJ ]"
 msgstr ""
 
-#: inc/content.php:1011
+#: inc/content.php:1012
 msgctxt "Options: Text Justify Sep"
 msgid " / "
 msgstr ""
 
-#: inc/content.php:1016
+#: inc/content.php:1017
 msgid "Justify paragraphs"
 msgstr ""
 
-#: inc/content.php:1023
+#: inc/content.php:1024
 msgid "Un-justify paragraphs"
 msgstr ""
 
-#: inc/content.php:1072
+#: inc/content.php:1073
 msgctxt "Modules: Content: Addtoany"
 msgid "Share This"
 msgstr ""
 
 #. translators: %s: post title
-#: inc/content.php:1087
+#: inc/content.php:1088
 msgctxt "Modules: Content: Addtoany"
 msgid "Check this out %s"
 msgstr ""
 
 #. translators: %s: post link
-#: inc/content.php:1089
+#: inc/content.php:1090
 msgctxt "Modules: Content: Addtoany"
 msgid ""
 "Click the link:\n"
 "%s"
 msgstr ""
 
-#: inc/content.php:1383
+#: inc/content.php:1387
 msgctxt "Modules: Content: Link Pages"
 msgid "Next page"
 msgstr ""
 
-#: inc/content.php:1384
+#: inc/content.php:1388
 msgctxt "Modules: Content: Link Pages"
 msgid "Previous page"
 msgstr ""
 
-#: inc/content.php:1396
+#: inc/content.php:1400
 msgctxt "Modules: Content: Link Pages"
 msgid "Pages:"
 msgstr ""
@@ -1225,27 +1225,27 @@ msgctxt "Options: Separator: Title"
 msgid " &raquo; "
 msgstr ""
 
-#: inc/template.php:157
+#: inc/template.php:158
 msgctxt "Modules: Template: Title Attr"
 msgid "Front Page"
 msgstr ""
 
 #. translators: %s: display name
-#: inc/template.php:226
+#: inc/template.php:227
 msgctxt "Modules: Template: Author"
 msgid "Posts by %s"
 msgstr ""
 
-#: inc/template.php:308
+#: inc/template.php:309
 msgctxt "Options: Separator: Nav"
 msgid " &laquo; "
 msgstr ""
 
-#: inc/template.php:343
+#: inc/template.php:344
 msgid "&copy; All rights reserved."
 msgstr ""
 
-#: inc/template.php:360
+#: inc/template.php:361
 msgctxt "Root: End: Before Site Modified"
 msgid "Last updated on"
 msgstr ""
