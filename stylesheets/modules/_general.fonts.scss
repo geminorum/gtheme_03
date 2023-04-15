@@ -856,7 +856,7 @@ $theme-fonts-repo: "../../gtheme_03/fonts" !default;
       src: url($path + ".eot");
       src:
         url($path + ".eot?#iefix") format("embedded-opentype"),
-        url($path + ".woff2") format("woff2"),
+        // url($path + ".woff2") format("woff2"),
         url($path + ".woff") format("woff"),
         url($path + ".ttf") format("truetype");
 
@@ -883,9 +883,90 @@ $theme-fonts-repo: "../../gtheme_03/fonts" !default;
       src: url($path + ".eot");
       src:
         url($path + ".eot?#iefix") format("embedded-opentype"),
-        url($path + ".woff2") format("woff2"),
+        // url($path + ".woff2") format("woff2"),
         url($path + ".woff") format("woff"),
         url($path + ".ttf") format("truetype");
+
+      @include theme-fonts-unicoderange-Persian;
+      font-display: swap;
+    }
+  }
+}
+
+@mixin theme-fonts-Lifta-Black($base: $theme-fonts-repo) {
+
+  $font-family-bold: "Lifta", "Arial", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", "Helvetica", sans-serif !global;
+
+  $name: "Lifta";
+  $folder: "lifta";
+  $file: "Lifta-Black";
+  $path: $base + "/" + $folder + "/" + $file;
+
+  @at-root {
+    @font-face {
+      font-family: "#{$name}";
+      font-style: normal;
+      font-weight: 700;
+      src: url($path + ".eot");
+      src:
+        // url($path + ".eot?#iefix") format("embedded-opentype"),
+        url($path + ".woff2") format("woff2"),
+        // url($path + ".woff") format("woff"),
+        url($path + ".otf") format("truetype");
+
+      @include theme-fonts-unicoderange-Persian;
+      font-display: swap;
+    }
+  }
+}
+
+@mixin theme-fonts-AdobeArabic-Regular($base: $theme-fonts-repo) {
+
+  $font-family-normal: "Adobe Arabic", "Arial", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", "Helvetica", sans-serif !global;
+
+  $name: "AdobeArabic";
+  $folder: "AdobeArabic";
+  $file: "AdobeArabic-Regular";
+  $path: $base + "/" + $folder + "/" + $file;
+
+  @at-root {
+    @font-face {
+      font-family: "#{$name}";
+      font-style: normal;
+      font-weight: 400;
+      src: url($path + ".eot");
+      src:
+        // url($path + ".eot?#iefix") format("embedded-opentype"),
+        url($path + ".woff2") format("woff2"),
+        url($path + ".woff") format("woff"),
+        url($path + ".otf") format("truetype");
+
+      @include theme-fonts-unicoderange-Persian;
+      font-display: swap;
+    }
+  }
+}
+
+@mixin theme-fonts-AdobeArabic-Bold($base: $theme-fonts-repo) {
+
+  $font-family-bold: "Adobe Arabic", "Arial", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", "Helvetica", sans-serif !global;
+
+  $name: "AdobeArabic";
+  $folder: "AdobeArabic";
+  $file: "AdobeArabic-Bold";
+  $path: $base + "/" + $folder + "/" + $file;
+
+  @at-root {
+    @font-face {
+      font-family: "#{$name}";
+      font-style: normal;
+      font-weight: 700;
+      src: url($path + ".eot");
+      src:
+        // url($path + ".eot?#iefix") format("embedded-opentype"),
+        url($path + ".woff2") format("woff2"),
+        url($path + ".woff") format("woff"),
+        url($path + ".otf") format("truetype");
 
       @include theme-fonts-unicoderange-Persian;
       font-display: swap;

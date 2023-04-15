@@ -48,3 +48,20 @@
     @content;
   }
 }
+
+// Hiding class, making content visible only to screen readers but not visually
+// "sr" meaning "screen-reader"
+@mixin theme-visually-hidden() {
+
+  // @REF: https://css-tricks.com/inclusively-hidden/
+  // @REF: https://www.scottohara.me/blog/2017/04/14/inclusively-hidden.html
+  &:not(:focus):not(:active) {
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+  }
+}

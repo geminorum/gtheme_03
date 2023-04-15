@@ -105,6 +105,13 @@
     text-align: center;
   }
 
+  &.-hidden-title { // gNetwork
+    .entry-header {
+      display: none;
+      visibility: hidden;
+    }
+  }
+
   .entry-title {
     margin: 1.25rem 0 1rem; // normalizing for h1/h2/h3
   }
