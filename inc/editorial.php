@@ -134,19 +134,11 @@ class gThemeEditorial extends gThemeModuleCore
 		return TRUE;
 	}
 
+	// FIXME: DEPRECATED
 	public static function attachments( $atts = [], $verbose = TRUE )
 	{
-		if ( ! self::availableEditorial( 'attachments' ) )
-			return NULL;
-
-		$html = gEditorial()->attachments->attachments_shortcode( $atts );
-
-		if ( ! $verbose )
-			return $html;
-
-		echo $html;
-
-		return TRUE;
+		self::_dep( 'gThemeEditorial::listAttachments()' );
+		return self::listAttachments( $atts, $verbose );
 	}
 
 	// FIXME: DEPRECATED
