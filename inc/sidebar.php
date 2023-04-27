@@ -76,6 +76,7 @@ class gThemeSideBar extends gThemeModuleCore
 	{
 		$this->_register_widgets();
 		$this->_register_sidebars();
+		$this->_register_widget_shelfs();
 	}
 
 	private function _get_widget_extend_map()
@@ -139,6 +140,72 @@ class gThemeSideBar extends gThemeModuleCore
 			'before_sidebar' => '', // `<div id="%1$s" class="%2$s">`
 			'after_sidebar'  => '',
 		];
+	}
+
+	private function _register_widget_shelfs()
+	{
+		$shelfs = apply_filters( 'gtheme_widget_shelfs', gThemeOptions::info( 'widget_shelfs', [] ) );
+
+		if ( empty( $shelfs ) )
+			return;
+
+		$alphabet = range( 'A', 'Z' );
+
+		foreach ( $shelfs as $name => $atts ) {
+
+			$args = self::parseShelfsArgs( $name, $atts );
+
+			for ( $i = 1; $i <= $args['rows']; $i++ )
+				register_sidebar( call_user_func_array( $args['widget_callback'], [
+					sprintf( '%s-shelf-%s', $name, strtolower( $alphabet[$i - 1] ) ),
+					sprintf( '%1$s: %2$s', $args['title'], $alphabet[$i - 1] ),
+				] ) );
+		}
+	}
+
+	// TODO: better default callback
+	public static function parseShelfsArgs( $name, $atts = [] )
+	{
+		return self::atts( [
+			'title'           => $name,
+			'context'         => $name, // same as name
+			'gutters'         => NULL,
+			'widget_callback' => gThemeOptions::info( 'shelfs_args_callback', [ __CLASS__, 'parseArgs' ] ),
+			'rows'            => 5,
+			'row_template'    => 'row-cols-1 row-cols-lg-%d',
+		], $atts );
+	}
+
+	public static function renderWidgetShelfs( $name )
+	{
+		if ( empty( $name ) )
+			return FALSE;
+
+		$shelfs = apply_filters( 'gtheme_widget_shelfs', gThemeOptions::info( 'widget_shelfs', [] ) );
+
+		if ( empty( $shelfs[$name] ) )
+			return FALSE;
+
+		$alphabet = range( 'A', 'Z' );
+		$args     = self::parseShelfsArgs( $name, $shelfs[$name] );
+
+		if ( empty( $args['rows'] ) )
+			return FALSE;
+
+		echo '<div class="wrap-widget-shelfs wrap-widget-shelfs-'.$args['context'].' '.( $args['gutters'] ? '-with-gutters' : '-no-gutters' ).'">';
+
+		for ( $i = 1; $i <= $args['rows']; $i++ ) {
+
+			$location = sprintf( '%s-shelf-%s', $name, strtolower( $alphabet[$i - 1] ) );
+			$columns  = sprintf( $args['row_template'], self::getCount( $location, 1 ) );
+
+			self::sidebar( $location,
+				'<div class="wrap-widget-shelf row'.( $args['gutters'] ? ' ' : ' no-gutters g-0 ' ).$columns.'">',
+				'</div>'
+			);
+		}
+
+		echo '</div>';
 	}
 
 	// creates widgetized sidebars for each category
