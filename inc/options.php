@@ -97,7 +97,7 @@ class gThemeOptions extends gThemeModuleCore
 			// 'text_justify_sep' => _x( ' / ', 'Options: Text Justify Sep', 'gtheme' ),
 
 			'source_before' => _x( 'Source: ', 'Options: Source Before', 'gtheme' ),
-			'reflist_title' => sprintf( '<h4 class="-title" id="footnotes">%s</h4>', _x( 'Footnotes', 'Options: Reflist Title', 'gtheme' ) ),
+			'reflist_title' => sprintf( '<div class="-wrap-title"><h4 class="-title" id="footnotes">%s</h4></div>', _x( 'Footnotes', 'Options: Reflist Title', 'gtheme' ) ),
 
 			'excerpt_length' => 40,
 			'excerpt_more'   => '&nbsp;&hellip;', // FALSE: empty / TRUE: continueReading()
