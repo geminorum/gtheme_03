@@ -13,7 +13,7 @@ gThemeEditorial::issueCover( [
 
 gThemeContent::content();
 
-gThemeEditorial::issuePosts( [
+gThemeEditorial::magazineSupported( [
 	'before' => '<div class="clearfix"></div><div class="entry-after after-issue after-rows">',
 	'after'  => '</div>',
 	'title'  => FALSE,

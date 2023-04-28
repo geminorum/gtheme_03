@@ -610,8 +610,14 @@ class gThemeEditorial extends gThemeModuleCore
 		return ob_get_clean();
 	}
 
-	// TODO: rename to `magazineSupported()`
+	// FIXME: DEPRECATED
 	public static function issuePosts( $atts = [], $verbose = TRUE )
+	{
+		self::_dep( 'gThemeEditorial::magazineSupported()' );
+		return self::magazineSupported( $atts, $verbose );
+	}
+
+	public static function magazineSupported( $atts = [], $verbose = TRUE )
 	{
 		if ( ! self::availableEditorial( 'magazine' ) )
 			return NULL;
