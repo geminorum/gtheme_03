@@ -875,6 +875,12 @@ class gThemeEditorial extends gThemeModuleCore
 		return \geminorum\gEditorial\Modules\Venue\ModuleTemplate::summary( $atts );
 	}
 
+	public static function tabsPostTabs( $post = NULL )
+	{
+		if ( self::availableEditorial( 'tabs' ) )
+			gEditorial()->module( 'tabs' )->render_post_tabs( $post );
+	}
+
 	public static function refList( $atts = [], $verbose = TRUE )
 	{
 		if ( ! self::availableNetwork( 'shortcodes' ) )
