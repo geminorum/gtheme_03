@@ -594,6 +594,42 @@ class gThemeEditorial extends gThemeModuleCore
 		return self::meta( $field, $atts );
 	}
 
+	public static function dossierSupported( $atts = [], $verbose = TRUE )
+	{
+		if ( ! self::availableEditorial( 'dossier' ) )
+			return NULL;
+
+		if ( ! array_key_exists( 'item_cb', $atts ) )
+			$atts['item_cb'] = [ __CLASS__, 'dossierRowCallback' ];
+
+		$html = gEditorial()->module( 'dossier' )->dossier_shortcode( $atts );
+
+		wp_reset_postdata(); // since callback used setup post data
+
+		if ( ! $verbose )
+			return $html;
+
+		echo $html;
+
+		return TRUE;
+	}
+
+	public static function dossierRowCallback( $post, $args, $term )
+	{
+		// @REF: https://developer.wordpress.org/?p=2837#comment-874
+		$GLOBALS['post'] = $post;
+		setup_postdata( $post );
+
+		ob_start();
+
+		echo '<li>';
+			get_template_part( 'row', 'dossier' );
+			echo '<span class="-dummy"></span>';
+		echo '</li>';
+
+		return ob_get_clean();
+	}
+
 	public static function issueRowCallback( $post, $args, $term )
 	{
 		// @REF: https://developer.wordpress.org/?p=2837#comment-874
