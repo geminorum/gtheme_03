@@ -2,8 +2,7 @@
 
 gThemeContent::header( [ 'context' => 'singular', 'byline' => TRUE, 'actions' => NULL ] );
 
-gThemeEditorial::issueCover( [
-	'id'     => NULL, // current issue
+gThemeEditorial::theCover( [
 	'link'   => 'attachment',
 	'before' => '<div class="entry-cover alignleft">',
 	'after'  => '</div>',

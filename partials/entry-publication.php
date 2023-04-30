@@ -18,8 +18,7 @@ gThemeEditorial::metaHTML( 'highlight', [
 
 echo '</div></div><div class="-side entry-double-main"><div class="-wrap">';
 
-gThemeEditorial::bookCover( [
-	'id'     => NULL, // current publication
+gThemeEditorial::theCover( [
 	'link'   => 'attachment',
 	'before' => '<div class="entry-cover alignleft">',
 	'after'  => '</div>',

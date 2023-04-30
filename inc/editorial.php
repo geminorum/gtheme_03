@@ -668,8 +668,27 @@ class gThemeEditorial extends gThemeModuleCore
 		return \geminorum\gEditorial\Modules\Magazine\ModuleTemplate::theIssueMeta( $field, $atts );
 	}
 
+	public static function theCover( $atts = [] )
+	{
+		if ( ! array_key_exists( 'default', $atts ) )
+			$atts['default'] = FALSE;
+
+		if ( ! function_exists( 'gEditorial' ) )
+			return $atts['default'];
+
+		if ( ! is_callable( [ 'geminorum\\gEditorial\\Template', 'postImage' ] ) )
+			return $atts['default'];
+
+		if ( ! array_key_exists( 'id', $atts ) )
+			$atts['default'] = NULL;
+
+		return \geminorum\gEditorial\Template::postImage( $atts );
+	}
+
 	public static function issueCover( $atts = [] )
 	{
+		self::_dep( 'gThemeEditorial::theCover()' );
+
 		if ( ! array_key_exists( 'default', $atts ) )
 			$atts['default'] = FALSE;
 
@@ -684,6 +703,8 @@ class gThemeEditorial extends gThemeModuleCore
 
 	public static function bookCover( $atts = [], $check = FALSE )
 	{
+		self::_dep( 'gThemeEditorial::theCover()' );
+
 		if ( ! array_key_exists( 'default', $atts ) )
 			$atts['default'] = FALSE;
 
