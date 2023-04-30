@@ -1,6 +1,6 @@
 <?php defined( 'ABSPATH' ) or die( header( 'HTTP/1.0 403 Forbidden' ) );
 
-// Flow: (Header) -> (Cover) -> (Summary/Content)
+// Flow: head:(Header) -> Main:(Cover) -> Foot:(Summary/Content)
 
 echo '<div class="entry-double-top"><div class="-wrap">';
 

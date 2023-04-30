@@ -3,6 +3,8 @@
 class gThemeWidgetPostTerms extends gThemeWidget
 {
 
+	// FIXME: DEPRECATED
+
 	const WIDGET = 'post_terms';
 
 	public static function setup()

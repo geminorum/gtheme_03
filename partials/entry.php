@@ -48,6 +48,8 @@ gThemeSideBar::sidebar( 'entry-side', '<div class="wrap-side sidebar-entry-side"
 
 echo '</div></div></div><div class="entry-double-bottom"><div class="-wrap">';
 
+gThemeEditorial::tabsPostTabs();
+
 gThemeSideBar::sidebar( 'entry-after', '<div class="wrap-side sidebar-entry-after">', '</div>' );
 
 gThemeNavigation::content( 'singular' );
