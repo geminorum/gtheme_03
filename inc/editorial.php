@@ -6,11 +6,12 @@ class gThemeEditorial extends gThemeModuleCore
 	public function setup_actions( $args = [] )
 	{
 		extract( self::atts( [
-			'insert_toc'    => FALSE,
-			'insert_embed'  => FALSE,
-			'insert_media'  => FALSE,
-			'date_override' => TRUE,
-			'reflist_toc'   => TRUE,
+			'insert_toc'       => FALSE,
+			'insert_embed'     => FALSE,
+			'insert_media'     => FALSE,
+			'insert_supported' => TRUE,
+			'date_override'    => TRUE,
+			'reflist_toc'      => TRUE,
 		], $args ) );
 
 		if ( $insert_toc )
@@ -21,6 +22,9 @@ class gThemeEditorial extends gThemeModuleCore
 
 		if ( $insert_media )
 			add_action( 'gtheme_content_before', [ $this, 'content_before_media' ], 80 );
+
+		if ( $insert_supported )
+			add_action( 'gtheme_content_wrap_after', [ $this, 'content_wrap_after_supported' ], 8 );
 
 		if ( $date_override )
 			add_filter( 'gtheme_date_override_the_date', [ $this, 'date_override_the_date' ], 20, 4 );
@@ -51,6 +55,52 @@ class gThemeEditorial extends gThemeModuleCore
 
 		if ( $audio = self::getMeta( 'audio_source_url' ) )
 			echo gThemeHTML::wrap( $audio, '-audio' );
+	}
+
+	public function content_wrap_after_supported()
+	{
+		if ( ! is_singular() )
+			return;
+
+		switch ( get_post_type() ) {
+
+			case 'issue':
+
+				self::magazineSupported( [
+					'before' => '<div class="clearfix"></div><div class="entry-after after-issue after-rows">',
+					'after'  => '</div>',
+					'wrap'   => FALSE,
+					'title'  => FALSE,
+					'future' => FALSE,
+				] );
+
+				break;
+
+			case 'dossier':
+
+				self::dossierSupported( [
+					'before' => '<div class="clearfix"></div><div class="entry-after after-dossier after-rows">',
+					'after'  => '</div>',
+					'wrap'   => FALSE,
+					'title'  => FALSE,
+					'future' => FALSE,
+				] );
+
+				break;
+
+			case 'course':
+
+				self::courseLessons( [
+					'before' => '<div class="clearfix"></div><div class="entry-after after-course-lessons after-rows">',
+					'after'  => '</div>',
+					'order'  => 'DESC',
+					'wrap'   => FALSE,
+					'title'  => FALSE,
+					'future' => FALSE,
+				] );
+
+				break;
+		}
 	}
 
 	public function date_override_the_date( $override, $post, $link, $args )
