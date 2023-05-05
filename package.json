@@ -61,12 +61,12 @@
     "gulp-wp-pot": "^2.5.0",
     "js-yaml": "^4.1.0",
     "parse-changelog": "^1.0.2",
-    "postcss": "^8.4.21",
+    "postcss": "^8.4.22",
     "prettyjson": "^1.2.5",
     "publish-release": "^1.6.1",
     "rtlcss": "^4.1.0",
     "semistandard": "^16.0.1",
-    "stylelint": "^15.4.0",
+    "stylelint": "^15.5.0",
     "xtend": "^4.0.2"
   },
   "optionalDependencies": {
