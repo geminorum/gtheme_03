@@ -1,3 +1,13 @@
+### 3.21.9
+* module/editorial: auto insert supported after content
+* module/editorial: correct naming method
+* module/editorial: deprecated attachments method
+* module/editorial: dossier helpers
+* module/editorial: generic cover helper
+* module/editorial: support for tabs
+* module/options: wrap title for ref-list
+* module/sidebar: :new: widget shelfs
+
 ### 3.21.8
 * module/bootstrap: version helper
 * module/content: rel for print-link on actions
