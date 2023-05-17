@@ -18,6 +18,7 @@ class gThemeTerms extends gThemeModuleCore
 
 			if ( is_admin() ) {
 
+				add_action( 'admin_menu', [ $this, 'admin_menu_system_tags' ] );
 				add_action( 'load-edit-tags.php', [ $this, 'load_edit_tags' ] );
 				add_filter( 'geditorial_tweaks_taxonomy_info', [ $this, 'tweaks_taxonomy_info' ], 10, 3 );
 
@@ -26,6 +27,7 @@ class gThemeTerms extends gThemeModuleCore
 				add_filter( 'gnetwork_taxonomy_bulk_callback', [ $this, 'taxonomy_bulk_callback' ], 12, 3 );
 
 			} else {
+
 				add_filter( 'post_class', [ $this, 'post_class' ], 10, 3 );
 			}
 		}
@@ -164,6 +166,7 @@ class gThemeTerms extends gThemeModuleCore
 			'labels'                => $can ? $this->get_systemtags_labels() : [],
 			'public'                => FALSE,
 			'show_ui'               => TRUE,
+			'show_in_menu'          => FALSE,
 			'show_in_quick_edit'    => $can,
 			'show_in_nav_menus'     => FALSE,
 			'show_tagcloud'         => FALSE,
@@ -248,6 +251,20 @@ class gThemeTerms extends gThemeModuleCore
 			'title' => _x( 'System Tags', 'System Tag Tax Labels: Menu Name', 'gtheme' ),
 			'edit'  => NULL,
 		];
+	}
+
+	public function admin_menu_system_tags()
+	{
+		if ( ! $taxonomy = get_taxonomy( GTHEME_SYSTEMTAGS ) )
+			return FALSE;
+
+		add_submenu_page(
+			current_user_can( 'edit_theme_options' ) ? 'themes.php' : 'index.php',
+			gThemeHTML::escape( $taxonomy->labels->name ),
+			gThemeHTML::escape( $taxonomy->labels->menu_name ),
+			$taxonomy->cap->manage_terms,
+			'edit-tags.php?taxonomy='.$taxonomy->name
+		);
 	}
 
 	public function load_edit_tags()
