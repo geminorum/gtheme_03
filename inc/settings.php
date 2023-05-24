@@ -56,9 +56,9 @@ class gThemeSettings extends gThemeModuleCore
 
 	public function admin_settings()
 	{
-		$uri  = $this->_settings_uri; // back comp
-
+		$uri = $this->_settings_uri; // back comp
 		$sub = isset( $_GET['sub'] ) ? trim( $_GET['sub'] ) : 'general';
+
 		$subs = apply_filters( 'gtheme_settings_subs', [
 			'overview' => _x( 'Overview', 'Modules: Menu Name', 'gtheme' ),
 			'general'  => _x( 'General', 'Modules: Menu Name', 'gtheme' ),

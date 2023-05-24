@@ -9,7 +9,7 @@ if ( is_single() ) { // any posttype except attachment/page
 		else
 			get_template_part( 'partials/entry', get_post_type() );
 
-		gThemeSideBar::sidebar( 'after-singular' );
+		gThemeSideBar::sidebar( 'after-singular', '<div class="wrap-side sidebar-after-singular">', '</div>' );
 
 		gThemeComments::template( '<div class="entry-comments">', '</div>' );
 

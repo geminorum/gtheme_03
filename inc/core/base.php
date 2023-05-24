@@ -9,6 +9,18 @@ class gThemeBaseCore
 			define( $name, $value );
 	}
 
+	public static function buffer( $callback, $args = [], $fallback = '' )
+	{
+		if ( ! $callback || ! is_callable( $callback ) )
+			return $fallback;
+
+		ob_start();
+
+			call_user_func_array( $callback, $args );
+
+		return trim( ob_get_clean() );
+	}
+
 	public static function dump( $var, $safe = TRUE, $verbose = TRUE )
 	{
 		$export = var_export( $var, TRUE );
