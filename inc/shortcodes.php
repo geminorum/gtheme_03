@@ -24,19 +24,20 @@ class gThemeShortCodes extends gThemeModuleCore
 	public function init()
 	{
 		$this->shortcodes( [
-			'theme-image'     => 'shortcode_theme_image',
-			'theme-header'    => 'shortcode_theme_header',
-			'theme-thumbnail' => 'shortcode_theme_thumbnail',
-			'panels'          => 'shortcode_panels',
-			'panel'           => 'shortcode_panel',
-			'tabs'            => 'shortcode_tabs',
-			'tab'             => 'shortcode_tab',
-			'children'        => 'shortcode_children',
-			'siblings'        => 'shortcode_siblings',
-			'people-image'    => 'shortcode_person_picture',
-			'person-picture'  => 'shortcode_person_picture',
-			'related-posts'   => 'shortcode_related_posts',
-			// 'slider'        => 'shortcode_gallery_slider',
+			'theme-image'         => 'shortcode_theme_image',
+			'theme-header'        => 'shortcode_theme_header',
+			'theme-thumbnail'     => 'shortcode_theme_thumbnail',
+			'theme-template-part' => 'shortcode_theme_template_part',
+			'panels'              => 'shortcode_panels',
+			'panel'               => 'shortcode_panel',
+			'tabs'                => 'shortcode_tabs',
+			'tab'                 => 'shortcode_tab',
+			'children'            => 'shortcode_children',
+			'siblings'            => 'shortcode_siblings',
+			'people-image'        => 'shortcode_person_picture',
+			'person-picture'      => 'shortcode_person_picture',
+			'related-posts'       => 'shortcode_related_posts',
+			// 'slider'              => 'shortcode_gallery_slider',
 		] );
 	}
 
@@ -454,6 +455,23 @@ class gThemeShortCodes extends gThemeModuleCore
 		gThemeImage::image( $atts );
 
 		return ob_get_clean();
+	}
+
+	public function shortcode_theme_template_part( $atts, $content = NULL, $tag = '' )
+	{
+		$parsed = shortcode_atts( [
+			'context' => NULL,
+			'wrap'    => TRUE,
+			'before'  => '',
+			'after'   => '',
+		], $atts, $tag );
+
+		if ( FALSE === $parsed['context'] )
+			return NULL;
+
+		$html = self::buffer( 'get_template_part', [ 'shortcode', $parsed['context'] ] );
+
+		return self::shortcodeWrap( $html ?? NULL, 'template-part', $parsed );
 	}
 
 	public function shortcode_children( $atts, $content = NULL, $tag = '' )
