@@ -339,6 +339,21 @@ class gThemeEditorial extends gThemeModuleCore
 		return TRUE;
 	}
 
+	public static function addendumAppendages( $atts = [], $verbose = TRUE )
+	{
+		if ( ! self::availableEditorial( 'addendum' ) )
+			return NULL;
+
+		$html = gEditorial()->module( 'addendum' )->main_shortcode( $atts );
+
+		if ( ! $verbose )
+			return $html;
+
+		echo $html;
+
+		return TRUE;
+	}
+
 	public static function venuePlace( $atts = [], $verbose = TRUE )
 	{
 		if ( ! self::availableEditorial( 'venue' ) )
