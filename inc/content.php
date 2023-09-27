@@ -516,7 +516,7 @@ class gThemeContent extends gThemeModuleCore
 		if ( ! empty( $atts ) )
 			$excerpt = preg_replace( '/(<p\b[^><]*)>/i', '$1 '.$atts.'>', $excerpt ); // http://stackoverflow.com/a/3983870/642752
 
-		echo $b.$excerpt.$a;
+		echo $b.apply_shortcodes( $excerpt ).$a;
 	}
 
 	// FIXME: DEPRECATED
