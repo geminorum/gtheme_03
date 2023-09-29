@@ -1,3 +1,12 @@
+### 3.21.10
+* module/content: short-codes on excerpt
+* module/editorial: content before only on singular
+* module/editorial: support appendages
+* module/navigation: check for queried object
+* module/shortcodes: template part shortcode
+* module/terms: exclude default term form the list
+* module/terms: system tags admin moved
+
 ### 3.21.9
 * module/editorial: auto insert supported after content
 * module/editorial: correct naming method
