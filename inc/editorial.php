@@ -44,12 +44,18 @@ class gThemeEditorial extends gThemeModuleCore
 
 	public function content_before_embed( $content )
 	{
+		if ( ! is_singular() )
+			return;
+
 		if ( $embed = self::getMeta( 'content_embed_url', [ 'fallback' => 'video_embed_url' ] ) )
 			echo gThemeHTML::wrap( $embed, '-embed' );
 	}
 
 	public function content_before_media( $content )
 	{
+		if ( ! is_singular() )
+			return;
+
 		if ( $video = self::getMeta( 'video_source_url' ) )
 			echo gThemeHTML::wrap( $video, '-video' );
 
