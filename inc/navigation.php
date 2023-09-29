@@ -360,27 +360,37 @@ class gThemeNavigation extends gThemeModuleCore
 
 		} else if ( is_tax() ) {
 
-			$taxonomy = get_queried_object()->taxonomy;
-			$object   = get_taxonomy( $taxonomy );
-			$link     = self::getTaxonomyArchiveLink( $taxonomy, '<a href="%s" title="'.esc_attr( $object->labels->all_items ).'">' );
+			if ( ! $taxonomy = get_query_var( 'taxonomy' ) ) {
 
-			if ( ! empty( $args['strings'][$taxonomy] ) )
-				$template = $args['strings'][$taxonomy];
+				$queried = get_queried_object();
 
-			else if ( ! empty( $args['strings']['tax'] ) )
-				$template = $args['strings']['tax'];
+				// NOTE: in case overrided
+				if ( is_a( $queried, 'WP_Term' ) )
+					$taxonomy = $queried->taxonomy;
+			}
 
-			else
-				/* translators: %1$s: tax singular name, %2$s: tax plural name, %3$s: term title, %4$s: link markup start, %5$s: link markup end */
-				$template = _x( '%4$s%1$s%5$s Archives for <strong>%3$s</strong>', 'Modules: Navigation: Breadcrumbs', 'gtheme' );
+			if ( $taxonomy && ( $object = get_taxonomy( $taxonomy ) )) {
 
-			$crumb = vsprintf( $template, [
-				$object->labels->singular_name,
-				$object->labels->name,
-				single_term_title( '', FALSE ),
-				$link ?: '',
-				$link ? '</a>': '',
-			] );
+				$link = self::getTaxonomyArchiveLink( $object->name, '<a href="%s" title="'.esc_attr( $object->labels->all_items ).'">' );
+
+				if ( ! empty( $args['strings'][$taxonomy] ) )
+					$template = $args['strings'][$taxonomy];
+
+				else if ( ! empty( $args['strings']['tax'] ) )
+					$template = $args['strings']['tax'];
+
+				else
+					/* translators: %1$s: tax singular name, %2$s: tax plural name, %3$s: term title, %4$s: link markup start, %5$s: link markup end */
+					$template = _x( '%4$s%1$s%5$s Archives for <strong>%3$s</strong>', 'Modules: Navigation: Breadcrumbs', 'gtheme' );
+
+				$crumb = vsprintf( $template, [
+					$object->labels->singular_name,
+					$object->labels->name,
+					single_term_title( '', FALSE ),
+					$link ?: '',
+					$link ? '</a>': '',
+				] );
+			}
 
 		} else if ( is_post_type_archive() ) {
 
