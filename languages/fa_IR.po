@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gTheme 3\n"
 "Report-Msgid-Bugs-To: https://github.com/geminorum/gtheme_03/issues\n"
-"POT-Creation-Date: 2023-04-02T16:57:43+00:00\n"
-"PO-Revision-Date: 2023-04-02 20:28+0330\n"
+"POT-Creation-Date: 2023-09-29T02:09:59+00:00\n"
+"PO-Revision-Date: 2023-09-29 05:40+0330\n"
 "Last-Translator: geminorum <contact@geminorum.ir>\n"
 "Language-Team: geminorum <contact@geminorum.ir>\n"
 "Language: fa_IR\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.2.2\n"
+"X-Generator: Poedit 3.3.2\n"
 "X-Textdomain-Support: yes\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ..\n"
@@ -177,7 +177,7 @@ msgctxt "Modules: Banners"
 msgid "Save"
 msgstr "ذخیره"
 
-#: inc/bootstrap.php:30 inc/bootstrap.php:47
+#: inc/bootstrap.php:55 inc/bootstrap.php:72
 msgid "Toggle navigation"
 msgstr "برای تغییر وضعیت کلیک کنید"
 
@@ -707,28 +707,28 @@ msgid "; "
 msgstr "؛ "
 
 #. translators: %1$s: size name, %2$s: size height, %3$s: size width
-#: inc/image.php:339
+#: inc/image.php:340
 msgctxt "Image Module: Media Tag Checkbox Label"
 msgid "%1$s <small>(%2$s&times;%3$s)</small>"
 msgstr ""
 
 # @ gtheme
-#: inc/image.php:354
+#: inc/image.php:355
 msgid "Media Tags"
 msgstr "برچسب‌ها"
 
 # @ gtheme
-#: inc/image.php:424
+#: inc/image.php:425
 msgid "&mdash; Select a Term &mdash;"
 msgstr "&mdash; انتخاب کنید &mdash;"
 
 # @ gtheme
-#: inc/image.php:434
+#: inc/image.php:435
 msgid "Assign for"
 msgstr "تخصیص برای"
 
 #. translators: %s: post title
-#: inc/image.php:737
+#: inc/image.php:738
 msgctxt "Modules: Image: Link Label"
 msgid "Read more about %s"
 msgstr "درباره %s بیشتر بخوانید"
@@ -876,53 +876,53 @@ msgid "%2$sPeople%3$s Archives for <strong>%1$s</strong>"
 msgstr "بایگانی %2$sافراد%3$s برای <strong>%1$s</strong>"
 
 #. translators: %1$s: tax singular name, %2$s: tax plural name, %3$s: term title, %4$s: link markup start, %5$s: link markup end
-#: inc/navigation.php:375
+#: inc/navigation.php:384
 msgctxt "Modules: Navigation: Breadcrumbs"
 msgid "%4$s%1$s%5$s Archives for <strong>%3$s</strong>"
 msgstr "بایگانی %4$s%2$s%5$s برای <strong>%3$s</strong>"
 
 #. translators: %s: posttype title
-#: inc/navigation.php:389
+#: inc/navigation.php:399
 msgctxt "Modules: Navigation: Breadcrumbs"
 msgid "Archives for <strong>%s</strong>"
 msgstr "بایگانی <strong>%s</strong>"
 
 #. translators: %s: display name
-#: inc/navigation.php:403
+#: inc/navigation.php:413
 msgctxt "Modules: Navigation: Breadcrumbs"
 msgid "Author Archives for <strong>%s</strong>"
 msgstr "بایگانی نوشته‌های <strong>%s</strong>"
 
 #. translators: %s: search query
-#: inc/navigation.php:411
+#: inc/navigation.php:421
 msgctxt "Modules: Navigation: Breadcrumbs"
 msgid "Search Results for <strong>%s</strong>"
 msgstr "نتایج جست‌وجو برای <strong>%s</strong>"
 
 #. translators: %s: date
-#: inc/navigation.php:419
+#: inc/navigation.php:429
 msgctxt "Modules: Navigation: Breadcrumbs"
 msgid "Daily Archives for <strong>%s</strong>"
 msgstr "بایگانی روز <strong>%s</strong>"
 
-#: inc/navigation.php:421
+#: inc/navigation.php:431
 msgctxt "Options: Defaults: Date Format: Day"
 msgid "j M Y"
 msgstr ""
 
 #. translators: %s: date
-#: inc/navigation.php:427
+#: inc/navigation.php:437
 msgctxt "Modules: Navigation: Breadcrumbs"
 msgid "Monthly Archives for <strong>%s</strong>"
 msgstr "بایگانی ماه <strong>%s</strong>"
 
 #. translators: %s: date
-#: inc/navigation.php:435
+#: inc/navigation.php:445
 msgctxt "Modules: Navigation: Breadcrumbs"
 msgid "Yearly Archives for <strong>%s</strong>"
 msgstr "بایگانی سال <strong>%s</strong>"
 
-#: inc/navigation.php:442
+#: inc/navigation.php:452
 msgctxt "Modules: Navigation: Breadcrumbs"
 msgid "Archives"
 msgstr "بایگانی"
@@ -1186,18 +1186,18 @@ msgid "Theme Template Base"
 msgstr "پایه قالب پوسته"
 
 # @ gtheme
-#: inc/shortcodes.php:313
+#: inc/shortcodes.php:314
 msgctxt "Panel Shortcode Title"
 msgid "Untitled"
 msgstr "بدون عنوان"
 
 # @ gtheme
-#: inc/shortcodes.php:388
+#: inc/shortcodes.php:389
 msgctxt "Tab Shortcode Title"
 msgid "Untitled"
 msgstr "بدون عنوان"
 
-#: inc/shortcodes.php:573
+#: inc/shortcodes.php:591
 msgctxt "Modules: ShortCodes: Defaults"
 msgid "Related Posts"
 msgstr "نوشته‌های مرتبط"
@@ -1210,7 +1210,7 @@ msgstr "اندیس: کناری"
 #: inc/sidebar.php:26
 msgctxt "Sidebar Name"
 msgid "Singular: Side"
-msgstr "تک نوشته: کناری"
+msgstr "تک‌فرسته: کناری"
 
 #: inc/sidebar.php:27
 msgctxt "Sidebar Name"
@@ -1220,36 +1220,36 @@ msgstr "برگه سیستم: کناری"
 #: inc/sidebar.php:28
 msgctxt "Sidebar Name"
 msgid "Singular: After Entry"
-msgstr "تک‌نوشته: بعد از متن"
+msgstr "تک‌فرسته: بعد ورودی"
 
 #: inc/sidebar.php:29
 msgctxt "Sidebar Name"
-msgid "Entry: Double: Before"
-msgstr ""
+msgid "Entry: Before"
+msgstr "ورودی: قبل"
 
 #: inc/sidebar.php:30
 msgctxt "Sidebar Name"
-msgid "Entry: Double: Content"
-msgstr ""
+msgid "Entry: After"
+msgstr "ورودی: بعد"
 
 #: inc/sidebar.php:31
 msgctxt "Sidebar Name"
-msgid "Entry: Double: Side"
-msgstr ""
+msgid "Entry: Content"
+msgstr "ورودی: محتوا"
 
 #: inc/sidebar.php:32
 msgctxt "Sidebar Name"
-msgid "Entry: Double: After"
-msgstr ""
+msgid "Entry: Side"
+msgstr "ورودی: کناری"
 
 #. translators: %s: primary term title
-#: inc/sidebar.php:159
+#: inc/sidebar.php:226
 msgctxt "Modules: Sidebar"
 msgid "Theme: %s Widget"
 msgstr "پوسته: ابزارک %s"
 
 #. translators: %s: primary term title
-#: inc/sidebar.php:161
+#: inc/sidebar.php:228
 msgctxt "Modules: Sidebar"
 msgid "This is the %s widgetized area"
 msgstr ""
@@ -1284,211 +1284,211 @@ msgctxt "Root: End: Before Site Modified"
 msgid "Last updated on"
 msgstr "آخرین به‌روزرسانی در"
 
-#: inc/terms.php:44
+#: inc/terms.php:46
 msgctxt "Modules: Menu Name"
 msgid "Primary Terms"
 msgstr "رده‌های اصلی"
 
-#: inc/terms.php:112
+#: inc/terms.php:114
 msgctxt "Modules: Terms"
 msgid "Primary Terms"
 msgstr "رده‌های اصلی"
 
-#: inc/terms.php:149
+#: inc/terms.php:151
 msgctxt "Modules: Terms"
 msgid "Create Default Primary Terms"
 msgstr "نصب رده‌های اصلی پیش‌فرض"
 
-#: inc/terms.php:189
+#: inc/terms.php:192
 msgctxt "System Tag Tax Labels: Name"
 msgid "System Tags"
 msgstr "برچسب‌های راه‌بری"
 
-#: inc/terms.php:190 inc/terms.php:248
+#: inc/terms.php:193 inc/terms.php:251
 msgctxt "System Tag Tax Labels: Menu Name"
 msgid "System Tags"
 msgstr "راه‌بری"
 
-#: inc/terms.php:191
+#: inc/terms.php:194
 msgctxt "System Tag Tax Labels: Singular Name"
 msgid "System Tag"
 msgstr "برچسب راه‌بری"
 
-#: inc/terms.php:192
+#: inc/terms.php:195
 msgctxt "System Tag Tax Labels"
 msgid "Search System Tags"
 msgstr "جست‌وجوی برچسب‌های راه‌بری"
 
-#: inc/terms.php:193
+#: inc/terms.php:196
 msgctxt "System Tag Tax Labels"
 msgid "All System Tags"
 msgstr "همهٔ برچسب‌های راه‌بری"
 
-#: inc/terms.php:194
+#: inc/terms.php:197
 msgctxt "System Tag Tax Labels"
 msgid "Parent System Tag"
 msgstr "برچسب راه‌بری مادر"
 
-#: inc/terms.php:195
+#: inc/terms.php:198
 msgctxt "System Tag Tax Labels"
 msgid "Parent System Tag:"
 msgstr "برچسب راه‌بری مادر:"
 
-#: inc/terms.php:196
+#: inc/terms.php:199
 msgctxt "System Tag Tax Labels"
 msgid "Edit System Tag"
 msgstr "ویرایش برچسب راه‌بری"
 
-#: inc/terms.php:197
+#: inc/terms.php:200
 msgctxt "System Tag Tax Labels"
 msgid "View System Tag"
 msgstr "نمایش برچسب راه‌بری"
 
-#: inc/terms.php:198
+#: inc/terms.php:201
 msgctxt "System Tag Tax Labels"
 msgid "Update System Tag"
 msgstr "به‌روزرسانی برچسب راه‌بری"
 
-#: inc/terms.php:199
+#: inc/terms.php:202
 msgctxt "System Tag Tax Labels"
 msgid "Add New System Tag"
 msgstr "افزودن برچسب راه‌بری تازه"
 
-#: inc/terms.php:200
+#: inc/terms.php:203
 msgctxt "System Tag Tax Labels"
 msgid "New System Tag Name"
 msgstr "عنوان برچسب راه‌بری تازه"
 
-#: inc/terms.php:201
+#: inc/terms.php:204
 msgctxt "System Tag Tax Labels"
 msgid "No system tags found."
 msgstr "برچسب راه‌بری پیدا نشد."
 
-#: inc/terms.php:202
+#: inc/terms.php:205
 msgctxt "System Tag Tax Labels"
 msgid "No system tags"
 msgstr "بدون برچسب راه‌بری"
 
-#: inc/terms.php:203
+#: inc/terms.php:206
 msgctxt "System Tag Tax Labels"
 msgid "System Tags list navigation"
 msgstr "راه‌بری در فهرست برچسب‌های راه‌بری"
 
-#: inc/terms.php:204
+#: inc/terms.php:207
 msgctxt "System Tag Tax Labels"
 msgid "System Tags list"
 msgstr "فهرست برچسب‌های راه‌بری"
 
-#: inc/terms.php:205
+#: inc/terms.php:208
 msgctxt "System Tag Tax Labels"
 msgid "&larr; Back to System Tags"
 msgstr "&rarr; بازگشت به برچسب‌های راه‌بری"
 
 # @ gtheme
-#: inc/terms.php:212
+#: inc/terms.php:215
 msgctxt "System Tags Defaults"
 msgid "Dashboard"
 msgstr "پیشخوان"
 
-#: inc/terms.php:213
+#: inc/terms.php:216
 msgctxt "System Tags Defaults"
 msgid "Featured"
 msgstr "برگزیده"
 
 # @ gtheme
-#: inc/terms.php:214
+#: inc/terms.php:217
 msgctxt "System Tags Defaults"
 msgid "Latest"
 msgstr "آخرین‌ها"
 
-#: inc/terms.php:215
+#: inc/terms.php:218
 msgctxt "System Tags Defaults"
 msgid "Tile"
 msgstr "کاشی"
 
-#: inc/terms.php:216
+#: inc/terms.php:219
 msgctxt "System Tags Defaults"
 msgid "Full Article"
 msgstr "متن کامل"
 
-#: inc/terms.php:217
+#: inc/terms.php:220
 msgctxt "System Tags Defaults"
 msgid "Poster Entry"
 msgstr "پوستر"
 
-#: inc/terms.php:218
+#: inc/terms.php:221
 msgctxt "System Tags Defaults"
 msgid "Hide Single Image"
 msgstr "پنهان‌سازی تصویر در صفحه تکی"
 
-#: inc/terms.php:219
+#: inc/terms.php:222
 msgctxt "System Tags Defaults"
 msgid "Disable Like Button"
 msgstr "غیرفعال‌سازی دکمه پسند"
 
-#: inc/terms.php:220
+#: inc/terms.php:223
 msgctxt "System Tags Defaults"
 msgid "Not on FrontPage"
 msgstr "عدم نمایش در صفحه نخست"
 
-#: inc/terms.php:221
+#: inc/terms.php:224
 msgctxt "System Tags Defaults"
 msgid "Not on Related"
 msgstr "عدم نمایش در مرتبط‌ها"
 
-#: inc/terms.php:222
+#: inc/terms.php:225
 msgctxt "System Tags Defaults"
 msgid "Not on Feed"
 msgstr "عدم نمایش در خوراک"
 
-#: inc/terms.php:223
+#: inc/terms.php:226
 msgctxt "System Tags Defaults"
 msgid "Insert People"
 msgstr "جای‌گذاری تصویر افراد"
 
-#: inc/terms.php:224
+#: inc/terms.php:227
 msgctxt "System Tags Defaults"
 msgid "Must Read!"
 msgstr "باید بخوانید!"
 
-#: inc/terms.php:277
+#: inc/terms.php:294
 msgctxt "Modules: Terms"
 msgid "Currently no primary terms are defined."
 msgstr "در حال حاضر، رده‌های اصلی تعریف نشده‌اند."
 
 #. translators: %s: terms list
-#: inc/terms.php:283
+#: inc/terms.php:300
 msgctxt "Modules: Terms"
 msgid "Primary Terms are: %s"
 msgstr "رده‌های اصلی: %s"
 
-#: inc/terms.php:302
+#: inc/terms.php:319
 msgctxt "Modules: Terms"
 msgid "Primary Term"
 msgstr "رده اصلی"
 
-#: inc/terms.php:333
+#: inc/terms.php:350
 msgctxt "Modules: Terms"
 msgid "Install Default System Tags"
 msgstr "نصب برچسب‌های راه‌بری پیش‌فرض"
 
-#: inc/terms.php:339
+#: inc/terms.php:356
 msgctxt "Modules: Terms"
 msgid "Error while adding default system tags."
 msgstr "خطایی هنگام افزودن برچسب‌های راه‌بری پیش‌فرض اتفاق افتاده است."
 
-#: inc/terms.php:342
+#: inc/terms.php:359
 msgctxt "Modules: Terms"
 msgid "Default system tags added."
 msgstr "برچسب‌های راه‌بری پیش‌فرض افزوده شد."
 
-#: inc/terms.php:355
+#: inc/terms.php:372
 msgctxt "Modules: Terms"
 msgid "Empty Before Last Month"
 msgstr "خالی کردن قبل از ماه گذشته"
 
 # @ gtheme
-#: inc/terms.php:412
+#: inc/terms.php:429
 msgid "Connected Posts"
 msgstr "نوشته‌های مرتبط"
 
@@ -1678,12 +1678,12 @@ msgctxt "Widget: PostRow"
 msgid "Post ID:"
 msgstr "شناسه فرسته:"
 
-#: inc/Widgets/PostTerms.php:13
+#: inc/Widgets/PostTerms.php:15
 msgctxt "Widget: Title"
 msgid "Theme: Post Terms"
 msgstr "پوسته: رده‌های نوشته"
 
-#: inc/Widgets/PostTerms.php:14
+#: inc/Widgets/PostTerms.php:16
 msgctxt "Widget: Description"
 msgid "Displays the assigned terms of the current post."
 msgstr ""
@@ -1962,7 +1962,7 @@ msgstr ""
 msgid "Latest Page"
 msgstr "برگه آخرین‌ها"
 
-#: partials/entry-publication.php:39
+#: partials/entry-publication.php:38
 msgctxt "Partial: Entry: Publication"
 msgid "Attachments"
 msgstr "پیوست‌ها"
