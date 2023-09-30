@@ -28,6 +28,17 @@ class gThemeFragmentCache extends gThemeBaseCore
 		return GTHEME_FRAGMENTCACHE.'_'.$this->key;
 	}
 
+	protected function __skip()
+	{
+		if ( gThemeWordPress::isDev() )
+			return TRUE;
+
+		if ( defined( 'WP_CACHE' ) && WP_CACHE )
+			return TRUE;
+
+		return FALSE;
+	}
+
 	protected function __flush()
 	{
 		if ( $this->transient ) {
@@ -46,7 +57,7 @@ class gThemeFragmentCache extends gThemeBaseCore
 
 	public function output()
 	{
-		if ( gThemeWordPress::isDev() )
+		if ( $this->__skip() )
 			return FALSE;
 
 		if ( gThemeWordPress::isFlush() ) {
@@ -77,9 +88,9 @@ class gThemeFragmentCache extends gThemeBaseCore
 		}
 	}
 
-	public function store( $notice = 'manage_network' )
+	public function store()
 	{
-		if ( gThemeWordPress::isDev() )
+		if ( $this->__skip() )
 			return TRUE;
 
 		$output = ob_get_flush();
@@ -97,15 +108,12 @@ class gThemeFragmentCache extends gThemeBaseCore
 			wp_cache_add( $this->key, $output, GTHEME_FRAGMENTCACHE, $this->ttl );
 		}
 
-		if ( $notice && current_user_can( $notice ) && ! gThemeWordPress::isDev() )
-			gThemeHTML::notice( __( 'Refreshed!', 'gtheme' ) );
-
 		return TRUE;
 	}
 
 	public function discard()
 	{
-		if ( gThemeWordPress::isDev() )
+		if ( $this->__skip() )
 			return FALSE;
 
 		if ( $this->buffer )
