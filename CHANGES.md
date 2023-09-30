@@ -1,3 +1,6 @@
+### 3.21.11 
+* module/cache: avoid transient on cache enabled
+
 ### 3.21.10
 * module/content: short-codes on excerpt
 * module/editorial: content before only on singular
