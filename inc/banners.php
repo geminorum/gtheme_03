@@ -223,6 +223,7 @@ class gThemeBanners extends gThemeModuleCore
 	public static function slickCarousel( $group, $atts = [], $before = '', $after = '', $count = NULL )
 	{
 		$config = [
+			'rtl'            => is_rtl(),
 			'slidesToShow'   => is_null( $count ) ? gThemeCounts::get( 'carousel_'.$group, 5 ) : $count,
 			'slidesToScroll' => 1,
 			'autoplaySpeed'  => 3000,
