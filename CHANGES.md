@@ -1,4 +1,8 @@
-### 3.21.11 
+### 3.21.12
+* module/theme: disable cleanup by default
+* module/banners: passing rtl into slick-carousel
+
+### 3.21.11
 * module/cache: avoid transient on cache enabled
 
 ### 3.21.10
