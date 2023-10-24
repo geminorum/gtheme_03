@@ -6,7 +6,7 @@ class gThemeTheme extends gThemeModuleCore
 	public function setup_actions( $args = [] )
 	{
 		extract( self::atts( [
-			'cleanup'           => TRUE,
+			'cleanup'           => FALSE, // @SEE: gNetwork Optimize
 			'html_title'        => TRUE, // @REF: https://make.wordpress.org/core/?p=11311
 			'adminbar'          => TRUE,
 			'wpcf7'             => TRUE,
