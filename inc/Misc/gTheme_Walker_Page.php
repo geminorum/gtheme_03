@@ -5,7 +5,11 @@ class gTheme_Walker_Page extends Walker_Page
 
 	public function start_el( &$output, $page, $depth = 0, $args = [], $current_page = 0 )
 	{
-		$css_class = [ 'list-group-item', 'page-item-'.$page->ID ];
+		$css_class = [
+			'list-group-item',
+			'list-group-item-action',
+			'page-item-'.$page->ID,
+		];
 
 		if ( isset( $args['pages_with_children'][$page->ID] ) )
 			$css_class[] = 'page_item_has_children';
@@ -26,7 +30,9 @@ class gTheme_Walker_Page extends Walker_Page
 			}
 
 		} else if ( $page->ID == get_option('page_for_posts') ) {
+
 			$css_class[] = 'current_page_parent';
+			$css_class[] = 'active';
 		}
 
 		$css_classes = implode( ' ', apply_filters( 'page_css_class', $css_class, $page, $depth, $args, $current_page ) );
@@ -37,7 +43,7 @@ class gTheme_Walker_Page extends Walker_Page
 		if ( isset( $args['excerpt'] ) && $args['excerpt'] && ! empty( $page->post_excerpt ) ) {
 
 			$output.= sprintf(
-				'<a class="%s" href="%s"><h4 class="list-group-item-heading">%s</h4><p class="list-group-item-text">%s</p></a>',
+				'<a class="%s" href="%s"><h4 class="list-group-item-heading">%s</h4><p class="list-group-item-text mb-0">%s</p></a>',
 				$css_classes,
 				get_permalink( $page->ID ),
 				gThemeUtilities::prepTitle( $page->post_title, $page->ID ),
