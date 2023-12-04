@@ -3,6 +3,7 @@
 class gThemeTemplate extends gThemeModuleCore
 {
 
+	// NOTE: order is: `base-context` -> `context-posttype` -> `base` -> `context` -> 'posttype`
 	public static function wrapOpen( $context = 'index', $extra = [], $posttype = NULL )
 	{
 		$base = gtheme_template_base();
@@ -31,7 +32,10 @@ class gThemeTemplate extends gThemeModuleCore
 		if ( ! $posttype && is_post_type_archive() )
 			$posttype = get_queried_object()->name;
 
-		if ( $posttype && array_key_exists( $context.'-'.$posttype, $columns ) )
+		if ( $base && array_key_exists( $base.'-'.$context, $columns ) )
+			$column = $columns[$base.'-'.$context];
+
+		else if ( $posttype && array_key_exists( $context.'-'.$posttype, $columns ) )
 			$column = $columns[$context.'-'.$posttype];
 
 		else if ( $base && array_key_exists( $base, $columns ) )
@@ -39,6 +43,9 @@ class gThemeTemplate extends gThemeModuleCore
 
 		else if ( array_key_exists( $context, $columns ) )
 			$column = $columns[$context];
+
+		else if ( $posttype && array_key_exists( $posttype, $columns ) )
+			$column = $columns[$posttype];
 
 		else
 			$column = gThemeOptions::info( 'template_column_fallback', $full ? '' : 'col-sm-8' );
