@@ -792,10 +792,9 @@ class gThemeEditorial extends gThemeModuleCore
 		return \geminorum\gEditorial\Template::postImage( $atts );
 	}
 
+	// NOTE: not equivalent to `gThemeEditorial::theCover()`
 	public static function issueCover( $atts = [] )
 	{
-		self::_dep( 'gThemeEditorial::theCover()' );
-
 		if ( ! array_key_exists( 'default', $atts ) )
 			$atts['default'] = FALSE;
 

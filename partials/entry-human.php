@@ -10,12 +10,7 @@ gThemeImage::image( [
 	'after'  => '</div>',
 ] );
 
-gThemeContent::content();
+gThemeContent::excerpt();
+// gThemeContent::content();
 
-gThemeNavigation::content( 'singular', TRUE, 'courses' );
-
-gThemeEditorial::addendumAppendages( [
-	'before' => '<div class="clearfix"></div><div class="entry-after after-appendages after-rows">',
-	'after'  => '</div>',
-	'wrap'   => FALSE,
-] );
+gThemeNavigation::content( 'singular' );

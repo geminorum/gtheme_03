@@ -132,7 +132,7 @@ class gThemeSideBar extends gThemeModuleCore
 		return [
 			'id'             => $sidebar,
 			'name'           => $name ?: $sidebar,
-			'before_widget'  => '<'.$tag.' id="%1$s" class="widget gtheme-widget widget-'.$sidebar.' '.$extra.' %2$s"><div class="-wrap">',
+			'before_widget'  => '<'.$tag.' id="%1$s" class="widget gtheme-widget widget-'.$sidebar.( $extra ? ( ' '.$extra.' ' ) : '' ).'%2$s"><div class="-wrap">',
 			'after_widget'   => '</div></'.$tag.'>',
 			'before_title'   => '<div class="-wrap-title"><'.$title.' class="-title widget-title widget-'.$sidebar.'-title">',
 			'after_title'    => '</'.$title.'></div>',
