@@ -2,21 +2,24 @@
 
 echo '<div class="row-item row-latest">';
 
-	gThemeDate::date( [
+	gThemeDate::once( [
 		'timeago' => FALSE,
 		'before'  => '<div class="row-date">',
 		'after'   => '</div>',
 	] );
 
-	gThemeContent::header( [
-		'wrap_tag'  => 'div',
-		'context'   => 'list',
-		'prefix'    => 'row',
-		'title_tag' => 'h4',
-		'meta_tag'  => 'h6',
-		'shortlink' => FALSE, // short link is on date
-	] );
+	echo '<div class="wrap-header">';
 
-	gThemeContent::byline( NULL, '<div class="row-byline">', '</div>' );
+		gThemeContent::header( [
+			'wrap_tag'  => 'div',
+			'context'   => 'list',
+			'prefix'    => 'row',
+			'title_tag' => 'h4',
+			'meta_tag'  => 'h6',
+			'shortlink' => FALSE, // short link is on date
+		] );
 
+		gThemeContent::byline( NULL, '<div class="row-byline">', '</div>' );
+
+	echo '</div>';
 echo '</div>';
