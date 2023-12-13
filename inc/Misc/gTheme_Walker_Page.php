@@ -29,10 +29,9 @@ class gTheme_Walker_Page extends Walker_Page
 				$css_class[] = 'current_page_parent';
 			}
 
-		} else if ( $page->ID == get_option('page_for_posts') ) {
+		} else if ( $page->ID == get_option( 'page_for_posts' ) ) {
 
 			$css_class[] = 'current_page_parent';
-			$css_class[] = 'active';
 		}
 
 		$css_classes = implode( ' ', apply_filters( 'page_css_class', $css_class, $page, $depth, $args, $current_page ) );
