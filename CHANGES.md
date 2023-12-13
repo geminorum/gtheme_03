@@ -1,3 +1,8 @@
+### 3.21.13
+* misc/walker-page: support for bs5
+* module/template: latest page
+* module/template: more options on wrap class
+
 ### 3.21.12
 * module/theme: disable cleanup by default
 * module/banners: passing rtl into slick-carousel
