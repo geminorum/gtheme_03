@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gTheme 3 3.21.1\n"
 "Report-Msgid-Bugs-To: https://github.com/geminorum/gtheme_03/issues\n"
-"POT-Creation-Date: 2023-09-21T15:23:37+00:00\n"
-"PO-Revision-Date: 2023-09-21 18:55+0330\n"
+"POT-Creation-Date: 2023-12-13T02:56:04+00:00\n"
+"PO-Revision-Date: 2023-12-13 06:28+0330\n"
 "Last-Translator: geminorum <contact@geminorum.ir>\n"
 "Language-Team: NULL\n"
 "Language: ar\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=6; plural=(n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
 "&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5);\n"
-"X-Generator: Poedit 3.3.2\n"
+"X-Generator: Poedit 3.4.1\n"
 "X-Domain: gtheme\n"
 
 #. Theme Name of the theme
@@ -49,7 +49,7 @@ msgstr ""
 
 #. Template Name of the theme
 msgid "Contact Page"
-msgstr ""
+msgstr "صفحة الاتصال"
 
 #: content-notfound.php:7
 msgid "Oops! That page can&rsquo;t be found."
@@ -119,67 +119,63 @@ msgctxt "Carousel Control"
 msgid "Next"
 msgstr ""
 
-#: inc/banners.php:259
+#: inc/banners.php:260
 msgctxt "Modules: Menu Name"
 msgid "Banners"
 msgstr ""
 
-#: inc/banners.php:343
+#: inc/banners.php:344
 msgctxt "Modules: Banners"
 msgid "Custom Banners"
 msgstr ""
 
-#: inc/banners.php:347
+#: inc/banners.php:348
 msgctxt "Modules: Banners"
 msgid "Legend"
 msgstr ""
 
-#: inc/banners.php:349
+#: inc/banners.php:350
 msgctxt "Modules: Banners"
 msgid "Your theme extra information"
 msgstr ""
 
-#: inc/banners.php:354
+#: inc/banners.php:355
 msgctxt "Modules: Banners"
 msgid "Group"
 msgstr ""
 
-#: inc/banners.php:355
+#: inc/banners.php:356
 msgctxt "Modules: Banners"
 msgid "Ord."
 msgstr ""
 
-#: inc/banners.php:356
+#: inc/banners.php:357
 msgctxt "Modules: Banners"
 msgid "Title"
 msgstr ""
 
-#: inc/banners.php:357
+#: inc/banners.php:358
 msgctxt "Modules: Banners"
 msgid "URL"
 msgstr ""
 
-#: inc/banners.php:358
+#: inc/banners.php:359
 msgctxt "Modules: Banners"
 msgid "Image"
 msgstr ""
 
-#: inc/banners.php:447
+#: inc/banners.php:448
 msgctxt "Modules: Banners"
 msgid "Add Another"
 msgstr ""
 
-#: inc/banners.php:448
+#: inc/banners.php:449
 msgctxt "Modules: Banners"
 msgid "Save"
 msgstr ""
 
 #: inc/bootstrap.php:55 inc/bootstrap.php:72
 msgid "Toggle navigation"
-msgstr ""
-
-#: inc/cache.php:101
-msgid "Refreshed!"
 msgstr ""
 
 #: inc/colors.php:30
@@ -429,7 +425,7 @@ msgstr ""
 #: inc/content.php:638 inc/content.php:645
 msgctxt "Modules: Content: Action"
 msgid "Share This"
-msgstr ""
+msgstr "شارك"
 
 #: inc/content.php:652
 msgctxt "Modules: Content: Action"
@@ -439,17 +435,17 @@ msgstr ""
 #: inc/content.php:663
 msgctxt "Modules: Content: Action"
 msgid "Print Version"
-msgstr ""
+msgstr "نسخة مطبوعة"
 
 #: inc/content.php:671
 msgctxt "Modules: Content: Action"
 msgid "Short Link"
-msgstr ""
+msgstr "ارتباط قصیر"
 
 #: inc/content.php:679
 msgctxt "Modules: Content: Action"
 msgid "QR-Code"
-msgstr ""
+msgstr "رمز الاستجابة السريعة"
 
 #. translators: %s: post title
 #: inc/content.php:682
@@ -491,7 +487,7 @@ msgstr ""
 #: inc/content.php:752
 msgctxt "Modules: Content: Action"
 msgid "Edit"
-msgstr ""
+msgstr "تقوم النص"
 
 #: inc/content.php:763 inc/content.php:783
 msgctxt "Options: Separator: Term"
@@ -763,12 +759,12 @@ msgstr ""
 #: inc/navigation.php:30
 msgctxt "Modules: Navigation: Post Navigation: Previous"
 msgid "<span aria-hidden=\"true\">&larr;</span>&nbsp;%title"
-msgstr ""
+msgstr "<span aria-hidden=\"true\">&rarr;</span>&nbsp;%title"
 
 #: inc/navigation.php:31
 msgctxt "Modules: Navigation: Post Navigation: Next"
 msgid "%title&nbsp;<span aria-hidden=\"true\">&rarr;</span>"
-msgstr ""
+msgstr "<span aria-hidden=\"true\">&larr;</span>&nbsp;%title"
 
 #: inc/navigation.php:43
 msgctxt "Modules: Navigation: Screen Reader Title"
@@ -788,12 +784,12 @@ msgstr ""
 #: inc/navigation.php:83
 msgctxt "Modules: Navigation: Pagination: Previous"
 msgid "<span aria-hidden=\"true\">&larr;</span>"
-msgstr ""
+msgstr "<span aria-hidden=\"true\">&rarr;</span>"
 
 #: inc/navigation.php:84
 msgctxt "Modules: Navigation: Pagination: Next"
 msgid "<span aria-hidden=\"true\">&rarr;</span>"
-msgstr ""
+msgstr "<span aria-hidden=\"true\">&larr;</span>"
 
 #: inc/navigation.php:102
 msgctxt "Modules: Navigation: Screen Reader Title"
@@ -956,12 +952,12 @@ msgstr ""
 #: inc/pages.php:88
 msgctxt "Modules: Pages: Default Pages"
 msgid "About"
-msgstr ""
+msgstr "من نحن؟"
 
 #: inc/pages.php:89
 msgctxt "Modules: Pages: Default Pages"
 msgid "Contact"
-msgstr ""
+msgstr "إتصل"
 
 #: inc/pages.php:90
 msgctxt "Modules: Pages: Default Pages"
@@ -1231,27 +1227,27 @@ msgctxt "Options: Separator: Title"
 msgid " &raquo; "
 msgstr ""
 
-#: inc/template.php:158
+#: inc/template.php:166
 msgctxt "Modules: Template: Title Attr"
 msgid "Front Page"
 msgstr ""
 
 #. translators: %s: display name
-#: inc/template.php:227
+#: inc/template.php:235
 msgctxt "Modules: Template: Author"
 msgid "Posts by %s"
 msgstr ""
 
-#: inc/template.php:309
+#: inc/template.php:317
 msgctxt "Options: Separator: Nav"
 msgid " &laquo; "
 msgstr ""
 
-#: inc/template.php:344
+#: inc/template.php:352
 msgid "&copy; All rights reserved."
 msgstr ""
 
-#: inc/template.php:361
+#: inc/template.php:369
 msgctxt "Root: End: Before Site Modified"
 msgid "Last updated on"
 msgstr ""

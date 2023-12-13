@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gTheme 3\n"
 "Report-Msgid-Bugs-To: https://github.com/geminorum/gtheme_03/issues\n"
-"POT-Creation-Date: 2023-09-29T02:09:59+00:00\n"
-"PO-Revision-Date: 2023-09-29 05:40+0330\n"
+"POT-Creation-Date: 2023-12-13T02:56:04+00:00\n"
+"PO-Revision-Date: 2023-12-13 06:26+0330\n"
 "Last-Translator: geminorum <contact@geminorum.ir>\n"
 "Language-Team: geminorum <contact@geminorum.ir>\n"
 "Language: fa_IR\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.3.2\n"
+"X-Generator: Poedit 3.4.1\n"
 "X-Textdomain-Support: yes\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ..\n"
@@ -122,57 +122,57 @@ msgctxt "Carousel Control"
 msgid "Next"
 msgstr "بعدی"
 
-#: inc/banners.php:259
+#: inc/banners.php:260
 msgctxt "Modules: Menu Name"
 msgid "Banners"
 msgstr "بنرها"
 
-#: inc/banners.php:343
+#: inc/banners.php:344
 msgctxt "Modules: Banners"
 msgid "Custom Banners"
 msgstr "بنرهای سفارشی"
 
-#: inc/banners.php:347
+#: inc/banners.php:348
 msgctxt "Modules: Banners"
 msgid "Legend"
 msgstr "توضیحات"
 
-#: inc/banners.php:349
+#: inc/banners.php:350
 msgctxt "Modules: Banners"
 msgid "Your theme extra information"
 msgstr "اطلاعات بیشتر پوسته شما"
 
-#: inc/banners.php:354
+#: inc/banners.php:355
 msgctxt "Modules: Banners"
 msgid "Group"
 msgstr "گروه"
 
-#: inc/banners.php:355
+#: inc/banners.php:356
 msgctxt "Modules: Banners"
 msgid "Ord."
 msgstr "تـ"
 
-#: inc/banners.php:356
+#: inc/banners.php:357
 msgctxt "Modules: Banners"
 msgid "Title"
 msgstr "عنوان"
 
-#: inc/banners.php:357
+#: inc/banners.php:358
 msgctxt "Modules: Banners"
 msgid "URL"
 msgstr "نشانی"
 
-#: inc/banners.php:358
+#: inc/banners.php:359
 msgctxt "Modules: Banners"
 msgid "Image"
 msgstr "تصویر"
 
-#: inc/banners.php:447
+#: inc/banners.php:448
 msgctxt "Modules: Banners"
 msgid "Add Another"
 msgstr "افزودن گزینه دیگر"
 
-#: inc/banners.php:448
+#: inc/banners.php:449
 msgctxt "Modules: Banners"
 msgid "Save"
 msgstr "ذخیره"
@@ -180,11 +180,6 @@ msgstr "ذخیره"
 #: inc/bootstrap.php:55 inc/bootstrap.php:72
 msgid "Toggle navigation"
 msgstr "برای تغییر وضعیت کلیک کنید"
-
-# @ gtheme
-#: inc/cache.php:101
-msgid "Refreshed!"
-msgstr "تازه‌شد!"
 
 #: inc/colors.php:30
 msgctxt "Editor Custom Palette"
@@ -1259,27 +1254,27 @@ msgctxt "Options: Separator: Title"
 msgid " &raquo; "
 msgstr " &laquo; "
 
-#: inc/template.php:158
+#: inc/template.php:166
 msgctxt "Modules: Template: Title Attr"
 msgid "Front Page"
 msgstr "صفحه نخست"
 
 #. translators: %s: display name
-#: inc/template.php:227
+#: inc/template.php:235
 msgctxt "Modules: Template: Author"
 msgid "Posts by %s"
 msgstr "نوشته‌های %s"
 
-#: inc/template.php:309
+#: inc/template.php:317
 msgctxt "Options: Separator: Nav"
 msgid " &laquo; "
 msgstr " &raquo; "
 
-#: inc/template.php:344
+#: inc/template.php:352
 msgid "&copy; All rights reserved."
 msgstr "تمام حقوق محفوظ است."
 
-#: inc/template.php:361
+#: inc/template.php:369
 msgctxt "Root: End: Before Site Modified"
 msgid "Last updated on"
 msgstr "آخرین به‌روزرسانی در"
@@ -1974,6 +1969,10 @@ msgstr "برگه جست‌وجوی پیشرفته"
 #. Template Name of the theme
 msgid "System Page"
 msgstr "برگه سیستم"
+
+# @ gtheme
+#~ msgid "Refreshed!"
+#~ msgstr "تازه‌شد!"
 
 #~ msgctxt "Settings Module"
 #~ msgid "All Posts"
