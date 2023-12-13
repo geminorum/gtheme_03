@@ -1,0 +1,9 @@
+{
+  "reject": [
+    "del",
+    "gulp-debug",
+    "gulp-size",
+    "gulp-zip",
+    "bootstrap"
+  ]
+}
