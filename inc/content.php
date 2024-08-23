@@ -930,7 +930,7 @@ class gThemeContent extends gThemeModuleCore
 		$loading = gThemeOptions::info( 'bootstrap_qrcode_loading', sprintf( '<small>%s</small>', _x( 'Loading&hellip;', 'Qr-Code', 'gtheme' ) ) );
 
 		$dropdown = '<div class="dropdown-menu dropdown-menu-'.$float.' ';
-		$dropdown.= 'p-0 text-center bg-white rounded-0 -qrcode-wrap" style="width:'.( $size + 2 ).'px;height:'.( $size + 2 ).'px;min-width:unset"';
+		$dropdown.= 'p1-0 text-center bg-white rounded-0 -qrcode-wrap" style="width:'.( $size + 10 ).'px;height:'.( $size + 10 ).'px;min-width:unset;text-align:center;padding-top:5px"';
 		if ( $title ) $dropdown.= ' data-toggle="tooltip" data-bs-toggle="tooltip" data-placement="bottom" data-bs-placement="bottom" title="'.esc_attr( $title ).'"';
 		$dropdown.= '>'.$loading.'</div>';
 
@@ -955,7 +955,7 @@ class gThemeContent extends gThemeModuleCore
 		// wp_enqueue_script( 'gtheme-bootstrap-qrcode', GTHEME_URL.'/js/script.bootstrap-qrcode'.( SCRIPT_DEBUG ? '' : '.min' ).'.js', [ 'jquery', ], GTHEME_VERSION, TRUE );
 
 		$script = <<<'JS'
-jQuery(function(a){a(".-action.-bootstrap-qrcode").on("show.bs.dropdown",function(c){if(!a(this).data("qrcode")){c=a(this).find("a.bootstrap-qrcode-toggle");var b=c.data("qrcode-size");a(this).find(".-qrcode-wrap").html(a("<img />",{src:"https://chart.apis.google.com/chart?cht=qr&chs="+b+"x"+b+"&chld=L%7C2&chl="+encodeURIComponent(c.data("qrcode-url")),alt:"qrcode"}));a(this).data("qrcode",!0)}})});
+jQuery(function($){$('.-action.-bootstrap-qrcode').on('show.bs.dropdown',function(event){if($(this).data('qrcode'))return;const $link=$(this).find('a.bootstrap-qrcode-toggle');const size=$link.data('qrcode-size');$(this).find('.-qrcode-wrap').html($('<img />',{src:'https://api.qrserver.com/v1/create-qr-code/?size='+size+'x'+size+'&ecc=M&data='+encodeURIComponent($link.data('qrcode-url')),alt:'qrcode'}));$(this).data('qrcode',true);});});
 JS;
 		// @REF: https://core.trac.wordpress.org/ticket/44551
 		// @REF: https://wordpress.stackexchange.com/a/311279
