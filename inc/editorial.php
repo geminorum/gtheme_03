@@ -180,7 +180,7 @@ class gThemeEditorial extends gThemeModuleCore
 		if ( ! self::availableEditorial( 'series' ) )
 			return NULL;
 
-		$html = gEditorial()->series->series_shortcode( $atts );
+		$html = gEditorial()->series->main_shortcode( $atts );
 
 		if ( ! $verbose )
 			return $html;

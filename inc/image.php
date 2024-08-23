@@ -164,8 +164,9 @@ class gThemeImage extends gThemeModuleCore
 		$document = new \DOMDocument();
 		libxml_use_internal_errors( TRUE );
 
-		$content = mb_convert_encoding( $content, 'HTML-ENTITIES', 'UTF-8' );
-		$document->loadHTML( utf8_decode( $content ) ); // FIXME: `utf8_decode()` deprecated @since PHP8.2.0
+		// $content = mb_convert_encoding( $content, 'HTML-ENTITIES', 'UTF-8' ); // DEPRECATED: @since PHP 8.2.0
+		$content = htmlentities( $content );
+		$document->loadHTML( utf8_decode( $content ) ); // FIXME: `utf8_decode()` deprecated @since PHP 8.2.0
 		$images = $document->getElementsByTagName( 'img' );
 
 		foreach ( $images as $image )

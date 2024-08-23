@@ -15,7 +15,7 @@ class gThemeTheme extends gThemeModuleCore
 			'feed_links'        => TRUE, // Adds default posts and comments RSS feed links to head.
 			'post_formats'      => FALSE,
 			'custom_background' => FALSE,
-			'custom_header'     => FALSE, // @REF: https://developer.wordpress.org/themes/functionality/custom-headers/
+			'custom_header'     => FALSE,
 			'custom_logo'       => TRUE,
 			'custom_fontsizes'  => FALSE,
 			'html5'             => TRUE,
@@ -98,9 +98,8 @@ class gThemeTheme extends gThemeModuleCore
 					'admin-preview-callback' => '',
 			] ) );
 
-		if ( $custom_header ) {
-			add_theme_support( 'custom-header' ); // FIXME: add args!
-		}
+		if ( $custom_header )
+			$this->_support_custom_headers();
 
 		if ( $custom_logo )
 			$this->_support_custom_logo();
@@ -178,6 +177,12 @@ class gThemeTheme extends gThemeModuleCore
 		if ( $alignwide_support ) {
 			add_theme_support( 'align-wide' );
 		}
+	}
+
+	// @REF: https://developer.wordpress.org/themes/functionality/custom-headers/
+	private function _support_custom_headers()
+	{
+		add_theme_support( 'custom-header' ); // FIXME: add args!
 	}
 
 	// @REF: https://developer.wordpress.org/themes/functionality/custom-logo/
