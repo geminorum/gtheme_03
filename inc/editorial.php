@@ -829,7 +829,14 @@ class gThemeEditorial extends gThemeModuleCore
 		return \geminorum\gEditorial\Modules\Book\ModuleTemplate::cover( $atts );
 	}
 
+	// FIXME: DEPRECATED
 	public static function bookBarcodeISBN( $atts = [], $check = FALSE )
+	{
+		self::_dep( 'gThemeEditorial::isbnBarcode()' );
+		return self::isbnBarcode( $atts);
+	}
+
+	public static function isbnBarcode( $atts = [] )
 	{
 		if ( ! array_key_exists( 'default', $atts ) )
 			$atts['default'] = FALSE;
@@ -837,16 +844,13 @@ class gThemeEditorial extends gThemeModuleCore
 		if ( ! array_key_exists( 'id', $atts ) )
 			$atts['id'] = NULL;
 
-		if ( $check && ( 'publication' != get_post_type( $atts['id'] ) ) )
+		if ( ! self::availableEditorial( 'isbn' ) )
 			return $atts['default'];
 
-		if ( ! self::availableEditorial( 'book' ) )
+		if ( ! is_callable( [ 'geminorum\\gEditorial\\Modules\\Isbn\\ModuleTemplate', 'barcode' ] ) )
 			return $atts['default'];
 
-		if ( ! is_callable( [ 'geminorum\\gEditorial\\Modules\\Book\\ModuleTemplate', 'barcodeISBN' ] ) )
-			return $atts['default'];
-
-		return \geminorum\gEditorial\Modules\Book\ModuleTemplate::barcodeISBN( $atts );
+		return \geminorum\gEditorial\Modules\Isbn\ModuleTemplate::barcode( $atts );
 	}
 
 	public static function bookMetaSummary( $atts = [], $check = FALSE )
