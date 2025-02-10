@@ -80,6 +80,60 @@ $theme-fonts-repo: "../../gtheme_03/fonts" !default;
 // http://rastikerdar.github.io/vazirmatn/
 // https://rastikerdar.github.io/vazirmatn/fa/docs/HELP-fa
 
+@mixin theme-fonts-VazirMatn-Normal($base: $theme-fonts-repo) {
+
+  $font-family-normal: "Vazirmatn", "Tahoma", "Iranian Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif !global;
+
+  $name: "Vazirmatn";
+  $folder: "vazirmatn";
+  $file: "VazirMatn-Regular";
+  $path: $base + "/" + $folder + "/" + $file;
+
+  @at-root {
+    @font-face {
+      font-family: "#{$name}";
+      font-style: normal;
+      font-weight: 400;
+      src: url($path + ".woff2");
+      src:
+        // url($path + ".eot?#iefix") format("embedded-opentype"),
+        url($path + ".woff2") format("woff2");
+        // url($path + ".woff") format("woff"),
+        // url($path + ".ttf") format("truetype");
+
+      @include theme-fonts-unicoderange-Persian;
+      font-display: swap;
+    }
+  }
+}
+
+@mixin theme-fonts-VazirMatn-Bold($base: $theme-fonts-repo) {
+
+  $font-family-bold: "Vazirmatn", "Arial", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", "Helvetica", sans-serif !global;
+
+  $name: "Vazirmatn";
+  $folder: "vazirmatn";
+  $file: "VazirMatn-Bold";
+  $path: $base + "/" + $folder + "/" + $file;
+
+  @at-root {
+    @font-face {
+      font-family: "#{$name}";
+      font-style: normal;
+      font-weight: 700;
+      src: url($path + ".woff2");
+      src:
+        // url($path + ".eot?#iefix") format("embedded-opentype"),
+        url($path + ".woff2") format("woff2");
+        // url($path + ".woff") format("woff"),
+        // url($path + ".ttf") format("truetype");
+
+      @include theme-fonts-unicoderange-Persian;
+      font-display: swap;
+    }
+  }
+}
+
 @mixin theme-fonts-VazirMatn-Thin-CDN() {
 
   $font-family-thin: "Vazirmatn", "Tahoma", "Iranian Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif !global;

@@ -4,6 +4,9 @@
 /// Blocks: Comments 04 - 2019-12-13
 
 ////////////////////////////////////////////////////////////////////////////////
+@use "sass:color";
+
+////////////////////////////////////////////////////////////////////////////////
 $spacer: 1rem !default;
 $theme-color-border: $gray-light !default;
 
@@ -61,7 +64,7 @@ $theme-color-border: $gray-light !default;
 
     &::before {
       content: "|";
-      color: lighten($theme-color-border, 10);
+      color: color.adjust($theme-color-border, $lightness: 10%);
       margin-right: $spacer * .5;
     }
   }
@@ -76,7 +79,7 @@ $theme-color-border: $gray-light !default;
 
       &::before {
         content: "|";
-        color: lighten($theme-color-border, 10);
+        color: color.adjust($theme-color-border, $lightness: 10%);
         margin-right: $spacer * .5;
       }
     }
@@ -91,7 +94,7 @@ $theme-color-border: $gray-light !default;
   }
 
   .comment-actions {
-    border-top: 1px dashed lighten($theme-color-border, 10);
+    border-top: 1px dashed color.adjust($theme-color-border, $lightness: 10%);
     padding: $spacer * .25;
   }
 

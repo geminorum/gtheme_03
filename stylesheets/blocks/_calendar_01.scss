@@ -5,6 +5,9 @@
 // gPersianDate Calendar Markup
 
 ////////////////////////////////////////////////////////////////////////////////
+@use "sass:color";
+
+////////////////////////////////////////////////////////////////////////////////
 table.wp-calendar-table, // core's
 table.date-calendar {
   width: 100%;
@@ -51,7 +54,7 @@ table.date-calendar {
   th,
   td {
     text-align: center;
-    border: 1px solid lighten($gray-light, 50%);
+    border: 1px solid color.adjust($gray-light, $lightness: 50%);
   }
 
   td:not(.-pad):hover {

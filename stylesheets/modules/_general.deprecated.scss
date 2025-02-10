@@ -161,6 +161,10 @@
 // DEPRECATED: use @include mainwrap()
 %main_wrap {
   // @warn "DEPRECATED: Theme Utilities: %main_wrap";
+  padding: 0;
+  margin: 0;
+  border: 0;
+
   @extend %box-reset;
 
   *,
@@ -170,10 +174,6 @@
   *::before {
     @extend %box-reset;
   }
-
-  padding: 0;
-  margin: 0;
-  border: 0;
 }
 
 // MUST DEPRECATED: use @include mainwrap()

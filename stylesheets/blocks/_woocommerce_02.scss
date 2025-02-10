@@ -1,0 +1,56 @@
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+/// Blocks: WooCommerce 02 - 2024-11-29
+
+////////////////////////////////////////////////////////////////////////////////
+.woocommerce {
+}
+
+// div.woocommerce-notices-wrapper {}
+
+.woocommerce-form-row > label {
+  @extend .form-label;
+}
+
+// .woocommerce-Input,
+.woocommerce .input-text {
+  @extend .form-control;
+}
+
+// .woocommerce-Button, { //  woocommerce-button button woocommerce-form-register__submit
+.woocommerce .button {
+  @extend .btn;
+}
+
+// .woocommerce-form-register__submit,
+// .woocommerce-form-login__submit,
+.woocommerce-Button {
+  @extend .btn-primary;
+}
+
+.woocommerce form.checkout_coupon,
+.woocommerce form.login,
+.woocommerce form.register {
+  border-radius: $input-border-radius;
+}
+
+
+nav.woocommerce-MyAccount-navigation {
+  ul {
+    @extend .nav;
+    @extend .flex-column;
+
+    li {
+      @extend .nav-item;
+
+      > a {
+        @extend .nav-link;
+      }
+    }
+  }
+
+  .is-active > a {
+    @extend .active;
+  }
+}

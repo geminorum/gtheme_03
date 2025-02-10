@@ -4,11 +4,14 @@
 /// Modules: Theme: Linking ----------------------------------------------------
 
 ////////////////////////////////////////////////////////////////////////////////
+@use "sass:color";
+
+////////////////////////////////////////////////////////////////////////////////
 @mixin theme-link-color( $color: $gray-light ) {
   color: $color;
 
   &:hover {
-    color: darken($color, 75%);
+    color: color.adjust($color, $lightness: -75%);
     text-decoration: none;
   }
 }
