@@ -257,7 +257,7 @@ class gThemeEditorial extends gThemeModuleCore
 
 		$html = gEditorial()->course->main_shortcode( $atts );
 
-		wp_reset_postdata(); // since callback used setup post data
+		wp_reset_postdata(); // NOTE: since callback used setup post data
 
 		if ( ! $verbose )
 			return $html;

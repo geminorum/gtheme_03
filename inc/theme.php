@@ -204,6 +204,8 @@ class gThemeTheme extends gThemeModuleCore
 			// 	gThemeOptions::info( 'blog_name', '' ), // site-title
 			// 	gThemeOptions::info( 'frontpage_desc', '' ), // site-description
 			// ],
+
+			// 'unlink-homepage-logo' => TRUE,
 		], is_array( $atts ) ? $atts : [] );
 
 		return add_theme_support( 'custom-logo', $args );

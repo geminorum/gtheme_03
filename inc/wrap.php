@@ -104,6 +104,7 @@ class gThemeWrap extends gThemeModuleCore
 	}
 
 	// USED IN: head.php
+	// @REF: `get_language_attributes()`
 	public static function htmlOpen( $after = '' )
 	{
 		$atts    = [];
