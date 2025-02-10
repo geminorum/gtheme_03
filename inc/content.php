@@ -1198,6 +1198,9 @@ addthis_config.services_custom = [
 	{
 		$singular = is_singular();
 
+		if ( $singular && gThemeWooCommerce::isPage() )
+			return;
+
 		$args = self::atts( [
 			'post'        => NULL,
 			'context'     => 'single',

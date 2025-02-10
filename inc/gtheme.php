@@ -85,6 +85,8 @@ final class gThemeCore
 			'editorial'  => 'gThemeEditorial',
 			'attachment' => 'gThemeAttachment',
 			'colors'     => 'gThemeColors',
+
+			'woocommerce' => 'gThemeWooCommerce',
 		];
 
 		if ( is_admin() ) {

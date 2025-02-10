@@ -21,6 +21,7 @@ class gThemeTheme extends gThemeModuleCore
 			'html5'             => TRUE,
 			'js'                => FALSE,
 			'hooks'             => FALSE, // NO NEED
+			'wc_support'        => FALSE,
 			'bp_support'        => TRUE,
 			'bp_no_styles'      => TRUE,
 			'print_support'     => TRUE,
@@ -57,6 +58,9 @@ class gThemeTheme extends gThemeModuleCore
 
 		if ( $feed_links )
 			add_theme_support( 'automatic-feed-links' );
+
+		if ( $wc_support )
+			add_theme_support( 'woocommerce', gThemeOptions::info( 'woocommerce_support', gThemeWooCommerce::defaults() ) );
 
 		if ( $bp_support )
 			add_theme_support( 'buddypress' );
