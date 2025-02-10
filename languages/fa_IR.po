@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gTheme 3\n"
 "Report-Msgid-Bugs-To: https://github.com/geminorum/gtheme_03/issues\n"
-"POT-Creation-Date: 2023-12-13T02:56:04+00:00\n"
-"PO-Revision-Date: 2023-12-13 06:26+0330\n"
+"POT-Creation-Date: 2025-02-10T20:45:54+00:00\n"
+"PO-Revision-Date: 2025-02-11 00:16+0330\n"
 "Last-Translator: geminorum <contact@geminorum.ir>\n"
 "Language-Team: geminorum <contact@geminorum.ir>\n"
 "Language: fa_IR\n"
@@ -11,28 +11,33 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.4.1\n"
+"X-Generator: Poedit 3.5\n"
 "X-Textdomain-Support: yes\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ..\n"
 
 #. Theme Name of the theme
+#: style.css
 msgid "gTheme 3"
 msgstr "پوسته ۳"
 
 #. Theme URI of the theme
+#: style.css
 msgid "https://github.com/geminorum/gtheme_03"
 msgstr ""
 
 #. Description of the theme
+#: style.css
 msgid "Theme Framwork for WordPress"
 msgstr "چهارچوب پوسته برای وردپرس"
 
 #. Author of the theme
+#: style.css
 msgid "geminorum"
 msgstr "ژمای‌نوروم"
 
 #. Author URI of the theme
+#: style.css
 msgid "https://geminorum.ir/"
 msgstr "https://fa.geminorum.ir/"
 
@@ -573,17 +578,17 @@ msgid ""
 "%s"
 msgstr "روی پیوند کلیک کنید: %s"
 
-#: inc/content.php:1387
+#: inc/content.php:1390
 msgctxt "Modules: Content: Link Pages"
 msgid "Next page"
 msgstr "صفحه بعدی"
 
-#: inc/content.php:1388
+#: inc/content.php:1391
 msgctxt "Modules: Content: Link Pages"
 msgid "Previous page"
 msgstr "صفحه قبلی"
 
-#: inc/content.php:1400
+#: inc/content.php:1403
 msgctxt "Modules: Content: Link Pages"
 msgid "Pages:"
 msgstr "صفحه‌ها:"
@@ -702,28 +707,28 @@ msgid "; "
 msgstr "؛ "
 
 #. translators: %1$s: size name, %2$s: size height, %3$s: size width
-#: inc/image.php:340
+#: inc/image.php:341
 msgctxt "Image Module: Media Tag Checkbox Label"
 msgid "%1$s <small>(%2$s&times;%3$s)</small>"
 msgstr ""
 
 # @ gtheme
-#: inc/image.php:355
+#: inc/image.php:356
 msgid "Media Tags"
 msgstr "برچسب‌ها"
 
 # @ gtheme
-#: inc/image.php:425
+#: inc/image.php:426
 msgid "&mdash; Select a Term &mdash;"
 msgstr "&mdash; انتخاب کنید &mdash;"
 
 # @ gtheme
-#: inc/image.php:435
+#: inc/image.php:436
 msgid "Assign for"
 msgstr "تخصیص برای"
 
 #. translators: %s: post title
-#: inc/image.php:738
+#: inc/image.php:739
 msgctxt "Modules: Image: Link Label"
 msgid "Read more about %s"
 msgstr "درباره %s بیشتر بخوانید"
@@ -1254,27 +1259,27 @@ msgctxt "Options: Separator: Title"
 msgid " &raquo; "
 msgstr " &laquo; "
 
-#: inc/template.php:166
+#: inc/template.php:167
 msgctxt "Modules: Template: Title Attr"
 msgid "Front Page"
 msgstr "صفحه نخست"
 
 #. translators: %s: display name
-#: inc/template.php:235
+#: inc/template.php:236
 msgctxt "Modules: Template: Author"
 msgid "Posts by %s"
 msgstr "نوشته‌های %s"
 
-#: inc/template.php:317
+#: inc/template.php:318
 msgctxt "Options: Separator: Nav"
 msgid " &laquo; "
 msgstr " &raquo; "
 
-#: inc/template.php:352
+#: inc/template.php:353
 msgid "&copy; All rights reserved."
 msgstr "تمام حقوق محفوظ است."
 
-#: inc/template.php:369
+#: inc/template.php:370
 msgctxt "Root: End: Before Site Modified"
 msgid "Last updated on"
 msgstr "آخرین به‌روزرسانی در"
@@ -1487,42 +1492,42 @@ msgstr "خالی کردن قبل از ماه گذشته"
 msgid "Connected Posts"
 msgstr "نوشته‌های مرتبط"
 
-#: inc/theme.php:119
+#: inc/theme.php:118
 msgctxt "Editor Custom Font Sizes"
 msgid "Small"
 msgstr "کوچک"
 
-#: inc/theme.php:120
+#: inc/theme.php:119
 msgctxt "Editor Custom Font Sizes"
 msgid "S"
 msgstr "کـ"
 
-#: inc/theme.php:125
+#: inc/theme.php:124
 msgctxt "Editor Custom Font Sizes"
 msgid "Regular"
 msgstr "معمولی"
 
-#: inc/theme.php:126
+#: inc/theme.php:125
 msgctxt "Editor Custom Font Sizes"
 msgid "M"
 msgstr "مـ"
 
-#: inc/theme.php:131
+#: inc/theme.php:130
 msgctxt "Editor Custom Font Sizes"
 msgid "Large"
 msgstr "بزرگ"
 
-#: inc/theme.php:132
+#: inc/theme.php:131
 msgctxt "Editor Custom Font Sizes"
 msgid "L"
 msgstr "بـ"
 
-#: inc/theme.php:137
+#: inc/theme.php:136
 msgctxt "Editor Custom Font Sizes"
 msgid "Larger"
 msgstr "بزرگتر"
 
-#: inc/theme.php:138
+#: inc/theme.php:137
 msgctxt "Editor Custom Font Sizes"
 msgid "XL"
 msgstr "بـ تـ"
@@ -1956,6 +1961,10 @@ msgstr ""
 #. Template Name of the theme
 msgid "Latest Page"
 msgstr "برگه آخرین‌ها"
+
+#. Template Name of the theme
+msgid "New-Post Page"
+msgstr "برگه فرسته تازه"
 
 #: partials/entry-publication.php:38
 msgctxt "Partial: Entry: Publication"
