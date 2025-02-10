@@ -26,6 +26,10 @@
     "tinypng": ""
   },
   "sass": {
+    "silenceDeprecations": [
+      "import",
+      "legacy-js-api"
+    ],
     "errLogToConsole": true
   },
   "cssnano": {
