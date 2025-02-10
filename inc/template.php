@@ -20,6 +20,7 @@ class gThemeTemplate extends gThemeModuleCore
 			'singular'      => 'col-sm-8',
 			'attachment'    => 'col-sm-8',
 			'systempage'    => 'col-sm-6',
+			'newpost'       => 'col-sm-12',
 			'fullwidthpage' => 'col-sm-12',
 			'signup'        => 'col-sm-12',
 			'activate'      => 'col-sm-12',
