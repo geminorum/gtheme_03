@@ -165,7 +165,10 @@ class gThemeEditorial extends gThemeModuleCore
 		if ( ! self::availableEditorial( 'socialite' ) )
 			return NULL;
 
-		$html = gEditorial()->socialite->socialite_shortcode( $atts );
+		if ( ! is_callable( [ gEditorial()->socialite, 'main_shortcode' ] ) )
+			return NULL;
+
+		$html = gEditorial()->socialite->main_shortcode( $atts );
 
 		if ( ! $verbose )
 			return $html;
@@ -178,6 +181,9 @@ class gThemeEditorial extends gThemeModuleCore
 	public static function series( $atts = [], $verbose = TRUE )
 	{
 		if ( ! self::availableEditorial( 'series' ) )
+			return NULL;
+
+		if ( ! is_callable( [ gEditorial()->series, 'main_shortcode' ] ) )
 			return NULL;
 
 		$html = gEditorial()->series->main_shortcode( $atts );
@@ -209,7 +215,10 @@ class gThemeEditorial extends gThemeModuleCore
 		if ( ! self::availableEditorial( 'book' ) )
 			return NULL;
 
-		$html = gEditorial()->book->publication_shortcode( $atts );
+		if ( ! is_callable( [ gEditorial()->book, 'main_shortcode' ] ) )
+			return NULL;
+
+		$html = gEditorial()->book->main_shortcode( $atts );
 
 		if ( ! $verbose )
 			return $html;
@@ -240,10 +249,13 @@ class gThemeEditorial extends gThemeModuleCore
 		if ( ! self::availableEditorial( 'course' ) )
 			return NULL;
 
+		if ( ! is_callable( [ gEditorial()->course, 'main_shortcode' ] ) )
+			return NULL;
+
 		if ( ! array_key_exists( 'item_cb', $atts ) )
 			$atts['item_cb'] = [ __CLASS__, 'courseLessonRowCallback' ];
 
-		$html = gEditorial()->course->course_shortcode( $atts );
+		$html = gEditorial()->course->main_shortcode( $atts );
 
 		wp_reset_postdata(); // since callback used setup post data
 
@@ -305,6 +317,9 @@ class gThemeEditorial extends gThemeModuleCore
 		if ( ! self::availableEditorial( 'modified' ) )
 			return NULL;
 
+		if ( ! is_callable( [ gEditorial()->modified, 'site_modified_shortcode' ] ) )
+			return NULL;
+
 		$html = gEditorial()->modified->site_modified_shortcode( $atts );
 
 		if ( ! $verbose )
@@ -318,6 +333,9 @@ class gThemeEditorial extends gThemeModuleCore
 	public static function postModified( $atts = [], $verbose = TRUE )
 	{
 		if ( ! self::availableEditorial( 'modified' ) )
+			return NULL;
+
+		if ( ! is_callable( [ gEditorial()->modified, 'post_modified_shortcode' ] ) )
 			return NULL;
 
 		$html = gEditorial()->modified->post_modified_shortcode( $atts );
@@ -335,7 +353,10 @@ class gThemeEditorial extends gThemeModuleCore
 		if ( ! self::availableEditorial( 'attachments' ) )
 			return NULL;
 
-		$html = gEditorial()->attachments->attachments_shortcode( $atts );
+		if ( ! is_callable( [ gEditorial()->attachments, 'main_shortcode' ] ) )
+			return NULL;
+
+		$html = gEditorial()->attachments->main_shortcode( $atts );
 
 		if ( ! $verbose )
 			return $html;
@@ -348,6 +369,9 @@ class gThemeEditorial extends gThemeModuleCore
 	public static function addendumAppendages( $atts = [], $verbose = TRUE )
 	{
 		if ( ! self::availableEditorial( 'addendum' ) )
+			return NULL;
+
+		if ( ! is_callable( [ gEditorial()->addendum, 'main_shortcode' ] ) )
 			return NULL;
 
 		$html = gEditorial()->module( 'addendum' )->main_shortcode( $atts );
@@ -365,7 +389,10 @@ class gThemeEditorial extends gThemeModuleCore
 		if ( ! self::availableEditorial( 'venue' ) )
 			return NULL;
 
-		$html = gEditorial()->venue->place_shortcode( $atts );
+		if ( ! is_callable( [ gEditorial()->venue, 'main_shortcode' ] ) )
+			return NULL;
+
+		$html = gEditorial()->venue->main_shortcode( $atts );
 
 		if ( ! $verbose )
 			return $html;
@@ -670,10 +697,13 @@ class gThemeEditorial extends gThemeModuleCore
 		if ( ! self::availableEditorial( 'dossier' ) )
 			return NULL;
 
+		if ( ! is_callable( [ gEditorial()->dossier, 'main_shortcode' ] ) )
+			return NULL;
+
 		if ( ! array_key_exists( 'item_cb', $atts ) )
 			$atts['item_cb'] = [ __CLASS__, 'dossierRowCallback' ];
 
-		$html = gEditorial()->module( 'dossier' )->dossier_shortcode( $atts );
+		$html = gEditorial()->module( 'dossier' )->main_shortcode( $atts );
 
 		wp_reset_postdata(); // since callback used setup post data
 
@@ -729,10 +759,13 @@ class gThemeEditorial extends gThemeModuleCore
 		if ( ! self::availableEditorial( 'magazine' ) )
 			return NULL;
 
+		if ( ! is_callable( [ gEditorial()->magazine, 'main_shortcode' ] ) )
+			return NULL;
+
 		if ( ! array_key_exists( 'item_cb', $atts ) )
 			$atts['item_cb'] = [ __CLASS__, 'issueRowCallback' ];
 
-		$html = gEditorial()->magazine->issue_shortcode( $atts );
+		$html = gEditorial()->magazine->main_shortcode( $atts );
 
 		wp_reset_postdata(); // since callback used setup post data
 
