@@ -9,7 +9,8 @@ class gThemeWooCommerce extends gThemeModuleCore
 		extract( self::atts( [
 			'product_gallery' => TRUE,
 			'disable_thumbs'  => TRUE,
-			'disable_styles'  => TRUE,
+			'disable_styles'  => FALSE,
+			'bootstrap'       => FALSE,
 		], $args ) );
 
 		if ( ! gThemeWordPress::isPluginActive( 'woocommerce/woocommerce.php' ) )
@@ -31,8 +32,26 @@ class gThemeWooCommerce extends gThemeModuleCore
 			add_filter( 'woocommerce_background_image_regeneration', '__return_false' );
 		}
 
-		if ( $disable_styles )
-			add_filter( 'woocommerce_enqueue_styles', '__return_false' );
+		if ( $disable_styles ) {
+			// @REF: https://woocommerce.com/document/disable-the-default-stylesheet/
+			add_filter( 'woocommerce_enqueue_styles', '__return_empty_array', 9999 );
+
+			add_action( 'wp_enqueue_scripts',
+				static function () {
+					wp_dequeue_style( 'wc-blocks-style' ); // Woo-Commerce Blocks
+					wp_dequeue_style( 'brands-styles' );
+					// wp_dequeue_style( 'yith-wcwl-rendering-methods-frontend' );
+					// wp_dequeue_style( 'yith-wcwl-rendering-methods' );
+					// wp_dequeue_style( 'yith-wcwl-add-to-wishlist' );
+				}, 999 );
+		}
+
+		if ( $bootstrap ) {
+			add_filter( 'woocommerce_form_field_args', [ $this, 'form_field_args' ], 99, 3 );
+			add_filter( 'woocommerce_quantity_input_args', [ $this, 'quantity_input_args' ], 99, 2 );
+			add_filter( 'woocommerce_breadcrumb_defaults', [ $this, 'breadcrumb_defaults' ], 99, 1 );
+			// add_filter( 'woocommerce_checkout_fields', [ $this, 'checkout_fields' ], 99, 1 );
+		}
 	}
 
 	// @REF: https://github.com/woocommerce/woocommerce/wiki/Declaring-WooCommerce-support-in-themes
@@ -84,5 +103,77 @@ class gThemeWooCommerce extends gThemeModuleCore
 		// @SEE: https://www.businessbloomer.com/woocommerce-get-cart-checkout-account-urls/
 
 		return FALSE;
+	}
+
+	public function breadcrumb_defaults( $defaults )
+	{
+		$defaults['wrap_before'] = '<nav class="woocommerce-breadcrumb" aria-label="breadcrumb"><ol class="breadcrumb">';
+		$defaults['wrap_after']  = '</ol></nav>';
+		$defaults['before']      = '<li class="breadcrumb-item">';
+		$defaults['after']       = '</li>';
+		$defaults['delimiter']   = '';
+
+		return $defaults;
+	}
+
+	public function quantity_input_args( $args, $product )
+	{
+		$args['classes'][] = 'form-control';
+
+		return $args;
+	}
+
+	// @REF: https://rudrastyh.com/woocommerce/woocommerce_form_field.html
+	public function form_field_args( $args, $key, $value )
+	{
+		if ( in_array( $args['type'], [ 'hidden' ], TRUE ) )
+			return $args;
+
+		switch ( $args['type'] ) {
+
+			case 'radio':
+			case 'checkbox':
+
+				$args['class'][]       = 'form-check';
+				$args['input_class'][] = 'form-check-input';
+				$args['label_class'][] = 'form-check-label';
+
+				break;
+
+			default:
+
+				$args['class'][]       = 'form-group'; // NOTE: `.form-group` is DEPRECATED as BS5
+				$args['input_class'][] = 'form-control';
+				$args['label_class'][] = 'form-label';
+		}
+
+		// NOTE: sometimes the type is `text`
+		if ( in_array( $args['type'], [ 'state', 'country' ], TRUE )
+			|| in_array( $args['id'], [ 'billing_city', 'shipping_city', 'billing_state', 'shipping_state' ], TRUE ) )
+				// @REF: https://apalfrey.github.io/select2-bootstrap-5-theme/
+				$args['custom_attributes']['data-theme'] = 'bootstrap-5';
+
+		return $args;
+	}
+
+	// NO NEED
+	public function checkout_fields( $fields )
+	{
+		$groups = [
+			'account',
+			'billing',
+			'shipping',
+			'order',
+		];
+
+		foreach ( $groups as $group ) {
+			foreach ( $fields[$group] as $field => $args ) {
+				$fields[$group][$field]['class'][]       = 'form-group';
+				$fields[$group][$field]['input_class'][] = 'form-control';
+				$fields[$group][$field]['label_class'][] = 'form-label';
+			}
+		}
+
+		return $fields;
 	}
 }
