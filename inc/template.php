@@ -387,6 +387,12 @@ class gThemeTemplate extends gThemeModuleCore
 		echo gThemeText::autoP( gThemeText::wordWrap( $copyright ), FALSE );
 	}
 
+	public static function svgIcon( $id, $before = '', $after = '', $extra = [] )
+	{
+		return $before.'<span class="'.gThemeHTML::prepClass( '-theme-icon-wrap', $extra ).'">'.
+			'<svg class="-theme-icon -theme-icon-svg"><use xlink:href="#'.$id.'"></use></svg></span>'.$after;
+	}
+
 	public static function telephone( $number, $before = '', $after = '', $atts = [] )
 	{
 		echo $before;
