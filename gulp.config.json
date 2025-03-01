@@ -28,6 +28,9 @@
   "sass": {
     "silenceDeprecations": [
       "import",
+      "mixed-decls",
+      "color-functions",
+      "global-builtin",
       "legacy-js-api"
     ],
     "errLogToConsole": true
