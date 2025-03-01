@@ -50,7 +50,7 @@ class gThemeTemplate extends gThemeModuleCore
 			$column = $columns[$posttype];
 
 		else
-			$column = gThemeOptions::info( 'template_column_fallback', $full ? '' : 'col-sm-8' );
+			$column = gThemeOptions::info( 'template_column_fallback', $full ? 'col' : 'col-sm-8' );
 
 		$classes = [ 'wrap-content', 'wrap-content-'.$context ];
 
@@ -206,7 +206,7 @@ class gThemeTemplate extends gThemeModuleCore
 		echo $after;
 	}
 
-	// only for wp users
+	// NOTE: only for WP users
 	// @REF: `get_the_author_posts_link()`
 	public static function author( $post = NULL, $verbose = TRUE )
 	{
@@ -238,8 +238,8 @@ class gThemeTemplate extends gThemeModuleCore
 		] );
 	}
 
-	// FIXME: DEPRECATED
-	// ANCESTOR : gtheme_get_term_link_tag()
+	// NOTE: DEPRECATED
+	// ANCESTOR: `gtheme_get_term_link_tag()`
 	public static function term_link( $term, $taxonomy, $title = NULL )
 	{
 		self::_dep( 'gThemeTerms::getTermLink()' );
@@ -271,8 +271,8 @@ class gThemeTemplate extends gThemeModuleCore
 		] );
 	}
 
-	// FIXME: DEPRECATED
-	// ANCESTOR : get_category_parents()
+	// NOTE: DEPRECATED
+	// ANCESTOR: `get_category_parents()`
 	public static function term_parents( $id, $sep = 'def', $taxonomy = 'category', $visited = [] )
 	{
 		self::_dep( 'gThemeTerms::getWithParents()' );
@@ -295,8 +295,8 @@ class gThemeTemplate extends gThemeModuleCore
 		return $html;
 	}
 
-	// FIXME: DEPRECATED
-	// ANCESTOR : gtheme_get_the_categories()
+	// NOTE: DEPRECATED
+	// ANCESTOR: `gtheme_get_the_categories()`
 	public static function the_terms( $sep = 'def', $taxonomy = 'category', $mode = 'both' )
 	{
 		self::_dep();
@@ -355,7 +355,7 @@ class gThemeTemplate extends gThemeModuleCore
 		return FALSE;
 	}
 
-	// ANCESTOR : gtheme_copyright()
+	// ANCESTOR: `gtheme_copyright()`
 	public static function copyright( $before = '<p class="copyright text-muted credit">', $after = '</p>', $p = FALSE )
 	{
 		$copyright = self::getCopyright( 'default' );

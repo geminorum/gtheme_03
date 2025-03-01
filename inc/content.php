@@ -200,7 +200,7 @@ class gThemeContent extends gThemeModuleCore
 			}
 		}
 
-		// FIXME: check posttype: video: featured people
+		// FIXME: check post-type: video: featured people
 
 		if ( gThemeOptions::supports( 'geditorial-meta', TRUE ) ) {
 
@@ -828,9 +828,9 @@ class gThemeContent extends gThemeModuleCore
 			case 'editorial_label':
 
 				gThemeEditorial::label( [
-					'post_id' => $post->ID,
-					'before'  => sprintf( $before, 'entry-label' ),
-					'after'   => $after,
+					'id'     => $post,
+					'before' => sprintf( $before, 'entry-label' ),
+					'after'  => $after,
 				] );
 
 			break;
@@ -1258,10 +1258,9 @@ addthis_config.services_custom = [
 
 		if ( $args['meta'] )
 			gThemeEditorial::metaOverTitle( $post, [
-				'post_id' => $post->ID,
-				'before'  => '<'.$args['meta_tag'].' class="-overtitle overtitle '.$args['prefix'].'-overtitle"'.( $args['itemprop'] ? ' itemprop="alternativeHeadline"' : '' ).'>',
-				'after'   => '</'.$args['meta_tag'].'>',
-				'trim'    => $args['trim_meta'],
+				'before' => '<'.$args['meta_tag'].' class="-overtitle overtitle '.$args['prefix'].'-overtitle"'.( $args['itemprop'] ? ' itemprop="alternativeHeadline"' : '' ).'>',
+				'after'  => '</'.$args['meta_tag'].'>',
+				'trim'   => $args['trim_meta'],
 			] );
 
 		echo '<'.$args['title_tag'].' class="-title title '.$args['prefix'].'-title'.( $args['amp'] ? ' amp-wp-title' : '' ).'"';
@@ -1296,8 +1295,8 @@ addthis_config.services_custom = [
 
 			} else if ( 'meta' == $args['title_attr'] ) {
 
-				$overtitle = gThemeEditorial::metaOverTitle( $post, [ 'post_id' => $post->ID, 'echo' => FALSE ] );
-				$subtitle  = gThemeEditorial::metaSubTitle( $post, [ 'post_id' => $post->ID, 'echo' => FALSE ] );
+				$overtitle = gThemeEditorial::metaOverTitle( $post, [ 'echo' => FALSE ] );
+				$subtitle  = gThemeEditorial::metaSubTitle( $post, [ 'echo' => FALSE ] );
 
 				$args['title_attr'] = $overtitle;
 
@@ -1326,10 +1325,9 @@ addthis_config.services_custom = [
 
 		if ( $args['meta'] )
 			gThemeEditorial::metaSubTitle( $post, [
-				'post_id' => $post->ID,
-				'before'  => '<'.$args['meta_tag'].' class="-subtitle subtitle '.$args['prefix'].'-subtitle"'.( $args['itemprop'] ? ' itemprop="alternativeHeadline"' : '' ).'>',
-				'after'   => '</'.$args['meta_tag'].'>',
-				'trim'    => $args['trim_meta'],
+				'before' => '<'.$args['meta_tag'].' class="-subtitle subtitle '.$args['prefix'].'-subtitle"'.( $args['itemprop'] ? ' itemprop="alternativeHeadline"' : '' ).'>',
+				'after'  => '</'.$args['meta_tag'].'>',
+				'trim'   => $args['trim_meta'],
 			] );
 
 		do_action( 'gtheme_content_header_close', $post, $args );

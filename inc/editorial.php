@@ -610,6 +610,7 @@ class gThemeEditorial extends gThemeModuleCore
 			'page'        => FALSE,
 			'video'       => 'creation_date',
 			'publication' => 'publication_date',
+			'product'     => 'production_date',
 		];
 
 		$map   = array_merge( $defaults, (array) gThemeOptions::info( 'editorial_datestring_map', [] ) );
@@ -617,6 +618,9 @@ class gThemeEditorial extends gThemeModuleCore
 
 		if ( ! $field )
 			return $atts['default'];
+
+		if ( ! array_key_exists( 'post_id', $atts ) )
+			$atts['post_id'] = $post;
 
 		if ( ! array_key_exists( 'wordwrap', $atts ) )
 			$atts['wordwrap'] = TRUE;
@@ -644,6 +648,7 @@ class gThemeEditorial extends gThemeModuleCore
 			'channel'     => FALSE,
 			'collection'  => 'over_title',
 			'publication' => 'publication_tagline',
+			'product'     => 'tagline',  // @SEE: `gThemeWooCommerce::single_product_summary_before()`
 		];
 
 		$map   = array_merge( $defaults, (array) gThemeOptions::info( 'editorial_overtitle_map', [] ) );
@@ -651,6 +656,9 @@ class gThemeEditorial extends gThemeModuleCore
 
 		if ( ! $field )
 			return $atts['default'];
+
+		if ( ! array_key_exists( 'post_id', $atts ) )
+			$atts['post_id'] = $post;
 
 		if ( ! array_key_exists( 'wordwrap', $atts ) )
 			$atts['wordwrap'] = TRUE;
@@ -678,6 +686,7 @@ class gThemeEditorial extends gThemeModuleCore
 			'channel'     => FALSE,
 			'collection'  => 'sub_title',
 			'publication' => 'sub_title',
+			'product'     => 'sub_title', // @SEE: `gThemeWooCommerce::single_product_summary_after()`
 		];
 
 		$map   = array_merge( $defaults, (array) gThemeOptions::info( 'editorial_subtitle_map', [] ) );
@@ -685,6 +694,9 @@ class gThemeEditorial extends gThemeModuleCore
 
 		if ( ! $field )
 			return $atts['default'];
+
+		if ( ! array_key_exists( 'post_id', $atts ) )
+			$atts['post_id'] = $post;
 
 		if ( ! array_key_exists( 'wordwrap', $atts ) )
 			$atts['wordwrap'] = TRUE;
@@ -866,7 +878,7 @@ class gThemeEditorial extends gThemeModuleCore
 	public static function bookBarcodeISBN( $atts = [], $check = FALSE )
 	{
 		self::_dep( 'gThemeEditorial::isbnBarcode()' );
-		return self::isbnBarcode( $atts);
+		return self::isbnBarcode( $atts );
 	}
 
 	public static function isbnBarcode( $atts = [] )

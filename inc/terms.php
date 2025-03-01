@@ -653,6 +653,7 @@ class gThemeTerms extends gThemeModuleCore
 			'channel'     => 'channel_category',
 			'collection'  => 'collection_group',
 			'publication' => 'publication_subject',
+			'product'     => 'product_cat',
 		];
 
 		$map = array_merge( $defaults, (array) gThemeOptions::info( 'post_main_taxonomy_map', [] ) );

@@ -69,7 +69,7 @@ class gThemeNavigation extends gThemeModuleCore
 		echo apply_filters( 'gtheme_navigation_content', gThemeHTML::tag( 'nav', [ 'class' => $classes ], $html.'</ul>' ), $context );
 	}
 
-	public static function paginate( $atts = [], $query = NULL )
+	public static function paginate( $atts = [], $query = NULL, $extra = [] )
 	{
 		if ( is_null( $query ) )
 			$query = $GLOBALS['wp_query'];
@@ -87,7 +87,8 @@ class gThemeNavigation extends gThemeModuleCore
 		], $atts ), [
 			'type'    => 'array',
 			'format'  => '?paged=%#%',
-			'base'    => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
+			// 'base'    => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
+			'base'    => esc_url_raw( str_replace( $big, '%#%', remove_query_arg( 'add-to-cart', get_pagenum_link( $big ) ) ) ),
 			'current' => max( 1, get_query_var( 'paged' ) ),
 			'total'   => isset( $query->max_num_pages ) ? $query->max_num_pages : 1,
 		] );
@@ -96,7 +97,7 @@ class gThemeNavigation extends gThemeModuleCore
 		if ( ! $links = paginate_links( $args ) )
 			return;
 
-		echo '<nav>';
+		echo '<nav class="-pagination '.gThemeHTML::prepClass( $extra ).'" aria-label="'._x( 'Page Navigation', 'Modules: Navigation: Pagination: aria-label', 'gtheme' ).'">';
 
 			printf( '<h2 class="screen-reader-text sr-only visually-hidden">%s</h2>',
 				_x( 'Navigation', 'Modules: Navigation: Screen Reader Title', 'gtheme' ) );
@@ -109,7 +110,7 @@ class gThemeNavigation extends gThemeModuleCore
 		echo '</ul></nav>';
 	}
 
-	// ANCESTOR: gtheme_content_nav()
+	// ANCESTOR: `gtheme_content_nav()`
 	public static function part( $context = NULL, $max_num_pages = NULL )
 	{
 		global $wp_query;
