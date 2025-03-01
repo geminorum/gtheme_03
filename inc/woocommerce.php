@@ -11,6 +11,7 @@ class gThemeWooCommerce extends gThemeModuleCore
 			'disable_thumbs'  => TRUE,
 			'disable_styles'  => FALSE,
 			'bootstrap'       => FALSE,
+			'wrapping'        => TRUE,
 		], $args ) );
 
 		if ( ! gThemeWordPress::isPluginActive( 'woocommerce/woocommerce.php' ) )
@@ -43,6 +44,11 @@ class gThemeWooCommerce extends gThemeModuleCore
 			add_filter( 'woocommerce_quantity_input_args', [ $this, 'quantity_input_args' ], 99, 2 );
 			add_filter( 'woocommerce_breadcrumb_defaults', [ $this, 'breadcrumb_defaults' ], 99, 1 );
 			// add_filter( 'woocommerce_checkout_fields', [ $this, 'checkout_fields' ], 99, 1 );
+		}
+
+		if ( $wrapping ) {
+			add_action( 'woocommerce_before_main_content', [ __CLASS__, 'before_main_content' ], -999 );
+			add_action( 'woocommerce_after_main_content', [ __CLASS__, 'after_main_content' ], 999 );
 		}
 	}
 
@@ -182,4 +188,13 @@ class gThemeWooCommerce extends gThemeModuleCore
 		}
 	}
 
+	public static function before_main_content()
+	{
+		gThemeTemplate::wrapOpen( 'woocommerce' );
+	}
+
+	public static function after_main_content()
+	{
+		gThemeTemplate::wrapClose( 'woocommerce' );
+	}
 }
