@@ -343,6 +343,11 @@ class gThemeFilters extends gThemeModuleCore
 		if ( $extra = gThemeOptions::getOption( 'body_class_extra', FALSE ) )
 			$classes = array_merge( $classes, array_map( 'sanitize_html_class', explode( ' ', $extra ) ) );
 
+		if ( $bootstrap = gThemeBootstrap::version() ) {
+			$classes[] = 'theme-based-bootstrap';
+			$classes[] = sprintf( 'theme-based-bootstrap-v%s', $bootstrap );
+		}
+
 		if ( gThemeOptions::info( 'bootstrap_navbar_fixed', FALSE ) )
 			$classes[] = 'navbar-fixed';
 
