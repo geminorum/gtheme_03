@@ -145,6 +145,13 @@ class gThemeWooCommerce extends gThemeModuleCore
 
 				break;
 
+			case 'select':
+
+				$args['input_class'][] = 'form-select';
+				$args['label_class'][] = 'form-label';
+
+				break;
+
 			default:
 
 				$args['class'][]       = 'form-group'; // NOTE: `.form-group` is DEPRECATED as BS5
