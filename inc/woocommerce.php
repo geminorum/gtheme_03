@@ -35,15 +35,7 @@ class gThemeWooCommerce extends gThemeModuleCore
 		if ( $disable_styles ) {
 			// @REF: https://woocommerce.com/document/disable-the-default-stylesheet/
 			add_filter( 'woocommerce_enqueue_styles', '__return_empty_array', 9999 );
-
-			add_action( 'wp_enqueue_scripts',
-				static function () {
-					wp_dequeue_style( 'wc-blocks-style' ); // Woo-Commerce Blocks
-					wp_dequeue_style( 'brands-styles' );
-					// wp_dequeue_style( 'yith-wcwl-rendering-methods-frontend' );
-					// wp_dequeue_style( 'yith-wcwl-rendering-methods' );
-					// wp_dequeue_style( 'yith-wcwl-add-to-wishlist' );
-				}, 999 );
+			add_action( 'wp_enqueue_scripts', [ $this, 'wp_enqueue_scripts' ], 9999 );
 		}
 
 		if ( $bootstrap ) {
@@ -176,4 +168,18 @@ class gThemeWooCommerce extends gThemeModuleCore
 
 		return $fields;
 	}
+
+	public function wp_enqueue_scripts()
+	{
+		$list = [
+			'wc-blocks-style',  // Woo-Commerce Blocks
+			'brands-styles'  ,  // Woo-Commerce Brands
+		];
+
+		foreach ( $list as $handle ) {
+			wp_dequeue_style( $handle );
+			wp_deregister_style( $handle );
+		}
+	}
+
 }
