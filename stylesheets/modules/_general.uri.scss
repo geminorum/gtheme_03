@@ -4,6 +4,11 @@
 /// Modules: General: URI
 
 ////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+@use "sass:math";
+@use "sass:string";
+
+////////////////////////////////////////////////////////////////////////////////
 // @REF: https://css-tricks.com/probably-dont-base64-svg/
 // @REF: https://codepen.io/tigt/post/optimizing-svgs-in-data-uris
 // @SEE: https://github.com/tigt/mini-svg-data-uri
@@ -13,7 +18,7 @@
 @function theme-svg-url($svg) {
 
   // add missing namespace
-  @if not str-index($svg, xmlns) {
+  @if not string.index($svg, xmlns) {
     $svg: theme-str-replace($svg, "<svg", '<svg xmlns="http://www.w3.org/2000/svg"');
   }
 
@@ -21,10 +26,10 @@
   $encoded: "";
   $slice: 2000;
   $index: 0;
-  $loops: ceil(str-length($svg)/$slice);
+  $loops: math.ceil(string.length($svg) / $slice);
 
   @for $i from 1 through $loops {
-    $chunk: str-slice($svg, $index, $index + $slice - 1);
+    $chunk: string.slice($svg, $index, $index + $slice - 1);
 
     // encode
     $chunk: theme-str-replace($chunk, '"', "'");
@@ -60,13 +65,16 @@
   background-image: theme-svg-url($svg);
 }
 
-// helper function to replace characters in a string
-@function theme-str-replace($string, $search, $replace: "") {
-  $index: str-index($string, $search);
-  @return if($index,
-  str-slice($string, 1, $index - 1) + $replace +
-  theme-str-replace(str-slice($string, $index +
-  str-length($search)), $search, $replace),
-  $string);
-}
 ////////////////////////////////////////////////////////////////////////////////
+// @source https://stackoverflow.com/a/35204306
+// @example `$mySVG: svg-inline("<svg>...</svg>"); html { height: 100vh; background: url($mySVG) 50% no-repeat; }`
+@function svg-inline($string){
+  $result: str-replace($string, "<svg", "<svg xmlns='http://www.w3.org/2000/svg'");
+  $result: str-replace($result, '%', '%25');
+  $result: str-replace($result, '"', '%22');
+  $result: str-replace($result, "'", '%27');
+  $result: str-replace($result, ' ', '%20');
+  $result: str-replace($result, '<', '%3C');
+  $result: str-replace($result, '>', '%3E');
+  @return "data:image/svg+xml;utf8," + $result;
+}

@@ -1,0 +1,80 @@
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+/// Blocks: Dev: Bootstrap Viewports 05 - 2025-02-12
+
+// BS4/BS5
+
+////////////////////////////////////////////////////////////////////////////////
+body::before {
+  content: "UN";
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  z-index: 9999999;
+  background-color: #000;
+  color: $brand-warning;
+  padding: .25rem .5rem;
+  font-size: small;
+  font-weight: 700;
+
+  // html.html-admin-bar & {
+  //   top: 32px;
+  // }
+}
+
+////////////////////////////////////////////////////////////////////////////////
+// Extra small devices (portrait phones, less than 576px)
+@media (max-width: 575.98px) {
+  body::before {
+    content: "XS";
+  }
+}
+
+////////////////////////////////////////////////////////////////////////////////
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) and (max-width: 767.98px) {
+  body::before {
+    content: "SM";
+  }
+}
+
+////////////////////////////////////////////////////////////////////////////////
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) and (max-width: 991.98px) {
+  body::before {
+    content: "MD";
+  }
+}
+
+////////////////////////////////////////////////////////////////////////////////
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  body::before {
+    content: "LG";
+  }
+}
+
+////////////////////////////////////////////////////////////////////////////////
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) and (max-width: 1399.98px) {
+  body::before {
+    content: "XL";
+  }
+}
+
+////////////////////////////////////////////////////////////////////////////////
+// Extra extra large devices (large desktops, 1400px and up)
+@media (min-width: 1400px) {
+  body::before {
+    content: "XXL";
+  }
+}
+
+////////////////////////////////////////////////////////////////////////////////
+// wp-adminbar breakpoint
+// @media screen and (max-width: 782px) {
+//   html.html-admin-bar body::before {
+//     top: 46px;
+//   }
+// }

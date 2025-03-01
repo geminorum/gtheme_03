@@ -1,0 +1,97 @@
+/* stylelint-disable scss/at-extend-no-missing-placeholder */
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+/// Blocks: WooCommerce 03 - 2025-02-13
+
+////////////////////////////////////////////////////////////////////////////////
+.woocommerce {
+
+  input#user_login,
+  input#username,
+  input#password,
+  input#reg_email,
+  input#reg_password,
+  input#coupon_code,
+  input#billing_postcode,
+  input.input-text.ltr {
+    /*rtl:ignore*/
+    direction: ltr;
+
+    + button.show-password-input {
+      /*rtl:ignore*/
+      left: auto;
+      /*rtl:ignore*/
+      right: 0;
+    }
+  }
+
+  span.required,
+  abbr.required {
+    border: none;
+    text-decoration: none;
+    color: $brand-danger;
+    font-size: $spacer;
+    line-height: 1;
+  }
+
+  input.rtl-placeholder::placeholder {
+    text-align: left; // will switch for rtl
+    direction: ltr !important; // will switch for rtl
+  }
+
+  // .button { @extend .btn; }
+  .shop_table { @extend .table; }
+  .woocommerce-product-attributes { @extend .table; }
+
+  .product-category > a > img,
+  img.wp-post-image,
+  img.attachment-woocommerce_thumbnail
+  { @extend .img-fluid; }
+
+  ul.woocommerce-error { @extend .list-group; }
+  ul.woocommerce-error li { @extend .list-group-item; @extend .list-group-item-danger; }
+  p.form-row > p.description { @extend .form-text; }
+  // p.form-row > p.checkout-inline-error-message { @extend .form-text; }
+  p.form-row > p.checkout-inline-error-message { @extend .invalid-feedback; display: block;}
+  // li.woocommerce-MyAccount-navigation-link.is-active { @extend .list-group-item .active; } // SASS NOT WORKING
+
+  div.woocommerce-password-strength {
+    @extend .form-text;
+
+    &.short { color: $brand-warning; }
+    &.bad { color: $brand-danger; }
+    &.good { color: $brand-info; }
+    &.strong { color: $brand-success; }
+  }
+
+  // NOTE: `.form-row` is DEPRECATED as BS5 but used on WooCommerce templates
+  // .form-row {}
+  // .form-row-wide {}
+  // .form-row-first {}
+  // .form-row-last {}
+}
+
+////////////////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////////////////
+// NOTE outside of the wrapper
+// body.woocommerce-demo-store {
+//   position: relative;
+// }
+
+// .woocommerce-store-notice {
+//   position: absolute;
+//   width: 100%;
+//   z-index: 1000;
+//   margin: 0;
+//   bottom: 0;
+//   left: 0;
+//   right: 0;
+//   padding: ($spacer * .5) $spacer;
+
+//   background-color: $brand-warning;
+//   text-align: center;
+
+//   // &.demo_store {}
+// }

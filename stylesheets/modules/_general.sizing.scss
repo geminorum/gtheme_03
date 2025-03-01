@@ -1,9 +1,10 @@
+/* stylelint-disable scss/no-global-function-names */
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 /// Modules: General: Sizing
 
-
+////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 // @REF: [Responsive Aspect-Ratio SCSS Mixin](https://codepen.io/jakob-e/pen/WvrJwN)
 // @include aspect-ratio($ratio or $width, $height);
@@ -16,8 +17,8 @@
   $map : keywords($arglist);
   $height: map-get($map, height) or theme-nth-value($arglist, 2);
   $width: map-get($map, width) or theme-nth-value($arglist, 1);
-  $ratio: map-get($map, ratio) or if($width and $height, $width/$height, theme-nth-value($arglist, 1)) or 1;
-  $padding: 1/$ratio * 100%;
+  $ratio: map-get($map, ratio) or if($width and $height, $width / $height, theme-nth-value($arglist, 1)) or 1;
+  $padding: 1 / $ratio * 100%;
 
   &::before,
   &::after {

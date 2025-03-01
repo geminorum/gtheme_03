@@ -1,0 +1,34 @@
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+/// Modules: General: Functions
+
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+@use "sass:string";
+
+////////////////////////////////////////////////////////////////////////////////
+// helper function to replace characters in a string
+@function theme-str-replace($string, $search, $replace: "") {
+  $index: string.index($string, $search);
+  @return if($index,string.slice($string, 1, $index - 1) + $replace + theme-str-replace(string.slice($string, $index + string.length($search)), $search, $replace), $string);
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+/// @source https://css-tricks.com/snippets/sass/str-replace-function/
+/// Replace `$search` with `$replace` in `$string`
+/// @author Kitty Giraudel
+/// @param {String} $string - Initial string
+/// @param {String} $search - Substring to replace
+/// @param {String} $replace ('') - New value
+/// @return {String} - Updated string
+@function str-replace($string, $search, $replace: '') {
+  $index: string.index($string, $search);
+
+  @if $index {
+    @return string.slice($string, 1, $index - 1) + $replace + str-replace(string.slice($string, $index + string.length($search)), $search, $replace);
+  }
+
+  @return $string;
+}
