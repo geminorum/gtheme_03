@@ -12,6 +12,7 @@ class gThemeWooCommerce extends gThemeModuleCore
 			'disable_styles'  => FALSE,
 			'bootstrap'       => FALSE,
 			'wrapping'        => TRUE,
+			'meta_fields'     => TRUE,
 		], $args ) );
 
 		if ( ! gThemeWordPress::isPluginActive( 'woocommerce/woocommerce.php' ) )
@@ -49,6 +50,12 @@ class gThemeWooCommerce extends gThemeModuleCore
 		if ( $wrapping ) {
 			add_action( 'woocommerce_before_main_content', [ __CLASS__, 'before_main_content' ], -999 );
 			add_action( 'woocommerce_after_main_content', [ __CLASS__, 'after_main_content' ], 999 );
+		}
+
+		if ( $meta_fields ) {
+			add_action( 'woocommerce_single_product_summary', [ __CLASS__, 'single_product_summary_before' ], 4 );  // title is on `5`
+			add_action( 'woocommerce_single_product_summary', [ __CLASS__, 'single_product_summary_after'  ], 6 );  // title is on `5`
+			add_action( 'woocommerce_single_product_summary', [ __CLASS__, 'single_product_summary_byline' ], 8 );  // title is on `5`
 		}
 	}
 
@@ -196,5 +203,51 @@ class gThemeWooCommerce extends gThemeModuleCore
 	public static function after_main_content()
 	{
 		gThemeTemplate::wrapClose( 'woocommerce' );
+	}
+
+	public static function single_product_summary_before()
+	{
+		global $product;
+
+		if ( empty( $product ) || ! is_a( $product, 'WC_Product' ) )
+			return;
+
+		$tag = gThemeOptions::info( 'woocommerce_single_meta_tag', 'h3' );
+
+		gThemeEditorial::meta( 'tagline', [
+			'id'     => $product->get_id(),
+			'before' => '<'.$tag.' class="-overtitle overtitle product-overtitle">',
+			'after'  => '</'.$tag.'>',
+		] );
+	}
+
+	public static function single_product_summary_after()
+	{
+		global $product;
+
+		if ( empty( $product ) || ! is_a( $product, 'WC_Product' ) )
+			return;
+
+		$tag = gThemeOptions::info( 'woocommerce_single_meta_tag', 'h3' );
+
+		gThemeEditorial::meta( 'sub_title', [
+			'id'     => $product->get_id(),
+			'before' => '<'.$tag.' class="-subtitle subtitle product-subtitle">',
+			'after'  => '</'.$tag.'>',
+		] );
+	}
+
+	public static function single_product_summary_byline()
+	{
+		global $product;
+
+		if ( empty( $product ) || ! is_a( $product, 'WC_Product' ) )
+			return;
+
+		gThemeEditorial::author( [
+			'id'     => $product->get_id(),
+			'before' => '<div class="-byline product-byline byline-woocommerce">',
+			'after'  => '</div>',
+		] );
 	}
 }
