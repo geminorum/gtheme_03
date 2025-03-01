@@ -3,6 +3,23 @@
 class gThemeUtilities extends gThemeBaseCore
 {
 
+	public static function enqueueSvgIcons( $name = NULL, $base = NULL )
+	{
+		static $enqueued = FALSE;
+
+		if ( $enqueued )
+			return TRUE;
+
+		add_action( 'wp_footer', function() use ( $name, $base ) {
+			include_once( sprintf( '%s/images/icons/%s.svg',
+				$base ?? GTHEME_CHILD_DIR,
+				$name ?? 'sprites'
+			) );
+		}, 9999 );
+
+		return $enqueued = TRUE;
+	}
+
 	public static function enqueueSlick()
 	{
 		static $enqueued = FALSE;
