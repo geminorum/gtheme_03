@@ -1,0 +1,80 @@
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+/// Modules: General: URI
+
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+@use "sass:math";
+@use "sass:string";
+
+////////////////////////////////////////////////////////////////////////////////
+// @REF: https://css-tricks.com/probably-dont-base64-svg/
+// @REF: https://codepen.io/tigt/post/optimizing-svgs-in-data-uris
+// @SEE: https://github.com/tigt/mini-svg-data-uri
+
+// @REF: [Encode SVG SCSS](https://codepen.io/jakob-e/pen/doMoML)
+// function to create an optimized svg url - v1.0.6 - 2020-03-01
+@function theme-svg-url($svg) {
+
+  // add missing namespace
+  @if not string.index($svg, xmlns) {
+    $svg: theme-str-replace($svg, "<svg", '<svg xmlns="http://www.w3.org/2000/svg"');
+  }
+
+  // chunk up string in order to avoid "stack level too deep" error
+  $encoded: "";
+  $slice: 2000;
+  $index: 0;
+  $loops: math.ceil(string.length($svg) / $slice);
+
+  @for $i from 1 through $loops {
+    $chunk: string.slice($svg, $index, $index + $slice - 1);
+
+    // encode
+    $chunk: theme-str-replace($chunk, '"', "'");
+    $chunk: theme-str-replace($chunk, "%", "%25");
+    $chunk: theme-str-replace($chunk, "#", "%23");
+    $chunk: theme-str-replace($chunk, "{", "%7B");
+    $chunk: theme-str-replace($chunk, "}", "%7D");
+    $chunk: theme-str-replace($chunk, "<", "%3C");
+    $chunk: theme-str-replace($chunk, ">", "%3E");
+
+    // the maybe list: keep size and compile time down ... only add on documented fail
+    // $chunk: theme-str-replace($chunk, "&", "%26");
+    // $chunk: theme-str-replace($chunk, "|", "%7C");
+    // $chunk: theme-str-replace($chunk, "[", "%5B");
+    // $chunk: theme-str-replace($chunk, "]", "%5D");
+    // $chunk: theme-str-replace($chunk, "^", "%5E");
+    // $chunk: theme-str-replace($chunk, "`", "%60");
+    // $chunk: theme-str-replace($chunk, ";", "%3B");
+    // $chunk: theme-str-replace($chunk, "?", "%3F");
+    // $chunk: theme-str-replace($chunk, ":", "%3A");
+    // $chunk: theme-str-replace($chunk, "@", "%40");
+    // $chunk: theme-str-replace($chunk, "=", "%3D");
+
+    $encoded: #{$encoded}#{$chunk};
+    $index: $index + $slice;
+  }
+
+  @return url("data:image/svg+xml,#{$encoded}");
+}
+
+// background svg mixin
+@mixin theme-background-svg($svg) {
+  background-image: theme-svg-url($svg);
+}
+
+////////////////////////////////////////////////////////////////////////////////
+// @source https://stackoverflow.com/a/35204306
+// @example `$mySVG: svg-inline("<svg>...</svg>"); html { height: 100vh; background: url($mySVG) 50% no-repeat; }`
+@function svg-inline($string){
+  $result: str-replace($string, "<svg", "<svg xmlns='http://www.w3.org/2000/svg'");
+  $result: str-replace($result, '%', '%25');
+  $result: str-replace($result, '"', '%22');
+  $result: str-replace($result, "'", '%27');
+  $result: str-replace($result, ' ', '%20');
+  $result: str-replace($result, '<', '%3C');
+  $result: str-replace($result, '>', '%3E');
+  @return "data:image/svg+xml;utf8," + $result;
+}

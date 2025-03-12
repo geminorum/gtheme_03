@@ -1,0 +1,113 @@
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+/// Blocks: Preload 02 - 2025-03-10
+
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+@use "gtheme";
+
+////////////////////////////////////////////////////////////////////////////////
+// preventing white flash before loading on no-js
+
+body {
+  background: gtheme.$body-bg;
+  color: gtheme.$body-color;
+
+  overflow: hidden;
+
+  &.theme-preload-ended {
+    overflow: auto;
+  }
+}
+
+a {
+  &,
+  &:hover {
+    color: gtheme.$link-color;
+  }
+}
+////////////////////////////////////////////////////////////////////////////////
+.preload.-spinner {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 999999;
+  // animation: fadeOut 255500ms;
+
+  &.fade-out {
+    opacity: 0;
+    animation-name: preloadFadeOutOpacity;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-out;
+    // animation-duration: 500ms;
+    animation-duration: 2s;
+    z-index: -9999;
+    // display: none;
+  }
+
+  > div {
+    height: 100%;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    > div {
+      box-sizing: border-box; // here for preventing jumps
+      border-radius: 100%;
+      border-style: solid;
+      border-width: gtheme.$theme-preload-border;
+      height: gtheme.$theme-preload-size;
+      width: gtheme.$theme-preload-size;
+
+      animation: preloadSpinner 1s infinite linear;
+    }
+  }
+
+  &.light {
+    // background: rgba(255, 255, 255, 0.1);
+    // background: #f7f7f7;
+    background: #e8e8e8;
+
+    > div > div {
+      border-color: rgba(255, 255, 255, 0.2);
+      border-top-color: rgba(255, 255, 255, 1);
+    }
+  }
+
+  &.dark {
+    // background: rgba(0, 0, 0, 0.1);
+    background: #252525;
+
+    > div > div {
+      border-color: rgba(0, 0, 0, 0.2);
+      border-top-color: rgba(0, 0, 0, 1);
+    }
+  }
+}
+
+@at-root {
+  @keyframes preloadSpinner {
+    0% {
+      transform: rotate(0);
+    }
+
+    100% {
+      transform: rotate(359.9deg);
+    }
+  }
+
+  @keyframes preloadFadeOutOpacity {
+    0% {
+      opacity: 1;
+    }
+
+    100% {
+      opacity: 0;
+      display: none;
+    }
+  }
+}

@@ -1,11 +1,12 @@
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
-/// Blocks: Calendar 01 - 2019-01-06
+/// Blocks: Calendar 02 - 2025-03-10
 // gPersianDate Calendar Markup
 
 ////////////////////////////////////////////////////////////////////////////////
 @use "sass:color";
+@use "gtheme";
 
 ////////////////////////////////////////////////////////////////////////////////
 table.wp-calendar-table, // core's
@@ -17,7 +18,7 @@ table.date-calendar {
     font-weight: 600;
 
     &:hover {
-      color: $gray !important;
+      color: gtheme.$gray !important;
       text-decoration: none;
     }
   }
@@ -30,13 +31,13 @@ table.date-calendar {
   }
 
   caption {
-    color: $gray-dark;
+    color: gtheme.$gray-dark;
     padding: 6px 12px;
     text-align: center;
   }
 
   thead {
-    background: $gray-lighter;
+    background: gtheme.$gray-lighter;
     // box-shadow: inset 0 -1px 0 #ddd;
   }
 
@@ -54,11 +55,11 @@ table.date-calendar {
   th,
   td {
     text-align: center;
-    border: 1px solid color.adjust($gray-light, $lightness: 50%);
+    border: 1px solid color.adjust(gtheme.$gray-light, $lightness: 50%);
   }
 
   td:not(.-pad):hover {
-    background: $gray-lighter;
+    background: gtheme.$gray-lighter;
   }
 
   // .-day:not(.-with-posts) {}

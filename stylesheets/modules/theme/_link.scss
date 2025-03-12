@@ -1,0 +1,56 @@
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+/// Modules: Theme: Link
+
+////////////////////////////////////////////////////////////////////////////////
+@use "sass:color";
+@use "general/base" as *;
+
+////////////////////////////////////////////////////////////////////////////////
+@mixin color( $color: $gray-light ) {
+  color: $color;
+
+  &:hover {
+    color: color.adjust($color, $lightness: -75%);
+    text-decoration: none;
+  }
+}
+
+////////////////////////////////////////////////////////////////////////////////
+@mixin init($link: $link-color, $hover: $link-hover-color, $heading: $headings-color) {
+  a {
+    color: $link;
+    text-decoration: none;
+    transition: color 0.3s ease-in;
+
+    &:hover,
+    &:focus {
+      color: $hover;
+      text-decoration: underline;
+      outline: none;
+      transition: color 0.1s ease-out;
+    }
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    &,
+    a {
+      color: $heading;
+    }
+
+    // a {
+    //   text-decoration: none;
+    // }
+    //
+    // a:hover,
+    // a:focus {
+    //   text-decoration: underline;
+    // }
+  }
+}

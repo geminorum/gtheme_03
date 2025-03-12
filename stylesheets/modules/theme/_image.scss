@@ -1,0 +1,106 @@
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+/// Modules: Theme: Images -----------------------------------------------------
+
+////////////////////////////////////////////////////////////////////////////////
+@use "sass:math";
+@use "theme/variables" as *;
+@use "general/base" as *;
+
+////////////////////////////////////////////////////////////////////////////////
+// Default Image Styles
+// it's better to be empty and child override it
+@mixin default() {
+  &.no-border {
+    @include noborder();
+  }
+}
+
+// @mixin theme-images-default() {
+//   background-color: $gray-light;
+//   padding: 1px;
+//   max-width: 100%;
+//   height: auto;
+//   border-radius: 2px;
+// }
+
+////////////////////////////////////////////////////////////////////////////////
+@mixin noborder() {
+  background-color: transparent !important;
+  border: none !important;
+}
+
+@mixin caption {
+  position: relative;
+  margin-bottom: $theme-grid-gutter;
+  max-width: 100%;
+  height: auto;
+
+  &.alignright {
+    margin: 0 0 math.div($theme-grid-gutter, 4) $theme-grid-gutter !important;
+  }
+
+  &.alignleft {
+    margin: 0 $theme-grid-gutter math.div($theme-grid-gutter, 4) 0 !important;
+  }
+
+  > p {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+
+    padding: 4px 5px;
+    margin: 0 math.div($theme-grid-gutter, 2) 0 0;
+    text-indent: 0 !important;
+
+    font-size: 0.89em;
+    line-height: normal;
+    border-radius: 2px;
+
+    transition: all 0.3s ease;
+    background: none repeat scroll 0% 0% rgba(0, 0, 0, 0.2);
+    color: $gray-light;
+  }
+
+  &:hover {
+    > p {
+      color: $gray-lighter;
+      background-color: rgba(0, 0, 0, 0.8);
+    }
+  }
+}
+
+@mixin holder {
+  // background-color:$gray-light;
+  background-color: rgba(222, 222, 222, 0.4);
+  display: inline-block;
+
+  // width:100%;
+  // height:100%;
+
+  &::after {
+    // display:inline-block;
+    // width:100%;
+    // height:100%;
+  }
+
+  &.isdev {
+    position: relative;
+  }
+
+  &.isdev::after {
+    content: "404";
+    color: $gray-lighter;
+    // text-align: center;
+    font-weight: 600;
+    font-size: 0.98em;
+    position: absolute;
+    bottom: 0;
+    left: 4px;
+  }
+
+  body.rtl &.isdev::after {
+    content: "\06F4\06F0\06F4";
+  }
+}

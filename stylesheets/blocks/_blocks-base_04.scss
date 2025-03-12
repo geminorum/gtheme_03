@@ -1,0 +1,78 @@
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+/// Blocks: Editor Blocks: Base 04 - 2025-03-10
+
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+@use "gtheme";
+
+////////////////////////////////////////////////////////////////////////////////
+$headings-font-family: gtheme.$font-family-bold !default;
+$headings-font-weight: 700 !default;
+
+////////////////////////////////////////////////////////////////////////////////
+body {
+  .wp-block[data-align="full"] {
+    width: 100%;
+  }
+}
+
+.wp-block {
+  // width: calc(100vw - (2 * 1rem));
+  // max-width: 100%;
+  max-width: calc(#{gtheme.$theme-entry-width} + (2 * 15px)); // entry + paddings
+
+  &[data-align="full"] {
+    max-width: none;
+  }
+
+  &[data-align="wide"] {
+    max-width: gtheme.$theme-container-width;
+  }
+
+  // Only the top level blocks need specific widths,
+  // therefore override for every nested block.
+  .wp-block {
+    width: 100%;
+  }
+}
+
+.edit-post-visual-editor {
+  &.editor-styles-wrapper {
+    font-family: gtheme.$font-family-normal;
+    font-size: gtheme.$theme-font-size;
+    line-height: gtheme.$theme-line-height;
+    color: gtheme.$theme-color-text;
+    background-color: gtheme.$theme-color-background;
+  }
+
+  .editor-post-title__input {
+    font-family: $headings-font-family;
+    font-weight: $headings-font-weight;
+    // font-size: 1.5rem;
+    color: gtheme.$headings-color;
+  }
+
+  // TODO: move this to gNetwork
+  // .wp-block-shortcode {
+  //   .input-control {
+  //     direction: ltr;
+  //   }
+  // }
+
+  .wp-block-image {
+    img {
+      @include theme-images-default();
+    }
+  }
+
+  p {
+    @include theme-default-paragraph();
+  }
+}
+
+////////////////////////////////////////////////////////////////////////////////
+.editor-rich-text__tinymce {
+  white-space: normal; // strange behaviour on lists on RTL
+}

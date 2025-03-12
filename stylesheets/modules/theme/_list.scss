@@ -1,0 +1,91 @@
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+/// Modules: Theme: List
+
+////////////////////////////////////////////////////////////////////////////////
+@use "sass:math";
+@use "general/base" as *;
+@use "theme/variables" as *;
+
+////////////////////////////////////////////////////////////////////////////////
+@mixin reset() {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  list-style: none;
+}
+
+////////////////////////////////////////////////////////////////////////////////
+@mixin inline() {
+  @include reset();
+
+  > li {
+    display: inline-block;
+    @content;
+  }
+}
+
+////////////////////////////////////////////////////////////////////////////////
+@mixin flex() {
+  @include reset();
+
+  display: flex;
+  flex-wrap: wrap;
+  // align-items: center;
+  // justify-content: center;
+
+  > li {
+    @content;
+  }
+}
+
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+// @REF: https://codepen.io/mtclmn/pen/OPQmbx
+@mixin style-diamond($gutter: $theme-grid-gutter, $color: $gray-light) {
+  @include reset();
+
+  li {
+    margin: 0;
+    margin-bottom: math.div($gutter, 2);
+    padding-right: $gutter;
+    position: relative;
+
+    &::after {
+      content: "";
+      height: math.div($gutter, 4);
+      width: math.div($gutter, 4);
+      background: $color;
+      display: block;
+      position: absolute;
+      transform: rotate(45deg);
+      top: math.div($gutter, 3);
+      right: math.div($gutter, 4);
+    }
+  }
+}
+
+////////////////////////////////////////////////////////////////////////////////
+@mixin style-diamond-LTR($gutter: $theme-grid-gutter, $color: $gray-light) {
+  @include reset();
+
+  li {
+    margin: 0;
+    margin-bottom: math.div($gutter, 2);
+    padding-left: $gutter;
+    position: relative;
+
+    &::after {
+      content: "";
+      height: math.div($gutter, 4);
+      width: math.div($gutter, 4);
+      background: $color;
+      display: block;
+      position: absolute;
+      transform: rotate(45deg);
+      top: math.div($gutter, 3);
+      left: math.div($gutter, 4);
+    }
+  }
+}

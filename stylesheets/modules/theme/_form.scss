@@ -1,0 +1,40 @@
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+/// Modules: Theme: Forms ------------------------------------------------------
+
+////////////////////////////////////////////////////////////////////////////////
+
+// USAGE: #{$theme-forms-input-fields} {}
+$input-fields: "input[type=color],input[type=date],input[type=datetime],input[type=datetime-local],input[type=email],input[type=month],input[type=number],input[type=password],input[type=search],input[type=tel],input[type=text],input[type=url],input[type=week],input[type=time],select,textarea";
+
+// USAGE: #{$button-fields} {}
+$button-fields: ".button,a.button,button,input[type=reset],input[type=button],input[type=submit]";
+
+// USAGE: #{$ltr-fields} {}
+$ltr-fields: "input[type=color],input[type=email],input[type=number],input[type=tel],input[type=url]";
+
+////////////////////////////////////////////////////////////////////////////////
+
+// removes the .form-control outline
+@mixin focus-reset($border-color: $input-border-focus) {
+  &:focus {
+    // border-color: $border-color;
+    outline: none;
+    box-shadow: none;
+  }
+}
+
+// @REF: https://codepen.io/tylersticka/pen/pjYavN
+@mixin input-group() {
+  display: flex;
+  align-content: stretch;
+
+  // // > .input-group-addon,
+  // // > .input-group-btn,
+  // > .input-group-append,
+  // > .input-group-prepend,
+  > input {
+    flex: 1 0 auto;
+  }
+}

@@ -1,0 +1,84 @@
+/* stylelint-disable scss/no-global-function-names */
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+/// Modules: General: Sizing
+
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+// @REF: [Responsive Aspect-Ratio SCSS Mixin](https://codepen.io/jakob-e/pen/WvrJwN)
+// @include aspect-ratio($ratio or $width, $height);
+// .class { @include aspect-ratio(); } // No arguments defaults to a 1:1 ratio
+// .class { @include aspect-ratio(16, 9); } // Width and height
+// .class { @include aspect-ratio(1.777778); } // Ratio (calculated width/height)
+// .class { @include aspect-ratio(4px, 3px); } // Comparable units
+// .class { @include aspect-ratio($ratio: 1.2); } // Keywords
+@mixin theme-aspect-ratio($arglist... /*$ratio or $width, $height*/) {
+  $map : keywords($arglist);
+  $height: map-get($map, height) or theme-nth-value($arglist, 2);
+  $width: map-get($map, width) or theme-nth-value($arglist, 1);
+  $ratio: map-get($map, ratio) or if($width and $height, $width / $height, theme-nth-value($arglist, 1)) or 1;
+  $padding: 1 / $ratio * 100%;
+
+  &::before,
+  &::after {
+    content: "";
+    display: table;
+    clear: both;
+    width: 1px;
+    margin-left: -1px;
+  }
+
+  &::before {
+    float: left;
+    padding-bottom: $padding;
+  }
+}
+
+// helper function: return null rather than throwing an error if index is outside list range
+@function theme-nth-value($list, $index) {
+  @return if(length($list) >= $index, nth($list, $index), null);
+}
+
+////////////////////////////////////////////////////////////////////////////////
+// [Convert px to em](https://gist.github.com/ocean90/1552031)
+// Use: font-size: px2em( 12px, 14px );
+@function px2em( $target, $context: $theme-font-size ) {
+  @if $target == 0 {
+    @return 0;
+  }
+
+  @return $target / $context + 0em; /* stylelint-disable-line length-zero-no-unit */
+}
+
+////////////////////////////////////////////////////////////////////////////////
+// [SASS Mixin for converting px values to rem](https://gist.github.com/ocean90/4517823)
+// Based on https://github.com/bitmanic/rem/
+// Examples of usage:
+//   text-shadow: rem( 1px 1px 0 #fff );
+//   font-size: rem( 16px );
+//   @include box-shadow( rem( -2px 2px 0 )	rgba(0,0,0,0.1) );
+@function rem( $px-values, $baseline-px: $theme-baseline-size ) {
+  $baseline-rem: $baseline-px / 1rem;
+
+  @if type-of($px-values) == "number" {
+    @return $px-values / $baseline-rem;
+  } @else {
+    // Create an empty list that we can dump values into
+    $rem-values: unquote("");
+    @each $value in $px-values {
+      @if type-of($value) != "number" {
+        // If the value is no number, return the value as is
+        $rem-values: append($rem-values, $value);
+      } @else if $value == 0 {
+        // If the value is zero, return 0
+        $rem-values: append($rem-values, 0);
+      } @else {
+        $rem-values: append($rem-values, $value / $baseline-rem);
+      }
+    }
+
+    // Return the property and its list of converted values
+    @return $rem-values;
+  }
+}

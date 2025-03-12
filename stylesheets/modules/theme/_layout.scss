@@ -1,0 +1,95 @@
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+/// Modules: Theme: Layout
+
+////////////////////////////////////////////////////////////////////////////////
+@mixin init {
+  html {
+    // box-sizing: border-box;
+
+    /**
+    * // * { font-smoothing: antialiased !important; }
+    */
+
+    &.no-js {
+      .hide-if-no-js {
+        display: none !important;
+      }
+    }
+
+    &:not(.no-js) {
+      .hide-if-js {
+        display: none !important;
+      }
+    }
+  }
+
+  *,
+  *::before,
+  *::after {
+    // box-sizing: inherit;
+    box-sizing: border-box; // https://github.com/sindresorhus/modern-normalize/pull/37
+  }
+
+  body {
+
+    // disables pull-to-refresh but allows overscroll glow effects
+    // @REF: https://stackoverflow.com/a/48417352
+    // @REF: https://developers.google.com/web/updates/2017/11/overscroll-behavior
+    overscroll-behavior-y: contain;
+  }
+
+  @content;
+}
+
+@mixin media {
+
+  @media screen {
+    .d-print-inline, // BS4
+    .visible-print-inline, // BS3
+    .-print-display-inline,
+    .d-print-inline-block, // BS4
+    .visible-print-inline-block, // BS3
+    .-print-display-inline-block,
+    .d-print-block, // BS4
+    .visible-print-block, // BS3
+    .-print-display-block,
+    .-print-only {
+      display: none;
+    }
+  }
+
+  @media print {
+    .noprint,
+    #wpadminbar,
+    #references .cite-scroll.-back,
+    .hidden-print, // BS3
+    .d-print-none, // BS4
+    .-print-hide {
+      display: none;
+    }
+  }
+
+  //////////////////////////////////////////////////////////////////////////////
+  //////////////////////////////////////////////////////////////////////////////
+  /// Text meant only for screen readers
+  // @REF: https://github.com/wpaccessibility/a11ythemepatterns/
+  // @REF: https://core.trac.wordpress.org/ticket/40970
+  // hide visually but not from screen readers
+  .screen-reader-text,
+  .screen-reader-text span,
+  .bp-screen-reader-text, // BuddyPress
+  .ui-helper-hidden-accessible {
+    border: 0;
+    clip: rect(1px, 1px, 1px, 1px);
+    clip-path: inset(50%);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute !important;
+    width: 1px;
+    word-wrap: normal !important;
+  }
+}

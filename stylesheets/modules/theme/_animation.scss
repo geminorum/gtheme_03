@@ -1,0 +1,141 @@
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+/// Modules: Theme: Animation --------------------------------------------------
+
+////////////////////////////////////////////////////////////////////////////////
+@mixin theme-animation-spinner($color:#00AEEF, $size: 60px) {
+  @at-root {
+    @keyframes spinner-rotation {
+      from {
+        transform: rotate(0deg);
+      }
+
+      to {
+        transform: rotate(359deg);
+      }
+    }
+  }
+
+  animation-name: spinner-rotation;
+  animation-duration: 0.6s;
+  animation-iteration-count: infinite;
+  animation-direction: linear;
+
+  height: $size;
+  width: $size;
+  margin: ($size * 2) auto;
+
+  position: relative;
+  // animation: spinner-rotation 0.6s infinite normal;
+
+  border-left: 6px solid rgba($color, .15);
+  border-right: 6px solid rgba($color, .15);
+  border-bottom: 6px solid rgba($color, .15);
+  border-top: 6px solid rgba($color, .8);
+  border-radius: 100%;
+}
+
+////////////////////////////////////////////////////////////////////////////////
+@mixin theme-animation-spinner-OLD($color:#00AEEF, $size: 60px) {
+  @at-root {
+    @keyframes spinner-rotation {
+      from {
+        transform: rotate(0deg);
+      }
+
+      to {
+        transform: rotate(359deg);
+      }
+    }
+  }
+
+  height: $size;
+  width: $size;
+  margin: ($size * 2) auto;
+
+  position: relative;
+  animation: spinner-rotation .6s infinite linear;
+
+  border-left: 6px solid rgba($color, .15);
+  border-right: 6px solid rgba($color, .15);
+  border-bottom: 6px solid rgba($color, .15);
+  border-top: 6px solid rgba($color, .8);
+  border-radius: 100%;
+}
+
+////////////////////////////////////////////////////////////////////////////////
+@mixin theme-animation-pulsate($color:#00AEEF, $size: 60px) {
+  @at-root {
+    @keyframes pulsate {
+      from {
+        width: 1px;
+        height: 1px;
+        margin: 0;
+        opacity: 1;
+      }
+
+      to {
+        width: $size;
+        height: $size;
+        margin: -($size / 2);
+        opacity: 0;
+      }
+    }
+  }
+
+  animation-name: pulsate;
+  animation-duration: 0.6s;
+  animation-iteration-count: infinite;
+  animation-direction: normal;
+
+  border: 5px solid $color;
+  border-radius: $size;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+}
+
+////////////////////////////////////////////////////////////////////////////////
+// @REF: https://jsfiddle.net/hajtwbot/
+@mixin theme-animation-blinking($color:#00AEEF, $time: 0.8s) {
+  @at-root {
+    @keyframes themeblinking {
+      0% {
+        color: $color;
+      }
+
+      49% {
+        color: transparent;
+      }
+
+      50% {
+        color: transparent;
+      }
+
+      99% {
+        color: transparent;
+      }
+
+      100% {
+        color: #000;
+      }
+    }
+  }
+
+  animation: themeblinking $time infinite;
+}
+
+////////////////////////////////////////////////////////////////////////////////
+// @REF: https://jsfiddle.net/umz8t/6490/
+@mixin theme-animation-blinking-2($time: 0.8s, $opacity: 0) {
+  @at-root {
+    @keyframes themeblinking2 {
+      50% {
+        opacity: $opacity;
+      }
+    }
+  }
+
+  animation: themeblinking2 $time linear infinite;
+}
