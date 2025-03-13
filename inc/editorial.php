@@ -1017,6 +1017,23 @@ class gThemeEditorial extends gThemeModuleCore
 		return \geminorum\gEditorial\Modules\Terms\ModuleTemplate::termImage( $atts );
 	}
 
+	public static function termIntro( $atts = [], $term = NULL )
+	{
+		if ( ! array_key_exists( 'default', $atts ) )
+			$atts['default'] = FALSE;
+
+		if ( ! self::availableEditorial( 'terms' ) )
+			return $atts['default'];
+
+		if ( ! is_callable( [ 'geminorum\\gEditorial\\Modules\\Terms\\ModuleTemplate', 'renderTermIntro' ] ) )
+			return $atts['default'];
+
+		if ( ! $term = $term ?? get_queried_object() )
+			return $atts['default'];
+
+		return \geminorum\gEditorial\Modules\Terms\ModuleTemplate::renderTermIntro( $term, $atts );
+	}
+
 	// FIXME: must move to the actual module templates
 	public static function inquireQuestion( $post = NULL, $check = FALSE )
 	{
