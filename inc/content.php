@@ -562,6 +562,7 @@ class gThemeContent extends gThemeModuleCore
 				'comments_link',
 				'edit_post_link',
 				'editorial_estimated',
+				// 'editorial_meta_source',
 			];
 		}
 
@@ -841,6 +842,18 @@ class gThemeContent extends gThemeModuleCore
 					'before' => sprintf( $before, 'entry-estimated' ),
 					'after'  => $after,
 					'prefix' => '',
+				] );
+
+				break;
+
+			case 'editorial_meta_source';
+
+				gThemeEditorial::theSource( [
+					'id'            => $post,
+					'before'        => sprintf( $before, 'entry-meta-source' ),
+					'after'         => $after,
+					'title_swap'    => TRUE,
+					'title_default' => gThemeOptions::info( 'meta_source_title', _x( 'Source', 'Content: Meta Source', 'gtheme' ) ),
 				] );
 		}
 	}
