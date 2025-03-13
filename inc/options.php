@@ -96,8 +96,10 @@ class gThemeOptions extends gThemeModuleCore
 			// 'text_unjustify'   => _x( '[ uJ ]', 'Options: Text Unjustify', 'gtheme' ),
 			// 'text_justify_sep' => _x( ' / ', 'Options: Text Justify Sep', 'gtheme' ),
 
-			'source_before' => _x( 'Source: ', 'Options: Source Before', 'gtheme' ),
-			'reflist_title' => sprintf( '<div class="-wrap-title"><h4 class="-title" id="footnotes">%s</h4></div>', _x( 'Footnotes', 'Options: Reflist Title', 'gtheme' ) ),
+			'source_before'         => _x( 'Source: ', 'Options: Source Before', 'gtheme' ),
+			'reflist_title'         => sprintf( '<div class="-wrap-title"><h4 class="-title" id="footnotes">%s</h4></div>', _x( 'Footnotes', 'Options: Reflist Title', 'gtheme' ) ),
+			'attachments_title'     => sprintf( '<div class="-wrap-title"><h4 class="-title" id="attachments">%s</h4></div>', _x( 'Attachments', 'Options: Attachment List Title', 'gtheme' ) ),
+			'attachments_mimetypes' => [ 'text/markdown', 'application/pdf' ],
 
 			'excerpt_length' => 40,
 			'excerpt_more'   => '&nbsp;&hellip;', // FALSE: empty / TRUE: continueReading()
