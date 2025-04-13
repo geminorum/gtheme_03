@@ -74,7 +74,7 @@
       .pipe(gulp.dest(config.output.css)).on('error', log.error);
   });
 
-  // seperated because of stripping rtl directives in compression
+  // Separated because of stripping rtl directives in compression
   gulp.task('ready:rtl', function () {
     return gulp.src(config.input.sass)
       .pipe(sass.sync(config.sass).on('error', sass.logError))

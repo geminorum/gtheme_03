@@ -12,7 +12,10 @@
       "!./packages/**",
       "!./stylesheets/**"
     ],
-    "sass": "./stylesheets/**/*.scss"
+    "sass": [
+      "./stylesheets/**/*.scss",
+      "!./stylesheets/modules/**"
+    ]
   },
   "output": {
     "css": "./css",
@@ -31,6 +34,7 @@
       "mixed-decls",
       "color-functions",
       "global-builtin",
+      "abs-percent",
       "legacy-js-api"
     ],
     "errLogToConsole": true
