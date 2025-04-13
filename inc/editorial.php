@@ -1114,4 +1114,28 @@ class gThemeEditorial extends gThemeModuleCore
 			echo wpautop( $question );
 		echo '</div>';
 	}
+
+	// NOTE: general use
+	public static function callNetwork( $module, $callback, $args = [], $fallback = '' )
+	{
+		if ( ! self::availableNetwork( $module ) )
+			return $fallback;
+
+		if ( ! is_callable( $callback ) )
+			return $fallback;
+
+		return call_user_func_array( $callback, $args );
+	}
+
+	// NOTE: general use
+	public static function callEditorial( $module, $callback, $args = [], $fallback = '' )
+	{
+		if ( ! self::availableEditorial( $module ) )
+			return $fallback;
+
+		if ( ! is_callable( $callback ) )
+			return $fallback;
+
+		return call_user_func_array( $callback, $args );
+	}
 }
