@@ -21,12 +21,12 @@ body {
   }
 }
 
-a {
-  &,
-  &:hover {
-    color: gtheme.$link-color;
-  }
-}
+// a {
+//   &,
+//   &:hover {
+//     color: gtheme.$link-color;
+//   }
+// }
 ////////////////////////////////////////////////////////////////////////////////
 .preload.-spinner {
   position: fixed;

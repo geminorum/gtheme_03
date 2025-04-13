@@ -56,4 +56,13 @@
       }
     }
   }
+
+  @media print {
+    html.html-admin-bar body {
+      padding-top: 0;
+      &.navbar-fixed {
+        padding-top: $bs;
+      }
+    }
+  }
 }
