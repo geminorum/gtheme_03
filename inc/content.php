@@ -186,6 +186,22 @@ class gThemeContent extends gThemeModuleCore
 		if ( 'page' == $post->post_type )
 			return '';
 
+		if ( $html = gThemeEditorial::byline( [ 'echo' => FALSE ], $post ) ) {
+
+			if ( $verbose )
+				echo $before.$html.$after;
+
+			return $before.$html.$after;
+		}
+
+		if ( $html = gThemeEditorial::metaByline( $post, [ 'echo' => FALSE ] ) ) {
+
+			if ( $verbose )
+				echo $before.$html.$after;
+
+			return $before.$html.$after;
+		}
+
 		$args = [ 'id' => $post->ID, 'echo' => FALSE, 'context' => 'single' ];
 
 		if ( gThemeOptions::supports( 'gpeople', TRUE )

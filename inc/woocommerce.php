@@ -56,6 +56,7 @@ class gThemeWooCommerce extends gThemeModuleCore
 			add_action( 'woocommerce_single_product_summary', [ __CLASS__, 'single_product_summary_before' ], 4 );  // title is on `5`
 			add_action( 'woocommerce_single_product_summary', [ __CLASS__, 'single_product_summary_after'  ], 6 );  // title is on `5`
 			add_action( 'woocommerce_single_product_summary', [ __CLASS__, 'single_product_summary_byline' ], 8 );  // title is on `5`
+			add_action( 'woocommerce_shop_loop_item_title',   [ __CLASS__, 'shop_loop_item_title' ], 15 );
 		}
 	}
 
@@ -251,10 +252,35 @@ class gThemeWooCommerce extends gThemeModuleCore
 		if ( empty( $product ) || ! is_a( $product, 'WC_Product' ) )
 			return;
 
-		gThemeEditorial::author( [
-			'id'     => $product->get_id(),
-			'before' => '<div class="-byline product-byline byline-woocommerce">',
-			'after'  => '</div>',
-		] );
+		gThemeContent::byline(
+			$product->get_id(),
+			'<div class="-byline product-byline byline-woocommerce">',
+			'</div>'
+		);
+	}
+
+	// NOTE: must strip links!
+	public static function shop_loop_item_title()
+	{
+		global $product;
+
+		if ( empty( $product ) || ! is_a( $product, 'WC_Product' ) )
+			return;
+
+		$allowed = [ 'p', 'span', 'strong', 'b', 'i' ];
+
+		if ( $sub = gThemeEditorial::meta( 'sub_title', [ 'id' => $product->get_id(), 'echo' => FALSE ] ) )
+			printf(
+				'<%2$s class="-subtitle subtitle product-subtitle">%1$s</%2$s>',
+				strip_tags( $sub, $allowed ),
+				gThemeOptions::info( 'woocommerce_single_meta_tag', 'h3' )
+			);
+
+		if ( $byline = gThemeContent::byline( $product->get_id(), '', '', FALSE ) )
+			printf(
+				'<%2$s class="-byline product-byline byline-woocommerce">%1$s</%2$s>',
+				strip_tags( $byline, $allowed ),
+				'div'
+			);
 	}
 }

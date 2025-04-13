@@ -281,6 +281,34 @@ class gThemeEditorial extends gThemeModuleCore
 		return \geminorum\gEditorial\Modules\Course\ModuleTemplate::theCourse( $atts );
 	}
 
+	public static function byline( $atts = [], $post = NULL )
+	{
+		if ( ! array_key_exists( 'default', $atts ) )
+			$atts['default'] = FALSE;
+
+		if ( ! self::availableEditorial( 'byline' ) )
+			return $atts['default'];
+
+		if ( ! is_callable( [ 'geminorum\\gEditorial\\Modules\\Byline\\ModuleTemplate', 'renderDefault' ] ) )
+			return $atts['default'];
+
+		return \geminorum\gEditorial\Modules\Byline\ModuleTemplate::renderDefault( $atts, $post );
+	}
+
+	public static function bylineFeatured( $atts = [], $post = NULL )
+	{
+		if ( ! array_key_exists( 'default', $atts ) )
+			$atts['default'] = FALSE;
+
+		if ( ! self::availableEditorial( 'byline' ) )
+			return $atts['default'];
+
+		if ( ! is_callable( [ 'geminorum\\gEditorial\\Modules\\Byline\\ModuleTemplate', 'renderFeatured' ] ) )
+			return $atts['default'];
+
+		return \geminorum\gEditorial\Modules\Byline\ModuleTemplate::renderFeatured( $atts, $post );
+	}
+
 	public static function postLikeButton( $atts = [], $check_systemtags = 'disable-like-button' )
 	{
 		$args = self::atts( [
@@ -498,8 +526,11 @@ class gThemeEditorial extends gThemeModuleCore
 		return TRUE;
 	}
 
+	// NOTE: DEPRECATED
 	public static function author( $atts = [] )
 	{
+		// self::_dep( 'gThemeContent::byline()' );
+
 		if ( ! array_key_exists( 'default', $atts ) )
 			$atts['default'] = FALSE;
 
@@ -595,6 +626,37 @@ class gThemeEditorial extends gThemeModuleCore
 
 		echo $html;
 		return TRUE;
+	}
+
+	public static function metaByline( $post = NULL, $atts = [], $fallback = 'byline' )
+	{
+		if ( ! array_key_exists( 'default', $atts ) )
+			$atts['default'] = FALSE;
+
+		if ( ! $post = gThemeContent::getPost( $post ) )
+			return $atts['default'];
+
+		$defaults = [
+			'post'        => 'byline',
+			'page'        => FALSE,
+			'video'       => 'featured_people',
+			'publication' => 'publication_byline',
+			'product'     => 'byline',
+		];
+
+		$map   = array_merge( $defaults, (array) gThemeOptions::info( 'editorial_byline_map', [] ) );
+		$field = array_key_exists( $post->post_type, $map ) ? $map[$post->post_type] : $fallback;
+
+		if ( ! $field )
+			return $atts['default'];
+
+		if ( ! array_key_exists( 'post_id', $atts ) )
+			$atts['post_id'] = $post;
+
+		// if ( ! array_key_exists( 'wordwrap', $atts ) )
+		// 	$atts['wordwrap'] = TRUE;
+
+		return self::meta( $field, $atts );
 	}
 
 	public static function metaPublished( $post = NULL, $atts = [], $fallback = 'published' )
