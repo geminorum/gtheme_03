@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: gTheme 3 3.21.13\n"
+"Project-Id-Version: gTheme 3\n"
 "Report-Msgid-Bugs-To: https://github.com/geminorum/gtheme_03/issues\n"
-"POT-Creation-Date: 2025-02-10T20:45:54+00:00\n"
-"PO-Revision-Date: 2025-02-11 00:17+0330\n"
+"POT-Creation-Date: 2025-04-13T12:57:32+00:00\n"
+"PO-Revision-Date: 2025-04-13 16:28+0330\n"
 "Last-Translator: geminorum <contact@geminorum.ir>\n"
 "Language-Team: NULL\n"
 "Language: ar\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=6; plural=(n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
 "&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5);\n"
-"X-Generator: Poedit 3.5\n"
+"X-Generator: Poedit 3.6\n"
 "X-Domain: gtheme\n"
 
 #. Theme Name of the theme
@@ -384,202 +384,207 @@ msgid ""
 "below or a search?"
 msgstr ""
 
-#: inc/content.php:246
+#: inc/content.php:261
 msgctxt "Options: Defaults: Date Format: Content"
 msgid "Y/j/m"
 msgstr ""
 
-#: inc/content.php:294
+#: inc/content.php:309
 msgctxt "Modules: Content: Post Title"
 msgid "(untitled)"
 msgstr ""
 
-#: inc/content.php:354
+#: inc/content.php:369
 msgctxt "Content: Read More Edit"
 msgid "Edit"
 msgstr ""
 
-#: inc/content.php:355
+#: inc/content.php:370
 msgctxt "Content: Read More Edit Title"
 msgid "Jump to edit page"
 msgstr ""
 
-#: inc/content.php:360
+#: inc/content.php:375
 msgctxt "Content: Read More Text"
 msgid "Read more&nbsp;<span class=\"excerpt-link-hellip\">&hellip;</span>"
 msgstr ""
 
 #. translators: %s: post title
-#: inc/content.php:362
+#: inc/content.php:377
 msgctxt "Content: Read More Title"
 msgid "Continue reading &ldquo;%s&rdquo; &hellip;"
 msgstr ""
 
 #. translators: %s: post title
-#: inc/content.php:392
+#: inc/content.php:407
 msgctxt "Content: Title Attr"
 msgid "Permanent link to &ndash;%s&ndash;"
 msgstr ""
 
 #. translators: %s: post title
-#: inc/content.php:396
+#: inc/content.php:411
 msgctxt "Content: Title Attr"
 msgid "Short link for &ndash;%s&ndash;"
 msgstr ""
 
-#: inc/content.php:638 inc/content.php:645
+#: inc/content.php:654 inc/content.php:661
 msgctxt "Modules: Content: Action"
 msgid "Share This"
 msgstr "شارك"
 
-#: inc/content.php:652
+#: inc/content.php:668
 msgctxt "Modules: Content: Action"
 msgid "Pocket"
 msgstr ""
 
-#: inc/content.php:663
+#: inc/content.php:679
 msgctxt "Modules: Content: Action"
 msgid "Print Version"
 msgstr "نسخة مطبوعة"
 
-#: inc/content.php:671
+#: inc/content.php:687
 msgctxt "Modules: Content: Action"
 msgid "Short Link"
 msgstr "ارتباط قصیر"
 
-#: inc/content.php:679
+#: inc/content.php:695
 msgctxt "Modules: Content: Action"
 msgid "QR-Code"
 msgstr "رمز الاستجابة السريعة"
 
 #. translators: %s: post title
-#: inc/content.php:682
+#: inc/content.php:698
 msgctxt "Content: Title Attr"
 msgid "QR-Code for &ndash;%s&ndash;"
 msgstr ""
 
 #. translators: %1$s: class name, %2$s: comments number, %3$s: comment url
-#: inc/content.php:722
+#: inc/content.php:738
 msgctxt "Modules: Content: Action"
 msgid "<a href=\"%3$s\" class=\"%1$s\">Your Comment</a>"
 msgstr ""
 
 #. translators: %1$s: class name, %2$s: comments number, %3$s: comment url
-#: inc/content.php:724
+#: inc/content.php:740
 msgctxt "Modules: Content: Action"
 msgid "<a href=\"%3$s\" class=\"%1$s\">One Comment</a>"
 msgstr ""
 
 #. translators: %1$s: class name, %2$s: comments number, %3$s: comment url
-#: inc/content.php:726
+#: inc/content.php:742
 msgctxt "Modules: Content: Action"
 msgid "<a href=\"%3$s\" class=\"%1$s\">%2$s Comments</a>"
 msgstr ""
 
 #. translators: %1$s: comments rss link, %2$s: title attr, %3$s: class name
-#: inc/content.php:737
+#: inc/content.php:753
 msgctxt "Modules: Content: Action"
 msgid ""
 " <small><small>(<a href=\"%1$s\" title=\"%2$s\" class=\"%3$s\"><abbr "
 "title=\"Really Simple Syndication\">RSS</abbr></a>)</small></small>"
 msgstr ""
 
-#: inc/content.php:739
+#: inc/content.php:755
 msgctxt "Modules: Content: Action"
 msgid "Feed for this post's comments"
 msgstr ""
 
-#: inc/content.php:752
+#: inc/content.php:768
 msgctxt "Modules: Content: Action"
 msgid "Edit"
 msgstr "تقوم النص"
 
-#: inc/content.php:763 inc/content.php:783
+#: inc/content.php:779 inc/content.php:799
 msgctxt "Options: Separator: Term"
 msgid ", "
 msgstr ""
 
-#: inc/content.php:930
+#: inc/content.php:871
+msgctxt "Content: Meta Source"
+msgid "Source"
+msgstr ""
+
+#: inc/content.php:958
 msgctxt "Qr-Code"
 msgid "Loading&hellip;"
 msgstr ""
 
-#: inc/content.php:974
+#: inc/content.php:1002
 msgctxt "Options: Text Size Increase"
 msgid "[ A+ ]"
 msgstr ""
 
-#: inc/content.php:977
+#: inc/content.php:1005
 msgctxt "Options: Text Size Decrease"
 msgid "[ A- ]"
 msgstr ""
 
-#: inc/content.php:980
+#: inc/content.php:1008
 msgctxt "Options: Text Size Sep"
 msgid " / "
 msgstr ""
 
-#: inc/content.php:985
+#: inc/content.php:1013
 msgid "Increase font size"
 msgstr ""
 
-#: inc/content.php:992
+#: inc/content.php:1020
 msgid "Decrease font size"
 msgstr ""
 
-#: inc/content.php:1006
+#: inc/content.php:1034
 msgctxt "Options: Text Justify"
 msgid "[ Ju ]"
 msgstr ""
 
-#: inc/content.php:1009
+#: inc/content.php:1037
 msgctxt "Options: Text Unjustify"
 msgid "[ uJ ]"
 msgstr ""
 
-#: inc/content.php:1012
+#: inc/content.php:1040
 msgctxt "Options: Text Justify Sep"
 msgid " / "
 msgstr ""
 
-#: inc/content.php:1017
+#: inc/content.php:1045
 msgid "Justify paragraphs"
 msgstr ""
 
-#: inc/content.php:1024
+#: inc/content.php:1052
 msgid "Un-justify paragraphs"
 msgstr ""
 
-#: inc/content.php:1073
+#: inc/content.php:1101
 msgctxt "Modules: Content: Addtoany"
 msgid "Share This"
 msgstr ""
 
 #. translators: %s: post title
-#: inc/content.php:1088
+#: inc/content.php:1116
 msgctxt "Modules: Content: Addtoany"
 msgid "Check this out %s"
 msgstr ""
 
 #. translators: %s: post link
-#: inc/content.php:1090
+#: inc/content.php:1118
 msgctxt "Modules: Content: Addtoany"
 msgid ""
 "Click the link:\n"
 "%s"
 msgstr ""
 
-#: inc/content.php:1390
+#: inc/content.php:1416
 msgctxt "Modules: Content: Link Pages"
 msgid "Next page"
 msgstr ""
 
-#: inc/content.php:1391
+#: inc/content.php:1417
 msgctxt "Modules: Content: Link Pages"
 msgid "Previous page"
 msgstr ""
 
-#: inc/content.php:1403
+#: inc/content.php:1429
 msgctxt "Modules: Content: Link Pages"
 msgid "Pages:"
 msgstr ""
@@ -614,7 +619,7 @@ msgctxt "Modules: Counts"
 msgid "Item Counts"
 msgstr ""
 
-#: inc/date.php:29
+#: inc/date.php:31
 msgctxt "Options: Defaults: Date Format: Byline"
 msgid "j M Y"
 msgstr ""
@@ -796,114 +801,119 @@ msgctxt "Modules: Navigation: Pagination: Next"
 msgid "<span aria-hidden=\"true\">&rarr;</span>"
 msgstr "<span aria-hidden=\"true\">&larr;</span>"
 
-#: inc/navigation.php:102
+#: inc/navigation.php:100
+msgctxt "Modules: Navigation: Pagination: aria-label"
+msgid "Page Navigation"
+msgstr ""
+
+#: inc/navigation.php:103
 msgctxt "Modules: Navigation: Screen Reader Title"
 msgid "Navigation"
 msgstr ""
 
-#: inc/navigation.php:195
+#: inc/navigation.php:196
 msgctxt "Modules: Navigation: Breadcrumbs"
 msgid "(Preview)"
 msgstr ""
 
 #. translators: %1$s: page number, %2$s: page total
-#: inc/navigation.php:201
+#: inc/navigation.php:202
 msgctxt "Modules: Navigation: Breadcrumbs"
 msgid "Page <strong>%1$s</strong> of %2$s"
 msgstr ""
 
 #. translators: %s: page number
-#: inc/navigation.php:260
+#: inc/navigation.php:261
 msgctxt "Modules: Navigation: Breadcrumbs"
 msgid "Page <strong>%s</strong>"
 msgstr ""
 
-#: inc/navigation.php:325
+#: inc/navigation.php:326
 msgctxt "Modules: Navigation: Breadcrumbs"
 msgid "Not Found"
 msgstr ""
 
-#: inc/navigation.php:330
+#: inc/navigation.php:331
 msgctxt "Modules: Navigation: Breadcrumbs"
 msgid "All Categories"
 msgstr ""
 
 #. translators: %1$s: category title, %2$s: link markup start, %3$s: link markup end
-#: inc/navigation.php:335
+#: inc/navigation.php:336
 msgctxt "Modules: Navigation: Breadcrumbs"
 msgid "%2$sCategory%3$s Archives for <strong>%1$s</strong>"
 msgstr ""
 
-#: inc/navigation.php:341
+#: inc/navigation.php:342
 msgctxt "Modules: Navigation: Breadcrumbs"
 msgid "All Tags"
 msgstr ""
 
 #. translators: %1$s: tag title, %2$s: link markup start, %3$s: link markup end
-#: inc/navigation.php:346
+#: inc/navigation.php:347
 msgctxt "Modules: Navigation: Breadcrumbs"
 msgid "%2$sTag%3$s Archives for <strong>%1$s</strong>"
 msgstr ""
 
-#: inc/navigation.php:352
+#: inc/navigation.php:353
 msgctxt "Modules: Navigation: Breadcrumbs"
 msgid "All People"
 msgstr ""
 
 #. translators: %1$s: person title, %2$s: link markup start, %3$s: link markup end
-#: inc/navigation.php:357
+#: inc/navigation.php:358
 msgctxt "Modules: Navigation: Breadcrumbs"
 msgid "%2$sPeople%3$s Archives for <strong>%1$s</strong>"
 msgstr ""
 
 #. translators: %1$s: tax singular name, %2$s: tax plural name, %3$s: term title, %4$s: link markup start, %5$s: link markup end
-#: inc/navigation.php:384
+#: inc/navigation.php:385
 msgctxt "Modules: Navigation: Breadcrumbs"
 msgid "%4$s%1$s%5$s Archives for <strong>%3$s</strong>"
 msgstr ""
 
 #. translators: %s: posttype title
-#: inc/navigation.php:399
+#: inc/navigation.php:400
 msgctxt "Modules: Navigation: Breadcrumbs"
 msgid "Archives for <strong>%s</strong>"
 msgstr ""
 
 #. translators: %s: display name
-#: inc/navigation.php:413
+#: inc/navigation.php:414
 msgctxt "Modules: Navigation: Breadcrumbs"
 msgid "Author Archives for <strong>%s</strong>"
 msgstr ""
 
 #. translators: %s: search query
-#: inc/navigation.php:421
+#: inc/navigation.php:422
 msgctxt "Modules: Navigation: Breadcrumbs"
 msgid "Search Results for <strong>%s</strong>"
 msgstr ""
 
 #. translators: %s: date
-#: inc/navigation.php:429
+#: inc/navigation.php:430
 msgctxt "Modules: Navigation: Breadcrumbs"
 msgid "Daily Archives for <strong>%s</strong>"
 msgstr ""
 
-#: inc/navigation.php:431
+#: inc/navigation.php:432
 msgctxt "Options: Defaults: Date Format: Day"
 msgid "j M Y"
 msgstr ""
 
 #. translators: %s: date
-#: inc/navigation.php:437
+#: inc/navigation.php:438
 msgctxt "Modules: Navigation: Breadcrumbs"
 msgid "Monthly Archives for <strong>%s</strong>"
 msgstr ""
 
 #. translators: %s: date
-#: inc/navigation.php:445
+#: inc/navigation.php:446
 msgctxt "Modules: Navigation: Breadcrumbs"
 msgid "Yearly Archives for <strong>%s</strong>"
 msgstr ""
 
-#: inc/navigation.php:452
+#: inc/navigation.php:453
 msgctxt "Modules: Navigation: Breadcrumbs"
 msgid "Archives"
 msgstr ""
@@ -928,17 +938,22 @@ msgctxt "Options: Reflist Title"
 msgid "Footnotes"
 msgstr ""
 
-#: inc/options.php:244
+#: inc/options.php:101
+msgctxt "Options: Attachment List Title"
+msgid "Attachments"
+msgstr ""
+
+#: inc/options.php:246
 msgctxt "Media Tag Titles"
 msgid "Raw"
 msgstr ""
 
-#: inc/options.php:255
+#: inc/options.php:257
 msgctxt "Media Tag Titles"
 msgid "Big"
 msgstr ""
 
-#: inc/options.php:266
+#: inc/options.php:268
 msgctxt "Media Tag Titles"
 msgid "Single"
 msgstr ""
@@ -1502,27 +1517,27 @@ msgctxt "Editor Custom Font Sizes"
 msgid "XL"
 msgstr ""
 
-#: inc/utilities.php:280
+#: inc/utilities.php:297
 msgctxt "Alert button (screen reader only)"
 msgid "Close"
 msgstr ""
 
-#: inc/utilities.php:298
+#: inc/utilities.php:315
 msgctxt "Utilities: Join Items Helper"
 msgid "&rdquo;"
 msgstr ""
 
-#: inc/utilities.php:299
+#: inc/utilities.php:316
 msgctxt "Utilities: Join Items Helper"
 msgid "&ldquo; and &rdquo;"
 msgstr ""
 
-#: inc/utilities.php:301
+#: inc/utilities.php:318
 msgctxt "Utilities: Join Items Helper"
 msgid "&ldquo;, &rdquo;"
 msgstr ""
 
-#: inc/utilities.php:304
+#: inc/utilities.php:321
 msgctxt "Utilities: Join Items Helper"
 msgid "&ldquo;"
 msgstr ""
@@ -1933,11 +1948,6 @@ msgstr ""
 
 #. Template Name of the theme
 msgid "New-Post Page"
-msgstr ""
-
-#: partials/entry-publication.php:38
-msgctxt "Partial: Entry: Publication"
-msgid "Attachments"
 msgstr ""
 
 #. Template Name of the theme
