@@ -13,14 +13,18 @@ if ( ! class_exists( 'gThemeChildCore' ) ) { class gThemeChildCore
 	}
 
 	// @REF: https://developer.wordpress.org/reference/functions/load_child_theme_textdomain/#comment-1552
-	protected function _load_textdomain()
+	// `load_child_theme_textdomain( 'gtheme', GTHEME_CHILD_DIR.'/languages' );`
+	// NOTE: `load_child_theme_textdomain` with same text-domain as parent theme no longer working as WP 6.7
+	// @REF: https://core.trac.wordpress.org/ticket/52438
+	protected function _load_textdomain( $textdomain = NULL )
 	{
 		add_action( 'after_setup_theme',
-			static function () {
-				load_child_theme_textdomain( 'gtheme', GTHEME_CHILD_DIR.'/languages' );
+			static function () use ( $textdomain ) {
+				// load_child_theme_textdomain( 'gtheme', GTHEME_CHILD_DIR.'/languages' );
+				// load_child_theme_textdomain( 'gtheme', GTHEME_CHILD_DIR.'/languages/'.determine_locale() . '.mo' );
 				// load_textdomain( 'gtheme', wp_normalize_path( GTHEME_CHILD_DIR.'/languages/'.determine_locale().'.mo' ) );
-				// gnetwork_log(wp_normalize_path( GTHEME_CHILD_DIR.'/languages' ));
-			}
+				load_theme_textdomain( $textdomain ?? 'gtheme', GTHEME_CHILD_DIR.'/languages' );
+			}, 12
 		);
 	}
 } }
