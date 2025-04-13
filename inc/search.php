@@ -63,9 +63,9 @@ class gThemeSearch extends gThemeModuleCore
 		$html = '';
 
 		foreach ( $actions as $id => $args ) {
-			$html.= '<div class="custom-control custom-radio custom-control-inline">';
-				$html.= '<input type="radio" id="action-'.$id.'" name="'.$name.'" class="custom-control-input" data-action="'.$args['action'].'" />';
-				$html.= '<label class="custom-control-label" for="action-'.$id.'">'.$args['title'].'</label>';
+			$html.= '<div class="form-check form-check-inline">';
+				$html.= '<input type="radio" id="action-'.$id.'" name="'.$name.'" class="form-check-input" data-action="'.$args['action'].'" />';
+				$html.= '<label class="form-check-label" for="action-'.$id.'">'.$args['title'].'</label>';
 			$html.= '</div>';
 		}
 
@@ -178,9 +178,9 @@ class gThemeSearch extends gThemeModuleCore
 				$html.= '<input type="search" class="form-control search-field" placeholder="'.esc_attr( self::getPlaceholderText() );
 				$html.= '" value="'.$query.'" name="'.self::getKey().'" title="'.esc_attr( $label ).'" />';
 
-				$html.= '<span class="input-group-btn input-group-append">';
-					$html.= '<button type="submit" class="btn btn-default btn-outline-secondary search-submit">'.self::getSubmitText().'</button>';
-				$html.= '</span>';
+				// $html.= '<span class="input-group-btn input-group-append">';
+					$html.= '<button type="submit" class="btn btn-outline-secondary search-submit">'.self::getSubmitText().'</button>';
+				// $html.= '</span>';
 
 			$html.= '</div>';
 
