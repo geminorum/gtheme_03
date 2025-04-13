@@ -136,11 +136,12 @@ final class gThemeCore
 
 				try {
 
-					$this->{$module_slug} = new $module_class( $args );
+					$this->{$slug} = new $module_class( $args );
 
 				} catch ( Exception $e ) {
 
 					// do nothing!
+					// error_log( $e->getMessage() );
 				}
 			}
 		}

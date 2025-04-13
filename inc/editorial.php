@@ -210,6 +210,7 @@ class gThemeEditorial extends gThemeModuleCore
 		return self::publication( $atts, $verbose );
 	}
 
+	// NOTE: `main_shortcode` currently using `p2p`
 	public static function publication( $atts = [], $verbose = TRUE )
 	{
 		if ( ! self::availableEditorial( 'book' ) )
@@ -543,7 +544,7 @@ class gThemeEditorial extends gThemeModuleCore
 		return \geminorum\gEditorial\Modules\Meta\ModuleTemplate::metaAuthor( $atts );
 	}
 
-	// FIXME: DEPRECATED
+	// NOTE: DEPRECATED
 	public static function lead( $atts = [] )
 	{
 		self::_dev_dep( 'gThemeEditorial::metaHTML( \'lead\' )' );
@@ -551,7 +552,7 @@ class gThemeEditorial extends gThemeModuleCore
 		return self::metaHTML( 'lead', $atts );
 	}
 
-	// FIXME: DEPRECATED
+	// NOTE: DEPRECATED
 	public static function highlight( $atts = [] )
 	{
 		self::_dev_dep( 'gThemeEditorial::metaHTML( \'highlight\' )' );
@@ -559,7 +560,7 @@ class gThemeEditorial extends gThemeModuleCore
 		return self::metaHTML( 'highlight', $atts );
 	}
 
-	// for all html fields, like: `lead`, `highlight`, `dashboard`
+	// for all HTML fields, like: `lead`, `highlight`, `dashboard`
 	public static function metaHTML( $field, $atts = [] )
 	{
 		if ( ! array_key_exists( 'default', $atts ) )
@@ -821,7 +822,7 @@ class gThemeEditorial extends gThemeModuleCore
 		return ob_get_clean();
 	}
 
-	// FIXME: DEPRECATED
+	// NOTE: DEPRECATED
 	public static function issuePosts( $atts = [], $verbose = TRUE )
 	{
 		self::_dep( 'gThemeEditorial::magazineSupported()' );
@@ -865,7 +866,7 @@ class gThemeEditorial extends gThemeModuleCore
 		return \geminorum\gEditorial\Modules\Magazine\ModuleTemplate::theIssue( $atts );
 	}
 
-	// FIXME: DEPRECATED
+	// NOTE: DEPRECATED
 	public static function issueMeta( $field, $atts = [] )
 	{
 		self::_dep( 'gThemeEditorial::getMeta()' );
@@ -936,7 +937,7 @@ class gThemeEditorial extends gThemeModuleCore
 		return \geminorum\gEditorial\Modules\Book\ModuleTemplate::cover( $atts );
 	}
 
-	// FIXME: DEPRECATED
+	// NOTE: DEPRECATED
 	public static function bookBarcodeISBN( $atts = [], $check = FALSE )
 	{
 		self::_dep( 'gThemeEditorial::isbnBarcode()' );
@@ -1008,8 +1009,10 @@ class gThemeEditorial extends gThemeModuleCore
 
 	public static function tabsPostTabs( $post = NULL )
 	{
-		if ( self::availableEditorial( 'tabs' ) )
-			gEditorial()->module( 'tabs' )->render_post_tabs( $post );
+		if ( ! self::availableEditorial( 'tabs' ) )
+			return FALSE;
+
+		return gEditorial()->module( 'tabs' )->render_post_tabs( $post );
 	}
 
 	public static function refList( $atts = [], $verbose = TRUE )
@@ -1027,7 +1030,7 @@ class gThemeEditorial extends gThemeModuleCore
 		return TRUE;
 	}
 
-	// FIXME: DEPRECATED
+	// NOTE: DEPRECATED
 	public static function reshareSource( $atts = [] )
 	{
 		self::_dep( 'gThemeEditorial::theSource()' );
@@ -1096,7 +1099,7 @@ class gThemeEditorial extends gThemeModuleCore
 		return \geminorum\gEditorial\Modules\Terms\ModuleTemplate::renderTermIntro( $term, $atts );
 	}
 
-	// FIXME: must move to the actual module templates
+	// TODO: must move to the actual module templates
 	public static function inquireQuestion( $post = NULL, $check = FALSE )
 	{
 		if ( $check && ( 'inquiry' != get_post_type( $post ) ) )

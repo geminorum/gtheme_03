@@ -31,7 +31,7 @@ class gThemeDate extends gThemeModuleCore
 			'format'    => gThemeOptions::info( 'date_format_byline', _x( 'j M Y', 'Options: Defaults: Date Format: Byline', 'gtheme' ) ),
 			'template'  => gThemeOptions::info( 'template_the_date', '<span class="date"><a href="%1$s"%2$s><time class="%5$s-time do-timeago" datetime="%3$s">%4$s</time></a></span>' ),
 			'shortlink' => TRUE,
-			'title'     => NULL,
+			'title'     => NULL, // WTF?!
 			'text'      => NULL, // override text
 			'timeago'   => TRUE, // enqueue time ago script
 			'meta'      => TRUE,

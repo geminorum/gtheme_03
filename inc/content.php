@@ -216,8 +216,7 @@ class gThemeContent extends gThemeModuleCore
 			}
 		}
 
-		// FIXME: check post-type: video: featured people
-
+		// NOTE: DEPRECATED
 		if ( gThemeOptions::supports( 'geditorial-meta', TRUE ) ) {
 
 			if ( $html = gThemeEditorial::author( $args ) ) {
@@ -707,7 +706,7 @@ class gThemeContent extends gThemeModuleCore
 
 				if ( comments_open() ) {
 
-					printf( $before, 'comments-link' );
+					printf( $before, 'comments-link -print-hide' );
 
 					// if ( ! post_password_required() && ( comments_open() || '0' != get_comments_number() ) )
 					// 	comments_popup_link(
@@ -866,7 +865,7 @@ class gThemeContent extends gThemeModuleCore
 
 				gThemeEditorial::theSource( [
 					'id'            => $post,
-					'before'        => sprintf( $before, 'entry-meta-source' ),
+					'before'        => sprintf( $before, 'entry-meta-source -print-hide' ),
 					'after'         => $after,
 					'title_swap'    => TRUE,
 					'title_default' => gThemeOptions::info( 'meta_source_title', _x( 'Source', 'Content: Meta Source', 'gtheme' ) ),
@@ -1222,7 +1221,7 @@ addthis_config.services_custom = [
 		return trim( str_ireplace( '&nbsp;', ' ', ob_get_clean() ) );
 	}
 
-	// ANCESTOR : gtheme_post_header()
+	// NOTE: ANCESTOR : `gtheme_post_header()`
 	public static function header( $atts = [] )
 	{
 		$singular = is_singular();
@@ -1235,24 +1234,24 @@ addthis_config.services_custom = [
 			'context'     => 'single',
 			'prefix'      => 'entry',
 			'byline'      => FALSE,
-			'actions'     => FALSE, // or NULL to check for posttype
+			'actions'     => FALSE,                                                      // or NULL to check for post-type
 			'action_icon' => NULL,
 			'shortlink'   => gThemeOptions::info( 'content_header_shortlink', FALSE ),
 			'wrap_tag'    => 'header',
 			'wrap_close'  => TRUE,
-			'trim_title'  => FALSE, // or number of chars
-			'trim_meta'   => FALSE, // or number of chars
+			'trim_title'  => FALSE,                                                      // or number of chars
+			'trim_meta'   => FALSE,                                                      // or number of chars
 			'itemprop'    => TRUE,
-			'link_rel'    => NULL, // NULL for check shortlink arg, `FALSE` to disable
+			'link_rel'    => NULL,                                                       // NULL for check short-link argument, `FALSE` to disable
 			'title_tag'   => $singular ? 'h2' : 'h3',
 			'meta_tag'    => $singular ? 'h3' : 'h4',
 			'title'       => NULL,
-			'title_attr'  => NULL, // or FALSE to disable
-			'title_sep'   => ' / ', // used on meta as title attr
+			'title_attr'  => NULL,                                                       // or FALSE to disable
+			'title_sep'   => ' / ',                                                      // used on meta as title attribute
 			'amp'         => $singular,
 			'meta'        => gThemeOptions::supports( 'geditorial-meta', TRUE ),
-			'link'        => TRUE, // default/custom/disable
-			'anchor'      => FALSE, // permalink anchor for the post
+			'link'        => TRUE,                                                       // default/custom/disable
+			'anchor'      => FALSE,                                                      // perma-link anchor for the post
 		], $atts );
 
 		if ( ! $post = self::getPost( $args['post'] ) )

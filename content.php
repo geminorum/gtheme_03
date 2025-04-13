@@ -15,7 +15,7 @@ if ( is_single() ) { // any posttype except attachment/page
 
 	gThemeContent::wrapClose( 'singular' );
 
-} else if ( gThemeUtilities::isSystemPage() || is_page() ) {
+} else if ( gThemeUtilities::isSystemPage() || is_page() || is_404() ) {
 
 	gThemeContent::wrapOpen( 'page' );
 

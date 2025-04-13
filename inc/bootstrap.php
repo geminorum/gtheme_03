@@ -28,7 +28,7 @@ class gThemeBootstrap extends gThemeModuleCore
 		return NULL; // not supported
 	}
 
-	// BS4
+	// NOTE: supports `BS4`/`BS5`
 	public static function navbarOpen( $brand = NULL, $class = 'navbar-expand-md', $additional = '', $target = 'navbar' )
 	{
 		$fixed  = gThemeOptions::info( 'bootstrap_navbar_fixed', FALSE );
@@ -42,21 +42,21 @@ class gThemeBootstrap extends gThemeModuleCore
 			echo '<div class="collapse navbar-collapse" id="'.$target.'">';
 	}
 
-	// BS4
+	// NOTE: supports `BS4`
 	public static function navbarClose( $additional = '' )
 	{
 		echo $additional;
 		echo '</div></nav>';
 	}
 
-	// BS4/BS5
+	// NOTE: supports `BS4`/`BS5`
 	public static function navbarToggler( $target = 'navbar', $class = '' )
 	{
 		echo '<button class="navbar-toggler '.$class.' -print-hide" type="button" data-toggle="collapse" data-bs-toggle="collapse" data-target="#'.$target.'" data-bs-target="#'.$target.'" aria-controls="'.$target.'" aria-expanded="false" aria-label="'.__( 'Toggle navigation', 'gtheme' ).'">';
 		echo '<span class="navbar-toggler-icon"></span></button>';
 	}
 
-	// BS3
+	// NOTE: supports `BS3`
 	public static function navbarClass( $additional = '', $inverse = FALSE )
 	{
 		$fixed = gThemeOptions::info( 'bootstrap_navbar_fixed', FALSE );
@@ -64,7 +64,7 @@ class gThemeBootstrap extends gThemeModuleCore
 		echo 'class="navbar navbar-default'.( $fixed ? ' navbar-fixed-top' : '' ).( $inverse ? ' navbar-inverse' : '' ).' '.$additional.'"';
 	}
 
-	// BS3
+	// NOTE: supports `BS3`
 	public static function navbarHeader( $brand = NULL, $target = 'navbar' )
 	{
 		echo '<div class="navbar-header">';
@@ -129,7 +129,7 @@ class gThemeBootstrap extends gThemeModuleCore
 			'walker'         => new gThemeBootstrap_Walker_NavBar(),
 			'after'          => '<span class="-dummy"></span>',
 
-			/// Extra Args:
+			/// Extra Arguments
 			'theme_bs_version' => self::version(),
 		] );
 
