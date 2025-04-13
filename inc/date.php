@@ -14,6 +14,8 @@ class gThemeDate extends gThemeModuleCore
 
 		$previousday = $currentday;
 
+		$atts['link'] = FALSE; // no link for date archive
+
 		return self::date( $atts );
 	}
 
@@ -61,7 +63,7 @@ class gThemeDate extends gThemeModuleCore
 
 		if ( is_null ( $override ) )
 			$html = vsprintf( $args['template'], [
-				esc_url( $link ),
+				$link ? esc_url( $link ) : '#',
 				// self::context( $post, 'y/n/j' ),
 				$args['shortlink'] ? ' rel="shortlink"' : '',
 				esc_attr( get_the_date( 'c', $post ) ),
