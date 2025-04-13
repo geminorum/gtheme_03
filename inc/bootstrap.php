@@ -78,18 +78,32 @@ class gThemeBootstrap extends gThemeModuleCore
 		echo '</div>';
 	}
 
-	// BS3/BS4
-	// FIXME: default `$filename` must be: 'logo-navbar.png'
-	public static function navbarBrand( $brand = NULL, $filename = 'logo.png', $class = '' )
+	// NOTE: supports `BS3`/`BS4`/`BS5`
+	public static function navbarBrand( $brand = NULL, $filename = NULL, $class = '' )
 	{
+		$default = 'logo.png'; // FIXME: default `$filename` must be: 'logo-navbar.png'
+		$title   = '<span title="{{{logo_title}}}">{{site_name}}</span>';
+
+		if ( is_null( $filename ) )
+			$template = '<img src="'.GTHEME_CHILD_URL.'/images/'.$default.'" alt="{{{site_name}}}" fetchpriority="high" />';
+
+		else if ( ! $filename )
+			$template = $title;
+
+		else if ( gThemeText::start( $filename, '#' ) )
+			$template = '<svg class="-logo"><use xlink:href="#'.$filename.'"></use></svg>';
+
+		else
+			$template = '<img src="'.GTHEME_CHILD_URL.'/images/'.$filename.'" alt="{{{site_name}}}" fetchpriority="high" />';
+
 		if ( is_null( $brand ) )
 			$brand = gThemeOptions::info( 'blog_name', FALSE );
 
 		else if ( 'logo' == $brand )
-			$brand = gThemeTemplate::logo( 'navbar', '<img src="'.GTHEME_CHILD_URL.'/images/'.$filename.'" alt="{{{site_name}}}" fetchpriority="high" />', FALSE );
+			$brand = gThemeTemplate::logo( 'navbar', $template, FALSE );
 
 		else if ( 'logo-title' == $brand )
-			$brand = gThemeTemplate::logo( 'navbar', '<img src="'.GTHEME_CHILD_URL.'/images/'.$filename.'" alt="{{{site_name}}}" fetchpriority="high" /> <span title="{{{logo_title}}}">{{site_name}}</span>', FALSE );
+			$brand = gThemeTemplate::logo( 'navbar', $template.' '.$title, FALSE );
 
 		if ( FALSE !== $brand )
 			vprintf( '<a class="navbar-brand %4$s no-outline" href="%1$s" title="%2$s">%3$s</a>', [
