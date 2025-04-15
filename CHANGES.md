@@ -1,3 +1,23 @@
+### 3.22.0
+* asset/child-core: support for custom text-domain
+* misc/bootstrap-nav-walker: click outside to close yamm
+* module/bootstrap: support for svg inline logos
+* module/content: support for editorial meta source action
+* module/content: switch qr-code server
+* module/date: disable link on once dates
+* module/editorial: check for short-code callbacks
+* module/editorial: general use callbacks
+* module/editorial: support for byline/isbn module
+* module/editorial: support for term intro via terms module
+* module/filters: bootstrap on body class
+* module/options: attachment title/mime info
+* module/search: upgrade input classes
+* module/template: svg icon markup
+* module/utilities: enqueue svg icons
+* module/woo-commerce: 🆕 module
+* root/new-post: 🆕 template
+* root/shop: avoid double calls on header/footer
+
 ### 3.21.13
 * misc/walker-page: support for bs5
 * module/template: latest page
