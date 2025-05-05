@@ -109,6 +109,9 @@ class gThemeWooCommerce extends gThemeModuleCore
 		if ( ! function_exists( 'WC' ) )
 			return FALSE;
 
+		if ( function_exists( 'is_cart' ) && is_cart() )
+			return TRUE;
+
 		if ( function_exists( 'is_checkout' ) && is_checkout() )
 			return TRUE;
 
