@@ -12,6 +12,7 @@ class gThemeWooCommerce extends gThemeModuleCore
 			'disable_styles'  => FALSE,
 			'bootstrap'       => FALSE,
 			'wrapping'        => TRUE,
+			'fragments'       => TRUE,
 			'meta_fields'     => TRUE,
 		], $args ) );
 
@@ -50,6 +51,10 @@ class gThemeWooCommerce extends gThemeModuleCore
 		if ( $wrapping ) {
 			add_action( 'woocommerce_before_main_content', [ __CLASS__, 'before_main_content' ], -999 );
 			add_action( 'woocommerce_after_main_content', [ __CLASS__, 'after_main_content' ], 999 );
+		}
+
+		if ( $fragments ) {
+			add_filter( 'woocommerce_add_to_cart_fragments', [ __CLASS__, 'add_to_cart_fragments' ] );
 		}
 
 		if ( $meta_fields ) {
@@ -122,6 +127,76 @@ class gThemeWooCommerce extends gThemeModuleCore
 		// @SEE: https://www.businessbloomer.com/woocommerce-get-cart-checkout-account-urls/
 
 		return FALSE;
+	}
+
+	public static function accountDropdown( $class = '', $menuname = NULL, $before = '', $after = '' )
+	{
+		if ( ! self::available() )
+			return FALSE;
+
+		$dropdown = is_user_logged_in();
+
+		echo $before.'<div class="dropdown -account-wrap '.$class.'">';
+
+			echo '<a href="'.wc_get_account_endpoint_url( '' ).'" class="d-block'.( $dropdown ? ' dropdown-toggle" data-bs-toggle="dropdown"' : '"' ).'>';
+				echo gThemeOptions::info( 'woocommerce_accountlink_text', _x( 'Your Account', 'Modules: WooCommerce: Account', 'gtheme' ) );
+			echo '</a>';
+
+			if ( $dropdown )
+				gThemeMenu::nav(
+					$menuname ?? 'tertiary',
+					[
+						'class' => '-navigation -account-menu dropdown-menu text-small'
+					]
+				);
+
+		echo '</div>'.$after;
+	}
+
+	public static function cartDropdown( $class = '', $before = '', $after = '' )
+	{
+		if ( ! self::available() )
+			return FALSE;
+
+		$dropdown = ! is_checkout() && ! is_cart();
+
+		echo $before.'<div class="dropdown -cart-wrap '.$class.'">';
+
+			self::cartLink( $dropdown );
+
+			if ( $dropdown ) {
+				echo '<div class="dropdown-menu -cart-items p-2 text-small">';
+					the_widget( 'WC_Widget_Cart', 'title=' );
+				echo '</div>';
+			}
+
+		echo '</div>'.$after;
+	}
+
+	// @REF: https://woocommerce.com/document/show-cart-contents-total/
+	public static function cartLink( $dropdown = TRUE )
+	{
+		echo '<a href="'.wc_get_cart_url().'" title="'.esc_attr( strip_tags( WC()->cart->get_cart_total() ) ).'" class="gtheme-cart-link d-block'.( $dropdown ? ' dropdown-toggle" data-bs-toggle="dropdown"' : '"' ).'>';
+
+			echo gThemeOptions::info( 'woocommerce_cartlink_text', _x( 'Your Cart', 'Modules: WooCommerce: CartLink', 'gtheme' ) );
+
+			if ( $count = WC()->cart->get_cart_contents_count() ) {
+				echo '<span class="badge b1g-secondary-subtle border border-secondary-subtle text-secondary-emphasis rounded-pill position-absolute bottom-50 end-50">';
+					echo $count;
+					echo '<span class="visually-hidden">'._nx( 'item', 'items', $count, 'Modules: WooCommerce: CartLink', 'gtheme' ).'</span>';
+				echo '</span>';
+			}
+
+		echo '</a>';
+	}
+
+	public static function add_to_cart_fragments( $fragments )
+	{
+		ob_start();
+		self::cartLink();
+		$fragments['a.gtheme-cart-link'] = ob_get_clean();
+
+		return $fragments;
 	}
 
 	public function breadcrumb_defaults( $defaults )
