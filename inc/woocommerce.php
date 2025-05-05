@@ -60,6 +60,16 @@ class gThemeWooCommerce extends gThemeModuleCore
 		}
 	}
 
+	public static function available()
+	{
+		if ( ! function_exists( 'WC' ) )
+			return FALSE;
+
+		$woo = WC();
+
+		return $woo instanceof \WooCommerce;
+	}
+
 	// @REF: https://github.com/woocommerce/woocommerce/wiki/Declaring-WooCommerce-support-in-themes
 	public static function defaults( $extra = [] )
 	{
