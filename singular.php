@@ -5,7 +5,6 @@ if ( have_posts() ) {
 	gThemeTemplate::wrapOpen( 'singular' );
 		gThemeNavigation::breadcrumb( [ 'home' => 'home' ] );
 
-
 	while ( have_posts() ) {
 		the_post();
 		gThemeContent::post();

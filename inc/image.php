@@ -8,14 +8,14 @@ class gThemeImage extends gThemeModuleCore
 	public function setup_actions( $args = [] )
 	{
 		extract( self::atts( [
-			'core_post_thumbnails'   => TRUE, // WordPress core thumbnail for posts
-			'amp_post_thumbnails'    => defined( 'AMP__VERSION' ), // filters amp featured image
-			'image_size_tags'        => TRUE, // registers theme's image sizes
-			'image_attachment_tags'  => FALSE, // displays ui for theme's image sizes
-			'image_attachment_terms' => FALSE, // image for terms on admin media editor
-			'responsive_class'       => FALSE, // extracts and appends css class into content images
-			'media_object_sizes'     => TRUE, // tells gnetwork to not generate default image sizes
-			'no_filter_content_tags' => TRUE, // removes core filter for srcset/sizes/loading
+			'core_post_thumbnails'   => TRUE,                        // WordPress core thumbnail for posts
+			'amp_post_thumbnails'    => defined( 'AMP__VERSION' ),   // filters amp featured image
+			'image_size_tags'        => TRUE,                        // registers theme's image sizes
+			'image_attachment_tags'  => FALSE,                       // displays UI for theme's image sizes
+			'image_attachment_terms' => FALSE,                       // image for terms on admin media editor
+			'responsive_class'       => FALSE,                       // extracts and appends CSS class into content images
+			'media_object_sizes'     => TRUE,                        // tells gNetwork to not generate default image sizes
+			'no_filter_content_tags' => TRUE,                        // removes core filter for `srcset`/sizes/loading
 		], $args ) );
 
 		if ( $core_post_thumbnails )

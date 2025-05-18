@@ -228,6 +228,11 @@ class gThemeOptions extends gThemeModuleCore
 
 			// ATTACHMENT
 			// 'attachment_download_prefix' => '', // EXAMPLE: 'example.com-'
+
+
+			/// `WOOCOMMERCE`
+			// 'woocommerce_cartlink_text'    => NULL,
+			// 'woocommerce_accountlink_text' => NULL,
 		];
 
 		if ( FALSE === $option )

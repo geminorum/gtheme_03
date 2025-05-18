@@ -5,19 +5,26 @@ class gThemeUtilities extends gThemeBaseCore
 
 	public static function enqueueSvgIcons( $name = NULL, $base = NULL )
 	{
+		self::_dep( 'gThemeUtilities::enqueueSvgSprites()' );
+		return self::enqueueSvgSprites( $name, $base );
+	}
+
+	public static function enqueueSvgSprites( $name = NULL, $base = NULL )
+	{
 		static $enqueued = FALSE;
 
-		if ( $enqueued )
-			return TRUE;
+		if ( $enqueued === $name ?? 'sprites' )
+			return $enqueued;
 
-		add_action( 'wp_footer', function() use ( $name, $base ) {
-			include_once( sprintf( '%s/images/icons/%s.svg',
-				$base ?? GTHEME_CHILD_DIR,
-				$name ?? 'sprites'
-			) );
-		}, 9999 );
+		add_action( 'wp_footer',
+			static function () use ( $name, $base ) {
+				include_once( sprintf( '%s/images/%s.svg',
+					$base ?? GTHEME_CHILD_DIR,
+					$name ?? 'sprites'
+				) );
+			}, 9999 );
 
-		return $enqueued = TRUE;
+		return $enqueued = $name ?? 'sprites';
 	}
 
 	public static function enqueueSlick()

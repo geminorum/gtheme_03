@@ -210,7 +210,6 @@ class gThemeEditorial extends gThemeModuleCore
 		return self::publication( $atts, $verbose );
 	}
 
-	// NOTE: `main_shortcode` currently using `p2p`
 	public static function publication( $atts = [], $verbose = TRUE )
 	{
 		if ( ! self::availableEditorial( 'book' ) )

@@ -1,11 +1,13 @@
 <?php defined( 'ABSPATH' ) or die( header( 'HTTP/1.0 403 Forbidden' ) );
 
-// ALSO SEE: http://www.creativewebdesign.ro/en/blog/wordpress/create-a-responsive-wordpress-theme-with-bootstrap-3-header-and-footer/
-// ORIGINALLY BASED ON: wp_bootstrap_navwalker class v2.0.4 by Edward McIntyre
-// https://github.com/twittem/wp-bootstrap-navwalker
-// https://github.com/dupkey/bs4navwalker
+#[\AllowDynamicProperties]
 class gThemeBootstrap_Walker_NavBar extends \Walker_Nav_Menu
 {
+
+	// ORIGINALLY BASED ON: `wp_bootstrap_navwalker` class v2.0.4 by Edward McIntyre
+	// @link https://github.com/twittem/wp-bootstrap-navwalker
+	// @link https://github.com/dupkey/bs4navwalker
+	// @SEE: http://www.creativewebdesign.ro/en/blog/wordpress/create-a-responsive-wordpress-theme-with-bootstrap-3-header-and-footer/
 
 	public function start_lvl( &$output, $depth = 0, $args = [] )
 	{
@@ -19,7 +21,7 @@ class gThemeBootstrap_Walker_NavBar extends \Walker_Nav_Menu
 		$version = empty( $args->theme_bs_version ) ? FALSE : (int) $args->theme_bs_version;
 		$indent  = $depth ? str_repeat( "\t", $depth ) : '';
 
-		// sep on dropdown
+		// separator on drop-down
 		if ( 0 == strcasecmp( $item->xfn, 'divider' ) ) {
 			$output.= $indent.'<li role="separator" class="divider">';
 
@@ -32,8 +34,8 @@ class gThemeBootstrap_Walker_NavBar extends \Walker_Nav_Menu
 		} else if ( 0 === $depth && 0 === strcasecmp( $item->xfn, 'yamm' ) ) {
 
 			// @REF: https://geedmo.github.io/yamm/
-			// CAUTION: #navbar must have `.yamm`
-			// NOTE: bootstrap does not allow urls on dropdown
+			// CAUTION: `#navbar` must have `.yamm`
+			// NOTE: bootstrap does not allow URL on drop-down
 
 			$classes   = empty( $item->classes ) ? [] : (array) $item->classes;
 			$classes[] = 'nav-item'; // BS4
@@ -175,8 +177,7 @@ class gThemeBootstrap_Walker_NavBar extends \Walker_Nav_Menu
 	 * menu manager the function with display nothing to a non-logged in user,
 	 * and will add a link to the WordPress menu manager if logged in as an admin.
 	 *
-	 * @param array $args passed from the wp_nav_menu function.
-	 *
+	 * @param array $args passed from the `wp_nav_menu()`
 	 */
 	public static function fallback( $args )
 	{

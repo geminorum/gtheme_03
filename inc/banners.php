@@ -98,7 +98,7 @@ class gThemeBanners extends gThemeModuleCore
 		echo $args['after'];
 	}
 
-	// ANCESTOR: gtheme_get_banner()
+	// ANCESTOR: `gtheme_get_banner()`
 	public static function get( $group, $order = 0 )
 	{
 		if ( ! $banners = self::getGroup( $group ) )
@@ -111,7 +111,7 @@ class gThemeBanners extends gThemeModuleCore
 			: FALSE;
 	}
 
-	// ANCESTOR: gtheme_banner()
+	// ANCESTOR: `gtheme_banner()`
 	public static function html( $banner, $atts = [] )
 	{
 		$args = self::atts( [

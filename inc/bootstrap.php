@@ -91,7 +91,7 @@ class gThemeBootstrap extends gThemeModuleCore
 			$template = $title;
 
 		else if ( gThemeText::start( $filename, '#' ) )
-			$template = '<svg class="-logo"><use xlink:href="#'.$filename.'"></use></svg>';
+			$template = '<svg class="-logo"><use xlink:href="'.$filename.'"></use></svg>';
 
 		else
 			$template = '<img src="'.GTHEME_CHILD_URL.'/images/'.$filename.'" alt="{{{site_name}}}" fetchpriority="high" />';

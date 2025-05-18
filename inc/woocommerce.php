@@ -111,7 +111,7 @@ class gThemeWooCommerce extends gThemeModuleCore
 	// @SEE: https://www.businessbloomer.com/woocommerce-conditional-logic-ultimate-php-guide/
 	public static function isPage()
 	{
-		if ( ! function_exists( 'WC' ) )
+		if ( ! self::available() )
 			return FALSE;
 
 		if ( function_exists( 'is_cart' ) && is_cart() )
@@ -138,7 +138,8 @@ class gThemeWooCommerce extends gThemeModuleCore
 
 		echo $before.'<div class="dropdown -account-wrap '.$class.'">';
 
-			echo '<a href="'.wc_get_account_endpoint_url( '' ).'" class="d-block'.( $dropdown ? ' dropdown-toggle" data-bs-toggle="dropdown"' : '"' ).'>';
+			echo '<a href="'.wc_get_account_endpoint_url( '' ).'" class="gtheme-account-link -account-link';
+			echo ( $dropdown ? ' dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside"' : '"' ).'>';
 				echo gThemeOptions::info( 'woocommerce_accountlink_text', _x( 'Your Account', 'Modules: WooCommerce: Account', 'gtheme' ) );
 			echo '</a>';
 
@@ -146,13 +147,14 @@ class gThemeWooCommerce extends gThemeModuleCore
 				gThemeMenu::nav(
 					$menuname ?? 'tertiary',
 					[
-						'class' => '-navigation -account-menu dropdown-menu text-small'
+						'class' => '-navigation -account-menu dropdown-menu',
 					]
 				);
 
 		echo '</div>'.$after;
 	}
 
+	// @SEE: https://wordpress.org/plugins/woocommerce-menu-bar-cart/
 	public static function cartDropdown( $class = '', $before = '', $after = '' )
 	{
 		if ( ! self::available() )
@@ -165,7 +167,7 @@ class gThemeWooCommerce extends gThemeModuleCore
 			self::cartLink( $dropdown );
 
 			if ( $dropdown ) {
-				echo '<div class="dropdown-menu -cart-items p-2 text-small">';
+				echo '<div class="dropdown-menu -cart-items">';
 					the_widget( 'WC_Widget_Cart', 'title=' );
 				echo '</div>';
 			}
@@ -176,12 +178,16 @@ class gThemeWooCommerce extends gThemeModuleCore
 	// @REF: https://woocommerce.com/document/show-cart-contents-total/
 	public static function cartLink( $dropdown = TRUE )
 	{
-		echo '<a href="'.wc_get_cart_url().'" title="'.esc_attr( strip_tags( WC()->cart->get_cart_total() ) ).'" class="gtheme-cart-link d-block'.( $dropdown ? ' dropdown-toggle" data-bs-toggle="dropdown"' : '"' ).'>';
+		if ( ! self::available() )
+			return FALSE;
+
+		echo '<a href="'.wc_get_cart_url().'" title="'.esc_attr( strip_tags( WC()->cart->get_cart_total() ) );
+		echo '" class="gtheme-cart-link -cart-link'.( $dropdown ? ' dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside"' : '"' ).'>';
 
 			echo gThemeOptions::info( 'woocommerce_cartlink_text', _x( 'Your Cart', 'Modules: WooCommerce: CartLink', 'gtheme' ) );
 
 			if ( $count = WC()->cart->get_cart_contents_count() ) {
-				echo '<span class="badge b1g-secondary-subtle border border-secondary-subtle text-secondary-emphasis rounded-pill position-absolute bottom-50 end-50">';
+				echo '<span class="badge -cart-count">';
 					echo $count;
 					echo '<span class="visually-hidden">'._nx( 'item', 'items', $count, 'Modules: WooCommerce: CartLink', 'gtheme' ).'</span>';
 				echo '</span>';
@@ -343,7 +349,9 @@ class gThemeWooCommerce extends gThemeModuleCore
 		gThemeContent::byline(
 			$product->get_id(),
 			'<div class="-byline product-byline byline-woocommerce">',
-			'</div>'
+			'</div>',
+			TRUE,
+			FALSE
 		);
 	}
 
@@ -364,7 +372,7 @@ class gThemeWooCommerce extends gThemeModuleCore
 				gThemeOptions::info( 'woocommerce_single_meta_tag', 'h3' )
 			);
 
-		if ( $byline = gThemeContent::byline( $product->get_id(), '', '', FALSE ) )
+		if ( $byline = gThemeContent::byline( $product->get_id(), '', '', FALSE, FALSE ) )
 			printf(
 				'<%2$s class="-byline product-byline byline-woocommerce">%1$s</%2$s>',
 				strip_tags( $byline, $allowed ),

@@ -429,6 +429,7 @@ class gThemeShortCodes extends gThemeModuleCore
 			'title'    => FALSE,
 			'width'    => FALSE,
 			'height'   => FALSE,
+			'class'    => FALSE,
 			'url'      => FALSE,
 			'dir'      => 'images',
 			'loading'  => 'lazy',
@@ -444,6 +445,7 @@ class gThemeShortCodes extends gThemeModuleCore
 			'title'    => $args['url'] ? FALSE : $args['title'],
 			'width'    => $args['width'],
 			'height'   => $args['height'],
+			'class'    => $args['class'],
 			'loading'  => $args['loading'],
 			'decoding' => $args['decoding'],
 		] );
