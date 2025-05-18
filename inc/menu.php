@@ -18,7 +18,7 @@ class gThemeMenu extends gThemeModuleCore
 
 		if ( ! is_admin() ) {
 			add_filter( 'nav_menu_css_class', [ $this, 'nav_menu_css_class' ], 10, 4 );
-			// add_filter( 'nav_menu_link_attributes', [ $this, 'nav_menu_link_attributes' ], 10, 4 );
+			add_filter( 'nav_menu_link_attributes', [ $this, 'nav_menu_link_attributes' ], 10, 4 );
 			add_filter( 'nav_menu_item_id', '__return_empty_string', 12 );
 		}
 	}
@@ -114,8 +114,11 @@ class gThemeMenu extends gThemeModuleCore
 
 	public function nav_menu_link_attributes( $atts, $menu_item, $args, $depth = 0 )
 	{
-		if ( FALSE !== strpos( $args->menu_class, 'nav' ) )
-			$atts['class'] = 'nav-link';
+		// if ( FALSE !== strpos( $args->menu_class, 'nav' ) )
+		// 	$atts['class'] = 'nav-link';
+
+		if ( FALSE !== strpos( $args->menu_class, 'dropdown-menu' ) )
+			$atts['class'] = 'dropdown-item';
 
 		return $atts;
 	}
