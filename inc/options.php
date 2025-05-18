@@ -43,6 +43,11 @@ class gThemeOptions extends gThemeModuleCore
 			// 'theme_groups' => FALSE, // [ 'main' => _x( 'Main', 'Options: Theme Group', 'gtheme' ) ], // FALSE to disable UI
 			'module_args'  => [],
 
+			/// WRAP
+			// 'wrap_wrap_class'      => '',
+			// 'wrap_container_class' => 'container-xl',
+			// 'wrap_row_class'       => '',
+
 			// MENUS
 			// 'register_nav_menus'   => gThemeMenu::defaults(),
 			// 'nav_menu_allowedtags' => [ 'p' ],

@@ -163,6 +163,29 @@ class gThemeWrap extends gThemeModuleCore
 
 		echo "\n".$after;
 	}
+
+	public static function wrapperOpen( $context, $row_class = FALSE, $container_class = '', $wrap_class = '' )
+	{
+		if ( empty( $context ) )
+			return;
+
+		if ( FALSE !== $wrap_class )      echo '<div class="'.gThemeHTML::prepClass( 'wrapper', '-'.$context, gThemeOptions::info( 'wrap_wrap_class', '' ), $wrap_class ).'">'."\n";
+		if ( FALSE !== $container_class ) echo '<div class="'.gThemeHTML::prepClass( 'container-wrap', '-'.$context, gThemeOptions::info( 'wrap_container_class', 'container-xl' ), $container_class ).'">'."\n";
+		if ( FALSE !== $row_class )       echo '<div class="'.gThemeHTML::prepClass( 'row', '-'.$context, gThemeOptions::info( 'wrap_row_class', '' ), $row_class ).'">'."\n";
+
+		echo '<!-- OPEN: `'.$context.'` -->'."\n";
+	}
+
+	public static function wrapperClose( $context, $count = 2 )
+	{
+		if ( empty( $context ) )
+			return;
+
+		echo "\n".'<!-- CLOSE: `'.$context.'` -->'."\n";
+
+		for ( $i = 0; $i < $count; $i++ )
+			echo '</div>';
+	}
 }
 
 function gtheme_template_path() {
