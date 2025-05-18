@@ -24,6 +24,7 @@ class gThemeShortCodes extends gThemeModuleCore
 	public function init()
 	{
 		$this->shortcodes( [
+			'theme-widget'        => 'shortcode_theme_widget',
 			'theme-image'         => 'shortcode_theme_image',
 			'theme-header'        => 'shortcode_theme_header',
 			'theme-thumbnail'     => 'shortcode_theme_thumbnail',
@@ -39,6 +40,23 @@ class gThemeShortCodes extends gThemeModuleCore
 			'related-posts'       => 'shortcode_related_posts',
 			// 'slider'              => 'shortcode_gallery_slider',
 		] );
+	}
+
+	// @REF: https://digwp.com/2010/04/call-widget-with-shortcode/
+	public function shortcode_theme_widget( $atts, $content = NULL, $tag = '' )
+	{
+		$args = shortcode_atts( [
+			'name' => FALSE,
+			'args' => '',
+		], $atts, $tag );
+
+		if ( is_null( $args['name'] ) )
+			return $content;
+
+		ob_start();
+		the_widget( $args['name'], $args['args'] );
+
+		return ob_get_clean();
 	}
 
 	public function img_caption_shortcode( $empty, $attr, $content )
