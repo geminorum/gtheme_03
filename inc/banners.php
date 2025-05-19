@@ -130,6 +130,7 @@ class gThemeBanners extends gThemeModuleCore
 
 		$html  = '';
 		$title = empty( $banner['title'] ) ? '' : $banner['title'];
+		$sub   = empty( $banner['subtitle'] ) ? '' : $banner['subtitle']; // TODO
 
 		if ( ! empty( $banner['image'] ) && 'http://' != $banner['image'] )
 			$html.= gThemeHTML::tag( 'img', [
@@ -271,6 +272,7 @@ class gThemeBanners extends gThemeModuleCore
 				$new     = [];
 
 				$titles = $_POST['gtheme-banners-title'];
+				$subs   = $_POST['gtheme-banners-subtitle'];
 				$groups = $_POST['gtheme-banners-group'];
 				$urls   = $_POST['gtheme-banners-url'];
 				$images = $_POST['gtheme-banners-image'];
@@ -286,6 +288,11 @@ class gThemeBanners extends gThemeModuleCore
 							$new[$i]['title'] = trim( stripslashes( strip_tags( $titles[$i] ) ) );
 						else
 							$new[$i]['title'] = '';
+
+						if ( strlen( $subs[$i] ) > 0 )
+							$new[$i]['subtitle'] = trim( stripslashes( strip_tags( $subs[$i] ) ) );
+						else
+							$new[$i]['subtitle'] = '';
 
 						if ( array_key_exists( $groups[$i], $banners ) )
 							$new[$i]['group'] = $groups[$i];
@@ -355,6 +362,7 @@ class gThemeBanners extends gThemeModuleCore
 				echo '<th width="10%">'._x( 'Group', 'Modules: Banners', 'gtheme' ).'</th>';
 				echo '<th width="5%">'._x( 'Ord.', 'Modules: Banners', 'gtheme' ).'</th>';
 				echo '<th>'._x( 'Title', 'Modules: Banners', 'gtheme' ).'</th>';
+				echo '<th width="20%">'._x( 'Subtitle', 'Modules: Banners', 'gtheme' ).'</th>';
 				echo '<th width="20%">'._x( 'URL', 'Modules: Banners', 'gtheme' ).'</th>';
 				echo '<th width="20%">'._x( 'Image', 'Modules: Banners', 'gtheme' ).'</th>';
 				echo '<th style="width:30px;"></th>';
@@ -382,6 +390,13 @@ class gThemeBanners extends gThemeModuleCore
 					'type'  => 'text',
 					'class' => 'widefat',
 					'value' => empty( $banner['title'] ) ? '' : $banner['title'],
+				] ).'</td>';
+
+				echo '<td>'.gThemeHTML::tag( 'input', [
+					'name'  => 'gtheme-banners-subtitle[]',
+					'type'  => 'text',
+					'class' => 'widefat',
+					'value' => empty( $banner['subtitle'] ) ? '' : $banner['subtitle'],
 				] ).'</td>';
 
 				echo '<td>'.gThemeHTML::tag( 'input', [
@@ -420,6 +435,13 @@ class gThemeBanners extends gThemeModuleCore
 
 			echo '<td>'.gThemeHTML::tag( 'input', [
 				'name'  => 'gtheme-banners-title[]',
+				'type'  => 'text',
+				'class' => 'widefat',
+				'value' => '',
+			] ).'</td>';
+
+			echo '<td>'.gThemeHTML::tag( 'input', [
+				'name'  => 'gtheme-banners-subtitle[]',
 				'type'  => 'text',
 				'class' => 'widefat',
 				'value' => '',
