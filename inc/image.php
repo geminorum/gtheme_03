@@ -840,16 +840,23 @@ class gThemeImage extends gThemeModuleCore
 			echo $args['before'].$args['empty'].$args['after'];
 	}
 
-	public static function getPlaceHolder( $atts = [] )
+	public static function getPlaceHolder( $atts = [], $option = NULL )
 	{
-		if ( ! $src = gThemeOptions::info( 'image_placeholder' ) )
+		if ( ! $src = gThemeOptions::info( $option ?? 'image_placeholder' ) )
 			return FALSE;
 
-		return gThemeHTML::tag( 'img', [
-			'src'   => $src,
-			'alt'   => gThemeOptions::info( 'blog_name', '' ),
-			'class' => '-placeholder',
-		] );
+		if ( gThemeText::start( $src, '#' ) )
+			return vsprintf( '<svg class="%s"><use xlink:href="%s"></use></svg>', [
+				'-placeholder -svg-placeholder',
+				$src,
+			] );
+
+		else
+			return gThemeHTML::tag( 'img', [
+				'src'   => $src,
+				'alt'   => gThemeOptions::info( 'blog_name', '' ),
+				'class' => '-placeholder',
+			] );
 	}
 
 	public static function imageWithPlaceHolder( $atts = [], $ratio = NULL )
