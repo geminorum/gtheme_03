@@ -14,6 +14,7 @@ class gThemeWooCommerce extends gThemeModuleCore
 			'wrapping'        => TRUE,
 			'fragments'       => TRUE,
 			'meta_fields'     => TRUE,
+			'placeholders'    => FALSE,
 		], $args ) );
 
 		if ( ! gThemeWordPress::isPluginActive( 'woocommerce/woocommerce.php' ) )
@@ -62,6 +63,11 @@ class gThemeWooCommerce extends gThemeModuleCore
 			add_action( 'woocommerce_single_product_summary', [ __CLASS__, 'single_product_summary_after'  ], 6 );  // title is on `5`
 			add_action( 'woocommerce_single_product_summary', [ __CLASS__, 'single_product_summary_byline' ], 8 );  // title is on `5`
 			add_action( 'woocommerce_shop_loop_item_title',   [ __CLASS__, 'shop_loop_item_title' ], 15 );
+		}
+
+		if ( $placeholders ) {
+			add_filter( 'woocommerce_placeholder_img', [ __CLASS__, 'placeholder_img' ], 8, 3 );
+			add_filter( 'woocommerce_placeholder_img_src', [ __CLASS__, 'placeholder_img_src' ], 8, 1 );
 		}
 	}
 
@@ -378,5 +384,27 @@ class gThemeWooCommerce extends gThemeModuleCore
 				strip_tags( $byline, $allowed ),
 				'div'
 			);
+	}
+
+	public static function placeholder_img_src( $src )
+	{
+		return gThemeOptions::info( 'woocommerce_image_placeholder_src', FALSE ) ?: $src;
+	}
+
+	// @REF: `gThemeImage::imageWithPlaceHolder()`
+	public static function placeholder_img( $image_html, $size, $dimensions )
+	{
+		if ( ! $ratio = gThemeOptions::info( 'woocommerce_image_aspect_ratio', NULL ) )
+			return $image_html;
+
+		if ( ! $placeholder = gThemeImage::getPlaceHolder( [], 'woocommerce_image_placeholder' ) )
+			return $image_html;
+
+		$before = '<div class="theme-product-placeholder">';
+		$before.= '<svg viewBox="0 0 '.str_replace( ':', ' ', $ratio ).'" />';
+		$before.= '<div class="-inner-wrap">';
+		$after  = '</div></div>';
+
+		return $before.$placeholder.$after;
 	}
 }
