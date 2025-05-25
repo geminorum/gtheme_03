@@ -78,18 +78,16 @@ class gThemeComments extends gThemeModuleCore
 	// http://www.wpbeginner.com/wp-tutorials/how-to-disable-comments-on-wordpress-media-attachments/
 	public function comments_open( $open, $post_id )
 	{
-		$post_types = gThemeOptions::info( 'comments_disable_types', [ 'attachment' ] );
+		if ( ! $disabled = gThemeOptions::info( 'comments_disable_types', [ 'attachment' ] ) )
+			return $open;
 
-		if ( $post_types && is_array( $post_types ) ) {
-			$post = get_post( $post_id );
-			if ( in_array( $post->post_type, $post_types ) )
-				return FALSE;
-		}
+		if ( in_array( get_post_type( $post_id ), (array) $disabled ) )
+			return FALSE;
 
 		return $open;
 	}
 
-	// inform user about automatic comment closing time
+	// Inform user about automatic comment closing time
 	// http://wpengineer.com/2692/inform-user-about-automatic-comment-closing-time/
 	// TODO: bootstrap styling / notice
 	public function comment_form_top()
@@ -102,8 +100,11 @@ class gThemeComments extends gThemeModuleCore
 					 + get_option( 'close_comments_days_old' )
 					 * DAY_IN_SECONDS;
 
-			/* translators: %s: human time diff */
-			printf( _x( '(This topic will automatically close in %s.)', 'Modules: Comments', 'gtheme' ), human_time_diff( $expires, current_time( 'timestamp' ) ) );
+			printf(
+				/* translators: `%s`: human time diff */
+				_x( '(This topic will automatically close in %s.)', 'Modules: Comments', 'gtheme' ),
+				human_time_diff( $expires, current_time( 'timestamp' ) )
+			);
 		}
 	}
 

@@ -115,10 +115,22 @@ class gThemeWooCommerce extends gThemeModuleCore
 
 	// @REF: https://developer.woocommerce.com/docs/conditional-tags-in-woocommerce/
 	// @SEE: https://www.businessbloomer.com/woocommerce-conditional-logic-ultimate-php-guide/
+	/**
+	 * Returns true if on a page which uses WooCommerce templates (cart and
+	 * check-out are standard pages with short-codes and thus are not included).
+	 * @ref `is_woocommerce()`
+	 * @see https://www.businessbloomer.com/woocommerce-conditional-logic-ultimate-php-guide/
+	 *
+	 * @return bool
+	 */
 	public static function isPage()
 	{
 		if ( ! self::available() )
 			return FALSE;
+
+		// checks for `is_shop()`/`is_product_taxonomy()`/`is_product()`
+		if ( function_exists( 'is_woocommerce' ) && is_woocommerce() )
+			return TRUE;
 
 		if ( function_exists( 'is_cart' ) && is_cart() )
 			return TRUE;
@@ -261,10 +273,14 @@ class gThemeWooCommerce extends gThemeModuleCore
 		}
 
 		// NOTE: sometimes the type is `text`
-		if ( in_array( $args['type'], [ 'state', 'country' ], TRUE )
-			|| in_array( $args['id'], [ 'billing_city', 'shipping_city', 'billing_state', 'shipping_state' ], TRUE ) )
+		// `jQuery.fn.select2.defaults.set( "selectionCssClass", ":all:" );`
+		// `jQuery.fn.select2.defaults.set( "theme", "bootstrap-5" );`
+		if ( in_array( $args['type'], [ 'state', 'country', 'select' ], TRUE )
+			|| in_array( $args['id'], [ 'billing_city', 'shipping_city', 'billing_state', 'shipping_state' ], TRUE ) ) {
 				// @REF: https://apalfrey.github.io/select2-bootstrap-5-theme/
 				$args['custom_attributes']['data-theme'] = 'bootstrap-5';
+				$args['input_class'][] = 'form-select';
+			}
 
 		return $args;
 	}

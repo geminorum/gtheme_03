@@ -231,8 +231,11 @@ class gThemeOptions extends gThemeModuleCore
 
 
 			/// `WOOCOMMERCE`
-			// 'woocommerce_cartlink_text'    => NULL,
-			// 'woocommerce_accountlink_text' => NULL,
+			// 'woocommerce_cartlink_text'         => NULL,
+			// 'woocommerce_accountlink_text'      => NULL,
+			// 'woocommerce_image_aspect_ratio'    => '3:4',
+			// 'woocommerce_image_placeholder'     => GTHEME_CHILD_URL.'/images/placeholder.svg',
+			// 'woocommerce_image_placeholder_src' => GTHEME_CHILD_URL.'/images/placeholder.svg',
 		];
 
 		if ( FALSE === $option )

@@ -58,7 +58,7 @@ class gThemeNavigation extends gThemeModuleCore
 			return;
 
 		$html = sprintf( '<h2 class="screen-reader-text sr-only visually-hidden">%s</h2>', $strings['title'] );
-		$html.= '<ul class="pager nav-links">';
+		$html.= '<ul class="nav-links pager gtheme-pager">';
 
 		if ( $prev )
 			$html.= sprintf( '<li class="previous nav-previous">%1$s</li>', $prev );

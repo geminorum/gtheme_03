@@ -154,7 +154,7 @@ class gThemeSideBar extends gThemeModuleCore
 		return [
 			'id'             => $sidebar,
 			'name'           => $name ?: $sidebar,
-			'before_widget'  => '<'.$tag.' id="%1$s" class="widget gtheme-widget widget-'.$sidebar.( $extra ? ( ' '.$extra.' ' ) : '' ).'%2$s"><div class="-wrap">',
+			'before_widget'  => '<'.$tag.' id="%1$s" class="widget gtheme-widget widget-'.$sidebar.( $extra ? ( ' '.$extra ) : '' ).' %2$s"><div class="-wrap">',
 			'after_widget'   => '</div></'.$tag.'>',
 			'before_title'   => '<div class="-wrap-title"><'.$title.' class="-title widget-title widget-'.$sidebar.'-title">',
 			'after_title'    => '</'.$title.'></div>',
@@ -228,7 +228,7 @@ class gThemeSideBar extends gThemeModuleCore
 		echo '</div>';
 	}
 
-	// creates widgetized sidebars for each category
+	// Creates widgetized sidebars for each category
 	// @REF: https://bavotasan.com/2012/create-widgetized-sidebars-for-each-category-in-wordpress/
 	public function widgets_init_primaries()
 	{

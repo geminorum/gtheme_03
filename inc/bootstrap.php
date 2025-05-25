@@ -133,8 +133,12 @@ class gThemeBootstrap extends gThemeModuleCore
 			'theme_bs_version' => self::version(),
 		] );
 
-		if ( $menu )
-			echo $wrap ? '<div id="'.$wrap.'" class="collapse navbar-collapse">'.$menu.'</div>' : $menu;
+		if ( ! $menu )
+			return FALSE;
+
+		echo $wrap ? '<div id="'.$wrap.'" class="collapse navbar-collapse">'.$menu.'</div>' : $menu;
+
+		return TRUE;
 	}
 
 	public static function navbarForm( $placeholder = NULL, $class = '' )
@@ -156,7 +160,7 @@ class gThemeBootstrap extends gThemeModuleCore
 
 			case 'pingback':
 			case 'trackback':
-			break;
+				break;
 
 			case 'comment':
 			case '':

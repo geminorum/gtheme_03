@@ -1,8 +1,8 @@
 <?php defined( 'ABSPATH' ) or die( header( 'HTTP/1.0 403 Forbidden' ) );
 
+#[\AllowDynamicProperties]
 class gThemeWidget extends WP_Widget
 {
-
 	const BASE   = 'gtheme';
 	const MODULE = FALSE;
 	const WIDGET = FALSE;
