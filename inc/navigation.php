@@ -154,6 +154,9 @@ class gThemeNavigation extends gThemeModuleCore
 	{
 		global $page, $numpages;
 
+		if ( gThemeOptions::info( 'breadcrumb_single_disabled', FALSE ) )
+			return;
+
 		if ( ! $post = get_post() )
 			return;
 
