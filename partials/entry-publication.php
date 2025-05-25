@@ -2,6 +2,8 @@
 
 // Flow: head:(Header) -> Main:(Cover) -> Foot:(Summary/Content)
 
+echo '<div class="entry-wrap-double -header-first">';
+
 echo '<div class="entry-double-top"><div class="-wrap">';
 
 gThemeSideBar::sidebar( 'entry-before', '<div class="wrap-side sidebar-entry-before">', '</div>' );
@@ -69,4 +71,4 @@ gThemeSideBar::sidebar( 'entry-after', '<div class="wrap-side sidebar-entry-afte
 
 gThemeNavigation::content( 'singular', TRUE, 'publication_subject' );
 
-echo '</div></div>';
+echo '</div></div></div>';
