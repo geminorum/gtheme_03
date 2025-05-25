@@ -217,10 +217,10 @@ class gThemeSideBar extends gThemeModuleCore
 		for ( $i = 1; $i <= $args['rows']; $i++ ) {
 
 			$location = sprintf( '%s-shelf-%s', $name, strtolower( $alphabet[$i - 1] ) );
-			$columns  = sprintf( $args['row_template'], self::getCount( $location, 1 ) );
+			$columns  = self::getCount( $location, 1 );
 
 			self::sidebar( $location,
-				'<div class="wrap-widget-shelf row'.( $args['gutters'] ? ' ' : ' no-gutters g-0 ' ).$columns.'">',
+				'<div class="wrap-widget-shelf -col-count-'.$columns.' row '.( $args['gutters'] ? '' : 'no-gutters g-0 ' ).sprintf( $args['row_template'], $columns ).'">',
 				'</div>'
 			);
 		}
