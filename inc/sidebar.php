@@ -8,9 +8,13 @@ class gThemeSideBar extends gThemeModuleCore
 	public function setup_actions( $args = [] )
 	{
 		extract( self::atts( [
+			'register_defaults'    => TRUE,
 			'disable_sidebars'     => FALSE,
 			'primary_cats_sidebar' => FALSE,
 		], $args ) );
+
+		if ( $register_defaults )
+			add_filter( 'register_sidebar_defaults', [ $this, 'register_sidebar_defaults' ], 12 );
 
 		if ( ! $disable_sidebars )
 			add_action( 'widgets_init', [ $this, 'widgets_init' ], 18 );
@@ -110,20 +114,38 @@ class gThemeSideBar extends gThemeModuleCore
 		if ( empty( $sidebars ) )
 			return;
 
-		$callback = gThemeOptions::info( 'sidebar_args_callback', [ __CLASS__, 'parseArgs' ] );
+		$callback = gThemeOptions::info( 'sidebar_args_callback', FALSE ); // `[ __CLASS__, 'parseArgs' ]`
 
 		foreach ( $sidebars as $id => $name ) {
 
 			if ( is_array( $name ) )
-				$args = array_merge( self::parseArgs( $id ), $name );
+				$args = array_merge( [ 'id' => $id ], $name );
+
+			else if ( $callback )
+				$args = call_user_func_array( $callback, [ $id, $name ] );
 
 			else
-				$args = call_user_func_array( $callback, [ $id, $name ] );
+				$args = [ 'id' => $id, 'name' => $name ];
 
 			register_sidebar( $args );
 		}
 	}
 
+	public function register_sidebar_defaults( $defaults )
+	{
+		$tag   = gThemeOptions::info( 'sidebar_args_html_tag', 'section' );
+		$title = gThemeOptions::info( 'sidebar_args_html_title', 'h3' );
+
+		return array_merge( $defaults, [
+			'before_widget' => '<'.$tag.' id="%1$s" class="widget gtheme-widget widget-'.$defaults['id'].' %2$s"><div class="-wrap">',
+			'after_widget'  => '</div></'.$tag.'>',
+			'before_title'  => '<div class="-wrap-title"><'.$title.' class="-title widget-title widget-'.$defaults['id'].'-title">',
+			'after_title'   => '</'.$title.'></div>',
+		] );
+	}
+
+	// NOTE: we are no longer use this by default.
+	// @see `register_sidebar_defaults` filter
 	public static function parseArgs( $sidebar, $name = FALSE, $description = '', $extra = '' )
 	{
 		$tag   = gThemeOptions::info( 'sidebar_args_html_tag', 'section' );
@@ -156,23 +178,21 @@ class gThemeSideBar extends gThemeModuleCore
 			$args = self::parseShelfsArgs( $name, $atts );
 
 			for ( $i = 1; $i <= $args['rows']; $i++ )
-				register_sidebar( call_user_func_array( $args['widget_callback'], [
-					sprintf( '%s-shelf-%s', $name, strtolower( $alphabet[$i - 1] ) ),
-					sprintf( '%1$s: %2$s', $args['title'], $alphabet[$i - 1] ),
-				] ) );
+				register_sidebar( [
+					'id'   => sprintf( '%s-shelf-%s', $name, strtolower( $alphabet[$i - 1] ) ),
+					'name' => sprintf( '%1$s: %2$s', $args['title'], $alphabet[$i - 1] ),
+				] );
 		}
 	}
 
-	// TODO: better default callback
 	public static function parseShelfsArgs( $name, $atts = [] )
 	{
 		return self::atts( [
-			'title'           => $name,
-			'context'         => $name, // same as name
-			'gutters'         => NULL,
-			'widget_callback' => gThemeOptions::info( 'shelfs_args_callback', [ __CLASS__, 'parseArgs' ] ),
-			'rows'            => 5,
-			'row_template'    => 'row-cols-1 row-cols-lg-%d',
+			'title'        => $name,
+			'context'      => $name, // same as name
+			'gutters'      => NULL,
+			'rows'         => 5,
+			'row_template' => 'row-cols-1 row-cols-lg-%d',
 		], $atts );
 	}
 
@@ -220,15 +240,20 @@ class gThemeSideBar extends gThemeModuleCore
 		$taxonomy = gThemeOptions::info( 'primary_terms_taxonomy', 'category' );
 		$terms    = gThemeTaxonomy::listTerms( $taxonomy, 'all', [ 'include' => $primaries ] );
 
-		foreach ( $terms as $term ) {
-
-			/* translators: %s: primary term title */
-			$name = sprintf( _x( 'Theme: %s Widget', 'Modules: Sidebar', 'gtheme' ), $term->name );
-			/* translators: %s: primary term title */
-			$desc = sprintf( _x( 'This is the %s widgetized area', 'Modules: Sidebar', 'gtheme' ), $term->name );
-
-			register_sidebar( self::parseArgs( $term->slug.'-primaries', $name, $desc ) );
-		}
+		foreach ( $terms as $term )
+			register_sidebar( [
+				'id'   => sprintf( '%s-primaries', $term->slug ),
+				'name' => sprintf(
+					/* translators: `%s`: primary term title */
+					_x( 'Theme: %s Widget', 'Modules: Sidebar', 'gtheme' ),
+					$term->name
+				),
+				'description' => sprintf(
+					/* translators: `%s`: primary term title */
+					_x( 'This is the %s widgetized area', 'Modules: Sidebar', 'gtheme' ),
+					$term->name
+				),
+			] );
 	}
 
 	public static function renderPrimary( $slug = NULL )
