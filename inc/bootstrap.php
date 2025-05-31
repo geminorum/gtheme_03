@@ -3,6 +3,27 @@
 class gThemeBootstrap extends gThemeModuleCore
 {
 
+	public function setup_actions( $args = [] )
+	{
+		extract( self::atts( [
+			'enhance_forms' => TRUE,
+		], $args ) );
+
+		if ( $enhance_forms ) {
+			add_filter( 'widget_categories_dropdown_args', [ $this, 'widget_categories_dropdown_args' ], 12, 2 );
+		}
+	}
+
+	public function widget_categories_dropdown_args( $args, $instance )
+	{
+		if ( empty( $args['class'] ) )
+			$args['class'] = 'postform form-select form-select-sm mb-3';
+		else
+			$args['class'].= ' form-select form-select-sm mb-3';
+
+		return $args;
+	}
+
 	/**
 	 * Retrieves bootstrap major version for the current theme.
 	 *
