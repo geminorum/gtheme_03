@@ -15,6 +15,7 @@ class gThemeWooCommerce extends gThemeModuleCore
 			'fragments'       => TRUE,
 			'meta_fields'     => TRUE,
 			'placeholders'    => FALSE,
+			'shortcodes'      => TRUE,
 		], $args ) );
 
 		if ( ! gThemeWordPress::isPluginActive( 'woocommerce/woocommerce.php' ) )
@@ -69,6 +70,17 @@ class gThemeWooCommerce extends gThemeModuleCore
 		if ( $placeholders ) {
 			add_filter( 'woocommerce_placeholder_img', [ __CLASS__, 'placeholder_img' ], 8, 3 );
 			add_filter( 'woocommerce_placeholder_img_src', [ __CLASS__, 'placeholder_img_src' ], 8, 1 );
+		}
+
+		if ( $shortcodes ) {
+			// @REF: https://woocommerce.com/document/woocommerce-shortcodes/
+			// @REF: https://www.uncannyowl.com/knowledge-base/woocommerce-shortcodes/
+			add_filter( 'shortcode_atts_product', [ __CLASS__, 'shortcode_atts' ], 12, 4 );
+			add_filter( 'shortcode_atts_products', [ __CLASS__, 'shortcode_atts' ], 12, 4 );
+			add_filter( 'shortcode_atts_product_category', [ __CLASS__, 'shortcode_atts' ], 12, 4 );
+			add_filter( 'shortcode_atts_product_categories', [ __CLASS__, 'shortcode_atts' ], 12, 4 ); // WTF: does not apply `class`
+			add_filter( 'shortcode_atts_add_to_cart', [ __CLASS__, 'shortcode_atts' ], 12, 4 );
+			add_filter( 'shortcode_atts_product_add_to_cart', [ __CLASS__, 'shortcode_atts' ], 12, 4 );
 		}
 	}
 
@@ -421,5 +433,21 @@ class gThemeWooCommerce extends gThemeModuleCore
 		$after  = '</div></div>';
 
 		return $before.$placeholder.$after;
+	}
+
+	// NOTE: for all woo-commerce short-codes
+	public static function shortcode_atts( $out, $pairs, $atts, $shortcode )
+	{
+		if ( empty( $out['class'] ) )
+			$out['class'] = '-wrap gtheme-wrap-shortcode shortcode-'.$shortcode;
+
+		else
+			$out['class'] = '-wrap gtheme-wrap-shortcode shortcode-'.$shortcode.' '.( (string) $out['class'] );
+
+		switch ( $shortcode ) {
+			case 'product_add_to_cart': $out['style'] = ''; break; // override default style
+		}
+
+		return $out;
 	}
 }
