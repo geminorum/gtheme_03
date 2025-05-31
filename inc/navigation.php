@@ -130,10 +130,13 @@ class gThemeNavigation extends gThemeModuleCore
 		if ( ! gThemeOptions::info( 'breadcrumb_support', TRUE ) )
 			return;
 
-		$posttypes = gThemeOptions::info( 'breadcrumb_posttypes', [ 'post', 'entry' ] );
+		$posttypes = gThemeOptions::info( 'breadcrumb_posttypes', [ 'post', 'entry', 'product' ] );
 
 		if ( FALSE !== $posttypes && is_singular( $posttypes ) )
 			self::breadcrumbSingle( $atts );
+
+		else if ( function_exists( 'is_shop' ) && is_shop() )
+			self::breadcrumbArchive( $atts );
 
 		else if ( FALSE !== $posttypes && is_post_type_archive( $posttypes ) )
 			self::breadcrumbArchive( $atts );
