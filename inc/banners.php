@@ -6,7 +6,7 @@ class gThemeBanners extends gThemeModuleCore
 	public function setup_actions( $args = [] )
 	{
 		extract( self::atts( [
-			'admin' => FALSE,
+			'admin' => TRUE, // FALSE,
 		], $args ) );
 
 		if ( $admin && is_admin() ) {

@@ -34,6 +34,11 @@ class gThemeSideBar extends gThemeModuleCore
 			'entry-after'     => _x( 'Entry: After', 'Sidebar Name', 'gtheme' ),
 			'entry-content'   => _x( 'Entry: Content', 'Sidebar Name', 'gtheme' ),
 			'entry-side'      => _x( 'Entry: Side', 'Sidebar Name', 'gtheme' ),
+
+			// 'navigation-after' => _x( 'Navigation: After', 'Sidebar Name', 'gtheme' ),
+
+			// 'side-shop'    => _x( 'Woocommerce Shop: Side', 'Sidebar Name', 'gtheme' ),
+			// 'side-product' => _x( 'Woocommerce Product: Side', 'Sidebar Name', 'gtheme' ),
 		], $extra );
 	}
 

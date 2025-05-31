@@ -7,7 +7,6 @@
 Template Name: Contact Page
 */
 
-defined( 'GNETWORK_DISABLE_LINKIFY_CONTENT' ) or define( 'GNETWORK_DISABLE_LINKIFY_CONTENT', TRUE ); // contact page only
 gThemeUtilities::enqueueAutosize();
 
 get_template_part( 'singular', gtheme_template_base() );

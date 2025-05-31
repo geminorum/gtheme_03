@@ -40,22 +40,16 @@ class gThemeWrap extends gThemeModuleCore
 	{
 		gThemeWordPress::doNotCache();
 
-		defined( 'GTHEME_IS_WP_SIGNUP' )
-			or define( 'GTHEME_IS_WP_SIGNUP', TRUE );
-
-		defined( 'GTHEME_SOCIAL_META_DISABLED' )
-			or define( 'GTHEME_SOCIAL_META_DISABLED', TRUE );
+		self::define( 'GTHEME_IS_WP_SIGNUP', TRUE );
+		self::define( 'GTHEME_SOCIAL_META_DISABLED', TRUE );
 	}
 
 	public function activate_header()
 	{
 		gThemeWordPress::doNotCache();
 
-		defined( 'GTHEME_IS_WP_ACTIVATE' )
-			or define( 'GTHEME_IS_WP_ACTIVATE', TRUE );
-
-		defined( 'GTHEME_SOCIAL_META_DISABLED' )
-			or define( 'GTHEME_SOCIAL_META_DISABLED', TRUE );
+		self::define( 'GTHEME_IS_WP_ACTIVATE', TRUE );
+		self::define( 'GTHEME_SOCIAL_META_DISABLED', TRUE );
 	}
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -70,8 +64,7 @@ class gThemeWrap extends gThemeModuleCore
 	public static function template_include( $template )
 	{
 		if ( in_array( get_page_template_slug(), [ 'systempage.php' ] ) )
-			defined( 'GTHEME_IS_SYSTEM_PAGE' )
-				or define( 'GTHEME_IS_SYSTEM_PAGE', TRUE );
+			self::define( 'GTHEME_IS_SYSTEM_PAGE', TRUE );
 
 		self::$main_template = $template;
 
@@ -80,9 +73,8 @@ class gThemeWrap extends gThemeModuleCore
 		if ( 'index' == self::$base_template )
 			self::$base_template = FALSE;
 
-		if ( in_array( self::$base_template, [ 'buddypress', 'bbpress' ] ) )
-			defined( 'GTHEME_IS_SYSTEM_PAGE' )
-				or define( 'GTHEME_IS_SYSTEM_PAGE', TRUE );
+		if ( in_array( self::$base_template, [ 'buddypress', 'bbpress', 'woocommerce', 'contact' ] ) )
+			self::define( 'GTHEME_IS_SYSTEM_PAGE', TRUE );
 
 		$templates = [ 'base.php' ];
 

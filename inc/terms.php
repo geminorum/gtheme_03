@@ -14,6 +14,7 @@ class gThemeTerms extends gThemeModuleCore
 		], $args ) );
 
 		if ( $system_tags ) {
+
 			add_action( 'init', [ $this, 'register_taxonomies' ] );
 
 			if ( is_admin() ) {
@@ -22,7 +23,7 @@ class gThemeTerms extends gThemeModuleCore
 				add_action( 'load-edit-tags.php', [ $this, 'load_edit_tags' ] );
 				add_filter( 'geditorial_tweaks_taxonomy_info', [ $this, 'tweaks_taxonomy_info' ], 10, 3 );
 
-				// remote: tax bulk actions with gNetworkTaxonomy
+				// remote: tax bulk actions with gNetwork: Taxonomy
 				add_filter( 'gnetwork_taxonomy_bulk_actions', [ $this, 'taxonomy_bulk_actions' ], 12, 2 );
 				add_filter( 'gnetwork_taxonomy_bulk_callback', [ $this, 'taxonomy_bulk_callback' ], 12, 3 );
 
@@ -157,7 +158,7 @@ class gThemeTerms extends gThemeModuleCore
 
 	public function register_taxonomies()
 	{
-		$posttypes = gThemeOptions::info( 'system_tags_cpt', [ 'post' ] );
+		$posttypes = gThemeOptions::info( 'system_tags_cpt', [ 'post', 'entry' ] );
 		$manage    = gThemeOptions::info( 'settings_access', 'edit_theme_options' );
 		$assign    = gThemeOptions::info( 'system_tags_access', 'edit_others_posts' );
 		$can       = current_user_can( $assign );
