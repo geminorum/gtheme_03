@@ -344,6 +344,9 @@ class gThemeContent extends gThemeModuleCore
 
 		$classes[] = 'hentry';
 
+		if ( $woocommerce = gThemeWooCommerce::isPage() )
+			$classes[] = sprintf( 'post-is-woocommerce post-%s', $woocommerce );
+
 		// core default filter
 		return array_unique( apply_filters( 'post_class', $classes, $class, $post->ID ) );
 	}

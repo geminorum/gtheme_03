@@ -113,15 +113,13 @@ class gThemeWooCommerce extends gThemeModuleCore
 		return $classes;
 	}
 
-	// @REF: https://developer.woocommerce.com/docs/conditional-tags-in-woocommerce/
-	// @SEE: https://www.businessbloomer.com/woocommerce-conditional-logic-ultimate-php-guide/
 	/**
-	 * Returns true if on a page which uses WooCommerce templates (cart and
-	 * check-out are standard pages with short-codes and thus are not included).
-	 * @ref `is_woocommerce()`
-	 * @see https://www.businessbloomer.com/woocommerce-conditional-logic-ultimate-php-guide/
+	 * Returns true if on a page which uses WooCommerce.
 	 *
-	 * @return bool
+	 * @ref https://developer.woocommerce.com/docs/theming/theme-development/conditional-tags
+	 * @ref https://www.businessbloomer.com/woocommerce-conditional-logic-ultimate-php-guide/
+	 *
+	 * @return false|string
 	 */
 	public static function isPage()
 	{
@@ -130,19 +128,19 @@ class gThemeWooCommerce extends gThemeModuleCore
 
 		// checks for `is_shop()`/`is_product_taxonomy()`/`is_product()`
 		if ( function_exists( 'is_woocommerce' ) && is_woocommerce() )
-			return TRUE;
+			return 'is_woocommerce';
 
 		if ( function_exists( 'is_cart' ) && is_cart() )
-			return TRUE;
+			return 'is_cart';
 
 		if ( function_exists( 'is_checkout' ) && is_checkout() )
-			return TRUE;
+			return 'is_checkout';
 
 		if ( function_exists( 'is_account_page' ) && is_account_page() )
-			return TRUE;
+			return 'is_account_page';
 
-		// FIXME: more checks!
-		// @SEE: https://www.businessbloomer.com/woocommerce-get-cart-checkout-account-urls/
+		if ( function_exists( 'is_wc_endpoint_url' ) && is_wc_endpoint_url() )
+			return 'is_wc_endpoint';
 
 		return FALSE;
 	}
