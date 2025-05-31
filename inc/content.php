@@ -330,6 +330,12 @@ class gThemeContent extends gThemeModuleCore
 
 		$classes[] = gThemeHTML::sanitizeClass( 'type-'.$post->post_type );
 
+		if ( has_post_thumbnail( $post ) )
+			$classes[] = 'post-has-thumbnail';
+
+		else
+			$classes[] = 'post-has-no-thumbnail';
+
 		if ( post_password_required( $post->ID ) )
 			$classes[] = 'post-password-required';
 
