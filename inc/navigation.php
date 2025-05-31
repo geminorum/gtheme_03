@@ -246,6 +246,7 @@ class gThemeNavigation extends gThemeModuleCore
 		$args = self::atts( [
 			'home'       => FALSE, // 'home' // 'network' // 'custom string'
 			'home_title' => NULL,
+			'no_prefix'  => NULL,
 			'strings'    => gThemeOptions::info( 'strings_breadcrumb_archive', [] ),
 			'class'      => 'gtheme-breadcrumb',
 			'before'     => '<nav class="nav-content nav-content-archive" aria-label="breadcrumb">',
@@ -263,8 +264,13 @@ class gThemeNavigation extends gThemeModuleCore
 			$crumbs[] = $archive;
 
 		if ( is_paged() ) {
-			/* translators: %s: page number */
-			$template = empty( $args['strings']['paged'] ) ? _x( 'Page <strong>%s</strong>', 'Modules: Navigation: Breadcrumbs', 'gtheme' ) : $args['strings']['paged'];
+
+			// NOTE: we do not apply `no_prefix` on paged crumbs
+			$template = empty( $args['strings']['paged'] )
+				/* translators: `%s`: page number */
+				? _x( 'Page <strong>%s</strong>', 'Modules: Navigation: Breadcrumbs', 'gtheme' )
+				: $args['strings']['paged'];
+
 			$crumbs[] = sprintf( $template, number_format_i18n( get_query_var( 'paged' ) ) );
 		}
 
@@ -320,7 +326,8 @@ class gThemeNavigation extends gThemeModuleCore
 	// @REF: `get_the_archive_title()`
 	public static function crumbArchive( $args )
 	{
-		$crumb = '';
+		$crumb     = '';
+		$no_prefix = ! empty( $args['no_prefix'] );
 
 		if ( is_front_page() || is_home() ) {
 
@@ -337,8 +344,8 @@ class gThemeNavigation extends gThemeModuleCore
 			$title = _x( 'All Categories', 'Modules: Navigation: Breadcrumbs', 'gtheme' );
 			$link  = self::getTaxonomyArchiveLink( 'category', '<a href="%s" title="'.esc_attr( $title ).'">' );
 
-			$crumb = sprintf( ( empty( $args['strings']['category'] )
-				/* translators: %1$s: category title, %2$s: link markup start, %3$s: link markup end */
+			$crumb = sprintf( $no_prefix ? '%2$s%1$s%3$s' : ( empty( $args['strings']['category'] )
+				/* translators: `%1$s`: category title, `%2$s`: link markup start, `%3$s`: link markup end */
 				? _x( '%2$sCategory%3$s Archives for <strong>%1$s</strong>', 'Modules: Navigation: Breadcrumbs', 'gtheme' )
 				: $args['strings']['category'] ),
 			single_term_title( '', FALSE ), $link ?: '', $link ? '</a>': '' );
@@ -348,8 +355,8 @@ class gThemeNavigation extends gThemeModuleCore
 			$title = _x( 'All Tags', 'Modules: Navigation: Breadcrumbs', 'gtheme' );
 			$link  = self::getTaxonomyArchiveLink( 'post_tag', '<a href="%s" title="'.esc_attr( $title ).'">' );
 
-			$crumb = sprintf( ( empty( $args['strings']['tag'] )
-				/* translators: %1$s: tag title, %2$s: link markup start, %3$s: link markup end */
+			$crumb = sprintf( $no_prefix ? '%2$s%1$s%3$s' : ( empty( $args['strings']['tag'] )
+				/* translators: `%1$s`: tag title, `%2$s`: link markup start, `%3$s`: link markup end */
 				? _x( '%2$sTag%3$s Archives for <strong>%1$s</strong>', 'Modules: Navigation: Breadcrumbs', 'gtheme' )
 				: $args['strings']['tag'] ),
 			single_term_title( '', FALSE ), $link ?: '', $link ? '</a>': '' );
@@ -359,8 +366,8 @@ class gThemeNavigation extends gThemeModuleCore
 			$title = _x( 'All People', 'Modules: Navigation: Breadcrumbs', 'gtheme' );
 			$link  = self::getTaxonomyArchiveLink( GTHEME_PEOPLE_TAXONOMY, '<a href="%s" title="'.esc_attr( $title ).'">' );
 
-			$crumb = sprintf( ( empty( $args['strings'][GTHEME_PEOPLE_TAXONOMY] )
-				/* translators: %1$s: person title, %2$s: link markup start, %3$s: link markup end */
+			$crumb = sprintf( $no_prefix ? '%2$s%1$s%3$s' : ( empty( $args['strings'][GTHEME_PEOPLE_TAXONOMY] )
+				/* translators: `%1$s`: person title, `%2$s`: link markup start, `%3$s`: link markup end */
 				? _x( '%2$sPeople%3$s Archives for <strong>%1$s</strong>', 'Modules: Navigation: Breadcrumbs', 'gtheme' )
 				: $args['strings'][GTHEME_PEOPLE_TAXONOMY] ),
 			single_term_title( '', FALSE ), $link ?: '', $link ? '</a>': '' );
@@ -371,7 +378,7 @@ class gThemeNavigation extends gThemeModuleCore
 
 				$queried = get_queried_object();
 
-				// NOTE: in case overrided
+				// NOTE: in case overridden
 				if ( is_a( $queried, 'WP_Term' ) )
 					$taxonomy = $queried->taxonomy;
 			}
@@ -380,14 +387,17 @@ class gThemeNavigation extends gThemeModuleCore
 
 				$link = self::getTaxonomyArchiveLink( $object->name, '<a href="%s" title="'.esc_attr( $object->labels->all_items ).'">' );
 
-				if ( ! empty( $args['strings'][$taxonomy] ) )
+				if ( $no_prefix )
+					$template = '%4$s<span title="%1$s">%3$s</span>%5$s';
+
+				else if ( ! empty( $args['strings'][$taxonomy] ) )
 					$template = $args['strings'][$taxonomy];
 
 				else if ( ! empty( $args['strings']['tax'] ) )
 					$template = $args['strings']['tax'];
 
 				else
-					/* translators: %1$s: tax singular name, %2$s: tax plural name, %3$s: term title, %4$s: link markup start, %5$s: link markup end */
+					/* translators: `%1$s`: tax singular name, `%2$s`: tax plural name, `%3$s`: term title, `%4$s`: link markup start, `%5$s`: link markup end */
 					$template = _x( '%4$s%1$s%5$s Archives for <strong>%3$s</strong>', 'Modules: Navigation: Breadcrumbs', 'gtheme' );
 
 				$crumb = vsprintf( $template, [
@@ -401,8 +411,8 @@ class gThemeNavigation extends gThemeModuleCore
 
 		} else if ( is_post_type_archive() ) {
 
-			$crumb = sprintf( ( empty( $args['strings']['posttype'] )
-				/* translators: %s: posttype title */
+			$crumb = sprintf( $no_prefix ? '%s' : ( empty( $args['strings']['posttype'] )
+				/* translators: `%s`: post-type title */
 				? _x( 'Archives for <strong>%s</strong>', 'Modules: Navigation: Breadcrumbs', 'gtheme' )
 				: $args['strings']['posttype'] ),
 			post_type_archive_title( '', FALSE ) );
@@ -415,32 +425,32 @@ class gThemeNavigation extends gThemeModuleCore
 			if ( $default == $author )
 				return FALSE;
 
-			$crumb = sprintf( ( empty( $args['strings']['author'] )
-				/* translators: %s: display name */
+			$crumb = sprintf( $no_prefix ? '%s' : ( empty( $args['strings']['author'] )
+				/* translators: `%s`: author display name */
 				? _x( 'Author Archives for <strong>%s</strong>', 'Modules: Navigation: Breadcrumbs', 'gtheme' )
 				: $args['strings']['author'] ),
 			get_the_author_meta( 'display_name', $author ) );
 
 		} else if ( is_search() ) {
 
-			$crumb = sprintf( ( empty( $args['strings']['search'] )
-				/* translators: %s: search query */
+			$crumb = sprintf( $no_prefix ? '%s' : ( empty( $args['strings']['search'] )
+				/* translators: `%s`: search query */
 				? _x( 'Search Results for <strong>%s</strong>', 'Modules: Navigation: Breadcrumbs', 'gtheme' )
 				: $args['strings']['search'] ),
 			''.get_search_query().'' );
 
 		} else if ( is_day() ) {
 
-			$crumb = sprintf( ( empty( $args['strings']['day'] )
-				/* translators: %s: date */
+			$crumb = sprintf( $no_prefix ? '%s' : ( empty( $args['strings']['day'] )
+				/* translators: `%s`: Day */
 				? _x( 'Daily Archives for <strong>%s</strong>', 'Modules: Navigation: Breadcrumbs', 'gtheme' )
 				: $args['strings']['day'] ),
 			get_the_date( gThemeOptions::info( 'date_format_day', _x( 'j M Y', 'Options: Defaults: Date Format: Day', 'gtheme' ) ) ) );
 
 		} else if ( is_month() ) {
 
-			$crumb = sprintf( ( empty( $args['strings']['month'] )
-				/* translators: %s: date */
+			$crumb = sprintf( $no_prefix ? '%s' : ( empty( $args['strings']['month'] )
+				/* translators: `%s`: Month */
 				? _x( 'Monthly Archives for <strong>%s</strong>', 'Modules: Navigation: Breadcrumbs', 'gtheme' )
 				: $args['strings']['month'] ),
 			get_the_date( 'F Y' ) );
@@ -448,7 +458,7 @@ class gThemeNavigation extends gThemeModuleCore
 		} else if ( is_year() ) {
 
 			$crumb = sprintf( ( empty( $args['strings']['year'] )
-				/* translators: %s: date */
+				/* translators: `%s`: Year */
 				? _x( 'Yearly Archives for <strong>%s</strong>', 'Modules: Navigation: Breadcrumbs', 'gtheme' )
 				: $args['strings']['year'] ),
 			get_the_date( 'Y' ) );
