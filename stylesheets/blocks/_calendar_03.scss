@@ -1,0 +1,72 @@
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+/// Blocks: Calendar 03 - 2025-03-10
+// gPersianDate Calendar Markup
+
+////////////////////////////////////////////////////////////////////////////////
+@use "sass:color";
+@use "gtheme";
+
+////////////////////////////////////////////////////////////////////////////////
+table.wp-calendar-table, // core's
+table.date-calendar {
+  width: 100%;
+  // margin-top: $theme-grid-gutter / 2;
+
+  a {
+    font-weight: 600;
+    text-decoration: none;
+
+    &:hover {
+      color: gtheme.$gray !important;
+    }
+  }
+
+  // @REF: http://stackoverflow.com/a/8948741
+  td > a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 1px;
+    height: 100%;
+    width: 100%;
+  }
+
+  caption {
+    color: var(--bs-secondary-color, #{gtheme.$gray-dark});
+    padding: 6px 12px;
+    text-align: center;
+  }
+
+  thead {
+    background: var(--bs-secondary-bg-subtle, #{gtheme.$gray-lighter});
+  }
+
+  th {
+    font-weight: 600;
+    width: calc(100% / 7);
+    cursor: help;
+  }
+
+  // td {}
+
+  th,
+  td {
+    text-align: center;
+    vertical-align: middle;
+    height: $spacer * 2.2;
+    border: var(--bs-border-width, 1px) solid var(--bs-border-color, color.adjust(gtheme.$gray-light, $lightness: 50%) );
+  }
+
+  td:not(.-pad):hover {
+    background: var(--bs-secondary-bg-subtle, #{gtheme.$gray-lighter});
+  }
+
+  // .-day:not(.-with-posts) {}
+
+  .pad,
+  .-pad {
+    padding: 0 !important;
+  }
+}

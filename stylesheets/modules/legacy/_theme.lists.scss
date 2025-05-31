@@ -47,6 +47,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 // $bs: $theme-bs-navbar-height, $ab: $theme-wp-adminbar-height
 // @REF: https://codepen.io/mtclmn/pen/OPQmbx
+// https://codepen.io/geminorum/pen/JodjVGE
 @mixin theme-list-style-diamond($gutter: $theme-grid-gutter, $color: $gray-light) {
   @include theme-list-reset();
 

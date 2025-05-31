@@ -8,15 +8,12 @@ $spacer: 1rem !default;
 $theme-color-border: $gray-light !default;
 
 ////////////////////////////////////////////////////////////////////////////////
-.entry-comments {
-}
+// .entry-comments {}
 
 ////////////////////////////////////////////////////////////////////////////////
-.comments-area {
+// .comments-area {}
 
-}
-
-.comments-feed {}
+// .comments-feed {}
 
 .comments-title {
   margin-bottom: $spacer;
@@ -94,7 +91,6 @@ $theme-color-border: $gray-light !default;
     }
   }
 
-  p.logged-in-as {}
-
-  p.form-submit {}
+  // p.logged-in-as {}
+  // p.form-submit {}
 }

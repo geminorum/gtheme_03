@@ -53,7 +53,7 @@
   ul.woocommerce-error li { @extend .list-group-item; @extend .list-group-item-danger; }
   p.form-row > p.description { @extend .form-text; }
   // p.form-row > p.checkout-inline-error-message { @extend .form-text; }
-  p.form-row > p.checkout-inline-error-message { @extend .invalid-feedback; display: block;}
+  p.form-row > p.checkout-inline-error-message { @extend .invalid-feedback; display: block; }
   // li.woocommerce-MyAccount-navigation-link.is-active { @extend .list-group-item .active; } // SASS NOT WORKING
 
   div.woocommerce-password-strength {

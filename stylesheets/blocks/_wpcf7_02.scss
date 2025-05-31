@@ -1,19 +1,17 @@
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
-/// Blocks: Contact-Form-7 01 - 2018-12-24
+/// Blocks: Contact-Form-7 02 - 2025-05-18
 
 ////////////////////////////////////////////////////////////////////////////////
-@use "sass:math"; // @REF: https://sass-lang.com/d/slash-div
-
 ////////////////////////////////////////////////////////////////////////////////
 div.wpcf7 {
   margin: 0;
   padding: 0;
 
   .wpcf7-response-output {
-    margin: $theme-grid-gutter;
-    padding: math.div($theme-grid-gutter, 4) math.div($theme-grid-gutter, 2);
+    margin: $spacer;
+    padding: ($spacer * .25) ($spacer * .5);
     text-align: center;
     border-radius: 2px;
   }
@@ -94,8 +92,8 @@ div.wpcf7 {
       direction: ltr !important;
 
       &::placeholder {
-        direction: rtl; // must not be ignored by RTLCSS
-        text-align: right; // for firefox
+        direction: ltr !important; // must not be ignored by RTLCSS
+        text-align: left !important; // for firefox
       }
     }
 
@@ -105,24 +103,24 @@ div.wpcf7 {
   }
 
   .wpcf7-not-valid-tip {
-    color: $brand-danger;
-    font-size: 0.89em;
     display: block;
-    padding: 0.2em 0.5em;
+    color: $brand-danger;
+    font-size: smaller;
+    padding: ($spacer * .25) ($spacer * .5);
   }
 
   .use-floating-validation-tip span.wpcf7-not-valid-tip {
     position: absolute;
     top: 20%;
-    right: 20%;
+    left: 20%;
     z-index: 100;
     border: 1px solid $brand-danger;
     background: $gray-lighter;
-    padding: .2em .8em;
+    padding: ($spacer * .25) ($spacer * .5);
   }
 
   span.wpcf7-list-item {
-    margin-left: 0.5em;
+    margin-left: ($spacer * .5);
   }
 
   .wpcf7-display-none {
