@@ -5,4 +5,4 @@ gThemeTemplate::wrapOpen( 'notfound' );
 	gThemeContent::notFound();
 
 gThemeTemplate::wrapClose( 'notfound' );
-gThemeTemplate::sidebar( gtheme_template_base() );
+// gThemeTemplate::sidebar( gtheme_template_base() );
