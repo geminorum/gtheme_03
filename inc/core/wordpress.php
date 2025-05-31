@@ -87,7 +87,7 @@ class gThemeWordPress extends gThemeBaseCore
 
 	public static function doNotCache()
 	{
-		defined( 'DONOTCACHEPAGE' ) or define( 'DONOTCACHEPAGE', TRUE );
+		self::define( 'DONOTCACHEPAGE', TRUE );
 	}
 
 	public static function getPostTypes( $mod = 0, $args = array( 'public' => TRUE ) )

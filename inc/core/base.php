@@ -5,8 +5,13 @@ class gThemeBaseCore
 
 	public static function define( $name, $value )
 	{
-		if ( ! defined( $name ) )
+		if ( $name && ! defined( $name ) )
 			define( $name, $value );
+	}
+
+	public static function const( $name, $default = FALSE )
+	{
+		return defined( $name ) ? constant( $name ) : $default;
 	}
 
 	public static function buffer( $callback, $args = [], $fallback = '' )
