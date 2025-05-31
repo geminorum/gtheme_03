@@ -37,9 +37,11 @@ class gThemeBootstrap_Walker_NavBar extends \Walker_Nav_Menu
 			// CAUTION: `#navbar` must have `.yamm`
 
 			$classes   = empty( $item->classes ) ? [] : (array) $item->classes;
-			$classes[] = 'nav-item'; // BS4
-			$classes[] = 'dropdown'; // mega-menu
-			$classes[] = 'yamm-fw';  // mega-menu
+			$classes[] = 'nav-item'; // BS4/BS5
+
+			$classes[] = gThemeOptions::info( 'megamenu_item_class', 'dropdown yamm-fw yamm-fw-parent' );  // full-width of parent (`.yamm-fw` DEPRECATED)
+			// $classes[] = gThemeOptions::info( 'megamenu_item_class', 'dropdown yamm-fw-viewport' );        // full-width of viewport
+			// $classes[] = gThemeOptions::info( 'megamenu_item_class', 'dropdown-center' );                  // auto-width centered
 
 			$output.= $indent.'<li class="'.gThemeHTML::prepClass( apply_filters( 'nav_menu_css_class', array_filter( $classes ), $item, $args, $depth ) ).'">';
 				$output.= '<a href="'.( empty( $item->url ) ? '#' : $item->url ).'" class="nav-link dropdown-toggle" data-toggle="dropdown" data-bs-toggle="dropdown" data-display="static" data-bs-auto-close="outside">'.esc_attr( $item->title ).'</a>';
