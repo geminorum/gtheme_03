@@ -48,6 +48,7 @@ class gThemeWooCommerce extends gThemeModuleCore
 			add_filter( 'woocommerce_quantity_input_args', [ $this, 'quantity_input_args' ], 99, 2 );
 			add_filter( 'woocommerce_breadcrumb_defaults', [ $this, 'breadcrumb_defaults' ], 99, 1 );
 			// add_filter( 'woocommerce_checkout_fields', [ $this, 'checkout_fields' ], 99, 1 );
+			add_filter( 'woocommerce_dropdown_variation_attribute_options_args', [ $this, 'dropdown_variation_attribute_options_args' ], 99, 1 );
 		}
 
 		if ( $wrapping ) {
@@ -243,6 +244,16 @@ class gThemeWooCommerce extends gThemeModuleCore
 		$defaults['delimiter']   = '';
 
 		return $defaults;
+	}
+
+	public function dropdown_variation_attribute_options_args( $args )
+	{
+		if ( empty( $args['class'] ) )
+			$args['class'] = 'form-select form-select-sm';
+		else
+			$args['class'].= ' form-select form-select-sm';
+
+		return $args;
 	}
 
 	public function quantity_input_args( $args, $product )
