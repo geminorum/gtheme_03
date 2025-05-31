@@ -11,7 +11,7 @@ class gThemeWooCommerce extends gThemeModuleCore
 			'disable_thumbs'  => TRUE,
 			'disable_styles'  => FALSE,
 			'bootstrap'       => FALSE,
-			'wrapping'        => TRUE,
+			'wrapping'        => FALSE, // NOTE: If have `woocommerce.php` on theme then no need to wrap the content
 			'fragments'       => TRUE,
 			'meta_fields'     => TRUE,
 			'placeholders'    => FALSE,
@@ -50,6 +50,7 @@ class gThemeWooCommerce extends gThemeModuleCore
 		}
 
 		if ( $wrapping ) {
+			// add_filter( 'woocommerce_show_page_title', '__return_false' );
 			add_action( 'woocommerce_before_main_content', [ __CLASS__, 'before_main_content' ], -999 );
 			add_action( 'woocommerce_after_main_content', [ __CLASS__, 'after_main_content' ], 999 );
 		}
