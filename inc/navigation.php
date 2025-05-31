@@ -69,7 +69,7 @@ class gThemeNavigation extends gThemeModuleCore
 		echo apply_filters( 'gtheme_navigation_content', gThemeHTML::tag( 'nav', [ 'class' => $classes ], $html.'</ul>' ), $context );
 	}
 
-	public static function paginate( $atts = [], $query = NULL, $extra = [] )
+	public static function paginate( $atts = [], $query = NULL, $extra = [], $ul_class = [] )
 	{
 		if ( is_null( $query ) )
 			$query = $GLOBALS['wp_query'];
@@ -97,12 +97,12 @@ class gThemeNavigation extends gThemeModuleCore
 		if ( ! $links = paginate_links( $args ) )
 			return;
 
-		echo '<nav class="-pagination '.gThemeHTML::prepClass( $extra ).'" aria-label="'._x( 'Page Navigation', 'Modules: Navigation: Pagination: aria-label', 'gtheme' ).'">';
+		echo '<nav class="'.gThemeHTML::prepClass( '-pagination', $extra ).'" aria-label="'._x( 'Page Navigation', 'Modules: Navigation: Pagination: aria-label', 'gtheme' ).'">';
 
 			printf( '<h2 class="screen-reader-text sr-only visually-hidden">%s</h2>',
 				_x( 'Navigation', 'Modules: Navigation: Screen Reader Title', 'gtheme' ) );
 
-			echo '<ul class="pagination">';
+			echo '<ul class="'.gThemeHTML::prepClass( 'pagination', $ul_class ).'">';
 
 			foreach ( $links as $link )
 				printf( '<li class="page-item">%s</li>', $link );
