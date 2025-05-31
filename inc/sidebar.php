@@ -42,15 +42,17 @@ class gThemeSideBar extends gThemeModuleCore
 		if ( ! gThemeOptions::info( 'sidebar_support', TRUE ) )
 			return;
 
+		$class = gThemeOptions::info( 'sidebar_wrap_'.$name, '' );
+
 		if ( is_active_sidebar( $name )  ) {
 
-			echo $before;
+			printf( $before, $class );
 				dynamic_sidebar( $name );
 			echo $after;
 
 		} else if ( FALSE !== $else ) {
 			// TODO : add dev env, empty space remainder!
-			echo $before.$else.$after;
+			echo sprintf( $before, $class ).$else.$after;
 		}
 	}
 
