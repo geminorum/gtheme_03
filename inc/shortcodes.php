@@ -570,7 +570,7 @@ class gThemeShortCodes extends gThemeModuleCore
 	{
 		$parsed = shortcode_atts( [
 			'id'       => NULL,
-			'taxonomy' => GPEOPLE_PEOPLE_TAXONOMY,
+			'taxonomy' => GTHEME_PEOPLE_TAXONOMY,
 			'size'     => NULL,
 			'figure'   => TRUE,
 			'context'  => NULL,

@@ -59,10 +59,10 @@ class gThemeEditorial extends gThemeModuleCore
 			return;
 
 		if ( $video = self::getMeta( 'video_source_url' ) )
-			echo gThemeHTML::wrap( $video, '-video' );
+			echo gThemeHTML::wrap( $video, '-video -video-source' );
 
 		if ( $audio = self::getMeta( 'audio_source_url' ) )
-			echo gThemeHTML::wrap( $audio, '-audio' );
+			echo gThemeHTML::wrap( $audio, '-audio -audio-source' );
 	}
 
 	public function content_after_media( $content )
