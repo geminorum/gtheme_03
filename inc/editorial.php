@@ -20,8 +20,10 @@ class gThemeEditorial extends gThemeModuleCore
 		if ( $insert_embed )
 			add_action( 'gtheme_content_before', [ $this, 'content_before_embed' ], 50 );
 
-		if ( $insert_media )
+		if ( $insert_media ) {
 			add_action( 'gtheme_content_before', [ $this, 'content_before_media' ], 80 );
+			add_action( 'gtheme_content_after', [ $this, 'content_after_media' ], 8 );
+		}
 
 		if ( $insert_supported )
 			add_action( 'gtheme_content_wrap_after', [ $this, 'content_wrap_after_supported' ], 8 );
@@ -61,6 +63,15 @@ class gThemeEditorial extends gThemeModuleCore
 
 		if ( $audio = self::getMeta( 'audio_source_url' ) )
 			echo gThemeHTML::wrap( $audio, '-audio' );
+	}
+
+	public function content_after_media( $content )
+	{
+		if ( ! is_singular() )
+			return;
+
+		if ( $text = self::getMeta( 'text_source_url' ) )
+			echo gThemeHTML::wrap( $text, '-text -text-source' );
 	}
 
 	public function content_wrap_after_supported()
