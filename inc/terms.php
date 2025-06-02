@@ -638,11 +638,8 @@ class gThemeTerms extends gThemeModuleCore
 		return array_merge( $terms, (array) self::getTermLink( $term ) );
 	}
 
-	public static function getMainTaxonomy( $posttype, $fallback = 'category' )
+	public static function getMainTaxonomies()
 	{
-		if ( ! $posttype )
-			return $fallback;
-
 		$defaults = [
 			'page'        => FALSE,
 			'post'        => 'category',
@@ -657,7 +654,15 @@ class gThemeTerms extends gThemeModuleCore
 			'product'     => 'product_cat',
 		];
 
-		$map = array_merge( $defaults, (array) gThemeOptions::info( 'post_main_taxonomy_map', [] ) );
+		return array_merge( $defaults, (array) gThemeOptions::info( 'post_main_taxonomy_map', [] ) );
+	}
+
+	public static function getMainTaxonomy( $posttype, $fallback = 'category' )
+	{
+		if ( ! $posttype )
+			return $fallback;
+
+		$map = self::getMainTaxonomies();
 
 		return array_key_exists( $posttype, $map ) ? $map[$posttype] : $fallback;
 	}
