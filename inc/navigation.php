@@ -244,9 +244,11 @@ class gThemeNavigation extends gThemeModuleCore
 	public static function breadcrumbArchive( $atts = [] )
 	{
 		$args = self::atts( [
-			'home'       => FALSE, // 'home' // 'network' // 'custom string'
+			'home'       => FALSE, // `home`/`network`/`Custom String`
 			'home_title' => NULL,
 			'no_prefix'  => NULL,
+			'siblings'   => NULL, // TODO: siblings as bootstrap dropdown
+			'item_class' => '-crumb', // TODO
 			'strings'    => gThemeOptions::info( 'strings_breadcrumb_archive', [] ),
 			'class'      => 'gtheme-breadcrumb',
 			'before'     => '<nav class="nav-content nav-content-archive" aria-label="breadcrumb">',
@@ -261,7 +263,7 @@ class gThemeNavigation extends gThemeModuleCore
 		$crumbs = self::crumbHome( $args );
 
 		if ( $archive )
-			$crumbs[] = $archive;
+			$crumbs = array_merge( $crumbs, (array) $archive );
 
 		if ( is_paged() ) {
 
@@ -326,7 +328,8 @@ class gThemeNavigation extends gThemeModuleCore
 	// @REF: `get_the_archive_title()`
 	public static function crumbArchive( $args )
 	{
-		$crumb     = '';
+		$crumb     = [];
+		$dropdown  = FALSE;
 		$no_prefix = ! empty( $args['no_prefix'] );
 
 		if ( is_front_page() || is_home() ) {
@@ -361,16 +364,16 @@ class gThemeNavigation extends gThemeModuleCore
 				: $args['strings']['tag'] ),
 			single_term_title( '', FALSE ), $link ?: '', $link ? '</a>': '' );
 
-		} else if ( is_tax( GTHEME_PEOPLE_TAXONOMY ) ) {
+		// } else if ( is_tax( GTHEME_PEOPLE_TAXONOMY ) ) {
 
-			$title = _x( 'All People', 'Modules: Navigation: Breadcrumbs', 'gtheme' );
-			$link  = self::getTaxonomyArchiveLink( GTHEME_PEOPLE_TAXONOMY, '<a href="%s" title="'.esc_attr( $title ).'">' );
+		// 	$title = _x( 'All People', 'Modules: Navigation: Breadcrumbs', 'gtheme' );
+		// 	$link  = self::getTaxonomyArchiveLink( GTHEME_PEOPLE_TAXONOMY, '<a href="%s" title="'.esc_attr( $title ).'">' );
 
-			$crumb = sprintf( $no_prefix ? '%2$s%1$s%3$s' : ( empty( $args['strings'][GTHEME_PEOPLE_TAXONOMY] )
-				/* translators: `%1$s`: person title, `%2$s`: link markup start, `%3$s`: link markup end */
-				? _x( '%2$sPeople%3$s Archives for <strong>%1$s</strong>', 'Modules: Navigation: Breadcrumbs', 'gtheme' )
-				: $args['strings'][GTHEME_PEOPLE_TAXONOMY] ),
-			single_term_title( '', FALSE ), $link ?: '', $link ? '</a>': '' );
+		// 	$crumb = sprintf( $no_prefix ? '%2$s%1$s%3$s' : ( empty( $args['strings'][GTHEME_PEOPLE_TAXONOMY] )
+		// 		/* translators: `%1$s`: person title, `%2$s`: link markup start, `%3$s`: link markup end */
+		// 		? _x( '%2$sPeople%3$s Archives for <strong>%1$s</strong>', 'Modules: Navigation: Breadcrumbs', 'gtheme' )
+		// 		: $args['strings'][GTHEME_PEOPLE_TAXONOMY] ),
+		// 	single_term_title( '', FALSE ), $link ?: '', $link ? '</a>': '' );
 
 		} else if ( is_tax() ) {
 
@@ -383,11 +386,27 @@ class gThemeNavigation extends gThemeModuleCore
 					$taxonomy = $queried->taxonomy;
 			}
 
-			if ( $taxonomy && ( $object = get_taxonomy( $taxonomy ) )) {
+			if ( $taxonomy && ( $object = get_taxonomy( $taxonomy ) ) ) {
 
-				$link = self::getTaxonomyArchiveLink( $object->name, '<a href="%s" title="'.esc_attr( $object->labels->all_items ).'">' );
+				$queried  = get_queried_object();
+				$main_tax = in_array( $object->name, array_values( gThemeTerms::getMainTaxonomies() ), TRUE );
 
-				if ( $no_prefix )
+				if ( ! empty( $args['siblings'] ) && $object->hierarchical && $main_tax )
+					$dropdown = self::getTaxonomySiblingsDropdown( $queried );
+
+				$link = self::getTaxonomyArchiveLink( $object->name,
+					'<a href="%s" title="'.esc_attr( $object->labels->all_items ).'">' );
+
+				if ( $no_prefix && ! $main_tax )
+					$crumb[] = $link ? ( $link.$object->labels->name.'</a>' ) : $object->labels->name;
+
+				if ( $object->hierarchical )
+					$crumb = array_merge( $crumb, self::getTaxonomyParentCrumbs( $queried, $main_tax && ! empty( $args['siblings'] ) ) );
+
+				if ( $no_prefix && ( $link || $dropdown ) )
+					$template = '%4$s%3$s%5$s';
+
+				else if ( $no_prefix )
 					$template = '%4$s<span title="%1$s">%3$s</span>%5$s';
 
 				else if ( ! empty( $args['strings'][$taxonomy] ) )
@@ -400,13 +419,19 @@ class gThemeNavigation extends gThemeModuleCore
 					/* translators: `%1$s`: tax singular name, `%2$s`: tax plural name, `%3$s`: term title, `%4$s`: link markup start, `%5$s`: link markup end */
 					$template = _x( '%4$s%1$s%5$s Archives for <strong>%3$s</strong>', 'Modules: Navigation: Breadcrumbs', 'gtheme' );
 
-				$crumb = vsprintf( $template, [
+				$title = single_term_title( '', FALSE );
+				$html  = vsprintf( $template, [
 					$object->labels->singular_name,
 					$object->labels->name,
-					single_term_title( '', FALSE ),
-					$link ?: '',
-					$link ? '</a>': '',
+					$dropdown ? ( '<a href="#" class="xx-dropdown-toggle" role="button" data-bs-toggle="dropdown">'.$title.'</a>' ) : $title,
+					$no_prefix ? '' : ( $link ?: '' ),
+					$no_prefix ? '' : ( $link ? '</a>': '' ),
 				] );
+
+				if ( $dropdown )
+					$html = '<div class="dropdown d-inline">'.$html.$dropdown.'</div>';
+
+				$crumb[] = $html;
 			}
 
 		} else if ( is_post_type_archive() ) {
@@ -473,11 +498,82 @@ class gThemeNavigation extends gThemeModuleCore
 		return apply_filters( 'gtheme_navigation_crumb_archive', $crumb, $args );
 	}
 
+	public static function getTaxonomySiblingsDropdown( $queried )
+	{
+		if ( ! $queried )
+			return FALSE;
+
+		$default = gThemeTaxonomy::getDefaultTermID( $queried->taxonomy );
+		$extra   = [
+			'parent'     => $queried->parent,
+			'hide_empty' => TRUE,
+			'exclude'    => $default ? [ $default ] : '',
+		];
+
+		if ( ! $terms = gThemeTaxonomy::listTerms( $queried->taxonomy, 'all', $extra ) )
+			return FALSE;
+
+		$list = [];
+
+		foreach ( $terms as $term )
+			$list[] = sprintf( '<li><a class="dropdown-item%s" href="%s">%s</a></li>',
+				$term->term_id == $queried->term_id ? ' active' : '',
+				esc_url( get_term_link( $term ) ),
+				sanitize_term_field( 'name', $term->name, $term->term_id, $term->taxonomy, 'display' ),
+			);
+
+		return '<ul class="dropdown-menu dropdown-menu-lg-end">'.join( "\n", $list ).'</ul>';
+	}
+
+	public static function getTaxonomyParentCrumbs( $queried, $siblings = FALSE )
+	{
+		if ( ! $queried || empty( $queried->parent ) )
+			return [];
+
+		$is_child = TRUE;
+		$parents  = [];
+		$current  = $queried->term_id;
+
+		while ( $is_child ) {
+
+			$term = get_term_by( 'id', (int) $current, $queried->taxonomy );
+
+			if ( $term
+				&& $parent = get_term_by( 'id', (int) $term->parent, $queried->taxonomy ) ) {
+
+				$dropdown = self::getTaxonomySiblingsDropdown( $parent );
+
+				$link = sprintf( '<a class="%s"%s href="%s">%s</a>',
+					$dropdown ? 'xx-dropdown-toggle' : 'has-no-dropdown',
+					$dropdown ? ' data-bs-toggle="dropdown"' : '',
+					esc_url( get_term_link( $parent ) ),
+					sanitize_term_field( 'name', $parent->name, $parent->term_id, $parent->taxonomy, 'display' ),
+				);
+
+				if ( $dropdown )
+					$link = '<div class="dropdown d-inline">'.$link.$dropdown.'</div>';
+
+				$parents[] = $link;
+
+			} else {
+
+				$is_child = FALSE;
+			}
+
+			if ( $term )
+				$current = $term->parent;
+		}
+
+		return empty( $parents )
+			? []
+			: array_reverse( $parents );
+	}
+
 	public static function getTaxonomyArchiveLink( $taxonomy, $template = '%s' )
 	{
 		$link = apply_filters( 'gtheme_navigation_taxonomy_archive_link', FALSE, $taxonomy );
 
-		return $link ? sprintf( $template, $link ) : FALSE;
+		return $link ? sprintf( $template, esc_url( $link ) ) : FALSE;
 	}
 
 	public static function paginateLinks()
