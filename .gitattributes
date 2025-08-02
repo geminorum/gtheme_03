@@ -24,6 +24,7 @@ css/* linguist-generated=true
 /.gitignore export-ignore
 /.gitattributes export-ignore
 
+/.babelrc export-ignore
 /.editorconfig export-ignore
 /.stylelintrc.json export-ignore
 /.travis.yml export-ignore

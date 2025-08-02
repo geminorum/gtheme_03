@@ -14,3 +14,6 @@ yarn-error.log
 environment.yml
 .env
 .ftpconfig
+
+logs
+*.log
