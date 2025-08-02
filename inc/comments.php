@@ -210,6 +210,7 @@ class gThemeComments extends gThemeModuleCore
 			case 'trackback':
 			break;
 
+			case 'review':
 			case 'comment':
 			case '':
 			// default:

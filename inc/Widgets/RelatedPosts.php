@@ -22,9 +22,9 @@ class gThemeWidgetRelatedPosts extends gThemeWidget
 
 	public function widget( $args, $instance )
 	{
-		$post_type = isset( $instance['post_type'] ) ? $instance['post_type'] : 'post';
+		$post_type = isset( $instance['post_type'] ) ? $instance['post_type'] : 'any';
 
-		if ( ! is_singular( $post_type ) )
+		if ( ! is_singular( $post_type == 'any' ? '' : $post_type ) )
 			return;
 
 		$this->widget_cache( $args, $instance, '_'.get_queried_object_id() );
@@ -37,7 +37,7 @@ class gThemeWidgetRelatedPosts extends gThemeWidget
 
 		$context   = isset( $instance['context'] ) ? $instance['context'] : 'related';
 		$taxonomy  = isset( $instance['taxonomy'] ) ? $instance['taxonomy'] : 'post_tag';
-		$post_type = isset( $instance['post_type'] ) ? $instance['post_type'] : 'post';
+		$post_type = isset( $instance['post_type'] ) ? $instance['post_type'] : 'any';
 		$thumbnail = isset( $instance['has_thumbnail'] ) ? $instance['has_thumbnail'] : FALSE;
 		$wrapitems = isset( $instance['wrap_as_items'] ) ? $instance['wrap_as_items'] : TRUE;
 
@@ -101,7 +101,7 @@ class gThemeWidgetRelatedPosts extends gThemeWidget
 				if ( trim( get_the_title() ) ) {
 					echo '<'.( $wrapitems ? 'li' : 'div' ).'>';
 						get_template_part( 'row', $context );
-						echo '<span class="-dummy"></span>';
+						echo $wrapitems ? '<span class="-dummy"></span>' : '';
 					echo '</'.( $wrapitems ? 'li' : 'div' ).'>';
 				}
 			}

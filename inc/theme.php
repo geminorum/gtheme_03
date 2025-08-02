@@ -228,7 +228,7 @@ class gThemeTheme extends gThemeModuleCore
 		remove_action( 'embed_head', 'locale_stylesheet', 30 );
 		remove_action( 'wp_head', 'wp_generator' );
 
-		// completely remove the version number from pages and feeds
+		// Completely remove the version number from pages and feeds
 		add_filter( 'the_generator', '__return_null', 99 );
 
 		remove_filter( 'comment_text', 'make_clickable', 9 );

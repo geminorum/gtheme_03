@@ -183,6 +183,7 @@ class gThemeBootstrap extends gThemeModuleCore
 			case 'trackback':
 				break;
 
+			case 'review':
 			case 'comment':
 			case '':
 			// default:
@@ -236,6 +237,7 @@ class gThemeBootstrap extends gThemeModuleCore
 			case 'trackback':
 			break;
 
+			case 'review':
 			case 'comment':
 			case '':
 			// default:
