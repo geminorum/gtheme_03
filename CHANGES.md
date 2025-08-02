@@ -1,3 +1,34 @@
+### 3.22.1
+* misc/menu-walker: support for dropdown classes
+* misc/menu-walker: support for dropdown links
+* module/banners: support for sub-titles
+* module/bootstrap: initial enhance forms
+* module/content: post has/not thumbnail classes
+* module/content: post is woo-commerce classes
+* module/editorial: text-source after content
+* module/image: support for inline svg placeholders
+* module/menu: sub-class for dropdown items
+* module/navigation: archive crumbs revised
+* module/navigation: breadcrumb single disabled
+* module/navigation: customize pagination size
+* module/navigation: support no prefix on breadcrumb
+* module/navigation: support shop/product on breadcrumb
+* module/shortcodes: 🆕 widget shortcode
+* module/sidebar: filtering the default register args
+* module/sidebar: shelf column count as css class
+* module/sidebar: support for before classes
+* module/terms: list of all main taxonomies
+* module/woo-commerce: available checks
+* module/woo-commerce: bootstrap class for variation dropdown
+* module/woo-commerce: check for cart page
+* module/woo-commerce: support for cart/account links
+* module/woo-commerce: wrap classes for short-codes
+* module/woocommerce: support for placeholder overrides
+* module/wrap: unified open/close container
+* partial/entry: double wrapper
+* root/404: no sidebar on not-found
+* root/woo-commerce: :new: override default template
+
 ### 3.22.0
 * asset/child-core: support for custom text-domain
 * misc/bootstrap-nav-walker: click outside to close yamm
