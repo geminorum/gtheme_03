@@ -65,7 +65,7 @@ class gThemeWidgetRecentComments extends gThemeWidget
 	{
 		$content = gThemeL10N::str( wp_strip_all_tags( $comment->comment_content, TRUE ) );
 
-		return sprintf( '<span class="comment-author-link">%1$s</span>: <a class="comment-post-link" href="%2$s" data-toggle="tooltip" data-bs-toggle="tooltip" data-placement="bottom" title="%3$s: %4$s">%5$s</a>',
+		return sprintf( '<span class="comment-author-link">%1$s</span>: <a class="comment-post-link" href="%2$s" data-toggle="tooltip" data-bs-toggle="tooltip" data-placement="bottom" data-bs-placement="bottom" title="%3$s: %4$s">%5$s</a>',
 			// get_comment_author_link(),
 			gThemeL10N::str( get_comment_author( $comment->comment_ID ) ),
 			esc_url( get_comment_link( $comment->comment_ID ) ),

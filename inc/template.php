@@ -261,7 +261,7 @@ class gThemeTemplate extends gThemeModuleCore
 		}
 
 		// $template = '<a href="%1$s" title="%3$s" class="%4$s">%2$s</a>';
-		$template = '<a href="%1$s" title="%3$s" class="%4$s" data-html="true" data-toggle="tooltip" data-bs-toggle="tooltip" data-placement="top">%2$s</a>';
+		$template = '<a href="%1$s" title="%3$s" class="%4$s" data-html="true" data-toggle="tooltip" data-bs-toggle="tooltip" data-placement="top" data-bs-placement="top">%2$s</a>';
 
 		return vsprintf( gThemeOptions::info( 'template_term_link', $template ), [
 			esc_url( get_term_link( $term, $taxonomy ) ),

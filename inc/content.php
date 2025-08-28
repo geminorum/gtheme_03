@@ -916,8 +916,9 @@ class gThemeContent extends gThemeModuleCore
 			'title' => $title ?: FALSE,
 			'rel'   => 'print',
 			'data'  => [
-				'toggle' => 'tooltip',
-				'id'     => $post->ID,
+				'toggle'    => 'tooltip',
+				'bs-toggle' => 'tooltip',
+				'id'        => $post->ID,
 			],
 		], $text ).$after;
 	}
@@ -935,8 +936,9 @@ class gThemeContent extends gThemeModuleCore
 			'title' => $title ?: FALSE,
 			'rel'   => 'shortlink',
 			'data'  => [
-				'toggle' => 'tooltip',
-				'id'     => $post->ID,
+				'toggle'    => 'tooltip',
+				'bs-toggle' => 'tooltip',
+				'id'        => $post->ID,
 			],
 		], $text ).$after;
 	}

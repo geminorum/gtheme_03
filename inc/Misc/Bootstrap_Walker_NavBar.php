@@ -97,9 +97,10 @@ class gThemeBootstrap_Walker_NavBar extends \Walker_Nav_Menu
 			}
 
 			// if ( $atts['title'] ) {
-			// 	$atts['data-toggle']    = 'tooltip';
-			// 	$atts['data-bs-toggle'] = 'tooltip';
-			// 	$atts['data-placement'] = 'auto bottom';
+			// 	$atts['data-toggle']       = 'tooltip';
+			// 	$atts['data-bs-toggle']    = 'tooltip';
+			// 	$atts['data-placement']    = 'auto bottom';
+			// 	$atts['data-bs-placement'] = 'auto bottom';
 			// }
 
 			$atts = apply_filters( 'nav_menu_link_attributes', $atts, $item, $args, $depth );

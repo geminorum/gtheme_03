@@ -127,7 +127,7 @@ class gThemeWooCommerce extends gThemeModuleCore
 
 	public function body_class( $classes )
 	{
-		if ( $product = wc_get_product() )
+		if ( function_exists( 'wc_get_product' ) && ( $product = wc_get_product() ) )
 			$classes[] = sprintf( 'product-type-%s', $product->get_type() );
 
 		return $classes;
