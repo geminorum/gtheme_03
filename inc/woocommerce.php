@@ -16,6 +16,7 @@ class gThemeWooCommerce extends gThemeModuleCore
 			'meta_fields'     => TRUE,
 			'placeholders'    => FALSE,
 			'shortcodes'      => TRUE,
+			'comment_tweaks'  => TRUE,
 		], $args ) );
 
 		if ( ! gThemeWordPress::isPluginActive( 'woocommerce/woocommerce.php' ) )
@@ -82,6 +83,11 @@ class gThemeWooCommerce extends gThemeModuleCore
 			add_filter( 'shortcode_atts_product_categories', [ __CLASS__, 'shortcode_atts' ], 12, 4 ); // WTF: does not apply `class`
 			add_filter( 'shortcode_atts_add_to_cart', [ __CLASS__, 'shortcode_atts' ], 12, 4 );
 			add_filter( 'shortcode_atts_product_add_to_cart', [ __CLASS__, 'shortcode_atts' ], 12, 4 );
+		}
+
+		if ( $comment_tweaks ) {
+			remove_action( 'woocommerce_review_before', 'woocommerce_review_display_gravatar', 10 );
+			add_action( 'woocommerce_review_before', [ $this, 'review_display_gravatar' ], 10 );
 		}
 	}
 
@@ -460,5 +466,24 @@ class gThemeWooCommerce extends gThemeModuleCore
 		}
 
 		return $out;
+	}
+
+	public function review_display_gravatar( $comment )
+	{
+		if ( ! get_option( 'show_avatars' ) )
+			return;
+
+		if ( $author_url = get_comment_author_url( $comment ) ) {
+
+			echo '<a class="comment-avatar" href="'.esc_url( $author_url ).'" rel="external nofollow">';
+				gThemeTemplate::avatar( $comment, apply_filters( 'woocommerce_review_gravatar_size', '60' ) );
+			echo '</a>';
+
+		} else {
+
+			echo '<span class="comment-avatar">';
+				gThemeTemplate::avatar( $comment, apply_filters( 'woocommerce_review_gravatar_size', '60' ) );
+			echo '</span>';
+		}
 	}
 }
