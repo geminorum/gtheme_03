@@ -53,19 +53,21 @@ class gThemeMenu extends gThemeModuleCore
 			'after'    => '<span class="-dummy"></span>',
 		], $atts );
 
-		$key = GTHEME_FRAGMENTCACHE.'_'.md5( maybe_serialize( $args ) );
+		$user = is_user_logged_in();
+		$key  = GTHEME_FRAGMENTCACHE.'_'.md5( maybe_serialize( $args ) );
 
 		if ( gThemeWordPress::isFlush() )
 			delete_transient( $key );
 
-		if ( FALSE === ( $menu = get_transient( $key ) ) ) {
+		if ( $user || FALSE === ( $menu = get_transient( $key ) ) ) {
 
 			$args['echo'] = FALSE;
 
 			if ( ! $menu = wp_nav_menu( self::parseArgs( $args ) ) )
 				return '';
 
-			set_transient( $key, $menu, GTHEME_CACHETTL );
+			if ( ! $user )
+				set_transient( $key, $menu, GTHEME_CACHETTL );
 		}
 
 		if ( isset( $atts['echo'] ) && ! $atts['echo'] )
@@ -85,7 +87,7 @@ class gThemeMenu extends gThemeModuleCore
 			'items_wrap'     => isset( $atts['items_wrap'] ) ? $atts['items_wrap'] : '<ul id="%1$s" class="%2$s">%3$s</ul>',
 			'item_spacing'   => 'discard',
 
-			/// Extra Args:
+			/// Extra Arguments:
 			'theme_bs_version' => gThemeBootstrap::version(),
 		];
 
