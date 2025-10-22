@@ -226,6 +226,9 @@ class gThemeOptions extends gThemeModuleCore
 			// PRINT
 			// 'print_posttypes' => [ 'post' ],
 
+			/// CALENDAR
+			// 'ical_posttypes' => [ 'event', 'day', 'course', 'lesson' ],
+
 			// ATTACHMENT
 			// 'attachment_download_prefix' => '', // EXAMPLE: 'example.com-'
 

@@ -581,6 +581,7 @@ class gThemeContent extends gThemeModuleCore
 			$actions = $posttype ?: [
 				'printlink',
 				'shortlink',
+				'editorial_ical',
 				'bootstrap_qrcode',
 				'addtoany',
 				'comments_link',
@@ -866,6 +867,17 @@ class gThemeContent extends gThemeModuleCore
 					'before' => sprintf( $before, 'entry-estimated' ),
 					'after'  => $after,
 					'prefix' => '',
+				] );
+
+				break;
+
+			case 'editorial_ical';
+
+				gThemeEditorial::calendarLink( [
+					'post'   => $post,
+					'before' => sprintf( $before, '-calendar-link hidden-print' ),
+					'after'  => $after,
+					'text'   => $icon ? self::getGenericon( 'calendar' ) : NULL,
 				] );
 
 				break;

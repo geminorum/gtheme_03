@@ -537,6 +537,48 @@ class gThemeEditorial extends gThemeModuleCore
 		return TRUE;
 	}
 
+	public static function calendarLink( $atts = [] )
+	{
+		$args = self::atts( [
+			'post'    => NULL,
+			'before'  => '',
+			'after'   => '',
+			'echo'    => TRUE,
+			'title'   => FALSE,
+			'text'    => NULL,
+			'context' => NULL,
+			'default' => FALSE,
+		], $atts );
+
+		if ( ! is_callable( [ 'geminorum\\gEditorial\\Services\\Calendars', 'linkPostCalendar' ] ) )
+			return $args['default'];
+
+		if ( ! $post = get_post( $args['post'] ) )
+			return $args['default'];
+
+		if ( ! in_array( $post->post_type, (array) gThemeOptions::info( 'ical_posttypes', [ 'event', 'day', 'course', 'lesson' ] ), TRUE ) )
+			return $args['default'];
+
+		if ( ! $link = \geminorum\gEditorial\Services\Calendars::linkPostCalendar( $post, $args['context'] ) )
+			return $args['default'];
+
+		$html = $args['before'].gThemeHTML::tag( 'a', [
+			'href'  => $link,
+			'title' => $args['title'] ?: FALSE,
+			'rel'   => 'calendar',
+			'data'  => [
+				'bs-toggle' => 'tooltip',
+				'id'        => $post->ID,
+			],
+		], $args['text'] ?? _x( 'iCal', 'Calendar Link', 'gtheme' ) ).$args['after'];
+
+		if ( ! $args['echo'] )
+			return $html;
+
+		echo $html;
+		return TRUE;
+	}
+
 	// NOTE: DEPRECATED
 	public static function author( $atts = [] )
 	{
