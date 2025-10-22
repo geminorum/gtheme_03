@@ -11,6 +11,7 @@ gThemeWrap::wrapperOpen( 'navbar', FALSE, '-nav' );
 	echo '<div class="-rule"></div>';
 
 	gThemeMenu::nav( 'primary', [ 'class' => '-navigation -print-hide' ] );
+	// gThemeBootstrap::navbarNav( 'primary', FALSE, '-print-hide' );
 
 // echo '</div></nav>'."\n";
 gThemeWrap::wrapperClose( 'navbar', 2 );

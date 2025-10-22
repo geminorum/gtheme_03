@@ -87,13 +87,20 @@ class gThemeText extends gThemeBaseCore
 		return preg_replace( '#<p>(\s|&nbsp;)*+(<br\s*/*>)*(\s|&nbsp;)*</p>#i', '', $string );
 	}
 
-	// removes paragraph from around images
-	// @SOURCE: https://css-tricks.com/?p=15293
-	public static function replaceImageP( $string, $tag = 'figure' )
+	/**
+	 * Removes paragraph from around images.
+	 * @source https://css-tricks.com/?p=15293
+	 *
+	 * @param string $text
+	 * @param string $tag
+	 * @param string $class
+	 * @return string
+	 */
+	public static function replaceImageP( $text, $tag = 'figure', $class = '' )
 	{
 		return $tag && trim( $tag )
-			? preg_replace( '/<p>\s*(<a .*>)?\s*(<img .* \/>)\s*(<\/a>)?\s*<\/p>/iU', sprintf( '<%s>\1\2\3</%s>', $tag, $tag ), $string )
-			: preg_replace( '/<p>\s*(<a .*>)?\s*(<img .* \/>)\s*(<\/a>)?\s*<\/p>/iU', '\1\2\3', $string );
+			? preg_replace( '/<p>\s*(<a .*>)?\s*(<img .* \/>)\s*(<\/a>)?\s*<\/p>/iU', sprintf( '<%s%s>\1\2\3</%s>', $tag, ( $class ? ( ' class="'.$class.'"' ) : '' ), $tag ), $text )
+			: preg_replace( '/<p>\s*(<a .*>)?\s*(<img .* \/>)\s*(<\/a>)?\s*<\/p>/iU', '\1\2\3', $text );
 	}
 
 	// DEPRECATED: use `Text::replaceImageP( $string, FALSE )`

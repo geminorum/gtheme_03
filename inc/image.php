@@ -124,8 +124,8 @@ class gThemeImage extends gThemeModuleCore
 			'w' => 0,
 			'h' => 0,
 			'c' => 0,
-			'p' => [ 'post' ], // posttype: TRUE: all/array: posttypes/FALSE: none
-			't' => FALSE, // taxonomy: TRUE: all/array: taxes/FALSE: none
+			'p' => [ 'post' ], // post-type: TRUE: all/array: posttypes/FALSE: none
+			't' => FALSE,      // taxonomy: TRUE: all/array: taxes/FALSE: none
 			'f' => empty( $atts['s'] ) ? FALSE : $atts['s'], // featured
 		], $atts );
 

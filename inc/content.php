@@ -382,7 +382,7 @@ class gThemeContent extends gThemeModuleCore
 
 		$template = gThemeOptions::info( 'template_read_more', ' <a %6$s href="%1$s" aria-label="%3$s" class="%4$s">%2$s</a>%5$s' );
 		$text     = gThemeOptions::info( 'read_more_text', _x( 'Read more&nbsp;<span class="excerpt-link-hellip">&hellip;</span>', 'Content: Read More Text', 'gtheme' ) );
-		/* translators: %s: post title */
+		/* translators: `%s`: post title */
 		$title    = gThemeOptions::info( 'read_more_title', _x( 'Continue reading &ldquo;%s&rdquo; &hellip;', 'Content: Read More Title', 'gtheme' ) );
 
 		return vsprintf( $template, [
@@ -397,7 +397,7 @@ class gThemeContent extends gThemeModuleCore
 
 	// OLD: `gtheme_the_title_attribute()`
 	// OLD: `gThemeContent::title_attr()`
-	// `$template`: `FALSE` for shortlink, `NULL` for permanent
+	// `$template`: `FALSE` for short-link, `NULL` for permanent
 	public static function getTitleAttr( $template = NULL, $title = NULL, $post = NULL, $empty = '' )
 	{
 		if ( FALSE === $title )
@@ -485,7 +485,7 @@ class gThemeContent extends gThemeModuleCore
 	}
 
 	// FIXME: DEPRECATED: DROP THIS
-	// based on WP core : get_the_content()
+	// based on WP core : `get_the_content()`
 	public static function teaser_OLD( $fallback = TRUE, $verbose = TRUE )
 	{
 		global $more, $page, $pages;
@@ -518,8 +518,8 @@ class gThemeContent extends gThemeModuleCore
 		echo $output;
 	}
 
-	// TODO: support for gEditorial `Dashboard` Meta field
-	// ANCESTOR: gtheme_the_excerpt()
+	// TODO: support for Editorial `Dashboard` Meta field
+	// ANCESTOR: `gtheme_the_excerpt()`
 	public static function excerpt( $atts = 'itemprop="description" ', $b = '<div class="entry-summary">', $a = '</div>', $only = FALSE, $excerpt_length = FALSE )
 	{
 		if ( ! $post = get_post() )
@@ -634,8 +634,8 @@ class gThemeContent extends gThemeModuleCore
 			case 'byline':
 
 				self::byline( $post, sprintf( $before, '-action -byline' ), $after );
+				break;
 
-			break;
 			case 'textsize_buttons':
 			case 'textsize_buttons_nosep':
 
@@ -646,7 +646,8 @@ class gThemeContent extends gThemeModuleCore
 					( $icon ? self::getGenericon( 'unzoom' ) : 'def' )
 				);
 
-			break;
+				break;
+
 			case 'textjustify_buttons':
 			case 'textjustify_buttons_nosep':
 
@@ -657,7 +658,8 @@ class gThemeContent extends gThemeModuleCore
 					( $icon ? self::getGenericon( 'previous' ) : 'def' )
 				);
 
-			break;
+				break;
+
 			case 'a2a_dd':
 			case 'addtoany':
 
@@ -665,21 +667,24 @@ class gThemeContent extends gThemeModuleCore
 					$post, sprintf( $before, 'addtoany post-share-link hide-if-no-js hidden-print' ), $after
 				);
 
-			break;
+				break;
+
 			case 'addthis':
 
 				self::addthis( ( $icon ? self::getGenericon( 'share' ) : _x( 'Share This', 'Modules: Content: Action', 'gtheme' ) ),
 					$post, sprintf( $before, 'addthis post-share-link hide-if-no-js hidden-print' ), $after
 				);
 
-			break;
+				break;
+
 			case 'pocket_button':
 
 				self::pocket( _x( 'Pocket', 'Modules: Content: Action', 'gtheme' ),
 					$post, sprintf( $before, 'pocket post-share-button hide-if-no-js hidden-print' ), $after
 				);
 
-			break;
+				break;
+
 			case 'printlink':
 
 				// bail if disabled
@@ -691,7 +696,8 @@ class gThemeContent extends gThemeModuleCore
 					FALSE // self::getTitleAttr( FALSE )
 				);
 
-			break;
+				break;
+
 			case 'shortlink':
 
 				self::shortlink( ( $icon ? self::getGenericon( 'link' ) : _x( 'Short Link', 'Modules: Content: Action', 'gtheme' ) ),
@@ -699,16 +705,20 @@ class gThemeContent extends gThemeModuleCore
 					self::getTitleAttr( FALSE )
 				);
 
-			break;
+				break;
+
 			case 'bootstrap_qrcode':
 
 				self::bootstrapQRCode( ( $icon ? self::getGenericon( 'fullscreen' ) : _x( 'QR-Code', 'Modules: Content: Action', 'gtheme' ) ),
 					$post, sprintf( $before, '-action -qrcode -bootstrap-qrcode hide-if-no-js hidden-print dropdown' ), $after,
-					/* translators: %s: post title */
-					self::getTitleAttr( _x( 'QR-Code for &ndash;%s&ndash;', 'Content: Title Attr', 'gtheme' ) )
+					self::getTitleAttr(
+						/* translators: `%s`: post title */
+						_x( 'QR-Code for &ndash;%s&ndash;', 'Content: Title Attr', 'gtheme' )
+					)
 				);
 
-			break;
+				break;
+
 			case 'comments_link':
 			case 'comments_link_feed':
 
@@ -770,7 +780,8 @@ class gThemeContent extends gThemeModuleCore
 					echo $after;
 				}
 
-			break;
+				break;
+
 			case 'edit_post_link':
 			case 'edit':
 
@@ -779,7 +790,8 @@ class gThemeContent extends gThemeModuleCore
 					sprintf( $before, 'post-edit-link post-edit-link-li hidden-print' ), $after, $post
 				);
 
-			break;
+				break;
+
 			case 'tag_list': // DEPRECATED
 
 				if ( is_object_in_taxonomy( $post->post_type, 'post_tag' ) ) {
@@ -795,13 +807,15 @@ class gThemeContent extends gThemeModuleCore
 						echo $html;
 				}
 
-			break;
+				break;
+
 			case 'tags':
 
 				if ( is_object_in_taxonomy( $post->post_type, 'post_tag' ) )
 					gThemeTerms::theList( 'post_tag', sprintf( $before, 'tag-term' ), $after, $post );
 
-			break;
+				break;
+
 			case 'cat_list': // DEPRECATED
 
 				if ( is_object_in_taxonomy( $post->post_type, 'category' ) ) {
@@ -812,7 +826,8 @@ class gThemeContent extends gThemeModuleCore
 						echo sprintf( $before, 'cat-links' ).gThemeOptions::info( 'before_cat_list', '' ).$html.$after;
 				}
 
-			break;
+				break;
+
 			case 'categories':
 
 				if ( $taxonomy = gThemeTerms::getMainTaxonomy( $post->post_type, FALSE ) )
@@ -821,12 +836,14 @@ class gThemeContent extends gThemeModuleCore
 				else if ( is_object_in_taxonomy( $post->post_type, 'category' ) )
 					gThemeTerms::theList( 'category', sprintf( $before, 'category-term' ), $after, $post, TRUE );
 
-			break;
+				break;
+
 			case 'primary_term':
 
 				gThemeTerms::linkPrimary( sprintf( $before, 'primary-term' ), $after, $post );
 
-			break;
+				break;
+
 			case 'the_date':
 			case 'date':
 
@@ -839,7 +856,8 @@ class gThemeContent extends gThemeModuleCore
 					'timeago'  => FALSE, // FIXME: add another action for time ago
 				] );
 
-			break;
+				break;
+
 			case 'editorial_published':
 
 				// TODO: make link to search with meta
@@ -850,7 +868,8 @@ class gThemeContent extends gThemeModuleCore
 					'filter' => [ 'gThemeL10N', 'str' ],
 				] );
 
-			break;
+				break;
+
 			case 'editorial_label':
 
 				gThemeEditorial::label( [
@@ -859,11 +878,12 @@ class gThemeContent extends gThemeModuleCore
 					'after'  => $after,
 				] );
 
-			break;
+				break;
+
 			case 'editorial_estimated';
 
 				gThemeEditorial::estimated( [
-					'post'    => $post,
+					'post'   => $post,
 					'before' => sprintf( $before, 'entry-estimated' ),
 					'after'  => $after,
 					'prefix' => '',

@@ -303,9 +303,9 @@ class gThemeOptions extends gThemeModuleCore
 			'height'      => 9999,
 			'crop'        => FALSE,
 			'post_type'   => [ 'post' ],
-			'taxonomy'    => FALSE, // support for terms
-			'tag'         => TRUE, // media tag
-			'insert'      => FALSE, // insert in post
+			'taxonomy'    => FALSE,              // support for terms
+			'tag'         => TRUE,               // media tag
+			'insert'      => FALSE,              // insert in post
 		], $atts );
 
 		return [

@@ -102,6 +102,9 @@ class gThemeBootstrap extends gThemeModuleCore
 	// NOTE: supports `BS3`/`BS4`/`BS5`
 	public static function navbarBrand( $brand = NULL, $filename = NULL, $class = '' )
 	{
+		if ( FALSE === $brand )
+			return;
+
 		$default = 'logo.png'; // FIXME: default `$filename` must be: 'logo-navbar.png'
 		$title   = '<span title="{{{logo_title}}}">{{site_name}}</span>';
 
