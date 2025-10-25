@@ -188,6 +188,62 @@ class gThemeContent extends gThemeModuleCore
 		echo $after;
 	}
 
+	public static function masonry( $context, $before = '', $after = '', $extra = [], $count = NULL )
+	{
+		if ( empty( $context ) )
+			return;
+
+		$brick_class = gThemeOptions::info( 'masonry_brick_class', 'col-sm-6 col-md-4' );
+		$grid_class  = gThemeOptions::info( 'masonry_grid_class', 'row' );
+		$selector    = gThemeOptions::info( 'masonry_css_selector', 'gtheme-masonry' ); // FALSE to disable `enqueueMasonry()`
+
+		echo $before;
+		printf( '<div class="%s %s -masonry-grid -%s">', $grid_class, $selector ?: 'gtheme-masonry', $context );
+		echo '<!-- OPEN: MASONRY: `'.$context.'` -->'."\n";
+
+		$cache = new gThemeFragmentCache( sprintf( 'masonry_%s', $context ) );
+		$extra = $extra ?? gThemeTerms::getQueryNoFrontExtra();
+
+		if ( ! $cache->output() ) {
+
+			$query = new \WP_Query( array_merge( [
+				'posts_per_page' => $count ?? gThemeCounts::get( $context, get_option( 'posts_per_page', 10 ) ),
+				'post__not_in'   => gThemeFrontPage::getDisplayed(),
+			], $extra ) );
+
+			if ( $query->have_posts() ) {
+
+				printf( '<div class="-masonry-sizer %s" style="display:none;"></div>', $brick_class );
+				gtheme_reset_post_class();
+
+				while ( $query->have_posts() ) {
+					$query->the_post();
+					printf( '<div class="-masonry-brick %s">', $brick_class );
+
+						self::partial( $context );
+
+					echo '</div>';
+					gThemeFrontPage::addDisplayed();
+				}
+
+				wp_reset_postdata();
+
+				$cache->store( FALSE );
+
+			} else {
+
+				$cache->discard();
+			}
+		}
+
+		echo $after;
+		echo "\n".'<!-- CLOSE: MASONRY: `'.$context.'` -->'."\n";
+		echo '</div>';
+
+		if ( $selector )
+			gThemeUtilities::enqueueMasonry( $selector );
+	}
+
 	public static function byline( $post = NULL, $before = '', $after = '', $verbose = TRUE, $fallback = NULL )
 	{
 		if ( ! $post = self::getPost( $post ) )

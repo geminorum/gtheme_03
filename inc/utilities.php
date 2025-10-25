@@ -48,6 +48,27 @@ JS;
 		return $enqueued = TRUE;
 	}
 
+	public static function enqueueMasonry( $selector_class = NULL )
+	{
+		$selector_class = $selector_class ?? 'gtheme-masonry';
+
+		$script = <<<JS
+jQuery(document).ready(function($){
+	var grid = $(".{$selector_class}").masonry({
+		itemSelector: '.-masonry-brick',
+		columnWidth: ".{$selector_class} .-masonry-sizer",
+		percentPosition: true,
+		isOriginLeft: false
+	});
+	grid.imagesLoaded().progress( function() {
+		grid.masonry('layout');
+	});
+});
+JS;
+		wp_enqueue_script( 'jquery-masonry' );
+		wp_add_inline_script( 'jquery-masonry', $script );
+	}
+
 	public static function enqueueAutosize( $ver = '4.0.2' )
 	{
 		wp_enqueue_script( 'gtheme-autosize', '//cdn.jsdelivr.net/npm/autosize@'.$ver.'/dist/autosize.min.js', [], NULL, TRUE );
