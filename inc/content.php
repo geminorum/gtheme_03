@@ -241,6 +241,161 @@ class gThemeContent extends gThemeModuleCore
 			gThemeUtilities::enqueueMasonry( $selector );
 	}
 
+	public static function recent( $context, $before = '', $after = '', $extra = [], $count = NULL )
+	{
+		if ( empty( $context ) )
+			return FALSE;
+
+		$queried    = get_queried_object_id() ?: 0;
+		$item_class = gThemeOptions::info( 'recent_item_class', 'col-sm-6 col-md-4' );
+		$wrap_class = gThemeOptions::info( 'recent_wrap_class', 'row' );
+		$orderby    = gThemeOptions::info( 'recent_orderby', 'menu_order date' );
+
+		echo $before;
+
+		$cache = new gThemeFragmentCache( sprintf( 'recent_%s_item_%d', $context, $queried ) );
+
+		if ( ! $cache->output() ) {
+
+			$query_args = [
+				'post_status'    => 'publish',
+				'post_type'      => apply_filters( 'gtheme_content_recent_posttypes', gThemeOptions::info( sprintf( 'recent_%s_posttypes', $context ), [ 'post' ] ), $context ),
+				'posts_per_page' => $count ?? gThemeCounts::get( sprintf( 'recent_%s', $context ), get_option( 'posts_per_page', 10 ) / 2 ),
+				'post__not_in'   => gThemeFrontPage::getDisplayed( $queried ?: [] ),
+
+				'ignore_sticky_posts'    => TRUE,
+				'no_found_rows'          => TRUE,
+				'update_post_term_cache' => FALSE,
+				'update_post_meta_cache' => FALSE,
+			];
+
+			if ( $orderby )
+				$query_args['orderby'] = $orderby;
+
+			$query = new \WP_Query( array_merge( $query_args, $extra ) );
+
+			if ( $query->have_posts() ) {
+
+				printf( '<div class="%s -recent-wrap -%s" data-queried="%d">', $wrap_class, $context, $queried );
+
+				gtheme_reset_post_class();
+
+				while ( $query->have_posts() ) {
+					$query->the_post();
+					printf( '<div class="%s -recent-item">', $item_class );
+
+						self::partial( $context );
+
+					echo '</div>';
+					gThemeFrontPage::addDisplayed();
+				}
+
+				wp_reset_postdata();
+
+				echo '</div>';
+
+				$cache->store( FALSE );
+
+			} else {
+
+				return $cache->discard( $after );
+			}
+		}
+
+		echo $after;
+		return TRUE;
+	}
+
+	public static function related( $context, $before = '', $after = '', $extra = [], $count = NULL )
+	{
+		if ( empty( $context ) )
+			return FALSE;
+
+		// TODO: WTF: must check for singular?!
+		if ( ! $queried = get_queried_object_id() )
+			return FALSE;
+
+		$item_class = gThemeOptions::info( 'related_item_class', 'col-sm-6 col-md-4' );
+		$wrap_class = gThemeOptions::info( 'related_wrap_class', 'row' );
+		$taxonomy   = gThemeOptions::info( 'related_taxonomy', 'post_tag' );
+
+		echo $before;
+
+		$cache = new gThemeFragmentCache( sprintf( 'related_%s_item_%d', $context, $queried ) );
+
+		if ( ! $cache->output() ) {
+
+			// NOTE: hits cached terms for the post
+			$terms = get_the_terms( $queried, $taxonomy );
+
+			if ( is_wp_error( $terms ) || empty( $terms ) )
+				return $cache->discard( $after );
+
+			$query_args = [
+				'tax_query' => [
+					[
+						'taxonomy' => $taxonomy,
+						'field'    => 'id',
+						'terms'    => wp_list_pluck( $terms, 'term_id' ),
+						'operator' => 'IN',
+					],
+				],
+
+				'post_status'    => 'publish',
+				'post_type'      => apply_filters( 'gtheme_content_related_posttypes', gThemeOptions::info( sprintf( 'related_%s_posttypes', $context ), [ 'post' ] ), $context ),
+				'posts_per_page' => $count ?? gThemeCounts::get( sprintf( 'related_%s', $context ), get_option( 'posts_per_page', 10 ) / 2 ),
+				'post__not_in'   => gThemeFrontPage::getDisplayed( $queried ),
+
+				'ignore_sticky_posts'    => TRUE,
+				'no_found_rows'          => TRUE,
+				'update_post_term_cache' => FALSE,
+				'update_post_meta_cache' => FALSE,
+			];
+
+			if ( GTHEME_SYSTEMTAGS && taxonomy_exists( GTHEME_SYSTEMTAGS ) ) {
+				$query_args['tax_query']['relation'] = 'AND';
+				$query_args['tax_query'][] = [
+					'taxonomy' => GTHEME_SYSTEMTAGS,
+					'field'    => 'slug',
+					'terms'    => 'no-related',
+					'operator' => 'NOT IN',
+				];
+			}
+
+			$query = new \WP_Query( array_merge( $query_args, $extra ) );
+
+			if ( $query->have_posts() ) {
+
+				printf( '<div class="%s -related-wrap -%s" data-queried="%d">', $wrap_class, $context, $queried );
+
+				gtheme_reset_post_class();
+
+				while ( $query->have_posts() ) {
+					$query->the_post();
+					printf( '<div class="-related-item %s">', $item_class );
+
+						self::partial( $context );
+
+					echo '</div>';
+					gThemeFrontPage::addDisplayed();
+				}
+
+				wp_reset_postdata();
+
+				echo '</div>';
+
+				$cache->store( FALSE );
+
+			} else {
+
+				return $cache->discard( $after );
+			}
+		}
+
+		echo $after;
+		return TRUE;
+	}
+
 	public static function byline( $post = NULL, $before = '', $after = '', $verbose = TRUE, $fallback = NULL )
 	{
 		if ( ! $post = self::getPost( $post ) )
