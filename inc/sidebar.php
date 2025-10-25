@@ -56,7 +56,9 @@ class gThemeSideBar extends gThemeModuleCore
 			echo $after;
 
 		} else if ( FALSE !== $else ) {
-			// TODO : add dev env, empty space remainder!
+
+			// TODO : add dev-env empty space remainder!
+
 			echo sprintf( $before, $class ).$else.$after;
 		}
 	}

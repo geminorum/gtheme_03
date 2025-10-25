@@ -60,6 +60,14 @@ class gThemeOptions extends gThemeModuleCore
 			// 'sidebars'        => gThemeSideBar::defaults(),
 			// 'sidebar_support' => TRUE, // hides the default inserts
 
+			// NOTE: must declare defaults here!
+			'sidebar_wrap_side-systempage' => 'col-sm-6',   // default for `side-systempage` sidebar
+			'sidebar_wrap_side-singular'   => 'col-sm-4',   // default for `side-singular` sidebar
+			'sidebar_wrap_side-index'      => 'col-sm-4',   // default for `side-index` sidebar
+			'sidebar_wrap_side-index'      => 'col-sm-4',   // default for `side-index` sidebar
+			// 'sidebar_wrap_side-product'    => 'col-sm-4',
+			// 'sidebar_wrap_side-shop'       => 'col-sm-4',
+
 			// MEDIA TAGS
 			// 'images'                  => gThemeOptions::getDefaultImages(),
 			// 'image_support'           => TRUE, // hides the default inserts
