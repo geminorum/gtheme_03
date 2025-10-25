@@ -427,7 +427,8 @@ class gThemeComments extends gThemeModuleCore
 				] ).'</div>';
 
 			if ( has_action( 'set_comment_cookies', 'wp_set_comment_cookies' ) && get_option( 'show_comments_cookies_opt_in' ) )
-				$fields['cookies'] = '<div class="-form-group checkbox comment-form-cookies-consent"><label for="wp-comment-cookies-consent" class="form-check-label">'
+				$fields['cookies'] = '<div class="-form-group form-check checkbox comment-form-cookies-consent">'
+					.'<label for="wp-comment-cookies-consent" class="form-check-label">'
 					.gThemeHTML::tag( 'input', [
 						'type'    => 'checkbox',
 						'id'      => 'wp-comment-cookies-consent',
@@ -435,7 +436,8 @@ class gThemeComments extends gThemeModuleCore
 						'class'   => 'form-check-input', // BS5
 						'value'   => 'yes',
 						'checked' => ! empty( $commenter['comment_author_email'] ),
-					] ).' '.$strings['cookies'].'</label></div>';
+					] ).' '.$strings['cookies']
+					.'</label></div>';
 
 			$defaults = [
 				'fields' => apply_filters( 'comment_form_default_fields', $fields ),

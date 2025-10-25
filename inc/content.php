@@ -39,7 +39,7 @@ class gThemeContent extends gThemeModuleCore
 			echo $before.gThemeText::wordWrap( $message ).$after;
 	}
 
-	public static function notFound( $context = NULL, $part = 'content' )
+	public static function notFound( $context = NULL, $part = 'content', $location = NULL )
 	{
 		$base = gtheme_template_base();
 
@@ -48,12 +48,12 @@ class gThemeContent extends gThemeModuleCore
 
 		do_action( 'gtheme_notfound_before', $context, $part, $base );
 
-		get_template_part( $part, $context );
+		get_template_part( sprintf( $location ?? '%s', $part ), $context );
 
 		do_action( 'gtheme_notfound_after', $context, $part, $base );
 	}
 
-	public static function post( $context = NULL, $part = 'content' )
+	public static function post( $context = NULL, $part = 'content', $location = NULL )
 	{
 		$base = gtheme_template_base();
 
@@ -62,7 +62,7 @@ class gThemeContent extends gThemeModuleCore
 
 		do_action( 'gtheme_post_before', $context, $part, $base );
 
-		get_template_part( $part, $context );
+		get_template_part( sprintf( $location ?? '%s', $part ), $context );
 
 		do_action( 'gtheme_post_after', $context, $part, $base );
 	}
@@ -147,16 +147,13 @@ class gThemeContent extends gThemeModuleCore
 	{
 		echo $before;
 
-		$cache = new gThemeFragmentCache( 'rows_'.$context );
+		$cache = new gThemeFragmentCache( sprintf( 'rows_%s', $context ) );
 
 		if ( ! $cache->output() ) {
 
-			if ( is_null( $count ) )
-				$count = gThemeCounts::get( $context, get_option( 'posts_per_page', 10 ) );
-
 			$query = new \WP_Query( array_merge( [
 				'post_type'      => apply_filters( 'gtheme_content_rows_posttypes', gThemeOptions::info( 'rows_'.$context.'_posttypes', [ 'post' ] ), $context ),
-				'posts_per_page' => $count,
+				'posts_per_page' => $count ?? gThemeCounts::get( $context, get_option( 'posts_per_page', 10 ) ),
 			], $extra ) );
 
 			if( $query->have_posts() ) {
