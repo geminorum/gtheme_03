@@ -210,6 +210,18 @@ class gThemeTerms extends gThemeModuleCore
 		];
 	}
 
+	public static function getQueryNoFrontExtra( $slug = NULL )
+	{
+		return [
+			'tax_query' => [ [
+				'taxonomy' => GTHEME_SYSTEMTAGS,
+				'field'    => 'slug',
+				'terms'    => $slug ?? 'no-front',
+				'operator' => 'NOT IN',
+			] ],
+		];
+	}
+
 	public static function defaults( $extra = [] )
 	{
 		return array_merge( [
