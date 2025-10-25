@@ -67,6 +67,20 @@ class gThemeContent extends gThemeModuleCore
 		do_action( 'gtheme_post_after', $context, $part, $base );
 	}
 
+	public static function partial( $context = NULL, $part = 'item', $location = NULL )
+	{
+		$base = gtheme_template_base();
+
+		if ( is_null( $context ) )
+			$context = $base;
+
+		do_action( 'gtheme_partial_before', $context, $part, $base );
+
+		get_template_part( sprintf( $location ?? 'partials/%s', $part ), $context );
+
+		do_action( 'gtheme_partial_after', $context, $part, $base );
+	}
+
 	// http://www.billerickson.net/code/wp_query-arguments/
 	public static function query( $args = [], $expiration = GTHEME_CACHETTL )
 	{
