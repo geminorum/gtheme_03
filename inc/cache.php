@@ -111,14 +111,17 @@ class gThemeFragmentCache extends gThemeBaseCore
 		return TRUE;
 	}
 
-	public function discard()
+	public function discard( $closing = '' )
 	{
-		if ( $this->__skip() )
+		if ( $this->__skip() ) {
+			echo $closing;
 			return FALSE;
+		}
 
 		if ( $this->buffer )
 			ob_get_flush();
 
+		echo $closing;
 		return FALSE;
 	}
 }
