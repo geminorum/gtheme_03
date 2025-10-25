@@ -212,14 +212,17 @@ class gThemeTerms extends gThemeModuleCore
 
 	public static function getQueryNoFrontExtra( $slug = NULL )
 	{
-		return [
-			'tax_query' => [ [
-				'taxonomy' => GTHEME_SYSTEMTAGS,
-				'field'    => 'slug',
-				'terms'    => $slug ?? 'no-front',
-				'operator' => 'NOT IN',
-			] ],
-		];
+		if ( GTHEME_SYSTEMTAGS && taxonomy_exists( GTHEME_SYSTEMTAGS ) )
+			return [
+				'tax_query' => [ [
+					'taxonomy' => GTHEME_SYSTEMTAGS,
+					'field'    => 'slug',
+					'terms'    => $slug ?? 'no-front',
+					'operator' => 'NOT IN',
+				] ],
+			];
+
+		return [];
 	}
 
 	public static function defaults( $extra = [] )

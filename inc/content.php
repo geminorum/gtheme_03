@@ -147,7 +147,7 @@ class gThemeContent extends gThemeModuleCore
 	{
 		echo $before;
 
-		$cache = new gThemeFragmentCache( sprintf( 'rows_%s', $context ) );
+		$cache = new gThemeFragmentCache( sprintf( 'rows_%s_paged_%d', $context, max( 1, get_query_var( 'paged' ) ) ) );
 
 		if ( ! $cache->output() ) {
 
@@ -188,7 +188,7 @@ class gThemeContent extends gThemeModuleCore
 	public static function masonry( $context, $before = '', $after = '', $extra = [], $count = NULL )
 	{
 		if ( empty( $context ) )
-			return;
+			return FALSE;
 
 		$brick_class = gThemeOptions::info( 'masonry_brick_class', 'col-sm-6 col-md-4' );
 		$grid_class  = gThemeOptions::info( 'masonry_grid_class', 'row' );
@@ -198,7 +198,7 @@ class gThemeContent extends gThemeModuleCore
 		printf( '<div class="%s %s -masonry-grid -%s">', $grid_class, $selector ?: 'gtheme-masonry', $context );
 		echo '<!-- OPEN: MASONRY: `'.$context.'` -->'."\n";
 
-		$cache = new gThemeFragmentCache( sprintf( 'masonry_%s', $context ) );
+		$cache = new gThemeFragmentCache( sprintf( 'masonry_%s_paged_%d', $context, max( 1, get_query_var( 'paged' ) ) ) );
 		$extra = $extra ?? gThemeTerms::getQueryNoFrontExtra();
 
 		if ( ! $cache->output() ) {
@@ -210,12 +210,12 @@ class gThemeContent extends gThemeModuleCore
 
 			if ( $query->have_posts() ) {
 
-				printf( '<div class="-masonry-sizer %s" style="display:none;"></div>', $brick_class );
+				printf( '<div class="%s -masonry-sizer" style="display:none;"></div>', $brick_class );
 				gtheme_reset_post_class();
 
 				while ( $query->have_posts() ) {
 					$query->the_post();
-					printf( '<div class="-masonry-brick %s">', $brick_class );
+					printf( '<div class="%s -masonry-brick">', $brick_class );
 
 						self::partial( $context );
 
@@ -233,9 +233,9 @@ class gThemeContent extends gThemeModuleCore
 			}
 		}
 
-		echo $after;
 		echo "\n".'<!-- CLOSE: MASONRY: `'.$context.'` -->'."\n";
 		echo '</div>';
+		echo $after;
 
 		if ( $selector )
 			gThemeUtilities::enqueueMasonry( $selector );
