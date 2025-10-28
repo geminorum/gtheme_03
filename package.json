@@ -39,11 +39,11 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "@wordpress/browserslist-config": "^6.27.0",
-    "@wordpress/stylelint-config": "^23.19.0",
+    "@wordpress/browserslist-config": "^6.33.0",
+    "@wordpress/stylelint-config": "^23.25.0",
     "autoprefixer": "^10.4.21",
     "browserlist": "^1.0.1",
-    "cssnano": "^7.1.0",
+    "cssnano": "^7.1.1",
     "fancy-log": "^2.0.0",
     "gulp": "^5.0.1",
     "gulp-bump": "^3.2.0",
@@ -67,7 +67,7 @@
     "publish-release": "^1.6.1",
     "rtlcss": "^4.3.0",
     "semistandard": "^17.0.0",
-    "stylelint": "^16.23.0",
+    "stylelint": "^16.25.0",
     "stylelint-scss": "^6.12.1",
     "xtend": "^4.0.2"
   },
