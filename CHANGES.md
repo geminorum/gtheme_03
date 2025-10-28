@@ -1,3 +1,15 @@
+### 3.23.0
+* module/cache: closing html after discard
+* module/content: masonry items
+* module/content: partial items api
+* module/content: recent/related items
+* module/editorial: support for ical links
+* module/editorial: wc-terms list assigned support
+* module/menu: avoid caching on logged in users
+* module/sidebar: default wrapper class for sidebars
+* module/terms: query extra for no-front system tags
+* module/woocommerce: customize avatar markup on reviews
+
 ### 3.22.1
 * misc/menu-walker: support for dropdown classes
 * misc/menu-walker: support for dropdown links
