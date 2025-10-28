@@ -284,7 +284,7 @@ class gThemeHTML extends gThemeBaseCore
 
 	public static function escapeURL( $url )
 	{
-		return esc_url( $url );
+		return esc_url( $url ?: '' );
 	}
 
 	// like WP core but without filter and fallback

@@ -17,9 +17,9 @@ class gThemeBootstrap extends gThemeModuleCore
 	public function widget_categories_dropdown_args( $args, $instance )
 	{
 		if ( empty( $args['class'] ) )
-			$args['class'] = 'postform form-select form-select-sm mb-3';
+			$args['class'] = 'postform form-select form-select-sm';
 		else
-			$args['class'].= ' form-select form-select-sm mb-3';
+			$args['class'].= ' form-select form-select-sm';
 
 		return $args;
 	}

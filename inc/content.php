@@ -312,6 +312,10 @@ class gThemeContent extends gThemeModuleCore
 			return FALSE;
 
 		// TODO: WTF: must check for singular?!
+
+		if ( ! is_singular() && ! is_single() )
+			return FALSE;
+
 		if ( ! $queried = get_queried_object_id() )
 			return FALSE;
 
@@ -1525,7 +1529,10 @@ addthis_config.services_custom = [
 		if ( is_null( $args['title'] ) )
 			$args['title'] = get_the_title( $post );
 
-		if ( 0 == strlen( $args['title'] ) )
+		if ( ! is_string( $args['title'] ) )
+			return;
+
+		if ( 0 === strlen( $args['title'] ) )
 			return;
 
 		if ( TRUE === $args['link'] ) {
