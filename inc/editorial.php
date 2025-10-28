@@ -35,6 +35,7 @@ class gThemeEditorial extends gThemeModuleCore
 			add_filter( 'gnetwork_shortcodes_reflist_toc', [ $this, 'shortcodes_reflist_toc' ], 10, 2 );
 
 		add_filter( 'geditorial_shortcode_attachement_download', [ $this, 'attachement_download' ], 9, 2 );
+		add_filter( 'geditorial_wc_terms_term_listassigned_args', [ $this, 'wc_terms_term_listassigned_args' ], 9, 2 );
 	}
 
 	public function content_before_toc( $content )
@@ -153,6 +154,28 @@ class gThemeEditorial extends gThemeModuleCore
 	public function attachement_download( $filename, $post )
 	{
 		return gThemeOptions::info( 'attachment_download_prefix', '' ).$filename;
+	}
+
+	public function wc_terms_term_listassigned_args( $atts, $term )
+	{
+		return array_merge( $atts, [
+			'item_cb'    => [ __CLASS__, 'wcTermsListAssignedRowCallback' ],
+			'list_tag'   => 'div',
+			'list_class' => 'row',
+		] );
+	}
+
+	public static function wcTermsListAssignedRowCallback( $post, $args, $ref )
+	{
+		// @REF: https://developer.wordpress.org/?p=2837#comment-874
+		$GLOBALS['post'] = $post;
+		setup_postdata( $post );
+
+		ob_start();
+
+		gThemeContent::partial( 'listassigned' );
+
+		return ob_get_clean();
 	}
 
 	public static function availableNetwork( $module )
