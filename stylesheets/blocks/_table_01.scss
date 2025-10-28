@@ -5,6 +5,12 @@
 // COPY FROM P2 STYLE
 
 ////////////////////////////////////////////////////////////////////////////////
+$spacer: 1rem !default;
+$padding-base-vertical: $spacer !default;
+$padding-base-horizontal: $spacer !default;
+$padding-small-vertical: $spacer * .5 !default;
+
+////////////////////////////////////////////////////////////////////////////////
 table:not(.-unstyled) {
   border: 1px solid $table-border-color;
   border-width: 1px 1px 1px 0;

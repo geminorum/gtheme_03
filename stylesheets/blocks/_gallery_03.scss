@@ -8,6 +8,9 @@
 @use "sass:math"; // @REF: https://sass-lang.com/d/slash-div
 
 ////////////////////////////////////////////////////////////////////////////////
+$screen-sm: 768px !default;
+
+////////////////////////////////////////////////////////////////////////////////
 // default WP markup
 // @REF: https://clicknathan.com/web-design/css-for-all-available-wordpress-gallery-columns/
 .entry-content .gallery {
@@ -234,7 +237,7 @@
     }
   }
 
-  &.-default {}
+  // &.-default {}
 }
 
 @mixin theme-gallery-flex() {}

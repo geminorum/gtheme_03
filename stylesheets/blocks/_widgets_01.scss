@@ -4,6 +4,13 @@
 /// Blocks: Widgets 01 - 2017-08-31
 
 ////////////////////////////////////////////////////////////////////////////////
+$spacer: 1rem !default;
+$theme-grid-gutter: $spacer !default;
+$padding-base-vertical: $spacer !default;
+$padding-base-horizontal: $spacer !default;
+$font-size-h4: $spacer * 1.5 !default;
+
+////////////////////////////////////////////////////////////////////////////////
 
 .gtheme-widget {
   margin-bottom: $theme-grid-gutter;
@@ -26,18 +33,18 @@
   ul,
   ol {
     padding: 0;
-    padding-right: $theme-grid-gutter / 4;
+    padding-right: $theme-grid-gutter * .25;
 
     li {
       list-style: none;
       padding: 0;
-      margin-bottom: $theme-grid-gutter / 4;
+      margin-bottom: $theme-grid-gutter * .25;
     }
   }
 
   &.widget_calendar {
     table {
-      // margin-top: $theme-grid-gutter / 2;
+      // margin-top: $theme-grid-gutter * .5;
       width: 100%;
 
       a {

@@ -36,9 +36,10 @@
       display: none;
     }
 
-    &:-ms-input-placeholder {
-      display: none;
-    }
+    // OBSOLETE
+    // &:-ms-input-placeholder {
+    //   display: none;
+    // }
   }
 
   &:hover,

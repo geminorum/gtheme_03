@@ -8,6 +8,18 @@
 @use "sass:math"; // @REF: https://sass-lang.com/d/slash-div
 
 ////////////////////////////////////////////////////////////////////////////////
+$spacer: 1rem !default;
+$theme-grid-gutter: $spacer !default;
+$padding-base-vertical: $spacer !default;
+$padding-base-horizontal: $spacer !default;
+$padding-large-vertical: $spacer * 1.5 !default;
+$padding-large-horizontal: $spacer * 1.5 !default;
+$padding-small-vertical: $spacer * .5 !default;
+$padding-small-horizontal: $spacer * .5 !default;
+
+$font-size-h4: $spacer * 1.5 !default;
+
+////////////////////////////////////////////////////////////////////////////////
 .comments-area {
   margin-bottom: math.div($theme-grid-gutter, 2);
 
