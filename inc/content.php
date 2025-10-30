@@ -1074,12 +1074,11 @@ class gThemeContent extends gThemeModuleCore
 			case 'date':
 
 				gThemeDate::date( [
-					'post'     => $post,
-					'before'   => sprintf( $before, 'the-date' ),
-					'after'    => $after,
-					'text'     => $icon ? self::getGenericon( 'edit' ) : NULL,
-					'template' => '<a href="%1$s"%2$s><time class="%5$s-time" datetime="%3$s">%4$s</time></a>',
-					'timeago'  => FALSE, // FIXME: add another action for time ago
+					'post'    => $post,
+					'before'  => sprintf( $before, 'the-date' ),
+					'after'   => $after,
+					'text'    => $icon ? self::getGenericon( 'edit' ) : NULL,
+					'timeago' => FALSE, // TODO: add another action for time-ago
 				] );
 
 				break;

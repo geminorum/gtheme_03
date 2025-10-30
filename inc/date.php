@@ -14,7 +14,8 @@ class gThemeDate extends gThemeModuleCore
 
 		$previousday = $currentday;
 
-		$atts['link'] = FALSE; // no link for date archive
+		$atts['context'] = 'once';  // @see: `date_override_the_date` on Editorial Module
+		$atts['link']    = NULL;    // archive link for date archive
 
 		return self::date( $atts );
 	}
@@ -29,13 +30,13 @@ class gThemeDate extends gThemeModuleCore
 			'context'   => 'single',
 			'prefix'    => 'entry',
 			'format'    => gThemeOptions::info( 'date_format_byline', _x( 'j M Y', 'Options: Defaults: Date Format: Byline', 'gtheme' ) ),
-			'template'  => gThemeOptions::info( 'template_the_date', '<span class="date"><a href="%1$s"%2$s><time class="%5$s-time do-timeago" datetime="%3$s">%4$s</time></a></span>' ),
+			'template'  => gThemeOptions::info( 'template_the_date', '<span class="date">%1$s<time datetime="%3$s" class="%5$s">%4$s</time>%2$s</span>' ),
 			'shortlink' => TRUE,
 			'title'     => NULL, // WTF?!
 			'text'      => NULL, // override text
-			'timeago'   => TRUE, // enqueue time ago script
+			'timeago'   => NULL, // enqueue time ago script
 			'meta'      => TRUE,
-			'link'      => TRUE, // custom or disable
+			'link'      => TRUE, // `NULL`: post-date archives, `FALSE`: disable, `{string}`: custom links
 			'echo'      => TRUE,
 		], $atts );
 
@@ -45,7 +46,10 @@ class gThemeDate extends gThemeModuleCore
 		if ( ! in_array( $post->post_type, (array) gThemeOptions::info( 'date_posttypes', [ 'post', 'entry' ] ) ) )
 			return '';
 
-		if ( ! $args['link'] )
+		if ( is_null( $args['link'] ) )
+			$link = self::getDayLink( $post );
+
+		else if ( ! $args['link'] )
 			$link = FALSE;
 
 		else if ( TRUE === $args['link'] )
@@ -63,25 +67,36 @@ class gThemeDate extends gThemeModuleCore
 
 		if ( is_null ( $override ) )
 			$html = vsprintf( $args['template'], [
-				$link ? esc_url( $link ) : '#',
-				// self::context( $post, 'y/n/j' ),
-				$args['shortlink'] ? ' rel="shortlink"' : '',
-				esc_attr( get_the_date( 'c', $post ) ),
+				$link ? sprintf( '<a href="%s" %s>', esc_url( $link ), $args['shortlink'] ? ' rel="shortlink"' : '' ) : '',
+				$link ? '</a>' : '',
+				esc_attr( get_post_time( \DATE_W3C, FALSE, $post, FALSE ) ),
 				esc_html( get_the_date( $args['format'], $post ) ),
-				$args['prefix'],
+				gThemeHTML::prepClass(
+					sprintf( '%s-time time-%s', $args['prefix'], $args['context'] ),
+					FALSE !== $args['timeago'] ? 'do-timeago' : ''
+				),
 			] );
 
 		else
 			$html = $override;
 
 		// only if not overrided
-		if ( $args['timeago'] && is_null ( $override ) )
+		if ( FALSE !== $args['timeago'] && is_null( $override ) )
 			gThemeUtilities::enqueueTimeAgo();
 
 		if ( ! $args['echo'] )
 			return $args['before'].$html.$args['after'];
 
 		echo $args['before'].$html.$args['after'];
+	}
+
+	public static function getDayLink( $post, $context = NULL )
+	{
+		return get_day_link(
+			gThemeNumber::intval( get_post_time( 'Y', FALSE, $post, TRUE ), FALSE ),
+			gThemeNumber::intval( get_post_time( 'm', FALSE, $post, TRUE ), FALSE ),
+			gThemeNumber::intval( get_post_time( 'd', FALSE, $post, TRUE ), FALSE )
+		);
 	}
 
 	// FIXME: DRAFT: NOT WORKING

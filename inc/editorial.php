@@ -127,15 +127,19 @@ class gThemeEditorial extends gThemeModuleCore
 		if ( ! is_null( $override ) )
 			return $override;
 
+		// avoid overriding with custom dates
+		if ( in_array( $args['context'], [ 'once' ], TRUE ) )
+			return $override;
+
 		if ( ! $datestring = self::metaPublished( $post, [ 'echo' => FALSE ] ) )
 			return $override;
 
 		return vsprintf( $args['template'], [
-			esc_url( $link ),
-			'',
+			$link ? sprintf( '<a href="%s">', esc_url( $link ) ) : '',
+			$link ? '</a>' : '',
 			'',
 			esc_html( $datestring ),
-			$args['prefix'],
+			gThemeHTML::prepClass( sprintf( '%s-time time-%s', $args['prefix'], $args['context'] ) ),
 		] );
 	}
 
