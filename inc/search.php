@@ -210,7 +210,7 @@ class gThemeSearch extends gThemeModuleCore
 			$html.= bp_search_form_type_select();
 
 			$html.= '<span class="input-group-btn input-group-append">';
-				$html.= '<button type="submit" class="btn btn-default" name="search-submit" id="search-submit">'.self::getSubmitText().'</button>';
+				$html.= '<button type="submit" class="btn btn-default btn-outline-secondary" name="search-submit" id="search-submit">'.self::getSubmitText().'</button>';
 			$html.= '</span></div>';
 
 			$html.= wp_nonce_field( 'bp_search_form', '_wpnonce', TRUE, FALSE );

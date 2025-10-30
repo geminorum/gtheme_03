@@ -65,7 +65,7 @@ class gThemeDate extends gThemeModuleCore
 		if ( FALSE === $override )
 			return '';
 
-		if ( is_null ( $override ) )
+		if ( is_null( $override ) )
 			$html = vsprintf( $args['template'], [
 				$link ? sprintf( '<a href="%s" %s>', esc_url( $link ), $args['shortlink'] ? ' rel="shortlink"' : '' ) : '',
 				$link ? '</a>' : '',
@@ -80,7 +80,7 @@ class gThemeDate extends gThemeModuleCore
 		else
 			$html = $override;
 
-		// only if not overrided
+		// only if not overrides
 		if ( FALSE !== $args['timeago'] && is_null( $override ) )
 			gThemeUtilities::enqueueTimeAgo();
 
