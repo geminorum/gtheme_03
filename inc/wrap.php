@@ -13,7 +13,7 @@ class gThemeWrap extends gThemeModuleCore
 		add_action( 'before_signup_header', [ $this, 'before_signup_header' ] );
 		add_action( 'activate_header', [ $this, 'activate_header' ] );
 
-		if ( $images_404 && ! is_admin() )
+		if ( $images_404 )
 			add_filter( 'template_include', [ $this, 'template_include_404_images' ], -1 );
 
 		add_filter( 'template_include', [ __CLASS__, 'template_include' ], 99 );

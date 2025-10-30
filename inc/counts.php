@@ -22,12 +22,12 @@ class gThemeCounts extends gThemeModuleCore
 		return array_merge( [
 			'dashboard' => [
 				'title' => _x( 'Dashboard', 'Modules: Counts', 'gtheme' ),
-				'desc'  => _x( 'Dashboard Count', 'Modules: Counts', 'gtheme' ),
+				'desc'  => _x( 'Number of items on the dashboard.', 'Modules: Counts', 'gtheme' ),
 				'def'   => 5,
 			],
 			'latest' => [
 				'title' => _x( 'Latest Posts', 'Modules: Counts', 'gtheme' ),
-				'desc'  => _x( 'Latest Posts Count', 'Modules: Counts', 'gtheme' ),
+				'desc'  => _x( 'Number of rows on the latest page.', 'Modules: Counts', 'gtheme' ),
 				'def'   => 5,
 			],
 		], $extra );

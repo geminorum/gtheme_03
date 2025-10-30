@@ -156,6 +156,7 @@ class gThemeEditorial extends gThemeModuleCore
 		return gThemeOptions::info( 'attachment_download_prefix', '' ).$filename;
 	}
 
+	// MAYBE: context must be: `woocommerce` instead of `listassigned`
 	public function wc_terms_term_listassigned_args( $atts, $term )
 	{
 		return array_merge( $atts, [
@@ -166,6 +167,7 @@ class gThemeEditorial extends gThemeModuleCore
 		] );
 	}
 
+	// MAYBE: context must be: `woocommerce` instead of `listassigned`
 	public static function wcTermsListAssignedRowCallback( $post, $args, $ref )
 	{
 		// @REF: https://developer.wordpress.org/?p=2837#comment-874

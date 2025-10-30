@@ -7,7 +7,7 @@ gThemeContent::wrapOpen( 'item' );
 	if ( ! gThemeTerms::has( 'poster' ) ) {
 
 		gThemeContent::header( [ 'context' => 'item', 'byline' => TRUE ] );
-		gThemeContent::excerpt();
+		// gThemeContent::excerpt(); // NOTE: Items are better not to have Excerpts
 	}
 
 	gThemeContent::footer( [ 'context' => 'item' ] );

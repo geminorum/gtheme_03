@@ -239,6 +239,8 @@ class gThemeContent extends gThemeModuleCore
 
 		if ( $selector )
 			gThemeUtilities::enqueueMasonry( $selector );
+
+		return TRUE;
 	}
 
 	public static function recent( $context, $before = '', $after = '', $extra = [], $count = NULL )
@@ -310,8 +312,6 @@ class gThemeContent extends gThemeModuleCore
 	{
 		if ( empty( $context ) )
 			return FALSE;
-
-		// TODO: WTF: must check for singular?!
 
 		if ( ! is_singular() && ! is_single() )
 			return FALSE;
