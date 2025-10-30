@@ -190,8 +190,8 @@ class gThemeContent extends gThemeModuleCore
 		if ( empty( $context ) )
 			return FALSE;
 
-		$brick_class = gThemeOptions::info( 'masonry_brick_class', 'col-sm-6 col-md-4' );
-		$grid_class  = gThemeOptions::info( 'masonry_grid_class', 'row' );
+		$brick_class = gThemeOptions::info( 'masonry_brick_class', gThemeTemplate::defaultItemClass( $context ) );
+		$grid_class  = gThemeOptions::info( 'masonry_grid_class', gThemeTemplate::defaultWrapClass( $context ) );
 		$selector    = gThemeOptions::info( 'masonry_css_selector', 'gtheme-masonry' ); // FALSE to disable `enqueueMasonry()`
 
 		echo $before;
@@ -247,8 +247,8 @@ class gThemeContent extends gThemeModuleCore
 			return FALSE;
 
 		$queried    = get_queried_object_id() ?: 0;
-		$item_class = gThemeOptions::info( 'recent_item_class', 'col-sm-6 col-md-4' );
-		$wrap_class = gThemeOptions::info( 'recent_wrap_class', 'row' );
+		$item_class = gThemeOptions::info( 'recent_item_class', gThemeTemplate::defaultItemClass( $context ) );
+		$wrap_class = gThemeOptions::info( 'recent_wrap_class', gThemeTemplate::defaultWrapClass( $context ) );
 		$orderby    = gThemeOptions::info( 'recent_orderby', 'menu_order date' );
 
 		echo $before;
@@ -319,8 +319,8 @@ class gThemeContent extends gThemeModuleCore
 		if ( ! $queried = get_queried_object_id() )
 			return FALSE;
 
-		$item_class = gThemeOptions::info( 'related_item_class', 'col-sm-6 col-md-4' );
-		$wrap_class = gThemeOptions::info( 'related_wrap_class', 'row' );
+		$item_class = gThemeOptions::info( 'related_item_class', gThemeTemplate::defaultItemClass( $context ) );
+		$wrap_class = gThemeOptions::info( 'related_wrap_class', gThemeTemplate::defaultWrapClass( $context ) );
 		$taxonomy   = gThemeOptions::info( 'related_taxonomy', 'post_tag' );
 
 		echo $before;

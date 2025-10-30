@@ -3,6 +3,22 @@
 class gThemeTemplate extends gThemeModuleCore
 {
 
+	public static function defaultItemClass( $context = NULL )
+	{
+		return apply_filters( 'gtheme_default_item_class',
+			gThemeOptions::info( 'default_item_class',
+			'col-sm-6 col-md-3 col-lg-2'
+		), $context );
+	}
+
+	public static function defaultWrapClass( $context = NULL )
+	{
+		return apply_filters( 'gtheme_default_wrap_class',
+			gThemeOptions::info( 'default_wrap_class',
+			'row'
+		), $context );
+	}
+
 	// NOTE: order is: `base-context` -> `context-posttype` -> `base` -> `context` -> 'posttype`
 	public static function wrapOpen( $context = 'index', $extra = [], $posttype = NULL )
 	{

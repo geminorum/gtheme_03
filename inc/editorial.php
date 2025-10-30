@@ -161,7 +161,8 @@ class gThemeEditorial extends gThemeModuleCore
 		return array_merge( $atts, [
 			'item_cb'    => [ __CLASS__, 'wcTermsListAssignedRowCallback' ],
 			'list_tag'   => 'div',
-			'list_class' => 'row',
+			'list_class' => gThemeOptions::info( 'listassigned_wrap_class', gThemeTemplate::defaultWrapClass( 'listassigned' ) ),
+			'item_class' => gThemeOptions::info( 'listassigned_item_class', gThemeTemplate::defaultItemClass( 'listassigned' ) ),
 		] );
 	}
 
@@ -173,7 +174,11 @@ class gThemeEditorial extends gThemeModuleCore
 
 		ob_start();
 
+		printf( '<div class="%s -listassigned-item">', $args['item_class'] );
+
 		gThemeContent::partial( 'listassigned' );
+
+		echo '</div>';
 
 		return ob_get_clean();
 	}
