@@ -88,8 +88,11 @@ class gThemeText extends gThemeBaseCore
 	}
 
 	/**
-	 * Removes paragraph from around images.
-	 * @source https://css-tricks.com/?p=15293
+	 * Extracts image and alignment within a paragraph then wraps with given tag.
+	 *
+	 * - `<p><img class="ALIGNMENT" /></p>`: `<figure class="EXTRA-CLASS ALIGNMENT"><img/></figure>`
+	 * - `<p><a><img class="ALIGNMENT" /></a></p>': `<figure class="EXTRA-CLASS ALIGNMENT"><a><img/></a></figure>`
+	 * - `<p><a><img class="ALIGNMENT" /></a>TEXT</p>`: `<figure class="EXTRA-CLASS ALIGNMENT"><a><img/></a></figure><p>TEXT</p>`
 	 *
 	 * @param string $text
 	 * @param string $tag
@@ -98,9 +101,49 @@ class gThemeText extends gThemeBaseCore
 	 */
 	public static function replaceImageP( $text, $tag = 'figure', $class = '' )
 	{
-		return $tag && trim( $tag )
-			? preg_replace( '/<p>\s*(<a .*>)?\s*(<img .* \/>)\s*(<\/a>)?\s*<\/p>/iU', sprintf( '<%s%s>\1\2\3</%s>', $tag, ( $class ? ( ' class="'.$class.'"' ) : '' ), $tag ), $text )
-			: preg_replace( '/<p>\s*(<a .*>)?\s*(<img .* \/>)\s*(<\/a>)?\s*<\/p>/iU', '\1\2\3', $text );
+		if ( ! $tag )
+			// @source https://css-tricks.com/?p=15293
+			return preg_replace( '/<p>\s*(<a .*>)?\s*(<img .* \/>)\s*(<\/a>)?\s*<\/p>/iU', '\1\2\3', $text );
+
+
+		return preg_replace_callback(
+			'/<p>\s*(<a .*>)?\s*(<img .* \/>)\s*(<\/a>)?(.*)\s*<\/p>/i',
+			static function ( $matches ) use ( $tag, $class ) {
+				list( $image, $align ) = self::replaceImageP_extractAlignment( $matches[2] );
+
+				$class = trim( $class.' '.$align );
+
+				return vsprintf( '<%1$s%6$s>%4$s%3$s%5$s</%2$s>%7$s', [
+					$tag,                                      // wrap tag opening
+					$tag,                                      // wrap tag closing
+					$image,                                    // image fully
+					empty( $matches[1] ) ? '' : $matches[1],   // link opening
+					empty( $matches[3] ) ? '' : $matches[3],   // link closing
+					empty( $class )      ? '' : sprintf( ' class="%s"', $class ),
+					empty( $matches[4] ) ? '' : sprintf( '<p>%s</p>', $matches[4] ),
+				] );
+			},
+		$text );
+	}
+
+	public static function replaceImageP_extractAlignment( $text )
+	{
+		if ( ! preg_match( "#class=\"(.*?)\"#s", $text, $matches ) )
+			return [ $text, '' ];
+
+		foreach ( [
+			'alignnone',
+			'aligncenter',
+			'alignleft',
+			'alignright',
+		] as $align )
+			if ( FALSE !== stripos( $matches[1], $align ) )
+				return [
+					str_ireplace( $align, '', $text ),
+					$align
+				];
+
+		return [ $text, '' ];
 	}
 
 	// DEPRECATED: use `Text::replaceImageP( $string, FALSE )`
