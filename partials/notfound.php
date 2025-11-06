@@ -1,8 +1,5 @@
 <?php defined( 'ABSPATH' ) or die( header( 'HTTP/1.0 403 Forbidden' ) );
 
-// NOTE: DEPRECATED: HERE FOR BACK COMPAT ONLY
-// NOTE: use: 'partials/notfound-{$context}'
-
 gThemeContent::wrapOpen( 'notfound' );
 
 	gThemeContent::header( [

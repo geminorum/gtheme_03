@@ -31,6 +31,7 @@ class gThemeTemplate extends gThemeModuleCore
 
 		$columns = array_merge( $full ? [] : [
 			'notfound'      => 'col-sm-6', // `404` alias
+			'emptysearch'   => 'col-sm-8',
 			'index'         => 'col-sm-8',
 			'latest'        => 'col-sm-6',
 			'contact'       => 'col-sm-6',

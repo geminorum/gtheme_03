@@ -2,7 +2,7 @@
 
 gThemeTemplate::wrapOpen( 'notfound' );
 
-	gThemeContent::notFound();
+	gThemeContent::notFound( '404' );
 
 gThemeTemplate::wrapClose( 'notfound' );
 // gThemeTemplate::sidebar( gtheme_template_base() );

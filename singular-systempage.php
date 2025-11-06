@@ -13,7 +13,7 @@ gThemeTemplate::wrapOpen( 'systempage' );
 
 	} else {
 
-		gThemeContent::notFound();
+		gThemeContent::notFound( 'systempage' );
 	}
 
 gThemeTemplate::wrapClose( 'systempage' );

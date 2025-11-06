@@ -13,12 +13,21 @@ if ( have_posts() ) {
 		gThemeNavigation::content( 'index' );
 	gThemeTemplate::wrapClose( 'index' );
 
+} else if ( is_search() ) {
+
+	gThemeTemplate::wrapOpen( 'emptysearch' );
+		gThemeNavigation::breadcrumb( [ 'home' => 'home', 'context' => 'emptysearch' ] );
+
+		gThemeContent::notFound( 'emptysearch' );
+
+	gThemeTemplate::wrapClose( 'emptysearch' );
+
 } else {
 
 	gThemeTemplate::wrapOpen( 'notfound' );
 		gThemeNavigation::breadcrumb( [ 'home' => 'home', 'context' => 'notfound' ] );
 
-		gThemeContent::notFound();
+		gThemeContent::notFound( 'index' );
 
 	gThemeTemplate::wrapClose( 'notfound' );
 }

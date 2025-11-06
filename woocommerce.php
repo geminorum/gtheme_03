@@ -27,7 +27,7 @@ if ( have_posts() ) {
 
 	gThemeTemplate::wrapOpen( 'notfound' );
 
-		gThemeContent::notFound();
+		gThemeContent::notFound( 'woocommerce' );
 
 	gThemeTemplate::wrapClose( 'notfound' );
 }

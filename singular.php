@@ -17,7 +17,7 @@ if ( have_posts() ) {
 
 	gThemeTemplate::wrapOpen( 'notfound' );
 
-		gThemeContent::notFound();
+		gThemeContent::notFound( 'singular' );
 
 	gThemeTemplate::wrapClose( 'notfound' );
 }

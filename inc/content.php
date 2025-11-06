@@ -39,16 +39,16 @@ class gThemeContent extends gThemeModuleCore
 			echo $before.gThemeText::wordWrap( $message ).$after;
 	}
 
-	public static function notFound( $context = NULL, $part = 'content', $location = NULL )
+	public static function notFound( $context = NULL, $part = 'notfound', $location = NULL )
 	{
 		$base = gtheme_template_base();
 
 		if ( is_null( $context ) )
-			$context = apply_filters( 'gtheme_notfound_context', 'notfound', $part, $base );
+			$context = $base; // apply_filters( 'gtheme_notfound_context', 'notfound', $part, $base );
 
 		do_action( 'gtheme_notfound_before', $context, $part, $base );
 
-		get_template_part( sprintf( $location ?? '%s', $part ), $context );
+		get_template_part( sprintf( $location ?? 'partials/%s', $part ), $context );
 
 		do_action( 'gtheme_notfound_after', $context, $part, $base );
 	}
