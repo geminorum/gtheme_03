@@ -696,13 +696,13 @@ class gThemeEditorial extends gThemeModuleCore
 			return FALSE;
 
 		$args = self::atts( [
-			'before'   => '',
-			'after'    => '',
-			'echo'     => TRUE,
-			'wordwrap' => FALSE,
+			'before'    => '',
+			'after'     => '',
+			'echo'      => TRUE,
+			'word_wrap' => FALSE,
 		], $atts );
 
-		if ( $args['wordwrap'] )
+		if ( $args['word_wrap'] )
 			$html = gThemeText::wordWrap( $html, 2 );
 
 		$html = $args['before'].$html.$args['after'];
@@ -739,8 +739,8 @@ class gThemeEditorial extends gThemeModuleCore
 		if ( ! array_key_exists( 'post_id', $atts ) )
 			$atts['post_id'] = $post;
 
-		// if ( ! array_key_exists( 'wordwrap', $atts ) )
-		// 	$atts['wordwrap'] = TRUE;
+		// if ( ! array_key_exists( 'word_wrap', $atts ) )
+		// 	$atts['word_wrap'] = TRUE;
 
 		return self::meta( $field, $atts );
 	}
@@ -770,8 +770,8 @@ class gThemeEditorial extends gThemeModuleCore
 		if ( ! array_key_exists( 'post_id', $atts ) )
 			$atts['post_id'] = $post;
 
-		if ( ! array_key_exists( 'wordwrap', $atts ) )
-			$atts['wordwrap'] = TRUE;
+		if ( ! array_key_exists( 'word_wrap', $atts ) )
+			$atts['word_wrap'] = TRUE;
 
 		return self::meta( $field, $atts );
 	}
@@ -808,8 +808,8 @@ class gThemeEditorial extends gThemeModuleCore
 		if ( ! array_key_exists( 'post_id', $atts ) )
 			$atts['post_id'] = $post;
 
-		if ( ! array_key_exists( 'wordwrap', $atts ) )
-			$atts['wordwrap'] = TRUE;
+		if ( ! array_key_exists( 'word_wrap', $atts ) )
+			$atts['word_wrap'] = TRUE;
 
 		return self::meta( $field, $atts );
 	}
@@ -846,8 +846,8 @@ class gThemeEditorial extends gThemeModuleCore
 		if ( ! array_key_exists( 'post_id', $atts ) )
 			$atts['post_id'] = $post;
 
-		if ( ! array_key_exists( 'wordwrap', $atts ) )
-			$atts['wordwrap'] = TRUE;
+		if ( ! array_key_exists( 'word_wrap', $atts ) )
+			$atts['word_wrap'] = TRUE;
 
 		return self::meta( $field, $atts );
 	}

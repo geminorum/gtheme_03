@@ -1509,6 +1509,7 @@ addthis_config.services_custom = [
 			'wrap_close'  => TRUE,
 			'trim_title'  => FALSE,                                                      // or number of chars
 			'trim_meta'   => FALSE,                                                      // or number of chars
+			'word_wrap'   => TRUE,                                                       // avoid widow words
 			'itemprop'    => TRUE,
 			'link_rel'    => NULL,                                                       // NULL for check short-link argument, `FALSE` to disable
 			'title_tag'   => $singular ? 'h2' : 'h3',
@@ -1557,9 +1558,10 @@ addthis_config.services_custom = [
 
 		if ( $args['meta'] )
 			gThemeEditorial::metaOverTitle( $post, [
-				'before' => '<'.$args['meta_tag'].' class="-overtitle overtitle '.$args['prefix'].'-overtitle"'.( $args['itemprop'] ? ' itemprop="alternativeHeadline"' : '' ).'>',
-				'after'  => '</'.$args['meta_tag'].'>',
-				'trim'   => $args['trim_meta'],
+				'before'    => '<'.$args['meta_tag'].' class="-overtitle overtitle '.$args['prefix'].'-overtitle"'.( $args['itemprop'] ? ' itemprop="alternativeHeadline"' : '' ).'>',
+				'after'     => '</'.$args['meta_tag'].'>',
+				'trim'      => $args['trim_meta'],
+				'word_wrap' => $args['word_wrap'],
 			] );
 
 		echo '<'.$args['title_tag'].' class="-title title '.$args['prefix'].'-title'.( $args['amp'] ? ' amp-wp-title' : '' ).'"';
@@ -1594,8 +1596,8 @@ addthis_config.services_custom = [
 
 			} else if ( 'meta' == $args['title_attr'] ) {
 
-				$overtitle = gThemeEditorial::metaOverTitle( $post, [ 'echo' => FALSE ] );
-				$subtitle  = gThemeEditorial::metaSubTitle( $post, [ 'echo' => FALSE ] );
+				$overtitle = gThemeEditorial::metaOverTitle( $post, [ 'echo' => FALSE, 'word_wrap' => FALSE ] );
+				$subtitle  = gThemeEditorial::metaSubTitle( $post,  [ 'echo' => FALSE, 'word_wrap' => FALSE ] );
 
 				$args['title_attr'] = $overtitle;
 
@@ -1610,11 +1612,11 @@ addthis_config.services_custom = [
 			if ( $args['title_attr'] )
 				echo ' title="'.self::getTitleAttr( $title_template, $args['title_attr'], $post ).'"';
 
-			echo '>'.gThemeText::wordWrap( $title, 2 ).'</a>';
+			echo '>'.( $args['word_wrap'] ? gThemeText::wordWrap( $title, 2 ) : $title ).'</a>';
 
 		} else {
 
-			echo gThemeText::wordWrap( $title, 2 );
+			echo ( $args['word_wrap'] ? gThemeText::wordWrap( $title, 2 ) : $title );
 		}
 
 		if ( $args['anchor'] )
@@ -1624,9 +1626,10 @@ addthis_config.services_custom = [
 
 		if ( $args['meta'] )
 			gThemeEditorial::metaSubTitle( $post, [
-				'before' => '<'.$args['meta_tag'].' class="-subtitle subtitle '.$args['prefix'].'-subtitle"'.( $args['itemprop'] ? ' itemprop="alternativeHeadline"' : '' ).'>',
-				'after'  => '</'.$args['meta_tag'].'>',
-				'trim'   => $args['trim_meta'],
+				'before'    => '<'.$args['meta_tag'].' class="-subtitle subtitle '.$args['prefix'].'-subtitle"'.( $args['itemprop'] ? ' itemprop="alternativeHeadline"' : '' ).'>',
+				'after'     => '</'.$args['meta_tag'].'>',
+				'trim'      => $args['trim_meta'],
+				'word_wrap' => $args['word_wrap'],
 			] );
 
 		do_action( 'gtheme_content_header_close', $post, $args );
