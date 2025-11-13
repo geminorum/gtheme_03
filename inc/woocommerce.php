@@ -438,11 +438,19 @@ class gThemeWooCommerce extends gThemeModuleCore
 	// @REF: `gThemeImage::imageWithPlaceHolder()`
 	public static function placeholder_img( $image_html, $size, $dimensions )
 	{
-		if ( ! $ratio = gThemeOptions::info( 'woocommerce_image_aspect_ratio', NULL ) )
+		$option = is_admin()
+			? 'woocommerce_image_placeholder_src'
+			: 'woocommerce_image_placeholder';
+
+		if ( ! $placeholder = gThemeImage::getPlaceHolder( [], $option ) )
 			return $image_html;
 
-		if ( ! $placeholder = gThemeImage::getPlaceHolder( [], 'woocommerce_image_placeholder' ) )
-			return $image_html;
+		// NOTE: we cannot use ratio box on admin
+		if ( is_admin() )
+			return $placeholder;
+
+		if ( ! $ratio = gThemeOptions::info( 'woocommerce_image_aspect_ratio', NULL ) )
+			return $placeholder;
 
 		$before = '<div class="theme-product-placeholder">';
 		$before.= '<svg viewBox="0 0 '.str_replace( ':', ' ', $ratio ).'" />';
