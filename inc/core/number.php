@@ -10,7 +10,7 @@ class gThemeNumber extends gThemeBaseCore
 	}
 
 	// FIXME: use our own
-	// converts back number chars into english
+	// converts back number chars into English
 	public static function intval( $text, $intval = TRUE )
 	{
 		$number = apply_filters( 'string_format_i18n_back', $text );

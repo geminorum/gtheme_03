@@ -66,25 +66,41 @@ class gThemeText extends gThemeBaseCore
 		), $string );
 	}
 
-	// removes empty paragraph tags, and remove broken paragraph tags from around block level elements
-	// @SOURCE: https://github.com/ninnypants/remove-empty-p
-	public static function noEmptyP( $string )
+	/**
+	 * Removes empty paragraph tags, and remove broken paragraphs
+	 * from around block level elements.
+	 * @source https://gist.github.com/wpscholar/8969bb6e1cedb9be92140cc2efa9febb
+	 * @source https://github.com/ninnypants/remove-empty-p
+	 *
+	 * @param string $text
+	 * @return string
+	 */
+	public static function noEmptyP( $text )
 	{
-		$string = preg_replace( array(
+		if ( ! $text )
+			return $text;
+
+		$text = strtr( $text, [
+			'<p>['    => '[',
+			']</p>'   => ']',
+			']<br />' => ']',
+		] );
+
+		$text = preg_replace( [
 			'#<p>\s*<(div|aside|section|article|header|footer)#',
 			'#</(div|aside|section|article|header|footer)>\s*</p>#',
 			'#</(div|aside|section|article|header|footer)>\s*<br ?/?>#',
 			'#<(div|aside|section|article|header|footer)(.*?)>\s*</p>#',
 			'#<p>\s*</(div|aside|section|article|header|footer)#',
-		), array(
+		], [
 			'<$1',
 			'</$1>',
 			'</$1>',
 			'<$1$2>',
 			'</$1',
-		), $string );
+		], $text );
 
-		return preg_replace( '#<p>(\s|&nbsp;)*+(<br\s*/*>)*(\s|&nbsp;)*</p>#i', '', $string );
+		return preg_replace( '#<p>(\s|&nbsp;)*+(<br\s*/*>)*(\s|&nbsp;)*</p>#i', '', $text );
 	}
 
 	/**
