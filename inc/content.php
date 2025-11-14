@@ -1203,7 +1203,7 @@ class gThemeContent extends gThemeModuleCore
 	// @REF: http://nicholaelaw.github.io/demo-qr-code-in-tooltip/
 	// @REF: https://qr-creator.com/plugin.php
 	// @REF: https://developers.google.com/chart/infographics/docs/qr_codes
-	// NOTE: needs bootstrap for dropdown
+	// NOTE: requires bootstrap for dropdown
 	public static function bootstrapQRCode( $text, $post = NULL, $before = '', $after = '', $title = NULL )
 	{
 		static $enqueued = FALSE;
@@ -1231,7 +1231,7 @@ class gThemeContent extends gThemeModuleCore
 		$dropdown.= '>'.$loading.'</div>';
 
 		echo $before.gThemeHTML::tag( 'a', [
-			'href'  => $url, // MAYBE: direct link to qrcode image
+			'href'  => $url, // MAYBE: direct link to qr-code image
 			'title' => self::getTitleAttr( ( $shortlink ? FALSE : NULL ), NULL, $post, FALSE ),
 			'class' => 'bootstrap-qrcode-toggle',
 			'rel'   => 'qrcode',

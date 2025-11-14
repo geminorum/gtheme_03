@@ -55,7 +55,8 @@ class gThemeBootstrap extends gThemeModuleCore
 		$fixed  = gThemeOptions::info( 'bootstrap_navbar_fixed', FALSE );
 		$scheme = gThemeOptions::getColorScheme( 'bootstrap_color_scheme', 'dark' ); // dark/light
 
-		echo '<nav class="navbar navbar-'.$scheme.' bg-'.$scheme.( $fixed ? ' fixed-top ' : ' ' ).$class.'">';
+		// echo '<nav class="navbar navbar-'.$scheme.' bg-'.$scheme.( $fixed ? ' fixed-top ' : ' ' ).$class.'">';
+		echo '<nav class="navbar navbar-'.$scheme.( $fixed ? ' fixed-top ' : ' ' ).$class.'">';
 
 			echo $additional;
 			self::navbarBrand( $brand );

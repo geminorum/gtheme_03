@@ -102,7 +102,7 @@ final class gThemeCore
 	{
 		$this->load_modules( $this->modules );
 
-		add_action( 'after_setup_theme', [ $this, 'after_setup_theme' ] );
+		add_action( 'after_setup_theme', [ $this, 'after_setup_theme' ], 12 );
 		add_action( 'init', [ $this, 'init_late' ], 99 );
 
 		do_action_ref_array( 'gtheme_after_setup_actions', [ &$this ] );

@@ -801,7 +801,7 @@ class gThemeImage extends gThemeModuleCore
 			'post_id'         => NULL,
 			'link'            => 'parent',
 			'attr'            => '',
-			'check_single'    => TRUE, // checks if post has `hide-image-single` system tag
+			'check_single'    => TRUE, // Checks if post has `hide-image-single` system tag
 			'empty'           => self::holder( ( isset( $atts['tag'] ) ? $atts['tag'] : 'raw' ), ( isset( $atts['class'] ) ? $atts['class'] : self::cssClass() ) ),
 			'url'             => FALSE,
 			'caption'         => FALSE,
@@ -876,6 +876,7 @@ class gThemeImage extends gThemeModuleCore
 
 		$before = '<div class="entry-image-placeholder">';
 		$before.= '<svg viewBox="0 0 '.str_replace( ':', ' ', $ratio ).'" />';
+		// NOTE: use `.entry-image` as `.-inner-wrap`
 		$after  = '</div>';
 
 		$html = $before.self::image( $atts ).$after;

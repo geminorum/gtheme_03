@@ -190,6 +190,8 @@ class gThemeTheme extends gThemeModuleCore
 	}
 
 	// @REF: https://developer.wordpress.org/themes/functionality/custom-logo/
+	// @REF: https://make.wordpress.org/core/2016/03/10/custom-logo/
+	// @REF: https://make.wordpress.org/core/2020/07/28/themes-changes-related-to-get_custom_logo-in-wordpress-5-5/
 	private function _support_custom_logo()
 	{
 		if ( ! $atts = gThemeOptions::info( 'support_custom_logo' ) )
@@ -252,7 +254,7 @@ class gThemeTheme extends gThemeModuleCore
 
 	public function wp_enqueue_scripts_wpcf7()
 	{
-		add_filter( 'wpcf7_load_css', '__return_false', 12 ); // styles will be added by the theme
+		add_filter( 'wpcf7_load_css', '__return_false', 12 ); // NOTE: styles will be added by the theme
 
 		if ( 'contact' == gtheme_template_base() )
 			add_filter( 'wpcf7_load_js', '__return_true', 12 );

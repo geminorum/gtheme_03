@@ -9,6 +9,9 @@ class gThemeNavigation extends gThemeModuleCore
 	{
 		global $wp_query;
 
+		// @SEE: https://core.trac.wordpress.org/ticket/10219
+		// @SEE: https://core.trac.wordpress.org/changeset/61093
+		// $order   = get_query_var( 'order', 'DESC' );
 		$classes = [ 'navigation', 'hidden-print' ];
 
 		if ( $context )
@@ -125,8 +128,6 @@ class gThemeNavigation extends gThemeModuleCore
 	// wrapper with conditional tags
 	public static function breadcrumb( $atts = [] )
 	{
-		global $wp_query;
-
 		if ( ! gThemeOptions::info( 'breadcrumb_support', TRUE ) )
 			return;
 
@@ -145,7 +146,7 @@ class gThemeNavigation extends gThemeModuleCore
 			self::breadcrumbArchive( $atts );
 
 		// 404 has it's own search form
-		if ( is_search() && ! empty( $wp_query->found_posts ) && gThemeOptions::info( 'breadcrumb_search_form', TRUE ) )
+		if ( is_search() && have_posts() && gThemeOptions::info( 'breadcrumb_search_form', TRUE ) )
 			gThemeSearch::formSecondary();
 
 		do_action( 'gtheme_navigation_breadcrumb_after' );

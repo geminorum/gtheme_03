@@ -532,15 +532,15 @@ class gThemeFilters extends gThemeModuleCore
 			}
 		}
 
-		// removes empty paragraph tags
+		// Removes the empty paragraph tags.
 		if ( gThemeOptions::info( 'content_remove_empty_p', TRUE ) )
 			$content = gThemeText::noEmptyP( $content );
 
-		// replaces paragraph around images with figure
+		// Replaces the paragraphs around images with figure tags.
 		if ( gThemeOptions::info( 'content_replace_image_p', TRUE ) )
 			$content = gThemeText::replaceImageP( $content, 'figure' );
 
-		// removes paragraph around images
+		// Removes the paragraph around images.
 		else if ( gThemeOptions::info( 'content_remove_image_p', TRUE ) )
 			$content = gThemeText::replaceImageP( $content, FALSE );
 

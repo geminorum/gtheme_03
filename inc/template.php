@@ -30,20 +30,20 @@ class gThemeTemplate extends gThemeModuleCore
 			$context = 'notfound';
 
 		$columns = array_merge( $full ? [] : [
-			'notfound'      => 'col-sm-6', // `404` alias
-			'emptysearch'   => 'col-sm-8',
-			'index'         => 'col-sm-8',
-			'latest'        => 'col-sm-6',
-			'contact'       => 'col-sm-6',
-			'singular'      => 'col-sm-8',
-			'attachment'    => 'col-sm-8',
-			'systempage'    => 'col-sm-6',
-			'newpost'       => 'col-sm-12',
-			'fullwidthpage' => 'col-sm-12',
-			'signup'        => 'col-sm-12',
-			'activate'      => 'col-sm-12',
-			'bbpress'       => 'col-sm-12',
-			'buddypress'    => 'col-sm-12',
+			'notfound'      => 'col-lg-6', // `404` alias
+			'emptysearch'   => 'col-lg-8',
+			'index'         => 'col-lg-8',
+			'latest'        => 'col-lg-6',
+			'contact'       => 'col-lg-6',
+			'singular'      => 'col-lg-8',
+			'attachment'    => 'col-lg-8',
+			'systempage'    => 'col-lg-6',
+			'newpost'       => 'col',
+			'fullwidthpage' => 'col',
+			'signup'        => 'col',
+			'activate'      => 'col',
+			'bbpress'       => 'col',
+			'buddypress'    => 'col',
 		], gThemeOptions::info( 'template_columns', [] ) );
 
 		if ( is_null( $posttype ) )
@@ -68,7 +68,7 @@ class gThemeTemplate extends gThemeModuleCore
 			$column = $columns[$posttype];
 
 		else
-			$column = gThemeOptions::info( 'template_column_fallback', $full ? 'col' : 'col-sm-8' );
+			$column = gThemeOptions::info( 'template_column_fallback', $full ? 'col' : 'col-lg-8' );
 
 		$classes = [ 'wrap-content', 'wrap-content-'.$context ];
 
@@ -124,8 +124,7 @@ class gThemeTemplate extends gThemeModuleCore
 		$default = gThemeOptions::info( 'template_logo',
 			'<a href="{{home_url}}" title="{{{logo_title}}}" rel="home"><img src="{{logo_url_png}}" alt="{{{site_name}}}" fetchpriority="{{fetchpriority}}" /></a>' );
 
-		if ( is_null( $template ) )
-			$template = gThemeOptions::info( 'template_logo_'.$context, $default );
+		$template = $template ?? gThemeOptions::info( 'template_logo_'.$context, $default );
 
 		// NOTE: the order is important on format to token conversion
 		$tokens = [
@@ -173,9 +172,9 @@ class gThemeTemplate extends gThemeModuleCore
 
 			gThemePages::link( $page, [
 				'title'  => $custom ?: $title,
-				'attr'   => 'title', // target page title
+				'attr'   => 'title',             // target page title
 				'rel'    => 'about',
-				'def'    => FALSE, // disable link if target page does not exist
+				'def'    => FALSE,               // Disable link if target page does not exist
 				'before' => $before,
 				'after'  => $after,
 			] );
@@ -241,7 +240,7 @@ class gThemeTemplate extends gThemeModuleCore
 		if ( ! $user = get_userdata( $post->post_author ) )
 			return '';
 
-		$display_name = get_the_author_meta( 'display_name', $user->ID ); // applying gMember filter
+		$display_name = get_the_author_meta( 'display_name', $user->ID );
 
 		if ( ! $link = get_author_posts_url( $user->ID, $user->user_nicename ) )
 			return $display_name;
@@ -250,7 +249,7 @@ class gThemeTemplate extends gThemeModuleCore
 
 		return vsprintf( $template, [
 			esc_url( $link ),
-			/* translators: %s: display name */
+			/* translators: `%s`: display name */
 			esc_attr( sprintf( _x( 'Posts by %s', 'Modules: Template: Author', 'gtheme' ), $display_name ) ),
 			$display_name,
 		] );
@@ -278,7 +277,6 @@ class gThemeTemplate extends gThemeModuleCore
 				) );
 		}
 
-		// $template = '<a href="%1$s" title="%3$s" class="%4$s">%2$s</a>';
 		$template = '<a href="%1$s" title="%3$s" class="%4$s" data-html="true" data-toggle="tooltip" data-bs-toggle="tooltip" data-placement="top" data-bs-placement="top">%2$s</a>';
 
 		return vsprintf( gThemeOptions::info( 'template_term_link', $template ), [
@@ -295,8 +293,7 @@ class gThemeTemplate extends gThemeModuleCore
 	{
 		self::_dep( 'gThemeTerms::getWithParents()' );
 
-		$html = '';
-
+		$html   = '';
 		$parent = get_term( $id, $taxonomy );
 
 		if ( is_wp_error( $parent ) )
@@ -307,7 +304,6 @@ class gThemeTemplate extends gThemeModuleCore
 			$html.= self::term_parents( $parent->parent, $sep, $taxonomy, $visited );
 		}
 
-		// $html.= '<a href="' . esc_url( get_category_link( $parent->term_id ) ) . '">'.$parent->name.'</a>' . $sep;
 		$html.= self::term_link( $parent, $taxonomy ).$sep;
 
 		return $html;

@@ -17,6 +17,9 @@ class gThemeMenu extends gThemeModuleCore
 			add_filter( 'wp_nav_menu_container_allowedtags', [ $this, 'wp_nav_menu_container_allowedtags' ] );
 
 		if ( ! is_admin() ) {
+
+			// @SEE: https://gist.github.com/jakebellacera/8c151a87975b4f0e369311be9d89d864
+
 			add_filter( 'nav_menu_css_class', [ $this, 'nav_menu_css_class' ], 10, 4 );
 			add_filter( 'nav_menu_link_attributes', [ $this, 'nav_menu_link_attributes' ], 10, 4 );
 			add_filter( 'nav_menu_item_id', '__return_empty_string', 12 );

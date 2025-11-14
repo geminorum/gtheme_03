@@ -81,7 +81,7 @@ class gThemeEditor extends gThemeModuleCore
 		}
 	}
 
-	// comma-delimited list of stylesheets to load in TinyMCE
+	// Comma-delimited list of stylesheets to load in `TinyMCE`
 	public function mce_css( $url )
 	{
 		if ( ! empty( $url ) )

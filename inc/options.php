@@ -222,7 +222,7 @@ class gThemeOptions extends gThemeModuleCore
 			// 'template_logo'        => '<a class="navbar-brand no-outline" href="{{home_url}}" title="{{{logo_title}}}" rel="home"><h1 class="text-hide main-logo">{{site_name}}</h1></a>',
 			// 'template_term_link'   => '<a href="%1$s" title="%3$s" class="%4$s" data-html="true" data-bs-toggle="tooltip" data-bs-placement="top">%2$s</a>',
 			// 'template_author_link' => '<a href="%1$s" title="%2$s" rel="author">%3$s</a>', // FIXME: no gThemeAuthors yet! / RENAMED
-			// 'template_the_date'    => '<span class="date">%1$s<time datetime="%3$s" class="%5$s-time do-timeago">%4$s</time>%2$s</span>',
+			// 'template_the_date'    => '<span class="date">%1$s<time datetime="%3$s" class="%5$s">%4$s</time>%2$s</span>',
 			// 'template_read_more'   => ' <a %6$s href="%1$s" aria-label="%3$s" class="%4$s">%2$s</a>%5$s',
 
 			// DATE
