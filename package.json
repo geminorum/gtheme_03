@@ -3,7 +3,7 @@
   "productName": "gTheme03",
   "version": "3.23.0",
   "description": "Theme Framework for WordPress",
-  "license": "GPL-3+",
+  "license": "GPL-2.0-or-later",
   "homepage": "https://github.com/geminorum/gtheme_03/",
   "author": {
     "name": "Nasser Rafie",
