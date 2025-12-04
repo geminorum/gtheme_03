@@ -3,6 +3,8 @@
 class gThemeColors extends gThemeModuleCore
 {
 
+	protected $ajax = TRUE;
+
 	public function setup_actions( $args = [] )
 	{
 		extract( self::atts( [

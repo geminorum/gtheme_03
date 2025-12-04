@@ -19,7 +19,7 @@ class gThemeTemplate extends gThemeModuleCore
 		), $context );
 	}
 
-	// NOTE: order is: `base-context` -> `context-posttype` -> `base` -> `context` -> 'posttype`
+	// NOTE: priority is: `base-context` > `context-posttype` > `base` > `context` > 'posttype`
 	public static function wrapOpen( $context = 'index', $extra = [], $posttype = NULL )
 	{
 		$base = gtheme_template_base();
@@ -119,8 +119,12 @@ class gThemeTemplate extends gThemeModuleCore
 		echo $logo;
 	}
 
+	// TODO: move to `gThemeLogo` class
+	// TODO: default `$context` must be `NULL`
 	public static function logo( $context = 'header', $template = NULL, $verbose = TRUE, $append_template = '' )
 	{
+		$context = $context ?? 'main';
+
 		$default = gThemeOptions::info( 'template_logo',
 			'<a href="{{home_url}}" title="{{{logo_title}}}" rel="home"><img src="{{logo_url_png}}" alt="{{{site_name}}}" fetchpriority="{{fetchpriority}}" /></a>' );
 
@@ -128,15 +132,17 @@ class gThemeTemplate extends gThemeModuleCore
 
 		// NOTE: the order is important on format to token conversion
 		$tokens = [
+			'context'        => $context,
 			'home_url'       => gThemeUtilities::home(),
 			'about_page_url' => gThemeContent::getPostLink( gThemePages::get( 'about' ) ) ?: '',
 			'site_name'      => gThemeOptions::info( 'blog_name', '' ),
+			'site_title'     => gThemeOptions::info( 'site_title', get_bloginfo( 'name', 'display' ) ),
 			'logo_title'     => gThemeOptions::info( 'logo_title', '' ),
-			'theme_group'    => gThemeOptions::getGroup(),                 // default is `main`
+			'theme_group'    => gThemeOptions::getGroup(),
 			'logo_url_svg'   => GTHEME_CHILD_URL.'/images/logo.svg',
 			'logo_url_png'   => GTHEME_CHILD_URL.'/images/logo.png',
 			'site_locale'    => get_locale(),
-			'fetchpriority'  => 'high',                                    // @REF: https://web.dev/priority-hints/#the-fetchpriority-attribute
+			'fetchpriority'  => 'high', // @REF: https://web.dev/priority-hints/#the-fetchpriority-attribute
 		];
 
 		// NOTE: back-comp: DROP THIS
@@ -210,26 +216,6 @@ class gThemeTemplate extends gThemeModuleCore
 	{
 		if ( $desc = gThemeOptions::info( 'frontpage_desc' ) )
 			echo $before.$desc.$after;
-	}
-
-	// FIXME: DRAFT: NOT USED
-	public static function header( $before = '', $after = '' )
-	{
-		if ( ! $src = get_header_image() )
-			return;
-
-		$image = get_custom_header();
-
-		echo $before;
-
-		echo '<center><a href="'.esc_url( gThemeUtilities::home() ).'">';
-		echo '<img src="'.$src.'" class="header-image';
-		echo '" width="'.esc_attr( $image->width );
-		echo '" height="'.esc_attr( $image->height );
-		echo '" alt="'.gThemeOptions::info( 'blog_name', '' );
-		echo '" /></a></center>';
-
-		echo $after;
 	}
 
 	public static function sidebar( $name = NULL, $before = '', $after = '' )

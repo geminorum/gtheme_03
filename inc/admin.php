@@ -85,7 +85,7 @@ class gThemeAdmin extends gThemeModuleCore
 		$submenu['edit.php?post_type=page'][5][2] = 'edit.php?post_type=page&post_status=publish';
 	}
 
-	// disable avatar select on admin settings
+	// Disable avatar select on admin settings
 	public function default_avatar_select( $avatar_list )
 	{
 		return '<br />'.gThemeHTML::notice( _x( '<strong>The default avatar is overrided by the active theme.</strong>', 'Modules: Admin', 'gtheme' ), 'notice-info inline', FALSE );

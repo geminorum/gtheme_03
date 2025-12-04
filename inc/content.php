@@ -1105,7 +1105,7 @@ class gThemeContent extends gThemeModuleCore
 
 				break;
 
-			case 'editorial_estimated';
+			case 'editorial_estimated':
 
 				gThemeEditorial::estimated( [
 					'post'   => $post,
@@ -1116,7 +1116,7 @@ class gThemeContent extends gThemeModuleCore
 
 				break;
 
-			case 'editorial_ical';
+			case 'editorial_ical':
 
 				gThemeEditorial::calendarLink( [
 					'post'   => $post,
@@ -1127,7 +1127,7 @@ class gThemeContent extends gThemeModuleCore
 
 				break;
 
-			case 'editorial_meta_source';
+			case 'editorial_meta_source':
 
 				gThemeEditorial::theSource( [
 					'id'            => $post,
