@@ -3,6 +3,8 @@
 class gThemeTheme extends gThemeModuleCore
 {
 
+	protected $ajax = TRUE;
+
 	public function setup_actions( $args = [] )
 	{
 		extract( self::atts( [
@@ -194,7 +196,7 @@ class gThemeTheme extends gThemeModuleCore
 	// @REF: https://make.wordpress.org/core/2020/07/28/themes-changes-related-to-get_custom_logo-in-wordpress-5-5/
 	private function _support_custom_logo()
 	{
-		if ( ! $atts = gThemeOptions::info( 'support_custom_logo' ) )
+		if ( ! $atts = gThemeOptions::info( 'custom_logo_support' ) )
 			return FALSE;
 
 		$args = self::atts( [

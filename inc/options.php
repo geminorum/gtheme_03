@@ -247,6 +247,14 @@ class gThemeOptions extends gThemeModuleCore
 			// 'woocommerce_image_aspect_ratio'    => '3:4',
 			// 'woocommerce_image_placeholder'     => GTHEME_CHILD_URL.'/images/placeholder.svg',
 			// 'woocommerce_image_placeholder_src' => GTHEME_CHILD_URL.'/images/placeholder.svg',
+
+			/// LOGO:
+			// 'custom_logo_with_title' => FALSE,
+			// 'custom_logo_with_desc'  => FALSE,
+			// 'custom_logo_support'    => [
+			// 	'width'  => 300,
+			// 	'height' => 440,
+			// ],
 		];
 
 		if ( FALSE === $option )

@@ -151,16 +151,35 @@ class gThemeTemplate extends gThemeModuleCore
 		echo $html;
 	}
 
-	public static function customLogo( $context = 'header', $before = '', $after = '', $fallback = NULL )
+	// NOTE: DEPRECATED
+	public static function customLogo( $context = NULL, $before = '', $after = '', $fallback = NULL )
 	{
-		if ( $html = get_custom_logo() )
-			echo $before.$html.$after;
+		return gThemeLogo::custom( $context, $before, $after, $fallback );
+	}
 
-		else if ( is_null( $fallback ) )
-			echo $before.self::logo( $context, NULL, FALSE ).$after;
+	public static function title( $context = NULL, $before = '', $after = '', $description = NULL )
+	{
+		$context = $context ?? 'main';
 
-		else if ( $fallback )
-			echo $before.$fallback.$after;
+		echo $before;
+
+		vprintf( '<%1$s><a class="site-title no-outline" href="%2$s" title="%3$s">%4$s</a></%1$s>', [
+			'main' === $context ? 'h1' : 'span',
+			esc_url( gThemeUtilities::home() ),
+			esc_attr( gThemeOptions::info( 'logo_title', '' ) ),
+			gThemeOptions::info( 'site_title', get_bloginfo( 'name', 'display' ) ),
+		] );
+
+		if ( ( is_null( $description ) && 'main' === $context ) || TRUE === $description )
+			self::description(
+				'<span class="site-description">',
+				'</span>'
+			);
+
+		else if ( $description )
+			printf( '<span class="site-description">%s</span>', $description );
+
+		echo $after;
 	}
 
 	public static function about( $before = '', $after = '', $custom = NULL, $page = 'about' )

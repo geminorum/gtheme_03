@@ -85,6 +85,7 @@ final class gThemeCore
 			'editorial'  => 'gThemeEditorial',
 			'attachment' => 'gThemeAttachment',
 			'colors'     => 'gThemeColors',
+			'logo'       => 'gThemeLogo',
 
 			'woocommerce' => 'gThemeWooCommerce',
 		];
