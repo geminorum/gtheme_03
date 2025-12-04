@@ -119,7 +119,7 @@ class gThemeTemplate extends gThemeModuleCore
 		echo $logo;
 	}
 
-	public static function logo( $context = 'header', $template = NULL, $verbose = TRUE )
+	public static function logo( $context = 'header', $template = NULL, $verbose = TRUE, $append_template = '' )
 	{
 		$default = gThemeOptions::info( 'template_logo',
 			'<a href="{{home_url}}" title="{{{logo_title}}}" rel="home"><img src="{{logo_url_png}}" alt="{{{site_name}}}" fetchpriority="{{fetchpriority}}" /></a>' );
@@ -143,7 +143,7 @@ class gThemeTemplate extends gThemeModuleCore
 		if ( gThemeText::has( $template, [ '%1$s', '%2$s', '%3$s' ] ) )
 			$template = gThemeText::convertFormatToToken( $template, array_keys( $tokens ) );
 
-		$html = gThemeText::replaceTokens( $template, $tokens );
+		$html = gThemeText::replaceTokens( $template.$append_template, $tokens );
 
 		if ( ! $verbose )
 			return $html;

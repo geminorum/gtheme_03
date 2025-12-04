@@ -128,7 +128,7 @@ class gThemeBootstrap extends gThemeModuleCore
 			$brand = gThemeTemplate::logo( 'navbar', $template, FALSE );
 
 		else if ( 'logo-title' == $brand )
-			$brand = gThemeTemplate::logo( 'navbar', $template.' '.$title, FALSE );
+			$brand = gThemeTemplate::logo( 'navbar', $template, FALSE, $filename ? '' : ( ' '.$title ) );
 
 		if ( FALSE !== $brand )
 			vprintf( '<a class="navbar-brand %4$s no-outline" href="%1$s" title="%2$s">%3$s</a>', [
