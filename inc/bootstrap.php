@@ -106,8 +106,8 @@ class gThemeBootstrap extends gThemeModuleCore
 		if ( FALSE === $brand )
 			return;
 
-		$default = 'logo.png'; // FIXME: default `$filename` must be: 'logo-navbar.png'
-		$title   = '<span title="{{{logo_title}}}">{{site_name}}</span>';
+		$default = 'logo.png'; // FIXME: default `$filename` must be: `logo-navbar.png`
+		$title   = '<span class="site-title" title="{{{logo_title}}}">{{site_name}}</span>';
 
 		if ( is_null( $filename ) )
 			$template = '<img src="'.GTHEME_CHILD_URL.'/images/'.$default.'" alt="{{{site_name}}}" fetchpriority="high" />';
@@ -139,7 +139,7 @@ class gThemeBootstrap extends gThemeModuleCore
 			] );
 	}
 
-	// FIXME: add cache / problem with yamm
+	// FIXME: add cache / problem with `yamm!`
 	public static function navbarNav( $location = 'primary', $wrap = 'navbar', $class = '' )
 	{
 		$menu = wp_nav_menu( [
@@ -183,6 +183,7 @@ class gThemeBootstrap extends gThemeModuleCore
 	{
 		switch ( $comment->comment_type ) {
 
+			case 'note':
 			case 'pingback':
 			case 'trackback':
 				break;
@@ -237,6 +238,7 @@ class gThemeBootstrap extends gThemeModuleCore
 	{
 		switch ( $comment->comment_type ) {
 
+			case 'note':
 			case 'pingback':
 			case 'trackback':
 			break;

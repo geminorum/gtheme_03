@@ -132,7 +132,6 @@ class gThemeTemplate extends gThemeModuleCore
 
 		// NOTE: the order is important on format to token conversion
 		$tokens = [
-			'context'        => $context,
 			'home_url'       => gThemeUtilities::home(),
 			'about_page_url' => gThemeContent::getPostLink( gThemePages::get( 'about' ) ) ?: '',
 			'site_name'      => gThemeOptions::info( 'blog_name', '' ),
@@ -141,6 +140,7 @@ class gThemeTemplate extends gThemeModuleCore
 			'theme_group'    => gThemeOptions::getGroup(),
 			'logo_url_svg'   => GTHEME_CHILD_URL.'/images/logo.svg',
 			'logo_url_png'   => GTHEME_CHILD_URL.'/images/logo.png',
+			'logo_context'   => $context,
 			'site_locale'    => get_locale(),
 			'fetchpriority'  => 'high', // @REF: https://web.dev/priority-hints/#the-fetchpriority-attribute
 		];
@@ -157,9 +157,11 @@ class gThemeTemplate extends gThemeModuleCore
 		echo $html;
 	}
 
-	// NOTE: DEPRECATED
+	// NOTE: DEPRECATED: use `gThemeLogo::custom()`
 	public static function customLogo( $context = NULL, $before = '', $after = '', $fallback = NULL )
 	{
+		self::_dev_dep( 'gThemeLogo::custom()' );
+
 		return gThemeLogo::custom( $context, $before, $after, $fallback );
 	}
 
@@ -170,7 +172,7 @@ class gThemeTemplate extends gThemeModuleCore
 		echo $before;
 
 		vprintf( '<%1$s><a class="site-title no-outline" href="%2$s" title="%3$s">%4$s</a></%1$s>', [
-			'main' === $context ? 'h1' : 'span',
+			'main' === $context ? gThemeOptions::info( 'site_title_html_tag', 'h1' ) : 'span',
 			esc_url( gThemeUtilities::home() ),
 			esc_attr( gThemeOptions::info( 'logo_title', '' ) ),
 			gThemeOptions::info( 'site_title', get_bloginfo( 'name', 'display' ) ),

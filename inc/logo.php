@@ -8,7 +8,7 @@ class gThemeLogo extends gThemeModuleCore
 	public function setup_actions( $args = [] )
 	{
 		extract( self::atts( [
-			'customizer'  => TRUE,
+			'customizer' => FALSE,
 		], $args ) );
 
 		if ( $customizer )
@@ -71,11 +71,12 @@ class gThemeLogo extends gThemeModuleCore
 		$title   = get_theme_mod( 'logo_with_title', gThemeOptions::info( 'custom_logo_with_title', FALSE ) );
 		$desc    = get_theme_mod( 'logo_with_desc', gThemeOptions::info( 'custom_logo_with_desc', FALSE ) );
 
-		if ( has_custom_logo() || is_customize_preview() ) {
+		// NOTE: avoid using `has_custom_logo()` since has no filter
+		if ( $custom = get_custom_logo() ) {
 
 			echo $before;
 
-				the_custom_logo();
+				echo $custom;
 
 				if ( 'main' === $context && $title )
 					gThemeTemplate::title( $context, '', '', FALSE );
@@ -92,11 +93,21 @@ class gThemeLogo extends gThemeModuleCore
 
 		} else if ( 'logo' === $fallback ) {
 
-			echo $before.gThemeTemplate::logo( $context, NULL, FALSE ).$after;
+			echo $before;
+
+				gThemeTemplate::logo( $context );
+
+			echo $after;
 
 		} else if ( 'logo-title' == $fallback ) {
 
-			echo $before.gThemeTemplate::logo( $context, NULL, FALSE, ' <span title="{{{logo_title}}}">{{site_name}}</span>' ).$after;
+			$append = ' <span class="site-title" title="{{{logo_title}}}">{{site_name}}</span>';
+
+			echo $before;
+
+				gThemeTemplate::logo( $context, NULL, TRUE, $append );
+
+			echo $after;
 
 		} else if ( $fallback ) {
 
