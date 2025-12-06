@@ -58,12 +58,17 @@ class gThemeEditor extends gThemeModuleCore
 
 	public function enqueue_block_editor_assets()
 	{
-		wp_enqueue_style( GTHEME.'-blocks-style', self::getStyleURL( 'blocks' ), FALSE, GTHEME_CHILD_VERSION, 'all' );
+		$handle = sprintf( '%s-block-styles', $this->base );
 
-		$inline = gThemeColors::getExtraColorsCSS();
+		wp_enqueue_style( $handle,
+			self::getStyleURL( 'blocks' ),
+			FALSE,
+			GTHEME_CHILD_VERSION,
+			'all'
+		);
 
-		if ( trim( $inline ) )
-			wp_add_inline_style( GTHEME.'-blocks-style', $inline );
+		if ( $inline = gThemeColors::getExtraColorsCSS() )
+			wp_add_inline_style( $handle, $inline );
 	}
 
 	public function enqueue_block_assets()
@@ -100,7 +105,7 @@ class gThemeEditor extends gThemeModuleCore
 		return $buttons;
 	}
 
-	// adds `styles` drop-down for the second row
+	// Adds `styles` drop-down for the second row
 	public function mce_buttons_2( $buttons )
 	{
 		if ( gThemeUtilities::isRTL() )
@@ -116,7 +121,7 @@ class gThemeEditor extends gThemeModuleCore
 
 	public function tiny_mce_before_init( $settings )
 	{
-		// adds `styles` drop-down content or classes
+		// Adds `styles` drop-down content or classes
 		// @SEE: http://www.tinymce.com/wiki.php/Configuration:formats
 		// @SEE: http://www.tinymce.com/tryit/custom_formats.php
 		$style_formats = gThemeOptions::info( 'mce_style_formats', self::defaultFormats() );

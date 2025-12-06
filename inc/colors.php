@@ -18,12 +18,14 @@ class gThemeColors extends gThemeModuleCore
 			add_action( 'customize_register', [ $this, 'customize_register' ] );
 
 		if ( $disable_custom )
+			// NOTE: prevents editors from setting custom colors (via color selector) on elements.
 			add_theme_support( 'disable-custom-colors' );
 
 		if ( $custom_palette )
 			add_theme_support( 'editor-color-palette', self::getCustomPalette() );
 
 		if ( $accent_color ) {
+			// @REF: https://richtabor.com/gutenberg-customizer-colors/
 			add_action( 'customize_register', [ $this, 'customize_register_accent_color' ], 11 );
 			add_action( 'wp_head', [ $this, 'wp_head' ] );
 		}
@@ -147,11 +149,18 @@ class gThemeColors extends gThemeModuleCore
 		$root = $classes = [];
 
 		foreach ( $colors as $handle => $data ) {
+
+			if ( empty( $data ) )
+				continue;
+
 			$root[] = "\t".sprintf( '--%s-custom-color: %s;', $handle, esc_attr( $data ) );
 
 			$classes[] = sprintf( '.has-%s-text-color { color: %s !important; }', $handle, esc_attr( $data ) );
 			$classes[] = sprintf( '.has-%s-background-color { background-color: %s !important; }', $handle, esc_attr( $data ) );
 		}
+
+		if ( empty( $root ) )
+			return '';
 
 		$style = "\n".':root {'."\n".implode( "\n", $root )."\n".'}'."\n";
 		$style.= implode( "\n", $classes )."\n";
@@ -177,10 +186,10 @@ class gThemeColors extends gThemeModuleCore
 				$manager,
 				sprintf( '%s_%s', $this->base, $setting ),
 				[
-					'settings'    => $setting,
 					'section'     => 'colors',
+					'settings'    => $setting,
 					'label'       => esc_html_x( 'Accent Color', 'Colors', 'gtheme' ),
-					'description' => esc_html_x( 'Add a color to use within the block editor color palette.', 'Colors', 'gtheme' ),
+					'description' => esc_html_x( 'Adds a color to use within the block editor color palette.', 'Colors', 'gtheme' ),
 				]
 			)
 		);

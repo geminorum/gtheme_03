@@ -2,6 +2,7 @@
 
 class gThemeOptions extends gThemeModuleCore
 {
+	protected $ajax = TRUE;
 
 	public static function defaults( $option = FALSE, $default = FALSE )
 	{
@@ -257,6 +258,9 @@ class gThemeOptions extends gThemeModuleCore
 			// 	'width'  => 300,
 			// 	'height' => 440,
 			// ],
+
+			/// COLORS:
+			// 'colors_default_accent' => apply_filters( 'theme_mod_accent_color', '' ) ?: $accent_color, // falls-back if no color from Network Branding
 		];
 
 		if ( FALSE === $option )
@@ -490,7 +494,7 @@ class gThemeOptions extends gThemeModuleCore
 		return gThemeColors::scheme( $fallback );
 	}
 
-	// FIXME: DEPRECATED: use gThemeCounts::get()
+	// NOTE: DEPRECATED: use `gThemeCounts::get()`
 	public static function count( $name, $def = 0 )
 	{
 		self::_dep( 'gThemeCounts::get()' );
