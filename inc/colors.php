@@ -58,7 +58,7 @@ class gThemeColors extends gThemeModuleCore
 
 	public function wp_head()
 	{
-		if ( $styles = self::getAccentColorCSS() )
+		if ( $styles = self::getExtraColorsCSS() )
 			printf( '<style type="text/css">%s</style>'."\n", $styles );
 	}
 
@@ -80,39 +80,68 @@ class gThemeColors extends gThemeModuleCore
 	// FALSE to disable
 	public static function getAccentColorDefault()
 	{
-		return gThemeOptions::info( 'default_accent_color', FALSE );
+		return gThemeOptions::info(
+			'colors_default_accent',
+			// NOTE: if `theme_mod_custom_logo` hooked then accent-color will be enabled by default.
+			get_theme_mod( 'accent_color', FALSE )
+		);
 	}
 
+	// NOTE: DEPRECATED
 	public static function getAccentColorCSS()
 	{
-		if ( ! $default = self::getAccentColorDefault() )
+		self::_dev_dep( 'gThemeColors::getExtraColorsCSS()' );
+		return self::getExtraColorsCSS();
+	}
+
+	public static function getExtraColorsCSS()
+	{
+		$colors = apply_filters( 'gtheme_colors_extra', [
+			'theme-accent' => get_theme_mod( 'accent_color', self::getAccentColorDefault() ),
+		] );
+
+		if ( ! count( $colors ) )
 			return '';
 
-		$accent = get_theme_mod( 'accent_color', $default );
+		$root = $classes = [];
 
-		$css = '.has-'.GTHEME.'-accent-color{color:'.esc_attr( $accent ).'!important;}';
-		$css.= '.has-'.GTHEME.'-accent-background-color{background-color:'.esc_attr( $accent ).';}';
+		foreach ( $colors as $handle => $data ) {
+			$root[] = "\t".sprintf( '--%s-custom-color: %s;', $handle, esc_attr( $data ) );
 
-		return wp_strip_all_tags( $css );
+			$classes[] = sprintf( '.has-%s-text-color { color: %s !important; }', $handle, esc_attr( $data ) );
+			$classes[] = sprintf( '.has-%s-background-color { background-color: %s !important; }', $handle, esc_attr( $data ) );
+		}
+
+		$style = "\n".':root {'."\n".implode( "\n", $root )."\n".'}'."\n";
+		$style.= implode( "\n", $classes )."\n";
+
+		return $style;
 	}
 
 	// @REF: https://developer.wordpress.org/themes/customize-api/
-	public function customize_register( $wp_customize )
+	public function customize_register( $manager )
 	{
 		if ( ! $default = self::getAccentColorDefault() )
 			return;
 
-		$wp_customize->add_setting( 'accent_color', [
+		$setting = 'accent_color';
+		$manager->add_setting( $setting, [
 			'default'           => $default,
 			'sanitize_callback' => 'sanitize_hex_color',
 			'transport'         => 'postMessage',
 		] );
 
-		$wp_customize->add_control( new \WP_Customize_Color_Control(
-			$wp_customize, 'accent_color', [
-				'section'     => 'colors',
-				'label'       => esc_html_x( 'Accent Color', 'Colors', 'gtheme' ),
-				'description' => esc_html_x( 'Add a color to use within the block editor color palette.', 'Colors', 'gtheme' ),
-		] ) );
+		$manager->add_control(
+			new \WP_Customize_Color_Control(
+				$manager,
+				sprintf( '%s_%s', $this->base, $setting ),
+				[
+					'settings'    => $setting,
+					'section'     => 'colors',
+					'label'       => esc_html_x( 'Accent Color', 'Colors', 'gtheme' ),
+					'description' => esc_html_x( 'Add a color to use within the block editor color palette.', 'Colors', 'gtheme' ),
+				]
+			)
+		);
 	}
 }

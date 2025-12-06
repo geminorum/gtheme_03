@@ -60,7 +60,7 @@ class gThemeEditor extends gThemeModuleCore
 	{
 		wp_enqueue_style( GTHEME.'-blocks-style', self::getStyleURL( 'blocks' ), FALSE, GTHEME_CHILD_VERSION, 'all' );
 
-		$inline = gThemeColors::getAccentColorCSS();
+		$inline = gThemeColors::getExtraColorsCSS();
 
 		if ( trim( $inline ) )
 			wp_add_inline_style( GTHEME.'-blocks-style', $inline );
