@@ -63,6 +63,31 @@ class gThemeLogo extends gThemeModuleCore
 				]
 			)
 		);
+
+		if ( ! $manager->is_preview() )
+			return;
+
+		$manager->get_setting( 'blogname' )->transport = 'postMessage';
+		$manager->get_setting( 'blogdescription' )->transport = 'postMessage';
+
+		add_action( 'wp_footer', [ $this, 'wp_footer_customize_preview' ], 20 );
+	}
+
+	// @REF: https://ottopress.com/2012/how-to-leverage-the-theme-customizer-in-your-own-themes/
+	public function wp_footer_customize_preview()
+	{
+    	?><script type="text/javascript">(function($){
+wp.customize('blogname', function (value) {
+	value.bind( function(to) {
+		$('a.site-title').html(to);
+	});
+});
+wp.customize('blogdescription', function (value) {
+	value.bind( function(to) {
+		$('span.site-description').html(to);
+	});
+});
+})(jQuery)</script><?php
 	}
 
 	public static function custom( $context = NULL, $before = '', $after = '', $fallback = NULL )
