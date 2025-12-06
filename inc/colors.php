@@ -11,7 +11,7 @@ class gThemeColors extends gThemeModuleCore
 			'customizer'     => FALSE,
 			'disable_custom' => TRUE,
 			'custom_palette' => TRUE,
-			'accent_color'   => self::getAccentColorDefault(), // @REF: https://richtabor.com/gutenberg-customizer-colors/
+			'accent_color'   => self::getAccentColorDefault( FALSE ),
 		], $args ) );
 
 		if ( $customizer )
@@ -116,13 +116,15 @@ class gThemeColors extends gThemeModuleCore
 		return $defaults;
 	}
 
-	// FALSE to disable
-	public static function getAccentColorDefault()
+	// NOTE: if `theme_mod_custom_logo` hooked then accent-color will be enabled by default.
+	// NOTE: use this on child: `'colors_default_accent' => apply_filters( 'theme_mod_accent_color', '' ) ?: $hexcolor,`
+	public static function getAccentColorDefault( $customized = TRUE )
 	{
 		return gThemeOptions::info(
 			'colors_default_accent',
-			// NOTE: if `theme_mod_custom_logo` hooked then accent-color will be enabled by default.
-			get_theme_mod( 'accent_color', FALSE )
+			$customized
+				? get_theme_mod( 'accent_color', '' )
+				: apply_filters( 'theme_mod_accent_color', '' )
 		);
 	}
 
@@ -165,7 +167,7 @@ class gThemeColors extends gThemeModuleCore
 
 		$setting = 'accent_color';
 		$manager->add_setting( $setting, [
-			'default'           => $default,
+			'default'           => self::getAccentColorDefault( FALSE ), // NOTE: using `$default` will result in unclear-able default!
 			'sanitize_callback' => 'sanitize_hex_color',
 			'transport'         => 'postMessage',
 		] );
