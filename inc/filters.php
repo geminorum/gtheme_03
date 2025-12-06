@@ -130,7 +130,7 @@ class gThemeFilters extends gThemeModuleCore
 	public function gtheme_wrap_body_open()
 	{
 		echo '<div id="preloadspinner" class="preload -spinner '
-			.gThemeOptions::getColorScheme( 'preload_spinner_class', 'light' ) // light/dark
+			.gThemeOptions::getColorScheme( 'preload_spinner_class' )
 			.'"><div><div></div></div></div>'."\n";
 	}
 
@@ -338,7 +338,7 @@ class gThemeFilters extends gThemeModuleCore
 			$classes[] = $gtheme_info['additional_body_class'];
 
 		$classes[] = 'theme-group-'.gThemeOptions::getGroup();
-		$classes[] = 'theme-scheme-'.gThemeOptions::getColorScheme();
+		$classes[] = 'theme-scheme-'.gThemeColors::scheme();
 
 		if ( $extra = gThemeOptions::getOption( 'body_class_extra', FALSE ) )
 			$classes = array_merge( $classes, array_map( 'sanitize_html_class', explode( ' ', $extra ) ) );

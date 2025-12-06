@@ -8,10 +8,14 @@ class gThemeColors extends gThemeModuleCore
 	public function setup_actions( $args = [] )
 	{
 		extract( self::atts( [
+			'customizer'     => FALSE,
 			'disable_custom' => TRUE,
 			'custom_palette' => TRUE,
 			'accent_color'   => self::getAccentColorDefault(), // @REF: https://richtabor.com/gutenberg-customizer-colors/
 		], $args ) );
+
+		if ( $customizer )
+			add_action( 'customize_register', [ $this, 'customize_register' ] );
 
 		if ( $disable_custom )
 			add_theme_support( 'disable-custom-colors' );
@@ -20,9 +24,44 @@ class gThemeColors extends gThemeModuleCore
 			add_theme_support( 'editor-color-palette', self::getCustomPalette() );
 
 		if ( $accent_color ) {
-			add_action( 'customize_register', [ $this, 'customize_register' ], 11 );
+			add_action( 'customize_register', [ $this, 'customize_register_accent_color' ], 11 );
 			add_action( 'wp_head', [ $this, 'wp_head' ] );
 		}
+	}
+
+	public function customize_register( $manager )
+	{
+		$setting = 'theme_color_scheme';
+		$manager->add_setting( $setting, [
+			'default'    => gThemeOptions::info( 'color_scheme', 'light' ),
+			'capability' => 'edit_theme_options',
+		] );
+
+		$manager->add_control(
+			new \WP_Customize_Control(
+				$manager,
+				sprintf( '%s_%s', $this->base, $setting ),
+				[
+					'section'     => 'colors',
+					'settings'    => $setting,
+					'type'        => 'radio',
+					'label'       => esc_html_x( 'Color Scheme', 'Customizer: Setting Title', 'gtheme' ),
+					'description' => esc_html_x( 'Defines the dark or light theme version.', 'Customizer: Setting Description', 'gtheme' ),
+					'choices'     => [
+						'dark'   => esc_html_x( 'Dark', 'Customizer: Setting Option', 'gtheme' ),
+						'light'  => esc_html_x( 'Light', 'Customizer: Setting Option', 'gtheme' )
+					]
+				]
+			)
+		);
+	}
+
+	public static function scheme( $fallback = 'light' )
+	{
+		return get_theme_mod(
+			'theme_color_scheme',
+			gThemeOptions::info( 'color_scheme', $fallback )
+		);
 	}
 
 	public static function defaults( $extra = [] )
@@ -119,7 +158,7 @@ class gThemeColors extends gThemeModuleCore
 	}
 
 	// @REF: https://developer.wordpress.org/themes/customize-api/
-	public function customize_register( $manager )
+	public function customize_register_accent_color( $manager )
 	{
 		if ( ! $default = self::getAccentColorDefault() )
 			return;

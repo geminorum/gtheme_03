@@ -487,7 +487,7 @@ class gThemeOptions extends gThemeModuleCore
 		if ( $info && ( $scheme = gThemeOptions::info( $info, FALSE ) ) )
 			return $scheme;
 
-		return gThemeOptions::info( 'color_scheme', $fallback );
+		return gThemeColors::scheme( $fallback );
 	}
 
 	// FIXME: DEPRECATED: use gThemeCounts::get()
