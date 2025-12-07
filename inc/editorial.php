@@ -36,6 +36,7 @@ class gThemeEditorial extends gThemeModuleCore
 
 		add_filter( 'geditorial_shortcode_attachement_download', [ $this, 'attachement_download' ], 9, 2 );
 		add_filter( 'geditorial_wc_terms_term_listassigned_args', [ $this, 'wc_terms_term_listassigned_args' ], 9, 2 );
+		add_filter( 'geditorial_wc_connected_product_listconnected_args', [ $this, 'wc_connected_product_listconnected_args' ], 9, 2 );
 	}
 
 	public function content_before_toc( $content )
@@ -184,6 +185,29 @@ class gThemeEditorial extends gThemeModuleCore
 
 		gThemeContent::partial( 'listassigned' );
 
+		echo '</div>';
+
+		return ob_get_clean();
+	}
+
+	// MAYBE: context must be: `woocommerce` instead of `listconnected`
+	public function wc_connected_product_listconnected_args( $atts, $product )
+	{
+		return array_merge( $atts, [
+			'item_cb'    => [ __CLASS__, 'wcConnectedListConnectedRowCallback' ],
+			'list_tag'   => 'div',
+			'list_class' => gThemeOptions::info( 'listconnected_wrap_class', gThemeTemplate::defaultWrapClass( 'listconnected' ) ),
+			'item_class' => gThemeOptions::info( 'listconnected_item_class', gThemeTemplate::defaultItemClass( 'listconnected' ) ),
+		] );
+	}
+
+	// MAYBE: context must be: `woocommerce` instead of `listconnected`
+	public static function wcConnectedListConnectedRowCallback( $post, $args, $ref )
+	{
+		ob_start();
+
+		printf( '<div class="%s -listconnected-item">', $args['item_class'] );
+			gThemeContent::partial( 'listconnected' );
 		echo '</div>';
 
 		return ob_get_clean();
