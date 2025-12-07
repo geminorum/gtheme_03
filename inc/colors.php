@@ -105,17 +105,17 @@ class gThemeColors extends gThemeModuleCore
 
 	public static function getCustomPalette()
 	{
-		$defaults = gThemeOptions::info( 'editor_custom_palette', self::defaults() );
+		$defaults = self::defaults();
+		$palette  = gThemeOptions::info( 'editor_custom_palette', $defaults );
 
-		if ( $accent = self::getAccentColorDefault() ) {
-			$defaults[] = [
+		if ( $accent = self::getAccentColorDefault() )
+			$palette[] = [
 	 			'name'  => esc_html_x( 'Accent Color', 'Colors', 'gtheme' ),
-	 			'slug'  => GTHEME.'-accent',
-	 			'color' => esc_html( get_theme_mod( 'accent_color', $accent ) ),
+	 			'slug'  => 'theme-accent',
+	 			'color' => get_theme_mod( 'accent_color', $accent ),
 	 		];
-		}
 
-		return $defaults;
+		return apply_filters( 'gtheme_colors_custom_palette', $palette, $defaults, $accent );
 	}
 
 	// NOTE: if `theme_mod_custom_logo` hooked then accent-color will be enabled by default.
