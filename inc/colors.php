@@ -150,13 +150,13 @@ class gThemeColors extends gThemeModuleCore
 
 		foreach ( $colors as $handle => $data ) {
 
-			if ( empty( $data ) )
+			if ( ! $color = sanitize_hex_color( $data ) )
 				continue;
 
-			$root[] = "\t".sprintf( '--%s-custom-color: %s;', $handle, esc_attr( $data ) );
+			$root[] = "\t".sprintf( '--%s-custom-color: %s;', $handle, $color );
 
-			$classes[] = sprintf( '.has-%s-text-color { color: %s !important; }', $handle, esc_attr( $data ) );
-			$classes[] = sprintf( '.has-%s-background-color { background-color: %s !important; }', $handle, esc_attr( $data ) );
+			$classes[] = sprintf( '.has-%s-text-color { color: %s !important; }', $handle, $color );
+			$classes[] = sprintf( '.has-%s-background-color { background-color: %s !important; }', $handle, $color );
 		}
 
 		if ( empty( $root ) )
