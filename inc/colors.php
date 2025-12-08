@@ -193,5 +193,22 @@ class gThemeColors extends gThemeModuleCore
 				]
 			)
 		);
+
+		if ( ! $manager->is_preview() )
+			return;
+
+		add_action( 'wp_footer', [ $this, 'wp_footer_customize_preview' ], 20 );
+	}
+
+	// @REF: https://ottopress.com/2012/how-to-leverage-the-theme-customizer-in-your-own-themes/
+	public function wp_footer_customize_preview()
+	{
+		?><script type="text/javascript">(function($){
+wp.customize('accent_color', function (value) {
+	value.bind( function(to) {
+		$(':root').css('--theme-accent-custom-color', to);
+	});
+});
+})(jQuery)</script><?php
 	}
 }
