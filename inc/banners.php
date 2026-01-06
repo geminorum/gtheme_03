@@ -474,7 +474,7 @@ class gThemeBanners extends gThemeModuleCore
 
 	echo '</form>';
 
-	?><script type="text/javascript">
+	?><script>
 jQuery(function ($) {
 	$('#add-row').on('click', function(){
 		var row = $('.empty-row.screen-reader-text').clone(true);

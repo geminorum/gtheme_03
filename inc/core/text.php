@@ -121,7 +121,6 @@ class gThemeText extends gThemeBaseCore
 			// @source https://css-tricks.com/?p=15293
 			return preg_replace( '/<p>\s*(<a .*>)?\s*(<img .* \/>)\s*(<\/a>)?\s*<\/p>/iU', '\1\2\3', $text );
 
-
 		return preg_replace_callback(
 			'/<p>\s*(<a .*>)?\s*(<img .* \/>)\s*(<\/a>)?(.*)\s*<\/p>/i',
 			static function ( $matches ) use ( $tag, $class ) {
@@ -149,6 +148,7 @@ class gThemeText extends gThemeBaseCore
 
 		foreach ( [
 			'alignnone',
+			'alignwide',
 			'aligncenter',
 			'alignleft',
 			'alignright',

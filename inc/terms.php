@@ -660,12 +660,13 @@ class gThemeTerms extends gThemeModuleCore
 			'post'        => 'category',
 			'entry'       => 'entry_section',
 			'quote'       => 'quote_topic',
+			'film'        => 'film_category',
 			'course'      => 'course_category',
 			'place'       => 'place_category',
 			'video'       => 'video_category',
 			'channel'     => 'channel_category',
 			'collection'  => 'collection_group',
-			'publication' => 'publication_subject',
+			'publication' => 'publication_category',
 			'product'     => 'product_cat',
 		];
 

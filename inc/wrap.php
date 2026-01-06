@@ -149,7 +149,7 @@ class gThemeWrap extends gThemeModuleCore
 	{
 		do_action( 'gtheme_wrap_body_close' );
 
-		?><script type="text/javascript">var html=document.querySelector("html");html.classList.remove("no-js");</script><?php
+		?><script>var html=document.querySelector("html");html.classList.remove("no-js");</script><?php
 
 		echo "\n".'</body>';
 

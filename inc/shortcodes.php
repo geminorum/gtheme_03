@@ -268,15 +268,13 @@ class gThemeShortCodes extends gThemeModuleCore
 
 		$html.= '</ul></div></div>';
 
-		$html.= '<script type="text/javascript">
-/* <![CDATA[ */
+		$html.= '<script>
 			jQuery(function ($) {
 				$("#'.$selector.'").flexslider({
 					animation: "slide",
 					rtl: true
 				});
 			});
-/* ]]> */
 		</script>';
 
 		wp_enqueue_script( 'gtheme-flexslider', GTHEME_URL.'/js/vendor/jquery.flexslider-rtl.min.js', [ 'jquery' ], '2.2.0', TRUE );

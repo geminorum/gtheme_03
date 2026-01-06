@@ -178,11 +178,11 @@ class gThemeFilters extends gThemeModuleCore
 		else
 			$path = GTHEME_DIR.'/css/'.$main;
 
-		echo '<style type="text/css">';
+		echo '<style>';
 			readfile( $path );
 		echo '</style>'."\n";
 
-		echo '<noscript><style type="text/css">body{overflow:auto;}#preloadspinner{display:none;z-index:-999999;}</style></noscript>'."\n";
+		echo '<noscript><style>body{overflow:auto;}#preloadspinner{display:none;z-index:-999999;}</style></noscript>'."\n";
 	}
 
 	public static function getStyleLink( $singular = FALSE, $print = FALSE, $group = NULL, $data = FALSE )
@@ -251,7 +251,7 @@ class gThemeFilters extends gThemeModuleCore
 	public static function deferredStyles( $html, $data = [] )
 	{
 		echo '<noscript id="theme-deferred-styles">'."\n".$html.'</noscript>';
-?><script type="text/javascript">
+?><script>
 (function(){
 	var data = <?php echo wp_json_encode( $data ); ?>;
 	var disableSpinner = function(){
@@ -267,7 +267,7 @@ class gThemeFilters extends gThemeModuleCore
 		for (i = 0; i < data.length; i++) {
 			var link = document.createElement('link');
 			link.setAttribute("rel", "stylesheet");
-			link.setAttribute("type", "text/css");
+			// link.setAttribute("type", "text/css");
 			if (data[i].media) link.setAttribute("media", data[i].media);
 			if (i===0) link.onload = disableSpinner;
 			link.setAttribute("href", data[i].href);
@@ -290,7 +290,7 @@ class gThemeFilters extends gThemeModuleCore
 	public static function deferredStyles_OLD( $tags )
 	{
 		?><noscript id="deferred-styles"><?php echo "\n".$tags; ?></noscript>
-<script type="text/javascript">
+<script>
 (function(){
 	var loadDeferredStyles = function(){
 		var addStylesNode = document.getElementById("deferred-styles");
@@ -554,8 +554,8 @@ class gThemeFilters extends gThemeModuleCore
 
 	public function the_content_extra( $content )
 	{
-		// preg_replace('#<p>\s*+(<br\s*/*>)?\s*</p>#i', '', $content);
-		// preg_replace( '/<p>\s*+(<br\s*\/*>)?\s*<\/p>/i', '', $content);
+		// preg_replace( '#<p>\s*+(<br\s*/*>)?\s*</p>#i', '', $content );
+		// preg_replace( '/<p>\s*+(<br\s*\/*>)?\s*<\/p>/i', '', $content );
 
 		// http://stackoverflow.com/a/3226746
 		// http://plugins.svn.wordpress.org/remove-double-space/tags/0.3/remove-double-space.php

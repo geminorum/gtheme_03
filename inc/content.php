@@ -1326,7 +1326,7 @@ JS;
 	// FIXME: test this!
 	public static function justify_buttons_footer()
 	{
-		?><script type="text/javascript">jQuery(function ($) {
+		?><script>jQuery(function ($) {
 $('#text-justify, #text-unjustify').removeAttr('href').css('cursor', 'pointer');
 
 $('#text-justify').on('click', function (e) {
@@ -1385,7 +1385,7 @@ $('#text-unjustify').on('click', function (e) {
 		/* translators: %s: post link */
 		$click = sprintf( _x( "Click the link:\n%s", 'Modules: Content: Addtoany', 'gtheme' ), '${link}' );
 
-		?><script type="text/javascript">
+		?><script>
 var a2a_config = a2a_config || {};
 a2a_config.linkname = '<?php echo esc_js( self::getTitleAttr( '%s' ) ); ?>';
 a2a_config.linkurl = '<?php echo esc_js( esc_url_raw( get_permalink() ) ); ?>';
@@ -1400,7 +1400,7 @@ a2a_config.templates = {
 	}
 };
 if(typeof(ga)!='undefined'){a2a_config.track_links = 'ga';}
-(function(){var a=document.createElement('script');a.type='text/javascript';a.async=true;a.src='//static.addtoany.com/menu/page.js';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(a,s);})();
+(function(){var a=document.createElement('script');a.async=true;a.src='//static.addtoany.com/menu/page.js';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(a,s);})();
 </script><?php
 	}
 
@@ -1424,7 +1424,7 @@ if(typeof(ga)!='undefined'){a2a_config.track_links = 'ga';}
 	// @SEE: http://www.addthis.com/academy/integrating-with-google-analytics/
 	public static function addthis_footer()
 	{
-		?><script type="text/javascript">
+		?><script>
 var addthis_config = addthis_config || {};
 addthis_config.username = '';
 addthis_config.ui_language = '<?php echo esc_js( gThemeOptions::info( 'lang', 'en' ) ); ?>';
@@ -1437,7 +1437,7 @@ addthis_config.services_custom = [
 	}
 ];
 </script>
-<script type="text/javascript" src="//static.addtoany.com/menu/page.js"></script><?php
+<script src="//static.addtoany.com/menu/page.js"></script><?php
 	}
 
 	// @REF: https://getpocket.com/publisher/button_docs
@@ -1461,7 +1461,7 @@ addthis_config.services_custom = [
 
 	public static function pocket_footer()
 	{
-		?><script type="text/javascript">!function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");</script><?php
+		?><script>!function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");</script><?php
 	}
 
 	// for embed/twitter-feed

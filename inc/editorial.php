@@ -175,10 +175,6 @@ class gThemeEditorial extends gThemeModuleCore
 	// MAYBE: context must be: `woocommerce` instead of `listassigned`
 	public static function wcTermsListAssignedRowCallback( $post, $args, $ref )
 	{
-		// @REF: https://developer.wordpress.org/?p=2837#comment-874
-		$GLOBALS['post'] = $post;
-		setup_postdata( $post );
-
 		ob_start();
 
 		printf( '<div class="%s -listassigned-item">', $args['item_class'] );
@@ -299,10 +295,6 @@ class gThemeEditorial extends gThemeModuleCore
 
 	public static function courseLessonRowCallback( $post, $args, $term )
 	{
-		// @REF: https://developer.wordpress.org/?p=2837#comment-874
-		$GLOBALS['post'] = $post;
-		setup_postdata( $post );
-
 		ob_start();
 
 		echo '<li>';
@@ -326,13 +318,10 @@ class gThemeEditorial extends gThemeModuleCore
 
 		$html = gEditorial()->course->main_shortcode( $atts );
 
-		wp_reset_postdata(); // NOTE: since callback used setup post data
-
 		if ( ! $verbose )
 			return $html;
 
 		echo $html;
-
 		return TRUE;
 	}
 
@@ -889,22 +878,15 @@ class gThemeEditorial extends gThemeModuleCore
 
 		$html = gEditorial()->module( 'dossier' )->main_shortcode( $atts );
 
-		wp_reset_postdata(); // since callback used setup post data
-
 		if ( ! $verbose )
 			return $html;
 
 		echo $html;
-
 		return TRUE;
 	}
 
 	public static function dossierRowCallback( $post, $args, $term )
 	{
-		// @REF: https://developer.wordpress.org/?p=2837#comment-874
-		$GLOBALS['post'] = $post;
-		setup_postdata( $post );
-
 		ob_start();
 
 		echo '<li>';
@@ -917,10 +899,6 @@ class gThemeEditorial extends gThemeModuleCore
 
 	public static function issueRowCallback( $post, $args, $term )
 	{
-		// @REF: https://developer.wordpress.org/?p=2837#comment-874
-		$GLOBALS['post'] = $post;
-		setup_postdata( $post );
-
 		ob_start();
 
 		echo '<li>';
@@ -951,13 +929,10 @@ class gThemeEditorial extends gThemeModuleCore
 
 		$html = gEditorial()->magazine->main_shortcode( $atts );
 
-		wp_reset_postdata(); // since callback used setup post data
-
 		if ( ! $verbose )
 			return $html;
 
 		echo $html;
-
 		return TRUE;
 	}
 

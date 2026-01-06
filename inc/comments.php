@@ -356,7 +356,6 @@ class gThemeComments extends gThemeModuleCore
 			$commenter = wp_get_current_commenter();
 			$permalink = apply_filters( 'the_permalink', get_permalink( $post ), $post );
 			$required  = get_option( 'require_name_email' );
-			$html5     = (bool) current_theme_supports( 'html5', 'comment-form' );
 
 			$strings = self::atts( [
 				'required' => _x( '(Required)', 'Modules: Comments: Comment Form String', 'gtheme' ),
@@ -366,14 +365,14 @@ class gThemeComments extends gThemeModuleCore
 				'comment'  => _x( 'Comment', 'Modules: Comments: Comment Form String', 'gtheme' ),
 				'cookies'  => _x( 'Save my name, email, and site URL in my browser for next time I post a comment.', 'Modules: Comments: Comment Form String', 'gtheme' ),
 
-				/* translators: %s: login url */
+				/* translators: `%s`: login URL */
 				'must_log_in'        => _x( 'You must be <a href="%s">logged in</a> to post a comment.', 'Modules: Comments: Comment Form String', 'gtheme' ),
-				/* translators: %1$s: profile url, %2$s: logged in as title, %3$s: display name, %4$s: log-out url */
+				/* translators: `%1$s`: profile URL, `%2$s`: logged in as title, `%3$s`: display name, `%4$s`: log-out URL */
 				'logged_in_as'       => _x( '<a href="%1$s" aria-label="%2$s">Logged in as %3$s</a>. <a href="%4$s">Log out?</a>', 'Modules: Comments: Comment Form String', 'gtheme' ),
-				/* translators: %s: display name */
+				/* translators: `%s`: display name */
 				'logged_in_as_title' => _x( 'Logged in as %s. Edit your profile.', 'Modules: Comments: Comment Form String', 'gtheme' ),
 				'title_reply'        => _x( 'Leave a Reply', 'Modules: Comments: Comment Form String', 'gtheme' ),
-				/* translators: %s: reply to title */
+				/* translators: `%s`: reply to title */
 				'title_reply_to'     => _x( 'Leave a Reply to %s', 'Modules: Comments: Comment Form String', 'gtheme' ),
 				'cancel_reply_link'  => _x( 'Cancel reply', 'Modules: Comments: Comment Form String', 'gtheme' ),
 				'label_submit'       => _x( 'Post Comment', 'Modules: Comments: Comment Form String', 'gtheme' ),
@@ -401,7 +400,7 @@ class gThemeComments extends gThemeModuleCore
 				.( $required ? ' <span class="required">'.$strings['required'].'</span>' : '' )
 				.'</label>'
 				.gThemeHTML::tag( 'input', [
-					'type'         => ( $html5 ? 'email' : 'text' ),
+					'type'         => 'email',
 					'autocomplete' => 'email',
 					'required'     => $required,
 					'class'        => 'form-control comment-field-ltr',
@@ -416,7 +415,7 @@ class gThemeComments extends gThemeModuleCore
 				.$strings['url']
 				.'</label>'
 				.gThemeHTML::tag( 'input', [
-					'type'         => ( $html5 ? 'url' : 'text' ),
+					'type'         => 'url',
 					'autocomplete' => 'url',
 					'class'        => 'form-control comment-field-ltr',
 					'size'         => '30',

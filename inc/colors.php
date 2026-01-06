@@ -50,8 +50,8 @@ class gThemeColors extends gThemeModuleCore
 					'label'       => esc_html_x( 'Color Scheme', 'Customizer: Setting Title', 'gtheme' ),
 					'description' => esc_html_x( 'Defines the dark or light theme version.', 'Customizer: Setting Description', 'gtheme' ),
 					'choices'     => [
+						'light'  => esc_html_x( 'Light', 'Customizer: Setting Option', 'gtheme' ),
 						'dark'   => esc_html_x( 'Dark', 'Customizer: Setting Option', 'gtheme' ),
-						'light'  => esc_html_x( 'Light', 'Customizer: Setting Option', 'gtheme' )
 					]
 				]
 			)
@@ -100,7 +100,7 @@ class gThemeColors extends gThemeModuleCore
 	public function wp_head()
 	{
 		if ( $styles = self::getExtraColorsCSS() )
-			printf( '<style type="text/css">%s</style>'."\n", $styles );
+			printf( '<style>%s</style>'."\n", $styles );
 	}
 
 	public static function getCustomPalette()
@@ -137,6 +137,7 @@ class gThemeColors extends gThemeModuleCore
 		return self::getExtraColorsCSS();
 	}
 
+	// @SEE: https://github.com/WordPress/gutenberg/blob/trunk/packages/components/src/utils/theme-variables.scss
 	public static function getExtraColorsCSS()
 	{
 		$colors = apply_filters( 'gtheme_colors_extra', [
@@ -203,7 +204,7 @@ class gThemeColors extends gThemeModuleCore
 	// @REF: https://ottopress.com/2012/how-to-leverage-the-theme-customizer-in-your-own-themes/
 	public function wp_footer_customize_preview()
 	{
-		?><script type="text/javascript">(function($){
+		?><script>(function($){
 wp.customize('accent_color', function (value) {
 	value.bind( function(to) {
 		$(':root').css('--theme-accent-custom-color', to);

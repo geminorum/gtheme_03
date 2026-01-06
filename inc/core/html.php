@@ -345,7 +345,7 @@ class gThemeHTML extends gThemeBaseCore
 		$html = self::tag( 'link', array(
 			'rel'   => 'stylesheet',
 			'href'  => $url,
-			'type'  => 'text/css',
+			// 'type'  => 'text/css',
 			'media' => $media,
 		) )."\n";
 
