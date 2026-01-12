@@ -5,7 +5,7 @@ class gThemeNavigation extends gThemeModuleCore
 
 	// @SEE: https://codex.wordpress.org/Pagination
 	// @SEE: [New Functions Available In WordPress 4.1](https://paulund.co.uk/new-functions-available-wordpress-4-1)
-	public static function content( $context = 'index', $in_same_term = FALSE, $taxonomy = 'category', $max_num_pages = NULL )
+	public static function content( $context = 'index', $in_same_term = FALSE, $taxonomy = NULL, $max_num_pages = NULL )
 	{
 		global $wp_query;
 
@@ -25,6 +25,8 @@ class gThemeNavigation extends gThemeModuleCore
 			return; // skip on pages
 
 		} else if ( is_singular() || is_single() ) {
+
+			$taxonomy = $taxonomy ?? gThemeTerms::getMainTaxonomy( get_post_type() );
 
 			$classes[] = 'post-navigation';
 
