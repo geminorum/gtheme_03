@@ -1,6 +1,9 @@
 <?php defined( 'ABSPATH' ) or die( header( 'HTTP/1.0 403 Forbidden' ) );
 
-if ( is_single() ) { // any posttype except attachment/page
+if ( is_single() ) {
+
+	// NOTE: any post-type except `attachment`/`page`.
+	// NOTE: in theme overrides may also be `page`.
 
 	gThemeContent::wrapOpen( 'singular' );
 
