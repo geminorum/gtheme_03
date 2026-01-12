@@ -6,7 +6,6 @@ class gThemeFilters extends gThemeModuleCore
 	public function setup_actions( $args = [] )
 	{
 		extract( self::atts( [
-			'content_extra'      => FALSE,
 			'continue_reading'   => FALSE,
 			'auto_paginate'      => FALSE,
 			'redirect_canonical' => FALSE,
@@ -46,12 +45,11 @@ class gThemeFilters extends gThemeModuleCore
 				add_filter( 'get_the_excerpt', [ $this, 'get_the_excerpt' ] );
 			}
 
-			add_filter( 'the_content', [ $this, 'the_content_actions' ], 997 );
-			add_filter( 'the_content', [ $this, 'the_content' ], 15 );
-			add_filter( 'the_content_more_link', [ $this, 'the_content_more_link' ] );
+			if ( gThemeOptions::info( 'restricted_content', FALSE ) )
+				add_filter( 'the_content', [ $this, 'the_content_restricted' ], 15 );
 
-			if ( $content_extra )
-				add_filter( 'the_content', [ $this, 'the_content_extra' ], 16 );
+			add_filter( 'the_content', [ $this, 'the_content_actions' ], 997 );
+			add_filter( 'the_content_more_link', [ $this, 'the_content_more_link' ] );
 
 			if ( $auto_paginate )
 				add_action( 'loop_start', [ $this, 'loop_start' ] );
@@ -524,28 +522,13 @@ class gThemeFilters extends gThemeModuleCore
 		return $before.$content.$after;
 	}
 
-	public function the_content( $content )
+	public function the_content_restricted( $content )
 	{
-		if ( gThemeOptions::info( 'restricted_content', FALSE ) ) {
-
-			// FIXME: now only for rest-api
-			if ( gThemeWordPress::isREST() && gThemeContent::isRestricted() ) {
-				$GLOBALS['more'] = 0;
-				$content = get_the_content( FALSE );
-			}
+		// FIXME: now only for rest-API
+		if ( gThemeWordPress::isREST() && gThemeContent::isRestricted() ) {
+			$GLOBALS['more'] = 0;
+			$content = get_the_content( FALSE );
 		}
-
-		// Removes the empty paragraph tags.
-		if ( gThemeOptions::info( 'content_remove_empty_p', TRUE ) )
-			$content = gThemeText::noEmptyP( $content );
-
-		// Replaces the paragraphs around images with figure tags.
-		if ( gThemeOptions::info( 'content_replace_image_p', TRUE ) )
-			$content = gThemeText::replaceImageP( $content, 'figure' );
-
-		// Removes the paragraph around images.
-		else if ( gThemeOptions::info( 'content_remove_image_p', TRUE ) )
-			$content = gThemeText::replaceImageP( $content, FALSE );
 
 		return $content;
 	}
@@ -553,19 +536,6 @@ class gThemeFilters extends gThemeModuleCore
 	public function the_content_more_link( $link )
 	{
 		return preg_replace( '|#more-[0-9]+|', '', $link );
-	}
-
-	public function the_content_extra( $content )
-	{
-		// preg_replace( '#<p>\s*+(<br\s*/*>)?\s*</p>#i', '', $content );
-		// preg_replace( '/<p>\s*+(<br\s*\/*>)?\s*<\/p>/i', '', $content );
-
-		// http://stackoverflow.com/a/3226746
-		// http://plugins.svn.wordpress.org/remove-double-space/tags/0.3/remove-double-space.php
-		if ( seems_utf8( $content ) )
-			return preg_replace( '/[\p{Z}\s]{2,}/u', ' ', $content );
-		else
-			return preg_replace( '/\s\s+/', ' ', $content );
 	}
 
 	// FIXME: Not working well with UTF / problem in `str_word_count()`
