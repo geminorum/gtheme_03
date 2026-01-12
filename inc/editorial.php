@@ -275,8 +275,11 @@ class gThemeEditorial extends gThemeModuleCore
 		return self::publication( $atts, $verbose );
 	}
 
-	public static function publication( $atts = [], $verbose = TRUE )
+	public static function publication( $atts = [], $verbose = TRUE, $tabs_check = TRUE )
 	{
+		if ( $tabs_check && self::availableEditorial( 'tabs' ) )
+			return NULL;
+
 		if ( ! self::availableEditorial( 'book' ) )
 			return NULL;
 
@@ -434,8 +437,11 @@ class gThemeEditorial extends gThemeModuleCore
 		return TRUE;
 	}
 
-	public static function listAttachments( $atts = [], $verbose = TRUE )
+	public static function listAttachments( $atts = [], $verbose = TRUE, $tabs_check = TRUE )
 	{
+		if ( $tabs_check && self::availableEditorial( 'tabs' ) )
+			return NULL;
+
 		if ( ! self::availableEditorial( 'attachments' ) )
 			return NULL;
 
@@ -1045,7 +1051,7 @@ class gThemeEditorial extends gThemeModuleCore
 		return \geminorum\gEditorial\Modules\Isbn\ModuleTemplate::barcode( $atts );
 	}
 
-	public static function bookMetaSummary( $atts = [], $check = FALSE )
+	public static function bookMetaSummary( $atts = [], $check = FALSE, $tabs_check = TRUE )
 	{
 		if ( ! array_key_exists( 'default', $atts ) )
 			$atts['default'] = FALSE;
@@ -1055,6 +1061,9 @@ class gThemeEditorial extends gThemeModuleCore
 
 		if ( $check && ( 'publication' != get_post_type( $atts['id'] ) ) )
 			return $atts['default'];
+
+		if ( $tabs_check && self::availableEditorial( 'tabs' ) )
+			return NULL;
 
 		if ( ! self::availableEditorial( 'book' ) )
 			return $atts['default'];
