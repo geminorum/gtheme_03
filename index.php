@@ -12,6 +12,7 @@ if ( have_posts() ) {
 
 		gThemeNavigation::content( 'index' );
 	gThemeTemplate::wrapClose( 'index' );
+	gThemeTemplate::sidebar( gtheme_template_base() );
 
 } else if ( is_search() ) {
 
@@ -21,6 +22,7 @@ if ( have_posts() ) {
 		gThemeContent::notFound( 'emptysearch' );
 
 	gThemeTemplate::wrapClose( 'emptysearch' );
+	// gThemeTemplate::sidebar( gtheme_template_base() );
 
 } else {
 
@@ -30,6 +32,5 @@ if ( have_posts() ) {
 		gThemeContent::notFound( 'index' );
 
 	gThemeTemplate::wrapClose( 'notfound' );
+	// gThemeTemplate::sidebar( gtheme_template_base() );
 }
-
-gThemeTemplate::sidebar( gtheme_template_base() );
