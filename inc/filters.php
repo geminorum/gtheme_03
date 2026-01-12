@@ -7,6 +7,7 @@ class gThemeFilters extends gThemeModuleCore
 	{
 		extract( self::atts( [
 			'content_extra'      => FALSE,
+			'continue_reading'   => FALSE,
 			'auto_paginate'      => FALSE,
 			'redirect_canonical' => FALSE,
 			'default_editor'     => FALSE,
@@ -26,9 +27,11 @@ class gThemeFilters extends gThemeModuleCore
 			add_filter( 'document_title_separator', [ $this, 'document_title_separator' ] );
 			add_filter( 'document_title_parts', [ $this, 'document_title_parts' ], 8 );
 
-			add_filter( 'the_excerpt', static function( $text ) {
-				return $text ? $text.gThemeContent::continueReading() : $text;
-			}, 5 );
+			if ( $continue_reading )
+				add_filter( 'the_excerpt',
+					static function( $text ) {
+						return $text ? $text.gThemeContent::continueReading() : $text;
+					}, 5 );
 
 			// FALSE by default, we don't use this filter anyway
 			if ( $length = gThemeOptions::info( 'excerpt_length', FALSE ) )
