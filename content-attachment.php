@@ -8,4 +8,6 @@ gThemeContent::wrapOpen( 'attachment' );
 	gThemeAttachment::caption();
 	gThemeAttachment::backlink();
 
+	gThemeAttachment::content();
+
 gThemeContent::wrapClose( 'attachment' );

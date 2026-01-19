@@ -207,4 +207,15 @@ class gThemeAttachment extends gThemeModuleCore
 
 		echo $args['before'].$html.$args['after'];
 	}
+
+	public static function content()
+	{
+		if ( ! $post = get_post() )
+			return;
+
+		if ( empty( $post->post_content ) )
+			return;
+
+		gThemeContent::content();
+	}
 }
