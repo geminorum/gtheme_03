@@ -10,7 +10,6 @@ class gThemeFilters extends gThemeModuleCore
 			'auto_paginate'      => FALSE,
 			'redirect_canonical' => FALSE,
 			'default_editor'     => FALSE,
-			'disable_autoembed'  => FALSE, // gNetwork does it
 			'overwrite_author'   => TRUE,
 			'resource_hints'     => TRUE,
 			'preload_resources'  => TRUE,
@@ -32,11 +31,12 @@ class gThemeFilters extends gThemeModuleCore
 						return $text ? $text.gThemeContent::continueReading() : $text;
 					}, 5 );
 
-			// FALSE by default, we don't use this filter anyway
+			// NOTE: `FALSE` by default, we don't use this filter anyways
 			if ( $length = gThemeOptions::info( 'excerpt_length', FALSE ) )
-				add_filter( 'excerpt_length', static function( $first ) use ( $length ) {
-					return $length;
-				} );
+				add_filter( 'excerpt_length',
+					static function( $first ) use ( $length ) {
+						return $length;
+					} );
 
 			add_filter( 'excerpt_more', [ $this, 'excerpt_more' ] );
 
@@ -60,12 +60,7 @@ class gThemeFilters extends gThemeModuleCore
 			if ( $default_editor )
 				add_filter( 'wp_default_editor', [ $this, 'wp_default_editor' ] );
 
-			// https://gist.github.com/ocean90/3796628
-			// disables the auto-embeds function in WordPress 3.5
-			if ( $disable_autoembed )
-				remove_filter( 'the_content', [ $GLOBALS['wp_embed'], 'autoembed' ], 8 );
-
-			// to remove wp recent comments widget styles
+			// NOTE: to remove wp recent comments widget styles
 			add_filter( 'show_recent_comments_widget_style', '__return_false' );
 
 			if ( $overwrite_author ) {

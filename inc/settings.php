@@ -30,7 +30,7 @@ class gThemeSettings extends gThemeModuleCore
 
 		} else {
 
-			add_action( 'admin_bar_menu', [ $this, 'admin_bar_menu' ], 32 );
+			add_action( 'admin_bar_menu', [ $this, 'admin_bar_menu' ], -99 );
 		}
 	}
 
@@ -228,20 +228,10 @@ class gThemeSettings extends gThemeModuleCore
 		if ( ! is_admin_bar_showing() || ! is_user_logged_in() )
 			return;
 
-		if ( current_user_can( 'customize' ) ) {
-			$wp_admin_bar->remove_node( 'customize' );
-			remove_action( 'wp_before_admin_bar_render', 'wp_customize_support_script' );
-		}
+		if ( ! $cap = gThemeOptions::info( 'settings_access', 'edit_theme_options' ) )
+			return;
 
-		if ( current_user_can( 'publish_posts' ) )
-			$wp_admin_bar->add_node( [
-				'id'    => 'gtheme-flush',
-				'title' => '<span class="ab-icon dashicons dashicons-backup" style="margin:2px 0 0 0;"></span>',
-				'href'  => add_query_arg( 'flush', '', gThemeURL::current() ),
-				'meta'  => [ 'title' => _x( 'Flush', 'Settings Module', 'gtheme' ) ],
-			] );
-
-		if ( ! current_user_can( gThemeOptions::info( 'settings_access', 'edit_theme_options' ) ) )
+		if ( ! current_user_can( $cap ) )
 			return;
 
 		$wp_admin_bar->remove_node( 'themes' );
@@ -258,9 +248,9 @@ class gThemeSettings extends gThemeModuleCore
 			return;
 
 		$wp_admin_bar->add_node( [
+			'parent' => 'top-secondary',
 			'id'     => 'gtheme-template-base',
 			'title'  => gtheme_template_base() ?: '[EMPTY]',
-			'parent' => 'top-secondary',
 			'href'   => FALSE,
 			'meta'   => [ 'title' => _x( 'Theme Template Base', 'Modules: Settings', 'gtheme' ) ],
 		] );

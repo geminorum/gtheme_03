@@ -363,4 +363,18 @@ JS;
 		$ISO639 = str_replace( '_', '-', strtolower( $locale ) );
 		return substr( $ISO639, 0, strpos( $ISO639, '-' ) );
 	}
+
+	// NOTE: like `Core\HTML::tag()`
+	public static function shortcodeBuild( $tag, $atts = [], $content = NULL )
+	{
+		$args = '';
+
+		foreach ( $atts as $key => $value )
+			$args.= sprintf( ' %s="%s"', $key, $value );
+
+		if ( $content )
+			return sprintf( '[%1$s%2$s]%3$s[/%4$s]', $tag, $args, $content, $tag );
+
+		return sprintf( '[%1$s%2$s /]', $tag, $args );
+	}
 }

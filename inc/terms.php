@@ -158,7 +158,7 @@ class gThemeTerms extends gThemeModuleCore
 
 	public function register_taxonomies()
 	{
-		$posttypes = gThemeOptions::info( 'system_tags_cpt', [ 'post', 'entry' ] );
+		$posttypes = gThemeOptions::info( 'system_tags_cpt', [ 'post', 'entry', 'reshare' ] );
 		$manage    = gThemeOptions::info( 'settings_access', 'edit_theme_options' );
 		$assign    = gThemeOptions::info( 'system_tags_access', 'edit_others_posts' );
 		$can       = current_user_can( $assign );

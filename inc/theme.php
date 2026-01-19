@@ -37,6 +37,7 @@ class gThemeTheme extends gThemeModuleCore
 			add_theme_support( 'title-tag' );
 
 		if ( $adminbar )
+			// NOTE: To remove the default padding styles from WordPress for the Toolbar.
 			add_theme_support( 'admin-bar', [ 'callback' => '__return_false' ] );
 
 		if ( $wpcf7 && function_exists( 'wpcf7_enqueue_scripts' ) ) {

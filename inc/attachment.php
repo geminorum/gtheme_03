@@ -5,7 +5,7 @@ class gThemeAttachment extends gThemeModuleCore
 
 	// TODO: filter `wp_get_attachment_link` to append: `attachment_download_prefix` @REF: https://core.trac.wordpress.org/ticket/41574
 
-	// used in caption shortcode
+	// used in caption short-code
 	public static function normalizeCaption( $caption, $before = '', $after = '', $default = '' )
 	{
 		if ( ! $caption )
@@ -78,7 +78,10 @@ class gThemeAttachment extends gThemeModuleCore
 
 			$meta = wp_get_attachment_metadata( $post->ID );
 
-			$shortcode = [ 'src' => wp_get_attachment_url( $post->ID ) ];
+			$shortcode = [
+				'src'      => wp_get_attachment_url( $post->ID ),
+				'download' => TRUE,
+			];
 
 			if ( ! empty( $meta['width'] )
 				&& ! empty( $meta['height'] ) ) {
@@ -109,20 +112,34 @@ class gThemeAttachment extends gThemeModuleCore
 			$html.= do_shortcode(
 				gThemeUtilities::shortcodeBuild( 'audio', array_merge( [
 					'src'      => wp_get_attachment_url( $post->ID ),
+					'download' => TRUE,
 				], $args['extra'] )	)
 			);
 
 		} else if ( 'text/csv' == $post->post_mime_type ) {
 
-			$html = do_shortcode( '[csv id="'.$post->ID.'"][/csv]' );
+			$html = do_shortcode(
+				gThemeUtilities::shortcodeBuild( 'csv', [
+					'id' => $post->ID,
+				] )
+			);
 
 		} else if ( 'application/epub+zip' == $post->post_mime_type ) {
 
-			$html = do_shortcode( '[epub id="'.$post->ID.'"][/epub]' );
+			$html = do_shortcode(
+				gThemeUtilities::shortcodeBuild( 'epub', [
+					'id' => $post->ID,
+				] )
+			);
 
 		} else if ( 'application/pdf' == $post->post_mime_type ) {
 
-			$html = do_shortcode( '[pdf url="'.wp_get_attachment_url( $post->ID ).'"][/pdf]' );
+			$html = do_shortcode(
+				gThemeUtilities::shortcodeBuild( 'pdf', [
+					'id'  => $post->ID,
+					'url' => wp_get_attachment_url( $post->ID ), // in case of customized short-codes
+				] )
+			);
 
 		} else {
 
