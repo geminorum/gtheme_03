@@ -96,8 +96,11 @@ class gThemeAttachment extends gThemeModuleCore
 
 		} else if ( wp_attachment_is( 'audio', $post ) ) {
 
-			if ( $thumbnail_id = get_post_thumbnail_id( $post ) )
-				$html = gThemeImage::getImageHTML( $thumbnail_id, $args['tag'] );
+			$html = gThemeImage::getImage( [
+				'link'    => 'attachment',
+				'post_id' => $post->ID,
+				'tag'     => $args['tag'],
+			] );
 
 			if ( $html )
 				$html = '<div class="attachment-cover">'.$html.'</div>';
