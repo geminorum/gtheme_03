@@ -89,7 +89,10 @@ class gThemeAttachment extends gThemeModuleCore
 			if ( $thumbnail_id = get_post_thumbnail_id( $post ) )
 				$shortcode['poster'] = wp_get_attachment_url( $thumbnail_id );
 
-			$html = wp_video_shortcode( array_merge( $shortcode, $args['extra'] ) );
+			// NOTE: avoid using `wp_video_shortcode()` directly!
+			$html = do_shortcode(
+				gThemeUtilities::shortcodeBuild( 'video', array_merge( $shortcode, $args['extra'] ) )
+			);
 
 		} else if ( wp_attachment_is( 'audio', $post ) ) {
 
@@ -99,9 +102,12 @@ class gThemeAttachment extends gThemeModuleCore
 			if ( $html )
 				$html = '<div class="attachment-cover">'.$html.'</div>';
 
-			$html.= wp_audio_shortcode( array_merge( [
-				'src' => wp_get_attachment_url( $post->ID ),
-			], $args['extra'] ) );
+			// NOTE: avoid using `wp_audio_shortcode()` directly!
+			$html.= do_shortcode(
+				gThemeUtilities::shortcodeBuild( 'audio', array_merge( [
+					'src'      => wp_get_attachment_url( $post->ID ),
+				], $args['extra'] )	)
+			);
 
 		} else if ( 'text/csv' == $post->post_mime_type ) {
 
