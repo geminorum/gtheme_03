@@ -30,7 +30,10 @@ class gThemeSettings extends gThemeModuleCore
 
 		} else {
 
-			add_action( 'admin_bar_menu', [ $this, 'admin_bar_menu' ], -99 );
+			add_action( 'admin_bar_menu', [ $this, 'admin_bar_menu' ], 9999 );
+
+			if ( gThemeWordPress::isDev() )
+				add_action( 'admin_bar_menu', [ $this, 'admin_bar_menu_development' ], -99 );
 		}
 	}
 
@@ -228,31 +231,35 @@ class gThemeSettings extends gThemeModuleCore
 		if ( ! is_admin_bar_showing() || ! is_user_logged_in() )
 			return;
 
+		$wp_admin_bar->remove_node( 'themes' );
+
 		if ( ! $cap = gThemeOptions::info( 'settings_access', 'edit_theme_options' ) )
 			return;
 
 		if ( ! current_user_can( $cap ) )
 			return;
 
-		$wp_admin_bar->remove_node( 'themes' );
-
 		$wp_admin_bar->add_node( [
-			'parent' => 'appearance',
+			'parent' => 'appearance', // 'site-name',
 			'id'     => 'gtheme',
 			'title'  => gThemeOptions::info( 'menu_title', _x( 'Theme Settings', 'Admin Menu Title', 'gtheme' ) ),
 			'href'   => admin_url( $this->_settings_uri ),
-			'meta'   => [ 'title' => gThemeOptions::info( 'settings_title', _x( 'gTheme Settings', 'Admin Settings Page Title', 'gtheme' ) ) ],
+			'meta'   => [
+				'title' => gThemeOptions::info( 'settings_title', _x( 'gTheme Settings', 'Admin Settings Page Title', 'gtheme' ) ),
+			],
 		] );
+	}
 
-		if ( ! gThemeWordPress::isDev() )
-			return;
-
+	public function admin_bar_menu_development( $wp_admin_bar )
+	{
 		$wp_admin_bar->add_node( [
 			'parent' => 'top-secondary',
 			'id'     => 'gtheme-template-base',
 			'title'  => gtheme_template_base() ?: '[EMPTY]',
 			'href'   => FALSE,
-			'meta'   => [ 'title' => _x( 'Theme Template Base', 'Modules: Settings', 'gtheme' ) ],
+			'meta'   => [
+				'title' => _x( 'Theme Template Base', 'Modules: Settings', 'gtheme' ),
+			],
 		] );
 	}
 }
