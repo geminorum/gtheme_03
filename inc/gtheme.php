@@ -163,6 +163,7 @@ final class gThemeCore
 	public static function version( $theme = NULL )
 	{
 		$theme = wp_get_theme( $theme );
+
 		if ( ! $theme->exists() )
 			return 0;
 

@@ -9,13 +9,13 @@ class gThemeImage extends gThemeModuleCore
 	{
 		extract( self::atts( [
 			'core_post_thumbnails'   => TRUE,                        // WordPress core thumbnail for posts
-			'amp_post_thumbnails'    => defined( 'AMP__VERSION' ),   // filters amp featured image
+			'amp_post_thumbnails'    => defined( 'AMP__VERSION' ),   // filters AMP featured image
 			'image_size_tags'        => TRUE,                        // registers theme's image sizes
-			'image_attachment_tags'  => FALSE,                       // displays UI for theme's image sizes
-			'image_attachment_terms' => FALSE,                       // image for terms on admin media editor
-			'responsive_class'       => FALSE,                       // extracts and appends CSS class into content images
-			'media_object_sizes'     => TRUE,                        // tells gNetwork to not generate default image sizes
-			'no_filter_content_tags' => TRUE,                        // removes core filter for `srcset`/sizes/loading
+			'image_attachment_tags'  => FALSE,                       // Displays UI for theme's image sizes
+			'image_attachment_terms' => FALSE,                       // The image for terms on admin media editor
+			'responsive_class'       => FALSE,                       // Extracts and appends CSS class into content images
+			'media_object_sizes'     => TRUE,                        // Tells `gNetwork` to not generate default image sizes
+			'no_filter_content_tags' => TRUE,                        // Removes core filter for `srcset`/sizes/loading
 		], $args ) );
 
 		if ( $core_post_thumbnails )
@@ -649,19 +649,25 @@ class gThemeImage extends gThemeModuleCore
 		list( $src, $width, $height ) = $image;
 
 		$defaults = [
-			'src'      => $src,
-			'alt'      => trim( strip_tags( get_post_meta( $attachment_id, '_wp_attachment_image_alt', TRUE ) ) ),
-			'class'    => self::cssClass(),
-			'loading'  => 'lazy',
-			'decoding' => 'async',
-			'data-url' => wp_get_attachment_url( $attachment_id ),
+			'src'         => $src,
+			'alt'         => trim( strip_tags( get_post_meta( $attachment_id, '_wp_attachment_image_alt', TRUE ) ) ),
+			'class'       => self::cssClass(),
+			'loading'     => 'lazy',
+			'decoding'    => 'async',
+			'data-url'    => wp_get_attachment_url( $attachment_id ),
+			'data-width'  => $width,
+			'data-height' => $height,
 		];
 
-		$attr = self::args( $attr, $defaults );
+		$attributes = apply_filters( 'wp_get_attachment_image_attributes',
+			self::args( $attr, $defaults ),
+			get_post( $attachment_id ),
+			$size
+		);
 
 		// skipping `srcset`!
 
-		return gThemeHTML::tag( 'img', apply_filters( 'wp_get_attachment_image_attributes', $attr, get_post( $attachment_id ), $size ) );
+		return gThemeHTML::tag( 'img', $attributes );
 	}
 
 	// @OLD: `gtheme_get_the_image()`, `gtheme_get_image_caption()`
@@ -678,7 +684,7 @@ class gThemeImage extends gThemeModuleCore
 			'url'               => FALSE,
 			'caption'           => FALSE,
 			'default_caption'   => '',
-			'default_title'     => '', // data-title attr
+			'default_title'     => '', // `data-title` attribute
 		], $atts );
 
 		if ( is_null( $args['post_id'] ) )
@@ -714,7 +720,7 @@ class gThemeImage extends gThemeModuleCore
 
 			if ( ! empty( $args['link'] ) ) {
 
-				// link to another size of image
+				// Links to another size of image.
 				if ( is_array( $args['link'] ) ) {
 
 					foreach ( $args['link'] as $link_size ) {
@@ -735,8 +741,11 @@ class gThemeImage extends gThemeModuleCore
 					$args['link'] = get_permalink( $args['post_id'] );
 
 					if ( is_null( $args['link_label'] ) )
-						/* translators: %s: post title */
-						$args['link_label'] = sprintf( _x( 'Read more about %s', 'Modules: Image: Link Label', 'gtheme' ), get_the_title( $args['post_id'] ) );
+						$args['link_label'] = sprintf(
+							/* translators: `%s`: post title */
+							_x( 'Read more about %s', 'Modules: Image: Link Label', 'gtheme' ),
+							get_the_title( $args['post_id'] )
+						);
 
 				} else if ( 'attachment' == $args['link'] ) {
 
@@ -750,10 +759,12 @@ class gThemeImage extends gThemeModuleCore
 
 			if ( TRUE === $args['caption'] ) {
 
-				$caption = apply_filters( 'wp_get_attachment_caption', $attachment->post_excerpt, $attachment->ID );
+				$caption = apply_filters( 'wp_get_attachment_caption',
+					$attachment->post_excerpt,
+					$attachment->ID
+				);
 
-				if ( ! $caption )
-					$caption = $args['default_caption'];
+				$caption = $caption ?: $args['default_caption'];
 
 			} else if ( $args['caption'] ) {
 
@@ -783,14 +794,19 @@ class gThemeImage extends gThemeModuleCore
 				$template = gThemeOptions::info( 'template_image_caption', '<div class="%3$s">%1$s<p class="%4$s">%2$s</p></div>' );
 
 				if ( $caption = gThemeAttachment::normalizeCaption( $caption ) )
-					$html = sprintf( $template, $html, $caption, '-caption', '-caption-text' );
+					$html = vsprintf( $template, [
+						$html,
+						$caption,
+						'-caption',
+						'-caption-text'
+					] );
 			}
 		}
 
 		return apply_filters( 'post_thumbnail_html', $html, $args['post_id'], $args['post_thumbnail_id'], $args['tag'], $args['attr'] );
 	}
 
-	// ANCESTOR : gtheme_image(), gtheme_image_caption()
+	// @OLD: `gtheme_image()`, `gtheme_image_caption()`
 	public static function image( $atts = [] )
 	{
 		if ( ! gThemeOptions::info( 'image_support', TRUE ) )
@@ -887,7 +903,7 @@ class gThemeImage extends gThemeModuleCore
 		echo $html;
 	}
 
-	// ANCESTOR: gtheme_empty_image()
+	// @OLD: `gtheme_empty_image()`
 	public static function holder( $tag = 'raw', $extra_class = '', $force = FALSE )
 	{
 		if ( ! $force && ! current_user_can( 'edit_others_posts' ) )

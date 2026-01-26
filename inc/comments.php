@@ -363,7 +363,7 @@ class gThemeComments extends gThemeModuleCore
 				'email'    => _x( 'Email', 'Modules: Comments: Comment Form String', 'gtheme' ),
 				'url'      => _x( 'Website', 'Modules: Comments: Comment Form String', 'gtheme' ),
 				'comment'  => _x( 'Comment', 'Modules: Comments: Comment Form String', 'gtheme' ),
-				'cookies'  => _x( 'Save my name, email, and site URL in my browser for next time I post a comment.', 'Modules: Comments: Comment Form String', 'gtheme' ),
+				'cookies'  => _x( 'Save my name, email, and website in this browser for the next time I comment.', 'Modules: Comments: Comment Form String', 'gtheme' ),
 
 				/* translators: `%s`: login URL */
 				'must_log_in'        => _x( 'You must be <a href="%s">logged in</a> to post a comment.', 'Modules: Comments: Comment Form String', 'gtheme' ),
