@@ -28,6 +28,7 @@ class gThemeTheme extends gThemeModuleCore
 			'bp_no_styles'      => TRUE,
 			'print_support'     => TRUE,
 			'alignwide_support' => FALSE,
+			'childless_parent'  => gThemeUtilities::isChildless(),
 		], $args ) );
 
 		if ( $cleanup )
@@ -184,6 +185,9 @@ class gThemeTheme extends gThemeModuleCore
 		if ( $alignwide_support ) {
 			add_theme_support( 'align-wide' );
 		}
+
+		if ( ! $childless_parent )
+			return;
 	}
 
 	// @REF: https://developer.wordpress.org/themes/functionality/custom-headers/

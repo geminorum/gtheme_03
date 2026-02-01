@@ -3,6 +3,16 @@
 class gThemeUtilities extends gThemeBaseCore
 {
 
+	/**
+	 * Determines the current theme has the child?
+	 *
+	 * @return bool
+	 */
+	public static function isChildless()
+	{
+		return GTHEME_DIR === GTHEME_CHILD_DIR;
+	}
+
 	public static function enqueueSvgIcons( $name = NULL, $base = NULL )
 	{
 		self::_dep( 'gThemeUtilities::enqueueSvgSprites()' );
