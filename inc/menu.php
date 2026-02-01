@@ -34,6 +34,25 @@ class gThemeMenu extends gThemeModuleCore
 			register_nav_menus( $menus );
 	}
 
+	public static function has( $menuname = 'primary' )
+	{
+		if ( empty( $menuname ) )
+			return FALSE;
+
+		// Gets the navigation menu based on the requested `menu`.
+		if ( wp_get_nav_menu_object( $menuname ) )
+			return TRUE;
+
+		if ( ! $locations = get_nav_menu_locations() )
+			return FALSE;
+
+		// Gets the navigation menu based on the `theme_location`.
+		if ( ! empty( $locations[$menuname] ) )
+			return TRUE;
+
+		return FALSE;
+	}
+
 	public static function defaults( $extra = [] )
 	{
 		return array_merge( [
