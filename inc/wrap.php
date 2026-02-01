@@ -100,7 +100,11 @@ class gThemeWrap extends gThemeModuleCore
 	public static function htmlOpen( $after = '' )
 	{
 		$atts    = [];
+		$data    = [];
 		$classes = [ 'no-js' ];
+
+		if ( gThemeBootstrap::version() )
+			$data['bs-theme'] = gThemeOptions::getColorScheme( 'bootstrap_color_scheme', 'auto' ); // dark/light/auto
 
 		if ( gThemeUtilities::isPrint() )
 			$classes[] = 'html-print';
@@ -119,7 +123,7 @@ class gThemeWrap extends gThemeModuleCore
 		else
 			$atts = '';
 
-		echo '<html'.$atts.' class="'.gThemeHTML::prepClass( $classes ).'">'."\n".$after."\n";
+		echo '<html'.$atts.gThemeHTML::propData( $data ).' class="'.gThemeHTML::prepClass( $classes ).'">'."\n".$after."\n";
 	}
 
 	// USED IN: head.php
