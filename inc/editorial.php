@@ -420,15 +420,19 @@ class gThemeEditorial extends gThemeModuleCore
 	public static function postLikeButton( $atts = [], $check_systemtags = 'disable-like-button' )
 	{
 		$args = self::atts( [
-			'post'    => NULL,
-			'before'  => '',
-			'after'   => '',
-			'echo'    => TRUE,
-			'default' => FALSE,
+			'post'     => NULL,
+			'before'   => '',
+			'after'    => '',
+			'echo'     => TRUE,
+			'default'  => FALSE,
+			'lastpage' => TRUE,
 		], $atts );
 
 		// maybe check for `is_singular()`
 		if ( self::const( 'GTHEME_EDITORIAL_LIKES_DISPLAYED' ) )
+			return $args['default'];
+
+		if ( $args['lastpage'] && ! gThemeUtilities::contentLastPage() )
 			return $args['default'];
 
 		if ( ! self::availableEditorial( 'like' ) )

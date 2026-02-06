@@ -13,6 +13,54 @@ class gThemeUtilities extends gThemeBaseCore
 		return GTHEME_DIR === GTHEME_CHILD_DIR;
 	}
 
+	public static function contentHasPages()
+	{
+		global $pages;
+
+		if ( empty( $pages ) )
+			return FALSE;
+
+		$count = is_array( $pages ) ? count( $pages ) : 0;
+
+		if ( is_array( $pages ) && $count < 2 )
+			return FALSE;
+
+		return $count;
+	}
+
+	public static function contentCurrentPage()
+	{
+		global $page;
+
+		if ( empty( $page ) )
+			return 1;
+
+		return (int) $page;
+	}
+
+	public static function contentFirstPage()
+	{
+		global $page;
+
+		if ( empty( $page ) )
+			return TRUE;
+
+		return 1 === ( (int) $page );
+	}
+
+	public static function contentLastPage()
+	{
+		global $page;
+
+		if ( empty( $page ) )
+			return TRUE;
+
+		if ( ! $pages = self::contentHasPages() )
+			return TRUE;
+
+		return $page === $pages;
+	}
+
 	public static function enqueueSvgIcons( $name = NULL, $base = NULL )
 	{
 		self::_dep( 'gThemeUtilities::enqueueSvgSprites()' );
