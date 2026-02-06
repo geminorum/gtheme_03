@@ -179,6 +179,20 @@ class gThemeBootstrap extends gThemeModuleCore
 		echo '/></div></form>';
 	}
 
+	// NOTE: use `.dropdown-toggle::after{content:none;}` for hiding the caret!
+	public static function navbarWooCommerce( $class = '', $menuname = NULL, $fallback = '' )
+	{
+		if ( ! gThemeWooCommerce::available() )
+			return print $fallback;
+
+		echo '<ul class="nav navbar-nav -woocommerce-nav '.$class.'">';
+
+			gThemeWooCommerce::accountDropdown( '-account', $menuname, '<li class="dropdown nav-item %s">', '</li>', TRUE );
+			gThemeWooCommerce::cartDropdown( '-cart', '<li class="dropdown nav-item %s">', '</li>', TRUE );
+
+		echo '</ul>';
+	}
+
 	public static function commentCallback_BS4( $comment, $args, $depth )
 	{
 		switch ( $comment->comment_type ) {
