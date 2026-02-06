@@ -11,6 +11,7 @@ class gThemeEditorial extends gThemeModuleCore
 			'insert_media'     => FALSE,
 			'insert_source'    => TRUE,
 			'insert_action'    => TRUE,
+			'insert_likes'     => TRUE,
 			'insert_supported' => TRUE,
 			'date_override'    => TRUE,
 			'reflist_toc'      => TRUE,
@@ -32,6 +33,9 @@ class gThemeEditorial extends gThemeModuleCore
 
 		if ( $insert_source )
 			add_action( 'gtheme_content_after', [ $this, 'content_after_source' ], 18 );
+
+		if ( $insert_likes )
+			add_action( 'gtheme_content_after', [ $this, 'content_after_likes' ], 22 );
 
 		if ( $insert_supported )
 			add_action( 'gtheme_content_wrap_after', [ $this, 'content_wrap_after_supported' ], 8 );
@@ -104,6 +108,17 @@ class gThemeEditorial extends gThemeModuleCore
 		self::theSource( [
 			'before' => '<div class="entry-after after-single after-source text-end">'.
 				gThemeOptions::info( 'source_before', '' ),
+			'after'  => '</div>',
+		] );
+	}
+
+	public function content_after_likes()
+	{
+		if ( ! is_singular() )
+			return;
+
+		self::postLikeButton( [
+			'before' => '<div class="entry-after after-single after-like my-2">',
 			'after'  => '</div>',
 		] );
 	}
@@ -412,6 +427,10 @@ class gThemeEditorial extends gThemeModuleCore
 			'default' => FALSE,
 		], $atts );
 
+		// maybe check for `is_singular()`
+		if ( self::const( 'GTHEME_EDITORIAL_LIKES_DISPLAYED' ) )
+			return $args['default'];
+
 		if ( ! self::availableEditorial( 'like' ) )
 			return $args['default'];
 
@@ -423,6 +442,8 @@ class gThemeEditorial extends gThemeModuleCore
 
 		if ( ! $html = gEditorial()->like->get_button( $post->ID ) )
 			return $args['default'];
+
+		self::define( 'GTHEME_EDITORIAL_LIKES_DISPLAYED', get_the_ID() );
 
 		$html = $args['before'].$html.$args['after'];
 
