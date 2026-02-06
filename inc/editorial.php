@@ -9,6 +9,8 @@ class gThemeEditorial extends gThemeModuleCore
 			'insert_toc'       => FALSE,
 			'insert_embed'     => FALSE,
 			'insert_media'     => FALSE,
+			'insert_source'    => TRUE,
+			'insert_action'    => TRUE,
 			'insert_supported' => TRUE,
 			'date_override'    => TRUE,
 			'reflist_toc'      => TRUE,
@@ -24,6 +26,12 @@ class gThemeEditorial extends gThemeModuleCore
 			add_action( 'gtheme_content_before', [ $this, 'content_before_media' ], 80 );
 			add_action( 'gtheme_content_after', [ $this, 'content_after_media' ], 8 );
 		}
+
+		if ( $insert_action )
+			add_action( 'gtheme_content_after', [ $this, 'content_after_action' ], 14 );
+
+		if ( $insert_source )
+			add_action( 'gtheme_content_after', [ $this, 'content_after_source' ], 18 );
 
 		if ( $insert_supported )
 			add_action( 'gtheme_content_wrap_after', [ $this, 'content_wrap_after_supported' ], 8 );
@@ -74,6 +82,30 @@ class gThemeEditorial extends gThemeModuleCore
 
 		if ( $text = self::getMeta( 'text_source_url' ) )
 			echo gThemeHTML::wrap( $text, '-text -text-source' );
+	}
+
+	public function content_after_action()
+	{
+		if ( ! is_singular() )
+			return;
+
+		self::theAction( [
+			'before'     => '<div class="entry-after after-single after-action d-grid gap-2">',
+			'after'      => '</div>',
+			'link_class' => 'btn btn-lg btn-outline-primary',
+		] );
+	}
+
+	public function content_after_source()
+	{
+		if ( ! is_singular() )
+			return;
+
+		self::theSource( [
+			'before' => '<div class="entry-after after-single after-source text-end">'.
+				gThemeOptions::info( 'source_before', '' ),
+			'after'  => '</div>',
+		] );
 	}
 
 	public function content_wrap_after_supported()
@@ -537,13 +569,20 @@ class gThemeEditorial extends gThemeModuleCore
 		if ( ! array_key_exists( 'default', $atts ) )
 			$atts['default'] = FALSE;
 
+		// maybe check for `is_singular()`
+		if ( self::const( 'GTHEME_EDITORIAL_SOURCE_DISPLAYED' ) )
+			return $atts['default'];
+
 		if ( ! self::availableEditorial( 'meta' ) )
 			return $atts['default'];
 
 		if ( ! is_callable( [ 'geminorum\\gEditorial\\Modules\\Meta\\ModuleTemplate', 'metaSource' ] ) )
 			return $atts['default'];
 
-		return \geminorum\gEditorial\Modules\Meta\ModuleTemplate::metaSource( $atts );
+		if ( $html = \geminorum\gEditorial\Modules\Meta\ModuleTemplate::metaSource( $atts ) )
+			self::define( 'GTHEME_EDITORIAL_SOURCE_DISPLAYED', get_the_ID() );
+
+		return $html;
 	}
 
 	public static function theAction( $atts = [] )
@@ -551,13 +590,20 @@ class gThemeEditorial extends gThemeModuleCore
 		if ( ! array_key_exists( 'default', $atts ) )
 			$atts['default'] = FALSE;
 
+		// maybe check for `is_singular()`
+		if ( self::const( 'GTHEME_EDITORIAL_ACTION_DISPLAYED' ) )
+			return $atts['default'];
+
 		if ( ! self::availableEditorial( 'meta' ) )
 			return $atts['default'];
 
 		if ( ! is_callable( [ 'geminorum\\gEditorial\\Modules\\Meta\\ModuleTemplate', 'metaAction' ] ) )
 			return $atts['default'];
 
-		return \geminorum\gEditorial\Modules\Meta\ModuleTemplate::metaAction( $atts );
+		if ( $html = \geminorum\gEditorial\Modules\Meta\ModuleTemplate::metaAction( $atts ) )
+			self::define( 'GTHEME_EDITORIAL_ACTION_DISPLAYED', get_the_ID() );
+
+		return $html;
 	}
 
 	public static function estimated( $atts = [] )
