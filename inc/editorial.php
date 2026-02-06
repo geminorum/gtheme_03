@@ -9,8 +9,8 @@ class gThemeEditorial extends gThemeModuleCore
 			'insert_toc'       => FALSE,
 			'insert_embed'     => FALSE,
 			'insert_media'     => FALSE,
-			'insert_source'    => TRUE,
 			'insert_action'    => TRUE,
+			'insert_source'    => TRUE,
 			'insert_likes'     => TRUE,
 			'insert_supported' => TRUE,
 			'date_override'    => TRUE,
@@ -648,7 +648,7 @@ class gThemeEditorial extends gThemeModuleCore
 		if ( ! $post = get_post( $args['post'] ) )
 			return $args['default'];
 
-		if ( ! $html = gEditorial()->estimated->get_estimated( $post->ID, $args['prefix'] ) )
+		if ( ! $html = gEditorial()->estimated->get_estimated_for_post( $post, $args['prefix'] ) )
 			return $args['default'];
 
 		$html = $args['before'].$html.$args['after'];

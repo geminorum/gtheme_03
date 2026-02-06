@@ -26,27 +26,30 @@ gThemeEditorial::theAction( [
 ] );
 
 gThemeEditorial::theSource( [
-	'before' => '<div class="entry-after after-single after-source">'.gThemeOptions::info( 'source_before', '' ),
+	'before' => '<div class="entry-after after-single after-source text-end">'.gThemeOptions::info( 'source_before', '' ),
 	'after'  => '</div>',
 ] );
 
-gThemeEditorial::postLikeButton( [ 'before' => '<div class="entry-after after-single after-like">', 'after' => '</div>' ] );
+gThemeEditorial::postLikeButton( [
+	'before' => '<div class="entry-after after-single after-like my-2">',
+	'after'  => '</div>',
+] );
 
 gThemeEditorial::refList( [
-	'before' => '<div class="entry-after after-single after-reflist">',
+	'before' => '<div class="entry-after after-single after-reflist my-2">',
 	'after'  => '</div>',
 	'title'  => gThemeOptions::info( 'reflist_title', FALSE ),
 	'wrap'   => FALSE,
 ] );
 
 gThemeEditorial::addendumAppendages( [
-	'before' => '<div class="entry-after after-appendages after-rows -print-hide">',
+	'before' => '<div class="entry-after after-appendages after-rows my-2 -print-hide">',
 	'after'  => '</div>',
 	'wrap'   => FALSE,
 ] );
 
 gThemeEditorial::venuePlace( [
-	'before' => '<div class="entry-after after-venue-place after-rows">',
+	'before' => '<div class="entry-after after-venue-place after-rows my-2">',
 	'after'  => '</div>',
 	'wrap'   => FALSE,
 	'title'  => sprintf( '<div class="-wrap-title"><h4 class="-title">%s</h4></div>', _x( 'Venue', 'Entry After Title', 'gtheme-ahmad' ) ),

@@ -166,11 +166,12 @@ class gThemeOptions extends gThemeModuleCore
 			// 'comments_item_callback'  => [ 'gThemeBootstrap', 'commentCallback_BS3' ], // null to use wp core.
 			// 'comments_item_callback'  => [ 'gThemeComments', 'comment_callback' ], // null to use wp core.
 			// 'comments_title_callback' => [ 'gThemeComments', 'title_callback' ],
+			// 'comments_title_callback' => [ 'gThemeComments', 'title_callback_simple' ],
 			// 'comments_form_callback'  => [ 'gThemeComments', 'form_callback' ], // null to use wp core.
 			// 'comment_form_strings'    => [],
 			// 'comment_nav_strings'     => [],
 			// 'comment_action_strings'  => [],
-			// 'comments_closed'         => __( 'Comments are closed.', 'gtheme' ), // set FALSE to hide the text
+			'comments_closed'         => FALSE, // __( 'Comments are closed.', 'gtheme' ), // set FALSE to hide the text
 			// 'comment_awaiting'        => __( 'Your comment is awaiting moderation.', 'gtheme' ), // set FALSE to hide the text
 
 			/// AVATARS:

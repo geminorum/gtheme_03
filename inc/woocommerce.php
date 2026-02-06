@@ -10,8 +10,8 @@ class gThemeWooCommerce extends gThemeModuleCore
 			'product_gallery' => TRUE,
 			'disable_thumbs'  => TRUE,
 			'disable_styles'  => FALSE,
-			'bootstrap'       => FALSE,
-			'wrapping'        => FALSE, // NOTE: If have `woocommerce.php` on theme then no need to wrap the content
+			'bootstrap'       => gThemeBootstrap::version(),
+			'wrapping'        => FALSE, // NOTE: If have `woocommerce.php` on theme root, then no need to wrap the content!
 			'fragments'       => TRUE,
 			'meta_fields'     => TRUE,
 			'placeholders'    => FALSE,
@@ -336,12 +336,12 @@ class gThemeWooCommerce extends gThemeModuleCore
 
 	public function wp_enqueue_scripts()
 	{
-		$list = [
+		$handles = [
 			'wc-blocks-style',  // Woo-Commerce Blocks
 			'brands-styles'  ,  // Woo-Commerce Brands
 		];
 
-		foreach ( $list as $handle ) {
+		foreach ( $handles as $handle ) {
 			wp_dequeue_style( $handle );
 			wp_deregister_style( $handle );
 		}

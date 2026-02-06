@@ -150,6 +150,7 @@ final class gThemeCore
 
 	public function after_setup_theme()
 	{
+		// NOTE: must manually load the text-domain to work on child themes!
 		load_theme_textdomain( 'gtheme', GTHEME_DIR.'/languages' );
 
 		$this->init_modules( $this->modules, gThemeOptions::info( 'module_args', [] ) );

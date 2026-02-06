@@ -67,7 +67,7 @@ class gThemeDate extends gThemeModuleCore
 
 		if ( is_null( $override ) )
 			$html = vsprintf( $args['template'], [
-				$link ? sprintf( '<a href="%s" %s>', esc_url( $link ), $args['shortlink'] ? ' rel="shortlink"' : '' ) : '',
+				$link ? sprintf( '<a href="%s"%s>', esc_url( $link ), $args['shortlink'] ? ' rel="shortlink"' : '' ) : '',
 				$link ? '</a>' : '',
 				esc_attr( get_post_time( \DATE_W3C, FALSE, $post, FALSE ) ),
 				esc_html( get_the_date( $args['format'], $post ) ),

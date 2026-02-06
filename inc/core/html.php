@@ -185,6 +185,31 @@ class gThemeHTML extends gThemeBaseCore
 		return implode( ' ', array_unique( array_filter( call_user_func_array( array( __CLASS__, 'attrClass' ), $classes ), array( __CLASS__, 'sanitizeClass' ) ) ) );
 	}
 
+	public static function propData( $data )
+	{
+		if ( empty( $data ) )
+			return '';
+
+		if ( ! is_array( $data ) )
+			return ' data="'.trim( self::escape( $data ) ).'"';
+
+		$html = '';
+
+		foreach ( $data as $key => $value ) {
+
+			if ( is_array( $value ) )
+				$html.= ' data-'.$key.'=\''.self::encode( $value ).'\'';
+
+			else if ( FALSE === $value )
+				continue;
+
+			else
+				$html.= ' data-'.$key.'="'.trim( self::escape( $value ) ).'"';
+		}
+
+		return $html;
+	}
+
 	private static function _tag_open( $tag, $atts, $content = TRUE )
 	{
 		$html = '<'.$tag;
@@ -264,6 +289,20 @@ class gThemeHTML extends gThemeBaseCore
 			return $html.' />';
 
 		return $html.'>';
+	}
+
+	/**
+	 * Encodes a variable into JSON, with some confidence checks.
+	 * `wp_json_encode()` with default arguments is insufficient to safely
+	 * escape JSON for script tags.
+	 * @source https://core.trac.wordpress.org/ticket/63851
+	 *
+	 * @param mixed $data
+	 * @return string
+	 */
+	public static function encode( $data )
+	{
+		return wp_json_encode( $data, JSON_HEX_TAG | JSON_UNESCAPED_SLASHES );
 	}
 
 	// like WP core but without filter

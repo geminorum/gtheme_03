@@ -59,7 +59,8 @@ class gThemeMenu extends gThemeModuleCore
 			'primary'   => _x( 'Primary Navigation', 'Modules: Menu: Defaults', 'gtheme' ),
 			'secondary' => _x( 'Secondary Navigation', 'Modules: Menu: Defaults', 'gtheme' ),
 			'tertiary'  => _x( 'Tertiary Navigation', 'Modules: Menu: Defaults', 'gtheme' ),
-		], $extra );
+			'usermenu'  => _x( 'User Navigation', 'Modules: Menu: Defaults', 'gtheme' ),
+		], (array) $extra );
 	}
 
 	public static function navNetwork( $before = '', $after = '' )

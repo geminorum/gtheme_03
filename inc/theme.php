@@ -8,13 +8,13 @@ class gThemeTheme extends gThemeModuleCore
 	public function setup_actions( $args = [] )
 	{
 		extract( self::atts( [
-			'cleanup'           => FALSE, // @SEE: gNetwork Optimize
-			'html_title'        => TRUE, // @REF: https://make.wordpress.org/core/?p=11311
+			'cleanup'           => FALSE,   // @SEE: `gNetwork` Optimize
+			'html_title'        => TRUE,    // @REF: https://make.wordpress.org/core/?p=11311
 			'adminbar'          => TRUE,
 			'wpcf7'             => TRUE,
 			'page_excerpt'      => TRUE,
-			'content_width'     => TRUE, // @SEE: https://core.trac.wordpress.org/ticket/21256
-			'feed_links'        => TRUE, // Adds default posts and comments RSS feed links to head.
+			'content_width'     => TRUE,    // @SEE: https://core.trac.wordpress.org/ticket/21256
+			'feed_links'        => TRUE,    // Adds default posts and comments RSS feed links to HTML head.
 			'post_formats'      => FALSE,
 			'custom_background' => FALSE,
 			'custom_header'     => FALSE,
@@ -22,8 +22,8 @@ class gThemeTheme extends gThemeModuleCore
 			'custom_fontsizes'  => FALSE,
 			'html5'             => TRUE,
 			'js'                => FALSE,
-			'hooks'             => FALSE, // NO NEED
-			'wc_support'        => FALSE,
+			'hooks'             => FALSE,   // NO NEED
+			'wc_support'        => gThemeWooCommerce::available(),
 			'bp_support'        => TRUE,
 			'bp_no_styles'      => TRUE,
 			'print_support'     => TRUE,
@@ -72,9 +72,11 @@ class gThemeTheme extends gThemeModuleCore
 		add_filter( 'bp_use_theme_compat_with_current_theme', ( $bp_support ? '__return_true' : '__return_false' ) );
 
 		if ( $bp_no_styles ) {
-			add_action( 'wp_enqueue_scripts', [ $this, 'remove_bp_styles' ], 20 ); // bp-legacy
-			add_filter( 'bp_nouveau_enqueue_styles', '__return_false', 20 ); // bp-nouveau
-			self::define( 'GNETWORK_DISABLE_BUDDYPRESS_STYLES', TRUE ); // gNetwork
+
+			add_action( 'wp_enqueue_scripts', [ $this, 'remove_bp_styles' ], 20 );  // `bp-legacy`
+			add_filter( 'bp_nouveau_enqueue_styles', '__return_false', 20 );        // `bp-nouveau`
+
+			self::define( 'GNETWORK_DISABLE_BUDDYPRESS_STYLES', TRUE );  // `gNetwork`
 		}
 
 		if ( $post_formats )
@@ -282,15 +284,13 @@ class gThemeTheme extends gThemeModuleCore
 
 		wp_enqueue_script( 'gtheme-all', GTHEME_URL."/js/script.all$suffix.js", [ 'jquery' ], GTHEME_VERSION, TRUE );
 
-		// NO NEED: we enqueue autosize on comment form, and justify by it's caller
+		// NO NEED: we enqueue auto-size on comment form, and justify by its caller
 		// if ( is_singular() || is_single() )
 		// 	wp_enqueue_script( 'gtheme-singular', GTHEME_URL."/js/script.singular$suffix.js", [ 'jquery' ], GTHEME_VERSION, TRUE );
 	}
 
 	public function remove_bp_styles()
 	{
-		global $wp_styles;
-
 		$handles = [
 			'bp-legacy-css',
 			'bp-legacy-css-rtl',
@@ -300,7 +300,9 @@ class gThemeTheme extends gThemeModuleCore
 			'bp-child-css-rtl',
 		];
 
-		foreach ( $handles as $handle )
-			$wp_styles->dequeue( $handle );
+		foreach ( $handles as $handle ) {
+			wp_dequeue_style( $handle );
+			wp_deregister_style( $handle );
+		}
 	}
 }

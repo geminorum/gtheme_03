@@ -423,9 +423,9 @@ class gThemeContent extends gThemeModuleCore
 		if ( $html = gThemeEditorial::metaByline( $post, [ 'echo' => FALSE ] ) ) {
 
 			if ( $verbose )
-				echo $before.$html.$after;
+				echo $before.'<span class="-byline">'.$html.'</span>'.$after;
 
-			return $before.$html.$after;
+			return $before.'<span class="-byline">'.$html.'</span>'.$after;
 		}
 
 		$args = [ 'id' => $post->ID, 'echo' => FALSE, 'context' => 'single' ];

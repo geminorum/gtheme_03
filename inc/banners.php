@@ -211,7 +211,7 @@ class gThemeBanners extends gThemeModuleCore
 
 		echo $before.'<div class="wrap-bootstrap-carousel -group-'.$group.'">';
 		echo '<div id="'.$id.'" class="-carousel carousel slide w-100" data-ride="carousel" data-bs-ride="carousel">';
-		echo '<ol class="carousel-indicators">'.$indi.'</ol>';
+		echo '<ol class="list-unstyled carousel-indicators">'.$indi.'</ol>';
 		echo '<div class="carousel-inner">'.$html.'</div>';
 		echo $controls.'</div></div>'.$after;
 
