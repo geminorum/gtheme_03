@@ -3,6 +3,8 @@
 class gThemeWooCommerce extends gThemeModuleCore
 {
 
+	protected $ajax = TRUE;
+
 	// https://developer.woocommerce.com/docs/classic-theme-development-handbook/
 	public function setup_actions( $args = [] )
 	{
@@ -165,78 +167,73 @@ class gThemeWooCommerce extends gThemeModuleCore
 		return FALSE;
 	}
 
-	public static function accountDropdown( $class = '', $menuname = NULL, $before = '', $after = '' )
+	public static function accountDropdown( $class = '', $menuname = NULL, $before = NULL, $after = NULL, $navlink = TRUE )
 	{
 		if ( ! self::available() )
 			return FALSE;
 
-		$dropdown = is_user_logged_in();
+		$menuname = $menuname ?? 'usermenu';
+		$dropdown = is_user_logged_in() ? gThemeMenu::has( $menuname ) : FALSE;
 
-		echo $before.'<div class="dropdown -account-wrap '.$class.'">';
+		printf( $before ?? '<div class="dropdown -account-wrap %s">', $class );
 
-			echo '<a href="'.wc_get_account_endpoint_url( '' ).'" class="gtheme-account-link -account-link';
+			echo '<a href="'.wc_get_account_endpoint_url( '' ).'" class="gtheme-account-link -account-link'.( $navlink ? ' nav-link' : '' );
 			echo ( $dropdown ? ' dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside"' : '"' ).'>';
 				echo gThemeOptions::info( 'woocommerce_accountlink_text', _x( 'Your Account', 'Modules: WooCommerce: Account', 'gtheme' ) );
 			echo '</a>';
 
 			if ( $dropdown )
-				gThemeMenu::nav(
-					$menuname ?? 'tertiary',
-					[
-						'class' => '-navigation -account-menu dropdown-menu',
-					]
-				);
+				gThemeMenu::nav( $menuname, [
+					'class' => '-navigation -account-menu dropdown-menu',
+				] );
 
-		echo '</div>'.$after;
+		echo $after ?? '</div>';
 	}
 
 	// @SEE: https://wordpress.org/plugins/woocommerce-menu-bar-cart/
-	public static function cartDropdown( $class = '', $before = '', $after = '' )
+	public static function cartDropdown( $class = '', $before = NULL, $after = NULL, $navlink = TRUE )
 	{
 		if ( ! self::available() )
 			return FALSE;
 
 		$dropdown = ! is_checkout() && ! is_cart();
 
-		echo $before.'<div class="dropdown -cart-wrap '.$class.'">';
+		printf( $before ?? '<div class="dropdown -cart-wrap %s">', $class );
 
-			self::cartLink( $dropdown );
+			echo self::getCartLink( $dropdown, $navlink );
 
 			if ( $dropdown ) {
-				echo '<div class="dropdown-menu -cart-items">';
+				echo '<div class="dropdown-menu -cart-items p-2">';
 					the_widget( 'WC_Widget_Cart', 'title=' );
 				echo '</div>';
 			}
 
-		echo '</div>'.$after;
+		echo $after ?? '</div>';
 	}
 
 	// @REF: https://woocommerce.com/document/show-cart-contents-total/
-	public static function cartLink( $dropdown = TRUE )
+	public static function getCartLink( $dropdown = TRUE, $navlink = TRUE )
 	{
-		if ( ! self::available() )
-			return FALSE;
+		$html = '<a href="'.wc_get_cart_url().'" title="'.esc_attr( strip_tags( WC()->cart->get_cart_total() ) );
+		$html.= '" class="gtheme-cart-link -cart-link'.( $navlink ? ' nav-link' : '' ).( $dropdown ? ' dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside"' : '"' ).'>';
 
-		echo '<a href="'.wc_get_cart_url().'" title="'.esc_attr( strip_tags( WC()->cart->get_cart_total() ) );
-		echo '" class="gtheme-cart-link -cart-link'.( $dropdown ? ' dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside"' : '"' ).'>';
-
-			echo gThemeOptions::info( 'woocommerce_cartlink_text', _x( 'Your Cart', 'Modules: WooCommerce: CartLink', 'gtheme' ) );
+			$html.= gThemeOptions::info( 'woocommerce_cartlink_text', _x( 'Your Cart', 'Modules: WooCommerce: CartLink', 'gtheme' ) );
 
 			if ( $count = WC()->cart->get_cart_contents_count() ) {
-				echo '<span class="badge -cart-count">';
-					echo $count;
-					echo '<span class="visually-hidden">'._nx( 'item', 'items', $count, 'Modules: WooCommerce: CartLink', 'gtheme' ).'</span>';
-				echo '</span>';
+				$html.= '<span class="badge -cart-count">';
+					$html.= $count;
+					$html.= '<span class="visually-hidden">'._nx( 'item', 'items', $count, 'Modules: WooCommerce: CartLink', 'gtheme' ).'</span>';
+				$html.= '</span>';
 			}
 
-		echo '</a>';
+		$html.= '</a>';
+
+		return $html;
 	}
 
 	public static function add_to_cart_fragments( $fragments )
 	{
-		ob_start();
-		self::cartLink();
-		$fragments['a.gtheme-cart-link'] = ob_get_clean();
+		$fragments['a.gtheme-cart-link'] = self::getCartLink();
 
 		return $fragments;
 	}
