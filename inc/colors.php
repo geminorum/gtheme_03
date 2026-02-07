@@ -5,7 +5,7 @@ class gThemeColors extends gThemeModuleCore
 
 	protected $ajax = TRUE;
 
-	public function setup_actions( $args = [] )
+	public function setup_actions( $args = [], $childless = NULL )
 	{
 		extract( self::atts( [
 			'customizer'     => FALSE,

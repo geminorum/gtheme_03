@@ -6,11 +6,17 @@ class gThemeUtilities extends gThemeBaseCore
 	/**
 	 * Determines the current theme has the child?
 	 *
+	 * @alternative `is_child_theme()`: uses the `TEMPLATEPATH` and
+	 * `STYLESHEETPATH` constants internally. If calling from a plugin,
+	 * such as during plugin activation, there’s a chance these
+	 * will be undefined.
+	 *
 	 * @return bool
 	 */
 	public static function isChildless()
 	{
-		return GTHEME_DIR === GTHEME_CHILD_DIR;
+		// return GTHEME_DIR === GTHEME_CHILD_DIR; // may not defined yet!
+		return get_template_directory() === get_stylesheet_directory();
 	}
 
 	public static function contentHasPages()

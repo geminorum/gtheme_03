@@ -6,7 +6,7 @@ class gThemeWooCommerce extends gThemeModuleCore
 	protected $ajax = TRUE;
 
 	// https://developer.woocommerce.com/docs/classic-theme-development-handbook/
-	public function setup_actions( $args = [] )
+	public function setup_actions( $args = [], $childless = NULL )
 	{
 		extract( self::atts( [
 			'product_gallery' => TRUE,

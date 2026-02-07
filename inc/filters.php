@@ -3,7 +3,7 @@
 class gThemeFilters extends gThemeModuleCore
 {
 
-	public function setup_actions( $args = [] )
+	public function setup_actions( $args = [], $childless = NULL )
 	{
 		extract( self::atts( [
 			'continue_reading'   => FALSE,
@@ -100,7 +100,8 @@ class gThemeFilters extends gThemeModuleCore
 
 			echo self::getStyleLink( TRUE, TRUE );
 
-		} else if ( gThemeOptions::info( 'deferred_styles', FALSE )
+		} else if ( gThemeOptions::info( 'deferred_styles', gThemeUtilities::isChildless() ) // NOTE: default for child is `FALSE`
+
 			&& ! gThemeWordPress::isDebug() ) {
 
 			self::preloadStyles();

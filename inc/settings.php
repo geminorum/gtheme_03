@@ -8,7 +8,7 @@ class gThemeSettings extends gThemeModuleCore
 	private $_settings_uri    = '';
 	private $_settings_parent = '';
 
-	public function setup_actions( $args = [] )
+	public function setup_actions( $args = [], $childless = NULL )
 	{
 		extract( self::atts( [
 			'activation_redirect' => FALSE, // redirects to settings after activation

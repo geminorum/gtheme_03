@@ -5,7 +5,7 @@ class gThemeTheme extends gThemeModuleCore
 
 	protected $ajax = TRUE;
 
-	public function setup_actions( $args = [] )
+	public function setup_actions( $args = [], $childless = NULL )
 	{
 		extract( self::atts( [
 			'cleanup'           => FALSE,   // @SEE: `gNetwork` Optimize
@@ -28,7 +28,7 @@ class gThemeTheme extends gThemeModuleCore
 			'bp_no_styles'      => TRUE,
 			'print_support'     => TRUE,
 			'alignwide_support' => FALSE,
-			'childless_parent'  => gThemeUtilities::isChildless(),
+			'childless_parent'  => $childless ?? FALSE,
 		], $args ) );
 
 		if ( $cleanup )

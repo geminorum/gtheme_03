@@ -5,7 +5,7 @@ class gThemePages extends gThemeModuleCore
 
 	protected $key = 'pages';
 
-	public function setup_actions( $args = [] )
+	public function setup_actions( $args = [], $childless = NULL )
 	{
 		extract( self::atts( [
 			'admin' => TRUE,

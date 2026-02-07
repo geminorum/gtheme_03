@@ -14,7 +14,7 @@ class gThemeModuleCore extends gThemeBaseCore
 
 	public $options = [];
 
-	public function __construct( $args = [] )
+	public function __construct( $args = [], $childless = NULL )
 	{
 		if ( ! $this->ajax && gThemeWordPress::isAJAX() )
 			throw new Exception( 'Not on AJAX Calls!' );
@@ -23,10 +23,10 @@ class gThemeModuleCore extends gThemeBaseCore
 			throw new Exception( 'Not while WP is Installing!' );
 
 		$this->args = $args;
-		$this->setup_actions( $args );
+		$this->setup_actions( $args, $childless );
 	}
 
-	public function setup_actions( $args = [] ) {}
+	public function setup_actions( $args = [], $childless = NULL ) {}
 
 	public function shortcodes( $shortcodes = [] )
 	{

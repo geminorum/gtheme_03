@@ -126,7 +126,7 @@ final class gThemeCore
 		}
 	}
 
-	private function init_modules( $modules, $options = [] )
+	private function init_modules( $modules, $options = [], $childless = NULL )
 	{
 		foreach ( $modules as $module_slug => $module_class ) {
 
@@ -137,7 +137,7 @@ final class gThemeCore
 
 				try {
 
-					$this->{$slug} = new $module_class( $args );
+					$this->{$slug} = new $module_class( $args, $childless );
 
 				} catch ( Exception $e ) {
 
@@ -153,7 +153,11 @@ final class gThemeCore
 		// NOTE: must manually load the text-domain to work on child themes!
 		load_theme_textdomain( 'gtheme', GTHEME_DIR.'/languages' );
 
-		$this->init_modules( $this->modules, gThemeOptions::info( 'module_args', [] ) );
+		$this->init_modules(
+			$this->modules,
+			gThemeOptions::info( 'module_args', [] ),
+			get_template_directory() === get_stylesheet_directory()
+		);
 	}
 
 	public function init_late()

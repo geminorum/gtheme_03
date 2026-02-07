@@ -3,7 +3,7 @@
 class gThemeBootstrap extends gThemeModuleCore
 {
 
-	public function setup_actions( $args = [] )
+	public function setup_actions( $args = [], $childless = NULL )
 	{
 		extract( self::atts( [
 			'enhance_forms' => TRUE,

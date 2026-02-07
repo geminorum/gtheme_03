@@ -5,7 +5,7 @@ class gThemeAdmin extends gThemeModuleCore
 
 	protected $default_user = 0;
 
-	public function setup_actions( $args = [] )
+	public function setup_actions( $args = [], $childless = NULL )
 	{
 		extract( self::atts( [
 			'set_def_user'          => FALSE, // no longer using this!

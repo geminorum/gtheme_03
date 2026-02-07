@@ -5,7 +5,7 @@ class gThemeCounts extends gThemeModuleCore
 
 	protected $key = 'counts';
 
-	public function setup_actions( $args = [] )
+	public function setup_actions( $args = [], $childless = NULL )
 	{
 		extract( self::atts( [
 			'admin' => FALSE,

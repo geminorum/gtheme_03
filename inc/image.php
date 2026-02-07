@@ -5,7 +5,7 @@ class gThemeImage extends gThemeModuleCore
 
 	protected $ajax = TRUE;
 
-	public function setup_actions( $args = [] )
+	public function setup_actions( $args = [], $childless = NULL )
 	{
 		extract( self::atts( [
 			'core_post_thumbnails'   => TRUE,                        // WordPress core thumbnail for posts

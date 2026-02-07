@@ -4,7 +4,7 @@ class gThemeWrap extends gThemeModuleCore
 {
 
 	// non-admin only
-	public function setup_actions( $args = [] )
+	public function setup_actions( $args = [], $childless = NULL )
 	{
 		extract( self::atts( [
 			'images_404' => FALSE,
