@@ -17,7 +17,8 @@ if ( gThemeTerms::has( 'insert-people' ) )
 	gThemeEditorial::personPicture( [ 'before' => '<div class="entry-person">', 'after' => '</div>' ] );
 
 gThemeContent::content();
-gThemeContent::navigation();
+// gThemeContent::navigation();
+gThemeContent::navigationFancy();
 
 gThemeEditorial::theAction( [
 	'before'     => '<div class="entry-after after-single after-action d-grid gap-2">',

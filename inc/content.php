@@ -1712,4 +1712,57 @@ addthis_config.services_custom = [
 
 		echo $args['before'].$html.$args['after'];
 	}
+
+	// @REF: https://developer.wordpress.org/reference/functions/wp_link_pages/#comment-6282
+	// @EXAMPLE: `« Previous 1 2 3 Next »`
+	public static function navigationFancy( $atts = [] )
+	{
+		if ( ! gThemeUtilities::contentHasPages() )
+			return FALSE;
+
+		$args = self::atts( [
+			'link_before'      => '',
+			'link_after'       => '',
+			'nextpagelink'     => _x( 'Next &raquo;', 'Modules: Content: Link Pages', 'gtheme' ),
+			'previouspagelink' => _x( '&laquo; Previous', 'Modules: Content: Link Pages', 'gtheme' ),
+			'pagelink'         => '%',
+		], $atts );
+
+		$args['before'] = $args['after'] = $args['echo'] = '';
+
+		$separator = wp_link_pages( array_merge( $args, [
+			'next_or_number'   => 'number',
+
+		] ) );
+
+		$html = wp_link_pages( array_merge( $args, [
+			'next_or_number' => 'next',
+			'separator'      => $separator,
+		] ) );
+
+		if ( gThemeUtilities::contentFirstPage() )
+			$html = $separator.$html;
+
+		else if ( gThemeUtilities::contentLastPage() )
+			$html.= $separator;
+
+		if ( ! $html )
+			return FALSE;
+
+		$args = self::atts( [
+			'before' => '<div class="entry-pages">',
+			'after'  => '</div>',
+			'title'  => '', // It's better not to have title on `Fancy`
+			'echo'   => TRUE,
+		], $atts );
+
+		if ( $args['title'] )
+			$html = '<span class="-title">'.$args['title'].'</span> '.$html;
+
+		if ( ! $args['echo'] )
+			return $args['before'].$html.$args['after'];
+
+		echo $args['before'].$html.$args['after'];
+		return TRUE;
+	}
 }
