@@ -1,8 +1,8 @@
 jQuery(function ($) {
-  var lang = $('html').attr('lang');
+  const lang = $('html').attr('lang');
 
-  var toPersianDigit = function (number) {
-    var pzero = '۰'.charCodeAt(0);
+  const toPersianDigit = function (number) {
+    const pzero = '۰'.charCodeAt(0);
     return number.toString().replace(/\d+/g, function (match) {
       return match.split('').map(function (number) {
         return String.fromCharCode(pzero + parseInt(number));
@@ -14,8 +14,8 @@ jQuery(function ($) {
     $('.wrap-jcarousel-paginated .-carousel')
       // responsive!
       .on('jcarousel:create jcarousel:reload', function () {
-        var element = $(this);
-        var width = element.innerWidth();
+        const element = $(this);
+        const width = element.innerWidth();
 
         // This shows 1 item at a time.
         // Divide `width` to the number of items you want to display,
