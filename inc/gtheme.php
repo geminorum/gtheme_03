@@ -86,14 +86,13 @@ final class gThemeCore
 			'attachment' => 'gThemeAttachment',
 			'colors'     => 'gThemeColors',
 			'logo'       => 'gThemeLogo',
+			'wrap'       => 'gThemeWrap',
 
 			'woocommerce' => 'gThemeWooCommerce',
 		];
 
 		if ( is_admin() ) {
 			$modules['admin'] = 'gThemeAdmin';
-		} else {
-			$modules['wrap'] = 'gThemeWrap';
 		}
 
 		$this->modules = apply_filters( 'gtheme_modules', $modules );

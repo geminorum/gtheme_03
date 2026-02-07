@@ -4,5 +4,9 @@
 // echo '</div>'; // `.wrapper.-main`
 gThemeWrap::wrapperClose( 'main', 3 );
 
-get_template_part( 'partials/end', gtheme_template_base() );
+get_template_part(
+	sprintf( 'partials/%s', gThemeWrap::baseEndsWith( 'end' ) ),
+	gtheme_template_base()
+);
+
 get_template_part( 'partials/footer', gtheme_template_base() );

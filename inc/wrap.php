@@ -3,12 +3,20 @@
 class gThemeWrap extends gThemeModuleCore
 {
 
-	// non-admin only
+	protected $ajax = TRUE;
+
 	public function setup_actions( $args = [], $childless = NULL )
 	{
 		extract( self::atts( [
 			'images_404' => FALSE,
+			'customizer' => $childless ?? FALSE,
 		], $args ) );
+
+		if ( $customizer )
+			add_action( 'customize_register', [ $this, 'customize_register' ] );
+
+		if ( is_admin() )
+			return;
 
 		add_action( 'before_signup_header', [ $this, 'before_signup_header' ] );
 		add_action( 'activate_header', [ $this, 'activate_header' ] );
@@ -50,6 +58,79 @@ class gThemeWrap extends gThemeModuleCore
 
 		self::define( 'GTHEME_IS_WP_ACTIVATE', TRUE );
 		self::define( 'GTHEME_SOCIAL_META_DISABLED', TRUE );
+	}
+
+	// TODO: adopt: `Storefront_Custom_Radio_Image_Control`
+	public function customize_register( $manager )
+	{
+		$section = sprintf( '%s_%s', $this->base, 'wraps' );
+		$manager->add_section( $section, [
+			'title' => esc_html_x( 'Wrapping', 'Customizer: Section Title', 'gtheme' ),
+		] );
+
+		$setting = 'wrap_base_starts_with';
+		$manager->add_setting( $setting, [
+			'default'           => gThemeOptions::info( 'wrap_base_starts_with', 'navbar' ),
+			'sanitize_callback' => 'sanitize_text_field',
+			'capability'        => 'manage_options',
+		] );
+
+		$manager->add_control(
+			new \WP_Customize_Control(
+				$manager,
+				sprintf( '%s_%s', $this->base, $setting ),
+				[
+					'section'     => $section,
+					'settings'    => $setting,
+					'type'        => 'radio',
+					'label'       => esc_html_x( 'Wrapping Starts', 'Customizer: Setting Title', 'gtheme' ),
+					'description' => esc_html_x( 'Defines the block that starts on content wraps.', 'Customizer: Setting Description', 'gtheme' ),
+					'choices'     => gThemeOptions::info( 'wrap_base_starts_with_choices', [
+						'navbar' => esc_html_x( 'Navbar &mdash; On the Top', 'Customizer: Setting Option', 'gtheme' ),
+						'band'   => esc_html_x( 'Band &mdash; On the Side', 'Customizer: Setting Option', 'gtheme' ),
+						'none'   => esc_html_x( 'None', 'Customizer: Setting Option', 'gtheme' ),
+					] ),
+				]
+			)
+		);
+
+		$setting = 'wrap_base_ends_with';
+		$manager->add_setting( $setting, [
+			'default'           => gThemeOptions::info( 'wrap_base_ends_with', 'end' ),
+			'sanitize_callback' => 'sanitize_text_field',
+			'capability'        => 'manage_options',
+		] );
+
+		$manager->add_control(
+			new \WP_Customize_Control(
+				$manager,
+				sprintf( '%s_%s', $this->base, $setting ),
+				[
+					'section'     => $section,
+					'settings'    => $setting,
+					'type'        => 'radio',
+					'label'       => esc_html_x( 'Wrapping Ends', 'Customizer: Setting Title', 'gtheme' ),
+					'description' => esc_html_x( 'Defines the block that ends on content wraps.', 'Customizer: Setting Description', 'gtheme' ),
+					'choices'     => gThemeOptions::info( 'wrap_base_ends_with_choices', [
+						'spotlight' => esc_html_x( 'Spotlight &mdash; After the Content', 'Customizer: Setting Option', 'gtheme' ),
+						'end'       => esc_html_x( 'End &mdash; Before the Footer', 'Customizer: Setting Option', 'gtheme' ),
+						'none'      => esc_html_x( 'None', 'Customizer: Setting Option', 'gtheme' ),
+					] ),
+				]
+			)
+		);
+	}
+
+	public static function baseStartsWith( $fallback = 'navbar' )
+	{
+		return get_theme_mod( 'wrap_base_starts_with',
+			gThemeOptions::info( 'wrap_base_starts_with', $fallback ) ) ?: 'none';
+	}
+
+	public static function baseEndsWith( $fallback = 'end' )
+	{
+		return get_theme_mod( 'wrap_base_ends_with',
+			gThemeOptions::info( 'wrap_base_ends_with', $fallback ) ) ?: 'none';
 	}
 
 ////////////////////////////////////////////////////////////////////////////////

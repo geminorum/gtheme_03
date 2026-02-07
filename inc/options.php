@@ -49,9 +49,11 @@ class gThemeOptions extends gThemeModuleCore
 			'module_args'  => [],
 
 			/// WRAP:
-			// 'wrap_wrap_class'      => '',
-			// 'wrap_container_class' => 'container-xl',
-			// 'wrap_row_class'       => '',
+			// 'wrap_base_starts_with' => 'navbar'  // `navbar`/`band`/`none` or any partial name
+			// 'wrap_base_ends_with'   => 'end'     // `end`/`none` or any partial name
+			// 'wrap_wrap_class'       => '',
+			// 'wrap_container_class'  => 'container-xl',
+			// 'wrap_row_class'        => '',
 
 			/// MENUS:
 			// 'register_nav_menus'   => gThemeMenu::defaults(),
