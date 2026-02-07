@@ -10,4 +10,6 @@ gThemeContent::wrapOpen( 'attachment' );
 
 	gThemeAttachment::content();
 
+	gThemeComments::template( '<div class="entry-comments">', '</div>' );
+
 gThemeContent::wrapClose( 'attachment' );
