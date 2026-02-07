@@ -52,7 +52,7 @@ class gThemeColors extends gThemeModuleCore
 					'choices'     => [
 						'light'  => esc_html_x( 'Light', 'Customizer: Setting Option', 'gtheme' ),
 						'dark'   => esc_html_x( 'Dark', 'Customizer: Setting Option', 'gtheme' ),
-					]
+					],
 				]
 			)
 		);

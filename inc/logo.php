@@ -34,11 +34,11 @@ class gThemeLogo extends gThemeModuleCore
 				$manager,
 				sprintf( '%s_%s', $this->base, $setting ),
 				[
+					'section'     => 'title_tagline',
 					'settings'    => $setting,
 					'type'        => 'checkbox',
 					'label'       => esc_html_x( 'Append Site Title', 'Customizer: Setting Title', 'gtheme' ),
 					'description' => esc_html_x( 'Keeps the site title along with the custom logo.', 'Customizer: Setting Description', 'gtheme' ),
-					'section'     => 'title_tagline',
 				]
 			)
 		);
@@ -55,11 +55,11 @@ class gThemeLogo extends gThemeModuleCore
 				$manager,
 				sprintf( '%s_%s', $this->base, $setting ),
 				[
+					'section'     => 'title_tagline',
 					'settings'    => $setting,
 					'type'        => 'checkbox',
 					'label'       => esc_html_x( 'Append Site Description', 'Customizer: Setting Title', 'gtheme' ),
 					'description' => esc_html_x( 'Keeps the site description along with the custom logo.', 'Customizer: Setting Description', 'gtheme' ),
-					'section'     => 'title_tagline',
 				]
 			)
 		);

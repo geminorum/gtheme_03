@@ -1682,6 +1682,9 @@ addthis_config.services_custom = [
 
 	public static function navigation( $atts = [] )
 	{
+		if ( ! gThemeUtilities::contentHasPages() )
+			return FALSE;
+
 		$args = self::atts( [
 			'link_before'      => '',
 			'link_after'       => '',
@@ -1711,6 +1714,7 @@ addthis_config.services_custom = [
 			return $args['before'].$html.$args['after'];
 
 		echo $args['before'].$html.$args['after'];
+		return TRUE;
 	}
 
 	// @REF: https://developer.wordpress.org/reference/functions/wp_link_pages/#comment-6282

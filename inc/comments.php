@@ -147,7 +147,7 @@ class gThemeComments extends gThemeModuleCore
 	{
 		$callback = gThemeOptions::info( 'comments_title_callback', [ 'gThemeComments', 'title_callback' ] );
 
-		if ( is_callable( $callback ) )
+		if ( $callback && is_callable( $callback ) )
 			call_user_func_array( $callback, [ 'comments-title', 'h3' ] );
 	}
 
@@ -159,11 +159,19 @@ class gThemeComments extends gThemeModuleCore
 	public static function title_callback( $class = 'comments-title', $tag = 'h3' )
 	{
 		$comments = get_comments_number();
-		/* translators: %1$s: comments number, %2$s: post title */
-		$template = _nx( '%1$s thought on &ldquo;%2$s&rdquo;', '%1$s thoughts on &ldquo;%2$s&rdquo;', $comments, 'Modules: Comments Title', 'gtheme' );
-		$title    = sprintf( $template, number_format_i18n( $comments ), '<span>'.get_the_title().'</span>' );
 
-		echo gThemeHTML::tag( $tag, [ 'class' => $class ], $title );
+		/* translators: `%1$s`: comments number, `%2$s`: post title */
+		$template = _nx(
+			'%1$s thought on &ldquo;%2$s&rdquo;',
+			'%1$s thoughts on &ldquo;%2$s&rdquo;',
+			$comments,
+			'Modules: Comments Title',
+			'gtheme'
+		);
+
+		echo gThemeHTML::tag( $tag, [
+			'class' => $class
+		], sprintf( $template, number_format_i18n( $comments ), '<span>'.get_the_title().'</span>' ) );
 	}
 
 	public static function feed( $class = 'comments-feed' )
@@ -178,25 +186,25 @@ class gThemeComments extends gThemeModuleCore
 		echo gThemeHTML::wrap( $html, $class );
 	}
 
-	// When this is enabled, new comments on a post will not refresh the cached static files.
+	// On `WPLOCKDOWN` new comments will not refresh the cached static files.
 	public static function lockDownNotice( $class = '' )
 	{
-		if ( defined( 'WPLOCKDOWN' ) && constant( 'WPLOCKDOWN' ) ) {
-			echo '<div class="lockdown-notice '.$class.'">';
-				_ex( 'Sorry, The site is locked down. Updates will appear shortly.', 'Modules: Comments', 'gtheme' );
-			echo '</div>';
-		}
+		if ( ! self::const( 'WPLOCKDOWN' ) )
+			return;
+
+		echo '<div class="lockdown-notice '.$class.'">';
+			_ex( 'Sorry, The site is locked down. Updates will appear shortly.', 'Modules: Comments', 'gtheme' );
+		echo '</div>';
 	}
 
 	public static function renderList()
 	{
-		echo '<ol class="commentlist comment-list media-list">';
+		echo '<ol class="list-unstyled commentlist comment-list media-list">';
 
-		// http://codex.wordpress.org/Function_Reference/wp_list_comments
 		wp_list_comments( [
 			'callback' => gThemeOptions::info( 'comments_item_callback', [ 'gThemeComments', 'comment_callback' ] ),
 			'style'    => 'ol',
-			'type'     => 'comment', // no ping & trackback / default is 'all'
+			'type'     => 'comment', // NOTE: no ping-back & track-back / default is `all`
 		] );
 
 		echo '</ol>';
