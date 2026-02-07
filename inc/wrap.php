@@ -8,7 +8,7 @@ class gThemeWrap extends gThemeModuleCore
 	public function setup_actions( $args = [], $childless = NULL )
 	{
 		extract( self::atts( [
-			'images_404' => FALSE,
+			'images_404' => $childless ?? FALSE,
 			'customizer' => $childless ?? FALSE,
 		], $args ) );
 
@@ -32,12 +32,22 @@ class gThemeWrap extends gThemeModuleCore
 		if ( ! is_404() )
 			return $template;
 
+		// $default = 'images/placeholders/404.png';             // `image/png`
+		// $default = 'images/placeholders/file-corrupted.svg';  // `image/svg+xml`
+		$default = 'images/placeholders/page-hidden.svg';     // `image/svg+xml`
+
+		if ( ! $filepath = gThemeOptions::info( 'wrap_include_404_path', $default ) )
+			return $template;
+
+		// NOTE: matches `img.png`/`img.gif?hello=world`
 		// @REF: http://wpengineer.com/2377/implement-404-image-in-your-theme/
-		// matches 'img.png' and 'img.gif?hello=world'
 		if ( preg_match( '~\.(jpe?g|png|gif|svg|bmp)(\?.*)?$~i', $_SERVER['REQUEST_URI'] ) ) {
-			header( 'Content-Type: image/png' );
-			// header( 'Content-Type: image/svg+xml' );
-			locate_template( 'images/404.png', TRUE, TRUE );
+
+			// NOTE: we can use `wp_check_filetype()` but this is much faster!
+			$mimetype = gThemeOptions::info( 'wrap_include_404_mime', 'image/svg+xml' ); // `image/png`
+			header( 'Content-Type: '.( $mimetype ?: 'image/svg+xml' ) );
+
+			locate_template( $filepath, TRUE, TRUE );
 			exit;
 		}
 
