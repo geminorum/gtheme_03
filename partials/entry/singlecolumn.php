@@ -11,7 +11,7 @@ gThemeImage::image( [
 ] );
 
 gThemeContent::header( [ 'context' => 'singular', 'byline' => TRUE, 'actions' => NULL ] );
-gThemeEditorial::metaHTML( 'lead', [ 'before' => '<div class="entry-lead">', 'after' => '</div>' ] );
+gThemeEditorial::metaHTML( 'lead', [ 'before' => '<div class="entry-lead text-bg-light mb-5 pt-3 px-4 pb-1">', 'after' => '</div>' ] );
 
 if ( gThemeTerms::has( 'insert-people' ) )
 	gThemeEditorial::personPicture( [ 'before' => '<div class="entry-person">', 'after' => '</div>' ] );
@@ -57,6 +57,8 @@ gThemeEditorial::venuePlace( [
 ] );
 
 gThemeNavigation::content( 'singular', TRUE );
+
+gThemeEditorial::tabsPostTabs();
 
 gThemeSideBar::sidebar( 'entry-after', '<div class="wrap-side sidebar-entry-after">', '</div>' );
 

@@ -8,7 +8,7 @@ class gThemeTerms extends gThemeModuleCore
 	public function setup_actions( $args = [], $childless = NULL )
 	{
 		extract( self::atts( [
-			'system_tags' => FALSE,
+			'system_tags' => $childless ?? FALSE,
 			'p2p'         => FALSE, // DEPRECATED: use gEditorial Connected
 			'admin'       => FALSE,
 		], $args ) );
@@ -240,7 +240,9 @@ class gThemeTerms extends gThemeModuleCore
 			'no-related'          => _x( 'Not on Related', 'System Tags Defaults', 'gtheme' ),
 			'no-feed'             => _x( 'Not on Feed', 'System Tags Defaults', 'gtheme' ),
 			'insert-people'       => _x( 'Insert People', 'System Tags Defaults', 'gtheme' ),
-			'must-read'           => _x( 'Must Read!', 'System Tags Defaults', 'gtheme' ), // @SEE: https://wordpress.org/plugins/must-read/
+			'autopaging-content'  => _x( 'Auto-paging Content', 'System Tags Defaults', 'gtheme' ),
+			'generate-toc'        => _x( 'Generate ToC', 'System Tags Defaults', 'gtheme' ),
+			'must-read'           => _x( 'Must Read!', 'System Tags Defaults', 'gtheme' ),            // @SEE: https://wordpress.org/plugins/must-read/
 		], $extra );
 	}
 

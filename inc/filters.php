@@ -6,14 +6,12 @@ class gThemeFilters extends gThemeModuleCore
 	public function setup_actions( $args = [], $childless = NULL )
 	{
 		extract( self::atts( [
-			'continue_reading'   => FALSE,
-			'auto_paginate'      => FALSE,
-			'redirect_canonical' => FALSE,
-			'default_editor'     => FALSE,
-			'overwrite_author'   => TRUE,
-			'resource_hints'     => TRUE,
-			'preload_resources'  => TRUE,
-			'disable_postclass'  => TRUE,
+			'continue_reading'  => FALSE,
+			'default_editor'    => FALSE,
+			'overwrite_author'  => TRUE,
+			'resource_hints'    => TRUE,
+			'preload_resources' => TRUE,
+			'disable_postclass' => TRUE,
 		], $args ) );
 
 		if ( ! is_admin() ) {
@@ -50,12 +48,6 @@ class gThemeFilters extends gThemeModuleCore
 
 			add_filter( 'the_content', [ $this, 'the_content_actions' ], 997 );
 			add_filter( 'the_content_more_link', [ $this, 'the_content_more_link' ] );
-
-			if ( $auto_paginate )
-				add_action( 'loop_start', [ $this, 'loop_start' ] );
-
-			if ( $redirect_canonical )
-				add_filter( 'redirect_canonical', [ $this, 'redirect_canonical' ], 10, 2 );
 
 			if ( $default_editor )
 				add_filter( 'wp_default_editor', [ $this, 'wp_default_editor' ] );
@@ -534,77 +526,6 @@ class gThemeFilters extends gThemeModuleCore
 		return preg_replace( '|#more-[0-9]+|', '', $link );
 	}
 
-	// FIXME: Not working well with UTF / problem in `str_word_count()`
-	// https://gist.github.com/danielbachhuber/6691084
-	// auto-paginate after 500 words, but respect paragraphs and don't leave page stubs.
-	public function loop_start( $query )
-	{
-		if ( ! $query->is_main_query() )
-			return;
-
-		if ( ! is_singular( gThemeOptions::info( 'post_auto_paginate_type', [ 'post' ] ) ) )
-			return;
-
-		$min  = gThemeOptions::info( 'post_auto_paginate_min', 900 );
-		$each = gThemeOptions::info( 'post_auto_paginate_each', 500 );
-
-		$content = $query->posts[0]->post_content;
-		$count   = gThemeText::wordCountUTF8( $content );
-
-		if ( $min > $count )
-			return;
-
-		$content_array   = str_split( $content );
-		$word_array      = str_word_count( $content, 2 );
-		$word_count      = 0;
-		$next_page_count = 0;
-
-		while ( count( $word_array ) > $min ) {
-
-			$word_array = array_slice( $word_array, $each + $word_count, null, TRUE );
-			$word_count = 0;
-
-			foreach ( $word_array as $i => $word ) {
-
-				if ( 'p' != $word ) {
-					$word_count++;
-					continue;
-				}
-
-				// found a '<p>'
-				if ( '<' == $content_array[$i-1] )
-					$k = $i-2;
-				// found a '</p>'
-				else
-					$k = $i+3;
-
-				$k = $k + ( $next_page_count * 15 );
-				$next_page_count++;
-
-				$content = substr( $content, 0, $k ).'<!--nextpage-->'.substr( $content, $k );
-				break;
-			}
-		}
-
-		$query->posts[0]->post_content = $content;
-	}
-
-	// TODO: add the link to wp_list_page ( or whatever! )
-	// https://gist.github.com/danielbachhuber/1636361
-	// filter canonical redirects so we can support full page URLs
-	public function redirect_canonical( $redirect_url, $requested_url )
-	{
-		$url_endings = [
-			'full',
-			'pall',
-		];
-
-		if ( ( is_singular() || is_single() ) && in_array( trim( strtolower( substr( $requested_url, -5 ) ), '/' ), $url_endings ) )
-			return trailingslashit( $requested_url );
-		else
-			return $redirect_url;
-	}
-
 	public function wp_default_editor( $r )
 	{
 		return gThemeOptions::info( 'default_editor', 'html' );
@@ -636,9 +557,9 @@ class gThemeFilters extends gThemeModuleCore
 	/**
 	 * Filters domains and URLs for resource hints of relation type.
 	 *
-	 * @param  array $urls
-	 * @param  string $relation_type
-	 * @return array $urls
+	 * @param array $urls
+	 * @param string $relation_type
+	 * @return array
 	 */
 	public function wp_resource_hints( $urls, $relation_type )
 	{
@@ -657,8 +578,8 @@ class gThemeFilters extends gThemeModuleCore
 	 * @link https://developer.mozilla.org/en-US/docs/Web/HTML/Link_types/preload
 	 * @link https://web.dev/preload-responsive-images/
 	 *
-	 * @param  array $preload_resources
-	 * @return array $preload_resources
+	 * @param array $preload_resources
+	 * @return array
 	 */
 	public function wp_preload_resources( $preload_resources )
 	{

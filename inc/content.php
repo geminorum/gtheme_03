@@ -1688,10 +1688,12 @@ addthis_config.services_custom = [
 		$args = self::atts( [
 			'link_before'      => '',
 			'link_after'       => '',
-			'next_or_number'   => 'number',
+			'next_or_number'   => 'number', // or `next`
 			'separator'        => '',
 			'nextpagelink'     => _x( 'Next page', 'Modules: Content: Link Pages', 'gtheme' ),
 			'previouspagelink' => _x( 'Previous page', 'Modules: Content: Link Pages', 'gtheme' ),
+			'viewallpageslink' => _x( 'View All', 'Modules: Content: Link Pages', 'gtheme' ),
+			'viewall_disabled' => FALSE,
 			'pagelink'         => '%',
 		], $atts );
 
@@ -1729,6 +1731,8 @@ addthis_config.services_custom = [
 			'link_after'       => '',
 			'nextpagelink'     => _x( 'Next &raquo;', 'Modules: Content: Link Pages', 'gtheme' ),
 			'previouspagelink' => _x( '&laquo; Previous', 'Modules: Content: Link Pages', 'gtheme' ),
+			'viewallpageslink' => _x( 'View All Pages', 'Modules: Content: Link Pages', 'gtheme' ),
+			'viewall_disabled' => FALSE,
 			'pagelink'         => '%',
 		], $atts );
 
@@ -1736,7 +1740,7 @@ addthis_config.services_custom = [
 
 		$separator = wp_link_pages( array_merge( $args, [
 			'next_or_number'   => 'number',
-
+			'viewall_disabled' => TRUE, // must always disabled here
 		] ) );
 
 		$html = wp_link_pages( array_merge( $args, [

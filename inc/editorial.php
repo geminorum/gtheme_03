@@ -44,7 +44,7 @@ class gThemeEditorial extends gThemeModuleCore
 			add_filter( 'gtheme_date_override_the_date', [ $this, 'date_override_the_date' ], 20, 4 );
 
 		if ( $reflist_toc )
-			add_filter( 'gnetwork_shortcodes_reflist_toc', [ $this, 'shortcodes_reflist_toc' ], 10, 2 );
+			add_filter( 'gnetwork_shortcodes_reflist_toc', [ $this, 'shortcodes_reflist_toc' ], 10, 3 );
 
 		add_filter( 'geditorial_shortcode_attachement_download', [ $this, 'attachement_download' ], 9, 2 );
 		add_filter( 'geditorial_wc_terms_term_listassigned_args', [ $this, 'wc_terms_term_listassigned_args' ], 9, 2 );
@@ -191,13 +191,13 @@ class gThemeEditorial extends gThemeModuleCore
 		] );
 	}
 
-	public function shortcodes_reflist_toc( $item, $toc )
+	public function shortcodes_reflist_toc( $item, $toc, $niche = NULL )
 	{
 		if ( ! $title = gThemeOptions::info( 'reflist_title', FALSE ) )
 			return $item;
 
 		$item['slug']  = 'footnotes';
-		$item['niche'] = '4';
+		$item['niche'] = $niche ?? 4;
 		$item['title'] = strip_tags( $title );
 
 		return $item;

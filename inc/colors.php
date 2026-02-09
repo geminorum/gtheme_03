@@ -8,8 +8,8 @@ class gThemeColors extends gThemeModuleCore
 	public function setup_actions( $args = [], $childless = NULL )
 	{
 		extract( self::atts( [
-			'customizer'     => FALSE,
-			'disable_custom' => TRUE,
+			'customizer'     => $childless ?? FALSE,
+			'disable_custom' => ! $childless,
 			'custom_palette' => TRUE,
 			'accent_color'   => self::getAccentColorDefault( FALSE ),
 		], $args ) );

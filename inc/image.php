@@ -784,7 +784,7 @@ class gThemeImage extends gThemeModuleCore
 					esc_url( $args['link'] ),
 					'-thumbnail-link',
 					$args['default_title'] ?: gThemeUtilities::prepTitle( $attachment->post_title ),
-					$caption ?: apply_filters( 'wp_get_attachment_caption', $attachment->post_excerpt, $attachment->ID ),
+					$caption, // `?: apply_filters( 'wp_get_attachment_caption', $attachment->post_excerpt, $attachment->ID ),` // WTF?!
 					$args['link_label'] ?: '',
 				] );
 			}
