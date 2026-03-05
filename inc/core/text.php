@@ -148,6 +148,7 @@ class gThemeText extends gThemeBaseCore
 
 		foreach ( [
 			'alignnone',
+			'alignfull',
 			'alignwide',
 			'aligncenter',
 			'alignleft',
@@ -155,7 +156,7 @@ class gThemeText extends gThemeBaseCore
 		] as $align )
 			if ( FALSE !== stripos( $matches[1], $align ) )
 				return [
-					str_ireplace( $align, '', $text ),
+					str_ireplace( [ ' '.$align, $align.' ', $align ], '', $text ),
 					$align
 				];
 
@@ -165,6 +166,8 @@ class gThemeText extends gThemeBaseCore
 	// DEPRECATED: use `Text::replaceImageP( $string, FALSE )`
 	public static function noImageP( $string )
 	{
+		self::_dep( 'gThemeText::replaceImageP()' );
+
 		return self::replaceImageP( $string, FALSE );
 	}
 

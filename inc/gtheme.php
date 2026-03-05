@@ -34,6 +34,7 @@ final class gThemeCore
 			'modulecore' => '',
 			'cache'      => '',
 
+			// 'Controls/Customizer_Repeater' => '',
 			'Misc/Bootstrap_Walker_NavBar' => '',
 			'Misc/gTheme_Walker_Page'      => '',
 

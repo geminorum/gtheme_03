@@ -8,13 +8,13 @@ class gThemeTheme extends gThemeModuleCore
 	public function setup_actions( $args = [], $childless = NULL )
 	{
 		extract( self::atts( [
-			'cleanup'           => FALSE,   // @SEE: `gNetwork` Optimize
-			'html_title'        => TRUE,    // @REF: https://make.wordpress.org/core/?p=11311
+			'cleanup'           => FALSE,                            // @SEE: `gNetwork` Optimize
+			'html_title'        => TRUE,                             // @REF: https://make.wordpress.org/core/?p=11311
 			'adminbar'          => TRUE,
 			'wpcf7'             => TRUE,
 			'page_excerpt'      => TRUE,
-			'content_width'     => TRUE,    // @SEE: https://core.trac.wordpress.org/ticket/21256
-			'feed_links'        => TRUE,    // Adds default posts and comments RSS feed links to HTML head.
+			'content_width'     => TRUE,                             // @SEE: https://core.trac.wordpress.org/ticket/21256
+			'feed_links'        => TRUE,                             // Adds default posts and comments RSS feed links to HTML head.
 			'post_formats'      => FALSE,
 			'custom_background' => FALSE,
 			'custom_header'     => FALSE,
@@ -22,12 +22,12 @@ class gThemeTheme extends gThemeModuleCore
 			'custom_fontsizes'  => FALSE,
 			'html5'             => TRUE,
 			'js'                => FALSE,
-			'hooks'             => FALSE,   // NO NEED
+			'hooks'             => FALSE,                            // NO NEED // @REF: http://justintadlock.com/archives/2011/09/01/a-better-way-for-plugins-to-hook-into-theme-templates
 			'wc_support'        => gThemeWooCommerce::available(),
 			'bp_support'        => TRUE,
 			'bp_no_styles'      => TRUE,
 			'print_support'     => TRUE,
-			'alignwide_support' => FALSE,
+			'alignwide_support' => FALSE,                            // @SEE: https://www.billerickson.net/getting-your-theme-ready-for-gutenberg/
 			'childless_parent'  => $childless ?? FALSE,
 		], $args ) );
 
@@ -114,6 +114,7 @@ class gThemeTheme extends gThemeModuleCore
 		if ( $custom_logo )
 			$this->_support_custom_logo();
 
+		// MAYBE: move to `Editor` module or module for Gutenberg
 		if ( $custom_fontsizes ) {
 
 			add_theme_support( 'disable-custom-font-sizes' );
@@ -160,9 +161,7 @@ class gThemeTheme extends gThemeModuleCore
 		if ( $js )
 			add_action( 'wp_enqueue_scripts', [ $this, 'wp_enqueue_scripts' ] );
 
-		if ( $hooks ) {
-
-			// @REF: http://justintadlock.com/archives/2011/09/01/a-better-way-for-plugins-to-hook-into-theme-templates
+		if ( $hooks )
 			add_theme_support( 'template-hooks',
 				gThemeOptions::info( 'support_template_hooks', [
 					'gtheme_post_before',
@@ -176,7 +175,6 @@ class gThemeTheme extends gThemeModuleCore
 					'gtheme_do_before_footer',
 					'gtheme_do_footer',
 			] ) );
-		}
 
 		if ( GTHEME_PRINT_QUERY && $print_support ) {
 			add_action( 'init', static function() {
@@ -184,9 +182,9 @@ class gThemeTheme extends gThemeModuleCore
 			} );
 		}
 
-		if ( $alignwide_support ) {
+		// @SEE: https://www.billerickson.net/getting-your-theme-ready-for-gutenberg/
+		if ( $alignwide_support )
 			add_theme_support( 'align-wide' );
-		}
 
 		if ( ! $childless_parent )
 			return;

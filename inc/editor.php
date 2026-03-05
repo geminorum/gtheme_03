@@ -8,7 +8,7 @@ class gThemeEditor extends gThemeModuleCore
 	public function setup_actions( $args = [], $childless = NULL )
 	{
 		extract( self::atts( [
-			'css'             => TRUE, // the editor style
+			'css'             => TRUE,    // the editor style
 			'buttons'         => TRUE,
 			'buttons_2'       => TRUE,
 			'advanced_styles' => TRUE,
