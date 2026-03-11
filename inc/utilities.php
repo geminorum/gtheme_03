@@ -133,7 +133,17 @@ JS;
 		wp_add_inline_script( 'jquery-masonry', $script );
 	}
 
-	public static function enqueueAutosize( $ver = '4.0.2' )
+	public static function enqueueAutosize( $version = '6.0.1' )
+	{
+		$handle = 'gtheme-autosize';
+
+		wp_enqueue_script( $handle, GTHEME_URL.'/js/vendor/autosize.min.js', [], $version, TRUE );
+		wp_add_inline_script( $handle, "autosize(document.querySelectorAll('textarea'));" );
+
+		return $handle;
+	}
+
+	public static function enqueueAutosize_OLD( $ver = '4.0.2' )
 	{
 		wp_enqueue_script( 'gtheme-autosize', '//cdn.jsdelivr.net/npm/autosize@'.$ver.'/dist/autosize.min.js', [], NULL, TRUE );
 		wp_add_inline_script( 'gtheme-autosize', "autosize(document.querySelectorAll('textarea'));" );
