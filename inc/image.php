@@ -337,7 +337,7 @@ class gThemeImage extends gThemeModuleCore
 
 				$id      = 'attachments-'.$post->ID.'-gtheme-size-'.$name;
 				$checked = ( isset( $images[$name] ) && $images[$name] == $post->ID ) ? ' checked="checked"' : '';
-				/* translators: %1$s: size name, %2$s: size height, %3$s: size width */
+				/* translators: `%1$s`: size name, `%2$s`: size height, `%3$s`: size width */
 				$label   = sprintf( _x( '%1$s <small>(%2$s&times;%3$s)</small>', 'Image Module: Media Tag Checkbox Label', 'gtheme' ),
 					$size['n'], number_format_i18n( $size['h'] ), number_format_i18n( $size['w'] ) );
 

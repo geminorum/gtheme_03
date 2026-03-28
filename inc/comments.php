@@ -281,7 +281,7 @@ class gThemeComments extends gThemeModuleCore
 		echo $before;
 		echo '<a href="'.esc_url( get_comment_link( $comment ) ).'">';
 			echo '<time datetime="'.get_comment_time( 'c', TRUE, FALSE ).'">';
-			/* translators: %1$s: comment date, %2$s: comment time */
+			/* translators: `%1$s`: comment date, `%2$s`: comment time */
 			printf( _x( '%1$s at %2$s', 'Modules: Comments: Comment Time', 'gtheme' ),
 				get_comment_date(),
 				get_comment_time()
@@ -296,7 +296,7 @@ class gThemeComments extends gThemeModuleCore
 
 		$strings = gThemeOptions::info( 'comment_action_strings', [
 			'reply_text'    => _x( 'Reply', 'Modules: Comments: Action String', 'gtheme' ),
-			/* translators: %s: reply to user */
+			/* translators: `%s`: reply to user */
 			'reply_to_text' => _x( 'Reply to %s', 'Modules: Comments: Action String', 'gtheme' ),
 			'login_text'    => _x( 'Log in to Reply', 'Modules: Comments: Action String', 'gtheme' ),
 			'edit'          => _x( 'Edit This', 'Modules: Comments: Action String', 'gtheme' ),

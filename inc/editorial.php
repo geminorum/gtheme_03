@@ -429,7 +429,7 @@ class gThemeEditorial extends gThemeModuleCore
 		], $atts );
 
 		// maybe check for `is_singular()`
-		if ( self::const( 'GTHEME_EDITORIAL_LIKES_DISPLAYED' ) )
+		if ( $args['echo'] && self::const( 'GTHEME_EDITORIAL_LIKES_DISPLAYED' ) )
 			return $args['default'];
 
 		if ( $args['lastpage'] && ! gThemeUtilities::contentLastPage() )

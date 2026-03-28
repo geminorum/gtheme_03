@@ -66,12 +66,12 @@ class gThemeSideBar extends gThemeModuleCore
 	public static function widgets()
 	{
 		return apply_filters( 'gtheme_widgets', [
-			'gThemeWidgetCustomHTML',
+			'gThemeWidgetCustomHTML', // NOTE: DEPRECATED: use `CustomHTML` on Editorial `Widgets` module.
 			'gThemeWidgetSearch',
-			'gThemeWidgetSearchTerms',
+			'gThemeWidgetSearchTerms', // NOTE: DEPRECATED: use `SearchTerms` on Editorial `Widgets` module.
 			'gThemeWidgetPostFeatured',
 			'gThemeWidgetPostRow',
-			'gThemeWidgetPostTerms',
+			'gThemeWidgetPostTerms', // NOTE: DEPRECATED: use `PostTerms` on Editorial `Widgets` module.
 			'gThemeWidgetTermPosts',
 			'gThemeWidgetRelatedPosts',
 			'gThemeWidgetRecentPosts',

@@ -2,6 +2,7 @@
 
 class gThemeWidgetSearchTerms extends gThemeWidget
 {
+	// NOTE: DEPRECATED: use `SearchTerms` on Editorial `Widgets` module.
 
 	const WIDGET = 'search_terms';
 

@@ -166,7 +166,7 @@ class gThemeAttachment extends gThemeModuleCore
 			'before'   => '<div class="entry-backlink">',
 			'after'    => '</div>',
 			'id'       => NULL,
-			/* translators: %s: post title */
+			/* translators: `%s`: post title */
 			'template' => _x( '&larr; Back to &ldquo;%s&rdquo;', 'Module: Attachment: Backlink Template', 'gtheme' ),
 			'empty'    => _x( '&larr; Back', 'Module: Attachment: Backlink Empty Title', 'gtheme' ),
 			'echo'     => TRUE,

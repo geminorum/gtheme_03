@@ -638,11 +638,11 @@ class gThemeContent extends gThemeModuleCore
 			$title = trim( strip_tags( get_the_title( $post ) ) );
 
 		if ( is_null( $template ) )
-			/* translators: %s: post title */
+			/* translators: `%s`: post title */
 			$attr = _x( 'Permanent link to &ndash;%s&ndash;', 'Content: Title Attr','gtheme' );
 
 		else if ( FALSE === $template )
-			/* translators: %s: post title */
+			/* translators: `%s`: post title */
 			$attr = _x( 'Short link for &ndash;%s&ndash;', 'Content: Title Attr', 'gtheme' );
 
 		else
@@ -980,11 +980,11 @@ class gThemeContent extends gThemeModuleCore
 
 					else
 						echo get_comments_number_text(
-							/* translators: %1$s: class name, %2$s: comments number, %3$s: comment url */
+							/* translators: `%1$s`: class name, `%2$s`: comments number, `%3$s`: comment URL */
 							sprintf( _x( '<a href="%3$s" class="%1$s">Your Comment</a>', 'Modules: Content: Action', 'gtheme' ), $class, '', $respond ),
-							/* translators: %1$s: class name, %2$s: comments number, %3$s: comment url */
+							/* translators: `%1$s`: class name, `%2$s`: comments number, `%3$s`: comment URL */
 							sprintf( _x( '<a href="%3$s" class="%1$s">One Comment</a>', 'Modules: Content: Action', 'gtheme' ), $class, '', $comments ),
-							/* translators: %1$s: class name, %2$s: comments number, %3$s: comment url */
+							/* translators: `%1$s`: class name, `%2$s`: comments number, `%3$s`: comment URL */
 							sprintf( _x( '<a href="%3$s" class="%1$s">%2$s Comments</a>', 'Modules: Content: Action', 'gtheme' ), $class, '%', $comments ),
 							$post
 						);
@@ -995,7 +995,7 @@ class gThemeContent extends gThemeModuleCore
 							printf( '<a href="%2$s" class="%1$s">%3$s</a>', 'comments-link-rss', get_post_comments_feed_link( $post->ID ), self::getGenericon( 'feed' ) );
 
 						else
-							/* translators: %1$s: comments rss link, %2$s: title attr, %3$s: class name */
+							/* translators: `%1$s`: comments RSS link, `%2$s`: title attribute, `%3$s`: class name */
 							printf( _x( ' <small><small>(<a href="%1$s" title="%2$s" class="%3$s"><abbr title="Really Simple Syndication">RSS</abbr></a>)</small></small>', 'Modules: Content: Action', 'gtheme' ),
 								get_post_comments_feed_link( $post->ID ),
 								_x( 'Feed for this post\'s comments', 'Modules: Content: Action', 'gtheme' ),
@@ -1380,9 +1380,9 @@ $('#text-unjustify').on('click', function (e) {
 		else
 			$twitter_template = '${title} ${link}';
 
-		/* translators: %s: post title */
+		/* translators: `%s`: post title */
 		$check = sprintf( _x( 'Check this out %s', 'Modules: Content: Addtoany', 'gtheme' ), '${title}' );
-		/* translators: %s: post link */
+		/* translators: `%s`: post link */
 		$click = sprintf( _x( "Click the link:\n%s", 'Modules: Content: Addtoany', 'gtheme' ), '${link}' );
 
 		?><script>

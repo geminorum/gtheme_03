@@ -3,7 +3,7 @@
 class gThemeWidgetPostTerms extends gThemeWidget
 {
 
-	// FIXME: DEPRECATED
+	// NOTE: DEPRECATED: use `PostTerms` on Editorial `Widgets` module.
 
 	const WIDGET = 'post_terms';
 

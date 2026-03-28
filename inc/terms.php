@@ -314,7 +314,7 @@ class gThemeTerms extends gThemeModuleCore
 		} else {
 
 			$list = gThemeTaxonomy::listTerms( $taxonomy, NULL, [ 'include' => $primaries ] );
-			/* translators: %s: terms list */
+			/* translators: `%s`: terms list */
 			$desc = sprintf( _x( 'Primary Terms are: %s', 'Modules: Terms', 'gtheme' ), gThemeUtilities::joinItems( $list ) );
 		}
 

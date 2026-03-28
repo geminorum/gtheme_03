@@ -69,7 +69,7 @@ class gThemePages extends gThemeModuleCore
 			? $defaults[$flipped[$post->ID]]
 			: $flipped[$post->ID];
 
-		/* translators: %s: page theme */
+		/* translators: `%s`: page theme */
 		$states['gtheme_page'] = sprintf( _x( 'Theme: %s', 'Modules: Pages: Page State', 'gtheme' ), $title );
 
 		return $states;

@@ -207,7 +207,7 @@ class gThemeNavigation extends gThemeModuleCore
 			if ( $args['page_is'] && in_the_loop() ) { // CAUTION : must be in the loop after the_post()
 
 				if ( ! empty( $page ) && 1 != $numpages ) //&& $page > 1 )
-					/* translators: %1$s: page number, %2$s: page total */
+					/* translators: `%1$s`: page number, `%2$s`: page total */
 					$single_html.= sprintf( _x( 'Page <strong>%1$s</strong> of %2$s', 'Modules: Navigation: Breadcrumbs', 'gtheme' ),
 						number_format_i18n( $page ),
 						number_format_i18n( $numpages ) );

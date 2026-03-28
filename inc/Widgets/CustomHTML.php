@@ -2,6 +2,7 @@
 
 class gThemeWidgetCustomHTML extends gThemeWidget
 {
+	// NOTE: DEPRECATED: use `CustomHTML` on Editorial `Widgets` module.
 
 	const WIDGET = 'custom_html';
 

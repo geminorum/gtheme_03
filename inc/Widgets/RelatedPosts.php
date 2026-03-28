@@ -63,8 +63,8 @@ class gThemeWidgetRelatedPosts extends gThemeWidget
 
 			'ignore_sticky_posts'    => TRUE,
 			'no_found_rows'          => TRUE,
-			'update_post_term_cache' => FALSE,
-			'update_post_meta_cache' => FALSE,
+			// 'update_post_term_cache' => FALSE,
+			// 'update_post_meta_cache' => FALSE,
 		];
 
 		if ( GTHEME_SYSTEMTAGS && taxonomy_exists( GTHEME_SYSTEMTAGS ) ) {
