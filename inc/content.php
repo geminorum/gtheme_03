@@ -1242,6 +1242,7 @@ class gThemeContent extends gThemeModuleCore
 				'id'          => $post->ID,
 				'qrcode-url'  => $url,
 				'qrcode-size' => $size,
+				'na'          => _x( 'The Qr-Code generator is not available!', 'Content: QRCode', 'gtheme' ),
 			],
 		], $text ).$dropdown.$after;
 
@@ -1249,9 +1250,10 @@ class gThemeContent extends gThemeModuleCore
 			return TRUE;
 
 		// wp_enqueue_script( 'gtheme-bootstrap-qrcode', GTHEME_URL.'/js/script.bootstrap-qrcode'.( SCRIPT_DEBUG ? '' : '.min' ).'.js', [ 'jquery', ], GTHEME_VERSION, TRUE );
+		// return $enqueued = TRUE;
 
 		$script = <<<'JS'
-jQuery(function($){$('.-action.-bootstrap-qrcode').on('show.bs.dropdown',function(event){if($(this).data('qrcode'))return;const $link=$(this).find('a.bootstrap-qrcode-toggle');const size=$link.data('qrcode-size');$(this).find('.-qrcode-wrap').html($('<img />',{src:'https://api.qrserver.com/v1/create-qr-code/?size='+size+'x'+size+'&ecc=M&data='+encodeURIComponent($link.data('qrcode-url')),alt:'qrcode'}));$(this).data('qrcode',true);});});
+jQuery(function($){$('.-action.-bootstrap-qrcode').on('show.bs.dropdown',function(event){if($(this).data('qrcode'))return;const $wrap=$(this).find('.-qrcode-wrap');const $link=$(this).find('a.bootstrap-qrcode-toggle');const size=$link.data('qrcode-size');$wrap.html($('<img />',{src:'https://api.qrserver.com/v1/create-qr-code/?size='+size+'x'+size+'&ecc=M&data='+encodeURIComponent($link.data('qrcode-url')),alt:'qrcode',class:'bootstrap-qrcode-img'}));$(this).data('qrcode',true);$(this).find('.-qrcode-wrap img').on('error',function(event){$wrap.html('<div class="-na d-flex align-items-center justify-content-center h-100 px-3"><small>'+$link.data('na')+'</small></div>');});});});
 JS;
 		// @REF: https://core.trac.wordpress.org/ticket/44551
 		// @REF: https://wordpress.stackexchange.com/a/311279
