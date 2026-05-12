@@ -53,6 +53,11 @@ class gThemeSocial extends gThemeModuleCore
 		if ( $twitter = gThemeOptions::info( 'twitter_site', FALSE ) )
 			echo '<meta name="twitter:site" content="'.gThemeThird::getTwitter( $twitter ).'" />'."\n";
 
+		// @REF: https://mas.to/settings/verification
+		// EXAMPLE: `<meta name="fediverse:creator" content="@geminorum@mas.to">`;
+		if ( $mastodon = gThemeOptions::info( 'mastodon_creator', FALSE ) )
+			echo '<meta name="fediverse:creator" content="'.$mastodon.'" />'."\n";
+
 		self::author();
 	}
 
