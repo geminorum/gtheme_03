@@ -3,9 +3,9 @@
 class gThemeEditorial extends gThemeModuleCore
 {
 
-	public function setup_actions( $args = [], $childless = NULL )
+	public function setup_actions( $settings = [], $childless = NULL )
 	{
-		extract( self::atts( [
+		$args = self::atts( [
 			'insert_toc'       => FALSE,
 			'insert_embed'     => FALSE,
 			'insert_media'     => FALSE,
@@ -15,35 +15,35 @@ class gThemeEditorial extends gThemeModuleCore
 			'insert_supported' => TRUE,
 			'date_override'    => TRUE,
 			'reflist_toc'      => TRUE,
-		], $args ) );
+		], $settings );
 
-		if ( $insert_toc )
+		if ( $args['insert_toc'] )
 			add_action( 'gtheme_content_before', [ $this, 'content_before_toc' ], 20 );
 
-		if ( $insert_embed )
+		if ( $args['insert_embed'] )
 			add_action( 'gtheme_content_before', [ $this, 'content_before_embed' ], 50 );
 
-		if ( $insert_media ) {
+		if ( $args['insert_media'] ) {
 			add_action( 'gtheme_content_before', [ $this, 'content_before_media' ], 80 );
 			add_action( 'gtheme_content_after', [ $this, 'content_after_media' ], 8 );
 		}
 
-		if ( $insert_action )
+		if ( $args['insert_action'] )
 			add_action( 'gtheme_content_after', [ $this, 'content_after_action' ], 14 );
 
-		if ( $insert_source )
+		if ( $args['insert_source'] )
 			add_action( 'gtheme_content_after', [ $this, 'content_after_source' ], 18 );
 
-		if ( $insert_likes )
+		if ( $args['insert_likes'] )
 			add_action( 'gtheme_content_after', [ $this, 'content_after_likes' ], 22 );
 
-		if ( $insert_supported )
+		if ( $args['insert_supported'] )
 			add_action( 'gtheme_content_wrap_after', [ $this, 'content_wrap_after_supported' ], 8 );
 
-		if ( $date_override )
+		if ( $args['date_override'] )
 			add_filter( 'gtheme_date_override_the_date', [ $this, 'date_override_the_date' ], 20, 4 );
 
-		if ( $reflist_toc )
+		if ( $args['reflist_toc'] )
 			add_filter( 'gnetwork_shortcodes_reflist_toc', [ $this, 'shortcodes_reflist_toc' ], 10, 3 );
 
 		add_filter( 'geditorial_shortcode_attachement_download', [ $this, 'attachement_download' ], 9, 2 );

@@ -5,9 +5,9 @@ class gThemeTheme extends gThemeModuleCore
 
 	protected $ajax = TRUE;
 
-	public function setup_actions( $args = [], $childless = NULL )
+	public function setup_actions( $settings = [], $childless = NULL )
 	{
-		extract( self::atts( [
+		$args = self::atts( [
 			'cleanup'           => FALSE,                            // @SEE: `gNetwork` Optimize
 			'html_title'        => TRUE,                             // @REF: https://make.wordpress.org/core/?p=11311
 			'adminbar'          => TRUE,
@@ -29,27 +29,27 @@ class gThemeTheme extends gThemeModuleCore
 			'print_support'     => TRUE,
 			'alignwide_support' => FALSE,                            // @SEE: https://www.billerickson.net/getting-your-theme-ready-for-gutenberg/
 			'childless_parent'  => $childless ?? FALSE,
-		], $args ) );
+		], $settings );
 
-		if ( $cleanup )
+		if ( $args['cleanup'] )
 			$this->cleanup();
 
-		if ( $html_title )
+		if ( $args['html_title'] )
 			add_theme_support( 'title-tag' );
 
-		if ( $adminbar )
+		if ( $args['adminbar'] )
 			// NOTE: To remove the default padding styles from WordPress for the Toolbar.
 			add_theme_support( 'admin-bar', [ 'callback' => '__return_false' ] );
 
-		if ( $wpcf7 && function_exists( 'wpcf7_enqueue_scripts' ) ) {
+		if ( $args['wpcf7'] && function_exists( 'wpcf7_enqueue_scripts' ) ) {
 			add_action( 'wp_enqueue_scripts', [ $this, 'wp_enqueue_scripts_wpcf7' ], 5 );
 			add_filter( 'shortcode_atts_wpcf7', [ $this, 'shortcode_atts_wpcf7' ], 8 );
 		}
 
-		if ( $page_excerpt )
+		if ( $args['page_excerpt'] )
 			add_post_type_support( 'page', 'excerpt' );
 
-		if ( $content_width ) {
+		if ( $args['content_width'] ) {
 
 			$this->set_content_width( gThemeOptions::info( 'default_content_width', FALSE ) );
 
@@ -60,18 +60,20 @@ class gThemeTheme extends gThemeModuleCore
 				} );
 		}
 
-		if ( $feed_links )
+		if ( $args['feed_links'] )
 			add_theme_support( 'automatic-feed-links' );
 
-		if ( $wc_support )
+		if ( $args['wc_support'] )
 			add_theme_support( 'woocommerce', gThemeOptions::info( 'woocommerce_support', gThemeWooCommerce::defaults() ) );
 
-		if ( $bp_support )
+		if ( $args['bp_support'] )
 			add_theme_support( 'buddypress' );
 
-		add_filter( 'bp_use_theme_compat_with_current_theme', ( $bp_support ? '__return_true' : '__return_false' ) );
+		add_filter( 'bp_use_theme_compat_with_current_theme',
+			$args['bp_support'] ? '__return_true' : '__return_false'
+		);
 
-		if ( $bp_no_styles ) {
+		if ( $args['bp_no_styles'] ) {
 
 			add_action( 'wp_enqueue_scripts', [ $this, 'remove_bp_styles' ], 20 );  // `bp-legacy`
 			add_filter( 'bp_nouveau_enqueue_styles', '__return_false', 20 );        // `bp-nouveau`
@@ -79,7 +81,7 @@ class gThemeTheme extends gThemeModuleCore
 			self::define( 'GNETWORK_DISABLE_BUDDYPRESS_STYLES', TRUE );  // `gNetwork`
 		}
 
-		if ( $post_formats )
+		if ( $args['post_formats'] )
 			add_theme_support( 'post-formats',
 				gThemeOptions::info( 'support_post_formats', [
 					'aside',   // Typically styled without a title. Similar to a Facebook note update.
@@ -98,7 +100,7 @@ class gThemeTheme extends gThemeModuleCore
 				remove_post_type_support( 'post', 'post-formats' );
 			} );
 
-		if ( $custom_background )
+		if ( $args['custom_background'] )
 			add_theme_support( 'custom-background',
 				gThemeOptions::info( 'support_custom_background', [
 					'default-color'          => 'ffffff',
@@ -108,14 +110,14 @@ class gThemeTheme extends gThemeModuleCore
 					'admin-preview-callback' => '',
 			] ) );
 
-		if ( $custom_header )
+		if ( $args['custom_header'] )
 			$this->_support_custom_headers();
 
-		if ( $custom_logo )
+		if ( $args['custom_logo'] )
 			$this->_support_custom_logo();
 
 		// MAYBE: move to `Editor` module or module for Gutenberg
-		if ( $custom_fontsizes ) {
+		if ( $args['custom_fontsizes'] ) {
 
 			add_theme_support( 'disable-custom-font-sizes' );
 
@@ -148,7 +150,7 @@ class gThemeTheme extends gThemeModuleCore
 			] ) );
 		}
 
-		if ( $html5 )
+		if ( $args['html5'] )
 			add_theme_support( 'html5',
 				gThemeOptions::info( 'support_html5', [
 					'search-form',
@@ -158,10 +160,10 @@ class gThemeTheme extends gThemeModuleCore
 					'caption',
 			] ) );
 
-		if ( $js )
+		if ( $args['js'] )
 			add_action( 'wp_enqueue_scripts', [ $this, 'wp_enqueue_scripts' ] );
 
-		if ( $hooks )
+		if ( $args['hooks'] )
 			add_theme_support( 'template-hooks',
 				gThemeOptions::info( 'support_template_hooks', [
 					'gtheme_post_before',
@@ -176,17 +178,17 @@ class gThemeTheme extends gThemeModuleCore
 					'gtheme_do_footer',
 			] ) );
 
-		if ( GTHEME_PRINT_QUERY && $print_support ) {
+		if ( GTHEME_PRINT_QUERY && $args['print_support'] ) {
 			add_action( 'init', static function() {
 				add_rewrite_endpoint( GTHEME_PRINT_QUERY, EP_PERMALINK | EP_PAGES ); // FIXME: apply `print_posttypes` from info
 			} );
 		}
 
 		// @SEE: https://www.billerickson.net/getting-your-theme-ready-for-gutenberg/
-		if ( $alignwide_support )
+		if ( $args['alignwide_support'] )
 			add_theme_support( 'align-wide' );
 
-		if ( ! $childless_parent )
+		if ( ! $args['childless_parent'] )
 			return;
 	}
 

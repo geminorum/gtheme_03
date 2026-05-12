@@ -6,9 +6,9 @@ class gThemeWooCommerce extends gThemeModuleCore
 	protected $ajax = TRUE;
 
 	// https://developer.woocommerce.com/docs/classic-theme-development-handbook/
-	public function setup_actions( $args = [], $childless = NULL )
+	public function setup_actions( $settings = [], $childless = NULL )
 	{
-		extract( self::atts( [
+		$args = self::atts( [
 			'product_gallery' => TRUE,
 			'disable_thumbs'  => TRUE,
 			'disable_styles'  => FALSE,
@@ -19,14 +19,14 @@ class gThemeWooCommerce extends gThemeModuleCore
 			'placeholders'    => FALSE,
 			'shortcodes'      => TRUE,
 			'comment_tweaks'  => TRUE,
-		], $args ) );
+		], $settings );
 
 		if ( ! gThemeWordPress::isPluginActive( 'woocommerce/woocommerce.php' ) )
 			return FALSE;
 
 		$this->filter( 'body_class' );
 
-		if ( $product_gallery ) {
+		if ( $args['product_gallery'] ) {
 
 			// @REF: https://developer.woocommerce.com/2017/02/28/adding-support-for-woocommerce-2-7s-new-gallery-feature-to-your-theme/
 
@@ -35,18 +35,18 @@ class gThemeWooCommerce extends gThemeModuleCore
 			add_theme_support( 'wc-product-gallery-slider' );
 		}
 
-		if ( $disable_thumbs ) {
+		if ( $args['disable_thumbs'] ) {
 			add_filter( 'woocommerce_resize_images', '__return_false' );
 			add_filter( 'woocommerce_background_image_regeneration', '__return_false' );
 		}
 
-		if ( $disable_styles ) {
+		if ( $args['disable_styles'] ) {
 			// @REF: https://woocommerce.com/document/disable-the-default-stylesheet/
 			add_filter( 'woocommerce_enqueue_styles', '__return_empty_array', 9999 );
 			add_action( 'wp_enqueue_scripts', [ $this, 'wp_enqueue_scripts' ], 9999 );
 		}
 
-		if ( $bootstrap ) {
+		if ( $args['bootstrap'] ) {
 			add_filter( 'woocommerce_form_field_args', [ $this, 'form_field_args' ], 99, 3 );
 			add_filter( 'woocommerce_quantity_input_args', [ $this, 'quantity_input_args' ], 99, 2 );
 			add_filter( 'woocommerce_breadcrumb_defaults', [ $this, 'breadcrumb_defaults' ], 99, 1 );
@@ -54,29 +54,29 @@ class gThemeWooCommerce extends gThemeModuleCore
 			add_filter( 'woocommerce_dropdown_variation_attribute_options_args', [ $this, 'dropdown_variation_attribute_options_args' ], 99, 1 );
 		}
 
-		if ( $wrapping ) {
+		if ( $args['wrapping'] ) {
 			// add_filter( 'woocommerce_show_page_title', '__return_false' );
 			add_action( 'woocommerce_before_main_content', [ __CLASS__, 'before_main_content' ], -999 );
 			add_action( 'woocommerce_after_main_content', [ __CLASS__, 'after_main_content' ], 999 );
 		}
 
-		if ( $fragments ) {
+		if ( $args['fragments'] ) {
 			add_filter( 'woocommerce_add_to_cart_fragments', [ __CLASS__, 'add_to_cart_fragments' ] );
 		}
 
-		if ( $meta_fields ) {
+		if ( $args['meta_fields'] ) {
 			add_action( 'woocommerce_single_product_summary', [ __CLASS__, 'single_product_summary_before' ], 4 );  // title is on `5`
 			add_action( 'woocommerce_single_product_summary', [ __CLASS__, 'single_product_summary_after'  ], 6 );  // title is on `5`
 			add_action( 'woocommerce_single_product_summary', [ __CLASS__, 'single_product_summary_byline' ], 8 );  // title is on `5`
 			add_action( 'woocommerce_shop_loop_item_title',   [ __CLASS__, 'shop_loop_item_title' ], 15 );
 		}
 
-		if ( $placeholders ) {
+		if ( $args['placeholders'] ) {
 			add_filter( 'woocommerce_placeholder_img', [ __CLASS__, 'placeholder_img' ], 8, 3 );
 			add_filter( 'woocommerce_placeholder_img_src', [ __CLASS__, 'placeholder_img_src' ], 8, 1 );
 		}
 
-		if ( $shortcodes ) {
+		if ( $args['shortcodes'] ) {
 			// @REF: https://woocommerce.com/document/woocommerce-shortcodes/
 			// @REF: https://www.uncannyowl.com/knowledge-base/woocommerce-shortcodes/
 			add_filter( 'shortcode_atts_product', [ __CLASS__, 'shortcode_atts' ], 12, 4 );
@@ -87,7 +87,7 @@ class gThemeWooCommerce extends gThemeModuleCore
 			add_filter( 'shortcode_atts_product_add_to_cart', [ __CLASS__, 'shortcode_atts' ], 12, 4 );
 		}
 
-		if ( $comment_tweaks ) {
+		if ( $args['comment_tweaks'] ) {
 			remove_action( 'woocommerce_review_before', 'woocommerce_review_display_gravatar', 10 );
 			add_action( 'woocommerce_review_before', [ $this, 'review_display_gravatar' ], 10 );
 		}

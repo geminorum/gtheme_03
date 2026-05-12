@@ -3,24 +3,24 @@
 class gThemeComments extends gThemeModuleCore
 {
 
-	public function setup_actions( $args = [], $childless = NULL )
+	public function setup_actions( $settings = [], $childless = NULL )
 	{
-		extract( self::atts( [
+		$args = self::atts( [
 			'reverse_comments' => FALSE,
 			'disable_types'    => FALSE,
 			'closing_time'     => FALSE,
-		], $args ) );
+		], $settings );
 
 		add_filter( 'comment_class', [ $this, 'comment_class' ], 10 ,4 );
 		add_action( 'comment_form_before', [ $this, 'comment_form_before' ] );
 
-		if ( $reverse_comments )
+		if ( $args['reverse_comments'] )
 			add_filter( 'comments_array', [ $this, 'comments_array_reverse' ], 12 );
 
-		if ( $disable_types )
+		if ( $args['disable_types'] )
 			add_filter( 'comments_open', [ $this, 'comments_open' ], 10 , 2 );
 
-		if ( $closing_time )
+		if ( $args['closing_time'] )
 			add_action( 'comment_form_top', [ $this, 'comment_form_top' ] );
 	}
 

@@ -5,13 +5,13 @@ class gThemeBanners extends gThemeModuleCore
 
 	protected $ajax = TRUE;
 
-	public function setup_actions( $args = [], $childless = NULL )
+	public function setup_actions( $settings = [], $childless = NULL )
 	{
-		extract( self::atts( [
+		$args = self::atts( [
 			'admin' => TRUE, // FALSE,
-		], $args ) );
+		], $settings );
 
-		if ( $admin && is_admin() ) {
+		if ( $args['admin'] && is_admin() ) {
 			add_filter( 'gtheme_settings_subs', [ $this, 'subs' ], 5 );
 			add_action( 'gtheme_settings_load', [ $this, 'load' ] );
 		}
@@ -320,10 +320,14 @@ class gThemeBanners extends gThemeModuleCore
 
 				// http://stackoverflow.com/a/4582659
 				if ( count( $new ) ) {
+
+					$group_row = $order_row = [];
+
 					foreach ( $new as $key => $row ) {
 						$group_row[$key] = $row['group'];
 						$order_row[$key] = $row['order'];
 					}
+
 					array_multisort( $group_row, SORT_ASC, $order_row, SORT_ASC, $new );
 				}
 

@@ -270,7 +270,7 @@ class gThemeOptions extends gThemeModuleCore
 		if ( FALSE === $option )
 			return $defaults;
 
-		if ( isset( $defaults[$option] ) )
+		if ( is_string( $option ) && isset( $defaults[$option] ) )
 			return $defaults[$option];
 
 		return $default;

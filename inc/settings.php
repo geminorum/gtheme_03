@@ -8,17 +8,17 @@ class gThemeSettings extends gThemeModuleCore
 	private $_settings_uri    = '';
 	private $_settings_parent = '';
 
-	public function setup_actions( $args = [], $childless = NULL )
+	public function setup_actions( $settings = [], $childless = NULL )
 	{
-		extract( self::atts( [
+		$args = self::atts( [
 			'activation_redirect' => FALSE, // redirects to settings after activation
-		], $args ) );
+		], $settings );
 
 		$this->set_page();
 
 		if ( is_admin() ) {
 
-			if ( $activation_redirect
+			if ( $args['activation_redirect']
 				&& isset( $_GET['activated'] )
 				&& 'themes.php' == $GLOBALS['pagenow'] )
 					gThemeWordPress::redirect( admin_url( $this->_settings_uri ) );

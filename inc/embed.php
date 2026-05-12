@@ -3,25 +3,25 @@
 class gThemeEmbed extends gThemeModuleCore
 {
 
-	public function setup_actions( $args = [], $childless = NULL )
+	public function setup_actions( $settings = [], $childless = NULL )
 	{
-		extract( self::atts( [
+		$args = self::atts( [
 			'site_title'    => TRUE,
 			'lead_excerpt'  => TRUE,
 			'content_meta'  => FALSE,
 			'response_data' => TRUE,
-		], $args ) );
+		], $settings );
 
-		if ( $site_title )
+		if ( $args['site_title'] )
 			add_filter( 'embed_site_title_html', [ $this, 'embed_site_title_html' ] );
 
-		if ( $lead_excerpt )
+		if ( $args['lead_excerpt'] )
 			add_filter( 'the_excerpt_embed', [ $this, 'the_excerpt_embed' ], 9 );
 
-		if ( $content_meta )
+		if ( $args['content_meta'] )
 			add_action( 'embed_content_meta', [ $this, 'embed_content_meta' ] );
 
-		if ( $content_meta )
+		if ( $args['content_meta'] )
 			add_filter( 'oembed_response_data', [ $this, 'oembed_response_data' ], 11, 4 );
 	}
 

@@ -5,13 +5,13 @@ class gThemeLogo extends gThemeModuleCore
 
 	protected $ajax = TRUE;
 
-	public function setup_actions( $args = [], $childless = NULL )
+	public function setup_actions( $settings = [], $childless = NULL )
 	{
-		extract( self::atts( [
+		$args = self::atts( [
 			'customizer' => FALSE,
-		], $args ) );
+		], $settings );
 
-		if ( $customizer )
+		if ( $args['customizer'] )
 			add_action( 'customize_register', [ $this, 'customize_register' ] );
 	}
 

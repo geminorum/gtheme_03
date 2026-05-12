@@ -3,25 +3,25 @@
 class gThemeFeed extends gThemeModuleCore
 {
 
-	public function setup_actions( $args = [], $childless = NULL )
+	public function setup_actions( $settings = [], $childless = NULL )
 	{
-		extract( self::atts( [
+		$args = self::atts( [
 			'prepare'    => TRUE,
 			'exclude'    => TRUE,
-			'enclosures' => TRUE, // adding post image as rss enclosure
+			'enclosures' => TRUE, // Adding post image as RSS enclosure
 			'paged'      => FALSE,
-		], $args ) );
+		], $settings );
 
-		if ( $prepare )
+		if ( $args['prepare'] )
 			add_filter( 'the_content_feed', [ $this, 'the_content_feed' ], 12, 2 );
 
-		if ( $exclude && ! is_admin() )
+		if ( $args['exclude'] && ! is_admin() )
 			add_filter( 'pre_get_posts', [ $this, 'pre_get_posts' ], 12 );
 
-		if ( $enclosures )
+		if ( $args['enclosures'] )
 			add_action( 'rss2_item', [ $this, 'rss2_item' ] );
 
-		if ( $paged )
+		if ( $args['paged'] )
 			add_filter( 'posts_where', [ $this, 'posts_where' ], 10, 2 );
 	}
 

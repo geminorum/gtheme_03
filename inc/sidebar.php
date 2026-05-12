@@ -5,21 +5,21 @@ class gThemeSideBar extends gThemeModuleCore
 
 	protected $ajax = TRUE;
 
-	public function setup_actions( $args = [], $childless = NULL )
+	public function setup_actions( $settings = [], $childless = NULL )
 	{
-		extract( self::atts( [
+		$args = self::atts( [
 			'register_defaults'    => TRUE,
 			'disable_sidebars'     => FALSE,
 			'primary_cats_sidebar' => FALSE,
-		], $args ) );
+		], $settings );
 
-		if ( $register_defaults )
+		if ( $args['register_defaults'] )
 			add_filter( 'register_sidebar_defaults', [ $this, 'register_sidebar_defaults' ], 12 );
 
-		if ( ! $disable_sidebars )
+		if ( ! $args['disable_sidebars'] )
 			add_action( 'widgets_init', [ $this, 'widgets_init' ], 18 );
 
-		if ( $primary_cats_sidebar )
+		if ( $args['primary_cats_sidebar'] )
 			add_action( 'widgets_init', [ $this, 'widgets_init_primaries' ] );
 	}
 

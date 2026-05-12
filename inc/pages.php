@@ -5,13 +5,13 @@ class gThemePages extends gThemeModuleCore
 
 	protected $key = 'pages';
 
-	public function setup_actions( $args = [], $childless = NULL )
+	public function setup_actions( $settings = [], $childless = NULL )
 	{
-		extract( self::atts( [
+		$args = self::atts( [
 			'admin' => TRUE,
-		], $args ) );
+		], $settings );
 
-		if ( $admin ) {
+		if ( $args['admin'] ) {
 
 			if ( is_admin() ) {
 

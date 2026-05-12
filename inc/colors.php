@@ -5,26 +5,26 @@ class gThemeColors extends gThemeModuleCore
 
 	protected $ajax = TRUE;
 
-	public function setup_actions( $args = [], $childless = NULL )
+	public function setup_actions( $settings = [], $childless = NULL )
 	{
-		extract( self::atts( [
+		$args = self::atts( [
 			'customizer'     => $childless ?? FALSE,
 			'disable_custom' => ! $childless,
 			'custom_palette' => TRUE,
 			'accent_color'   => self::getAccentColorDefault( FALSE ),
-		], $args ) );
+		], $settings );
 
-		if ( $customizer )
+		if ( $args['customizer'] )
 			add_action( 'customize_register', [ $this, 'customize_register' ] );
 
-		if ( $disable_custom )
+		if ( $args['disable_custom'] )
 			// NOTE: prevents editors from setting custom colors (via color selector) on elements.
 			add_theme_support( 'disable-custom-colors' );
 
-		if ( $custom_palette )
+		if ( $args['custom_palette'] )
 			add_theme_support( 'editor-color-palette', self::getCustomPalette() );
 
-		if ( $accent_color ) {
+		if ( $args['accent_color'] ) {
 			// @REF: https://richtabor.com/gutenberg-customizer-colors/
 			add_action( 'customize_register', [ $this, 'customize_register_accent_color' ], 11 );
 			add_action( 'wp_head', [ $this, 'wp_head' ] );

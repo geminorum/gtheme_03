@@ -5,15 +5,15 @@ class gThemeTerms extends gThemeModuleCore
 
 	protected $ajax = TRUE;
 
-	public function setup_actions( $args = [], $childless = NULL )
+	public function setup_actions( $settings = [], $childless = NULL )
 	{
-		extract( self::atts( [
+		$args = self::atts( [
 			'system_tags' => $childless ?? FALSE,
 			'p2p'         => FALSE, // DEPRECATED: use gEditorial Connected
 			'admin'       => FALSE,
-		], $args ) );
+		], $settings );
 
-		if ( $system_tags ) {
+		if ( $args['system_tags'] ) {
 
 			add_action( 'init', [ $this, 'register_taxonomies' ] );
 
@@ -33,10 +33,10 @@ class gThemeTerms extends gThemeModuleCore
 			}
 		}
 
-		if ( $p2p )
+		if ( $args['p2p'] )
 			add_action( 'p2p_init', [ $this, 'p2p_init' ] );
 
-		if ( $admin && is_admin() ) {
+		if ( $args['admin'] && is_admin() ) {
 			add_filter( 'gtheme_settings_subs', [ $this, 'subs' ], 5 );
 			add_action( 'gtheme_settings_load', [ $this, 'load' ] );
 		}

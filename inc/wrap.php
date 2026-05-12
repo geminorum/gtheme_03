@@ -5,14 +5,14 @@ class gThemeWrap extends gThemeModuleCore
 
 	protected $ajax = TRUE;
 
-	public function setup_actions( $args = [], $childless = NULL )
+	public function setup_actions( $settings = [], $childless = NULL )
 	{
-		extract( self::atts( [
+		$args = self::atts( [
 			'images_404' => $childless ?? FALSE,
 			'customizer' => $childless ?? FALSE,
-		], $args ) );
+		], $settings );
 
-		if ( $customizer )
+		if ( $args['customizer'] )
 			add_action( 'customize_register', [ $this, 'customize_register' ] );
 
 		if ( is_admin() )
@@ -21,7 +21,7 @@ class gThemeWrap extends gThemeModuleCore
 		add_action( 'before_signup_header', [ $this, 'before_signup_header' ] );
 		add_action( 'activate_header', [ $this, 'activate_header' ] );
 
-		if ( $images_404 )
+		if ( $args['images_404'] )
 			add_filter( 'template_include', [ $this, 'template_include_404_images' ], -1 );
 
 		add_filter( 'template_include', [ __CLASS__, 'template_include' ], 99 );

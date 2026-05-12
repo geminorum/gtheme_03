@@ -5,33 +5,33 @@ class gThemeEditor extends gThemeModuleCore
 
 	protected $ajax = TRUE;
 
-	public function setup_actions( $args = [], $childless = NULL )
+	public function setup_actions( $settings = [], $childless = NULL )
 	{
-		extract( self::atts( [
+		$args = self::atts( [
 			'css'             => TRUE,    // the editor style
 			'buttons'         => TRUE,
 			'buttons_2'       => TRUE,
 			'advanced_styles' => TRUE,
 			'default_content' => FALSE,
-		], $args ) );
+		], $settings );
 
-		if ( $css ) {
+		if ( $args['css'] ) {
 			add_theme_support( 'editor-style' );
 			add_action( 'enqueue_block_editor_assets', [ $this, 'enqueue_block_editor_assets' ] );
 			add_action( 'enqueue_block_assets', [ $this, 'enqueue_block_assets' ] );
 			add_filter( 'mce_css', [ $this, 'mce_css' ] );
 		}
 
-		if ( $buttons )
+		if ( $args['buttons'] )
 			add_filter( 'mce_buttons', [ $this, 'mce_buttons' ] );
 
-		if ( $buttons_2 )
+		if ( $args['buttons_2'] )
 			add_filter( 'mce_buttons_2', [ $this, 'mce_buttons_2' ] );
 
-		if ( $advanced_styles )
+		if ( $args['advanced_styles'] )
 			add_filter( 'tiny_mce_before_init', [ $this, 'tiny_mce_before_init' ], 12 );
 
-		if ( $default_content )
+		if ( $args['default_content'] )
 			add_filter( 'default_content', [ $this, 'default_content' ], 10, 2 );
 	}
 

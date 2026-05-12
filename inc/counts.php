@@ -5,13 +5,13 @@ class gThemeCounts extends gThemeModuleCore
 
 	protected $key = 'counts';
 
-	public function setup_actions( $args = [], $childless = NULL )
+	public function setup_actions( $settings = [], $childless = NULL )
 	{
-		extract( self::atts( [
+		$args = self::atts( [
 			'admin' => FALSE,
-		], $args ) );
+		], $settings );
 
-		if ( $admin && is_admin() ) {
+		if ( $args['admin'] && is_admin() ) {
 			add_filter( 'gtheme_settings_subs', [ $this, 'subs' ], 5 );
 			add_action( 'gtheme_settings_load', [ $this, 'load' ] );
 		}

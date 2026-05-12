@@ -5,14 +5,14 @@ class gThemeAdmin extends gThemeModuleCore
 
 	protected $default_user = 0;
 
-	public function setup_actions( $args = [], $childless = NULL )
+	public function setup_actions( $settings = [], $childless = NULL )
 	{
-		extract( self::atts( [
+		$args = self::atts( [
 			'set_def_user'          => FALSE, // no longer using this!
 			'set_def_user_comments' => TRUE,
 			'default_publish'       => FALSE,
 			'template_title'        => TRUE,
-		], $args ) );
+		], $settings );
 
 		$this->default_user = gThemeOptions::getOption( 'default_user', 0 );
 
@@ -20,17 +20,17 @@ class gThemeAdmin extends gThemeModuleCore
 
 		if ( $this->default_user > 0 ) {
 
-			if ( $set_def_user )
+			if ( $args['set_def_user'] )
 				add_filter( 'wp_insert_post_data', [ $this, 'wp_insert_post_data' ], 9, 2 );
 
-			if ( $set_def_user_comments )
+			if ( $args['set_def_user_comments'] )
 				add_filter( 'preprocess_comment', [ $this, 'preprocess_comment' ] );
 		}
 
-		if ( $default_publish )
+		if ( $args['default_publish'] )
 			add_action ( 'admin_menu', [ $this, 'admin_menu' ] );
 
-		if ( $template_title )
+		if ( $args['template_title'] )
 			add_filter( 'default_page_template_title', [ $this, 'default_page_template_title' ], 2, 12 );
 	}
 

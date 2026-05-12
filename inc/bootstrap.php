@@ -3,13 +3,13 @@
 class gThemeBootstrap extends gThemeModuleCore
 {
 
-	public function setup_actions( $args = [], $childless = NULL )
+	public function setup_actions( $settings = [], $childless = NULL )
 	{
-		extract( self::atts( [
+		$args = self::atts( [
 			'enhance_forms' => TRUE,
-		], $args ) );
+		], $settings );
 
-		if ( $enhance_forms ) {
+		if ( $args['enhance_forms'] ) {
 			add_filter( 'widget_categories_dropdown_args', [ $this, 'widget_categories_dropdown_args' ], 12, 2 );
 		}
 	}

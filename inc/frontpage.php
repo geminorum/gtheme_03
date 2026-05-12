@@ -3,7 +3,7 @@
 class gThemeFrontPage extends gThemeModuleCore
 {
 
-	// ANCESTOR : gtheme_get_displayed()
+	// ANCESTOR: `gtheme_get_displayed()`
 	public static function getDisplayed( $extra = [] )
 	{
 		global $gtheme_front_page_displayed;
@@ -17,7 +17,7 @@ class gThemeFrontPage extends gThemeModuleCore
 		return array_unique( array_merge( $gtheme_front_page_displayed, (array) $extra ), SORT_NUMERIC );
 	}
 
-	// ANCESTOR : gtheme_add_displayed()
+	// ANCESTOR: `gtheme_add_displayed()`
 	public static function addDisplayed( $post_id = NULL )
 	{
 		global $gtheme_front_page_displayed;

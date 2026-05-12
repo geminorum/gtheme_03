@@ -3,17 +3,17 @@
 class gThemeMenu extends gThemeModuleCore
 {
 
-	public function setup_actions( $args = [], $childless = NULL )
+	public function setup_actions( $settings = [], $childless = NULL )
 	{
-		extract( self::atts( [
+		$args = self::atts( [
 			'register_nav' => TRUE,
 			'allowedtags'  => FALSE,
-		], $args ) );
+		], $settings );
 
-		if ( $register_nav )
+		if ( $args['register_nav'] )
 			add_action( 'init', [ $this, 'init' ] );
 
-		if ( $allowedtags )
+		if ( $args['allowedtags'] )
 			add_filter( 'wp_nav_menu_container_allowedtags', [ $this, 'wp_nav_menu_container_allowedtags' ] );
 
 		if ( ! is_admin() ) {

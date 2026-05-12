@@ -3,16 +3,16 @@
 class gThemeFilters extends gThemeModuleCore
 {
 
-	public function setup_actions( $args = [], $childless = NULL )
+	public function setup_actions( $settings = [], $childless = NULL )
 	{
-		extract( self::atts( [
+		$args = self::atts( [
 			'continue_reading'  => FALSE,
 			'default_editor'    => FALSE,
 			'overwrite_author'  => TRUE,
 			'resource_hints'    => TRUE,
 			'preload_resources' => TRUE,
 			'disable_postclass' => TRUE,
-		], $args ) );
+		], $settings );
 
 		if ( ! is_admin() ) {
 
@@ -23,7 +23,7 @@ class gThemeFilters extends gThemeModuleCore
 			add_filter( 'document_title_separator', [ $this, 'document_title_separator' ] );
 			add_filter( 'document_title_parts', [ $this, 'document_title_parts' ], 8 );
 
-			if ( $continue_reading )
+			if ( $args['continue_reading'] )
 				add_filter( 'the_excerpt',
 					static function( $text ) {
 						return $text ? $text.gThemeContent::continueReading() : $text;
@@ -49,24 +49,24 @@ class gThemeFilters extends gThemeModuleCore
 			add_filter( 'the_content', [ $this, 'the_content_actions' ], 997 );
 			add_filter( 'the_content_more_link', [ $this, 'the_content_more_link' ] );
 
-			if ( $default_editor )
+			if ( $args['default_editor'] )
 				add_filter( 'wp_default_editor', [ $this, 'wp_default_editor' ] );
 
 			// NOTE: to remove wp recent comments widget styles
 			add_filter( 'show_recent_comments_widget_style', '__return_false' );
 
-			if ( $overwrite_author ) {
+			if ( $args['overwrite_author'] ) {
 				add_filter( 'the_author', [ $this, 'the_author' ], 15 );
 				add_filter( 'the_author_posts_link', [ $this, 'the_author_posts_link' ], 15 );
 			}
 
-			if ( $resource_hints )
+			if ( $args['resource_hints'] )
 				add_filter( 'wp_resource_hints', [ $this, 'wp_resource_hints' ], 12, 2 );
 
-			if ( $preload_resources )
+			if ( $args['preload_resources'] )
 				add_filter( 'wp_preload_resources', [ $this, 'wp_preload_resources' ], 12 );
 
-			if ( $disable_postclass )
+			if ( $args['disable_postclass'] )
 				// @REF: https://core.trac.wordpress.org/ticket/37114
 				add_filter( 'post_class_taxonomies', '__return_empty_array' );
 		}

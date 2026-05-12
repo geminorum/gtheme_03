@@ -3,21 +3,21 @@
 class gThemeShortCodes extends gThemeModuleCore
 {
 
-	public function setup_actions( $args = [], $childless = NULL )
+	public function setup_actions( $settings = [], $childless = NULL )
 	{
-		extract( self::atts( [
+		$args = self::atts( [
 			'defaults'         => TRUE,
 			'caption_override' => TRUE,
 			'gallery_override' => TRUE,
-		], $args ) );
+		], $settings );
 
-		if ( $defaults )
+		if ( $args['defaults'] )
 			add_action( 'init', [ $this, 'init' ], 14 );
 
-		if ( $caption_override )
+		if ( $args['caption_override'] )
 			add_filter( 'img_caption_shortcode', [ $this, 'img_caption_shortcode' ], 10, 3 );
 
-		if ( $gallery_override )
+		if ( $args['gallery_override'] )
 			add_filter( 'post_gallery', [ $this, 'post_gallery' ], 10, 3 );
 	}
 

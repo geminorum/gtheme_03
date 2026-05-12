@@ -5,26 +5,26 @@ class gThemeImage extends gThemeModuleCore
 
 	protected $ajax = TRUE;
 
-	public function setup_actions( $args = [], $childless = NULL )
+	public function setup_actions( $settings = [], $childless = NULL )
 	{
-		extract( self::atts( [
+		$args = self::atts( [
 			'core_post_thumbnails'   => TRUE,                        // WordPress core thumbnail for posts
-			'amp_post_thumbnails'    => defined( 'AMP__VERSION' ),   // filters AMP featured image
+			'amp_post_thumbnails'    => defined( 'AMP__VERSION' ),   // Filters AMP featured image
 			'image_size_tags'        => TRUE,                        // registers theme's image sizes
 			'image_attachment_tags'  => FALSE,                       // Displays UI for theme's image sizes
 			'image_attachment_terms' => FALSE,                       // The image for terms on admin media editor
 			'responsive_class'       => FALSE,                       // Extracts and appends CSS class into content images
 			'media_object_sizes'     => TRUE,                        // Tells `gNetwork` to not generate default image sizes
 			'no_filter_content_tags' => TRUE,                        // Removes core filter for `srcset`/sizes/loading
-		], $args ) );
+		], $settings );
 
-		if ( $core_post_thumbnails )
+		if ( $args['core_post_thumbnails'] )
 			add_theme_support( 'post-thumbnails', gThemeOptions::info( 'core_post_thumbnails', [ 'post' ] ) );
 
-		if ( $amp_post_thumbnails && class_exists( 'AMP_Content_Sanitizer' ) )
+		if ( $args['amp_post_thumbnails'] && class_exists( 'AMP_Content_Sanitizer' ) )
 			add_filter( 'amp_post_template_data', [ $this, 'amp_post_template_data' ], 99, 2 );
 
-		if ( $image_size_tags ) {
+		if ( $args['image_size_tags'] ) {
 			add_action( 'init', [ $this, 'init' ] );
 			add_filter( 'intermediate_image_sizes_advanced', [ $this, 'intermediate_image_sizes_advanced' ], 8, 2 );
 			add_filter( 'image_size_names_choose', [ $this, 'image_size_names_choose' ] );
@@ -33,10 +33,10 @@ class gThemeImage extends gThemeModuleCore
 		add_filter( 'get_image_tag_class', [ $this, 'get_image_tag_class' ], 10, 4 );
 		// add_filter( 'wp_get_attachment_image_attributes', [ $this, 'wp_get_attachment_image_attributes' ], 10, 2 ); // FIXME: we can remove this
 
-		if ( $media_object_sizes )
+		if ( $args['media_object_sizes'] )
 			add_filter( 'gnetwork_media_object_sizes', '__return_true' );
 
-		if ( $responsive_class )
+		if ( $args['responsive_class'] )
 			add_filter( 'the_content', [ $this, 'the_content_responsive_class' ], 100 );
 
 		add_filter( 'get_image_tag', [ $this, 'get_image_tag' ], 5, 6 );
@@ -48,22 +48,22 @@ class gThemeImage extends gThemeModuleCore
 		add_filter( 'jpeg_quality', [ $this, 'jpeg_quality' ], 10, 2 );
 		add_filter( 'wp_editor_set_quality', [ $this, 'wp_editor_set_quality' ], 10, 2 );
 
-		if ( $image_attachment_tags ) {
+		if ( $args['image_attachment_tags'] ) {
 
 			add_filter( 'attachment_fields_to_edit', [ $this, 'tags_attachment_fields_to_edit' ], 10, 2 );
 			add_filter( 'attachment_fields_to_save', [ $this, 'tags_attachment_fields_to_save' ], 10, 2 );
 
-		} else if ( $core_post_thumbnails && gThemeOptions::info( 'image_convert_tags_into_thumbnail', FALSE ) ) {
+		} else if ( $args['core_post_thumbnails'] && gThemeOptions::info( 'image_convert_tags_into_thumbnail', FALSE ) ) {
 
 			add_action( 'post_updated', [ $this, 'post_updated_convert_image_tags' ], 9, 3 );
 		}
 
-		if ( $image_attachment_terms ) {
+		if ( $args['image_attachment_terms'] ) {
 			add_filter( 'attachment_fields_to_edit', [ $this, 'terms_attachment_fields_to_edit' ], 9, 2 );
 			add_filter( 'attachment_fields_to_save', [ $this, 'terms_attachment_fields_to_save' ], 9, 2 );
 		}
 
-		if ( $no_filter_content_tags ) {
+		if ( $args['no_filter_content_tags'] ) {
 			remove_filter( 'the_content', 'wp_make_content_images_responsive' );
 			remove_filter( 'the_content', 'wp_filter_content_tags' );
 			remove_filter( 'the_excerpt', 'wp_filter_content_tags' );
