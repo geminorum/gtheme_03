@@ -190,6 +190,12 @@ class gThemeTheme extends gThemeModuleCore
 
 		if ( ! $args['childless_parent'] )
 			return;
+
+		if ( 5 === gThemeBootstrap::version() )
+			add_action( 'wp_enqueue_scripts', [ 'gThemeUtilities', 'wp_enqueue_scripts_bootstrap' ] );
+
+		else
+			add_action( 'wp_enqueue_scripts', [ 'gThemeUtilities', 'wp_enqueue_scripts_no_bootstrap' ] );
 	}
 
 	// @REF: https://developer.wordpress.org/themes/functionality/custom-headers/

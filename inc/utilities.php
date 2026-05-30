@@ -451,4 +451,52 @@ JS;
 
 		return sprintf( '[%1$s%2$s /]', $tag, $args );
 	}
+
+	// @USAGE: `add_action( 'wp_enqueue_scripts', [ 'gThemeUtilities', 'wp_enqueue_scripts_bootstrap' ] );`
+	public static function wp_enqueue_scripts_bootstrap()
+	{
+		if ( gThemeUtilities::isPrint() )
+			return;
+
+		$script = <<<'JS'
+jQuery(function($){
+	// $('[data-toggle="tooltip"],[data-bs-toggle="tooltip"]')
+	$('[data-bs-toggle="tooltip"]')
+		.tooltip({
+			placement:"auto",
+			container: "body"
+		});
+
+	$("a.cite-scroll").on('click',function(event){
+		event.preventDefault();
+		$("html,body").animate({
+			scrollTop: $(this.hash).offset().top-82
+		}, 500);
+	});
+});
+JS;
+		wp_register_script( 'gtheme-bootstrap', GTHEME_URL.'/js/vendor/bootstrap.bundle.min.js', [ 'jquery' ], gThemeOptions::info( 'bootstrap_version', GTHEME_VERSION ), TRUE );
+		// wp_enqueue_script( 'gtheme-all-script', GTHEME_URL.'/js/script.all.js', [ 'jquery', 'gtheme-bootstrap' ], GTHEME_CHILD_VERSION, TRUE ); return; // <---- NOTE THIS
+
+		wp_enqueue_script( 'gtheme-bootstrap' );
+		wp_add_inline_script( 'gtheme-bootstrap', $script );
+	}
+
+	// @USAGE: `add_action( 'wp_enqueue_scripts', [ 'gThemeUtilities', 'wp_enqueue_scripts_no_bootstrap' ] );`
+	public static function wp_enqueue_scripts_no_bootstrap()
+	{
+		if ( gThemeUtilities::isPrint() )
+			return;
+
+		// NOTE: minified version of theme + child `script.all.js`
+		$script = <<<'JS'
+jQuery(function($){$('a.cite-scroll').on('click',function(event){event.preventDefault();$('html,body').animate({scrollTop:$(this.hash).offset().top-32},500);});$('a.scroll').click(function(e){e.preventDefault();$('html,body').animate({scrollTop:$(this.hash).offset().top},500);});$('a.scroll-to-top').click(function(e){e.preventDefault();$('html, body').animate({scrollTop:0},'slow');});$('img').on('error',function(){console.log('error loading image: '+$(this).attr('src'));$(this).addClass('error-image').hide();});$('a[href="#"]').click(function(e){e.preventDefault();});});
+JS;
+
+		// @REF: https://core.trac.wordpress.org/ticket/44551
+		// @REF: https://wordpress.stackexchange.com/a/311279
+		wp_register_script( 'gtheme-starter', '', [ 'jquery' ], GTHEME_VERSION, TRUE );
+		wp_enqueue_script( 'gtheme-starter' ); // must register then enqueue
+		wp_add_inline_script( 'gtheme-starter', $script );
+	}
 }

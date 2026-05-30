@@ -16,7 +16,7 @@ class gThemeOptions extends gThemeModuleCore
 			'blog_name'  => $blog_name,
 			'logo_title' => _x( 'Home', 'Logo Title', 'gtheme' ),
 
-			// 'bootstrap_version' => '4.6.2',
+			'bootstrap_version' => '5.3.8', // NOTE: this is for Parent Theme / Do override for the child
 			'color_scheme'      => 'auto',
 			// 'additional_body_class' => '',
 			// 'additional_post_class' => '',
@@ -165,6 +165,7 @@ class gThemeOptions extends gThemeModuleCore
 			/// COMMENTS:
 			// 'comments_support'        => TRUE, // hides the default inserts.
 			// 'comments_disable_types'  => [ 'attachment' ],
+			'comments_item_callback'  => [ 'gThemeBootstrap', 'commentCallback_BS4' ], // null to use wp core.
 			// 'comments_item_callback'  => [ 'gThemeBootstrap', 'commentCallback_BS3' ], // null to use wp core.
 			// 'comments_item_callback'  => [ 'gThemeComments', 'comment_callback' ], // null to use wp core.
 			// 'comments_title_callback' => [ 'gThemeComments', 'title_callback' ],
