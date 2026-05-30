@@ -2,19 +2,21 @@
 Theme Name: gTheme 3
 Theme URI: https://github.com/geminorum/gtheme_03
 Update URI: https://github.com/geminorum/gtheme_03
+GitHub Theme URI: https://github.com/geminorum/gtheme_03
+GitLab Theme URI: https://gitlab.com/geminorum/gtheme_03
 Description: Theme Framwork for WordPress
 Version: 3.23.0
 Author: geminorum
 Author URI: https://geminorum.ir/
-Tags: gtheme
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
+Tags: gtheme, custom-logo, custom-menu, editor-style, featured-images, microformats, rtl-language-support, threaded-comments, translation-ready
 Text Domain: gtheme
 Domain Path: /languages
 Requires WP: 5.7.0
 Requires at least: 5.7.0
-Requires PHP: 7.2.24
-GitHub Theme URI: https://github.com/geminorum/gtheme_03
+Requires PHP: 8.3
+Tested up to: 7.0
 */
 
 /* This file intentionally left blank. */

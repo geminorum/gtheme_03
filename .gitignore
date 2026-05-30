@@ -3,17 +3,31 @@
 .gulp
 .imdone
 .temp
+.todos
+.TODOs
+.test
 
 /css/maps
+/components
+/packages
 /node_modules
 
 composer.lock
 npm-debug.log
-yarn-error.log
+.tinypng-sigs
 
 environment.yml
 .env
 .ftpconfig
 
+*.WinMerge
+
 logs
 *.log
+
+
+/editorial
+/assets/fonts
+/customizer-repeater
+/inc/customize-controls
+/inc/Controls

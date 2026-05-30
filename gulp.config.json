@@ -1,48 +1,33 @@
 {
   "input": {
-    "php": [
-      "style.css",
-      "./**/*.php",
-      "!./assets/**",
-      "!./css/**",
-      "!./fonts/**",
-      "!./images/**",
-      "!./js/**",
-      "!./libs/**",
-      "!./packages/**",
-      "!./stylesheets/**"
-    ],
-    "sass": [
-      "./stylesheets/**/*.scss",
-      "!./stylesheets/modules/**"
+    "clean": "./css/*.css",
+    "sass": "./stylesheets/**/*.scss",
+    "watch": [
+      "./stylesheets/**/*.scss"
     ]
   },
   "output": {
-    "css": "./css",
-    "languages": "./languages/gtheme_03.pot"
+    "css": "./css"
   },
-  "logs": {
-    "tinypng": "./images/raw/.tinypng-sigs"
-  },
-  "env": {
-    "github": "",
-    "tinypng": ""
-  },
+  "tmp": [],
   "sass": {
     "silenceDeprecations": [
       "import",
-      "mixed-decls",
       "color-functions",
-      "global-builtin",
-      "abs-percent",
-      "legacy-js-api"
+      "if-function",
+      "global-builtin"
     ],
-    "errLogToConsole": true
+    "errLogToConsole": true,
+    "loadPaths": [
+      "./stylesheets/modules",
+      "node_modules/bootstrap/scss"
+    ]
   },
   "cssnano": {
     "dev": {
       "preset": [
         "default", {
+          "svgo": false,
           "zindex": false,
           "normalizeWhitespace": false,
           "discardComments": false
@@ -52,6 +37,7 @@
     "build": {
       "preset": [
         "default", {
+          "svgo": false,
           "zindex": false,
           "discardComments": {
             "removeAll": true
@@ -65,44 +51,5 @@
     "build": {
       "cascade": false
     }
-  },
-  "pot": {
-    "package": "gTheme",
-    "domain": "gtheme",
-    "metadataFile": "style.css",
-    "bugReport": "https://github.com/geminorum/gtheme_03/issues",
-    "commentKeyword": "translators:",
-    "headers": false,
-    "lastTranslator": "",
-    "team": "geminorum <contact@geminorum.ir>"
-  },
-  "textdomain": {
-    "force": true,
-    "text_domain": "gtheme",
-    "keywords": [
-      "__:1,2d",
-      "_e:1,2d",
-      "_x:1,2c,3d",
-      "esc_html__:1,2d",
-      "esc_html_e:1,2d",
-      "esc_html_x:1,2c,3d",
-      "esc_attr__:1,2d",
-      "esc_attr_e:1,2d",
-      "esc_attr_x:1,2c,3d",
-      "_ex:1,2c,3d",
-      "_n:1,2,4d",
-      "_nx:1,2,4c,5d",
-      "_n_noop:1,2,3d",
-      "_nx_noop:1,2,3c,4d"
-    ]
-  },
-  "banner": [
-    "/**",
-    " * <%= pkg.name %> - <%= pkg.description %>",
-    " * @version v<%= pkg.version %>",
-    " * @link <%= pkg.homepage %>",
-    " * @license <%= pkg.license %>",
-    " */",
-    ""
-  ]
+  }
 }
