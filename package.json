@@ -60,7 +60,7 @@
     "gulp-size": "^4.0.1",
     "gulp-sourcemaps": "^3.0.0",
     "gulp-wp-pot": "^2.5.0",
-    "js-yaml": "^4.1.0",
+    "js-yaml": "^4.1.1",
     "parse-changelog": "^1.0.2",
     "postcss": "^8.5.6",
     "prettyjson": "^1.2.5",
