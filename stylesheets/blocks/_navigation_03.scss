@@ -1,0 +1,85 @@
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+/// Blocks: Navigation 03 - 2026-02-02
+// for non Bootstrap
+
+////////////////////////////////////////////////////////////////////////////////
+@use "sass:math"; // @REF: https://sass-lang.com/d/slash-div
+@use "gtheme";
+
+////////////////////////////////////////////////////////////////////////////////
+$spacer: gtheme.$spacer;
+
+////////////////////////////////////////////////////////////////////////////////
+.breadcrumb {
+  --bs-breadcrumb-bg: var(--bs-secondary-bg-subtle, #{gtheme.$gray-light});
+  --bs-breadcrumb-border-radius: #{gtheme.$border-radius};
+
+  display: flex;
+  flex-wrap: wrap;
+  font-size: ($spacer * .85);
+  line-height: $spacer;
+  padding: ($spacer * .44) ($spacer * 1) ($spacer * .66);
+  margin: ($spacer * .5) 0 ($spacer * 1);
+  list-style: none;
+
+  @include gtheme.link-invisible;
+
+  > li + li {
+    padding-left: ($spacer * .5);
+
+    &::before {
+      padding-right: ($spacer * .5);
+      color: gtheme.$gray-light;
+      content: "/";
+    }
+  }
+}
+
+////////////////////////////////////////////////////////////////////////////////
+// .pager is dropped on BS4
+.pager {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: ($spacer * .75) $spacer;
+  margin: 0 0 $spacer;
+  list-style: none;
+  clear: both;
+
+  .previous {
+    flex: 1;
+    text-align: left;
+  }
+
+  .next {
+    flex: 1;
+    text-align: right;
+  }
+}
+
+////////////////////////////////////////////////////////////////////////////////
+.entry-pages {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+
+  // max-width: math.div(gtheme.$theme-container-width, 2);
+  margin: $spacer auto ($spacer * .5) !important;
+
+  > a,
+  > span {
+    margin: 0 ($spacer * .5);
+    display: inline-block;
+    padding: ($spacer * .25) ($spacer * .75);
+    border: 1px dotted gtheme.$gray-lighter;
+    border-radius: $border-radius;
+
+    &:hover {
+      background: gtheme.$gray-lighter;
+      text-decoration: none;
+      cursor: pointer;
+    }
+  }
+}

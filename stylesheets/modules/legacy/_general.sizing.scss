@@ -38,6 +38,7 @@
 // helper function: return null rather than throwing an error if index is outside list range
 @function theme-nth-value($list, $index) {
   @return if(length($list) >= $index, nth($list, $index), null);
+  // @return if(sass(length($list) >= $index): nth($list, $index));
 }
 
 ////////////////////////////////////////////////////////////////////////////////

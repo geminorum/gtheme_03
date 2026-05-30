@@ -1,0 +1,73 @@
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+/// Theme Partials: Headers 01 - 2026-02-05
+
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+@use "gtheme";
+
+////////////////////////////////////////////////////////////////////////////////
+$spacer: 1rem !default;
+
+////////////////////////////////////////////////////////////////////////////////
+.-header {
+  text-align: center;
+  margin: $spacer 0;
+
+  .-title,
+  .-overtitle,
+  .-subtitle {
+    margin: 0;
+  }
+
+  .-title,
+  .-title a {
+    color: gtheme.$gray-darker;
+    text-decoration: none;
+  }
+
+  .-overtitle,
+  .-subtitle {
+    color: gtheme.$gray-light;
+    font-size: smaller;
+  }
+
+  .title {
+    // @include theme-line-behind-grid;
+  }
+
+  .-overtitle {
+    margin-bottom: ($spacer * 1);
+  }
+
+  .-subtitle {
+    margin-top: ($spacer * 1);
+  }
+
+  .-byline {
+    font-size: $spacer * .75;
+    color: gtheme.$gray;
+    margin-top: ($spacer * .75);
+    margin-bottom: ($spacer * 1.25);
+    @include gtheme.link-invisible;
+
+    + .-actions {
+      margin-top: -($spacer * 1);
+    }
+  }
+
+  .-actions {
+    margin-top: ($spacer * 1);
+  }
+
+  .entry.-hidden-title & {
+    // display: none;
+    // visibility: hidden;
+    @include gtheme.visually-hidden;
+  }
+
+  &.entry-header + div.entry-content {
+    margin-top: $spacer * 2;
+  }
+}

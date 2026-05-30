@@ -1,3 +1,4 @@
+/* stylelint-disable function-name-case */
 /* stylelint-disable block-no-empty */
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
@@ -12,6 +13,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 $base: "https://rawcdn.githack.com" !default;
 $repo: "../../gtheme_03/fonts" !default;
+
+$font-family-regular: null;
+$font-family-bold: null;
 
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
@@ -31,10 +35,16 @@ $repo: "../../gtheme_03/fonts" !default;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+/// Basic Latin (0020-007F) is probably the most common range for English sites.
+/// `unicode-table.com` provides a comprehensive listing of all available ranges
+/// with codes for specific characters.
+// @source: https://css-tricks.com/almanac/properties/u/unicode-range/
+// @REF: https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-rules/@font-face/unicode-range
 
 @mixin unicoderange-Persian() {
-  // unicode-range: u+0600-06ff, u+200c-200e, u+2010-2011, u+fb50-fdff, u+fe80-fefc;
-  unicode-range: "U+0600-06ff", "U+200c-200e", "U+2010-2011", "U+fb50-fdff", "U+fe80-fefc";
+  /* stylelint-disable-next-line unit-no-unknown */
+  unicode-range: U+0600-06ff, U+200c-200e, U+2010-2011, U+fb50-fdff, U+fe80-fefc;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -81,9 +91,17 @@ $repo: "../../gtheme_03/fonts" !default;
 // http://rastikerdar.github.io/vazirmatn/
 // https://rastikerdar.github.io/vazirmatn/fa/docs/HELP-fa
 
+@function VazirMatn-family-Normal() {
+  @return "Vazirmatn", "Tahoma", "Iranian Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+}
+
+@function VazirMatn-family-Bold() {
+  @return "Vazirmatn", "Arial", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", "Helvetica", sans-serif;
+}
+
 @mixin VazirMatn-Normal($base: $repo) {
 
-  $font-family-normal: "Vazirmatn", "Tahoma", "Iranian Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif !global;
+  $font-family-normal: VazirMatn-family-Normal() !global;
 
   $name: "Vazirmatn";
   $folder: "vazirmatn";
@@ -110,7 +128,7 @@ $repo: "../../gtheme_03/fonts" !default;
 
 @mixin VazirMatn-Bold($base: $repo) {
 
-  $font-family-bold: "Vazirmatn", "Arial", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", "Helvetica", sans-serif !global;
+  $font-family-bold: VazirMatn-family-Bold() !global;
 
   $name: "Vazirmatn";
   $folder: "vazirmatn";
@@ -137,7 +155,7 @@ $repo: "../../gtheme_03/fonts" !default;
 
 @mixin VazirMatn-Thin-CDN() {
 
-  $font-family-thin: "Vazirmatn", "Tahoma", "Iranian Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif !global;
+  $font-family-thin: VazirMatn-family-Normal() !global;
 
   $name: "Vazirmatn";
   $ver: "v33.003";
@@ -155,7 +173,7 @@ $repo: "../../gtheme_03/fonts" !default;
 
 @mixin VazirMatn-ExtraLight-CDN() {
 
-  $font-family-extralight: "Vazirmatn", "Tahoma", "Iranian Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif !global;
+  $font-family-extralight: VazirMatn-family-Normal() !global;
 
   $name: "Vazirmatn";
   $ver: "v33.003";
@@ -173,7 +191,7 @@ $repo: "../../gtheme_03/fonts" !default;
 
 @mixin VazirMatn-Light-CDN() {
 
-  $font-family-light: "Vazirmatn", "Tahoma", "Iranian Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif !global;
+  $font-family-light: VazirMatn-family-Normal() !global;
 
   $name: "Vazirmatn";
   $ver: "v33.003";
@@ -191,7 +209,7 @@ $repo: "../../gtheme_03/fonts" !default;
 
 @mixin VazirMatn-Regular-CDN() {
 
-  $font-family-regular: "Vazirmatn", "Tahoma", "Iranian Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif !global;
+  $font-family-regular: VazirMatn-family-Normal() !global;
 
   $name: "Vazirmatn";
   $ver: "v33.003";
@@ -209,7 +227,7 @@ $repo: "../../gtheme_03/fonts" !default;
 
 @mixin VazirMatn-Medium-CDN() {
 
-  $font-family-medium: "Vazirmatn", "Tahoma", "Iranian Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif !global;
+  $font-family-medium: VazirMatn-family-Normal() !global;
 
   $name: "Vazirmatn";
   $ver: "v33.003";
@@ -227,7 +245,7 @@ $repo: "../../gtheme_03/fonts" !default;
 
 @mixin VazirMatn-SemiBold-CDN() {
 
-  $font-family-semibold: "Vazirmatn", "Tahoma", "Iranian Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif !global;
+  $font-family-semibold: VazirMatn-family-Bold() !global;
 
   $name: "Vazirmatn";
   $ver: "v33.003";
@@ -245,7 +263,7 @@ $repo: "../../gtheme_03/fonts" !default;
 
 @mixin VazirMatn-Bold-CDN() {
 
-  $font-family-bold: "Vazirmatn", "Tahoma", "Iranian Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif !global;
+  $font-family-bold: VazirMatn-family-Bold() !global;
 
   $name: "Vazirmatn";
   $ver: "v33.003";
@@ -263,7 +281,7 @@ $repo: "../../gtheme_03/fonts" !default;
 
 @mixin VazirMatn-ExtraBold-CDN() {
 
-  $font-family-extrabold: "Vazirmatn", "Tahoma", "Iranian Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif !global;
+  $font-family-extrabold: VazirMatn-family-Bold() !global;
 
   $name: "Vazirmatn";
   $ver: "v33.003";
@@ -281,7 +299,7 @@ $repo: "../../gtheme_03/fonts" !default;
 
 @mixin VazirMatn-Black-CDN() {
 
-  $font-family-black: "Vazirmatn", "Tahoma", "Iranian Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif !global;
+  $font-family-black: VazirMatn-family-Bold() !global;
 
   $name: "Vazirmatn";
   $ver: "v33.003";
@@ -569,6 +587,88 @@ $repo: "../../gtheme_03/fonts" !default;
     @include unicoderange-Persian;
   }
 }
+
+@mixin Sahel($base: $repo) {
+
+  $font-family-normal: "Sahel", "Tahoma", "Iranian Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif !global;
+
+  $name: "Sahel";
+  $folder: "Sahel";
+  $file: "Sahel"; // "Sahel-Regular"
+  $path: $base + "/" + $folder + "/" + $file;
+
+  @at-root {
+    @font-face {
+      font-family: "#{$name}";
+      font-style: normal;
+      font-weight: 400;
+      src: url($path + ".woff2");
+      src:
+        // url($path + ".eot?#iefix") format("embedded-opentype"),
+        url($path + ".woff2") format("woff2");
+        // url($path + ".woff") format("woff"),
+        // url($path + ".ttf") format("truetype");
+
+      @include unicoderange-Persian;
+      font-display: swap;
+    }
+  }
+}
+
+@mixin Sahel-Bold($base: $repo) {
+
+  $font-family-bold: "Sahel", "Arial", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", "Helvetica", sans-serif !global;
+
+  $name: "Sahel";
+  $folder: "Sahel";
+  $file: "Sahel-Bold";
+  $path: $base + "/" + $folder + "/" + $file;
+
+  @at-root {
+    @font-face {
+      font-family: "#{$name}";
+      font-style: normal;
+      font-weight: 700;
+      src: url($path + ".woff2");
+      src:
+        // url($path + ".eot?#iefix") format("embedded-opentype"),
+        url($path + ".woff2") format("woff2");
+        // url($path + ".woff") format("woff"),
+        // url($path + ".ttf") format("truetype");
+
+      @include unicoderange-Persian;
+      font-display: swap;
+    }
+  }
+}
+
+@mixin Sahel-Black($base: $repo) {
+
+  $font-family-bold: "Sahel", "Arial", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", "Helvetica", sans-serif !global;
+
+  $name: "Sahel";
+  $folder: "Sahel";
+  $file: "Sahel-Black";
+  $path: $base + "/" + $folder + "/" + $file;
+
+  @at-root {
+    @font-face {
+      font-family: "#{$name}";
+      font-style: normal;
+      font-weight: 900;
+      src: url($path + ".woff2");
+      src:
+        // url($path + ".eot?#iefix") format("embedded-opentype"),
+        url($path + ".woff2") format("woff2");
+        // url($path + ".woff") format("woff"),
+        // url($path + ".ttf") format("truetype");
+
+      @include unicoderange-Persian;
+      font-display: swap;
+    }
+  }
+}
+
 
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////

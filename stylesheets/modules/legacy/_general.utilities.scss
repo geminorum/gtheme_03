@@ -49,19 +49,32 @@
   }
 }
 
+////////////////////////////////////////////////////////////////////////////////
 // Hiding class, making content visible only to screen readers but not visually
 // "sr" meaning "screen-reader"
 @mixin theme-visually-hidden() {
 
+  // BASED ON Bootstrap v5.3.8
+  &:not(:focus):not(:focus-within) {
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
+  }
+
   // @REF: https://css-tricks.com/inclusively-hidden/
   // @REF: https://www.scottohara.me/blog/2017/04/14/inclusively-hidden.html
-  &:not(:focus):not(:active) {
-    clip: rect(0 0 0 0);
-    clip-path: inset(50%);
-    height: 1px;
-    overflow: hidden;
-    position: absolute;
-    white-space: nowrap;
-    width: 1px;
-  }
+  // &:not(:focus):not(:active) {
+  //   clip: rect(0 0 0 0);
+  //   clip-path: inset(50%);
+  //   width: 1px;
+  //   height: 1px;
+  //   overflow: hidden;
+  //   position: absolute;
+  //   white-space: nowrap;
+  // }
 }

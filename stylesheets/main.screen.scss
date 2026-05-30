@@ -4,59 +4,75 @@
 /// Front: Screen
 
 ////////////////////////////////////////////////////////////////////////////////
-$theme-wp-adminbar-height: 32px; // WordPress Adminbar Height // @SEE: `--wp-admin--admin-bar--height: 32/46px;`
-$theme-bs-navbar-height: 5rem; // Bootstrap Navbar Height
+@use "sass:color";
+@use "gtheme";
 
 ////////////////////////////////////////////////////////////////////////////////
-@import "modules/legacy";
+// @import "modules/legacy";
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
-@import "vendor/normalize-v8.0.1";
-////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
-@include theme-fonts-VazirMatn-Regular-CDN();
-@include theme-fonts-VazirMatn-Bold-CDN();
+@include gtheme.font-VazirMatn-Regular-CDN();
+@include gtheme.font-VazirMatn-Bold-CDN();
 
-$font-family-normal: $font-family-regular;
-
-////////////////////////////////////////////////////////////////////////////////
-@include theme-adminbar-init($theme-bs-navbar-height, $theme-wp-adminbar-height);
-@include theme-layout-init;
-
-body {
-  font-family: $font-family-normal;
-
-  font-size: 1rem; // Assumes the browser default, typically `16px`
-  line-height: 1.5;
-}
-
-@include theme-headings-init;
-@include theme-linking-init;
+// must be here
+$font-family-normal: gtheme.font-VazirMatn-family-Normal(); // $font-family-regular;
+$font-family-base: gtheme.font-VazirMatn-family-Normal(); // $font-family-normal;
+$font-family-bold: gtheme.font-VazirMatn-family-Bold();
+$headings-font-family: gtheme.font-VazirMatn-family-Bold(); // $font-family-bold;
+$headings-font-weight: 700;
 
 ////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+/// BS SETTINGS: https://getbootstrap.com/docs/5.3/customize/options/
+$enable-negative-margins: true;
+$enable-cssgrid: true;
+$enable-rounded: false;
+$enable-caret: false;
+
+// https://stackoverflow.com/a/65386132
+// https://www.w3.org/TR/WCAG21/#contrast-minimum
+// https://github.com/twbs/bootstrap/issues/31963
+// $min-contrast-ratio: 4; // 2.5; // 4.5;
+
+@import "bootstrap";
+////////////////////////////////////////////////////////////////////////////////
+@include gtheme.adminbar-init;
+@include gtheme.layout-init;
+@include gtheme.heading-init;
+@include gtheme.link-init;
+
+////////////////////////////////////////////////////////////////////////////////
+@import "theme/partials/main_01";
+@import "theme/partials/headers_01";
+@import "theme/partials/actions_01";
+
 ////////////////////////////////////////////////////////////////////////////////
 @import "blocks/helpers_01";
-@import "blocks/defaults_03";
-@import "blocks/typography_02";
-@import "blocks/navigation_02";
-@import "blocks/forms_02";
-@import "blocks/table_02";
-@import "blocks/comments_03";
-@import "blocks/calendar_01";
-@import "blocks/jcarousel_01";
-// @import "blocks/archives_compact_02"; // SET: `GPERSIANDATE_DISABLE_STYLES`
-@import "blocks/bp_nouveau_02";
-@import "blocks/cse_default_01";
-
-////////////////////////////////////////////////////////////////////////////////
-@import "blocks/blocks-floats_01";
-@import "blocks/blocks-columns_01";
-@import "blocks/blocks-quotes_01";
-@import "blocks/blocks-rules_01";
-
-////////////////////////////////////////////////////////////////////////////////
-@include theme-coloring-gray-palette;
+@import "blocks/navigation_03";
 
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
-@include theme-layout-media;
+// @import "blocks/defaults_03";
+// @import "blocks/typography_02";
+// @import "blocks/forms_02";
+// @import "blocks/table_02";
+// @import "blocks/comments_03";
+// @import "blocks/calendar_01";
+// @import "blocks/jcarousel_01";
+// @import "blocks/mejs_05";
+// // @import "blocks/archives_compact_02"; // SET: `GPERSIANDATE_DISABLE_STYLES`
+// @import "blocks/bp_nouveau_02";
+// @import "blocks/cse_default_01";
+
+// ////////////////////////////////////////////////////////////////////////////////
+// @import "blocks/blocks-floats_01";
+// @import "blocks/blocks-columns_01";
+// @import "blocks/blocks-quotes_01";
+// @import "blocks/blocks-rules_01";
+
+////////////////////////////////////////////////////////////////////////////////
+//@include theme-coloring-gray-palette;
+
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+@include gtheme.layout-media;

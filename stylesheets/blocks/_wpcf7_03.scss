@@ -1,0 +1,92 @@
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+/// Blocks: Contact-Form-7 03 - 2025-10-30
+// TESTED with Bootstrap 5.3.8
+// NOTE: must load with bootstrap v5.3
+// NOTE: must used with RTLCSS
+
+////////////////////////////////////////////////////////////////////////////////
+@use "sass:color";
+@use "gtheme";
+
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+div.wpcf7 {
+  .screen-reader-response {
+    /* stylelint-disable-next-line scss/at-extend-no-missing-placeholder */
+    @extend .screen-reader-text;
+  }
+
+  .wpcf7-response-output {
+    /* stylelint-disable-next-line scss/at-extend-no-missing-placeholder */
+    @extend .alert;
+    /* stylelint-disable-next-line scss/at-extend-no-missing-placeholder */
+    @extend .alert-warning;
+
+    &:empty {
+      display: none;
+    }
+  }
+
+  span.wpcf7-not-valid-tip {
+    /* stylelint-disable-next-line scss/at-extend-no-missing-placeholder */
+    @extend .invalid-feedback;
+    display: block;
+  }
+
+  .wpcf7-form-control-wrap {
+    select,
+    option,
+    textarea,
+    input {
+      box-sizing: border-box;
+    }
+
+    select,
+    textarea,
+    input[type="tel"],
+    input[type="url"],
+    input[type="text"],
+    input[type="password"],
+    input[type="email"] {
+      width: 100%;
+    }
+
+    input[type="number"] {
+      width: 33%;
+    }
+
+    select,
+    textarea,
+    input[type="tel"],
+    input[type="url"],
+    input[type="text"],
+    input[type="password"],
+    input[type="email"],
+    input[type="number"] {
+      &.wpcf7-not-valid {
+        /* stylelint-disable-next-line scss/at-extend-no-missing-placeholder */
+        @extend .is-invalid;
+      }
+    }
+
+    input[type="number"],
+    input[type="tel"],
+    input[type="url"],
+    input[type="email"] {
+
+      /*rtl:ignore*/
+      direction: ltr !important;
+
+      &::placeholder {
+        direction: ltr !important; // must not be ignored by RTLCSS
+        text-align: left !important; // for firefox
+      }
+    }
+
+    textarea {
+      resize: vertical;
+    }
+  }
+}

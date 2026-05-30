@@ -17,7 +17,7 @@ video.wp-video-shortcode {
 }
 
 ////////////////////////////////////////////////////////////////////////////////
-mce-content-body.gtheme .mejs-container,
+html .mce-content-body.gtheme .mejs-container,
 body.gtheme .mejs-container {
   /*rtl:ignore*/
   direction: ltr;
@@ -51,7 +51,7 @@ body.gtheme .mejs-container {
 }
 
 ////////////////////////////////////////////////////////////////////////////////
-mce-content-body.gtheme.theme-scheme-light .mejs-container,
+html .mce-content-body.gtheme.theme-scheme-light .mejs-container,
 body.gtheme.theme-scheme-light .mejs-container {
   &,
   .mejs-controls,
@@ -92,7 +92,7 @@ body.gtheme.theme-scheme-light .mejs-container {
 
 ////////////////////////////////////////////////////////////////////////////////
 // WordPress audio playlist styles
-mce-content-body.gtheme.theme-scheme-light .wp-playlist-light,
+html .mce-content-body.gtheme.theme-scheme-light .wp-playlist-light,
 body.gtheme.theme-scheme-light .wp-playlist-light {
   // box-shadow: 3px 3px 0 #e2e2e2;
 

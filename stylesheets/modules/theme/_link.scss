@@ -18,6 +18,18 @@
 }
 
 ////////////////////////////////////////////////////////////////////////////////
+@mixin invisible( $color: null ) {
+  a:not(:hover) {
+    text-decoration: none;
+    @if not $color {
+      color: inherit;
+    } @else {
+      color: $color;
+    }
+  }
+}
+
+////////////////////////////////////////////////////////////////////////////////
 @mixin init($link: $link-color, $hover: $link-hover-color, $heading: $headings-color) {
   a {
     color: $link;
