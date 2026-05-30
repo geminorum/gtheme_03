@@ -1,7 +1,7 @@
 <?php //////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
-// NOTE: SAMPLE
+/// NOTE: WORKING SAMPLE
 
 ////////////////////////////////////////////////////////////////////////////////
 $direction = $ltr ? '' : '-rtl';
@@ -17,10 +17,18 @@ $styles = [
 	"../../../plugins/gnetwork/assets/css/front.all{$direction}.css",
 
 	// works with setting `GEDITORIAL_DISABLE_FRONT_STYLES`
-	"../../../plugins/geditorial/assets/css/front.all{$direction}.css", // or by module, see below
-	// "../../../plugins/geditorial/assets/css/front.headings{$direction}.css",
-	// "../../../plugins/geditorial/assets/css/front.like{$direction}.css",
+	// "../../../plugins/geditorial/assets/css/front.all{$direction}.css", // or by module, see below
+	"../../../plugins/geditorial/assets/css/front.headings{$direction}.css",
+	"../../../plugins/geditorial/assets/css/front.today{$direction}.css",
+	"../../../plugins/geditorial/assets/css/front.like{$direction}.css",
 	// "../../../plugins/geditorial/assets/css/front.entry{$direction}.css",
+
+	"../../../../wp-includes/css/dashicons.css",
+
+	// "../../../plugins/woocommerce/assets/css/woocommerce-layout{$direction}.css",
+	// "../../../plugins/woocommerce/assets/css/woocommerce-smallscreen{$direction}.css",
+	// "../../../plugins/woocommerce/assets/css/woocommerce{$direction}.css",
+	// "../../../plugins/woocommerce/assets/css/woocommerce-brands{$direction}.css",
 ];
 
 ////////////////////////////////////////////////////////////////////////////////
