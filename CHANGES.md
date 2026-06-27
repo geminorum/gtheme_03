@@ -1,3 +1,51 @@
+## [3.24.0] - 2026-06-27
+* 🔧 change license to GPLv2 or later
+* asset/styles: support for childless setup
+* core/text: better wrapping images
+* main/module: passing childless into setup actions
+* module/attachment: avoid using short-code callbacks directly
+* module/attachment: display non-empty content on attachment pages
+* module/attachment: link audio cover to attachment page
+* module/bootstrap: woo-commerce on nav-bar
+* module/colors: accent color revised
+* module/colors: better chain of fallbacks for accent color
+* module/colors: filter custom palette
+* module/colors: live preview for accent color changes
+* module/colors: sanitize color data
+* module/colors: support scheme on customizer
+* module/content: customize word wraps on headers
+* module/content: fancy navigation of content pages
+* module/content: not available message for barcode dropdown
+* module/content: partials revised
+* module/content: rethinking not-found
+* module/date: once-a-day revised
+* module/editorial: auto insert action/source
+* module/editorial: auto insert like buttons
+* module/editorial: check content last page before like buttons
+* module/editorial: filter list connected args
+* module/editorial: tab module checks
+* module/filters: continue reading disabled by default
+* module/filters: drop support for content extra filters
+* module/logo: 🆕 module
+* module/logo: support live preview
+* module/menu: conditional check by menu-name
+* module/navigation: default main taxonomy by current post
+* module/settings: admin-bar revised
+* module/social: support for mastodon meta-tag
+* module/template: additional template for logo markup
+* module/template: default wrap/item class
+* module/theme: check for child-less setup
+* module/woo-commerce: account/cart markup revised
+* module/woo-commerce: place holder on admin
+* module/wrap: customize wrapping starts/ends
+* module/wrap: data color scheme on html tag
+* module/wrap: image 404 revised
+* partial/navbar: migrate to bs v5.3
+* root/attachment: comment template for attachment pages
+* root/index: avoid sidebar on not-found
+* 🆙 autosize 6.0.1
+* 🆙 bootstrap v5.3.8
+
 ## [3.23.0]
 * module/cache: closing html after discard
 * module/content: masonry items
