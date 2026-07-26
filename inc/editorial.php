@@ -1056,7 +1056,7 @@ class gThemeEditorial extends gThemeModuleCore
 			return $atts['default'];
 
 		if ( ! array_key_exists( 'id', $atts ) )
-			$atts['default'] = NULL;
+			$atts['id'] = NULL;
 
 		return \geminorum\gEditorial\Template::postImage( $atts );
 	}
