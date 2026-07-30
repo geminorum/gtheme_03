@@ -150,7 +150,7 @@ class gThemeOptions extends gThemeModuleCore
 			// 'googlecse_cx'    => FALSE,
 
 			'site_crumb'      => $blog_name, // used on navigation breadcrumbs
-			'site_title'      => self::getOption( 'site_title', $blog_name ), // used on page title other than frontpage
+			'site_title'      => self::getOption( 'site_title', $blog_name ), // used on page title other than front-page
 			'frontpage_title' => self::getOption( 'frontpage_title', FALSE ), // FALSE to default
 			'frontpage_desc'  => self::getOption( 'frontpage_desc', get_bloginfo( 'description', 'display' ) ), // FALSE to disable
 

@@ -1280,7 +1280,7 @@ class gThemeEditorial extends gThemeModuleCore
 	}
 
 	// NOTE: general use
-	public static function callNetwork( $module, $callback, $args = [], $fallback = '' )
+	public static function callNetwork( string $module, callable $callback, array $args = [], mixed $fallback = '' ): mixed
 	{
 		if ( ! self::availableNetwork( $module ) )
 			return $fallback;
@@ -1292,7 +1292,7 @@ class gThemeEditorial extends gThemeModuleCore
 	}
 
 	// NOTE: general use
-	public static function callEditorial( $module, $callback, $args = [], $fallback = '' )
+	public static function callEditorial( string $module, callable $callback, array $args = [], mixed $fallback = '' ): mixed
 	{
 		if ( ! self::availableEditorial( $module ) )
 			return $fallback;

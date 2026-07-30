@@ -329,7 +329,7 @@ class gThemeNavigation extends gThemeModuleCore
 	}
 
 	// @REF: `get_the_archive_title()`
-	public static function crumbArchive( $args )
+	public static function crumbArchive( array $args ): false|string
 	{
 		$crumb     = [];
 		$dropdown  = FALSE;
