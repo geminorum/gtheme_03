@@ -11,6 +11,10 @@ div.wpcf7 {
   margin: 0;
   padding: 0;
 
+  .hidden-fields-container {
+    display: none;
+  }
+
   .wpcf7-response-output {
     margin: $theme-grid-gutter;
     padding: math.div($theme-grid-gutter, 4) math.div($theme-grid-gutter, 2);

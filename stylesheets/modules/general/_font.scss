@@ -1115,12 +1115,75 @@ $font-family-bold: null;
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
+/// Estedad v8.5 - 2026-07-26
+// https://aminabedi68.github.io/Estedad/
+// https://github.com/aminabedi68/Estedad
+@mixin Estedad-Normal($base: $repo) {
+
+  $font-family-normal: "Estedad", "Tahoma", "Iranian Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif !global;
+
+  $name: "Estedad";
+  $folder: "Estedad";
+  $file: "Estedad-Regular";
+  $path: $base + "/" + $folder + "/" + $file;
+
+  @at-root {
+    @font-face {
+      font-family: "#{$name}";
+      font-style: normal;
+      font-weight: 400;
+      src: url($path + ".woff2");
+      src:
+        // url($path + ".eot?#iefix") format("embedded-opentype"),
+        url($path + ".woff2") format("woff2"),
+        url($path + ".woff") format("woff"),
+        url($path + ".ttf") format("truetype");
+
+      @include unicoderange-Persian;
+      font-display: swap;
+      font-feature-settings: 'ss01' off, 'ss02' off, 'ss03' off, 'ss10' on, 'ss11' on, 'ss12' on, 'ss20' on;
+    }
+  }
+}
+
+@mixin Estedad-Bold($base: $repo) {
+
+  $font-family-bold: "Estedad", "Arial", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", "Helvetica", sans-serif !global;
+
+  $name: "Estedad";
+  $folder: "Estedad";
+  $file: "Estedad-Bold";
+  $path: $base + "/" + $folder + "/" + $file;
+
+  @at-root {
+    @font-face {
+      font-family: "#{$name}";
+      font-style: normal;
+      font-weight: 700;
+      src: url($path + ".woff2");
+      src:
+        // url($path + ".eot?#iefix") format("embedded-opentype"),
+        url($path + ".woff2") format("woff2"),
+        url($path + ".woff") format("woff"),
+        url($path + ".ttf") format("truetype");
+
+      @include unicoderange-Persian;
+      font-display: swap;
+      font-feature-settings: 'ss01' off, 'ss02' off, 'ss03' off, 'ss10' on, 'ss11' on, 'ss12' on, 'ss20' on;
+    }
+  }
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 @mixin Pinar-Normal($base: $repo) {
 
   $font-family-normal: "Pinar", "Tahoma", "Iranian Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif !global;
 
   $name: "Pinar";
-  $folder: "pinar";
+  $folder: "Pinar";
   $file: "Pinar-FD-Regular";
   $path: $base + "/" + $folder + "/" + $file;
 
@@ -1147,7 +1210,7 @@ $font-family-bold: null;
   $font-family-bold: "Pinar", "Arial", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", "Helvetica", sans-serif !global;
 
   $name: "Pinar";
-  $folder: "pinar";
+  $folder: "Pinar";
   $file: "Pinar-FD-Bold";
   $path: $base + "/" + $folder + "/" + $file;
 

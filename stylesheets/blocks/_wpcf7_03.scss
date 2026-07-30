@@ -18,6 +18,10 @@ div.wpcf7 {
     @extend .screen-reader-text;
   }
 
+  .hidden-fields-container {
+    display: none;
+  }
+
   .wpcf7-response-output {
     /* stylelint-disable-next-line scss/at-extend-no-missing-placeholder */
     @extend .alert;
