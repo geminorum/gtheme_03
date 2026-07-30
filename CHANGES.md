@@ -1,3 +1,7 @@
+### [3.24.2] - 2026-07-30
+* asset/css: content type header
+* module/editorial: correct key for default
+
 ## [3.24.0] - 2026-06-27
 * 🔧 change license to GPLv2 or later
 * asset/styles: support for childless setup
