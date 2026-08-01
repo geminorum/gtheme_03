@@ -269,7 +269,7 @@ class gThemeFilters extends gThemeModuleCore
 		|| window.mozRequestAnimationFrame
 		|| window.webkitRequestAnimationFrame
 		|| window.msRequestAnimationFrame;
-	if (raf) raf(function(){window.setTimeout(loadDeferredStyles, 0);});
+	if (raf) raf(function(){window.setTimeout(loadDeferredStyles, 100);});
 	else window.addEventListener('load', loadDeferredStyles);
 }());
 </script><?php
