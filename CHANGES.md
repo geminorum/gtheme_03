@@ -1,3 +1,7 @@
+### [3.24.3] - 2026-08-01
+* module/filters: 100ms delay on deferred styles
+* module/navigation: accurate typing for crumb archives
+
 ### [3.24.2] - 2026-07-30
 * asset/css: content type header
 * module/editorial: correct key for default
