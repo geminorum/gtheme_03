@@ -221,7 +221,8 @@ class gThemeOptions extends gThemeModuleCore
 			// 	// 'tags',
 			// ],
 
-			// 'byline_fallback' => TRUE, // if FALSE hides wp users
+			// 'byline_posttypes' => [ 'post', 'entry', 'publication', 'product' ],
+			// 'byline_fallback' => ! gThemeUtilities::isChildless(), // `FALSE` hides the WP users
 
 			/// BANNERS API:
 			// 'banners_legend' => FALSE, // html before admin banners page

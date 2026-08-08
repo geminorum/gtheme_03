@@ -409,8 +409,27 @@ class gThemeContent extends gThemeModuleCore
 		if ( ! $post->ID )
 			return '';
 
-		if ( 'page' == $post->post_type )
+		// hard-coded blacklist!
+		if ( in_array( $post->post_type, [
+			'page',
+		], TRUE ) )
 			return '';
+
+		$byline    = TRUE;
+		$whitelist = gThemeOptions::info( 'byline_posttypes', [
+			'post',
+			'entry',
+			// 'publication',
+			'product',
+		] );
+
+		if ( FALSE === $whitelist || ! in_array( $post->post_type, (array) $whitelist, TRUE ) )
+			$byline = FALSE;
+
+		$byline = apply_filters( 'gtheme_content_byline', $byline, $post, $fallback );
+
+		if ( FALSE === $byline )
+			return; // bailing!
 
 		if ( $html = gThemeEditorial::byline( [ 'echo' => FALSE ], $post ) ) {
 
