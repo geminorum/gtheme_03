@@ -5,6 +5,7 @@ class gThemeFeatures extends gThemeModuleCore
 	public function setup_actions( $settings = [], $childless = NULL )
 	{
 		$args = self::atts( [
+			'check_actions'      => $childless,
 			'insert_intros'      => TRUE,
 			'insert_toc'         => FALSE,
 			'insert_embed'       => FALSE,
@@ -19,6 +20,9 @@ class gThemeFeatures extends gThemeModuleCore
 			'insert_mainpost'    => TRUE,
 			'insert_supported'   => TRUE,
 		], $settings );
+
+		if ( $args['check_actions'] )
+			add_filter( 'gtheme_content_actions', [ $this, 'check_content_actions' ], 99, 3 );
 
 		add_action( 'template_redirect',
 			function () use ( $args ) {
@@ -82,6 +86,17 @@ class gThemeFeatures extends gThemeModuleCore
 					add_action( 'gtheme_content_wrap_after',
 						[ $this, 'render_editorial_for_supported' ], 99 );
 			} );
+	}
+
+	public function check_content_actions( null|false|array $actions, object $post, bool $icon ): null|false|array
+	{
+		switch ( $post->post_type ) {
+
+			case 'publication';
+				return FALSE;
+		}
+
+		return $actions;
 	}
 
 	public function render_editorial_toc()
