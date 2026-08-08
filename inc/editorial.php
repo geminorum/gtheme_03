@@ -6,39 +6,9 @@ class gThemeEditorial extends gThemeModuleCore
 	public function setup_actions( $settings = [], $childless = NULL )
 	{
 		$args = self::atts( [
-			'insert_toc'       => FALSE,
-			'insert_embed'     => FALSE,
-			'insert_media'     => FALSE,
-			'insert_action'    => TRUE,
-			'insert_source'    => TRUE,
-			'insert_likes'     => TRUE,
-			'insert_supported' => TRUE,
-			'date_override'    => TRUE,
-			'reflist_toc'      => TRUE,
+			'date_override' => TRUE,
+			'reflist_toc'   => TRUE,
 		], $settings );
-
-		if ( $args['insert_toc'] )
-			add_action( 'gtheme_content_before', [ $this, 'content_before_toc' ], 20 );
-
-		if ( $args['insert_embed'] )
-			add_action( 'gtheme_content_before', [ $this, 'content_before_embed' ], 50 );
-
-		if ( $args['insert_media'] ) {
-			add_action( 'gtheme_content_before', [ $this, 'content_before_media' ], 80 );
-			add_action( 'gtheme_content_after', [ $this, 'content_after_media' ], 8 );
-		}
-
-		if ( $args['insert_action'] )
-			add_action( 'gtheme_content_after', [ $this, 'content_after_action' ], 14 );
-
-		if ( $args['insert_source'] )
-			add_action( 'gtheme_content_after', [ $this, 'content_after_source' ], 18 );
-
-		if ( $args['insert_likes'] )
-			add_action( 'gtheme_content_after', [ $this, 'content_after_likes' ], 22 );
-
-		if ( $args['insert_supported'] )
-			add_action( 'gtheme_content_wrap_after', [ $this, 'content_wrap_after_supported' ], 8 );
 
 		if ( $args['date_override'] )
 			add_filter( 'gtheme_date_override_the_date', [ $this, 'date_override_the_date' ], 20, 4 );
@@ -51,125 +21,7 @@ class gThemeEditorial extends gThemeModuleCore
 		add_filter( 'geditorial_wc_connected_product_listconnected_args', [ $this, 'wc_connected_product_listconnected_args' ], 9, 2 );
 	}
 
-	public function content_before_toc( $content )
-	{
-		if ( ! gThemeUtilities::isPrint()
-			&& is_singular( gThemeOptions::info( 'headings_posttypes', [ 'entry', 'lesson' ] ) ) )
-				self::headingsTOC();
-	}
-
-	public function content_before_embed( $content )
-	{
-		if ( ! is_singular() )
-			return;
-
-		if ( $embed = self::getMeta( 'content_embed_url', [ 'fallback' => 'video_embed_url' ] ) )
-			echo gThemeHTML::wrap( $embed, '-embed' );
-	}
-
-	public function content_before_media( $content )
-	{
-		if ( ! is_singular() )
-			return;
-
-		if ( $video = self::getMeta( 'video_source_url' ) )
-			echo gThemeHTML::wrap( $video, '-video -video-source' );
-
-		if ( $audio = self::getMeta( 'audio_source_url' ) )
-			echo gThemeHTML::wrap( $audio, '-audio -audio-source' );
-	}
-
-	public function content_after_media( $content )
-	{
-		if ( ! is_singular() )
-			return;
-
-		if ( $text = self::getMeta( 'text_source_url' ) )
-			echo gThemeHTML::wrap( $text, '-text -text-source' );
-	}
-
-	public function content_after_action()
-	{
-		if ( ! is_singular() )
-			return;
-
-		self::theAction( [
-			'before'     => '<div class="entry-after after-single after-action d-grid gap-2">',
-			'after'      => '</div>',
-			'link_class' => 'btn btn-lg btn-outline-primary',
-		] );
-	}
-
-	public function content_after_source()
-	{
-		if ( ! is_singular() )
-			return;
-
-		self::theSource( [
-			'before' => '<div class="entry-after after-single after-source text-end">'.
-				gThemeOptions::info( 'source_before', '' ),
-			'after'  => '</div>',
-		] );
-	}
-
-	public function content_after_likes()
-	{
-		if ( ! is_singular() )
-			return;
-
-		self::postLikeButton( [
-			'before' => '<div class="entry-after after-single after-like my-2">',
-			'after'  => '</div>',
-		] );
-	}
-
-	public function content_wrap_after_supported()
-	{
-		if ( ! is_singular() )
-			return;
-
-		switch ( get_post_type() ) {
-
-			case 'issue':
-
-				self::magazineSupported( [
-					'before' => '<div class="clearfix"></div><div class="entry-after after-issue after-rows">',
-					'after'  => '</div>',
-					'wrap'   => FALSE,
-					'title'  => FALSE,
-					'future' => FALSE,
-				] );
-
-				break;
-
-			case 'dossier':
-
-				self::dossierSupported( [
-					'before' => '<div class="clearfix"></div><div class="entry-after after-dossier after-rows">',
-					'after'  => '</div>',
-					'wrap'   => FALSE,
-					'title'  => FALSE,
-					'future' => FALSE,
-				] );
-
-				break;
-
-			case 'course':
-
-				self::courseLessons( [
-					'before' => '<div class="clearfix"></div><div class="entry-after after-course-lessons after-rows">',
-					'after'  => '</div>',
-					'order'  => 'DESC',
-					'wrap'   => FALSE,
-					'title'  => FALSE,
-					'future' => FALSE,
-				] );
-
-				break;
-		}
-	}
-
-	public function date_override_the_date( $override, $post, $link, $args )
+	public function date_override_the_date( null|false|string $override, mixed $post, false|string $link, array $args ): null|false|string
 	{
 		// already filtered!
 		if ( ! is_null( $override ) )

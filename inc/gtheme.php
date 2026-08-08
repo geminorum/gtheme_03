@@ -88,6 +88,7 @@ final class gThemeCore
 			'colors'     => 'gThemeColors',
 			'logo'       => 'gThemeLogo',
 			'wrap'       => 'gThemeWrap',
+			'features'   => 'gThemeFeatures',
 
 			'woocommerce' => 'gThemeWooCommerce',
 		];
