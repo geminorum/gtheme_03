@@ -823,7 +823,7 @@ class gThemeContent extends gThemeModuleCore
 			if ( FALSE === $posttype )
 				return; // bailing!
 
-			$actions = $posttype ?: [
+			$actions = $posttype ? (array) $posttype : [
 				'printlink',
 				'shortlink',
 				'editorial_ical',

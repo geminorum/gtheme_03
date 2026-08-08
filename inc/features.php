@@ -93,7 +93,7 @@ class gThemeFeatures extends gThemeModuleCore
 	{
 		switch ( $post->post_type ) {
 
-			case 'publication';
+			case 'publication':
 				return FALSE;
 		}
 
@@ -203,7 +203,7 @@ class gThemeFeatures extends gThemeModuleCore
 			case 'publication':
 
 				gThemeEditorial::metaHTML( 'highlight', [
-					'before'   => '<div class="entry-highlight text-bg-light mb-5 pt-3 px-4 pb-1">',
+					'before'   => '<div class="entry-highlight text-bg-light mb-3 pt-3 px-4 pb-1">',
 					'after'    => '</div>',
 					'fallback' => 'cover_blurb',
 				] );
@@ -213,7 +213,7 @@ class gThemeFeatures extends gThemeModuleCore
 			default:
 
 				gThemeEditorial::metaHTML( 'lead', [
-					'before'   => '<div class="entry-lead text-bg-light mb-5 pt-3 px-4 pb-1">',
+					'before'   => '<div class="entry-lead text-bg-light mb-3 pt-3 px-4 pb-1">',
 					'after'    => '</div>',
 					'fallback' => 'abstract',
 				] );
@@ -244,13 +244,10 @@ class gThemeFeatures extends gThemeModuleCore
 				] );
 
 				gThemeEditorial::venuePlace( [
+					'title'  => gThemeOptions::info( 'venue_title', FALSE ),
 					'before' => '<div class="clearfix"></div><div class="entry-after after-venue-place after-rows my-2">',
 					'after'  => '</div>',
 					'wrap'   => FALSE,
-					'title'  => sprintf(
-						'<div class="-wrap-title"><h4 class="-title">%s</h4></div>',
-						_x( 'Venue', 'Entry After Title', 'gtheme-ahmad' )
-					),
 				] );
 		}
 	}

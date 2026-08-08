@@ -118,6 +118,7 @@ class gThemeOptions extends gThemeModuleCore
 
 			'source_before'         => _x( 'Source: ', 'Options: Source Before', 'gtheme' ),
 			'reflist_title'         => sprintf( '<div class="-wrap-title"><h4 class="-title" id="footnotes">%s</h4></div>', _x( 'Footnotes', 'Options: Reflist Title', 'gtheme' ) ),
+			'venue_title'           => sprintf( '<div class="-wrap-title"><h4 class="-title" id="venue">%s</h4></div>', _x( 'Venue', 'Options: Venue List Title', 'gtheme' ) ),
 			'attachments_title'     => sprintf( '<div class="-wrap-title"><h4 class="-title" id="attachments">%s</h4></div>', _x( 'Attachments', 'Options: Attachment List Title', 'gtheme' ) ),
 			'attachments_mimetypes' => [ 'text/markdown', 'application/pdf' ],
 
