@@ -44,6 +44,8 @@ class gThemeSideBar extends gThemeModuleCore
 
 	public static function sidebar( $name, $before = '', $after = '', $else = FALSE )
 	{
+		do_action( 'gtheme_sidebar_wrap_before', $name );
+
 		if ( ! gThemeOptions::info( 'sidebar_support', TRUE ) )
 			return;
 
@@ -61,6 +63,8 @@ class gThemeSideBar extends gThemeModuleCore
 
 			echo sprintf( $before, $class ).$else.$after;
 		}
+
+		do_action( 'gtheme_sidebar_wrap_after', $name );
 	}
 
 	public static function widgets()
