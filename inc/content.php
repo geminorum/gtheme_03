@@ -1528,14 +1528,16 @@ addthis_config.services_custom = [
 		if ( ! $post = self::getPost( $args['post'] ) )
 			return;
 
+		do_action( 'gtheme_content_header_wrap_before', $post, $args );
+
 		if ( is_null( $args['title'] ) )
 			$args['title'] = get_the_title( $post );
 
 		if ( ! is_string( $args['title'] ) )
-			return;
+			return do_action( 'gtheme_content_header_wrap_after', $post, $args );
 
 		if ( 0 === strlen( $args['title'] ) )
-			return;
+			return do_action( 'gtheme_content_header_wrap_after', $post, $args );
 
 		if ( TRUE === $args['link'] ) {
 
@@ -1652,6 +1654,8 @@ addthis_config.services_custom = [
 
 		if ( $args['wrap_close'] && $args['wrap_tag'] )
 			echo '</'.$args['wrap_tag'].'>'."\n";
+
+		do_action( 'gtheme_content_header_wrap_after', $post, $args );
 	}
 
 	public static function footer( $atts = [] )
