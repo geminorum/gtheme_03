@@ -3,13 +3,7 @@
 echo '<div class="entry-wrap-singlecolumn">';
 
 	gThemeSideBar::sidebar( 'entry-before', '<div class="wrap-side sidebar-entry-before">', '</div>' );
-
-	gThemeImage::image( [
-		'tag'   => 'single',
-		'link'  => 'attachment',
-		'empty' => FALSE,
-	] );
-
+	gThemeContent::image( 'singular' );
 	gThemeContent::header( [ 'context' => 'singular', 'byline' => TRUE, 'actions' => NULL ] );
 	gThemeContent::content();
 	gThemeSideBar::sidebar( 'entry-content', '<div class="wrap-side sidebar-entry-content">', '</div>' );

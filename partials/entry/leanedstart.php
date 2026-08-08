@@ -19,11 +19,7 @@ echo '<div class="entry-wrap-doublecolumn entry-wrap-double">';
 		echo '</div></div>';
 		echo '<div class="-leaned-area entry-double-image"><div class="-wrap">';
 
-			gThemeImage::image( [
-				'tag'   => 'single',
-				'link'  => 'attachment',
-				'empty' => FALSE,
-			] );
+			gThemeContent::image( 'singular' );
 
 		echo '</div></div>';
 		echo '<div class="-leaned-area -leaned-area-column entry-double-main"><div class="-wrap">';
