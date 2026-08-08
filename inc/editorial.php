@@ -1171,6 +1171,29 @@ class gThemeEditorial extends gThemeModuleCore
 		return \geminorum\gEditorial\Modules\Venue\ModuleTemplate::summary( $atts );
 	}
 
+	public static function happeningMetaSummary( $atts = [], $check = FALSE )
+	{
+		if ( ! array_key_exists( 'default', $atts ) )
+			$atts['default'] = FALSE;
+
+		if ( ! array_key_exists( 'id', $atts ) )
+			$atts['id'] = NULL;
+
+		if ( $check && ( 'event' != get_post_type( $atts['id'] ) ) )
+			return $atts['default'];
+
+		if ( ! self::availableEditorial( 'happening' ) )
+			return $atts['default'];
+
+		if ( ! array_key_exists( 'fields', $atts ) )
+			$atts['fields'] = apply_filters( 'gtheme_editorial_happening_summary_fields', NULL, $atts );
+
+		if ( ! is_callable( [ 'geminorum\\gEditorial\\Modules\\Happening\\ModuleTemplate', 'summary' ] ) )
+			return $atts['default'];
+
+		return \geminorum\gEditorial\Modules\Happening\ModuleTemplate::summary( $atts );
+	}
+
 	public static function tabsPostTabs( $post = NULL )
 	{
 		if ( ! self::availableEditorial( 'tabs' ) )
