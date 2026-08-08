@@ -192,17 +192,17 @@ class gThemeOptions extends gThemeModuleCore
 			// 'mce_buttons_2'     => [ 'styleselect' ],
 			// 'mce_style_formats' => gThemeEditor::defaultFormats(),
 
-			// FIXME: DEPRECATED: use `gtheme_settings_legend` action
+			// NOTE: DEPRECATED: use `gtheme_settings_legend` action
 			// 'settings_legend' => FALSE, // html content to appear after settings
 
-			// FIXME: DEPRECATED: use PAGES API
+			// NOTE: DEPRECATED: use PAGES API
 			// 'search_page' => self::getOption( 'search_page', 0 ),
 
 			// 'home_url_override' => '', // full url to overrided home page / @SEE: `gThemeOptions::getHomeURL()`
 			// 'empty_search_query' => '', // string to use on search input form / comment to use default
 
-			// 'post_actions_icons' => FALSE, // NEEDS: genericons css
-			// 'post_actions' => [ // the order is important!
+			// 'post_actions_icons' => FALSE, // NEEDS: genericons css!
+			// 'post_actions' => [ // the order is important.
 			// 	// 'textsize_buttons', // or 'textsize_buttons_nosep',
 			// 	// 'textjustify_buttons_nosep', // 'textjustify_buttons', // or ,
 			// 	'printlink',
@@ -237,9 +237,9 @@ class gThemeOptions extends gThemeModuleCore
 
 			/// DATE:
 			// 'date_posttypes'      => [ 'post' ],
-			// 'date_format_byline'  => _x( 'j M Y', 'Options: Defaults: Date Format: Byline', 'gtheme' ), // used on post by line
-			// 'date_format_content' => _x( 'Y/j/m', 'Options: Defaults: Date Format: Content', 'gtheme' ),  // not used yet!
-			// 'date_format_day'     => _x( 'j M Y', 'Options: Defaults: Date Format: Day', 'gtheme' ), // day navigation
+			// 'date_format_byline'  => _x( 'j M Y', 'Options: Defaults: Date Format: Byline', 'gtheme' ),    // used on post by line.
+			// 'date_format_content' => _x( 'Y/j/m', 'Options: Defaults: Date Format: Content', 'gtheme' ),   // not used yet!
+			// 'date_format_day'     => _x( 'j M Y', 'Options: Defaults: Date Format: Day', 'gtheme' ),       // day navigation
 
 			/// PRINT:
 			// 'print_posttypes' => [ 'post' ],

@@ -1059,7 +1059,9 @@ class gThemeEditorial extends gThemeModuleCore
 		if ( ! self::availableNetwork( 'shortcodes' ) )
 			return NULL;
 
-		$html = gNetwork()->shortcodes->shortcode_reflist( array_merge( $atts, [ 'context' => 'single' ] ), NULL, 'reflist' );
+		$html = gNetwork()->shortcodes->shortcode_reflist( array_merge( $atts, [
+			'context' => 'single',
+		] ), NULL, 'reflist' );
 
 		if ( ! $verbose )
 			return $html;

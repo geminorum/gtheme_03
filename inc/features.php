@@ -7,9 +7,9 @@ class gThemeFeatures extends gThemeModuleCore
 		$args = self::atts( [
 			'check_actions'      => $childless,
 			'insert_intros'      => TRUE,
-			'insert_toc'         => FALSE,
-			'insert_embed'       => FALSE,
-			'insert_media'       => FALSE,
+			'insert_toc'         => $childless,
+			'insert_embed'       => $childless,
+			'insert_media'       => $childless,
 			'insert_people'      => TRUE,
 			'insert_action'      => TRUE,
 			'insert_attachments' => FALSE,
@@ -39,7 +39,8 @@ class gThemeFeatures extends gThemeModuleCore
 						[ $this, 'render_editorial_toc' ], 20 );
 
 				if ( $args['insert_embed'] )
-					add_action( 'gtheme_content_before',
+					// add_action( 'gtheme_content_before',
+					add_action( 'gtheme_content_image_wrap_after',
 						[ $this, 'render_editorial_embed' ], 50 );
 
 				if ( $args['insert_media'] ) {

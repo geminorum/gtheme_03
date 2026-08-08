@@ -15,7 +15,7 @@ class gThemeUtilities extends gThemeBaseCore
 	 */
 	public static function isChildless()
 	{
-		// return GTHEME_DIR === GTHEME_CHILD_DIR; // may not defined yet!
+		// `return GTHEME_DIR === GTHEME_CHILD_DIR; // may not defined yet!`
 		return get_template_directory() === get_stylesheet_directory();
 	}
 
