@@ -482,7 +482,7 @@ class gThemeContent extends gThemeModuleCore
 		}
 
 		if ( is_null( $fallback ) )
-			$fallback = gThemeOptions::info( 'byline_fallback', TRUE );
+			$fallback = gThemeOptions::info( 'byline_fallback', ! gThemeUtilities::isChildless() );
 
 		if ( ! $fallback )
 			return '';
