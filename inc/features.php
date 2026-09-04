@@ -93,6 +93,7 @@ class gThemeFeatures extends gThemeModuleCore
 	{
 		switch ( $post->post_type ) {
 
+			case 'place':
 			case 'publication':
 				return FALSE;
 		}
@@ -110,7 +111,7 @@ class gThemeFeatures extends gThemeModuleCore
 	public function render_editorial_embed()
 	{
 		if ( $embed = gThemeEditorial::getMeta( 'content_embed_url', [ 'fallback' => 'video_embed_url' ] ) )
-			echo gThemeHTML::wrap( $embed, '-embed' );
+			echo gThemeHTML::wrap( $embed, '-embed my-2' );
 	}
 
 	public function render_editorial_media_before()
@@ -227,29 +228,36 @@ class gThemeFeatures extends gThemeModuleCore
 		], TRUE ) )
 			return;
 
-		switch ( get_post_type() ) {
+		if ( ! $posttype = get_post_type() )
+			return;
 
-			default:
+		if ( ! in_array( $posttype, [
+			'publication',
+		], TRUE ) )
+			gThemeEditorial::publication( [
+				'before' => '<div class="clearfix"></div><div class="entry-after after-publication after-rows">',
+				'after'  => '</div>',
+				'title'  => FALSE,
+			] );
 
-				gThemeEditorial::publication( [
-					'before' => '<div class="clearfix"></div><div class="entry-after after-publication after-rows">',
-					'after'  => '</div>',
-					'title'  => FALSE,
-				] );
+		if ( ! in_array( $posttype, [
+			'appendage',
+		], TRUE ) )
+			gThemeEditorial::addendumAppendages( [
+				'before' => '<div class="clearfix"></div><div class="entry-after after-appendages after-rows my-2 -print-hide">',
+				'after'  => '</div>',
+				'wrap'   => FALSE,
+			] );
 
-				gThemeEditorial::addendumAppendages( [
-					'before' => '<div class="clearfix"></div><div class="entry-after after-appendages after-rows my-2 -print-hide">',
-					'after'  => '</div>',
-					'wrap'   => FALSE,
-				] );
-
-				gThemeEditorial::venuePlace( [
-					'title'  => gThemeOptions::info( 'venue_title', FALSE ),
-					'before' => '<div class="clearfix"></div><div class="entry-after after-venue-place after-rows my-2">',
-					'after'  => '</div>',
-					'wrap'   => FALSE,
-				] );
-		}
+		if ( ! in_array( $posttype, [
+			'place',
+		], TRUE ) )
+			gThemeEditorial::venuePlace( [
+				'title'  => gThemeOptions::info( 'venue_title', FALSE ),
+				'before' => '<div class="clearfix"></div><div class="entry-after after-venue-place after-rows my-2">',
+				'after'  => '</div>',
+				'wrap'   => FALSE,
+			] );
 	}
 
 	public function render_editorial_for_supported()
@@ -258,10 +266,20 @@ class gThemeFeatures extends gThemeModuleCore
 
 			case 'place':
 
+				gThemeEditorial::socialitePost( [
+					'before' => '<div class="clearfix"></div><div class="entry-after after-social-icons after-rows">',
+					'after'  => '</div>',
+				] );
+
 				gThemeEditorial::venueMetaSummary( [
 					'before' => '<div class="clearfix"></div><div class="entry-after after-meta-summary venue-meta-summary after-rows">',
 					'after'  => '</div>',
 				], FALSE );
+
+				gThemeEditorial::venueMap( [
+					'before' => '<div class="entry-after after-place after-map my-2">',
+					'after'  => '</div>',
+				] );
 
 				break;
 
@@ -280,6 +298,9 @@ class gThemeFeatures extends gThemeModuleCore
 					'before' => '<div class="clearfix"></div><div class="entry-after after-meta-summary happening-meta-summary after-rows">',
 					'after'  => '</div>',
 				], FALSE );
+
+				if ( $embed = gThemeEditorial::getMeta( 'map_embed_url' ) )
+					echo gThemeHTML::wrap( $embed, '-embed entry-after after-event after-map my-2' );
 
 				break;
 

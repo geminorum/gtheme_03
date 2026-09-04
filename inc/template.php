@@ -252,7 +252,8 @@ class gThemeTemplate extends gThemeModuleCore
 		if ( ! $link = get_author_posts_url( $user->ID, $user->user_nicename ) )
 			return $display_name;
 
-		$template = gThemeOptions::getOption( 'template_author_link', '<a href="%1$s" title="%2$s" rel="author">%3$s</a>' );
+		// @REF: https://make.wordpress.org/core/2026/05/14/removing-title-attributes-in-author-link-functions/
+		$template = gThemeOptions::getOption( 'template_author_link', '<a href="%1$s" rel="author">%3$s</a>' );
 
 		return vsprintf( $template, [
 			esc_url( $link ),

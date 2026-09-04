@@ -2,6 +2,9 @@
 
 gThemeContent::wrapOpen( 'attachment' );
 
+
+	// check for cap
+
 	if ( gThemeAttachment::media() )
 		gThemeAttachment::download();
 

@@ -4,6 +4,7 @@ class gThemeAttachment extends gThemeModuleCore
 {
 
 	// TODO: filter `wp_get_attachment_link` to append: `attachment_download_prefix` @REF: https://core.trac.wordpress.org/ticket/41574
+	// TODO: `current_user_can( 'read_post', $attachment_id )`
 
 	// used in caption short-code
 	public static function normalizeCaption( $caption, $before = '', $after = '', $default = '' )
@@ -45,10 +46,9 @@ class gThemeAttachment extends gThemeModuleCore
 		echo $args['before'].$html.$args['after'];
 	}
 
-	// FIXME: DEPRECATED: USE: `gThemeAttachment::media()`
+	#[\Deprecated('USE `gThemeAttachment::media()`')]
 	public static function image( $atts = [] )
 	{
-		self::_dep( 'gThemeAttachment::media()' );
 		return self::media( $atts );
 	}
 

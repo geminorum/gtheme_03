@@ -78,7 +78,7 @@ class gThemeComments extends gThemeModuleCore
 	// http://www.wpbeginner.com/wp-tutorials/how-to-disable-comments-on-wordpress-media-attachments/
 	public function comments_open( $open, $post_id )
 	{
-		if ( ! $disabled = gThemeOptions::info( 'comments_disable_types', [ 'attachment' ] ) )
+		if ( ! $disabled = gThemeOptions::info( 'comments_disable_types', [ 'page', 'attachment' ] ) )
 			return $open;
 
 		if ( in_array( get_post_type( $post_id ), (array) $disabled ) )
