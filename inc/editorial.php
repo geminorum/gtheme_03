@@ -124,6 +124,24 @@ class gThemeEditorial extends gThemeModuleCore
 		return FALSE;
 	}
 
+	public static function placardBanners( $atts = [], $verbose = TRUE )
+	{
+		if ( ! self::availableEditorial( 'placard' ) )
+			return NULL;
+
+		if ( ! is_callable( [ gEditorial()->placard, 'main_shortcode' ] ) )
+			return NULL;
+
+		$html = gEditorial()->placard->main_shortcode( $atts );
+
+		if ( ! $verbose )
+			return $html;
+
+		echo $html;
+
+		return TRUE;
+	}
+
 	public static function socialite( $atts = [], $verbose = TRUE )
 	{
 		if ( ! self::availableEditorial( 'socialite' ) )
