@@ -142,6 +142,24 @@ class gThemeEditorial extends gThemeModuleCore
 		return TRUE;
 	}
 
+	public static function socialitePost( $atts = [], $verbose = TRUE )
+	{
+		if ( ! self::availableEditorial( 'socialite' ) )
+			return NULL;
+
+		if ( ! is_callable( [ gEditorial()->socialite, 'shortcode_posts' ] ) )
+			return NULL;
+
+		$html = gEditorial()->socialite->shortcode_posts( $atts );
+
+		if ( ! $verbose )
+			return $html;
+
+		echo $html;
+
+		return TRUE;
+	}
+
 	public static function series( $atts = [], $verbose = TRUE )
 	{
 		if ( ! self::availableEditorial( 'series' ) )
