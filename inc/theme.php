@@ -18,7 +18,6 @@ class gThemeTheme extends gThemeModuleCore
 			'post_formats'      => FALSE,
 			'custom_background' => FALSE,
 			'custom_header'     => FALSE,
-			'custom_logo'       => TRUE,
 			'custom_fontsizes'  => FALSE,
 			'html5'             => TRUE,
 			'js'                => FALSE,
@@ -113,9 +112,6 @@ class gThemeTheme extends gThemeModuleCore
 		if ( $args['custom_header'] )
 			$this->_support_custom_headers();
 
-		if ( $args['custom_logo'] )
-			$this->_support_custom_logo();
-
 		// MAYBE: move to `Editor` module or module for Gutenberg
 		if ( $args['custom_fontsizes'] ) {
 
@@ -202,30 +198,6 @@ class gThemeTheme extends gThemeModuleCore
 	private function _support_custom_headers()
 	{
 		add_theme_support( 'custom-header' ); // FIXME: add args!
-	}
-
-	// @REF: https://developer.wordpress.org/themes/functionality/custom-logo/
-	// @REF: https://make.wordpress.org/core/2016/03/10/custom-logo/
-	// @REF: https://make.wordpress.org/core/2020/07/28/themes-changes-related-to-get_custom_logo-in-wordpress-5-5/
-	private function _support_custom_logo()
-	{
-		if ( ! $atts = gThemeOptions::info( 'custom_logo_support' ) )
-			return FALSE;
-
-		$args = self::atts( [
-			'width'       => NULL,
-			'height'      => NULL,
-			'flex-width'  => TRUE,
-			'flex-height' => TRUE,
-			// 'header-text' => [
-			// 	gThemeOptions::info( 'blog_name', '' ), // site-title
-			// 	gThemeOptions::info( 'frontpage_desc', '' ), // site-description
-			// ],
-
-			// 'unlink-homepage-logo' => TRUE,
-		], is_array( $atts ) ? $atts : [] );
-
-		return add_theme_support( 'custom-logo', $args );
 	}
 
 	public function cleanup()

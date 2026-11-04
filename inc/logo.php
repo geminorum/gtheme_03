@@ -9,10 +9,38 @@ class gThemeLogo extends gThemeModuleCore
 	{
 		$args = self::atts( [
 			'customizer' => FALSE,
+			'custom_support' => $childless ?? FALSE,
 		], $settings );
+
+		if ( $args['custom_support'] )
+			$this->_support_custom_logo();
 
 		if ( $args['customizer'] )
 			add_action( 'customize_register', [ $this, 'customize_register' ] );
+	}
+
+	// @REF: https://developer.wordpress.org/themes/functionality/custom-logo/
+	// @REF: https://make.wordpress.org/core/2016/03/10/custom-logo/
+	// @REF: https://make.wordpress.org/core/2020/07/28/themes-changes-related-to-get_custom_logo-in-wordpress-5-5/
+	private function _support_custom_logo(): bool
+	{
+		if ( ! $atts = gThemeOptions::info( 'custom_logo_args', TRUE ) )
+			return FALSE;
+
+		$args = self::atts( [
+			'width'       => NULL,
+			'height'      => NULL,
+			'flex-width'  => TRUE,
+			'flex-height' => TRUE,
+			// 'header-text' => [
+			// 	gThemeOptions::info( 'blog_name', '' ), // site-title
+			// 	gThemeOptions::info( 'frontpage_desc', '' ), // site-description
+			// ],
+
+			// 'unlink-homepage-logo' => TRUE,
+		], is_array( $atts ) ? $atts : [] );
+
+		return FALSE !== add_theme_support( 'custom-logo', $args );
 	}
 
 	public function sanitize_callback_type_checkbox( $value )
