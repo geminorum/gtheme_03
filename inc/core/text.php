@@ -504,4 +504,10 @@ class gThemeText extends gThemeBaseCore
 
 		return $template;
 	}
+
+	// TODO: move to `Core\Link`
+	public static function unlinkify( string $text ): string
+	{
+		return preg_replace( '/<a.*?>(.*?)<\/a>/i', '\1', $text ) ?: '';
+	}
 }
