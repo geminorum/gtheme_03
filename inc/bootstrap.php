@@ -7,10 +7,15 @@ class gThemeBootstrap extends gThemeModuleCore
 	{
 		$args = self::atts( [
 			'enhance_forms' => TRUE,
+			'enhance_logos' => TRUE,
 		], $settings );
 
 		if ( $args['enhance_forms'] ) {
 			add_filter( 'widget_categories_dropdown_args', [ $this, 'widget_categories_dropdown_args' ], 12, 2 );
+		}
+
+		if ( $args['enhance_logos'] ) {
+			add_filter( 'get_custom_logo_image_attributes', [ $this, 'get_custom_logo_image_attributes' ], 12, 3 );
 		}
 	}
 
@@ -22,6 +27,16 @@ class gThemeBootstrap extends gThemeModuleCore
 			$args['class'].= ' form-select form-select-sm';
 
 		return $args;
+	}
+
+	public function get_custom_logo_image_attributes( array $attributes, int $attachment_id, int $blog_id ): array
+	{
+		if ( empty( $attributes['class'] ) )
+			$attributes['class'] = 'img-fluid';
+		else
+			$attributes['class'].= ' img-fluid';
+
+		return $attributes;
 	}
 
 	/**
