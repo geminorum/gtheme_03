@@ -125,10 +125,12 @@ class gThemeBootstrap extends gThemeModuleCore
 			$brand = gThemeOptions::info( 'blog_name', FALSE );
 
 		else if ( 'logo' == $brand )
-			$brand = gThemeTemplate::logo( 'navbar', $template, FALSE );
+			$brand = gThemeText::unlinkify( (string) get_custom_logo() )
+				?: gThemeTemplate::logo( 'navbar', $template, FALSE );
 
 		else if ( 'logo-title' == $brand )
-			$brand = gThemeTemplate::logo( 'navbar', $template, FALSE, $filename ? '' : ( ' '.$title ) );
+			$brand = trim( gThemeText::unlinkify( (string) get_custom_logo() ).' '.gThemeOptions::info( 'blog_name', '' ) )
+				?: gThemeTemplate::logo( 'navbar', $template, FALSE, $filename ? '' : ( ' '.$title ) );
 
 		if ( FALSE !== $brand )
 			vprintf( '<a class="navbar-brand %4$s no-outline" href="%1$s" title="%2$s">%3$s</a>', [
